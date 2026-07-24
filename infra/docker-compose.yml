@@ -1,0 +1,21 @@
+# Local development services. Run the Django app + Celery on the host (or add
+# them here later). This brings up the datastores the backend depends on.
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: oam
+      POSTGRES_PASSWORD: oam
+      POSTGRES_DB: oam
+    ports:
+      - "5432:5432"
+    volumes:
+      - oam_pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+volumes:
+  oam_pgdata:
