@@ -91,8 +91,10 @@ CORS_ALLOW_CREDENTIALS = True
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "/static/"
 
+if "whitenoise.runserver_nostatic" not in INSTALLED_APPS:
+    INSTALLED_APPS.insert(0, "whitenoise.runserver_nostatic")
+
 if "whitenoise.middleware.WhiteNoiseMiddleware" not in MIDDLEWARE:
-    # Directly after SecurityMiddleware, which WhiteNoise requires.
     _i = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware") + 1
     MIDDLEWARE.insert(_i, "whitenoise.middleware.WhiteNoiseMiddleware")
 
