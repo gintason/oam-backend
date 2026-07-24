@@ -1,0 +1,48 @@
+# --- Core ---
+Django==5.0.6
+djangorestframework==3.15.1
+django-environ==0.11.2
+psycopg[binary]==3.1.19
+
+# --- Auth ---
+djangorestframework-simplejwt==5.3.1
+PyJWT==2.8.0
+
+# --- Internationalisation (dynamic, per-field model translation) ---
+django-modeltranslation==0.18.11
+
+# --- CORS / API ---
+django-cors-headers==4.3.1
+drf-spectacular==0.27.2          # OpenAPI schema for the typed web/mobile clients
+
+# --- Async / background work ---
+celery==5.4.0
+redis==5.0.4
+django-celery-beat==2.6.0        # DB-backed periodic tasks (reconciliation, polling)
+django-celery-results==2.5.1
+
+# --- Real-time (used later for order/booking status, notifications) ---
+channels==4.1.0
+channels-redis==4.2.0
+
+# --- Third-party HTTP integrations ---
+requests==2.32.3
+urllib3==2.2.1
+
+# --- Server ---
+gunicorn==22.0.0
+uvicorn==0.30.1
+whitenoise==6.7.0
+# Add these to requirements.txt before deploying.
+#
+# gunicorn      — runserver is a development server and explicitly not for
+#                 production use; it's single-threaded and unhardened
+# whitenoise    — Django refuses to serve static files with DEBUG=False, and
+#                 WhiteNoise does it from the app without a separate CDN
+# dj-database-url — parses Render's DATABASE_URL into Django's DATABASES dict
+# psycopg[binary] — the PostgreSQL driver
+
+gunicorn>=21.2.0
+whitenoise>=6.6.0
+dj-database-url>=2.1.0
+psycopg[binary]>=3.1.0

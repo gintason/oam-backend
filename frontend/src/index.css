@@ -1,0 +1,128 @@
+/* Fonts — Satoshi + Clash Display from Fontshare, Geist Mono from Google */
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@500,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent accidental horizontal scroll on mobile from wide/rotated elements */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Interwoven green/black motion field.
+   Heavy blur + moderate opacity so shapes blend with NO hard edges. Each blob
+   is a soft circle; the parent <section> has overflow-hidden so nothing bleeds
+   past the bottom as a line. */
+.oam-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(56px);
+  opacity: 0.6;
+  will-change: transform;
+  animation: oam-blobmove var(--bd, 26s) ease-in-out infinite alternate;
+}
+.oam-blob-lite {
+  opacity: 0.45;
+  mix-blend-mode: screen;
+}
+@keyframes oam-blobmove {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(var(--bx), var(--by)) scale(1.12); }
+}
+
+/* Hero background icons: drift (translate + slight rotate) AND pulse opacity. */
+.oam-drift {
+  will-change: transform, opacity;
+  animation:
+    oam-float var(--dur, 28s) ease-in-out infinite alternate,
+    oam-pulse calc(var(--dur, 28s) / 3) ease-in-out infinite;
+}
+@keyframes oam-float {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(var(--dx), var(--dy)) rotate(6deg); }
+}
+@keyframes oam-pulse {
+  0%, 100% { opacity: 0.06; }
+  50%      { opacity: 0.15; }
+}
+
+/* Phone app-screen animations */
+.oam-tile {
+  will-change: transform, box-shadow;
+  animation: oam-tilepop 6s ease-in-out infinite;
+}
+@keyframes oam-tilepop {
+  0%, 88%, 100% { transform: translateY(0); box-shadow: none; }
+  92%           { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(11,115,39,0.18); }
+}
+.oam-balpulse {
+  animation: oam-balpulse 4s ease-in-out infinite;
+}
+@keyframes oam-balpulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+
+/* Ambient white glow layers — slow, visible drift so the "cloud" moves. */
+.oam-glow { will-change: transform; }
+.oam-glow-1 { animation: oam-glow1 26s ease-in-out infinite alternate; }
+.oam-glow-2 { animation: oam-glow2 34s ease-in-out infinite alternate; }
+.oam-glow-3 { animation: oam-glow3 30s ease-in-out infinite alternate; }
+@keyframes oam-glow1 {
+  from { transform: translate(-6%, -4%) scale(1); }
+  to   { transform: translate(8%, 6%) scale(1.15); }
+}
+@keyframes oam-glow2 {
+  from { transform: translate(6%, 3%) scale(1.1); }
+  to   { transform: translate(-8%, -5%) scale(1); }
+}
+@keyframes oam-glow3 {
+  from { transform: translate(-4%, 5%) scale(1); }
+  to   { transform: translate(7%, -6%) scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oam-blob, .oam-drift, .oam-tile, .oam-balpulse, .oam-glow { animation: none; }
+  .oam-drift { opacity: 0.1; }
+}
+
+/* Hide scrollbar for horizontal category/tab scrollers (still scrollable) */
+.scrollbar-hide {
+  -ms-overflow-style: none;      /* IE / Edge */
+  scrollbar-width: none;          /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari / Opera */
+}
+
+/*
+ * Clearance for the mobile bottom tab bar.
+ *
+ * Applied globally rather than per page: the bar is fixed, so without this the
+ * last row of any list sits underneath it — and on a long page that's the row
+ * people most often want (the newest order, the Post button). Only below the
+ * md breakpoint, where the bar actually exists.
+ */
+@media (max-width: 767px) {
+  body:has(.oam-bottom-tabs) main {
+    padding-bottom: calc(78px + env(safe-area-inset-bottom));
+  }
+}

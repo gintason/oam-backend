@@ -1,0 +1,106 @@
+# Render Blueprint for OAM.
+#
+# Push this to the repo root and use "New > Blueprint" in Render, or create the
+# services by hand using these values.
+#
+# Secrets are marked sync:false — Render prompts for them rather than reading
+# them from this file, so nothing sensitive lives in git.
+
+databases:
+  - name: oam-db
+    databaseName: oam
+    user: oam
+    # NOTE: the free tier expires after 30 days and is capped at 1GB.
+    # For real customers use a paid plan — a database that deletes itself
+    # takes every wallet balance with it.
+    plan: free
+
+services:
+  # ---------------------------------------------------------------- API ---
+  - type: web
+    name: oam-api
+    runtime: python
+    plan: free           # free instances sleep after 15 min; first request
+                         # after that takes up to a minute
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application --workers 2 --timeout 120"
+    healthCheckPath: /api/v1/homeservices/featured/
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.production
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: oam-db
+          property: connectionString
+      - key: ALLOWED_HOSTS
+        sync: false      # e.g. api.oam-app.com
+      - key: FRONTEND_URL
+        sync: false      # e.g. https://app.oam-app.com
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: PAYSTACK_PUBLIC_KEY
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        sync: false
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false      # optional
+      # Add your vtu.ng and Africa's Talking variables here too.
+
+  # ------------------------------------------------------------ frontend ---
+  - type: web
+    name: oam-web
+    runtime: static
+    buildCommand: "npm ci && npm run build"
+    staticPublishPath: ./dist
+    rootDir: frontend
+    envVars:
+      - key: VITE_API_URL
+        sync: false      # e.g. https://api.oam-app.com/api/v1
+    routes:
+      # Without this, refreshing on /dashboard returns 404: the browser asks
+      # the server for a file that doesn't exist, because routing is client-side.
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # ---------------------------------------------------------------- cron ---
+  - type: cron
+    name: oam-settle-orders
+    runtime: python
+    plan: starter        # cron jobs are not available on the free plan
+    schedule: "*/5 * * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python manage.py settle_bill_orders --apply"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: oam-db
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
