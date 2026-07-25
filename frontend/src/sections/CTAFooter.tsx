@@ -1,9 +1,12 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import type { ReactElement } from "react";
 
 /** Closing call-to-action, then the footer. */
 
 export function CTA() {
+  const navigate = useNavigate();
+
   return (
     <section className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-24">
       <div className="relative overflow-hidden rounded-3xl bg-[#0B3D22] px-8 py-14 sm:px-14 sm:py-20 text-center">
@@ -19,11 +22,17 @@ export function CTA() {
           It's free to start.
         </p>
         <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-          <button className="inline-flex h-12 items-center gap-2 rounded-lg bg-brand-red px-6 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98]">
+          <button
+            onClick={() => navigate("/sign-up")}
+            className="inline-flex h-12 items-center gap-2 rounded-lg bg-brand-red px-6 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98]"
+          >
             Create your account
             <ArrowRight size={18} strokeWidth={1.75} />
           </button>
-          <button className="h-12 rounded-lg border border-white/35 bg-transparent px-6 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98]">
+          <button
+            onClick={() => navigate("/sign-in")}
+            className="h-12 rounded-lg border border-white/35 bg-transparent px-6 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98]"
+          >
             Sign in
           </button>
         </div>
@@ -108,8 +117,7 @@ const WhatsAppLogo = ({ className }: IconProps) => (
   </svg>
 );
 
-type Social = { label: string; href: string; Logo: (p: IconProps) => JSX.Element };
-
+type Social = { label: string; href: string; Logo: (p: IconProps) => ReactElement };
 /**
  * Social links. Same handle everywhere: @oamplatform.
  *
