@@ -300,10 +300,10 @@ export default function Hero() {
           {/* CTAs — side by side */}
           <div className="mt-7 flex flex-row justify-center gap-3 sm:mt-8 lg:justify-start">
             <button className="h-12 flex-1 rounded-lg bg-brand-red px-5 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98] sm:flex-none sm:px-6">
-              Create your account
+              Sign Up Now!
             </button>
             <button className="h-12 flex-1 rounded-lg border border-white/[0.32] bg-transparent px-5 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98] sm:flex-none sm:px-6">
-              See how it works
+              How it works
             </button>
           </div>
         </div>
