@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BedDouble, Bell, Car, CreditCard, Gift, Plane, Send, Smartphone, Store, Tv, Wallet, Wifi, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 /**
@@ -77,6 +78,13 @@ const IOS_SVCS: Svc[] = [
 
 const tintClass = (t: Svc["tint"]) =>
   t === "red" ? "text-brand-red" : t === "green" ? "text-brand-green" : "text-ink";
+
+
+const navigate = useNavigate();
+
+const scrollToHowItWorks = () => {
+  document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+};
 
 /* Store badges — inline SVG (lucide has no brand icons) */
 const PlayGlyph = () => (
@@ -297,16 +305,21 @@ export default function Hero() {
             you, gift cards, transfers and travel. All from one wallet.
           </p>
 
-          {/* CTAs — side by side */}
-          <div className="mt-7 flex flex-row justify-center gap-3 sm:mt-8 lg:justify-start">
-            <button className="h-12 flex-1 rounded-lg bg-brand-red px-5 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98] sm:flex-none sm:px-6">
-              Sign Up Now!
-            </button>
-            <button className="h-12 flex-1 rounded-lg border border-white/[0.32] bg-transparent px-5 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98] sm:flex-none sm:px-6">
-              How it works
-            </button>
-          </div>
-        </div>
+    {/* CTAs — side by side */}
+  <div className="mt-7 flex flex-row justify-center gap-3 sm:mt-8 lg:justify-start">
+    <button
+      onClick={() => navigate("/signup")}
+      className="h-12 flex-1 rounded-lg bg-brand-red px-5 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98] sm:flex-none sm:px-6"
+    >
+      Sign Up Now!
+    </button>
+    <button
+      onClick={scrollToHowItWorks}
+      className="h-12 flex-1 rounded-lg border border-white/[0.32] bg-transparent px-5 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98] sm:flex-none sm:px-6"
+    >
+      How it works
+    </button>
+  </div>
 
         {/* RIGHT */}
         <div className="w-full flex-shrink-0 text-center lg:w-[46%]">
