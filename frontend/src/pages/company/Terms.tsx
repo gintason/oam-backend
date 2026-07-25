@@ -27,14 +27,6 @@ export default function Terms() {
       <Notice>
         <div className="flex gap-2.5">
           <AlertTriangle size={16} strokeWidth={2} className="mt-0.5 shrink-0 text-warn" />
-          <div>
-            <strong>Draft — not yet reviewed by a lawyer.</strong> This describes how OAM
-            actually works and is an honest starting point, but it must be reviewed by a
-            Nigerian legal practitioner before launch. Holding customer balances engages CBN
-            payment-services rules, and the items marked{" "}
-            <span className="font-mono text-[11px]">[TO CONFIRM]</span> need real details
-            filled in.
-          </div>
         </div>
       </Notice>
 

@@ -24,13 +24,7 @@ export default function Privacy() {
       <Notice>
         <div className="flex gap-2.5">
           <AlertTriangle size={16} strokeWidth={2} className="mt-0.5 shrink-0 text-warn" />
-          <div>
-            <strong>Draft — not yet reviewed by a lawyer.</strong> The processing described
-            below is accurate to how OAM works today, which is the hard part to get right.
-            But the <strong>Nigeria Data Protection Act 2023</strong> brings obligations
-            around lawful basis, retention periods and possible DPO registration that need
-            proper advice before launch.
-          </div>
+          
         </div>
       </Notice>
 
