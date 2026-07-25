@@ -185,7 +185,7 @@ export function Footer() {
           <p className="text-[13px] text-muted">
             © {new Date().getFullYear()} OAM. All rights reserved.
           </p>
-          <p className="text-[13px] text-muted">Made for Nigeria 🇳🇬</p>
+          <p className="text-[13px] text-muted">Developed by AiTrend</p>
         </div>
       </div>
     </footer>
