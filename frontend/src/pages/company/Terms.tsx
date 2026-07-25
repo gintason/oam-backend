@@ -24,11 +24,6 @@ export default function Terms() {
       intro="The agreement between you and O.A.M Motors Limited when you use OAM."
       updated="23 July 2026"
     >
-      <Notice>
-        <div className="flex gap-2.5">
-          <AlertTriangle size={16} strokeWidth={2} className="mt-0.5 shrink-0 text-warn" />
-        </div>
-      </Notice>
 
       <Block heading="1. Who we are">
         <p>

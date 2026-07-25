@@ -21,12 +21,6 @@ export default function Privacy() {
       intro="What we collect, why, who else sees it, and what you can ask us to do about it."
       updated="23 July 2026"
     >
-      <Notice>
-        <div className="flex gap-2.5">
-          <AlertTriangle size={16} strokeWidth={2} className="mt-0.5 shrink-0 text-warn" />
-          
-        </div>
-      </Notice>
 
       <Block heading="Who controls your data">
         <p>
