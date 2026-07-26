@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { BedDouble, Bell, Car, CreditCard, Gift, Plane, Send, Smartphone, Store, Tv, Wallet, Wifi, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 /**
@@ -14,14 +15,9 @@ import { BedDouble, Bell, Car, CreditCard, Gift, Plane, Send, Smartphone, Store,
 
 const GREEN = "#0B7327";
 
-// Rotating hero headlines — each is shown in turn with a cross-fade.
-const HEADLINES: string[] = [
-  "One balance for everything you need.",
-  "Pay bills, transfer money and trade gift cards.",
-  "Book flights, hotels and hire cars worldwide.",
-  "Buy and sell on our marketplace.",
-  "Get vetted artisans to handle your next job.",
-];
+// Rotating hero headlines are sourced from translations
+// (landing.hero.headlines) so they change with the selected language.
+const HEADLINE_COUNT = 5; // number of entries in landing.hero.headlines
 const HEADLINE_MS = 3800;
 
 type Drifter = {
@@ -197,8 +193,12 @@ function IOSPhone() {
 }
 
 export default function Hero() {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
   const navigate = useNavigate();
+
+  // Headlines for the active language. returnObjects gives us the array.
+  const headlines = t("landing.hero.headlines", { returnObjects: true }) as string[];
 
   const scrollToHowItWorks = () => {
     document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
@@ -208,7 +208,7 @@ export default function Hero() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return; // reduced-motion: stay on the first headline
     const id = setInterval(
-      () => setActive((i) => (i + 1) % HEADLINES.length),
+      () => setActive((i) => (i + 1) % HEADLINE_COUNT),
       HEADLINE_MS
     );
     return () => clearInterval(id);
@@ -277,13 +277,13 @@ export default function Hero() {
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-[#3CCB6E]" />
             <span className="text-[10px] uppercase tracking-[0.12em] text-white/85 sm:text-[11px] sm:tracking-[0.14em]">
-              All services · One app · Endless possibilities
+              {t("landing.hero.badge")}
             </span>
           </div>
 
           {/* Rotating headline — only this cross-fades; min-height stops layout jump */}
           <div className="relative min-h-[104px] sm:min-h-[150px] lg:min-h-[168px]">
-            {HEADLINES.map((h, i) => (
+            {headlines.map((h, i) => (
               <h1
                 key={i}
                 aria-hidden={i !== active}
@@ -299,8 +299,7 @@ export default function Hero() {
           </div>
 
           <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/75 sm:mt-5 sm:text-lg lg:mx-0">
-            Airtime, data, DStv, electricity — plus a marketplace, artisans near
-            you, gift cards, transfers and travel. All from one wallet.
+            {t("landing.hero.subtitle")}
           </p>
 
           {/* CTAs — side by side */}
@@ -309,13 +308,13 @@ export default function Hero() {
               onClick={() => navigate("/sign-up")}
               className="h-12 flex-1 rounded-lg bg-brand-red px-5 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98] sm:flex-none sm:px-6"
             >
-              Sign Up Now!
+              {t("landing.hero.signUp")}
             </button>
             <button
               onClick={scrollToHowItWorks}
               className="h-12 flex-1 rounded-lg border border-white/[0.32] bg-transparent px-5 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98] sm:flex-none sm:px-6"
             >
-              How it works
+              {t("landing.hero.howItWorks")}
             </button>
           </div>
         </div>
@@ -328,8 +327,7 @@ export default function Hero() {
           </div>
 
           <p className="mx-auto mb-3 mt-6 max-w-[280px] text-[13px] font-medium leading-relaxed text-white lg:text-[#062616]">
-            Download the OAM app on Google Play and the App Store — and have the
-            world in your hand.
+            {t("landing.hero.download")}
           </p>
 
           <div className="flex flex-wrap justify-center gap-2">

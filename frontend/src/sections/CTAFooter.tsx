@@ -1,10 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import type { ReactElement } from "react";
 
 /** Closing call-to-action, then the footer. */
 
 export function CTA() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -15,25 +17,24 @@ export function CTA() {
           aria-hidden="true"
         />
         <h2 className="relative font-display text-3xl font-medium text-white sm:text-4xl lg:text-5xl">
-          One app. Endless possibilities.
+          {t("landing.cta.title")}
         </h2>
         <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/70 sm:text-base">
-          Join thousands paying bills, shopping, and moving money the easy way.
-          It's free to start.
+          {t("landing.cta.subtitle")}
         </p>
         <div className="relative mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => navigate("/sign-up")}
             className="inline-flex h-12 items-center gap-2 rounded-lg bg-brand-red px-6 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98]"
           >
-            Create your account
+            {t("landing.cta.createAccount")}
             <ArrowRight size={18} strokeWidth={1.75} />
           </button>
           <button
             onClick={() => navigate("/sign-in")}
             className="h-12 rounded-lg border border-white/35 bg-transparent px-6 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98]"
           >
-            Sign in
+            {t("landing.cta.signIn")}
           </button>
         </div>
       </div>
@@ -49,36 +50,39 @@ export function CTA() {
  * meant to go afterwards. Company pages are public: someone deciding whether to
  * trust you with their money shouldn't have to register first to read your
  * terms.
+ *
+ * `col`/`link` are translation keys: landing.footer.cols.<col> and
+ * landing.footer.links.<link>.
  */
-const FOOTER_COLS: { heading: string; links: { label: string; to: string }[] }[] = [
+const FOOTER_COLS: { col: string; links: { link: string; to: string }[] }[] = [
   {
-    heading: "Services",
+    col: "services",
     links: [
-      { label: "Airtime & Data", to: "/services/airtime" },
-      { label: "Cable TV", to: "/services/cable" },
-      { label: "Electricity", to: "/services/electricity" },
-      { label: "Gift Cards", to: "/services/giftcards" },
-      { label: "Money Transfer", to: "/wallet/send" },
+      { link: "airtimeData", to: "/services/airtime" },
+      { link: "cableTv", to: "/services/cable" },
+      { link: "electricity", to: "/services/electricity" },
+      { link: "giftCards", to: "/services/giftcards" },
+      { link: "moneyTransfer", to: "/wallet/send" },
     ],
   },
   {
-    heading: "Explore",
+    col: "explore",
     links: [
-      { label: "Marketplace", to: "/marketplace" },
-      { label: "Artisans", to: "/artisans" },
-      { label: "Flights", to: "/travel/flights" },
-      { label: "Hotels", to: "/travel/hotels" },
-      { label: "Car Hire", to: "/travel/carhire" },
+      { link: "marketplace", to: "/marketplace" },
+      { link: "artisans", to: "/artisans" },
+      { link: "flights", to: "/travel/flights" },
+      { link: "hotels", to: "/travel/hotels" },
+      { link: "carHire", to: "/travel/carhire" },
     ],
   },
   {
-    heading: "Company",
+    col: "company",
     links: [
-      { label: "About", to: "/about" },
-      { label: "Contact", to: "/contact" },
-      { label: "Help Center", to: "/help" },
-      { label: "Terms", to: "/terms" },
-      { label: "Privacy", to: "/privacy" },
+      { link: "about", to: "/about" },
+      { link: "contact", to: "/contact" },
+      { link: "helpCenter", to: "/help" },
+      { link: "terms", to: "/terms" },
+      { link: "privacy", to: "/privacy" },
     ],
   },
 ];
@@ -137,6 +141,7 @@ const SOCIALS: Social[] = [
 ];
 
 export function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="border-t border-hairline bg-paper">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-14">
@@ -149,11 +154,11 @@ export function Footer() {
               <span className="text-brand-red">.</span>
             </div>
             <p className="mt-3 max-w-[240px] text-[13px] leading-relaxed text-muted">
-              All services. One app. Endless possibilities.
+              {t("landing.footer.tagline")}
             </p>
 
             <h4 className="mb-3 mt-7 text-[13px] font-medium uppercase tracking-wider text-ink">
-              Follow us
+              {t("landing.footer.followUs")}
             </h4>
             <div className="flex items-center gap-2.5">
               {SOCIALS.map((s) => (
@@ -172,15 +177,15 @@ export function Footer() {
           </div>
 
           {FOOTER_COLS.map((col) => (
-            <div key={col.heading}>
+            <div key={col.col}>
               <h4 className="mb-3 text-[13px] font-medium uppercase tracking-wider text-ink">
-                {col.heading}
+                {t(`landing.footer.cols.${col.col}`)}
               </h4>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.to}>
                     <Link to={l.to} className="text-[14px] text-muted transition hover:text-ink">
-                      {l.label}
+                      {t(`landing.footer.links.${l.link}`)}
                     </Link>
                   </li>
                 ))}
@@ -191,9 +196,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-hairline pt-6 sm:flex-row sm:items-center">
           <p className="text-[13px] text-muted">
-            © {new Date().getFullYear()} OAM. All rights reserved.
+            {t("landing.footer.rights", { year: new Date().getFullYear() })}
           </p>
-          <p className="text-[13px] text-muted">Developed by AiTrend</p>
+          <p className="text-[13px] text-muted">{t("landing.footer.developedBy")}</p>
         </div>
       </div>
     </footer>

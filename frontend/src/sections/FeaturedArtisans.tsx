@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { BadgeCheck, Loader2, MapPin, Search, Star, Wrench } from "lucide-react";
 import { publicArtisansApi, type FeaturedArtisan } from "../services/publicArtisans";
 import { useDebounced } from "../hooks/useDebounced";
@@ -11,19 +12,9 @@ import { useDebounced } from "../hooks/useDebounced";
  * Every profile here has been checked by a person: identity document, photos of
  * work, and a video, reviewed and approved. That's what the endpoint filters
  * on, and it's the reason this section can carry a "Verified" badge at all.
- *
- * WHAT THIS DELIBERATELY DOESN'T SHOW
- *   The previous mock displayed star ratings and review counts ("4.9, 128
- *   reviews"). There is no reviews system, so those numbers were invented.
- *   Fabricated social proof is a bad idea anywhere; on a service where the
- *   decision is whether to let a stranger into your home, it's the specific
- *   signal people lean on hardest. So it's gone until reviews are real.
- *
- *   Distance is absent for the same class of reason: this page has no location,
- *   so any figure would be made up. The in-app search shows real distances,
- *   because there it has coordinates.
  */
 export default function FeaturedArtisans() {
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const debouncedQuery = useDebounced(query, 400);
@@ -71,11 +62,10 @@ export default function FeaturedArtisans() {
           />
           <div className="relative p-5 sm:p-8">
             <h2 className="font-display text-[26px] font-semibold leading-tight tracking-tight sm:text-[32px]">
-              Verified artisans
+              {t("landing.artisans.title")}
             </h2>
             <p className="mt-2 max-w-lg text-[14px] leading-relaxed text-white/70 sm:text-[15px]">
-              Every artisan here has had their identity, photos of their work and a
-              video reviewed by our team before appearing.
+              {t("landing.artisans.subtitle")}
             </p>
 
             <div className="mt-5 flex flex-col gap-2 sm:flex-row">
@@ -88,7 +78,7 @@ export default function FeaturedArtisans() {
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Plumber, electrician, city…"
+                  placeholder={t("landing.artisans.searchPlaceholder")}
                   className="h-12 w-full rounded-xl border border-white/15 bg-white/5 pl-10 pr-3.5 text-[14px] text-white placeholder-white/40 outline-none transition focus:border-brand-green focus:bg-white/10"
                 />
               </div>
@@ -96,13 +86,13 @@ export default function FeaturedArtisans() {
                 to="/artisans/find"
                 className="inline-flex h-12 shrink-0 items-center justify-center rounded-xl bg-brand-red px-6 text-[14px] font-semibold text-white transition hover:brightness-110"
               >
-                Find artisans near me
+                {t("landing.artisans.findNearMe")}
               </Link>
             </div>
 
             {(categories.data?.length ?? 0) > 0 && (
               <div className="scrollbar-hide mt-3 flex gap-1.5 overflow-x-auto">
-                <TradeChip active={!category} onClick={() => setCategory("")}>All</TradeChip>
+                <TradeChip active={!category} onClick={() => setCategory("")}>{t("landing.artisans.all")}</TradeChip>
                 {categories.data?.slice(0, 8).map((c) => (
                   <TradeChip
                     key={c.id}
@@ -154,6 +144,7 @@ function TradeChip({ active, onClick, children }: {
 }
 
 function ArtisanCard({ artisan }: { artisan: FeaturedArtisan }) {
+  const { t } = useTranslation();
   const initials = artisan.business_name
     .replace(/^\[demo\]\s*/i, "")
     .split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
@@ -191,11 +182,11 @@ function ArtisanCard({ artisan }: { artisan: FeaturedArtisan }) {
 
       <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
         <span className="inline-flex items-center gap-1 rounded-md bg-brand-green/12 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-green">
-          <BadgeCheck size={9} strokeWidth={2.5} /> Verified
+          <BadgeCheck size={9} strokeWidth={2.5} /> {t("landing.artisans.verified")}
         </span>
         {artisan.is_featured && (
           <span className="inline-flex items-center gap-1 rounded-md bg-warn/12 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-warn">
-            <Star size={9} strokeWidth={2.5} /> Featured
+            <Star size={9} strokeWidth={2.5} /> {t("landing.artisans.featured")}
           </span>
         )}
       </div>
@@ -211,29 +202,30 @@ function ArtisanCard({ artisan }: { artisan: FeaturedArtisan }) {
  * untrue. Inviting them to be early is a better use of the space.
  */
 function EmptyState({ hasFilter }: { hasFilter: boolean }) {
+  const { t } = useTranslation();
   return (
     <div className="rounded-2xl border border-hairline bg-paper py-12 text-center">
       <Wrench size={28} strokeWidth={1.5} className="mx-auto text-muted" />
       <p className="mt-3 text-[15px] font-medium text-ink">
-        {hasFilter ? "No verified artisans match that yet" : "The first verified artisans are on their way"}
+        {hasFilter ? t("landing.artisans.emptyFilteredTitle") : t("landing.artisans.emptyTitle")}
       </p>
       <p className="mx-auto mt-1.5 max-w-md text-[13px] leading-relaxed text-muted">
         {hasFilter
-          ? "Try another trade, or browse everyone near you."
-          : "Every artisan here is checked by hand before they appear, so this section fills up steadily rather than all at once."}
+          ? t("landing.artisans.emptyFilteredBody")
+          : t("landing.artisans.emptyBody")}
       </p>
       <div className="mt-4 flex flex-wrap justify-center gap-2">
         <Link
           to="/artisans/find"
           className="inline-flex h-11 items-center rounded-xl border border-hairline bg-paper px-5 text-[13.5px] font-medium text-ink transition hover:bg-mist"
         >
-          Browse all artisans
+          {t("landing.artisans.browseAll")}
         </Link>
         <Link
           to="/artisans/me"
           className="inline-flex h-11 items-center rounded-xl bg-brand-red px-5 text-[13.5px] font-semibold text-white transition hover:brightness-95"
         >
-          List your trade
+          {t("landing.artisans.listTrade")}
         </Link>
       </div>
     </div>

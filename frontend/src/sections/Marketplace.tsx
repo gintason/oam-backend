@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { ArrowRight, ImageOff, Loader2, MapPin, Package, Star } from "lucide-react";
 import CategoryTabs from "../components/CategoryTabs";
 import { publicMarketApi, type PublicListing } from "../services/publicArtisans";
@@ -12,14 +13,9 @@ import { naira, friendlyTime } from "../lib/format";
  * Categories and listings both come from the public API, so a category added in
  * Django appears here without a code change — and what a visitor sees is what's
  * genuinely for sale.
- *
- * The placeholders that used to live here (invented prices, emoji standing in
- * for photos) are gone. Showing eight fictional listings to someone deciding
- * whether the marketplace is worth joining sets an expectation the real thing
- * fails to meet on their very first visit, which is the worst moment to
- * disappoint someone.
  */
 export default function Marketplace() {
+  const { t } = useTranslation();
   const [category, setCategory] = useState("");
 
   const categories = useQuery({
@@ -37,7 +33,7 @@ export default function Marketplace() {
 
   /** "All" first, then O.A.M Motors as the house brand, then the rest. */
   const tabs = [
-    { label: "All", slug: "all" },
+    { label: t("landing.marketplace.all"), slug: "all" },
     ...(categories.data ?? [])
       .map((c) => ({ label: c.slug === "oam-motors" ? "O.A.M Motors" : c.name, slug: c.slug }))
       .sort((a, b) => (a.slug === "oam-motors" ? -1 : b.slug === "oam-motors" ? 1 : 0)),
@@ -51,21 +47,20 @@ export default function Marketplace() {
         <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
             <p className="mb-2 text-sm font-medium uppercase tracking-wider text-brand-green">
-              Marketplace
+              {t("landing.marketplace.eyebrow")}
             </p>
             <h2 className="font-display text-2xl font-medium text-ink sm:text-3xl lg:text-4xl">
-              Buy and sell, all in one place
+              {t("landing.marketplace.title")}
             </h2>
             <p className="mt-3 text-base leading-relaxed text-muted">
-              From cars to electronics to property — browse what's listed near you,
-              or post your own in a minute.
+              {t("landing.marketplace.subtitle")}
             </p>
           </div>
           <Link
             to="/marketplace/browse"
             className="inline-flex shrink-0 items-center gap-2 text-[15px] font-medium text-brand-red transition-all hover:gap-3"
           >
-            View all listings
+            {t("landing.marketplace.viewAll")}
             <ArrowRight size={18} strokeWidth={1.75} />
           </Link>
         </div>
@@ -77,7 +72,7 @@ export default function Marketplace() {
               tabs={tabs}
               activeSlug={category || "all"}
               onSelect={(slug) => setCategory(slug === "all" ? "" : slug)}
-              ariaLabel="Marketplace categories"
+              ariaLabel={t("landing.marketplace.categoriesAria")}
             />
           </div>
         )}
@@ -100,6 +95,7 @@ export default function Marketplace() {
 }
 
 function ListingCard({ item }: { item: PublicListing }) {
+  const { t } = useTranslation();
   return (
     <Link
       to={`/marketplace/${item.id}`}
@@ -120,7 +116,7 @@ function ListingCard({ item }: { item: PublicListing }) {
         )}
         {item.is_featured && (
           <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-md bg-warn px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-            <Star size={9} strokeWidth={2.5} /> Featured
+            <Star size={9} strokeWidth={2.5} /> {t("landing.marketplace.featured")}
           </span>
         )}
       </div>
@@ -130,7 +126,7 @@ function ListingCard({ item }: { item: PublicListing }) {
         <p className="mt-0.5 tabular text-[16px] font-bold text-brand-red">
           {naira(item.price)}
           {item.negotiable && (
-            <span className="ml-1.5 text-[11px] font-medium text-muted">negotiable</span>
+            <span className="ml-1.5 text-[11px] font-medium text-muted">{t("landing.marketplace.negotiable")}</span>
           )}
         </p>
         <p className="mt-1 flex items-center gap-1 text-[11.5px] text-muted">
@@ -151,29 +147,30 @@ function ListingCard({ item }: { item: PublicListing }) {
  * for sale.
  */
 function EmptyState({ filtered }: { filtered: boolean }) {
+  const { t } = useTranslation();
   return (
     <div className="rounded-2xl border border-hairline bg-paper py-14 text-center">
       <Package size={30} strokeWidth={1.5} className="mx-auto text-muted" />
       <p className="mt-3 text-[15px] font-medium text-ink">
-        {filtered ? "Nothing listed in this category yet" : "The first listings are going up now"}
+        {filtered ? t("landing.marketplace.emptyFilteredTitle") : t("landing.marketplace.emptyTitle")}
       </p>
       <p className="mx-auto mt-1.5 max-w-md text-[13px] leading-relaxed text-muted">
         {filtered
-          ? "Try another category, or be the first to list something here."
-          : "OAM Marketplace is new. Your first three listings are free — no card needed."}
+          ? t("landing.marketplace.emptyFilteredBody")
+          : t("landing.marketplace.emptyBody")}
       </p>
       <div className="mt-4 flex flex-wrap justify-center gap-2">
         <Link
           to="/marketplace/browse"
           className="inline-flex h-11 items-center rounded-xl border border-hairline bg-paper px-5 text-[13.5px] font-medium text-ink transition hover:bg-mist"
         >
-          Browse everything
+          {t("landing.marketplace.browseEverything")}
         </Link>
         <Link
           to="/marketplace/post"
           className="inline-flex h-11 items-center rounded-xl bg-brand-red px-5 text-[13.5px] font-semibold text-white transition hover:brightness-95"
         >
-          Post an item
+          {t("landing.marketplace.postItem")}
         </Link>
       </div>
     </div>

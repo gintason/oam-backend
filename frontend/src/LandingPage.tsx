@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
 import Hero from "./Hero";
 import Services from "./sections/Services";
@@ -10,16 +11,18 @@ import LanguageSwitcher from "./components/LanguageSwitcher";
 import CurrencySwitcher from "./components/CurrencySwitcher";
 import logo from "./assets/logo.png";
 
+// key maps to landing.nav.<key>; href is the on-page anchor (not translated).
 const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Marketplace", href: "#marketplace" },
-  { label: "Find Artisans", href: "#artisans" },
-  { label: "FAQ", href: "#faq" },
+  { key: "home", href: "#" },
+  { key: "about", href: "#about" },
+  { key: "services", href: "#services" },
+  { key: "marketplace", href: "#marketplace" },
+  { key: "findArtisans", href: "#artisans" },
+  { key: "faq", href: "#faq" },
 ];
 
 export default function LandingPage() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -37,24 +40,24 @@ export default function LandingPage() {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
             {NAV_LINKS.map((l) => (
-              <a key={l.label} href={l.href} className="hover:text-ink transition">
-                {l.label}
+              <a key={l.key} href={l.href} className="hover:text-ink transition">
+                {t(`landing.nav.${l.key}`)}
               </a>
             ))}
             <LanguageSwitcher />
             <CurrencySwitcher />
             <button onClick={() => navigate("/sign-in")} className="h-9 rounded-lg border border-hairline bg-paper px-4 text-sm font-medium text-ink transition hover:bg-mist">
-              Sign in
+              {t("landing.signIn")}
             </button>
             <button onClick={() => navigate("/sign-up")} className="h-9 rounded-lg bg-brand-red px-4 text-sm font-medium text-white transition hover:brightness-95">
-              Get started
+              {t("landing.getStarted")}
             </button>
           </nav>
 
           {/* Mobile hamburger */}
           <button
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-hairline text-ink md:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("landing.closeMenu") : t("landing.openMenu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -71,17 +74,17 @@ export default function LandingPage() {
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
             {NAV_LINKS.map((l) => (
               <a
-                key={l.label}
+                key={l.key}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-[15px] text-ink transition hover:bg-mist"
               >
-                {l.label}
+                {t(`landing.nav.${l.key}`)}
               </a>
             ))}
             <div className="mt-3 border-t border-hairline pt-3">
               <span className="mb-2 block px-3 text-[12px] font-medium uppercase tracking-wider text-muted">
-                Language &amp; currency
+                {t("landing.langCurrency")}
               </span>
               <div className="flex flex-col gap-3 px-1">
                 <LanguageSwitcher className="inline-block" />
@@ -90,10 +93,10 @@ export default function LandingPage() {
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2">
               <button onClick={() => { setOpen(false); navigate("/sign-in"); }} className="h-11 rounded-lg border border-hairline bg-paper text-sm font-medium text-ink transition hover:bg-mist">
-                Sign in
+                {t("landing.signIn")}
               </button>
               <button onClick={() => { setOpen(false); navigate("/sign-up"); }} className="h-11 rounded-lg bg-brand-red text-sm font-medium text-white transition hover:brightness-95">
-                Get started
+                {t("landing.getStarted")}
               </button>
             </div>
           </nav>
