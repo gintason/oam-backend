@@ -1,3 +1,279 @@
 {
-  "_note": "Progressive-fill file. Any key NOT present here falls back to English automatically. Copy keys from en.json and translate their values as reviewed translations become available. Delete this _note when you add real content."
+  "common": {
+    "back": "Retour",
+    "done": "Terminé",
+    "retry": "Réessayer",
+    "seeAll": "Tout voir",
+    "verify": "Vérifier",
+    "loading": "Chargement…"
+  },
+  "language": {
+    "label": "Langue"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "wallet": "Portefeuille",
+      "orders": "Commandes",
+      "messages": "Messages",
+      "earnings": "Revenus"
+    },
+    "signOut": "Se déconnecter",
+    "menu": "Menu"
+  },
+  "landing": {
+    "nav": {
+      "home": "Accueil",
+      "about": "À propos",
+      "services": "Services",
+      "marketplace": "Marché",
+      "findArtisans": "Trouver des artisans",
+      "faq": "FAQ"
+    },
+    "signIn": "Se connecter",
+    "getStarted": "Commencer",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "langCurrency": "Langue et devise",
+    "hero": {
+      "badge": "Tous les services · Une seule application · Des possibilités infinies",
+      "headlines": [
+        "Un seul solde pour tout ce dont vous avez besoin.",
+        "Payez vos factures, transférez de l'argent et échangez des cartes cadeaux.",
+        "Réservez vols, hôtels et voitures partout dans le monde.",
+        "Achetez et vendez sur notre marché.",
+        "Faites appel à des artisans vérifiés pour votre prochain travail."
+      ],
+      "subtitle": "Crédit d'appel, données, DStv, électricité — ainsi qu'un marché, des artisans près de chez vous, des cartes cadeaux, des transferts et des voyages. Le tout depuis un seul portefeuille.",
+      "signUp": "Inscrivez-vous !",
+      "howItWorks": "Comment ça marche",
+      "download": "Téléchargez l'application OAM sur Google Play et l'App Store — et ayez le monde entre vos mains."
+    },
+    "services": {
+      "eyebrow": "Une application, tout",
+      "title": "Tous les services dont vous avez besoin, au même endroit",
+      "subtitle": "Payez vos factures, faites vos achats, trouvez de l'aide, voyagez et transférez de l'argent — le tout depuis un seul portefeuille, avec livraison instantanée.",
+      "items": {
+        "airtime": {
+          "title": "Crédit et données",
+          "desc": "Rechargez n'importe quel réseau instantanément."
+        },
+        "cable": {
+          "title": "Télévision",
+          "desc": "DStv, GOtv et Startimes."
+        },
+        "electricity": {
+          "title": "Électricité",
+          "desc": "Jetons prépayés et postpayés."
+        },
+        "marketplace": {
+          "title": "Marché",
+          "desc": "Achetez et vendez localement."
+        },
+        "artisans": {
+          "title": "Artisans",
+          "desc": "Des professionnels de confiance près de chez vous."
+        },
+        "flights": {
+          "title": "Vols",
+          "desc": "Comparez et réservez des billets à bas prix."
+        },
+        "hotels": {
+          "title": "Hôtels",
+          "desc": "Séjours et expériences."
+        },
+        "giftcards": {
+          "title": "Cartes cadeaux",
+          "desc": "Achetez et utilisez des cartes numériques."
+        },
+        "transfer": {
+          "title": "Transfert d'argent",
+          "desc": "Transferts rapides et sécurisés."
+        },
+        "carhire": {
+          "title": "Location de voiture",
+          "desc": "Louez un véhicule, où que vous soyez."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Marché",
+      "title": "Achetez et vendez, au même endroit",
+      "subtitle": "Des voitures à l'électronique en passant par l'immobilier — parcourez les annonces près de chez vous, ou publiez la vôtre en une minute.",
+      "viewAll": "Voir toutes les annonces",
+      "all": "Tout",
+      "categoriesAria": "Catégories du marché",
+      "negotiable": "négociable",
+      "featured": "En vedette",
+      "emptyFilteredTitle": "Rien dans cette catégorie pour l'instant",
+      "emptyTitle": "Les premières annonces arrivent maintenant",
+      "emptyFilteredBody": "Essayez une autre catégorie, ou soyez le premier à publier ici.",
+      "emptyBody": "Le marché OAM est nouveau. Vos trois premières annonces sont gratuites — aucune carte requise.",
+      "browseEverything": "Tout parcourir",
+      "postItem": "Publier une annonce"
+    },
+    "artisans": {
+      "title": "Artisans vérifiés",
+      "subtitle": "Chaque artisan ici a vu son identité, ses photos de travaux et une vidéo examinées par notre équipe avant d'apparaître.",
+      "searchPlaceholder": "Plombier, électricien, ville…",
+      "findNearMe": "Trouver des artisans près de moi",
+      "all": "Tout",
+      "verified": "Vérifié",
+      "featured": "En vedette",
+      "emptyFilteredTitle": "Aucun artisan vérifié ne correspond encore",
+      "emptyTitle": "Les premiers artisans vérifiés arrivent bientôt",
+      "emptyFilteredBody": "Essayez un autre métier, ou parcourez tous ceux près de chez vous.",
+      "emptyBody": "Chaque artisan ici est vérifié à la main avant d'apparaître, donc cette section se remplit progressivement plutôt que d'un coup.",
+      "browseAll": "Parcourir tous les artisans",
+      "listTrade": "Inscrire votre métier"
+    },
+    "cta": {
+      "title": "Une application. Des possibilités infinies.",
+      "subtitle": "Rejoignez des milliers de personnes qui paient leurs factures, font leurs achats et transfèrent de l'argent facilement. Le début est gratuit.",
+      "createAccount": "Créer votre compte",
+      "signIn": "Se connecter"
+    },
+    "footer": {
+      "tagline": "Tous les services. Une application. Des possibilités infinies.",
+      "followUs": "Suivez-nous",
+      "cols": {
+        "services": "Services",
+        "explore": "Explorer",
+        "company": "Entreprise"
+      },
+      "links": {
+        "airtimeData": "Crédit et données",
+        "cableTv": "Télévision",
+        "electricity": "Électricité",
+        "giftCards": "Cartes cadeaux",
+        "moneyTransfer": "Transfert d'argent",
+        "marketplace": "Marché",
+        "artisans": "Artisans",
+        "flights": "Vols",
+        "hotels": "Hôtels",
+        "carHire": "Location de voiture",
+        "about": "À propos",
+        "contact": "Contact",
+        "helpCenter": "Centre d'aide",
+        "terms": "Conditions",
+        "privacy": "Confidentialité"
+      },
+      "rights": "© {{year}} OAM. Tous droits réservés.",
+      "developedBy": "Développé par AiTrend"
+    }
+  },
+  "bills": {
+    "back": "Retour",
+    "wallet": "Portefeuille",
+    "card": "Carte",
+    "payWith": "Payer avec",
+    "retry": "Réessayer",
+    "switchToCard": "Passer à la carte",
+    "lowFunds": "Le solde de votre portefeuille est trop bas. Payez plutôt avec votre carte.",
+    "payNoteCard": "Vous paierez en toute sécurité sur Paystack. {{noun}} est livré juste après.",
+    "payNoteWallet": "Payé instantanément depuis votre portefeuille OAM.",
+    "verifyGate": {
+      "title": "Vérifiez votre compte",
+      "body": "Vous avez besoin d'un compte vérifié pour payer des factures.",
+      "back": "Retour au tableau de bord"
+    },
+    "result": {
+      "inProgress": "Achat en cours",
+      "issuingToken": "Livré — émission de votre jeton",
+      "failed": "Échec de l'achat",
+      "bodyPending": "Votre paiement a été effectué et votre fournisseur finalise la commande. Cela prend généralement moins d'une minute.",
+      "bodyToken": "Vos unités sont en route. Nous attendons que votre fournisseur émette le jeton — il apparaîtra ici automatiquement.",
+      "bodyFailed": "Le fournisseur n'a pas pu finaliser cette commande. Tout montant retenu a été restitué à votre portefeuille.",
+      "dontBuyAgain": "N'achetez pas à nouveau — cette commande a déjà été payée. Elle se terminera d'elle-même, et vous la retrouverez toujours dans Commandes.",
+      "customer": "Client",
+      "status": "Statut",
+      "reference": "Référence",
+      "checking": "Vérification…",
+      "checkStatus": "Vérifier le statut maintenant",
+      "tryAgain": "Réessayer",
+      "buyAgain": "Acheter à nouveau",
+      "viewInOrders": "Voir dans Commandes",
+      "done": "Terminé"
+    }
+  },
+  "data": {
+    "title": "Acheter des données",
+    "subtitle": "Forfaits en direct, livraison instantanée.",
+    "network": "Réseau",
+    "loadNetworksError": "Impossible de charger les réseaux.",
+    "dataPlan": "Forfait de données",
+    "loadPlansError": "Impossible de charger les forfaits.",
+    "noPlans": "Aucun forfait disponible pour ce réseau pour le moment.",
+    "phoneNumber": "Numéro de téléphone",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "Forfait de données",
+    "payAmount": "Payer ₦{{amount}}",
+    "buyData": "Acheter des données",
+    "payNoun": "Les données",
+    "chooseNetwork": "Choisissez un réseau.",
+    "choosePlan": "Choisissez un forfait de données.",
+    "invalidPhone": "Entrez un numéro de téléphone valide.",
+    "purchaseFailed": "Échec de l'achat. Réessayez.",
+    "cardStartFailed": "Impossible de démarrer le paiement par carte.",
+    "successTitle": "Données en route !",
+    "failedTitle": "Échec de l'achat",
+    "successMessage": "{{plan}} vers {{recipient}}."
+  },
+  "electricity": {
+    "title": "Électricité",
+    "subtitle": "Achetez des unités de compteur instantanément.",
+    "provider": "Fournisseur",
+    "loadProvidersError": "Impossible de charger les fournisseurs.",
+    "selectDisco": "Sélectionnez votre distributeur…",
+    "meterType": "Type de compteur",
+    "prepaid": "Prépayé",
+    "postpaid": "Postpayé",
+    "meterNumber": "Numéro de compteur",
+    "meterPlaceholder": "Entrez le numéro de compteur",
+    "checkingMeter": "Vérification du compteur…",
+    "keepTyping": "Continuez à saisir — nous confirmerons le titulaire une fois le numéro complet ({{count}}/11 chiffres).",
+    "couldntConfirmMeter": "Impossible de confirmer ce compteur.",
+    "checkAgain": "Vérifier à nouveau",
+    "chooseProviderFirst": "Choisissez votre fournisseur ci-dessus pour confirmer le titulaire du compteur.",
+    "amountLabel": "Montant (₦)",
+    "amountPlaceholder": "Entrez le montant",
+    "districtLine": "District : {{value}}",
+    "arrearsLine": "Arriérés dus : ₦{{value}}",
+    "minPurchaseLine": "Achat minimum : ₦{{value}}",
+    "onlyName": "Votre fournisseur n'a renvoyé que le nom du compte pour ce compteur.",
+    "buyUnits": "Acheter des unités",
+    "payAmount": "Payer ₦{{amount}}",
+    "label": "Électricité",
+    "payNoun": "Les unités",
+    "chooseProvider": "Choisissez votre fournisseur d'électricité.",
+    "invalidMeter": "Entrez un numéro de compteur valide.",
+    "minAmount": "Entrez un montant d'au moins ₦100.",
+    "couldntVerifyMeter": "Impossible de vérifier ce numéro de compteur.",
+    "successTitle": "Paiement réussi !",
+    "successMessage": "₦{{amount}} vers le compteur {{recipient}}."
+  },
+  "cable": {
+    "title": "Télévision",
+    "subtitle": "Renouvelez DStv, GOtv, Startimes.",
+    "provider": "Fournisseur",
+    "loadProvidersError": "Impossible de charger les fournisseurs.",
+    "package": "Bouquet",
+    "loadPackagesError": "Impossible de charger les bouquets.",
+    "noPackages": "Aucun bouquet disponible pour le moment.",
+    "smartcard": "Numéro de carte / IUC",
+    "smartcardPlaceholder": "Entrez le numéro de carte",
+    "checkingSmartcard": "Vérification de la carte…",
+    "label": "Abonnement TV",
+    "subscribe": "S'abonner",
+    "payAmount": "Payer ₦{{amount}}",
+    "payNoun": "Votre abonnement",
+    "chooseProvider": "Choisissez votre fournisseur.",
+    "choosePackage": "Choisissez un bouquet.",
+    "waitSmartcard": "Attendez la confirmation de la carte avant de payer.",
+    "invalidSmartcard": "Entrez un numéro de carte valide.",
+    "couldntConfirmSmartcard": "Impossible de confirmer cette carte.",
+    "couldntVerifySmartcard": "Impossible de vérifier ce numéro de carte.",
+    "successTitle": "Abonnement réussi !",
+    "successMessage": "{{plan}} sur {{recipient}}."
+  }
 }

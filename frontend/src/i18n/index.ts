@@ -18,32 +18,32 @@ import yo from "./locales/yo.json";
 /**
  * i18n setup for OAM — 12 languages.
  *
- * PROGRESSIVE FILL (important):
- * English is the complete source of truth. Every other language file only needs
- * the keys that have been *translated and reviewed*. Any key missing from a
- * language automatically falls back to English (fallbackLng below). This is
- * deliberate: a not-yet-translated language shows English rather than machine
- * output, so nothing unreviewed reaches users by accident. Fill each language
- * in over time by copying en.json's structure and translating the values.
+ * PROGRESSIVE FILL: English is the complete source of truth. Any key missing
+ * from a language falls back to English (fallbackLng), so a not-yet-translated
+ * language shows English rather than machine output — nothing unreviewed
+ * reaches users by accident. French is the current fully-translated demo
+ * language (home page + Bills pages).
  *
- * Only the *text* changes on switch — layout stays left-to-right in every
+ * Only the text changes on switch — layout stays left-to-right in every
  * language (see applyLang; no RTL mirroring).
+ *
+ * `flag` is an ISO 3166-1 alpha-2 country code, rendered as an SVG via the
+ * flag-icons package (see LanguageSwitcher). Flags represent countries, not
+ * languages, so several are approximations (Hausa/Igbo/Yoruba -> ng, etc.).
  */
-
-// Shown in the switcher, in this order. `native` is the label users see.
 export const LANGUAGES = [
-  { code: "en", label: "English",    native: "English",  flag: "🇬🇧" },
-  { code: "es", label: "Spanish",    native: "Español",  flag: "🇪🇸" },
-  { code: "fr", label: "French",     native: "Français", flag: "🇫🇷" },
-  { code: "zh", label: "Mandarin",   native: "中文",      flag: "🇨🇳" },
-  { code: "ar", label: "Arabic",     native: "العربية",  flag: "🇸🇦" },
-  { code: "pt", label: "Portuguese", native: "Português",flag: "🇵🇹" },
-  { code: "de", label: "German",     native: "Deutsch",  flag: "🇩🇪" },
-  { code: "hi", label: "Hindi",      native: "हिन्दी",    flag: "🇮🇳" },
-  { code: "ru", label: "Russian",    native: "Русский",  flag: "🇷🇺" },
-  { code: "ha", label: "Hausa",      native: "Hausa",    flag: "🇳🇬" },
-  { code: "ig", label: "Igbo",       native: "Igbo",     flag: "🇳🇬" },
-  { code: "yo", label: "Yoruba",     native: "Yorùbá",   flag: "🇳🇬" },
+  { code: "en", label: "English",    native: "English",   flag: "gb" },
+  { code: "es", label: "Spanish",    native: "Español",   flag: "es" },
+  { code: "fr", label: "French",     native: "Français",  flag: "fr" },
+  { code: "zh", label: "Mandarin",   native: "中文",       flag: "cn" },
+  { code: "ar", label: "Arabic",     native: "العربية",   flag: "sa" },
+  { code: "pt", label: "Portuguese", native: "Português", flag: "pt" },
+  { code: "de", label: "German",     native: "Deutsch",   flag: "de" },
+  { code: "hi", label: "Hindi",      native: "हिन्दी",     flag: "in" },
+  { code: "ru", label: "Russian",    native: "Русский",   flag: "ru" },
+  { code: "ha", label: "Hausa",      native: "Hausa",     flag: "ng" },
+  { code: "ig", label: "Igbo",       native: "Igbo",      flag: "ng" },
+  { code: "yo", label: "Yoruba",     native: "Yorùbá",    flag: "ng" },
 ] as const;
 
 i18n
@@ -51,18 +51,10 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: en },
-      es: { translation: es },
-      fr: { translation: fr },
-      zh: { translation: zh },
-      ar: { translation: ar },
-      pt: { translation: pt },
-      de: { translation: de },
-      hi: { translation: hi },
-      ru: { translation: ru },
-      ha: { translation: ha },
-      ig: { translation: ig },
-      yo: { translation: yo },
+      en: { translation: en }, es: { translation: es }, fr: { translation: fr },
+      zh: { translation: zh }, ar: { translation: ar }, pt: { translation: pt },
+      de: { translation: de }, hi: { translation: hi }, ru: { translation: ru },
+      ha: { translation: ha }, ig: { translation: ig }, yo: { translation: yo },
     },
     fallbackLng: "en",
     supportedLngs: LANGUAGES.map((l) => l.code),
@@ -75,18 +67,12 @@ i18n
     react: { useSuspense: false },
   });
 
-/**
- * Keep <html lang> in sync for accessibility, but always force LTR layout.
- * We translate text only; the visual layout stays left-to-right in every
- * language (including Arabic).
- */
 function applyLang(lng: string) {
   const base = (lng || "en").split("-")[0];
   const root = document.documentElement;
   root.setAttribute("lang", base);
   root.setAttribute("dir", "ltr");
 }
-
 applyLang(i18n.resolvedLanguage || i18n.language || "en");
 i18n.on("languageChanged", applyLang);
 
