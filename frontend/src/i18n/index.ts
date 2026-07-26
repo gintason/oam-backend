@@ -10,15 +10,12 @@ import ar from "./locales/ar.json";
  * Add a language in three steps:
  *   1. create src/i18n/locales/<code>.json (copy en.json, translate values)
  *   2. import it and add to `resources` below
- *   3. add an entry to LANGUAGES (and to RTL_LANGS if it reads right-to-left)
+ *   3. add an entry to LANGUAGES
  *
  * The active language is remembered in localStorage ("oam_lang") and, on a
- * fresh visitor, guessed from their browser. <html lang/dir> is kept in sync
- * so RTL languages (Arabic, etc.) mirror the entire layout automatically.
+ * fresh visitor, guessed from their browser. Only the *text* changes — the
+ * layout stays left-to-right for every language (see applyLang below).
  */
-
-// Languages that read right-to-left. Layout mirrors for these.
-export const RTL_LANGS = ["ar", "he", "fa", "ur"];
 
 // Shown in the language switcher, in this order.
 export const LANGUAGES = [
@@ -47,16 +44,22 @@ i18n
     react: { useSuspense: false },
   });
 
-/** Mirror <html> to the active language: sets lang + dir (ltr/rtl). */
-function applyDir(lng: string) {
+/**
+ * Keep <html lang> in sync for accessibility, but always force LTR layout.
+ *
+ * We deliberately do NOT switch to dir="rtl" for Arabic: the app should only
+ * translate the *text*, keeping the visual layout left-to-right in every
+ * language. (RTL mirroring can be re-enabled later by setting dir from
+ * RTL_LANGS if a fully right-to-left experience is ever wanted.)
+ */
+function applyLang(lng: string) {
   const base = (lng || "en").split("-")[0];
-  const dir = RTL_LANGS.includes(base) ? "rtl" : "ltr";
   const root = document.documentElement;
   root.setAttribute("lang", base);
-  root.setAttribute("dir", dir);
+  root.setAttribute("dir", "ltr");
 }
 
-applyDir(i18n.resolvedLanguage || i18n.language || "en");
-i18n.on("languageChanged", applyDir);
+applyLang(i18n.resolvedLanguage || i18n.language || "en");
+i18n.on("languageChanged", applyLang);
 
 export default i18n;
