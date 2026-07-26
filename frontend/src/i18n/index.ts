@@ -32,18 +32,26 @@ import yo from "./locales/yo.json";
  * languages, so several are approximations (Hausa/Igbo/Yoruba -> ng, etc.).
  */
 export const LANGUAGES = [
-  { code: "en", label: "English",    native: "English",   flag: "gb" },
-  { code: "es", label: "Spanish",    native: "Español",   flag: "es" },
-  { code: "fr", label: "French",     native: "Français",  flag: "fr" },
-  { code: "zh", label: "Mandarin",   native: "中文",       flag: "cn" },
-  { code: "ar", label: "Arabic",     native: "العربية",   flag: "sa" },
-  { code: "pt", label: "Portuguese", native: "Português", flag: "pt" },
-  { code: "de", label: "German",     native: "Deutsch",   flag: "de" },
-  { code: "hi", label: "Hindi",      native: "हिन्दी",     flag: "in" },
-  { code: "ru", label: "Russian",    native: "Русский",   flag: "ru" },
-  { code: "ha", label: "Hausa",      native: "Hausa",     flag: "ng" },
-  { code: "ig", label: "Igbo",       native: "Igbo",      flag: "ng" },
-  { code: "yo", label: "Yoruba",     native: "Yorùbá",    flag: "ng" },
+  { code: "en", label: "English",     native: "English",   flag: "🇬🇧" },
+  { code: "es", label: "Spanish",     native: "Español",   flag: "🇪🇸" },
+  { code: "fr", label: "French",      native: "Français",  flag: "🇫🇷" },
+  { code: "zh", label: "Mandarin",    native: "中文",      flag: "🇨🇳" },
+  { code: "ar", label: "Arabic",      native: "العربية",   flag: "🇸🇦" },
+  { code: "pt", label: "Portuguese",  native: "Português", flag: "🇵🇹" },
+  { code: "de", label: "German",      native: "Deutsch",   flag: "🇩🇪" },
+  { code: "hi", label: "Hindi",       native: "हिन्दी",    flag: "🇮🇳" },
+  { code: "ru", label: "Russian",     native: "Русский",   flag: "🇷🇺" },
+  { code: "ha", label: "Hausa",       native: "Hausa",     flag: "🇳🇬" },
+  { code: "ig", label: "Igbo",        native: "Igbo",      flag: "🇳🇬" },
+  { code: "yo", label: "Yoruba",      native: "Yorùbá",    flag: "🇳🇬" },
+  { code: "it", label: "Italian",     native: "Italiano",  flag: "🇮🇹" },
+  { code: "cs", label: "Czech",       native: "Čeština",   flag: "🇨🇿" },
+  { code: "pl", label: "Polish",      native: "Polski",    flag: "🇵🇱" },
+  { code: "tr", label: "Turkish",     native: "Türkçe",    flag: "🇹🇷" },
+  { code: "el", label: "Greek",       native: "Ελληνικά",  flag: "🇬🇷" },
+  { code: "th", label: "Thai",        native: "ภาษาไทย",   flag: "🇹🇭" },
+  { code: "bg", label: "Bulgarian",   native: "Български", flag: "🇧🇬" },
+  { code: "sr", label: "Serbian",     native: "Srpski",    flag: "🇷🇸" },
 ] as const;
 
 i18n
