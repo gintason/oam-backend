@@ -119,5 +119,146 @@
       "body": "You need a verified account to buy airtime and pay bills.",
       "back": "Back to dashboard"
     }
+  },
+  "landing": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "marketplace": "Marketplace",
+      "findArtisans": "Find Artisans",
+      "faq": "FAQ"
+    },
+    "signIn": "Sign in",
+    "getStarted": "Get started",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "langCurrency": "Language & currency",
+    "hero": {
+      "badge": "All services · One app · Endless possibilities",
+      "headlines": [
+        "One balance for everything you need.",
+        "Pay bills, transfer money and trade gift cards.",
+        "Book flights, hotels and hire cars worldwide.",
+        "Buy and sell on our marketplace.",
+        "Get vetted artisans to handle your next job."
+      ],
+      "subtitle": "Airtime, data, DStv, electricity — plus a marketplace, artisans near you, gift cards, transfers and travel. All from one wallet.",
+      "signUp": "Sign Up Now!",
+      "howItWorks": "How it works",
+      "download": "Download the OAM app on Google Play and the App Store — and have the world in your hand."
+    },
+    "services": {
+      "eyebrow": "One app, everything",
+      "title": "Every service you need, in one place",
+      "subtitle": "Pay bills, shop, find help, travel, and move money — all from a single wallet, with instant delivery.",
+      "items": {
+        "airtime": {
+          "title": "Airtime & Data",
+          "desc": "Top up any network instantly."
+        },
+        "cable": {
+          "title": "Cable TV",
+          "desc": "DStv, GOtv and Startimes."
+        },
+        "electricity": {
+          "title": "Electricity",
+          "desc": "Prepaid tokens and postpaid."
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "desc": "Buy and sell locally."
+        },
+        "artisans": {
+          "title": "Artisans",
+          "desc": "Trusted pros near you."
+        },
+        "flights": {
+          "title": "Flights",
+          "desc": "Compare and book cheap fares."
+        },
+        "hotels": {
+          "title": "Hotels",
+          "desc": "Stays and experiences."
+        },
+        "giftcards": {
+          "title": "Gift Cards",
+          "desc": "Buy and redeem digital cards."
+        },
+        "transfer": {
+          "title": "Money Transfer",
+          "desc": "Fast, secure transfers."
+        },
+        "carhire": {
+          "title": "Car Hire",
+          "desc": "Rent a ride, anywhere."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Marketplace",
+      "title": "Buy and sell, all in one place",
+      "subtitle": "From cars to electronics to property — browse what's listed near you, or post your own in a minute.",
+      "viewAll": "View all listings",
+      "all": "All",
+      "categoriesAria": "Marketplace categories",
+      "negotiable": "negotiable",
+      "featured": "Featured",
+      "emptyFilteredTitle": "Nothing listed in this category yet",
+      "emptyTitle": "The first listings are going up now",
+      "emptyFilteredBody": "Try another category, or be the first to list something here.",
+      "emptyBody": "OAM Marketplace is new. Your first three listings are free — no card needed.",
+      "browseEverything": "Browse everything",
+      "postItem": "Post an item"
+    },
+    "artisans": {
+      "title": "Verified artisans",
+      "subtitle": "Every artisan here has had their identity, photos of their work and a video reviewed by our team before appearing.",
+      "searchPlaceholder": "Plumber, electrician, city…",
+      "findNearMe": "Find artisans near me",
+      "all": "All",
+      "verified": "Verified",
+      "featured": "Featured",
+      "emptyFilteredTitle": "No verified artisans match that yet",
+      "emptyTitle": "The first verified artisans are on their way",
+      "emptyFilteredBody": "Try another trade, or browse everyone near you.",
+      "emptyBody": "Every artisan here is checked by hand before they appear, so this section fills up steadily rather than all at once.",
+      "browseAll": "Browse all artisans",
+      "listTrade": "List your trade"
+    },
+    "cta": {
+      "title": "One app. Endless possibilities.",
+      "subtitle": "Join thousands paying bills, shopping, and moving money the easy way. It's free to start.",
+      "createAccount": "Create your account",
+      "signIn": "Sign in"
+    },
+    "footer": {
+      "tagline": "All services. One app. Endless possibilities.",
+      "followUs": "Follow us",
+      "cols": {
+        "services": "Services",
+        "explore": "Explore",
+        "company": "Company"
+      },
+      "links": {
+        "airtimeData": "Airtime & Data",
+        "cableTv": "Cable TV",
+        "electricity": "Electricity",
+        "giftCards": "Gift Cards",
+        "moneyTransfer": "Money Transfer",
+        "marketplace": "Marketplace",
+        "artisans": "Artisans",
+        "flights": "Flights",
+        "hotels": "Hotels",
+        "carHire": "Car Hire",
+        "about": "About",
+        "contact": "Contact",
+        "helpCenter": "Help Center",
+        "terms": "Terms",
+        "privacy": "Privacy"
+      },
+      "rights": "© {{year}} OAM. All rights reserved.",
+      "developedBy": "Developed by AiTrend"
+    }
   }
 }
