@@ -29,7 +29,7 @@ export default function LanguageSwitcher({ className = "" }: { className?: strin
       >
         {LANGUAGES.map((l) => (
           <option key={l.code} value={l.code}>
-            {l.native}
+            {l.flag} {l.native}
           </option>
         ))}
       </select>

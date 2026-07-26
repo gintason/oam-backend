@@ -32,18 +32,18 @@ import yo from "./locales/yo.json";
 
 // Shown in the switcher, in this order. `native` is the label users see.
 export const LANGUAGES = [
-  { code: "en", label: "English",    native: "English" },
-  { code: "es", label: "Spanish",    native: "Español" },
-  { code: "fr", label: "French",     native: "Français" },
-  { code: "zh", label: "Mandarin",   native: "中文" },
-  { code: "ar", label: "Arabic",     native: "العربية" },
-  { code: "pt", label: "Portuguese", native: "Português" },
-  { code: "de", label: "German",     native: "Deutsch" },
-  { code: "hi", label: "Hindi",      native: "हिन्दी" },
-  { code: "ru", label: "Russian",    native: "Русский" },
-  { code: "ha", label: "Hausa",      native: "Hausa" },
-  { code: "ig", label: "Igbo",       native: "Igbo" },
-  { code: "yo", label: "Yoruba",     native: "Yorùbá" },
+  { code: "en", label: "English",    native: "English",  flag: "🇬🇧" },
+  { code: "es", label: "Spanish",    native: "Español",  flag: "🇪🇸" },
+  { code: "fr", label: "French",     native: "Français", flag: "🇫🇷" },
+  { code: "zh", label: "Mandarin",   native: "中文",      flag: "🇨🇳" },
+  { code: "ar", label: "Arabic",     native: "العربية",  flag: "🇸🇦" },
+  { code: "pt", label: "Portuguese", native: "Português",flag: "🇵🇹" },
+  { code: "de", label: "German",     native: "Deutsch",  flag: "🇩🇪" },
+  { code: "hi", label: "Hindi",      native: "हिन्दी",    flag: "🇮🇳" },
+  { code: "ru", label: "Russian",    native: "Русский",  flag: "🇷🇺" },
+  { code: "ha", label: "Hausa",      native: "Hausa",    flag: "🇳🇬" },
+  { code: "ig", label: "Igbo",       native: "Igbo",     flag: "🇳🇬" },
+  { code: "yo", label: "Yoruba",     native: "Yorùbá",   flag: "🇳🇬" },
 ] as const;
 
 i18n
