@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { revenueApi } from "../services/billing";
 import logo from "../assets/logo.png";
 import { useUserScope } from "../auth/useUserScope";
@@ -9,6 +10,7 @@ import { messagingApi } from "../services/messaging";
 import { useAuth } from "../auth/AuthContext";
 import BottomTabs from "./BottomTabs";
 import Assistant from "./Assistant";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 /**
  * Travel, Marketplace and Find Artisans are deliberately absent: they already
@@ -19,16 +21,19 @@ import Assistant from "./Assistant";
  * hidden from the mobile menu here — repeating the same destination in two
  * places on a small screen just makes both feel unreliable. On desktop there
  * is no bottom bar, so the full list shows.
+ *
+ * `key` maps to header.nav.<key> in the translation files.
  */
 const NAV = [
-  { label: "Dashboard", to: "/dashboard", inTabs: true },
-  { label: "Wallet", to: "/wallet", inTabs: true },
-  { label: "Orders", to: "/orders", inTabs: true },
-  { label: "Messages", to: "/messages", inTabs: false },
+  { key: "dashboard", to: "/dashboard", inTabs: true },
+  { key: "wallet", to: "/wallet", inTabs: true },
+  { key: "orders", to: "/orders", inTabs: true },
+  { key: "messages", to: "/messages", inTabs: false },
 ];
 
 /** Top navigation shared across authenticated in-app pages. */
 export default function AppHeader() {
+  const { t } = useTranslation();
   const scope = useUserScope();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -53,7 +58,7 @@ export default function AppHeader() {
   }).data ?? 0;
 
   const navItems = isAdmin
-    ? [...NAV, { label: "Earnings", to: "/earnings", inTabs: false }]
+    ? [...NAV, { key: "earnings", to: "/earnings", inTabs: false }]
     : NAV;
 
   // Bottom-bar destinations are dropped from the mobile menu.
@@ -88,7 +93,7 @@ export default function AppHeader() {
                     active ? "bg-brand-green/10 text-brand-green" : "text-ink hover:bg-mist"
                   }`}
                 >
-                  {n.label}
+                  {t(`header.nav.${n.key}`)}
                   {n.to === "/messages" && unread > 0 && (
                     <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-red px-1 text-[10px] font-bold text-white">
                       {unread > 9 ? "9+" : unread}
@@ -101,6 +106,7 @@ export default function AppHeader() {
         </div>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher className="hidden sm:block" />
           <div className="hidden items-center gap-2.5 sm:flex">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green/10 text-[13px] font-semibold text-brand-green">
               {initial}
@@ -116,11 +122,11 @@ export default function AppHeader() {
             className="hidden h-9 items-center gap-1.5 rounded-lg border border-brand-red/25 bg-[linear-gradient(150deg,rgba(11,115,39,0.13),rgba(227,16,18,0.07))] px-3 text-sm font-medium text-brand-red transition duration-200 hover:border-brand-red/40 hover:bg-[linear-gradient(150deg,rgba(11,115,39,0.18),rgba(227,16,18,0.13))] hover:shadow-[0_4px_12px_rgba(227,16,18,0.14)] md:inline-flex"
           >
             <LogOut size={15} strokeWidth={1.75} />
-            Sign out
+            {t("header.signOut")}
           </button>
           <button
             onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
+            aria-label={t("header.menu")}
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-hairline text-ink md:hidden"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
@@ -143,7 +149,7 @@ export default function AppHeader() {
                     active ? "bg-brand-green/10 text-brand-green" : "text-ink hover:bg-mist"
                   }`}
                 >
-                  {n.label}
+                  {t(`header.nav.${n.key}`)}
                   {n.to === "/messages" && unread > 0 && (
                     <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-red px-1.5 text-[11px] font-bold text-white">
                       {unread}
@@ -152,6 +158,11 @@ export default function AppHeader() {
                 </Link>
               );
             })}
+            {/* Language switcher also lives in the mobile menu (it's hidden in
+                the top bar on small screens to save space). */}
+            <div className="mt-2 border-t border-hairline pt-3">
+              <LanguageSwitcher className="w-full" />
+            </div>
           </nav>
         </div>
       )}

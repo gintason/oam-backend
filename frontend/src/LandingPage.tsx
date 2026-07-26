@@ -84,7 +84,7 @@ export default function LandingPage() {
                 Language &amp; currency
               </span>
               <div className="flex flex-col gap-3 px-1">
-                <LanguageSwitcher inline />
+                <LanguageSwitcher className="inline-block" />
                 <CurrencySwitcher inline />
               </div>
             </div>

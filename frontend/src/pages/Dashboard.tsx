@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap } from "lucide-react";
 import { useState } from "react";
 import AppHeader from "../components/AppHeader";
@@ -14,6 +15,7 @@ import { walletApi, formatBalance, type Transaction } from "../services/wallet";
  * show a verification prompt otherwise.
  */
 export default function Dashboard() {
+  const { t } = useTranslation();
   const scope = useUserScope();
   const { user, isVerified } = useAuth();
   const [hideBalance, setHideBalance] = useState(false);
@@ -40,13 +42,17 @@ export default function Dashboard() {
 
   const transactions = txnsQuery.data?.results ?? [];
 
+  const greeting = user?.first_name
+    ? t("dashboard.greetingNamed", { name: user.first_name })
+    : t("dashboard.greeting");
+
   return (
     <div className="min-h-screen bg-mist">
       <AppHeader />
 
       <main className="mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-10">
         <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
-          Welcome{user?.first_name ? `, ${user.first_name}` : ""} 👋
+          {greeting}
         </h1>
 
         {!isVerified && <VerifyBanner identifier={user?.email ?? user?.phone ?? ""} />}
@@ -71,11 +77,11 @@ export default function Dashboard() {
               <div className="relative">
                 <div className="flex items-center justify-between">
                   <Link to="/wallet" className="text-[13px] text-white/60 transition hover:text-white/85">
-                    Wallet balance {defaultWallet ? `· ${defaultWallet.currency}` : ""} ›
+                    {t("dashboard.walletBalance")} {defaultWallet ? `· ${defaultWallet.currency}` : ""} ›
                   </Link>
                   <button
                     onClick={() => setHideBalance((v) => !v)}
-                    aria-label={hideBalance ? "Show balance" : "Hide balance"}
+                    aria-label={hideBalance ? t("dashboard.showBalance") : t("dashboard.hideBalance")}
                     className="text-white/50 transition hover:text-white/80"
                   >
                     {hideBalance ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -88,7 +94,7 @@ export default function Dashboard() {
                   ) : walletsQuery.isLoading ? (
                     <div className="mt-1 h-9 w-40 animate-pulse rounded-lg bg-white/10" />
                   ) : walletsQuery.isError ? (
-                    <div className="text-[15px] text-white/70">Couldn't load balance.</div>
+                    <div className="text-[15px] text-white/70">{t("dashboard.loadBalanceError")}</div>
                   ) : (
                     <div className="tabular text-[34px] font-bold tracking-tight sm:text-[40px]">
                       {hideBalance ? "••••••" : formatBalance(defaultWallet?.balance ?? "0", defaultCurrency)}
@@ -99,14 +105,14 @@ export default function Dashboard() {
                 {isVerified && !walletsQuery.isLoading && !walletsQuery.isError &&
                   Number(defaultWallet?.balance ?? 0) === 0 && (
                     <p className="mt-1 text-[12.5px] text-white/50">
-                      Your wallet is empty — add money, or pay for services with your card.
+                      {t("dashboard.emptyWallet")}
                     </p>
                 )}
 
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <ActionPill to="/wallet/fund" icon={<Plus size={16} strokeWidth={2} />} label="Add money" primary />
-                  <ActionPill to="/wallet/send" icon={<Send size={15} strokeWidth={2} />} label="Send" />
-                  <ActionPill to="/wallet/withdraw" icon={<ArrowUpRight size={15} strokeWidth={2} />} label="Withdraw" />
+                  <ActionPill to="/wallet/fund" icon={<Plus size={16} strokeWidth={2} />} label={t("dashboard.addMoney")} primary />
+                  <ActionPill to="/wallet/send" icon={<Send size={15} strokeWidth={2} />} label={t("dashboard.send")} />
+                  <ActionPill to="/wallet/withdraw" icon={<ArrowUpRight size={15} strokeWidth={2} />} label={t("dashboard.withdraw")} />
                 </div>
 
                 {/* other currency wallets, if any */}
@@ -127,37 +133,37 @@ export default function Dashboard() {
             {/* Services */}
             <div className="mt-6 space-y-5">
               <ServiceGroup
-                title="Bills & Utilities"
+                title={t("dashboard.groups.bills")}
                 items={[
-                  { to: "/services/airtime", icon: <Smartphone size={20} strokeWidth={1.75} />, label: "Airtime", tint: "green" },
-                  { to: "/services/data", icon: <Wifi size={20} strokeWidth={1.75} />, label: "Data", tint: "green" },
-                  { to: "/services/electricity", icon: <Zap size={20} strokeWidth={1.75} />, label: "Electricity", tint: "green" },
-                  { to: "/services/cable", icon: <Tv size={20} strokeWidth={1.75} />, label: "Cable TV", tint: "red" },
+                  { to: "/services/airtime", icon: <Smartphone size={20} strokeWidth={1.75} />, label: t("dashboard.services.airtime"), tint: "green" },
+                  { to: "/services/data", icon: <Wifi size={20} strokeWidth={1.75} />, label: t("dashboard.services.data"), tint: "green" },
+                  { to: "/services/electricity", icon: <Zap size={20} strokeWidth={1.75} />, label: t("dashboard.services.electricity"), tint: "green" },
+                  { to: "/services/cable", icon: <Tv size={20} strokeWidth={1.75} />, label: t("dashboard.services.cable"), tint: "red" },
                 ]}
               />
               <ServiceGroup
-                title="Money"
+                title={t("dashboard.groups.money")}
                 items={[
-                  { to: "/wallet/fund", icon: <Plus size={20} strokeWidth={1.75} />, label: "Fund", tint: "green" },
-                  { to: "/wallet/withdraw", icon: <ArrowUpRight size={20} strokeWidth={1.75} />, label: "Withdraw", tint: "green" },
-                  { to: "/wallet/send", icon: <Send size={20} strokeWidth={1.75} />, label: "Transfer", tint: "green" },
-                  { to: "/services/giftcards", icon: <Gift size={20} strokeWidth={1.75} />, label: "Gift Cards", tint: "red" },
+                  { to: "/wallet/fund", icon: <Plus size={20} strokeWidth={1.75} />, label: t("dashboard.services.fund"), tint: "green" },
+                  { to: "/wallet/withdraw", icon: <ArrowUpRight size={20} strokeWidth={1.75} />, label: t("dashboard.services.withdraw"), tint: "green" },
+                  { to: "/wallet/send", icon: <Send size={20} strokeWidth={1.75} />, label: t("dashboard.services.transfer"), tint: "green" },
+                  { to: "/services/giftcards", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftCards"), tint: "red" },
                 ]}
               />
               <ServiceGroup
-                title="Travel & more"
+                title={t("dashboard.groups.travel")}
                 items={[
-                  { to: "/travel/flights", icon: <Plane size={20} strokeWidth={1.75} />, label: "Flights", tint: "green" },
-                  { to: "/travel/hotels", icon: <BedDouble size={20} strokeWidth={1.75} />, label: "Hotels", tint: "green" },
-                  { to: "/travel/carhire", icon: <Car size={20} strokeWidth={1.75} />, label: "Car Hire", tint: "green" },
-                  { to: "/travel/pickup", icon: <MapPinned size={20} strokeWidth={1.75} />, label: "Pick Up", tint: "green" },
+                  { to: "/travel/flights", icon: <Plane size={20} strokeWidth={1.75} />, label: t("dashboard.services.flights"), tint: "green" },
+                  { to: "/travel/hotels", icon: <BedDouble size={20} strokeWidth={1.75} />, label: t("dashboard.services.hotels"), tint: "green" },
+                  { to: "/travel/carhire", icon: <Car size={20} strokeWidth={1.75} />, label: t("dashboard.services.carHire"), tint: "green" },
+                  { to: "/travel/pickup", icon: <MapPinned size={20} strokeWidth={1.75} />, label: t("dashboard.services.pickup"), tint: "green" },
                 ]}
               />
               <ServiceGroup
-                title="Shop & services"
+                title={t("dashboard.groups.shop")}
                 items={[
-                  { to: "/marketplace", icon: <Store size={20} strokeWidth={1.75} />, label: "Marketplace", tint: "green" },
-                  { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: "Artisans", tint: "green" },
+                  { to: "/marketplace", icon: <Store size={20} strokeWidth={1.75} />, label: t("dashboard.services.marketplace"), tint: "green" },
+                  { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: t("dashboard.services.artisans"), tint: "green" },
                 ]}
               />
             </div>
@@ -166,23 +172,23 @@ export default function Dashboard() {
           {/* Recent transactions */}
           <section>
             <div className="flex items-center justify-between">
-              <h2 className="text-[15px] font-semibold text-ink">Recent transactions</h2>
+              <h2 className="text-[15px] font-semibold text-ink">{t("dashboard.recentTransactions")}</h2>
               {defaultWallet && (
                 <Link to={`/wallet/transactions`} className="text-[13px] font-medium text-brand-green hover:underline">
-                  See all
+                  {t("common.seeAll")}
                 </Link>
               )}
             </div>
 
             <div className="mt-3 rounded-2xl border border-hairline bg-paper">
               {!isVerified ? (
-                <TxnMessage icon={<ShieldAlert size={20} strokeWidth={1.5} />} text="Verify your account to see transactions." />
+                <TxnMessage icon={<ShieldAlert size={20} strokeWidth={1.5} />} text={t("dashboard.verifyToSeeTransactions")} />
               ) : txnsQuery.isLoading ? (
                 <TxnSkeleton />
               ) : txnsQuery.isError ? (
-                <TxnMessage icon={<Receipt size={20} strokeWidth={1.5} />} text="Couldn't load transactions." />
+                <TxnMessage icon={<Receipt size={20} strokeWidth={1.5} />} text={t("dashboard.loadTransactionsError")} />
               ) : transactions.length === 0 ? (
-                <TxnMessage icon={<Receipt size={20} strokeWidth={1.5} />} text="No transactions yet. Fund your wallet to get started." />
+                <TxnMessage icon={<Receipt size={20} strokeWidth={1.5} />} text={t("dashboard.noTransactions")} />
               ) : (
                 <ul className="divide-y divide-hairline">
                   {transactions.slice(0, 8).map((t) => (
@@ -251,6 +257,7 @@ const TXN_ICONS: Record<string, React.ReactNode> = {
 };
 
 function TxnRow({ txn }: { txn: Transaction }) {
+  const { t } = useTranslation();
   const isCredit = txn.direction === "credit";
   const amount = parseFloat(txn.amount);
   const symbol = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" }[txn.currency.toUpperCase()] ?? "";
@@ -264,7 +271,7 @@ function TxnRow({ txn }: { txn: Transaction }) {
         {TXN_ICONS[kind] ?? (isCredit ? <ArrowDownLeft size={16} strokeWidth={2} /> : <ArrowUpRight size={16} strokeWidth={2} />)}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="line-clamp-1 text-[13.5px] font-medium text-ink">{label || (isCredit ? "Credit" : "Debit")}</p>
+        <p className="line-clamp-1 text-[13.5px] font-medium text-ink">{label || (isCredit ? t("dashboard.credit") : t("dashboard.debit"))}</p>
         <p className="text-[11.5px] text-muted">{when}</p>
       </div>
       <span className={`shrink-0 tabular text-[13.5px] font-semibold ${isCredit ? "text-brand-green" : "text-ink"}`}>
@@ -301,13 +308,14 @@ function TxnMessage({ icon, text }: { icon: React.ReactNode; text: string }) {
 }
 
 function VerifyBanner({ identifier }: { identifier: string }) {
+  const { t } = useTranslation();
   return (
     <div className="mt-4 flex items-start gap-3 rounded-xl border border-warn/30 bg-warn/5 p-4">
       <ShieldAlert size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-warn" />
       <div className="flex-1">
-        <p className="text-[14px] font-medium text-warn">Verify your account</p>
+        <p className="text-[14px] font-medium text-warn">{t("dashboard.verifyBanner.title")}</p>
         <p className="mt-0.5 text-[13px] text-warn/80">
-          Your wallet and payments stay locked until you verify. Check your email for the code.
+          {t("dashboard.verifyBanner.body")}
         </p>
       </div>
       <Link
@@ -315,7 +323,7 @@ function VerifyBanner({ identifier }: { identifier: string }) {
         state={{ identifier }}
         className="shrink-0 self-center rounded-lg bg-warn px-3.5 py-2 text-[13px] font-medium text-white transition hover:brightness-95"
       >
-        Verify
+        {t("dashboard.verifyBanner.cta")}
       </Link>
     </div>
   );

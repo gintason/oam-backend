@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 import { ArrowLeft, Check, CheckCircle2, CreditCard, Loader2, Smartphone, Wallet, XCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
@@ -19,6 +20,7 @@ const QUICK_AMOUNTS = [100, 200, 500, 1000, 2000];
  * This is the template every other bill flow follows.
  */
 export default function BuyAirtime() {
+  const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
   const navigate = useNavigate();
@@ -69,7 +71,7 @@ export default function BuyAirtime() {
       }),
     onSuccess: (data) => setOrder(data),
     onError: (err) => {
-      const msg = apiErrorMessage(err, "Purchase failed. Try again.");
+      const msg = apiErrorMessage(err, t("airtime.errors.purchaseFailed"));
       const status = (err as { response?: { status?: number } })?.response?.status;
       const insufficient = status === 402 || /insufficient|balance|fund/i.test(msg);
       setLowFunds(insufficient);
@@ -89,16 +91,16 @@ export default function BuyAirtime() {
       // Hand off to Paystack's secure hosted checkout.
       window.location.href = data.authorization_url;
     },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't start card payment.")),
+    onError: (err) => setError(apiErrorMessage(err, t("airtime.errors.cardStartFailed"))),
   });
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(undefined);
     setLowFunds(false);
-    if (!network) return setError("Choose a network.");
-    if (phone.trim().length < 10) return setError("Enter a valid phone number.");
-    if (!amount || Number(amount) <= 0) return setError("Enter an amount.");
+    if (!network) return setError(t("airtime.errors.chooseNetwork"));
+    if (phone.trim().length < 10) return setError(t("airtime.errors.invalidPhone"));
+    if (!amount || Number(amount) <= 0) return setError(t("airtime.errors.enterAmount"));
     setConfirming(true);
   }
 
@@ -129,31 +131,35 @@ export default function BuyAirtime() {
               <XCircle size={48} strokeWidth={1.5} className="mx-auto text-danger" />
             )}
             <h1 className="mt-4 font-display text-xl font-semibold text-ink">
-              {ok ? "Airtime on the way!" : "Purchase failed"}
+              {ok ? t("airtime.success.titleOk") : t("airtime.success.titleFailed")}
             </h1>
             <p className="mt-1 text-[14px] text-muted">
               {ok
-                ? `₦${Number(order.amount).toLocaleString()} ${order.biller_name} airtime to ${order.recipient}.`
+                ? t("airtime.success.bodyOk", {
+                    amount: Number(order.amount).toLocaleString(),
+                    biller: order.biller_name,
+                    recipient: order.recipient,
+                  })
                 : pending
-                ? "Payment taken and your provider is completing the order. Don't buy again — check Orders in a moment."
-                : "The provider could not complete this order. Any amount held has been returned to your wallet."}
+                ? t("airtime.success.bodyPending")
+                : t("airtime.success.bodyFailed")}
             </p>
             <div className="mt-5 rounded-xl bg-mist p-3 text-left text-[12.5px] text-muted">
-              <div className="flex justify-between"><span>Status</span><span className="font-medium text-ink">{order.status}</span></div>
-              <div className="mt-1 flex justify-between"><span>Reference</span><span className="font-mono text-[11px] text-ink">{order.reference}</span></div>
+              <div className="flex justify-between"><span>{t("airtime.success.status")}</span><span className="font-medium text-ink">{order.status}</span></div>
+              <div className="mt-1 flex justify-between"><span>{t("airtime.success.reference")}</span><span className="font-mono text-[11px] text-ink">{order.reference}</span></div>
             </div>
             <div className="mt-6 flex gap-2">
               <button
                 onClick={() => { setOrder(null); setAmount(""); }}
                 className="h-11 flex-1 rounded-lg border border-hairline bg-paper text-[14px] font-medium text-ink transition hover:bg-mist"
               >
-                Buy again
+                {t("airtime.success.buyAgain")}
               </button>
               <button
                 onClick={() => navigate("/dashboard")}
                 className="h-11 flex-1 rounded-lg bg-brand-green text-[14px] font-medium text-white transition hover:brightness-95"
               >
-                Done
+                {t("airtime.success.done")}
               </button>
             </div>
           </div>
@@ -167,7 +173,7 @@ export default function BuyAirtime() {
       <AppHeader />
       <main className="mx-auto max-w-md px-5 py-8 sm:py-10">
         <button onClick={() => navigate("/dashboard")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> Back
+          <ArrowLeft size={15} /> {t("airtime.back")}
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -175,8 +181,8 @@ export default function BuyAirtime() {
             <Smartphone size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink">Buy Airtime</h1>
-            <p className="text-[13px] text-muted">Instant top-up, any network.</p>
+            <h1 className="font-display text-xl font-semibold text-ink">{t("airtime.title")}</h1>
+            <p className="text-[13px] text-muted">{t("airtime.subtitle")}</p>
           </div>
         </div>
 
@@ -189,19 +195,19 @@ export default function BuyAirtime() {
 
           {lowFunds && (
             <div className="mb-4 rounded-lg border border-brand-green/30 bg-brand-green/5 p-3.5">
-              <p className="text-[13px] text-ink">Your wallet balance is too low for this purchase.</p>
+              <p className="text-[13px] text-ink">{t("airtime.lowFunds")}</p>
               <button
                 type="button"
                 onClick={() => navigate("/wallet/fund")}
                 className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-brand-green px-4 text-[13px] font-medium text-white transition hover:brightness-95"
               >
-                <CreditCard size={15} strokeWidth={2} /> Add money with card
+                <CreditCard size={15} strokeWidth={2} /> {t("airtime.addMoneyCard")}
               </button>
             </div>
           )}
 
           {/* Network */}
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Network</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("airtime.network")}</label>
           {billersQuery.isLoading ? (
             <div className="mb-4 grid grid-cols-4 gap-2">
               {Array.from({ length: 4 }).map((_, i) => (
@@ -209,7 +215,7 @@ export default function BuyAirtime() {
               ))}
             </div>
           ) : billersQuery.isError ? (
-            <p className="mb-4 text-[13px] text-danger">Couldn't load networks. <button type="button" onClick={() => billersQuery.refetch()} className="underline">Retry</button></p>
+            <p className="mb-4 text-[13px] text-danger">{t("airtime.loadNetworksError")} <button type="button" onClick={() => billersQuery.refetch()} className="underline">{t("airtime.retry")}</button></p>
           ) : (
             <div className="mb-4 grid grid-cols-4 gap-2">
               {billersQuery.data?.map((b: Biller) => {
@@ -239,32 +245,35 @@ export default function BuyAirtime() {
 
           {/* Phone */}
           <label htmlFor="phone" className="mb-1.5 block text-[12.5px] font-semibold text-ink">
-            Phone number
+            {t("airtime.phoneNumber")}
           </label>
           <input
             id="phone"
             inputMode="numeric"
             value={formatPhone(phone)}
             onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 11))}
-            placeholder="0803 123 4567"
+            placeholder={t("airtime.phonePlaceholder")}
             className="mb-1.5 h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[16px] tracking-wide text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
           />
           {phone.length >= 4 && detectNetwork(phone) && !touchedNetwork && (
             <p className="mb-4 text-[12px] text-muted">
-              Looks like a <span className="font-medium text-ink">{detectNetwork(phone)?.toUpperCase()}</span> number —
-              selected for you. Tap another network if that's wrong.
+              <Trans
+                i18nKey="airtime.networkGuess"
+                values={{ network: detectNetwork(phone)?.toUpperCase() }}
+                components={[<span className="font-medium text-ink" />]}
+              />
             </p>
           )}
           {(phone.length < 4 || !detectNetwork(phone) || touchedNetwork) && <div className="mb-4" />}
 
           {/* Amount */}
-          <label htmlFor="amount" className="mb-1.5 block text-[12.5px] font-semibold text-ink">Amount (₦)</label>
+          <label htmlFor="amount" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("airtime.amountLabel")}</label>
           <input
             id="amount"
             inputMode="numeric"
             value={amount}
             onChange={(e) => setAmount(e.target.value.replace(/[^\d]/g, ""))}
-            placeholder="Enter amount (min ₦50)"
+            placeholder={t("airtime.amountPlaceholder")}
             className="h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[15px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
           />
           <div className="mt-2 mb-5 flex flex-wrap gap-2">
@@ -288,11 +297,11 @@ export default function BuyAirtime() {
           </div>
 
           {/* Payment method */}
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay with</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("airtime.payWith")}</label>
           <div className="mb-5 grid grid-cols-2 gap-2">
             {([
-              { key: "wallet", label: "Wallet", icon: <Wallet size={16} strokeWidth={1.75} /> },
-              { key: "card", label: "Card", icon: <CreditCard size={16} strokeWidth={1.75} /> },
+              { key: "wallet", label: t("airtime.wallet"), icon: <Wallet size={16} strokeWidth={1.75} /> },
+              { key: "card", label: t("airtime.card"), icon: <CreditCard size={16} strokeWidth={1.75} /> },
             ] as const).map((m) => {
               const selected = payWith === m.key;
               return (
@@ -331,27 +340,27 @@ export default function BuyAirtime() {
             {purchase.isPending || cardPay.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
-              amount ? `Pay ₦${Number(amount).toLocaleString()}` : "Buy airtime"
+              amount ? t("airtime.pay", { amount: Number(amount).toLocaleString() }) : t("airtime.buyAirtime")
             )}
           </button>
           <p className="mt-3 text-center text-[12px] text-muted">
             {payWith === "card"
-              ? "You'll pay securely on Paystack. Your airtime is delivered right after."
-              : "Paid instantly from your OAM wallet."}
+              ? t("airtime.cardHint")
+              : t("airtime.walletHint")}
           </p>
         </form>
       </main>
 
       <ConfirmPurchase
         open={confirming}
-        title="Confirm purchase"
+        title={t("airtime.confirm.title")}
         lines={[
-          { label: "Service", value: `${selectedBiller?.name ?? ""} airtime`.trim() },
-          { label: "Phone", value: formatPhone(phone) },
-          { label: "Amount", value: naira(Number(amount) || 0) },
-          { label: "Pay with", value: payWith === "card" ? "Card" : "Wallet" },
+          { label: t("airtime.confirm.service"), value: t("airtime.confirm.serviceValue", { name: selectedBiller?.name ?? "" }).trim() },
+          { label: t("airtime.confirm.phone"), value: formatPhone(phone) },
+          { label: t("airtime.confirm.amount"), value: naira(Number(amount) || 0) },
+          { label: t("airtime.confirm.payWith"), value: payWith === "card" ? t("airtime.card") : t("airtime.wallet") },
         ]}
-        confirmLabel={`Pay ${naira(Number(amount) || 0)}`}
+        confirmLabel={t("airtime.confirm.confirmLabel", { amount: naira(Number(amount) || 0) })}
         pending={purchase.isPending || cardPay.isPending}
         onConfirm={runPurchase}
         onCancel={() => setConfirming(false)}
@@ -361,15 +370,16 @@ export default function BuyAirtime() {
 }
 
 function GateVerify() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-mist">
       <AppHeader />
       <main className="mx-auto max-w-md px-5 py-16 text-center">
-        <h1 className="font-display text-xl font-semibold text-ink">Verify your account</h1>
-        <p className="mt-2 text-[14px] text-muted">You need a verified account to buy airtime and pay bills.</p>
+        <h1 className="font-display text-xl font-semibold text-ink">{t("airtime.gate.title")}</h1>
+        <p className="mt-2 text-[14px] text-muted">{t("airtime.gate.body")}</p>
         <button onClick={() => navigate("/dashboard")} className="mt-5 rounded-lg bg-brand-green px-5 py-2.5 text-[14px] font-medium text-white">
-          Back to dashboard
+          {t("airtime.gate.back")}
         </button>
       </main>
     </div>

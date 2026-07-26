@@ -1,0 +1,123 @@
+{
+  "common": {
+    "back": "Back",
+    "done": "Done",
+    "retry": "Retry",
+    "seeAll": "See all",
+    "verify": "Verify",
+    "loading": "Loading…"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "wallet": "Wallet",
+      "orders": "Orders",
+      "messages": "Messages",
+      "earnings": "Earnings"
+    },
+    "signOut": "Sign out",
+    "menu": "Menu"
+  },
+  "dashboard": {
+    "greeting": "Welcome 👋",
+    "greetingNamed": "Welcome, {{name}} 👋",
+    "walletBalance": "Wallet balance",
+    "showBalance": "Show balance",
+    "hideBalance": "Hide balance",
+    "loadBalanceError": "Couldn't load balance.",
+    "emptyWallet": "Your wallet is empty — add money, or pay for services with your card.",
+    "addMoney": "Add money",
+    "send": "Send",
+    "withdraw": "Withdraw",
+    "recentTransactions": "Recent transactions",
+    "verifyToSeeTransactions": "Verify your account to see transactions.",
+    "loadTransactionsError": "Couldn't load transactions.",
+    "noTransactions": "No transactions yet. Fund your wallet to get started.",
+    "credit": "Credit",
+    "debit": "Debit",
+    "groups": {
+      "bills": "Bills & Utilities",
+      "money": "Money",
+      "travel": "Travel & more",
+      "shop": "Shop & services"
+    },
+    "services": {
+      "airtime": "Airtime",
+      "data": "Data",
+      "electricity": "Electricity",
+      "cable": "Cable TV",
+      "fund": "Fund",
+      "withdraw": "Withdraw",
+      "transfer": "Transfer",
+      "giftCards": "Gift Cards",
+      "flights": "Flights",
+      "hotels": "Hotels",
+      "carHire": "Car Hire",
+      "pickup": "Pick Up",
+      "marketplace": "Marketplace",
+      "artisans": "Artisans"
+    },
+    "verifyBanner": {
+      "title": "Verify your account",
+      "body": "Your wallet and payments stay locked until you verify. Check your email for the code.",
+      "cta": "Verify"
+    }
+  },
+  "airtime": {
+    "back": "Back",
+    "title": "Buy Airtime",
+    "subtitle": "Instant top-up, any network.",
+    "network": "Network",
+    "loadNetworksError": "Couldn't load networks.",
+    "retry": "Retry",
+    "phoneNumber": "Phone number",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "Looks like a <0>{{network}}</0> number — selected for you. Tap another network if that's wrong.",
+    "amountLabel": "Amount (₦)",
+    "amountPlaceholder": "Enter amount (min ₦50)",
+    "payWith": "Pay with",
+    "wallet": "Wallet",
+    "card": "Card",
+    "lowFunds": "Your wallet balance is too low for this purchase.",
+    "addMoneyCard": "Add money with card",
+    "buyAirtime": "Buy airtime",
+    "pay": "Pay ₦{{amount}}",
+    "cardHint": "You'll pay securely on Paystack. Your airtime is delivered right after.",
+    "walletHint": "Paid instantly from your OAM wallet.",
+    "errors": {
+      "chooseNetwork": "Choose a network.",
+      "invalidPhone": "Enter a valid phone number.",
+      "enterAmount": "Enter an amount.",
+      "purchaseFailed": "Purchase failed. Try again.",
+      "cardStartFailed": "Couldn't start card payment."
+    },
+    "confirm": {
+      "title": "Confirm purchase",
+      "service": "Service",
+      "phone": "Phone",
+      "amount": "Amount",
+      "payWith": "Pay with",
+      "serviceValue": "{{name}} airtime",
+      "confirmLabel": "Pay {{amount}}"
+    },
+    "success": {
+      "titleOk": "Airtime on the way!",
+      "titleFailed": "Purchase failed",
+      "bodyOk": "₦{{amount}} {{biller}} airtime to {{recipient}}.",
+      "bodyPending": "Payment taken and your provider is completing the order. Don't buy again — check Orders in a moment.",
+      "bodyFailed": "The provider could not complete this order. Any amount held has been returned to your wallet.",
+      "status": "Status",
+      "reference": "Reference",
+      "buyAgain": "Buy again",
+      "done": "Done"
+    },
+    "gate": {
+      "title": "Verify your account",
+      "body": "You need a verified account to buy airtime and pay bills.",
+      "back": "Back to dashboard"
+    }
+  }
+}

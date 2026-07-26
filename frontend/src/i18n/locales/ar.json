@@ -1,0 +1,123 @@
+{
+  "common": {
+    "back": "رجوع",
+    "done": "تم",
+    "retry": "إعادة المحاولة",
+    "seeAll": "عرض الكل",
+    "verify": "توثيق",
+    "loading": "جارٍ التحميل…"
+  },
+  "language": {
+    "label": "اللغة"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "wallet": "المحفظة",
+      "orders": "الطلبات",
+      "messages": "الرسائل",
+      "earnings": "الأرباح"
+    },
+    "signOut": "تسجيل الخروج",
+    "menu": "القائمة"
+  },
+  "dashboard": {
+    "greeting": "مرحبًا 👋",
+    "greetingNamed": "مرحبًا، {{name}} 👋",
+    "walletBalance": "رصيد المحفظة",
+    "showBalance": "إظهار الرصيد",
+    "hideBalance": "إخفاء الرصيد",
+    "loadBalanceError": "تعذّر تحميل الرصيد.",
+    "emptyWallet": "محفظتك فارغة — أضف أموالًا، أو ادفع مقابل الخدمات ببطاقتك.",
+    "addMoney": "إضافة أموال",
+    "send": "إرسال",
+    "withdraw": "سحب",
+    "recentTransactions": "أحدث المعاملات",
+    "verifyToSeeTransactions": "وثّق حسابك لعرض المعاملات.",
+    "loadTransactionsError": "تعذّر تحميل المعاملات.",
+    "noTransactions": "لا توجد معاملات بعد. موّل محفظتك للبدء.",
+    "credit": "إيداع",
+    "debit": "خصم",
+    "groups": {
+      "bills": "الفواتير والخدمات",
+      "money": "الأموال",
+      "travel": "السفر والمزيد",
+      "shop": "التسوق والخدمات"
+    },
+    "services": {
+      "airtime": "رصيد مكالمات",
+      "data": "باقة إنترنت",
+      "electricity": "الكهرباء",
+      "cable": "التلفزيون",
+      "fund": "تمويل",
+      "withdraw": "سحب",
+      "transfer": "تحويل",
+      "giftCards": "بطاقات هدايا",
+      "flights": "رحلات طيران",
+      "hotels": "فنادق",
+      "carHire": "تأجير سيارات",
+      "pickup": "توصيل",
+      "marketplace": "السوق",
+      "artisans": "الحرفيون"
+    },
+    "verifyBanner": {
+      "title": "وثّق حسابك",
+      "body": "تبقى محفظتك ومدفوعاتك مقفلة حتى توثّق حسابك. تحقّق من بريدك الإلكتروني للحصول على الرمز.",
+      "cta": "توثيق"
+    }
+  },
+  "airtime": {
+    "back": "رجوع",
+    "title": "شراء رصيد",
+    "subtitle": "شحن فوري، لأي شبكة.",
+    "network": "الشبكة",
+    "loadNetworksError": "تعذّر تحميل الشبكات.",
+    "retry": "إعادة المحاولة",
+    "phoneNumber": "رقم الهاتف",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "يبدو أنه رقم <0>{{network}}</0> — تم اختياره لك. اختر شبكة أخرى إذا كان ذلك خطأً.",
+    "amountLabel": "المبلغ (₦)",
+    "amountPlaceholder": "أدخل المبلغ (الحد الأدنى ₦50)",
+    "payWith": "ادفع بواسطة",
+    "wallet": "المحفظة",
+    "card": "بطاقة",
+    "lowFunds": "رصيد محفظتك منخفض جدًا لإتمام هذه العملية.",
+    "addMoneyCard": "أضف أموالًا بالبطاقة",
+    "buyAirtime": "شراء رصيد",
+    "pay": "ادفع ₦{{amount}}",
+    "cardHint": "ستدفع بأمان عبر Paystack. يُسلَّم رصيدك مباشرة بعد ذلك.",
+    "walletHint": "يُدفع فورًا من محفظة OAM.",
+    "errors": {
+      "chooseNetwork": "اختر شبكة.",
+      "invalidPhone": "أدخل رقم هاتف صحيحًا.",
+      "enterAmount": "أدخل مبلغًا.",
+      "purchaseFailed": "فشلت العملية. حاول مرة أخرى.",
+      "cardStartFailed": "تعذّر بدء الدفع بالبطاقة."
+    },
+    "confirm": {
+      "title": "تأكيد الشراء",
+      "service": "الخدمة",
+      "phone": "الهاتف",
+      "amount": "المبلغ",
+      "payWith": "ادفع بواسطة",
+      "serviceValue": "رصيد {{name}}",
+      "confirmLabel": "ادفع {{amount}}"
+    },
+    "success": {
+      "titleOk": "الرصيد في الطريق!",
+      "titleFailed": "فشلت العملية",
+      "bodyOk": "₦{{amount}} رصيد {{biller}} إلى {{recipient}}.",
+      "bodyPending": "تم استلام الدفع ويقوم مزوّدك بإكمال الطلب. لا تشترِ مرة أخرى — تحقّق من الطلبات بعد قليل.",
+      "bodyFailed": "لم يتمكّن المزوّد من إكمال هذا الطلب. أُعيد أي مبلغ محجوز إلى محفظتك.",
+      "status": "الحالة",
+      "reference": "المرجع",
+      "buyAgain": "شراء مرة أخرى",
+      "done": "تم"
+    },
+    "gate": {
+      "title": "وثّق حسابك",
+      "body": "تحتاج إلى حساب موثّق لشراء الرصيد ودفع الفواتير.",
+      "back": "العودة إلى لوحة التحكم"
+    }
+  }
+}
