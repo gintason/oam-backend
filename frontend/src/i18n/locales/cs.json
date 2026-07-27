@@ -1,3 +1,378 @@
 {
-  "_note": "Progressive-fill file. Keys not present here fall back to English automatically."
+  "common": {
+    "back": "Zpět",
+    "done": "Hotovo",
+    "retry": "Zkusit znovu",
+    "seeAll": "Zobrazit vše",
+    "verify": "Ověřit",
+    "loading": "Načítání…"
+  },
+  "language": {
+    "label": "Jazyk"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Přehled",
+      "wallet": "Peněženka",
+      "orders": "Objednávky",
+      "messages": "Zprávy",
+      "earnings": "Výdělky"
+    },
+    "signOut": "Odhlásit se",
+    "menu": "Menu"
+  },
+  "dashboard": {
+    "greeting": "Vítejte 👋",
+    "greetingNamed": "Vítejte, {{name}} 👋",
+    "walletBalance": "Zůstatek peněženky",
+    "showBalance": "Zobrazit zůstatek",
+    "hideBalance": "Skrýt zůstatek",
+    "loadBalanceError": "Zůstatek se nepodařilo načíst.",
+    "emptyWallet": "Vaše peněženka je prázdná – přidejte peníze nebo plaťte za služby kartou.",
+    "addMoney": "Přidat peníze",
+    "send": "Odeslat",
+    "withdraw": "Vybrat",
+    "recentTransactions": "Nedávné transakce",
+    "verifyToSeeTransactions": "Ověřte účet, abyste viděli transakce.",
+    "loadTransactionsError": "Transakce se nepodařilo načíst.",
+    "noTransactions": "Zatím žádné transakce. Dobijte peněženku a začněte.",
+    "credit": "Připsání",
+    "debit": "Odepsání",
+    "groups": {
+      "bills": "Účty a služby",
+      "money": "Peníze",
+      "travel": "Cestování a další",
+      "shop": "Nákupy a služby"
+    },
+    "services": {
+      "airtime": "Kredit",
+      "data": "Data",
+      "electricity": "Elektřina",
+      "cable": "Kabelová TV",
+      "fund": "Dobít",
+      "withdraw": "Vybrat",
+      "transfer": "Převod",
+      "giftCards": "Dárkové karty",
+      "flights": "Lety",
+      "hotels": "Hotely",
+      "carHire": "Půjčovna aut",
+      "pickup": "Vyzvednutí",
+      "marketplace": "Tržiště",
+      "artisans": "Řemeslníci"
+    },
+    "verifyBanner": {
+      "title": "Ověřte svůj účet",
+      "body": "Peněženka i platby zůstanou uzamčené, dokud se neověříte. Zkontrolujte e-mail s kódem.",
+      "cta": "Ověřit"
+    }
+  },
+  "airtime": {
+    "back": "Zpět",
+    "title": "Koupit kredit",
+    "subtitle": "Okamžité dobití, jakákoli síť.",
+    "network": "Síť",
+    "loadNetworksError": "Sítě se nepodařilo načíst.",
+    "retry": "Zkusit znovu",
+    "phoneNumber": "Telefonní číslo",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "Vypadá to na číslo <0>{{network}}</0> – vybráno za vás. Klepněte na jinou síť, pokud je to špatně.",
+    "amountLabel": "Částka (₦)",
+    "amountPlaceholder": "Zadejte částku (min. ₦50)",
+    "payWith": "Zaplatit pomocí",
+    "wallet": "Peněženka",
+    "card": "Karta",
+    "lowFunds": "Zůstatek peněženky je na tento nákup příliš nízký.",
+    "addMoneyCard": "Přidat peníze kartou",
+    "buyAirtime": "Koupit kredit",
+    "pay": "Zaplatit ₦{{amount}}",
+    "cardHint": "Zaplatíte bezpečně přes Paystack. Kredit je doručen ihned poté.",
+    "walletHint": "Zaplaceno okamžitě z peněženky OAM.",
+    "errors": {
+      "chooseNetwork": "Vyberte síť.",
+      "invalidPhone": "Zadejte platné telefonní číslo.",
+      "enterAmount": "Zadejte částku.",
+      "purchaseFailed": "Nákup se nezdařil. Zkuste to znovu.",
+      "cardStartFailed": "Platbu kartou se nepodařilo zahájit."
+    },
+    "confirm": {
+      "title": "Potvrdit nákup",
+      "service": "Služba",
+      "phone": "Telefon",
+      "amount": "Částka",
+      "payWith": "Zaplatit pomocí",
+      "serviceValue": "Kredit {{name}}",
+      "confirmLabel": "Zaplatit {{amount}}"
+    },
+    "success": {
+      "titleOk": "Kredit je na cestě!",
+      "titleFailed": "Nákup se nezdařil",
+      "bodyOk": "₦{{amount}} kreditu {{biller}} na {{recipient}}.",
+      "bodyPending": "Platba přijata a operátor dokončuje objednávku. Nekupujte znovu – za chvíli zkontrolujte Objednávky.",
+      "bodyFailed": "Operátor nemohl objednávku dokončit. Zadržená částka byla vrácena do peněženky.",
+      "status": "Stav",
+      "reference": "Reference",
+      "buyAgain": "Koupit znovu",
+      "done": "Hotovo"
+    },
+    "gate": {
+      "title": "Ověřte svůj účet",
+      "body": "Pro nákup kreditu a placení účtů potřebujete ověřený účet.",
+      "back": "Zpět na přehled"
+    }
+  },
+  "landing": {
+    "nav": {
+      "home": "Domů",
+      "about": "O nás",
+      "services": "Služby",
+      "marketplace": "Tržiště",
+      "findArtisans": "Najít řemeslníky",
+      "faq": "FAQ"
+    },
+    "signIn": "Přihlásit se",
+    "getStarted": "Začít",
+    "openMenu": "Otevřít menu",
+    "closeMenu": "Zavřít menu",
+    "langCurrency": "Jazyk a měna",
+    "hero": {
+      "badge": "Všechny služby · Jedna aplikace · Nekonečné možnosti",
+      "headlines": [
+        "Jeden zůstatek na vše, co potřebujete.",
+        "Plaťte účty, posílejte peníze a směňujte dárkové karty.",
+        "Rezervujte lety, hotely a auta po celém světě.",
+        "Nakupujte a prodávejte na našem tržišti.",
+        "Najděte ověřené řemeslníky na svou další práci."
+      ],
+      "subtitle": "Kredit, data, DStv, elektřina – k tomu tržiště, řemeslníci ve vašem okolí, dárkové karty, převody a cestování. Vše z jedné peněženky.",
+      "signUp": "Zaregistrujte se!",
+      "howItWorks": "Jak to funguje",
+      "download": "Stáhněte si aplikaci OAM na Google Play a App Store – a mějte svět v dlani."
+    },
+    "services": {
+      "eyebrow": "Jedna aplikace, vše",
+      "title": "Každá služba, kterou potřebujete, na jednom místě",
+      "subtitle": "Plaťte účty, nakupujte, hledejte pomoc, cestujte a posílejte peníze – vše z jedné peněženky a s okamžitým doručením.",
+      "items": {
+        "airtime": {
+          "title": "Kredit a data",
+          "desc": "Okamžitě dobijte jakoukoli síť."
+        },
+        "cable": {
+          "title": "Kabelová TV",
+          "desc": "DStv, GOtv a Startimes."
+        },
+        "electricity": {
+          "title": "Elektřina",
+          "desc": "Předplacené tokeny i následné platby."
+        },
+        "marketplace": {
+          "title": "Tržiště",
+          "desc": "Nakupujte a prodávejte lokálně."
+        },
+        "artisans": {
+          "title": "Řemeslníci",
+          "desc": "Důvěryhodní profesionálové ve vašem okolí."
+        },
+        "flights": {
+          "title": "Lety",
+          "desc": "Porovnejte a rezervujte levné letenky."
+        },
+        "hotels": {
+          "title": "Hotely",
+          "desc": "Pobyty a zážitky."
+        },
+        "giftcards": {
+          "title": "Dárkové karty",
+          "desc": "Kupujte a uplatňujte digitální karty."
+        },
+        "transfer": {
+          "title": "Převod peněz",
+          "desc": "Rychlé a bezpečné převody."
+        },
+        "carhire": {
+          "title": "Půjčovna aut",
+          "desc": "Půjčte si auto kdekoli."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Tržiště",
+      "title": "Nakupujte a prodávejte na jednom místě",
+      "subtitle": "Od aut po elektroniku a nemovitosti – procházejte nabídky ve svém okolí nebo přidejte svou za minutu.",
+      "viewAll": "Zobrazit všechny inzeráty",
+      "all": "Vše",
+      "categoriesAria": "Kategorie tržiště",
+      "negotiable": "k jednání",
+      "featured": "Doporučené",
+      "emptyFilteredTitle": "V této kategorii zatím nic není",
+      "emptyTitle": "První inzeráty se právě přidávají",
+      "emptyFilteredBody": "Zkuste jinou kategorii nebo přidejte inzerát jako první.",
+      "emptyBody": "Tržiště OAM je nové. Vaše první tři inzeráty jsou zdarma – bez karty.",
+      "browseEverything": "Procházet vše",
+      "postItem": "Přidat inzerát"
+    },
+    "artisans": {
+      "title": "Ověření řemeslníci",
+      "subtitle": "U každého řemeslníka zde náš tým před zveřejněním ověřil totožnost, fotky práce a video.",
+      "searchPlaceholder": "Instalatér, elektrikář, město…",
+      "findNearMe": "Najít řemeslníky poblíž",
+      "all": "Vše",
+      "verified": "Ověřený",
+      "featured": "Doporučený",
+      "emptyFilteredTitle": "Zatím žádní odpovídající ověření řemeslníci",
+      "emptyTitle": "První ověření řemeslníci jsou na cestě",
+      "emptyFilteredBody": "Zkuste jiné řemeslo nebo si prohlédněte všechny ve svém okolí.",
+      "emptyBody": "Každý řemeslník je před zveřejněním ručně ověřen, takže se tato sekce plní postupně.",
+      "browseAll": "Procházet všechny řemeslníky",
+      "listTrade": "Přidat své řemeslo"
+    },
+    "cta": {
+      "title": "Jedna aplikace. Nekonečné možnosti.",
+      "subtitle": "Přidejte se k tisícům lidí, kteří snadno platí účty, nakupují a posílají peníze. Začít je zdarma.",
+      "createAccount": "Vytvořit účet",
+      "signIn": "Přihlásit se"
+    },
+    "footer": {
+      "tagline": "Všechny služby. Jedna aplikace. Nekonečné možnosti.",
+      "followUs": "Sledujte nás",
+      "cols": {
+        "services": "Služby",
+        "explore": "Objevovat",
+        "company": "Společnost"
+      },
+      "links": {
+        "airtimeData": "Kredit a data",
+        "cableTv": "Kabelová TV",
+        "electricity": "Elektřina",
+        "giftCards": "Dárkové karty",
+        "moneyTransfer": "Převod peněz",
+        "marketplace": "Tržiště",
+        "artisans": "Řemeslníci",
+        "flights": "Lety",
+        "hotels": "Hotely",
+        "carHire": "Půjčovna aut",
+        "about": "O nás",
+        "contact": "Kontakt",
+        "helpCenter": "Centrum nápovědy",
+        "terms": "Podmínky",
+        "privacy": "Soukromí"
+      },
+      "rights": "© {{year}} OAM. Všechna práva vyhrazena.",
+      "developedBy": "Vyvinuto společností AiTrend"
+    }
+  },
+  "bills": {
+    "back": "Zpět",
+    "wallet": "Peněženka",
+    "card": "Karta",
+    "payWith": "Zaplatit pomocí",
+    "retry": "Zkusit znovu",
+    "switchToCard": "Přepnout na kartu",
+    "lowFunds": "Zůstatek peněženky je příliš nízký. Zaplaťte kartou.",
+    "payNoteCard": "Zaplatíte bezpečně přes Paystack. {{noun}} je doručeno ihned poté.",
+    "payNoteWallet": "Zaplaceno okamžitě z peněženky OAM.",
+    "verifyGate": {
+      "title": "Ověřte svůj účet",
+      "body": "Pro placení účtů potřebujete ověřený účet.",
+      "back": "Zpět na přehled"
+    },
+    "result": {
+      "inProgress": "Nákup probíhá",
+      "issuingToken": "Doručeno – vydáváme váš token",
+      "failed": "Nákup se nezdařil",
+      "bodyPending": "Platba proběhla a operátor dokončuje objednávku. Obvykle to trvá méně než minutu.",
+      "bodyToken": "Vaše jednotky jsou na cestě. Čekáme, až operátor vydá token – objeví se zde automaticky.",
+      "bodyFailed": "Operátor nemohl objednávku dokončit. Zadržená částka byla vrácena do peněženky.",
+      "dontBuyAgain": "Nekupujte znovu – tato objednávka už je zaplacená. Dokončí se sama a vždy ji najdete v Objednávkách.",
+      "customer": "Zákazník",
+      "status": "Stav",
+      "reference": "Reference",
+      "checking": "Kontrola…",
+      "checkStatus": "Zkontrolovat stav nyní",
+      "tryAgain": "Zkusit znovu",
+      "buyAgain": "Koupit znovu",
+      "viewInOrders": "Zobrazit v Objednávkách",
+      "done": "Hotovo"
+    }
+  },
+  "data": {
+    "title": "Koupit data",
+    "subtitle": "Aktuální balíčky, okamžité doručení.",
+    "network": "Síť",
+    "loadNetworksError": "Sítě se nepodařilo načíst.",
+    "dataPlan": "Datový balíček",
+    "loadPlansError": "Balíčky se nepodařilo načíst.",
+    "noPlans": "Pro tuto síť nejsou nyní dostupné žádné balíčky.",
+    "phoneNumber": "Telefonní číslo",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "Datový balíček",
+    "payAmount": "Zaplatit ₦{{amount}}",
+    "buyData": "Koupit data",
+    "payNoun": "Data",
+    "chooseNetwork": "Vyberte síť.",
+    "choosePlan": "Vyberte datový balíček.",
+    "invalidPhone": "Zadejte platné telefonní číslo.",
+    "purchaseFailed": "Nákup se nezdařil. Zkuste to znovu.",
+    "cardStartFailed": "Platbu kartou se nepodařilo zahájit.",
+    "successTitle": "Data jsou na cestě!",
+    "failedTitle": "Nákup se nezdařil",
+    "successMessage": "{{plan}} na {{recipient}}."
+  },
+  "electricity": {
+    "title": "Elektřina",
+    "subtitle": "Kupujte jednotky měřidla okamžitě.",
+    "provider": "Poskytovatel",
+    "loadProvidersError": "Poskytovatele se nepodařilo načíst.",
+    "selectDisco": "Vyberte svého distributora…",
+    "meterType": "Typ měřidla",
+    "prepaid": "Předplacené",
+    "postpaid": "Následná platba",
+    "meterNumber": "Číslo měřidla",
+    "meterPlaceholder": "Zadejte číslo měřidla",
+    "checkingMeter": "Kontrola měřidla…",
+    "keepTyping": "Pište dál – majitele potvrdíme, jakmile bude číslo úplné ({{count}}/11 číslic).",
+    "couldntConfirmMeter": "Toto měřidlo se nepodařilo potvrdit.",
+    "checkAgain": "Zkontrolovat znovu",
+    "chooseProviderFirst": "Vyberte výše poskytovatele pro potvrzení majitele měřidla.",
+    "amountLabel": "Částka (₦)",
+    "amountPlaceholder": "Zadejte částku",
+    "districtLine": "Okres: {{value}}",
+    "arrearsLine": "Nedoplatky: ₦{{value}}",
+    "minPurchaseLine": "Minimální nákup: ₦{{value}}",
+    "onlyName": "Poskytovatel vrátil pro toto měřidlo pouze jméno účtu.",
+    "buyUnits": "Koupit jednotky",
+    "payAmount": "Zaplatit ₦{{amount}}",
+    "label": "Elektřina",
+    "payNoun": "Jednotky",
+    "chooseProvider": "Vyberte poskytovatele elektřiny.",
+    "invalidMeter": "Zadejte platné číslo měřidla.",
+    "minAmount": "Zadejte částku alespoň ₦100.",
+    "couldntVerifyMeter": "Toto číslo měřidla se nepodařilo ověřit.",
+    "successTitle": "Platba proběhla úspěšně!",
+    "successMessage": "₦{{amount}} na měřidlo {{recipient}}."
+  },
+  "cable": {
+    "title": "Kabelová TV",
+    "subtitle": "Obnovte DStv, GOtv, Startimes.",
+    "provider": "Poskytovatel",
+    "loadProvidersError": "Poskytovatele se nepodařilo načíst.",
+    "package": "Balíček",
+    "loadPackagesError": "Balíčky se nepodařilo načíst.",
+    "noPackages": "Nyní nejsou dostupné žádné balíčky.",
+    "smartcard": "Číslo smartkarty / IUC",
+    "smartcardPlaceholder": "Zadejte číslo smartkarty",
+    "checkingSmartcard": "Kontrola smartkarty…",
+    "label": "TV předplatné",
+    "subscribe": "Předplatit",
+    "payAmount": "Zaplatit ₦{{amount}}",
+    "payNoun": "Vaše předplatné",
+    "chooseProvider": "Vyberte poskytovatele.",
+    "choosePackage": "Vyberte balíček.",
+    "waitSmartcard": "Před platbou počkejte na potvrzení smartkarty.",
+    "invalidSmartcard": "Zadejte platné číslo smartkarty.",
+    "couldntConfirmSmartcard": "Tuto smartkartu se nepodařilo potvrdit.",
+    "couldntVerifySmartcard": "Toto číslo smartkarty se nepodařilo ověřit.",
+    "successTitle": "Předplatné bylo úspěšné!",
+    "successMessage": "{{plan}} na {{recipient}}."
+  }
 }

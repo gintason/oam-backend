@@ -1,3 +1,378 @@
 {
-  "_note": "Progressive-fill file. Keys not present here fall back to English automatically."
+  "common": {
+    "back": "Geri",
+    "done": "Tamam",
+    "retry": "Tekrar dene",
+    "seeAll": "Tümünü gör",
+    "verify": "Doğrula",
+    "loading": "Yükleniyor…"
+  },
+  "language": {
+    "label": "Dil"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Panel",
+      "wallet": "Cüzdan",
+      "orders": "Siparişler",
+      "messages": "Mesajlar",
+      "earnings": "Kazançlar"
+    },
+    "signOut": "Çıkış yap",
+    "menu": "Menü"
+  },
+  "dashboard": {
+    "greeting": "Hoş geldiniz 👋",
+    "greetingNamed": "Hoş geldiniz, {{name}} 👋",
+    "walletBalance": "Cüzdan bakiyesi",
+    "showBalance": "Bakiyeyi göster",
+    "hideBalance": "Bakiyeyi gizle",
+    "loadBalanceError": "Bakiye yüklenemedi.",
+    "emptyWallet": "Cüzdanınız boş — para ekleyin ya da hizmetleri kartınızla ödeyin.",
+    "addMoney": "Para ekle",
+    "send": "Gönder",
+    "withdraw": "Çek",
+    "recentTransactions": "Son işlemler",
+    "verifyToSeeTransactions": "İşlemleri görmek için hesabınızı doğrulayın.",
+    "loadTransactionsError": "İşlemler yüklenemedi.",
+    "noTransactions": "Henüz işlem yok. Başlamak için cüzdanınıza para yükleyin.",
+    "credit": "Gelen",
+    "debit": "Giden",
+    "groups": {
+      "bills": "Faturalar ve hizmetler",
+      "money": "Para",
+      "travel": "Seyahat ve daha fazlası",
+      "shop": "Alışveriş ve hizmetler"
+    },
+    "services": {
+      "airtime": "Kontör",
+      "data": "İnternet",
+      "electricity": "Elektrik",
+      "cable": "Kablo TV",
+      "fund": "Yükle",
+      "withdraw": "Çek",
+      "transfer": "Transfer",
+      "giftCards": "Hediye kartları",
+      "flights": "Uçuşlar",
+      "hotels": "Oteller",
+      "carHire": "Araç kiralama",
+      "pickup": "Teslim alma",
+      "marketplace": "Pazar yeri",
+      "artisans": "Ustalar"
+    },
+    "verifyBanner": {
+      "title": "Hesabınızı doğrulayın",
+      "body": "Doğrulama yapılana kadar cüzdanınız ve ödemeleriniz kilitli kalır. Kod için e-postanızı kontrol edin.",
+      "cta": "Doğrula"
+    }
+  },
+  "airtime": {
+    "back": "Geri",
+    "title": "Kontör al",
+    "subtitle": "Anında yükleme, tüm operatörler.",
+    "network": "Operatör",
+    "loadNetworksError": "Operatörler yüklenemedi.",
+    "retry": "Tekrar dene",
+    "phoneNumber": "Telefon numarası",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "Bir <0>{{network}}</0> numarasına benziyor — sizin için seçildi. Yanlışsa başka bir operatöre dokunun.",
+    "amountLabel": "Tutar (₦)",
+    "amountPlaceholder": "Tutarı girin (en az ₦50)",
+    "payWith": "Ödeme yöntemi",
+    "wallet": "Cüzdan",
+    "card": "Kart",
+    "lowFunds": "Bu alışveriş için cüzdan bakiyeniz çok düşük.",
+    "addMoneyCard": "Kartla para ekle",
+    "buyAirtime": "Kontör al",
+    "pay": "₦{{amount}} öde",
+    "cardHint": "Paystack üzerinden güvenle ödersiniz. Kontörünüz hemen ardından teslim edilir.",
+    "walletHint": "OAM cüzdanınızdan anında ödendi.",
+    "errors": {
+      "chooseNetwork": "Bir operatör seçin.",
+      "invalidPhone": "Geçerli bir telefon numarası girin.",
+      "enterAmount": "Bir tutar girin.",
+      "purchaseFailed": "Satın alma başarısız. Tekrar deneyin.",
+      "cardStartFailed": "Kart ödemesi başlatılamadı."
+    },
+    "confirm": {
+      "title": "Satın almayı onayla",
+      "service": "Hizmet",
+      "phone": "Telefon",
+      "amount": "Tutar",
+      "payWith": "Ödeme yöntemi",
+      "serviceValue": "{{name}} kontörü",
+      "confirmLabel": "{{amount}} öde"
+    },
+    "success": {
+      "titleOk": "Kontör yolda!",
+      "titleFailed": "Satın alma başarısız",
+      "bodyOk": "{{recipient}} numarasına ₦{{amount}} {{biller}} kontörü.",
+      "bodyPending": "Ödeme alındı ve operatörünüz siparişi tamamlıyor. Tekrar satın almayın — birazdan Siparişler'i kontrol edin.",
+      "bodyFailed": "Operatör bu siparişi tamamlayamadı. Tutulan tutar cüzdanınıza iade edildi.",
+      "status": "Durum",
+      "reference": "Referans",
+      "buyAgain": "Tekrar satın al",
+      "done": "Tamam"
+    },
+    "gate": {
+      "title": "Hesabınızı doğrulayın",
+      "body": "Kontör almak ve fatura ödemek için doğrulanmış bir hesaba ihtiyacınız var.",
+      "back": "Panele dön"
+    }
+  },
+  "landing": {
+    "nav": {
+      "home": "Ana sayfa",
+      "about": "Hakkında",
+      "services": "Hizmetler",
+      "marketplace": "Pazar yeri",
+      "findArtisans": "Usta bul",
+      "faq": "SSS"
+    },
+    "signIn": "Giriş yap",
+    "getStarted": "Başla",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "langCurrency": "Dil ve para birimi",
+    "hero": {
+      "badge": "Tüm hizmetler · Tek uygulama · Sonsuz olanaklar",
+      "headlines": [
+        "İhtiyacınız olan her şey için tek bakiye.",
+        "Fatura ödeyin, para gönderin ve hediye kartı takas edin.",
+        "Dünya genelinde uçuş, otel ve araç rezervasyonu yapın.",
+        "Pazar yerimizde alın ve satın.",
+        "Bir sonraki işiniz için doğrulanmış ustalar bulun."
+      ],
+      "subtitle": "Kontör, internet, DStv, elektrik — ayrıca bir pazar yeri, yakınınızdaki ustalar, hediye kartları, transferler ve seyahat. Hepsi tek cüzdandan.",
+      "signUp": "Hemen kaydolun!",
+      "howItWorks": "Nasıl çalışır",
+      "download": "OAM uygulamasını Google Play ve App Store'dan indirin — ve dünyayı avucunuzun içine alın."
+    },
+    "services": {
+      "eyebrow": "Tek uygulama, her şey",
+      "title": "İhtiyacınız olan her hizmet tek yerde",
+      "subtitle": "Fatura ödeyin, alışveriş yapın, yardım bulun, seyahat edin ve para gönderin — hepsi tek cüzdandan ve anında teslimatla.",
+      "items": {
+        "airtime": {
+          "title": "Kontör ve internet",
+          "desc": "Herhangi bir operatörü anında yükleyin."
+        },
+        "cable": {
+          "title": "Kablo TV",
+          "desc": "DStv, GOtv ve Startimes."
+        },
+        "electricity": {
+          "title": "Elektrik",
+          "desc": "Ön ödemeli jetonlar ve son ödemeli."
+        },
+        "marketplace": {
+          "title": "Pazar yeri",
+          "desc": "Yerel alın ve satın."
+        },
+        "artisans": {
+          "title": "Ustalar",
+          "desc": "Yakınınızdaki güvenilir profesyoneller."
+        },
+        "flights": {
+          "title": "Uçuşlar",
+          "desc": "Ucuz biletleri karşılaştırın ve ayırtın."
+        },
+        "hotels": {
+          "title": "Oteller",
+          "desc": "Konaklamalar ve deneyimler."
+        },
+        "giftcards": {
+          "title": "Hediye kartları",
+          "desc": "Dijital kartlar alın ve kullanın."
+        },
+        "transfer": {
+          "title": "Para transferi",
+          "desc": "Hızlı, güvenli transferler."
+        },
+        "carhire": {
+          "title": "Araç kiralama",
+          "desc": "Nerede olursanız olun araç kiralayın."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Pazar yeri",
+      "title": "Tek yerde alın ve satın",
+      "subtitle": "Arabalardan elektroniğe ve emlaka kadar — yakınınızdaki ilanları inceleyin ya da kendinizinkini bir dakikada yayınlayın.",
+      "viewAll": "Tüm ilanları gör",
+      "all": "Tümü",
+      "categoriesAria": "Pazar yeri kategorileri",
+      "negotiable": "pazarlıklı",
+      "featured": "Öne çıkan",
+      "emptyFilteredTitle": "Bu kategoride henüz bir şey yok",
+      "emptyTitle": "İlk ilanlar şimdi yayınlanıyor",
+      "emptyFilteredBody": "Başka bir kategori deneyin ya da burada ilk ilanı siz verin.",
+      "emptyBody": "OAM Pazar yeri yeni. İlk üç ilanınız ücretsiz — kart gerekmez.",
+      "browseEverything": "Her şeye göz at",
+      "postItem": "İlan ver"
+    },
+    "artisans": {
+      "title": "Doğrulanmış ustalar",
+      "subtitle": "Buradaki her ustanın kimliği, iş fotoğrafları ve bir videosu görünmeden önce ekibimizce incelendi.",
+      "searchPlaceholder": "Tesisatçı, elektrikçi, şehir…",
+      "findNearMe": "Yakınımdaki ustaları bul",
+      "all": "Tümü",
+      "verified": "Doğrulanmış",
+      "featured": "Öne çıkan",
+      "emptyFilteredTitle": "Henüz eşleşen doğrulanmış usta yok",
+      "emptyTitle": "İlk doğrulanmış ustalar yolda",
+      "emptyFilteredBody": "Başka bir meslek deneyin ya da yakınınızdaki herkese göz atın.",
+      "emptyBody": "Buradaki her usta görünmeden önce elle doğrulanır, bu yüzden bu bölüm kademeli olarak dolar.",
+      "browseAll": "Tüm ustalara göz at",
+      "listTrade": "Mesleğinizi ekleyin"
+    },
+    "cta": {
+      "title": "Tek uygulama. Sonsuz olanaklar.",
+      "subtitle": "Fatura ödeyen, alışveriş yapan ve kolayca para gönderen binlerce kişiye katılın. Başlamak ücretsiz.",
+      "createAccount": "Hesap oluştur",
+      "signIn": "Giriş yap"
+    },
+    "footer": {
+      "tagline": "Tüm hizmetler. Tek uygulama. Sonsuz olanaklar.",
+      "followUs": "Bizi takip edin",
+      "cols": {
+        "services": "Hizmetler",
+        "explore": "Keşfet",
+        "company": "Şirket"
+      },
+      "links": {
+        "airtimeData": "Kontör ve internet",
+        "cableTv": "Kablo TV",
+        "electricity": "Elektrik",
+        "giftCards": "Hediye kartları",
+        "moneyTransfer": "Para transferi",
+        "marketplace": "Pazar yeri",
+        "artisans": "Ustalar",
+        "flights": "Uçuşlar",
+        "hotels": "Oteller",
+        "carHire": "Araç kiralama",
+        "about": "Hakkında",
+        "contact": "İletişim",
+        "helpCenter": "Yardım merkezi",
+        "terms": "Şartlar",
+        "privacy": "Gizlilik"
+      },
+      "rights": "© {{year}} OAM. Tüm hakları saklıdır.",
+      "developedBy": "AiTrend tarafından geliştirildi"
+    }
+  },
+  "bills": {
+    "back": "Geri",
+    "wallet": "Cüzdan",
+    "card": "Kart",
+    "payWith": "Ödeme yöntemi",
+    "retry": "Tekrar dene",
+    "switchToCard": "Karta geç",
+    "lowFunds": "Cüzdan bakiyeniz çok düşük. Kartınızla ödeyin.",
+    "payNoteCard": "Paystack üzerinden güvenle ödersiniz. {{noun}} hemen ardından teslim edilir.",
+    "payNoteWallet": "OAM cüzdanınızdan anında ödendi.",
+    "verifyGate": {
+      "title": "Hesabınızı doğrulayın",
+      "body": "Fatura ödemek için doğrulanmış bir hesaba ihtiyacınız var.",
+      "back": "Panele dön"
+    },
+    "result": {
+      "inProgress": "Satın alma sürüyor",
+      "issuingToken": "Teslim edildi — jetonunuz oluşturuluyor",
+      "failed": "Satın alma başarısız",
+      "bodyPending": "Ödemeniz gerçekleşti ve operatörünüz siparişi tamamlıyor. Genellikle bir dakikadan kısa sürer.",
+      "bodyToken": "Birimleriniz yolda. Operatörünüzün jetonu vermesini bekliyoruz — burada otomatik görünecek.",
+      "bodyFailed": "Operatör bu siparişi tamamlayamadı. Tutulan tutar cüzdanınıza iade edildi.",
+      "dontBuyAgain": "Tekrar satın almayın — bu siparişin ödemesi zaten yapıldı. Kendiliğinden tamamlanır ve her zaman Siparişler'de bulabilirsiniz.",
+      "customer": "Müşteri",
+      "status": "Durum",
+      "reference": "Referans",
+      "checking": "Kontrol ediliyor…",
+      "checkStatus": "Durumu şimdi kontrol et",
+      "tryAgain": "Tekrar dene",
+      "buyAgain": "Tekrar satın al",
+      "viewInOrders": "Siparişler'de gör",
+      "done": "Tamam"
+    }
+  },
+  "data": {
+    "title": "İnternet al",
+    "subtitle": "Güncel paketler, anında teslimat.",
+    "network": "Operatör",
+    "loadNetworksError": "Operatörler yüklenemedi.",
+    "dataPlan": "İnternet paketi",
+    "loadPlansError": "Paketler yüklenemedi.",
+    "noPlans": "Bu operatör için şu anda uygun paket yok.",
+    "phoneNumber": "Telefon numarası",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "İnternet paketi",
+    "payAmount": "₦{{amount}} öde",
+    "buyData": "İnternet al",
+    "payNoun": "İnternet",
+    "chooseNetwork": "Bir operatör seçin.",
+    "choosePlan": "Bir internet paketi seçin.",
+    "invalidPhone": "Geçerli bir telefon numarası girin.",
+    "purchaseFailed": "Satın alma başarısız. Tekrar deneyin.",
+    "cardStartFailed": "Kart ödemesi başlatılamadı.",
+    "successTitle": "İnternet yolda!",
+    "failedTitle": "Satın alma başarısız",
+    "successMessage": "{{recipient}} numarasına {{plan}}."
+  },
+  "electricity": {
+    "title": "Elektrik",
+    "subtitle": "Sayaç birimlerini anında satın alın.",
+    "provider": "Sağlayıcı",
+    "loadProvidersError": "Sağlayıcılar yüklenemedi.",
+    "selectDisco": "Dağıtım şirketinizi seçin…",
+    "meterType": "Sayaç türü",
+    "prepaid": "Ön ödemeli",
+    "postpaid": "Son ödemeli",
+    "meterNumber": "Sayaç numarası",
+    "meterPlaceholder": "Sayaç numarasını girin",
+    "checkingMeter": "Sayaç kontrol ediliyor…",
+    "keepTyping": "Yazmaya devam edin — numara tamamlandığında sayaç sahibini onaylayacağız ({{count}}/11 hane).",
+    "couldntConfirmMeter": "Bu sayaç onaylanamadı.",
+    "checkAgain": "Tekrar kontrol et",
+    "chooseProviderFirst": "Sayaç sahibini onaylamak için yukarıdan sağlayıcınızı seçin.",
+    "amountLabel": "Tutar (₦)",
+    "amountPlaceholder": "Tutarı girin",
+    "districtLine": "Bölge: {{value}}",
+    "arrearsLine": "Ödenmemiş borç: ₦{{value}}",
+    "minPurchaseLine": "Asgari alış: ₦{{value}}",
+    "onlyName": "Sağlayıcınız bu sayaç için yalnızca hesap adını döndürdü.",
+    "buyUnits": "Birim satın al",
+    "payAmount": "₦{{amount}} öde",
+    "label": "Elektrik",
+    "payNoun": "Birimler",
+    "chooseProvider": "Elektrik sağlayıcınızı seçin.",
+    "invalidMeter": "Geçerli bir sayaç numarası girin.",
+    "minAmount": "En az ₦100 tutar girin.",
+    "couldntVerifyMeter": "Bu sayaç numarası doğrulanamadı.",
+    "successTitle": "Ödeme başarılı!",
+    "successMessage": "{{recipient}} sayacına ₦{{amount}}."
+  },
+  "cable": {
+    "title": "Kablo TV",
+    "subtitle": "DStv, GOtv, Startimes yenileyin.",
+    "provider": "Sağlayıcı",
+    "loadProvidersError": "Sağlayıcılar yüklenemedi.",
+    "package": "Paket",
+    "loadPackagesError": "Paketler yüklenemedi.",
+    "noPackages": "Şu anda uygun paket yok.",
+    "smartcard": "Akıllı kart / IUC numarası",
+    "smartcardPlaceholder": "Akıllı kart numarasını girin",
+    "checkingSmartcard": "Akıllı kart kontrol ediliyor…",
+    "label": "TV aboneliği",
+    "subscribe": "Abone ol",
+    "payAmount": "₦{{amount}} öde",
+    "payNoun": "Aboneliğiniz",
+    "chooseProvider": "Sağlayıcınızı seçin.",
+    "choosePackage": "Bir paket seçin.",
+    "waitSmartcard": "Ödemeden önce akıllı kartın onaylanmasını bekleyin.",
+    "invalidSmartcard": "Geçerli bir akıllı kart numarası girin.",
+    "couldntConfirmSmartcard": "Bu akıllı kart onaylanamadı.",
+    "couldntVerifySmartcard": "Bu akıllı kart numarası doğrulanamadı.",
+    "successTitle": "Abonelik başarılı!",
+    "successMessage": "{{recipient}} üzerinde {{plan}}."
+  }
 }

@@ -1,3 +1,378 @@
 {
-  "_note": "Progressive-fill file. Keys not present here fall back to English automatically."
+  "common": {
+    "back": "Wstecz",
+    "done": "Gotowe",
+    "retry": "Ponów",
+    "seeAll": "Zobacz wszystko",
+    "verify": "Zweryfikuj",
+    "loading": "Ładowanie…"
+  },
+  "language": {
+    "label": "Język"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Panel",
+      "wallet": "Portfel",
+      "orders": "Zamówienia",
+      "messages": "Wiadomości",
+      "earnings": "Zarobki"
+    },
+    "signOut": "Wyloguj",
+    "menu": "Menu"
+  },
+  "dashboard": {
+    "greeting": "Witaj 👋",
+    "greetingNamed": "Witaj, {{name}} 👋",
+    "walletBalance": "Saldo portfela",
+    "showBalance": "Pokaż saldo",
+    "hideBalance": "Ukryj saldo",
+    "loadBalanceError": "Nie udało się wczytać salda.",
+    "emptyWallet": "Twój portfel jest pusty — dodaj środki lub płać za usługi kartą.",
+    "addMoney": "Dodaj środki",
+    "send": "Wyślij",
+    "withdraw": "Wypłać",
+    "recentTransactions": "Ostatnie transakcje",
+    "verifyToSeeTransactions": "Zweryfikuj konto, aby zobaczyć transakcje.",
+    "loadTransactionsError": "Nie udało się wczytać transakcji.",
+    "noTransactions": "Brak transakcji. Doładuj portfel, aby zacząć.",
+    "credit": "Wpływ",
+    "debit": "Obciążenie",
+    "groups": {
+      "bills": "Rachunki i usługi",
+      "money": "Pieniądze",
+      "travel": "Podróże i więcej",
+      "shop": "Zakupy i usługi"
+    },
+    "services": {
+      "airtime": "Doładowanie",
+      "data": "Internet",
+      "electricity": "Prąd",
+      "cable": "Telewizja",
+      "fund": "Doładuj",
+      "withdraw": "Wypłać",
+      "transfer": "Przelew",
+      "giftCards": "Karty podarunkowe",
+      "flights": "Loty",
+      "hotels": "Hotele",
+      "carHire": "Wynajem aut",
+      "pickup": "Odbiór",
+      "marketplace": "Marketplace",
+      "artisans": "Fachowcy"
+    },
+    "verifyBanner": {
+      "title": "Zweryfikuj konto",
+      "body": "Portfel i płatności pozostają zablokowane do czasu weryfikacji. Sprawdź e-mail — jest tam kod.",
+      "cta": "Zweryfikuj"
+    }
+  },
+  "airtime": {
+    "back": "Wstecz",
+    "title": "Kup doładowanie",
+    "subtitle": "Natychmiastowe doładowanie, każda sieć.",
+    "network": "Sieć",
+    "loadNetworksError": "Nie udało się wczytać sieci.",
+    "retry": "Ponów",
+    "phoneNumber": "Numer telefonu",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "To wygląda na numer <0>{{network}}</0> — wybrano za Ciebie. Dotknij innej sieci, jeśli to błąd.",
+    "amountLabel": "Kwota (₦)",
+    "amountPlaceholder": "Wpisz kwotę (min. ₦50)",
+    "payWith": "Zapłać przez",
+    "wallet": "Portfel",
+    "card": "Karta",
+    "lowFunds": "Saldo portfela jest zbyt niskie na ten zakup.",
+    "addMoneyCard": "Dodaj środki kartą",
+    "buyAirtime": "Kup doładowanie",
+    "pay": "Zapłać ₦{{amount}}",
+    "cardHint": "Zapłacisz bezpiecznie przez Paystack. Doładowanie zostanie dostarczone zaraz potem.",
+    "walletHint": "Zapłacono natychmiast z portfela OAM.",
+    "errors": {
+      "chooseNetwork": "Wybierz sieć.",
+      "invalidPhone": "Wpisz prawidłowy numer telefonu.",
+      "enterAmount": "Wpisz kwotę.",
+      "purchaseFailed": "Zakup nie powiódł się. Spróbuj ponownie.",
+      "cardStartFailed": "Nie udało się rozpocząć płatności kartą."
+    },
+    "confirm": {
+      "title": "Potwierdź zakup",
+      "service": "Usługa",
+      "phone": "Telefon",
+      "amount": "Kwota",
+      "payWith": "Zapłać przez",
+      "serviceValue": "Doładowanie {{name}}",
+      "confirmLabel": "Zapłać {{amount}}"
+    },
+    "success": {
+      "titleOk": "Doładowanie w drodze!",
+      "titleFailed": "Zakup nie powiódł się",
+      "bodyOk": "₦{{amount}} doładowania {{biller}} na {{recipient}}.",
+      "bodyPending": "Płatność przyjęta, a operator kończy realizację zamówienia. Nie kupuj ponownie — sprawdź Zamówienia za chwilę.",
+      "bodyFailed": "Operator nie mógł zrealizować zamówienia. Zablokowana kwota wróciła do portfela.",
+      "status": "Status",
+      "reference": "Numer",
+      "buyAgain": "Kup ponownie",
+      "done": "Gotowe"
+    },
+    "gate": {
+      "title": "Zweryfikuj konto",
+      "body": "Aby kupować doładowania i płacić rachunki, potrzebujesz zweryfikowanego konta.",
+      "back": "Powrót do panelu"
+    }
+  },
+  "landing": {
+    "nav": {
+      "home": "Start",
+      "about": "O nas",
+      "services": "Usługi",
+      "marketplace": "Marketplace",
+      "findArtisans": "Znajdź fachowców",
+      "faq": "FAQ"
+    },
+    "signIn": "Zaloguj",
+    "getStarted": "Rozpocznij",
+    "openMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu",
+    "langCurrency": "Język i waluta",
+    "hero": {
+      "badge": "Wszystkie usługi · Jedna aplikacja · Nieskończone możliwości",
+      "headlines": [
+        "Jedno saldo na wszystko, czego potrzebujesz.",
+        "Płać rachunki, przesyłaj pieniądze i wymieniaj karty podarunkowe.",
+        "Rezerwuj loty, hotele i auta na całym świecie.",
+        "Kupuj i sprzedawaj na naszym marketplace.",
+        "Znajdź zweryfikowanych fachowców do kolejnego zlecenia."
+      ],
+      "subtitle": "Doładowania, internet, DStv, prąd, a także marketplace, fachowcy w pobliżu, karty podarunkowe, przelewy i podróże. Wszystko z jednego portfela.",
+      "signUp": "Zarejestruj się!",
+      "howItWorks": "Jak to działa",
+      "download": "Pobierz aplikację OAM w Google Play i App Store — i miej świat w dłoni."
+    },
+    "services": {
+      "eyebrow": "Jedna aplikacja, wszystko",
+      "title": "Każda potrzebna usługa w jednym miejscu",
+      "subtitle": "Płać rachunki, kupuj, znajduj pomoc, podróżuj i przesyłaj pieniądze — wszystko z jednego portfela i z natychmiastową realizacją.",
+      "items": {
+        "airtime": {
+          "title": "Doładowania i internet",
+          "desc": "Doładuj każdą sieć natychmiast."
+        },
+        "cable": {
+          "title": "Telewizja",
+          "desc": "DStv, GOtv i Startimes."
+        },
+        "electricity": {
+          "title": "Prąd",
+          "desc": "Tokeny przedpłacone i pozapłatowe."
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "desc": "Kupuj i sprzedawaj lokalnie."
+        },
+        "artisans": {
+          "title": "Fachowcy",
+          "desc": "Zaufani specjaliści w pobliżu."
+        },
+        "flights": {
+          "title": "Loty",
+          "desc": "Porównuj i rezerwuj tanie bilety."
+        },
+        "hotels": {
+          "title": "Hotele",
+          "desc": "Pobyty i atrakcje."
+        },
+        "giftcards": {
+          "title": "Karty podarunkowe",
+          "desc": "Kupuj i realizuj karty cyfrowe."
+        },
+        "transfer": {
+          "title": "Przelew pieniędzy",
+          "desc": "Szybkie i bezpieczne przelewy."
+        },
+        "carhire": {
+          "title": "Wynajem aut",
+          "desc": "Wynajmij auto gdziekolwiek jesteś."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Marketplace",
+      "title": "Kupuj i sprzedawaj w jednym miejscu",
+      "subtitle": "Od aut po elektronikę i nieruchomości — przeglądaj oferty w pobliżu lub dodaj własną w minutę.",
+      "viewAll": "Zobacz wszystkie oferty",
+      "all": "Wszystko",
+      "categoriesAria": "Kategorie marketplace",
+      "negotiable": "do negocjacji",
+      "featured": "Wyróżnione",
+      "emptyFilteredTitle": "Nic jeszcze w tej kategorii",
+      "emptyTitle": "Pierwsze oferty właśnie się pojawiają",
+      "emptyFilteredBody": "Wypróbuj inną kategorię lub dodaj ofertę jako pierwszy.",
+      "emptyBody": "Marketplace OAM jest nowy. Twoje pierwsze trzy oferty są darmowe — bez karty.",
+      "browseEverything": "Przeglądaj wszystko",
+      "postItem": "Dodaj ofertę"
+    },
+    "artisans": {
+      "title": "Zweryfikowani fachowcy",
+      "subtitle": "Każdy fachowiec tutaj miał sprawdzoną tożsamość, zdjęcia prac i film zweryfikowane przez nasz zespół przed pojawieniem się.",
+      "searchPlaceholder": "Hydraulik, elektryk, miasto…",
+      "findNearMe": "Znajdź fachowców w pobliżu",
+      "all": "Wszystko",
+      "verified": "Zweryfikowany",
+      "featured": "Wyróżniony",
+      "emptyFilteredTitle": "Brak pasujących zweryfikowanych fachowców",
+      "emptyTitle": "Pierwsi zweryfikowani fachowcy są w drodze",
+      "emptyFilteredBody": "Wypróbuj inny fach lub przejrzyj wszystkich w pobliżu.",
+      "emptyBody": "Każdy fachowiec jest sprawdzany ręcznie przed pojawieniem się, więc ta sekcja zapełnia się stopniowo.",
+      "browseAll": "Przeglądaj wszystkich fachowców",
+      "listTrade": "Dodaj swój fach"
+    },
+    "cta": {
+      "title": "Jedna aplikacja. Nieskończone możliwości.",
+      "subtitle": "Dołącz do tysięcy osób, które łatwo płacą rachunki, kupują i przesyłają pieniądze. Start jest darmowy.",
+      "createAccount": "Załóż konto",
+      "signIn": "Zaloguj"
+    },
+    "footer": {
+      "tagline": "Wszystkie usługi. Jedna aplikacja. Nieskończone możliwości.",
+      "followUs": "Obserwuj nas",
+      "cols": {
+        "services": "Usługi",
+        "explore": "Odkrywaj",
+        "company": "Firma"
+      },
+      "links": {
+        "airtimeData": "Doładowania i internet",
+        "cableTv": "Telewizja",
+        "electricity": "Prąd",
+        "giftCards": "Karty podarunkowe",
+        "moneyTransfer": "Przelew pieniędzy",
+        "marketplace": "Marketplace",
+        "artisans": "Fachowcy",
+        "flights": "Loty",
+        "hotels": "Hotele",
+        "carHire": "Wynajem aut",
+        "about": "O nas",
+        "contact": "Kontakt",
+        "helpCenter": "Centrum pomocy",
+        "terms": "Regulamin",
+        "privacy": "Prywatność"
+      },
+      "rights": "© {{year}} OAM. Wszelkie prawa zastrzeżone.",
+      "developedBy": "Stworzone przez AiTrend"
+    }
+  },
+  "bills": {
+    "back": "Wstecz",
+    "wallet": "Portfel",
+    "card": "Karta",
+    "payWith": "Zapłać przez",
+    "retry": "Ponów",
+    "switchToCard": "Przełącz na kartę",
+    "lowFunds": "Saldo portfela jest zbyt niskie. Zapłać kartą.",
+    "payNoteCard": "Zapłacisz bezpiecznie przez Paystack. {{noun}} zostanie dostarczone zaraz potem.",
+    "payNoteWallet": "Zapłacono natychmiast z portfela OAM.",
+    "verifyGate": {
+      "title": "Zweryfikuj konto",
+      "body": "Aby płacić rachunki, potrzebujesz zweryfikowanego konta.",
+      "back": "Powrót do panelu"
+    },
+    "result": {
+      "inProgress": "Zakup w toku",
+      "issuingToken": "Dostarczono — wydawanie tokena",
+      "failed": "Zakup nie powiódł się",
+      "bodyPending": "Płatność przeszła, a operator kończy realizację zamówienia. Zwykle trwa to poniżej minuty.",
+      "bodyToken": "Twoje jednostki są w drodze. Czekamy, aż operator wyda token — pojawi się tu automatycznie.",
+      "bodyFailed": "Operator nie mógł zrealizować zamówienia. Zablokowana kwota wróciła do portfela.",
+      "dontBuyAgain": "Nie kupuj ponownie — to zamówienie jest już opłacone. Zrealizuje się samo, a zawsze znajdziesz je w Zamówieniach.",
+      "customer": "Klient",
+      "status": "Status",
+      "reference": "Numer",
+      "checking": "Sprawdzanie…",
+      "checkStatus": "Sprawdź status teraz",
+      "tryAgain": "Ponów",
+      "buyAgain": "Kup ponownie",
+      "viewInOrders": "Zobacz w Zamówieniach",
+      "done": "Gotowe"
+    }
+  },
+  "data": {
+    "title": "Kup internet",
+    "subtitle": "Aktualne pakiety, natychmiastowa realizacja.",
+    "network": "Sieć",
+    "loadNetworksError": "Nie udało się wczytać sieci.",
+    "dataPlan": "Pakiet internetu",
+    "loadPlansError": "Nie udało się wczytać pakietów.",
+    "noPlans": "Brak dostępnych pakietów dla tej sieci.",
+    "phoneNumber": "Numer telefonu",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "Pakiet internetu",
+    "payAmount": "Zapłać ₦{{amount}}",
+    "buyData": "Kup internet",
+    "payNoun": "Internet",
+    "chooseNetwork": "Wybierz sieć.",
+    "choosePlan": "Wybierz pakiet internetu.",
+    "invalidPhone": "Wpisz prawidłowy numer telefonu.",
+    "purchaseFailed": "Zakup nie powiódł się. Spróbuj ponownie.",
+    "cardStartFailed": "Nie udało się rozpocząć płatności kartą.",
+    "successTitle": "Internet w drodze!",
+    "failedTitle": "Zakup nie powiódł się",
+    "successMessage": "{{plan}} na {{recipient}}."
+  },
+  "electricity": {
+    "title": "Prąd",
+    "subtitle": "Kupuj jednostki licznika natychmiast.",
+    "provider": "Dostawca",
+    "loadProvidersError": "Nie udało się wczytać dostawców.",
+    "selectDisco": "Wybierz swojego dostawcę…",
+    "meterType": "Typ licznika",
+    "prepaid": "Przedpłacony",
+    "postpaid": "Pozapłatowy",
+    "meterNumber": "Numer licznika",
+    "meterPlaceholder": "Wpisz numer licznika",
+    "checkingMeter": "Sprawdzanie licznika…",
+    "keepTyping": "Pisz dalej — potwierdzimy właściciela, gdy numer będzie pełny ({{count}}/11 cyfr).",
+    "couldntConfirmMeter": "Nie udało się potwierdzić tego licznika.",
+    "checkAgain": "Sprawdź ponownie",
+    "chooseProviderFirst": "Wybierz dostawcę powyżej, aby potwierdzić właściciela licznika.",
+    "amountLabel": "Kwota (₦)",
+    "amountPlaceholder": "Wpisz kwotę",
+    "districtLine": "Rejon: {{value}}",
+    "arrearsLine": "Zaległości: ₦{{value}}",
+    "minPurchaseLine": "Minimalny zakup: ₦{{value}}",
+    "onlyName": "Dostawca zwrócił tylko nazwę konta dla tego licznika.",
+    "buyUnits": "Kup jednostki",
+    "payAmount": "Zapłać ₦{{amount}}",
+    "label": "Prąd",
+    "payNoun": "Jednostki",
+    "chooseProvider": "Wybierz dostawcę prądu.",
+    "invalidMeter": "Wpisz prawidłowy numer licznika.",
+    "minAmount": "Wpisz kwotę co najmniej ₦100.",
+    "couldntVerifyMeter": "Nie udało się zweryfikować tego numeru licznika.",
+    "successTitle": "Płatność zakończona sukcesem!",
+    "successMessage": "₦{{amount}} na licznik {{recipient}}."
+  },
+  "cable": {
+    "title": "Telewizja",
+    "subtitle": "Odnów DStv, GOtv, Startimes.",
+    "provider": "Dostawca",
+    "loadProvidersError": "Nie udało się wczytać dostawców.",
+    "package": "Pakiet",
+    "loadPackagesError": "Nie udało się wczytać pakietów.",
+    "noPackages": "Brak dostępnych pakietów.",
+    "smartcard": "Numer smartcard / IUC",
+    "smartcardPlaceholder": "Wpisz numer smartcard",
+    "checkingSmartcard": "Sprawdzanie smartcard…",
+    "label": "Subskrypcja TV",
+    "subscribe": "Subskrybuj",
+    "payAmount": "Zapłać ₦{{amount}}",
+    "payNoun": "Twoja subskrypcja",
+    "chooseProvider": "Wybierz dostawcę.",
+    "choosePackage": "Wybierz pakiet.",
+    "waitSmartcard": "Poczekaj na potwierdzenie smartcard przed zapłatą.",
+    "invalidSmartcard": "Wpisz prawidłowy numer smartcard.",
+    "couldntConfirmSmartcard": "Nie udało się potwierdzić tej smartcard.",
+    "couldntVerifySmartcard": "Nie udało się zweryfikować tego numeru smartcard.",
+    "successTitle": "Subskrypcja zakończona sukcesem!",
+    "successMessage": "{{plan}} na {{recipient}}."
+  }
 }
