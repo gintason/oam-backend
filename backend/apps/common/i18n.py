@@ -8,7 +8,6 @@ the web and mobile apps consume to build their language switchers.
 from django.conf import settings
 from django.utils.translation import get_language
 
-
 def is_rtl(language_code: str | None) -> bool:
     """True if the given language renders right-to-left (Arabic, Urdu)."""
     if not language_code:
