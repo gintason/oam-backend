@@ -1,3 +1,378 @@
 {
-  "_note": "Progressive-fill file. Any key NOT present here falls back to English automatically. Copy keys from en.json and translate their values as reviewed translations become available. Delete this _note when you add real content."
+  "common": {
+    "back": "Laghachi",
+    "done": "Emechaala",
+    "retry": "Nwaa ọzọ",
+    "seeAll": "Hụ ihe niile",
+    "verify": "Kwado",
+    "loading": "Na-ebu…"
+  },
+  "language": {
+    "label": "Asụsụ"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "wallet": "Obere akpa ego",
+      "orders": "Ihe enyere",
+      "messages": "Ozi",
+      "earnings": "Ego enwetara"
+    },
+    "signOut": "Pụọ",
+    "menu": "Menu"
+  },
+  "dashboard": {
+    "greeting": "Nnọọ 👋",
+    "greetingNamed": "Nnọọ, {{name}} 👋",
+    "walletBalance": "Ego dị na obe akpa",
+    "showBalance": "Gosi ego",
+    "hideBalance": "Zoo ego",
+    "loadBalanceError": "Enweghị ike ibu ego.",
+    "emptyWallet": "Obere akpa ego gị tọgbọrọ chakoo — tinye ego, ma ọ bụ jiri kaadị gị kwụọ ụgwọ ọrụ.",
+    "addMoney": "Tinye ego",
+    "send": "Zipu",
+    "withdraw": "Wepụ ego",
+    "recentTransactions": "Azụmahịa nso nso a",
+    "verifyToSeeTransactions": "Kwado akaụntụ gị iji hụ azụmahịa.",
+    "loadTransactionsError": "Enweghị ike ibu azụmahịa.",
+    "noTransactions": "Enweghị azụmahịa ọ bụla. Tinye ego n'obe akpa iji malite.",
+    "credit": "Nnabata",
+    "debit": "Mmefu",
+    "groups": {
+      "bills": "Ụgwọ na ọrụ",
+      "money": "Ego",
+      "travel": "Njem na ndị ọzọ",
+      "shop": "Ịzụ ahịa na ọrụ"
+    },
+    "services": {
+      "airtime": "Kredit ekwentị",
+      "data": "Data",
+      "electricity": "Ọkụ eletrik",
+      "cable": "Telivishọn",
+      "fund": "Tinye ego",
+      "withdraw": "Wepụ",
+      "transfer": "Nyefee",
+      "giftCards": "Kaadị onyinye",
+      "flights": "Ụgbọ elu",
+      "hotels": "Họtel",
+      "carHire": "Ịgbazite ụgbọ ala",
+      "pickup": "Buru",
+      "marketplace": "Ahịa",
+      "artisans": "Ndị ọrụ aka"
+    },
+    "verifyBanner": {
+      "title": "Kwado akaụntụ gị",
+      "body": "Obe akpa ego gị na ịkwụ ụgwọ ga-anọ na kịị ruo mgbe ị kwadoro. Lelee email gị maka koodu.",
+      "cta": "Kwado"
+    }
+  },
+  "airtime": {
+    "back": "Laghachi",
+    "title": "Zụta Kredit",
+    "subtitle": "Mmega ozugbo, netwọk ọ bụla.",
+    "network": "Netwọk",
+    "loadNetworksError": "Enweghị ike ibu netwọk.",
+    "retry": "Nwaa ọzọ",
+    "phoneNumber": "Nọmba ekwentị",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "Ọ dị ka nọmba <0>{{network}}</0> — ahọpụtaara gị. Pịa netwọk ọzọ ma ọ bụrụ na ọ dịghị mma.",
+    "amountLabel": "Ego (₦)",
+    "amountPlaceholder": "Tinye ego (opekempe ₦50)",
+    "payWith": "Jiri kwụọ",
+    "wallet": "Obe akpa ego",
+    "card": "Kaadị",
+    "lowFunds": "Ego dị na obe akpa gị adịghị mma maka ịzụ ahịa a.",
+    "addMoneyCard": "Tinye ego site na kaadị",
+    "buyAirtime": "Zụta kredit",
+    "pay": "Kwụọ ₦{{amount}}",
+    "cardHint": "Ị ga-akwụ ụgwọ n'enweghị nsogbu na Paystack. A ga-enyefe kredit gị ozugbo mgbe nke ahụ gasịrị.",
+    "walletHint": "Akwụ ụgwọ ozugbo site n'obe akpa ego OAM gị.",
+    "errors": {
+      "chooseNetwork": "Họrọ netwọk.",
+      "invalidPhone": "Tinye nọmba ekwentị ziri ezi.",
+      "enterAmount": "Tinye ego.",
+      "purchaseFailed": "Ịzụ ahịa dara. Nwaa ọzọ.",
+      "cardStartFailed": "Enweghị ike ịmalite ịkwụ ụgwọ kaadị."
+    },
+    "confirm": {
+      "title": "Kwado ịzụ ahịa",
+      "service": "Ọrụ",
+      "phone": "Ekwentị",
+      "amount": "Ego",
+      "payWith": "Jiri kwụọ",
+      "serviceValue": "Kredit {{name}}",
+      "confirmLabel": "Kwụọ {{amount}}"
+    },
+    "success": {
+      "titleOk": "Kredit na-abịa!",
+      "titleFailed": "Ịzụ ahịa dara",
+      "bodyOk": "Kredit ₦{{amount}} nke {{biller}} nye {{recipient}}.",
+      "bodyPending": "Anabatala ịkwụ ụgwọ ma onye na-enye gị na-emecha ihe enyere. Azụkwala ọzọ — lelee Ihe enyere obere oge.",
+      "bodyFailed": "Onye na-enye enweghị ike imecha ihe enyere a. Enyeghachila ego ọ bụla e jidere na obe akpa ego gị.",
+      "status": "Ọnọdụ",
+      "reference": "Ntụaka",
+      "buyAgain": "Zụta ọzọ",
+      "done": "Emechaala"
+    },
+    "gate": {
+      "title": "Kwado akaụntụ gị",
+      "body": "Ị chọrọ akaụntụ e kwadoro iji zụta kredit na ịkwụ ụgwọ.",
+      "back": "Laghachi na dashboard"
+    }
+  },
+  "landing": {
+    "nav": {
+      "home": "Ụlọ",
+      "about": "Banyere anyị",
+      "services": "Ọrụ",
+      "marketplace": "Ahịa",
+      "findArtisans": "Chọta ndị ọrụ aka",
+      "faq": "Ajụjụ"
+    },
+    "signIn": "Banye",
+    "getStarted": "Malite",
+    "openMenu": "Mepee menu",
+    "closeMenu": "Mechie menu",
+    "langCurrency": "Asụsụ na ego",
+    "hero": {
+      "badge": "Ọrụ niile · Otu ngwa · Ohere na-adịghị agwụ agwụ",
+      "headlines": [
+        "Otu ego maka ihe niile ị chọrọ.",
+        "Kwụọ ụgwọ, nyefee ego, ma zụọ kaadị onyinye.",
+        "Debe ụgbọ elu, họtel na ụgbọ ala n'ụwa niile.",
+        "Zụọ ma ree n'ahịa anyị.",
+        "Nweta ndị ọrụ aka e kwadoro maka ọrụ gị na-esote."
+      ],
+      "subtitle": "Kredit, data, DStv, ọkụ eletrik — na ahịa, ndị ọrụ aka dị nso, kaadị onyinye, nnyefe na njem. Ihe niile site n'otu obe akpa ego.",
+      "signUp": "Debanye aha ugbu a!",
+      "howItWorks": "Otu o si arụ ọrụ",
+      "download": "Budata ngwa OAM na Google Play na App Store — ma nweta ụwa n'aka gị."
+    },
+    "services": {
+      "eyebrow": "Otu ngwa, ihe niile",
+      "title": "Ọrụ niile ị chọrọ, n'otu ebe",
+      "subtitle": "Kwụọ ụgwọ, zụọ ahịa, chọta enyemaka, jee njem, ma bufee ego — ihe niile site n'otu obe akpa ego, na nnyefe ozugbo.",
+      "items": {
+        "airtime": {
+          "title": "Kredit na Data",
+          "desc": "Mega netwọk ọ bụla ozugbo."
+        },
+        "cable": {
+          "title": "Telivishọn",
+          "desc": "DStv, GOtv na Startimes."
+        },
+        "electricity": {
+          "title": "Ọkụ eletrik",
+          "desc": "Token akwụ ụgwọ tupu na mgbe e ji."
+        },
+        "marketplace": {
+          "title": "Ahịa",
+          "desc": "Zụọ ma ree na mpaghara."
+        },
+        "artisans": {
+          "title": "Ndị ọrụ aka",
+          "desc": "Ndị ọkachamara a pụrụ ịtụkwasị obi dị nso."
+        },
+        "flights": {
+          "title": "Ụgbọ elu",
+          "desc": "Tụlee ma debe tiketi dị ọnụ ala."
+        },
+        "hotels": {
+          "title": "Họtel",
+          "desc": "Ebe obibi na ahụmahụ."
+        },
+        "giftcards": {
+          "title": "Kaadị onyinye",
+          "desc": "Zụọ ma jiri kaadị dijitalụ."
+        },
+        "transfer": {
+          "title": "Nyefee ego",
+          "desc": "Nnyefe ngwa ngwa na nchekwa."
+        },
+        "carhire": {
+          "title": "Ịgbazite ụgbọ ala",
+          "desc": "Gbazite ụgbọ ala, ebe ọ bụla."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Ahịa",
+      "title": "Zụọ ma ree, ihe niile n'otu ebe",
+      "subtitle": "Site n'ụgbọ ala ruo na ngwa eletrọnik ruo n'ala — chọgharịa ihe e depụtara nso gị, ma ọ bụ depụta nke gị n'otu nkeji.",
+      "viewAll": "Hụ ngosi niile",
+      "all": "Niile",
+      "categoriesAria": "Ụdị ahịa",
+      "negotiable": "enwere ike ịkparịta",
+      "featured": "Pụtara ìhè",
+      "emptyFilteredTitle": "Enweghị ihe e depụtara na ụdị a",
+      "emptyTitle": "A na-edepụta ngosi mbụ ugbu a",
+      "emptyFilteredBody": "Nwaa ụdị ọzọ, ma ọ bụ bụrụ onye mbụ depụta ihe ebe a.",
+      "emptyBody": "Ahịa OAM dị ọhụrụ. Ngosi mbụ atọ gị bụ n'efu — enweghị mkpa kaadị.",
+      "browseEverything": "Chọgharịa ihe niile",
+      "postItem": "Depụta ihe"
+    },
+    "artisans": {
+      "title": "Ndị ọrụ aka e kwadoro",
+      "subtitle": "Onye ọrụ aka ọ bụla ebe a e nyochala njirimara ya, foto ọrụ ya na vidiyo site na ndị otu anyị tupu ọ pụta.",
+      "searchPlaceholder": "Onye ọrụ mmiri, eletrik, obodo…",
+      "findNearMe": "Chọta ndị ọrụ aka dị nso m",
+      "all": "Niile",
+      "verified": "E kwadoro",
+      "featured": "Pụtara ìhè",
+      "emptyFilteredTitle": "Enweghị ndị ọrụ aka e kwadoro dabara",
+      "emptyTitle": "Ndị ọrụ aka mbụ e kwadoro na-abịa",
+      "emptyFilteredBody": "Nwaa ọrụ ọzọ, ma ọ bụ chọgharịa mmadụ niile dị nso gị.",
+      "emptyBody": "A na-enyocha onye ọrụ aka ọ bụla n'aka tupu ọ pụta, yabụ ngalaba a na-eju nwayọọ nwayọọ kama otu mgbe.",
+      "browseAll": "Chọgharịa ndị ọrụ aka niile",
+      "listTrade": "Depụta ọrụ gị"
+    },
+    "cta": {
+      "title": "Otu ngwa. Ohere na-adịghị agwụ agwụ.",
+      "subtitle": "Sonye n'ọtụtụ puku ndị na-akwụ ụgwọ, na-azụ ahịa, ma na-ebufe ego n'ụzọ dị mfe. Ịmalite bụ n'efu.",
+      "createAccount": "Mepụta akaụntụ gị",
+      "signIn": "Banye"
+    },
+    "footer": {
+      "tagline": "Ọrụ niile. Otu ngwa. Ohere na-adịghị agwụ agwụ.",
+      "followUs": "Soro anyị",
+      "cols": {
+        "services": "Ọrụ",
+        "explore": "Nyochaa",
+        "company": "Ụlọ ọrụ"
+      },
+      "links": {
+        "airtimeData": "Kredit na Data",
+        "cableTv": "Telivishọn",
+        "electricity": "Ọkụ eletrik",
+        "giftCards": "Kaadị onyinye",
+        "moneyTransfer": "Nyefee ego",
+        "marketplace": "Ahịa",
+        "artisans": "Ndị ọrụ aka",
+        "flights": "Ụgbọ elu",
+        "hotels": "Họtel",
+        "carHire": "Ịgbazite ụgbọ ala",
+        "about": "Banyere anyị",
+        "contact": "Kpọtụrụ",
+        "helpCenter": "Ebe enyemaka",
+        "terms": "Usoro",
+        "privacy": "Nzuzo"
+      },
+      "rights": "© {{year}} OAM. Ekpuchiri ikike niile.",
+      "developedBy": "Azụlитара site na AiTrend"
+    }
+  },
+  "bills": {
+    "back": "Laghachi",
+    "wallet": "Obe akpa ego",
+    "card": "Kaadị",
+    "payWith": "Jiri kwụọ",
+    "retry": "Nwaa ọzọ",
+    "switchToCard": "Gbanwee gaa na kaadị",
+    "lowFunds": "Ego dị na obe akpa gị adịghị mma. Jiri kaadị gị kwụọ kama.",
+    "payNoteCard": "Ị ga-akwụ ụgwọ n'enweghị nsogbu na Paystack. A ga-enyefe {{noun}} ozugbo mgbe nke ahụ gasịrị.",
+    "payNoteWallet": "Akwụ ụgwọ ozugbo site n'obe akpa ego OAM gị.",
+    "verifyGate": {
+      "title": "Kwado akaụntụ gị",
+      "body": "Ị chọrọ akaụntụ e kwadoro iji kwụọ ụgwọ.",
+      "back": "Laghachi na dashboard"
+    },
+    "result": {
+      "inProgress": "Ịzụ ahịa na-aga n'ihu",
+      "issuingToken": "Enyefere — na-ewepụta token gị",
+      "failed": "Ịzụ ahịa dara",
+      "bodyPending": "Akwụọla ụgwọ gị ma onye na-enye gị na-emecha ihe enyere. Ọ na-ewexi ihe na-erughị otu nkeji.",
+      "bodyToken": "Nkeji gị na-abịa. Anyị na-echere ka onye na-enye wepụta token — ọ ga-apụta ebe a ozugbo.",
+      "bodyFailed": "Onye na-enye enweghị ike imecha ihe enyere a. Enyeghachila ego ọ bụla e jidere na obe akpa ego gị.",
+      "dontBuyAgain": "Azụkwala ọzọ — akwụọla ụgwọ ihe enyere a. Ọ ga-emecha n'onwe ya, ị ga-ahụkwa ya na Ihe enyere.",
+      "customer": "Onye ahịa",
+      "status": "Ọnọdụ",
+      "reference": "Ntụaka",
+      "checking": "Na-elele…",
+      "checkStatus": "Lelee ọnọdụ ugbu a",
+      "tryAgain": "Nwaa ọzọ",
+      "buyAgain": "Zụta ọzọ",
+      "viewInOrders": "Lelee na Ihe enyere",
+      "done": "Emechaala"
+    }
+  },
+  "data": {
+    "title": "Zụta Data",
+    "subtitle": "Ngwugwu dị ndụ, nnyefe ozugbo.",
+    "network": "Netwọk",
+    "loadNetworksError": "Enweghị ike ibu netwọk.",
+    "dataPlan": "Atụmatụ data",
+    "loadPlansError": "Enweghị ike ibu atụmatụ.",
+    "noPlans": "Enweghị atụmatụ dị maka netwọk a ugbu a.",
+    "phoneNumber": "Nọmba ekwentị",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "Ngwugwu data",
+    "payAmount": "Kwụọ ₦{{amount}}",
+    "buyData": "Zụta data",
+    "payNoun": "Data",
+    "chooseNetwork": "Họrọ netwọk.",
+    "choosePlan": "Họrọ atụmatụ data.",
+    "invalidPhone": "Tinye nọmba ekwentị ziri ezi.",
+    "purchaseFailed": "Ịzụ ahịa dara. Nwaa ọzọ.",
+    "cardStartFailed": "Enweghị ike ịmalite ịkwụ ụgwọ kaadị.",
+    "successTitle": "Data na-abịa!",
+    "failedTitle": "Ịzụ ahịa dara",
+    "successMessage": "{{plan}} nye {{recipient}}."
+  },
+  "electricity": {
+    "title": "Ọkụ eletrik",
+    "subtitle": "Zụta nkeji mita ozugbo.",
+    "provider": "Onye na-enye",
+    "loadProvidersError": "Enweghị ike ibu ndị na-enye.",
+    "selectDisco": "Họrọ ụlọ ọrụ ọkụ gị…",
+    "meterType": "Ụdị mita",
+    "prepaid": "Akwụ ụgwọ tupu",
+    "postpaid": "Akwụ ụgwọ mgbe e ji",
+    "meterNumber": "Nọmba mita",
+    "meterPlaceholder": "Tinye nọmba mita",
+    "checkingMeter": "Na-elele mita…",
+    "keepTyping": "Gaa n'ihu na-ede — anyị ga-akwado onye nwe mita ma nọmba zuru ezu ({{count}}/11 ọnụọgụ).",
+    "couldntConfirmMeter": "Enweghị ike ikwenye mita ahụ.",
+    "checkAgain": "Lelee ọzọ",
+    "chooseProviderFirst": "Họrọ onye na-enye n'elu iji kwado onye nwe mita.",
+    "amountLabel": "Ego (₦)",
+    "amountPlaceholder": "Tinye ego",
+    "districtLine": "Mpaghara: {{value}}",
+    "arrearsLine": "Ụgwọ fọdụrụ: ₦{{value}}",
+    "minPurchaseLine": "Opekempe ịzụ: ₦{{value}}",
+    "onlyName": "Onye na-enye gị weghachiri naanị aha akaụntụ maka mita a.",
+    "buyUnits": "Zụta nkeji",
+    "payAmount": "Kwụọ ₦{{amount}}",
+    "label": "Ọkụ eletrik",
+    "payNoun": "Nkeji",
+    "chooseProvider": "Họrọ onye na-enye ọkụ eletrik gị.",
+    "invalidMeter": "Tinye nọmba mita ziri ezi.",
+    "minAmount": "Tinye ego opekempe ₦100.",
+    "couldntVerifyMeter": "Enweghị ike ikwenye nọmba mita ahụ.",
+    "successTitle": "Ịkwụ ụgwọ gara nke ọma!",
+    "successMessage": "₦{{amount}} nye mita {{recipient}}."
+  },
+  "cable": {
+    "title": "Telivishọn",
+    "subtitle": "Megharịa DStv, GOtv, Startimes.",
+    "provider": "Onye na-enye",
+    "loadProvidersError": "Enweghị ike ibu ndị na-enye.",
+    "package": "Ngwugwu",
+    "loadPackagesError": "Enweghị ike ibu ngwugwu.",
+    "noPackages": "Enweghị ngwugwu dị ugbu a.",
+    "smartcard": "Nọmba smartcard / IUC",
+    "smartcardPlaceholder": "Tinye nọmba smartcard",
+    "checkingSmartcard": "Na-elele smartcard…",
+    "label": "Ndenye aha TV",
+    "subscribe": "Debanye aha",
+    "payAmount": "Kwụọ ₦{{amount}}",
+    "payNoun": "Ndenye aha gị",
+    "chooseProvider": "Họrọ onye na-enye.",
+    "choosePackage": "Họrọ ngwugwu.",
+    "waitSmartcard": "Chere ka e kwado smartcard tupu ịkwụ ụgwọ.",
+    "invalidSmartcard": "Tinye nọmba smartcard ziri ezi.",
+    "couldntConfirmSmartcard": "Enweghị ike ikwenye smartcard ahụ.",
+    "couldntVerifySmartcard": "Enweghị ike ikwenye nọmba smartcard ahụ.",
+    "successTitle": "Ndenye aha gara nke ọma!",
+    "successMessage": "{{plan}} na {{recipient}}."
+  }
 }

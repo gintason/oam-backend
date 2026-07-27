@@ -1,3 +1,378 @@
 {
-  "_note": "Progressive-fill file. Any key NOT present here falls back to English automatically. Copy keys from en.json and translate their values as reviewed translations become available. Delete this _note when you add real content."
+  "common": {
+    "back": "Atrás",
+    "done": "Listo",
+    "retry": "Reintentar",
+    "seeAll": "Ver todo",
+    "verify": "Verificar",
+    "loading": "Cargando…"
+  },
+  "language": {
+    "label": "Idioma"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "Panel",
+      "wallet": "Cartera",
+      "orders": "Pedidos",
+      "messages": "Mensajes",
+      "earnings": "Ingresos"
+    },
+    "signOut": "Cerrar sesión",
+    "menu": "Menú"
+  },
+  "dashboard": {
+    "greeting": "¡Bienvenido! 👋",
+    "greetingNamed": "¡Bienvenido, {{name}}! 👋",
+    "walletBalance": "Saldo de la cartera",
+    "showBalance": "Mostrar saldo",
+    "hideBalance": "Ocultar saldo",
+    "loadBalanceError": "No se pudo cargar el saldo.",
+    "emptyWallet": "Tu cartera está vacía: añade dinero o paga los servicios con tu tarjeta.",
+    "addMoney": "Añadir dinero",
+    "send": "Enviar",
+    "withdraw": "Retirar",
+    "recentTransactions": "Transacciones recientes",
+    "verifyToSeeTransactions": "Verifica tu cuenta para ver las transacciones.",
+    "loadTransactionsError": "No se pudieron cargar las transacciones.",
+    "noTransactions": "Aún no hay transacciones. Recarga tu cartera para empezar.",
+    "credit": "Crédito",
+    "debit": "Débito",
+    "groups": {
+      "bills": "Facturas y servicios",
+      "money": "Dinero",
+      "travel": "Viajes y más",
+      "shop": "Compras y servicios"
+    },
+    "services": {
+      "airtime": "Recarga",
+      "data": "Datos",
+      "electricity": "Electricidad",
+      "cable": "TV por cable",
+      "fund": "Recargar",
+      "withdraw": "Retirar",
+      "transfer": "Transferir",
+      "giftCards": "Tarjetas regalo",
+      "flights": "Vuelos",
+      "hotels": "Hoteles",
+      "carHire": "Alquiler de coches",
+      "pickup": "Recogida",
+      "marketplace": "Mercado",
+      "artisans": "Artesanos"
+    },
+    "verifyBanner": {
+      "title": "Verifica tu cuenta",
+      "body": "Tu cartera y tus pagos permanecen bloqueados hasta que verifiques. Revisa tu correo para el código.",
+      "cta": "Verificar"
+    }
+  },
+  "airtime": {
+    "back": "Atrás",
+    "title": "Comprar recarga",
+    "subtitle": "Recarga instantánea, cualquier red.",
+    "network": "Red",
+    "loadNetworksError": "No se pudieron cargar las redes.",
+    "retry": "Reintentar",
+    "phoneNumber": "Número de teléfono",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "Parece un número de <0>{{network}}</0>: lo seleccionamos por ti. Toca otra red si no es correcto.",
+    "amountLabel": "Importe (₦)",
+    "amountPlaceholder": "Introduce el importe (mín. ₦50)",
+    "payWith": "Pagar con",
+    "wallet": "Cartera",
+    "card": "Tarjeta",
+    "lowFunds": "El saldo de tu cartera es demasiado bajo para esta compra.",
+    "addMoneyCard": "Añadir dinero con tarjeta",
+    "buyAirtime": "Comprar recarga",
+    "pay": "Pagar ₦{{amount}}",
+    "cardHint": "Pagarás de forma segura en Paystack. Tu recarga se entrega justo después.",
+    "walletHint": "Pagado al instante desde tu cartera OAM.",
+    "errors": {
+      "chooseNetwork": "Elige una red.",
+      "invalidPhone": "Introduce un número de teléfono válido.",
+      "enterAmount": "Introduce un importe.",
+      "purchaseFailed": "La compra falló. Inténtalo de nuevo.",
+      "cardStartFailed": "No se pudo iniciar el pago con tarjeta."
+    },
+    "confirm": {
+      "title": "Confirmar compra",
+      "service": "Servicio",
+      "phone": "Teléfono",
+      "amount": "Importe",
+      "payWith": "Pagar con",
+      "serviceValue": "Recarga de {{name}}",
+      "confirmLabel": "Pagar {{amount}}"
+    },
+    "success": {
+      "titleOk": "¡Recarga en camino!",
+      "titleFailed": "La compra falló",
+      "bodyOk": "₦{{amount}} de recarga de {{biller}} a {{recipient}}.",
+      "bodyPending": "Pago recibido y tu proveedor está completando el pedido. No vuelvas a comprar: revisa Pedidos en un momento.",
+      "bodyFailed": "El proveedor no pudo completar este pedido. Cualquier importe retenido se ha devuelto a tu cartera.",
+      "status": "Estado",
+      "reference": "Referencia",
+      "buyAgain": "Comprar de nuevo",
+      "done": "Listo"
+    },
+    "gate": {
+      "title": "Verifica tu cuenta",
+      "body": "Necesitas una cuenta verificada para comprar recargas y pagar facturas.",
+      "back": "Volver al panel"
+    }
+  },
+  "landing": {
+    "nav": {
+      "home": "Inicio",
+      "about": "Acerca de",
+      "services": "Servicios",
+      "marketplace": "Mercado",
+      "findArtisans": "Buscar artesanos",
+      "faq": "Preguntas frecuentes"
+    },
+    "signIn": "Iniciar sesión",
+    "getStarted": "Empezar",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "langCurrency": "Idioma y moneda",
+    "hero": {
+      "badge": "Todos los servicios · Una app · Posibilidades infinitas",
+      "headlines": [
+        "Un solo saldo para todo lo que necesitas.",
+        "Paga facturas, transfiere dinero e intercambia tarjetas regalo.",
+        "Reserva vuelos, hoteles y coches en todo el mundo.",
+        "Compra y vende en nuestro mercado.",
+        "Contrata artesanos verificados para tu próximo trabajo."
+      ],
+      "subtitle": "Recargas, datos, DStv, electricidad, además de un mercado, artesanos cerca de ti, tarjetas regalo, transferencias y viajes. Todo desde una sola cartera.",
+      "signUp": "¡Regístrate ahora!",
+      "howItWorks": "Cómo funciona",
+      "download": "Descarga la app de OAM en Google Play y App Store, y ten el mundo en tus manos."
+    },
+    "services": {
+      "eyebrow": "Una app, todo",
+      "title": "Todos los servicios que necesitas, en un solo lugar",
+      "subtitle": "Paga facturas, compra, encuentra ayuda, viaja y transfiere dinero, todo desde una sola cartera y con entrega instantánea.",
+      "items": {
+        "airtime": {
+          "title": "Recargas y datos",
+          "desc": "Recarga cualquier red al instante."
+        },
+        "cable": {
+          "title": "TV por cable",
+          "desc": "DStv, GOtv y Startimes."
+        },
+        "electricity": {
+          "title": "Electricidad",
+          "desc": "Fichas de prepago y pospago."
+        },
+        "marketplace": {
+          "title": "Mercado",
+          "desc": "Compra y vende localmente."
+        },
+        "artisans": {
+          "title": "Artesanos",
+          "desc": "Profesionales de confianza cerca de ti."
+        },
+        "flights": {
+          "title": "Vuelos",
+          "desc": "Compara y reserva billetes baratos."
+        },
+        "hotels": {
+          "title": "Hoteles",
+          "desc": "Estancias y experiencias."
+        },
+        "giftcards": {
+          "title": "Tarjetas regalo",
+          "desc": "Compra y canjea tarjetas digitales."
+        },
+        "transfer": {
+          "title": "Transferencia de dinero",
+          "desc": "Transferencias rápidas y seguras."
+        },
+        "carhire": {
+          "title": "Alquiler de coches",
+          "desc": "Alquila un coche donde estés."
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "Mercado",
+      "title": "Compra y vende, todo en un lugar",
+      "subtitle": "De coches a electrónica y propiedades: explora lo que hay cerca de ti o publica lo tuyo en un minuto.",
+      "viewAll": "Ver todos los anuncios",
+      "all": "Todo",
+      "categoriesAria": "Categorías del mercado",
+      "negotiable": "negociable",
+      "featured": "Destacado",
+      "emptyFilteredTitle": "Aún no hay nada en esta categoría",
+      "emptyTitle": "Los primeros anuncios se están publicando ahora",
+      "emptyFilteredBody": "Prueba otra categoría o sé el primero en publicar aquí.",
+      "emptyBody": "El mercado OAM es nuevo. Tus tres primeros anuncios son gratis, sin tarjeta.",
+      "browseEverything": "Explorar todo",
+      "postItem": "Publicar un anuncio"
+    },
+    "artisans": {
+      "title": "Artesanos verificados",
+      "subtitle": "Cada artesano aquí ha tenido su identidad, fotos de su trabajo y un vídeo revisados por nuestro equipo antes de aparecer.",
+      "searchPlaceholder": "Fontanero, electricista, ciudad…",
+      "findNearMe": "Buscar artesanos cerca de mí",
+      "all": "Todo",
+      "verified": "Verificado",
+      "featured": "Destacado",
+      "emptyFilteredTitle": "Aún no hay artesanos verificados que coincidan",
+      "emptyTitle": "Los primeros artesanos verificados están en camino",
+      "emptyFilteredBody": "Prueba otro oficio o explora a todos los que están cerca de ti.",
+      "emptyBody": "Cada artesano aquí se verifica a mano antes de aparecer, por lo que esta sección se llena de forma gradual.",
+      "browseAll": "Explorar todos los artesanos",
+      "listTrade": "Publica tu oficio"
+    },
+    "cta": {
+      "title": "Una app. Posibilidades infinitas.",
+      "subtitle": "Únete a miles de personas que pagan facturas, compran y mueven dinero de forma fácil. Empezar es gratis.",
+      "createAccount": "Crea tu cuenta",
+      "signIn": "Iniciar sesión"
+    },
+    "footer": {
+      "tagline": "Todos los servicios. Una app. Posibilidades infinitas.",
+      "followUs": "Síguenos",
+      "cols": {
+        "services": "Servicios",
+        "explore": "Explorar",
+        "company": "Empresa"
+      },
+      "links": {
+        "airtimeData": "Recargas y datos",
+        "cableTv": "TV por cable",
+        "electricity": "Electricidad",
+        "giftCards": "Tarjetas regalo",
+        "moneyTransfer": "Transferencia de dinero",
+        "marketplace": "Mercado",
+        "artisans": "Artesanos",
+        "flights": "Vuelos",
+        "hotels": "Hoteles",
+        "carHire": "Alquiler de coches",
+        "about": "Acerca de",
+        "contact": "Contacto",
+        "helpCenter": "Centro de ayuda",
+        "terms": "Términos",
+        "privacy": "Privacidad"
+      },
+      "rights": "© {{year}} OAM. Todos los derechos reservados.",
+      "developedBy": "Desarrollado por AiTrend"
+    }
+  },
+  "bills": {
+    "back": "Atrás",
+    "wallet": "Cartera",
+    "card": "Tarjeta",
+    "payWith": "Pagar con",
+    "retry": "Reintentar",
+    "switchToCard": "Cambiar a tarjeta",
+    "lowFunds": "El saldo de tu cartera es demasiado bajo. Paga con tu tarjeta.",
+    "payNoteCard": "Pagarás de forma segura en Paystack. {{noun}} se entrega justo después.",
+    "payNoteWallet": "Pagado al instante desde tu cartera OAM.",
+    "verifyGate": {
+      "title": "Verifica tu cuenta",
+      "body": "Necesitas una cuenta verificada para pagar facturas.",
+      "back": "Volver al panel"
+    },
+    "result": {
+      "inProgress": "Compra en curso",
+      "issuingToken": "Entregado: emitiendo tu ficha",
+      "failed": "La compra falló",
+      "bodyPending": "Tu pago se realizó y tu proveedor está completando el pedido. Suele tardar menos de un minuto.",
+      "bodyToken": "Tus unidades están en camino. Esperamos a que tu proveedor emita la ficha: aparecerá aquí automáticamente.",
+      "bodyFailed": "El proveedor no pudo completar este pedido. Cualquier importe retenido se ha devuelto a tu cartera.",
+      "dontBuyAgain": "No vuelvas a comprar: este pedido ya se ha pagado. Se completará solo y siempre lo encontrarás en Pedidos.",
+      "customer": "Cliente",
+      "status": "Estado",
+      "reference": "Referencia",
+      "checking": "Comprobando…",
+      "checkStatus": "Comprobar estado ahora",
+      "tryAgain": "Reintentar",
+      "buyAgain": "Comprar de nuevo",
+      "viewInOrders": "Ver en Pedidos",
+      "done": "Listo"
+    }
+  },
+  "data": {
+    "title": "Comprar datos",
+    "subtitle": "Paquetes en vivo, entrega instantánea.",
+    "network": "Red",
+    "loadNetworksError": "No se pudieron cargar las redes.",
+    "dataPlan": "Plan de datos",
+    "loadPlansError": "No se pudieron cargar los planes.",
+    "noPlans": "No hay planes disponibles para esta red ahora mismo.",
+    "phoneNumber": "Número de teléfono",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "Paquete de datos",
+    "payAmount": "Pagar ₦{{amount}}",
+    "buyData": "Comprar datos",
+    "payNoun": "Los datos",
+    "chooseNetwork": "Elige una red.",
+    "choosePlan": "Elige un plan de datos.",
+    "invalidPhone": "Introduce un número de teléfono válido.",
+    "purchaseFailed": "La compra falló. Inténtalo de nuevo.",
+    "cardStartFailed": "No se pudo iniciar el pago con tarjeta.",
+    "successTitle": "¡Datos en camino!",
+    "failedTitle": "La compra falló",
+    "successMessage": "{{plan}} a {{recipient}}."
+  },
+  "electricity": {
+    "title": "Electricidad",
+    "subtitle": "Compra unidades de contador al instante.",
+    "provider": "Proveedor",
+    "loadProvidersError": "No se pudieron cargar los proveedores.",
+    "selectDisco": "Selecciona tu distribuidora…",
+    "meterType": "Tipo de contador",
+    "prepaid": "Prepago",
+    "postpaid": "Pospago",
+    "meterNumber": "Número de contador",
+    "meterPlaceholder": "Introduce el número de contador",
+    "checkingMeter": "Comprobando contador…",
+    "keepTyping": "Sigue escribiendo: confirmaremos al titular cuando el número esté completo ({{count}}/11 dígitos).",
+    "couldntConfirmMeter": "No se pudo confirmar ese contador.",
+    "checkAgain": "Comprobar de nuevo",
+    "chooseProviderFirst": "Elige tu proveedor arriba para confirmar al titular del contador.",
+    "amountLabel": "Importe (₦)",
+    "amountPlaceholder": "Introduce el importe",
+    "districtLine": "Distrito: {{value}}",
+    "arrearsLine": "Deuda pendiente: ₦{{value}}",
+    "minPurchaseLine": "Compra mínima: ₦{{value}}",
+    "onlyName": "Tu proveedor solo devolvió el nombre de la cuenta de este contador.",
+    "buyUnits": "Comprar unidades",
+    "payAmount": "Pagar ₦{{amount}}",
+    "label": "Electricidad",
+    "payNoun": "Las unidades",
+    "chooseProvider": "Elige tu proveedor de electricidad.",
+    "invalidMeter": "Introduce un número de contador válido.",
+    "minAmount": "Introduce un importe de al menos ₦100.",
+    "couldntVerifyMeter": "No se pudo verificar ese número de contador.",
+    "successTitle": "¡Pago realizado!",
+    "successMessage": "₦{{amount}} al contador {{recipient}}."
+  },
+  "cable": {
+    "title": "TV por cable",
+    "subtitle": "Renueva DStv, GOtv, Startimes.",
+    "provider": "Proveedor",
+    "loadProvidersError": "No se pudieron cargar los proveedores.",
+    "package": "Paquete",
+    "loadPackagesError": "No se pudieron cargar los paquetes.",
+    "noPackages": "No hay paquetes disponibles ahora mismo.",
+    "smartcard": "Número de tarjeta / IUC",
+    "smartcardPlaceholder": "Introduce el número de tarjeta",
+    "checkingSmartcard": "Comprobando tarjeta…",
+    "label": "Suscripción de TV",
+    "subscribe": "Suscribirse",
+    "payAmount": "Pagar ₦{{amount}}",
+    "payNoun": "Tu suscripción",
+    "chooseProvider": "Elige tu proveedor.",
+    "choosePackage": "Elige un paquete.",
+    "waitSmartcard": "Espera a que se confirme la tarjeta antes de pagar.",
+    "invalidSmartcard": "Introduce un número de tarjeta válido.",
+    "couldntConfirmSmartcard": "No se pudo confirmar esa tarjeta.",
+    "couldntVerifySmartcard": "No se pudo verificar ese número de tarjeta.",
+    "successTitle": "¡Suscripción realizada!",
+    "successMessage": "{{plan}} en {{recipient}}."
+  }
 }

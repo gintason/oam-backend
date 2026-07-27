@@ -21,6 +21,105 @@
     "signOut": "Se déconnecter",
     "menu": "Menu"
   },
+  "dashboard": {
+    "greeting": "Bienvenue 👋",
+    "greetingNamed": "Bienvenue, {{name}} 👋",
+    "walletBalance": "Solde du portefeuille",
+    "showBalance": "Afficher le solde",
+    "hideBalance": "Masquer le solde",
+    "loadBalanceError": "Impossible de charger le solde.",
+    "emptyWallet": "Votre portefeuille est vide : ajoutez de l'argent ou payez les services avec votre carte.",
+    "addMoney": "Ajouter de l'argent",
+    "send": "Envoyer",
+    "withdraw": "Retirer",
+    "recentTransactions": "Transactions récentes",
+    "verifyToSeeTransactions": "Vérifiez votre compte pour voir les transactions.",
+    "loadTransactionsError": "Impossible de charger les transactions.",
+    "noTransactions": "Aucune transaction pour l'instant. Rechargez votre portefeuille pour commencer.",
+    "credit": "Crédit",
+    "debit": "Débit",
+    "groups": {
+      "bills": "Factures et services",
+      "money": "Argent",
+      "travel": "Voyages et plus",
+      "shop": "Achats et services"
+    },
+    "services": {
+      "airtime": "Crédit",
+      "data": "Données",
+      "electricity": "Électricité",
+      "cable": "Télévision",
+      "fund": "Recharger",
+      "withdraw": "Retirer",
+      "transfer": "Transférer",
+      "giftCards": "Cartes cadeaux",
+      "flights": "Vols",
+      "hotels": "Hôtels",
+      "carHire": "Location de voiture",
+      "pickup": "Ramassage",
+      "marketplace": "Marché",
+      "artisans": "Artisans"
+    },
+    "verifyBanner": {
+      "title": "Vérifiez votre compte",
+      "body": "Votre portefeuille et vos paiements restent bloqués jusqu'à la vérification. Consultez votre e-mail pour le code.",
+      "cta": "Vérifier"
+    }
+  },
+  "airtime": {
+    "back": "Retour",
+    "title": "Acheter du crédit",
+    "subtitle": "Recharge instantanée, tous les réseaux.",
+    "network": "Réseau",
+    "loadNetworksError": "Impossible de charger les réseaux.",
+    "retry": "Réessayer",
+    "phoneNumber": "Numéro de téléphone",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "On dirait un numéro <0>{{network}}</0> : sélectionné pour vous. Touchez un autre réseau si ce n'est pas correct.",
+    "amountLabel": "Montant (₦)",
+    "amountPlaceholder": "Saisissez le montant (min. ₦50)",
+    "payWith": "Payer avec",
+    "wallet": "Portefeuille",
+    "card": "Carte",
+    "lowFunds": "Le solde de votre portefeuille est trop bas pour cet achat.",
+    "addMoneyCard": "Ajouter de l'argent par carte",
+    "buyAirtime": "Acheter du crédit",
+    "pay": "Payer ₦{{amount}}",
+    "cardHint": "Vous paierez en toute sécurité sur Paystack. Votre crédit est livré juste après.",
+    "walletHint": "Payé instantanément depuis votre portefeuille OAM.",
+    "errors": {
+      "chooseNetwork": "Choisissez un réseau.",
+      "invalidPhone": "Saisissez un numéro de téléphone valide.",
+      "enterAmount": "Saisissez un montant.",
+      "purchaseFailed": "L'achat a échoué. Réessayez.",
+      "cardStartFailed": "Impossible de démarrer le paiement par carte."
+    },
+    "confirm": {
+      "title": "Confirmer l'achat",
+      "service": "Service",
+      "phone": "Téléphone",
+      "amount": "Montant",
+      "payWith": "Payer avec",
+      "serviceValue": "Crédit {{name}}",
+      "confirmLabel": "Payer {{amount}}"
+    },
+    "success": {
+      "titleOk": "Crédit en route !",
+      "titleFailed": "L'achat a échoué",
+      "bodyOk": "₦{{amount}} de crédit {{biller}} vers {{recipient}}.",
+      "bodyPending": "Paiement reçu et votre opérateur finalise la commande. Ne rachetez pas : vérifiez les Commandes dans un instant.",
+      "bodyFailed": "L'opérateur n'a pas pu finaliser cette commande. Tout montant retenu a été restitué à votre portefeuille.",
+      "status": "Statut",
+      "reference": "Référence",
+      "buyAgain": "Acheter à nouveau",
+      "done": "Terminé"
+    },
+    "gate": {
+      "title": "Vérifiez votre compte",
+      "body": "Vous avez besoin d'un compte vérifié pour acheter du crédit et payer des factures.",
+      "back": "Retour au tableau de bord"
+    }
+  },
   "landing": {
     "nav": {
       "home": "Accueil",
