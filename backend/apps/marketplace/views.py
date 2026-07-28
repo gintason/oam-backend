@@ -2,6 +2,7 @@
 from datetime import timedelta
 
 from django.utils import timezone
+from django.db import transaction
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 import json
@@ -91,30 +92,33 @@ class ListingDetailView(APIView):
         # images/videos are reverse relations on the model, so DRF's update()
         # would try to assign them to the instance and 500. Pop them out and
         # apply them ourselves. A missing key (partial edit) leaves media as-is;
-        # an empty list clears it.
+        # an empty list clears it. Wrapped in a transaction so a mid-way failure
+        # can't leave the listing half-updated (and returns a clean error).
         new_images = s.validated_data.pop("images", None)
         new_videos = s.validated_data.pop("videos", None)
-        s.save()
 
-        if new_images is not None:
-            listing.images.all().delete()
-            for i, url in enumerate(new_images):
-                ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
-        if new_videos is not None:
-            listing.videos.all().delete()
-            for url in new_videos:
-                ListingVideo.objects.create(listing=listing, url=url)
+        with transaction.atomic():
+            s.save()
 
-        # An edit changes what buyers see, so any prior admin verification no
-        # longer applies — reset the badge until it's reviewed again.
-        if listing.is_verified:
-            listing.is_verified = False
-            listing.verified_at = None
-            listing.verified_by = None
-            listing.save(update_fields=["is_verified", "verified_at", "verified_by", "updated_at"])
+            if new_images is not None:
+                listing.images.all().delete()
+                for i, url in enumerate(new_images):
+                    ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
+            if new_videos is not None:
+                listing.videos.all().delete()
+                for url in new_videos:
+                    ListingVideo.objects.create(listing=listing, url=url)
+
+            # An edit changes what buyers see, so any prior admin verification no
+            # longer applies — reset the badge until it's reviewed again.
+            if listing.is_verified:
+                listing.is_verified = False
+                listing.verified_at = None
+                listing.verified_by = None
+                listing.save(update_fields=["is_verified", "verified_at", "verified_by", "updated_at"])
 
         listing.refresh_from_db()
-        return Response(ListingDetailSerializer(listing).data)
+        return Response(ListingDetailSerializer(listing, context={"request": request}).data)
 
     def delete(self, request, listing_id):
         listing = Listing.objects.filter(id=listing_id, seller=request.user).first()
