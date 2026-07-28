@@ -241,8 +241,37 @@ export const POPULAR_INTL = AIRPORTS.filter((a) =>
 /* Direct affiliate partners (links owned by OAM)                      */
 /* ------------------------------------------------------------------ */
 
-/** Klook — hotels, stays and experiences worldwide. */
-export const KLOOK_LINK = "https://klook.tpk.ro/5WurYtDG";
+/**
+ * API base, mirrored from lib/api so we can build server-side redirect links.
+ * (Kept in sync with the axios baseURL there.)
+ */
+const API_BASE =
+  (import.meta.env.VITE_API_URL as string | undefined) ??
+  "http://127.0.0.1:8080/api/v1";
 
-/** G2A — global marketplace for gift cards, game keys and digital codes. */
+/**
+ * Build a tracked affiliate hand-off that routes through our own backend
+ * (`/affiliates/go/<slug>/`) instead of a raw partner short-link. The server
+ * records the click and 302-redirects to a clean, globally reachable
+ * destination — this is what fixes the `klook.tpk.ro` DNS failures, since we
+ * never expose the blocked tpk.ro host to the browser. Optional search params
+ * (destination, dates…) are forwarded as query string.
+ */
+export function affiliateRedirect(
+  slug: string,
+  params: Record<string, string | number> = {}
+): string {
+  const qs = new URLSearchParams(
+    Object.entries(params)
+      .filter(([, v]) => v !== undefined && v !== null && String(v) !== "")
+      .map(([k, v]) => [k, String(v)])
+  ).toString();
+  const base = `${API_BASE.replace(/\/$/, "")}/affiliates/go/${slug}/`;
+  return qs ? `${base}?${qs}` : base;
+}
+
+/** Klook — hotels, stays and experiences worldwide (via backend redirect). */
+export const KLOOK_LINK = affiliateRedirect("klook");
+
+/** G2A — clean reflink, no redirect needed. */
 export const G2A_LINK = "https://www.g2a.com/n/reflink-c49af69f49";

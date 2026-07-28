@@ -22,6 +22,10 @@ export default function VerifyOtp() {
   const [notice, setNotice] = useState<string>();
   const [cooldown, setCooldown] = useState(0);
   const inputs = useRef<(HTMLInputElement | null)[]>([]);
+  // Tracks the last code we auto-submitted, so a wrong code doesn't re-fire in
+  // a loop. We only auto-submit a given 6-digit code once; editing any digit
+  // clears this and allows a fresh auto-submit.
+  const autoSubmitted = useRef<string>("");
 
   useEffect(() => {
     if (!identifier) navigate("/sign-in", { replace: true });
@@ -57,24 +61,41 @@ export default function VerifyOtp() {
     if (e.key === "Backspace" && !digits[i] && i > 0) inputs.current[i - 1]?.focus();
   }
 
+  async function verify(codeToCheck: string) {
+    if (codeToCheck.length !== CODE_LENGTH || loading) return;
+    setError(undefined);
+    setNotice(undefined);
+    setLoading(true);
+    try {
+      await verifyOtp(identifier, codeToCheck);
+      navigate("/dashboard", { replace: true });
+    } catch (err) {
+      setError(apiErrorMessage(err, "That code didn't work. Try again."));
+      // Let the user (or auto-submit) retry after a correction.
+      autoSubmitted.current = "";
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (code.length !== CODE_LENGTH) {
       setError("Enter the full 6-digit code.");
       return;
     }
-    setError(undefined);
-    setNotice(undefined);
-    setLoading(true);
-    try {
-      await verifyOtp(identifier, code);
-      navigate("/dashboard", { replace: true });
-    } catch (err) {
-      setError(apiErrorMessage(err, "That code didn't work. Try again."));
-    } finally {
-      setLoading(false);
-    }
+    autoSubmitted.current = code;
+    await verify(code);
   }
+
+  // Auto-verify the moment the final digit is entered — no need to tap Verify.
+  useEffect(() => {
+    if (code.length === CODE_LENGTH && autoSubmitted.current !== code && !loading) {
+      autoSubmitted.current = code;
+      void verify(code);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [code]);
 
   async function onResend() {
     if (cooldown > 0) return;
