@@ -1,8 +1,8 @@
 {
   "common": {
-    "back": "Koma",
+    "back": "Koma baya",
     "done": "An gama",
-    "retry": "Sāke gwadawa",
+    "retry": "Sake gwadawa",
     "seeAll": "Duba duka",
     "verify": "Tabbatar",
     "loading": "Ana lodi…"
@@ -13,8 +13,8 @@
   "header": {
     "nav": {
       "dashboard": "Dashboard",
-      "wallet": "Jakar kuɗi",
-      "orders": "Odar",
+      "wallet": "Walat",
+      "orders": "Ododi",
       "messages": "Saƙonni",
       "earnings": "Kuɗin shiga"
     },
@@ -24,75 +24,75 @@
   "dashboard": {
     "greeting": "Barka da zuwa 👋",
     "greetingNamed": "Barka da zuwa, {{name}} 👋",
-    "walletBalance": "Ma'aunin jakar kuɗi",
+    "walletBalance": "Ma'aunin walat",
     "showBalance": "Nuna ma'auni",
     "hideBalance": "Ɓoye ma'auni",
-    "loadBalanceError": "An kāsa loda ma'auni.",
-    "emptyWallet": "Jakar kuɗinka babu komai — saka kuɗi, ko biya sabis da katinka.",
-    "addMoney": "Saka kuɗi",
+    "loadBalanceError": "An kasa loda ma'auni.",
+    "emptyWallet": "Walat ɗinka babu komai — ƙara kuɗi, ko biya sabis da katinka.",
+    "addMoney": "Ƙara kuɗi",
     "send": "Aika",
     "withdraw": "Cire kuɗi",
-    "recentTransactions": "Mu'amaloli na baya-bayan nan",
+    "recentTransactions": "Mu'amalolin baya-bayan nan",
     "verifyToSeeTransactions": "Tabbatar da asusunka don ganin mu'amaloli.",
-    "loadTransactionsError": "An kāsa loda mu'amaloli.",
-    "noTransactions": "Babu mu'amala tukuna. Saka kuɗi cikin jaka don farawa.",
+    "loadTransactionsError": "An kasa loda mu'amaloli.",
+    "noTransactions": "Babu mu'amala tukuna. Cika walat ɗinka don farawa.",
     "credit": "Shigowa",
-    "debit": "Fitarwa",
+    "debit": "Fitowa",
     "groups": {
-      "bills": "Kuɗaɗe da sabis",
+      "bills": "Kuɗaɗe da ayyuka",
       "money": "Kuɗi",
       "travel": "Tafiye-tafiye da ƙari",
-      "shop": "Sayayya da sabis"
+      "shop": "Sayayya da ayyuka"
     },
     "services": {
       "airtime": "Kiredit",
       "data": "Data",
       "electricity": "Wutar lantarki",
       "cable": "Talabijin",
-      "fund": "Saka kuɗi",
+      "fund": "Cika",
       "withdraw": "Cire",
-      "transfer": "Turawa",
+      "transfer": "Tura",
       "giftCards": "Katunan kyauta",
       "flights": "Jiragen sama",
-      "hotels": "Otel",
+      "hotels": "Otal",
       "carHire": "Hayar mota",
       "pickup": "Ɗauka",
       "marketplace": "Kasuwa",
-      "artisans": "Ma'aikata"
+      "artisans": "Masana sana'a"
     },
     "verifyBanner": {
       "title": "Tabbatar da asusunka",
-      "body": "Jakar kuɗinka da biyan kuɗi za su kasance a kulle har sai ka tabbatar. Duba imel ɗinka don lambar.",
+      "body": "Walat da biyan kuɗinka za su kasance a kulle har sai ka tabbatar. Duba imel ɗinka don lambar tabbaci.",
       "cta": "Tabbatar"
     }
   },
   "airtime": {
-    "back": "Koma",
-    "title": "Sayi Kiredit",
+    "back": "Koma baya",
+    "title": "Sayi kiredit",
     "subtitle": "Cikawa nan take, kowace hanyar sadarwa.",
     "network": "Hanyar sadarwa",
-    "loadNetworksError": "An kāsa loda hanyoyin sadarwa.",
-    "retry": "Sāke gwadawa",
+    "loadNetworksError": "An kasa loda hanyoyin sadarwa.",
+    "retry": "Sake gwadawa",
     "phoneNumber": "Lambar waya",
     "phonePlaceholder": "0803 123 4567",
-    "networkGuess": "Ya yi kama da lambar <0>{{network}}</0> — an zaɓa maka. Danna wata hanyar sadarwa idan ba daidai ba.",
+    "networkGuess": "Yana kama da lambar <0>{{network}}</0> — an zaɓa maka. Danna wata hanyar sadarwa idan ba daidai ba.",
     "amountLabel": "Adadi (₦)",
     "amountPlaceholder": "Shigar da adadi (mafi ƙaranci ₦50)",
     "payWith": "Biya da",
-    "wallet": "Jakar kuɗi",
+    "wallet": "Walat",
     "card": "Kati",
-    "lowFunds": "Ma'aunin jakar kuɗinka bai isa wannan sayayya ba.",
-    "addMoneyCard": "Saka kuɗi da kati",
+    "lowFunds": "Ma'aunin walat ɗinka bai isa wannan sayayya ba.",
+    "addMoneyCard": "Ƙara kuɗi da kati",
     "buyAirtime": "Sayi kiredit",
     "pay": "Biya ₦{{amount}}",
-    "cardHint": "Za ka biya cikin aminci a Paystack. Ana kai kiredit ɗinka nan take bayan haka.",
-    "walletHint": "An biya nan take daga jakar kuɗinka ta OAM.",
+    "cardHint": "Za ka biya cikin aminci a Paystack. Ana kai kiredit ɗinka nan da nan bayan haka.",
+    "walletHint": "An biya nan take daga walat ɗinka na OAM.",
     "errors": {
       "chooseNetwork": "Zaɓi hanyar sadarwa.",
-      "invalidPhone": "Shigar da lambar waya mai inganci.",
+      "invalidPhone": "Shigar da ingantacciyar lambar waya.",
       "enterAmount": "Shigar da adadi.",
-      "purchaseFailed": "Sayayya ta gaza. Sāke gwadawa.",
-      "cardStartFailed": "An kāsa fara biyan kati."
+      "purchaseFailed": "Sayayya ta gaza. Sake gwadawa.",
+      "cardStartFailed": "An kasa fara biyan kati."
     },
     "confirm": {
       "title": "Tabbatar da sayayya",
@@ -104,19 +104,19 @@
       "confirmLabel": "Biya {{amount}}"
     },
     "success": {
-      "titleOk": "Kiredit na zuwa!",
+      "titleOk": "Kiredit yana kan hanya!",
       "titleFailed": "Sayayya ta gaza",
-      "bodyOk": "Kiredit na ₦{{amount}} na {{biller}} zuwa {{recipient}}.",
-      "bodyPending": "An karɓi biyan kuɗi kuma mai bayarwa yana kammala odar. Kada ka sāke saya — duba Odar nan ba da jimawa ba.",
-      "bodyFailed": "Mai bayarwa bai iya kammala wannan odar ba. An mayar da duk kuɗin da aka riƙe zuwa jakar kuɗinka.",
+      "bodyOk": "₦{{amount}} kiredit na {{biller}} zuwa {{recipient}}.",
+      "bodyPending": "An karɓi biya kuma mai baka sabis yana kammala odar. Kada ka sake saya — duba Ododi nan da ɗan lokaci.",
+      "bodyFailed": "Mai baka sabis bai iya kammala wannan odar ba. An mayar da duk wani adadin da aka riƙe zuwa walat ɗinka.",
       "status": "Matsayi",
-      "reference": "Lamba",
-      "buyAgain": "Sāke saya",
+      "reference": "Bayani",
+      "buyAgain": "Sake saya",
       "done": "An gama"
     },
     "gate": {
       "title": "Tabbatar da asusunka",
-      "body": "Kana buƙatar asusu da aka tabbatar don sayen kiredit da biyan kuɗaɗe.",
+      "body": "Kana buƙatar tabbatacen asusu don sayen kiredit da biyan kuɗaɗe.",
       "back": "Koma dashboard"
     }
   },
@@ -124,9 +124,9 @@
     "nav": {
       "home": "Gida",
       "about": "Game da mu",
-      "services": "Sabis",
+      "services": "Ayyuka",
       "marketplace": "Kasuwa",
-      "findArtisans": "Nemo ma'aikata",
+      "findArtisans": "Nemi masana sana'a",
       "faq": "Tambayoyi"
     },
     "signIn": "Shiga",
@@ -135,26 +135,26 @@
     "closeMenu": "Rufe menu",
     "langCurrency": "Harshe da kuɗi",
     "hero": {
-      "badge": "Dukan sabis · App ɗaya · Damar da ba ta ƙarewa",
+      "badge": "Dukkan ayyuka · App ɗaya · Damar da ba ta ƙarewa",
       "headlines": [
         "Ma'auni ɗaya don duk abin da kake buƙata.",
         "Biya kuɗaɗe, tura kuɗi, kuma yi ciniki da katunan kyauta.",
-        "Yi ajiyar jiragen sama, otel da mota a duniya.",
-        "Saya da sayarwa a kasuwarmu.",
-        "Sami ƙwararrun ma'aikata don aikinka na gaba."
+        "Yi rijistar jiragen sama, otal da motoci a duniya baki ɗaya.",
+        "Saya kuma sayar a kasuwarmu.",
+        "Nemi masana sana'a tabbatattu don aikinka na gaba."
       ],
-      "subtitle": "Kiredit, data, DStv, wutar lantarki — da kuma kasuwa, ma'aikata kusa da kai, katunan kyauta, turawa da tafiye-tafiye. Duka daga jaka ɗaya.",
-      "signUp": "Yi rajista yanzu!",
+      "subtitle": "Kiredit, data, DStv, wutar lantarki — haka kuma kasuwa, masana sana'a kusa da kai, katunan kyauta, tura kuɗi da tafiye-tafiye. Duk daga walat ɗaya.",
+      "signUp": "Yi rijista yanzu!",
       "howItWorks": "Yadda yake aiki",
-      "download": "Sauke app na OAM a Google Play da App Store — kuma ka sami duniya a hannunka."
+      "download": "Sauke app na OAM a Google Play da App Store — ka riƙe duniya a hannunka."
     },
     "services": {
       "eyebrow": "App ɗaya, komai",
-      "title": "Duk sabis da kake buƙata, a wuri ɗaya",
-      "subtitle": "Biya kuɗaɗe, yi sayayya, nemo taimako, yi tafiya, kuma motsa kuɗi — duka daga jaka ɗaya, tare da kaiwa nan take.",
+      "title": "Kowane sabis da kake buƙata, a wuri ɗaya",
+      "subtitle": "Biya kuɗaɗe, yi sayayya, nemi taimako, yi tafiya, kuma tura kuɗi — duk daga walat ɗaya, tare da kai nan take.",
       "items": {
         "airtime": {
-          "title": "Kiredit da Data",
+          "title": "Kiredit da data",
           "desc": "Cika kowace hanyar sadarwa nan take."
         },
         "cable": {
@@ -163,146 +163,146 @@
         },
         "electricity": {
           "title": "Wutar lantarki",
-          "desc": "Token na biya-gaba da biya-baya."
+          "desc": "Tokin da aka riga aka biya da na baya."
         },
         "marketplace": {
           "title": "Kasuwa",
-          "desc": "Saya da sayarwa a cikin gida."
+          "desc": "Saya kuma sayar a gida."
         },
         "artisans": {
-          "title": "Ma'aikata",
+          "title": "Masana sana'a",
           "desc": "Ƙwararru amintattu kusa da kai."
         },
         "flights": {
           "title": "Jiragen sama",
-          "desc": "Kwatanta kuma ka yi ajiyar tikiti mai rahusa."
+          "desc": "Kwatanta kuma yi rijistar tikiti masu arha."
         },
         "hotels": {
-          "title": "Otel",
-          "desc": "Wuraren kwana da abubuwan ban sha'awa."
+          "title": "Otal",
+          "desc": "Zama da abubuwan ban sha'awa."
         },
         "giftcards": {
           "title": "Katunan kyauta",
-          "desc": "Saya kuma ka yi amfani da katunan dijital."
+          "desc": "Saya kuma yi amfani da katunan dijital."
         },
         "transfer": {
           "title": "Tura kuɗi",
-          "desc": "Turawa mai sauri da aminci."
+          "desc": "Tura kuɗi da sauri da aminci."
         },
         "carhire": {
           "title": "Hayar mota",
-          "desc": "Yi hayar mota, ko'ina."
+          "desc": "Yi hayar mota ko'ina."
         }
       }
     },
     "marketplace": {
       "eyebrow": "Kasuwa",
-      "title": "Saya da sayarwa, duka a wuri ɗaya",
-      "subtitle": "Daga motoci zuwa na'urorin lantarki zuwa kadara — bincika abin da ake sayarwa kusa da kai, ko ka buga naka cikin minti ɗaya.",
-      "viewAll": "Duba dukan tallace-tallace",
+      "title": "Saya kuma sayar, duk a wuri ɗaya",
+      "subtitle": "Daga motoci zuwa kayan lantarki zuwa kadarori — duba abin da ake talla kusa da kai, ko talla naka a cikin minti ɗaya.",
+      "viewAll": "Duba duk tallace-tallace",
       "all": "Duka",
-      "categoriesAria": "Rukunonin kasuwa",
-      "negotiable": "ana iya ciniki",
-      "featured": "Fitacce",
-      "emptyFilteredTitle": "Babu komai a wannan rukuni tukuna",
-      "emptyTitle": "Ana buga tallace-tallace na farko yanzu",
-      "emptyFilteredBody": "Gwada wani rukuni, ko ka zama na farko da zai buga anan.",
-      "emptyBody": "Kasuwar OAM sabuwa ce. Tallace-tallacenka na farko uku kyauta ne — ba sai kati ba.",
-      "browseEverything": "Bincika komai",
-      "postItem": "Buga talla"
+      "categoriesAria": "Nau'ikan kasuwa",
+      "negotiable": "ana iya yin ciniki",
+      "featured": "An fito da shi",
+      "emptyFilteredTitle": "Babu komai a wannan rukunin tukuna",
+      "emptyTitle": "Tallace-tallace na farko suna fitowa yanzu",
+      "emptyFilteredBody": "Gwada wani rukuni, ko ka zama na farko da zai yi talla a nan.",
+      "emptyBody": "Kasuwar OAM sabuwa ce. Tallace-tallacenka uku na farko kyauta ne — babu buƙatar kati.",
+      "browseEverything": "Duba komai",
+      "postItem": "Yi talla"
     },
     "artisans": {
-      "title": "Ma'aikata da aka tabbatar",
-      "subtitle": "Kowane ma'aikaci anan an bincika shaidarsa, hotunan aikinsa da bidiyo daga ƙungiyarmu kafin ya bayyana.",
-      "searchPlaceholder": "Mai famfo, lantarki, birni…",
-      "findNearMe": "Nemo ma'aikata kusa da ni",
+      "title": "Masana sana'a tabbatattu",
+      "subtitle": "Kowane masanin sana'a a nan an tabbatar da shaidarsa, hotunan aikinsa da bidiyo daga ƙungiyarmu kafin ya bayyana.",
+      "searchPlaceholder": "Mai famfo, mai lantarki, birni…",
+      "findNearMe": "Nemi masana sana'a kusa da ni",
       "all": "Duka",
       "verified": "An tabbatar",
-      "featured": "Fitacce",
-      "emptyFilteredTitle": "Babu ma'aikata da aka tabbatar da suka dace tukuna",
-      "emptyTitle": "Ma'aikata na farko da aka tabbatar suna zuwa",
-      "emptyFilteredBody": "Gwada wani sana'a, ko ka bincika duka kusa da kai.",
-      "emptyBody": "Ana bincika kowane ma'aikaci da hannu kafin ya bayyana, don haka wannan sashe yana cika a hankali maimakon lokaci ɗaya.",
-      "browseAll": "Bincika dukan ma'aikata",
+      "featured": "An fito da shi",
+      "emptyFilteredTitle": "Babu masana sana'a tabbatattu masu dacewa tukuna",
+      "emptyTitle": "Masana sana'a tabbatattu na farko suna kan hanya",
+      "emptyFilteredBody": "Gwada wata sana'a, ko duba duk waɗanda ke kusa da kai.",
+      "emptyBody": "Kowane masanin sana'a a nan ana tabbatar da shi da hannu kafin ya bayyana, don haka wannan ɓangaren yana cika a hankali.",
+      "browseAll": "Duba dukkan masana sana'a",
       "listTrade": "Lissafa sana'arka"
     },
     "cta": {
       "title": "App ɗaya. Damar da ba ta ƙarewa.",
-      "subtitle": "Shiga cikin dubban mutane da ke biyan kuɗaɗe, sayayya, da motsa kuɗi cikin sauƙi. Farawa kyauta ne.",
-      "createAccount": "Ƙirƙiri asusunka",
+      "subtitle": "Ka haɗu da dubban mutane da suke biyan kuɗaɗe, sayayya, da tura kuɗi cikin sauƙi. Farawa kyauta ne.",
+      "createAccount": "Ƙirƙiri asusu",
       "signIn": "Shiga"
     },
     "footer": {
-      "tagline": "Dukan sabis. App ɗaya. Damar da ba ta ƙarewa.",
+      "tagline": "Dukkan ayyuka. App ɗaya. Damar da ba ta ƙarewa.",
       "followUs": "Bi mu",
       "cols": {
-        "services": "Sabis",
+        "services": "Ayyuka",
         "explore": "Bincika",
         "company": "Kamfani"
       },
       "links": {
-        "airtimeData": "Kiredit da Data",
+        "airtimeData": "Kiredit da data",
         "cableTv": "Talabijin",
         "electricity": "Wutar lantarki",
         "giftCards": "Katunan kyauta",
         "moneyTransfer": "Tura kuɗi",
         "marketplace": "Kasuwa",
-        "artisans": "Ma'aikata",
+        "artisans": "Masana sana'a",
         "flights": "Jiragen sama",
-        "hotels": "Otel",
+        "hotels": "Otal",
         "carHire": "Hayar mota",
         "about": "Game da mu",
-        "contact": "Tuntuɓi",
+        "contact": "Tuntuɓe mu",
         "helpCenter": "Cibiyar taimako",
         "terms": "Sharuɗɗa",
         "privacy": "Sirri"
       },
-      "rights": "© {{year}} OAM. An kiyaye dukan haƙƙoƙi.",
-      "developedBy": "An haɓaka ta AiTrend"
+      "rights": "© {{year}} OAM. An kiyaye dukkan haƙƙoƙi.",
+      "developedBy": "AiTrend ne ya haɓaka"
     }
   },
   "bills": {
-    "back": "Koma",
-    "wallet": "Jakar kuɗi",
+    "back": "Koma baya",
+    "wallet": "Walat",
     "card": "Kati",
     "payWith": "Biya da",
-    "retry": "Sāke gwadawa",
-    "switchToCard": "Canza zuwa kati",
-    "lowFunds": "Ma'aunin jakar kuɗinka bai isa ba. Biya da katinka maimakon haka.",
-    "payNoteCard": "Za ka biya cikin aminci a Paystack. Ana kai {{noun}} nan take bayan haka.",
-    "payNoteWallet": "An biya nan take daga jakar kuɗinka ta OAM.",
+    "retry": "Sake gwadawa",
+    "switchToCard": "Sauya zuwa kati",
+    "lowFunds": "Ma'aunin walat ɗinka bai isa ba. Biya da katinka maimakon haka.",
+    "payNoteCard": "Za ka biya cikin aminci a Paystack. Ana kai {{noun}} nan da nan bayan haka.",
+    "payNoteWallet": "An biya nan take daga walat ɗinka na OAM.",
     "verifyGate": {
       "title": "Tabbatar da asusunka",
-      "body": "Kana buƙatar asusu da aka tabbatar don biyan kuɗaɗe.",
+      "body": "Kana buƙatar tabbatacen asusu don biyan kuɗaɗe.",
       "back": "Koma dashboard"
     },
     "result": {
-      "inProgress": "Sayayya na ci gaba",
-      "issuingToken": "An kai — ana fitar da token ɗinka",
+      "inProgress": "Ana ci gaba da sayayya",
+      "issuingToken": "An kai — ana fitar da tokin ɗinka",
       "failed": "Sayayya ta gaza",
-      "bodyPending": "An yi biyan kuɗinka kuma mai bayarwa yana kammala odar. Yawanci yakan ɗauki ƙasa da minti ɗaya.",
-      "bodyToken": "Raka'o'inka na zuwa. Muna jiran mai bayarwa ya fitar da token — zai bayyana anan nan take.",
-      "bodyFailed": "Mai bayarwa bai iya kammala wannan odar ba. An mayar da duk kuɗin da aka riƙe zuwa jakar kuɗinka.",
-      "dontBuyAgain": "Kada ka sāke saya — an riga an biya wannan odar. Za ta kammala da kanta, kuma za ka same ta a Odar.",
+      "bodyPending": "An yi biyanka kuma mai baka sabis yana kammala odar. Yawanci yakan ɗauki ƙasa da minti ɗaya.",
+      "bodyToken": "Rukunanka suna kan hanya. Muna jira mai baka sabis ya fitar da tokin — zai bayyana a nan kai tsaye.",
+      "bodyFailed": "Mai baka sabis bai iya kammala wannan odar ba. An mayar da duk wani adadin da aka riƙe zuwa walat ɗinka.",
+      "dontBuyAgain": "Kada ka sake saya — an riga an biya wannan odar. Za ta kammala kanta, kuma koyaushe za ka same ta a Ododi.",
       "customer": "Abokin ciniki",
       "status": "Matsayi",
-      "reference": "Lamba",
+      "reference": "Bayani",
       "checking": "Ana dubawa…",
       "checkStatus": "Duba matsayi yanzu",
-      "tryAgain": "Sāke gwadawa",
-      "buyAgain": "Sāke saya",
-      "viewInOrders": "Duba a Odar",
+      "tryAgain": "Sake gwadawa",
+      "buyAgain": "Sake saya",
+      "viewInOrders": "Duba a Ododi",
       "done": "An gama"
     }
   },
   "data": {
-    "title": "Sayi Data",
-    "subtitle": "Fakitin kai tsaye, kaiwa nan take.",
+    "title": "Sayi data",
+    "subtitle": "Fakitoci kai tsaye, kai nan take.",
     "network": "Hanyar sadarwa",
-    "loadNetworksError": "An kāsa loda hanyoyin sadarwa.",
+    "loadNetworksError": "An kasa loda hanyoyin sadarwa.",
     "dataPlan": "Shirin data",
-    "loadPlansError": "An kāsa loda shirye-shirye.",
-    "noPlans": "Babu shirye-shirye a wannan hanyar sadarwa yanzu.",
+    "loadPlansError": "An kasa loda shirye-shirye.",
+    "noPlans": "Babu shirye-shirye da ake da su ga wannan hanyar sadarwa a yanzu.",
     "phoneNumber": "Lambar waya",
     "phonePlaceholder": "080...",
     "bundleLabel": "Fakitin data",
@@ -311,68 +311,68 @@
     "payNoun": "Data",
     "chooseNetwork": "Zaɓi hanyar sadarwa.",
     "choosePlan": "Zaɓi shirin data.",
-    "invalidPhone": "Shigar da lambar waya mai inganci.",
-    "purchaseFailed": "Sayayya ta gaza. Sāke gwadawa.",
-    "cardStartFailed": "An kāsa fara biyan kati.",
-    "successTitle": "Data na zuwa!",
+    "invalidPhone": "Shigar da ingantacciyar lambar waya.",
+    "purchaseFailed": "Sayayya ta gaza. Sake gwadawa.",
+    "cardStartFailed": "An kasa fara biyan kati.",
+    "successTitle": "Data yana kan hanya!",
     "failedTitle": "Sayayya ta gaza",
     "successMessage": "{{plan}} zuwa {{recipient}}."
   },
   "electricity": {
     "title": "Wutar lantarki",
-    "subtitle": "Sayi raka'o'in mita nan take.",
+    "subtitle": "Sayi rukunan mita nan take.",
     "provider": "Mai bayarwa",
-    "loadProvidersError": "An kāsa loda masu bayarwa.",
-    "selectDisco": "Zaɓi kamfanin wutarka…",
+    "loadProvidersError": "An kasa loda masu bayarwa.",
+    "selectDisco": "Zaɓi kamfanin wutar lantarkinka…",
     "meterType": "Nau'in mita",
-    "prepaid": "Biya gaba",
-    "postpaid": "Biya baya",
+    "prepaid": "An riga an biya",
+    "postpaid": "Biya na baya",
     "meterNumber": "Lambar mita",
     "meterPlaceholder": "Shigar da lambar mita",
     "checkingMeter": "Ana duba mita…",
-    "keepTyping": "Ci gaba da rubutu — za mu tabbatar da mai mita idan lambar ta cika ({{count}}/11 lambobi).",
-    "couldntConfirmMeter": "An kāsa tabbatar da wannan mita.",
-    "checkAgain": "Sāke dubawa",
+    "keepTyping": "Ci gaba da rubutu — za mu tabbatar da mai mita da zarar lambar ta cika ({{count}}/11 lambobi).",
+    "couldntConfirmMeter": "An kasa tabbatar da wannan mita.",
+    "checkAgain": "Sake dubawa",
     "chooseProviderFirst": "Zaɓi mai bayarwa a sama don tabbatar da mai mita.",
     "amountLabel": "Adadi (₦)",
     "amountPlaceholder": "Shigar da adadi",
     "districtLine": "Yanki: {{value}}",
     "arrearsLine": "Bashin da ya rage: ₦{{value}}",
-    "minPurchaseLine": "Mafi ƙarancin saya: ₦{{value}}",
-    "onlyName": "Mai bayarwa ya mayar da sunan asusu kaɗai don wannan mita.",
-    "buyUnits": "Sayi raka'o'i",
+    "minPurchaseLine": "Mafi ƙarancin sayayya: ₦{{value}}",
+    "onlyName": "Mai bayarwa ya dawo da sunan asusu kaɗai don wannan mita.",
+    "buyUnits": "Sayi rukuni",
     "payAmount": "Biya ₦{{amount}}",
     "label": "Wutar lantarki",
-    "payNoun": "Raka'o'i",
-    "chooseProvider": "Zaɓi mai bayar da wutar lantarki.",
-    "invalidMeter": "Shigar da lambar mita mai inganci.",
-    "minAmount": "Shigar da adadi aƙalla ₦100.",
-    "couldntVerifyMeter": "An kāsa tabbatar da wannan lambar mita.",
-    "successTitle": "An biya cikin nasara!",
+    "payNoun": "Rukunai",
+    "chooseProvider": "Zaɓi mai baka wutar lantarki.",
+    "invalidMeter": "Shigar da ingantacciyar lambar mita.",
+    "minAmount": "Shigar da adadi mafi ƙaranci ₦100.",
+    "couldntVerifyMeter": "An kasa tabbatar da wannan lambar mita.",
+    "successTitle": "Biya ya yi nasara!",
     "successMessage": "₦{{amount}} zuwa mita {{recipient}}."
   },
   "cable": {
     "title": "Talabijin",
     "subtitle": "Sabunta DStv, GOtv, Startimes.",
     "provider": "Mai bayarwa",
-    "loadProvidersError": "An kāsa loda masu bayarwa.",
+    "loadProvidersError": "An kasa loda masu bayarwa.",
     "package": "Fakiti",
-    "loadPackagesError": "An kāsa loda fakiti.",
-    "noPackages": "Babu fakiti da ake da su yanzu.",
+    "loadPackagesError": "An kasa loda fakitoci.",
+    "noPackages": "Babu fakitoci da ake da su a yanzu.",
     "smartcard": "Lambar smartcard / IUC",
     "smartcardPlaceholder": "Shigar da lambar smartcard",
     "checkingSmartcard": "Ana duba smartcard…",
-    "label": "Biyan talabijin",
-    "subscribe": "Biya kuɗi",
+    "label": "Biyan kuɗin talabijin",
+    "subscribe": "Yi rajista",
     "payAmount": "Biya ₦{{amount}}",
-    "payNoun": "Biyan ka",
+    "payNoun": "Biyan kuɗinka",
     "chooseProvider": "Zaɓi mai bayarwa.",
     "choosePackage": "Zaɓi fakiti.",
     "waitSmartcard": "Jira a tabbatar da smartcard kafin biya.",
-    "invalidSmartcard": "Shigar da lambar smartcard mai inganci.",
-    "couldntConfirmSmartcard": "An kāsa tabbatar da wannan smartcard.",
-    "couldntVerifySmartcard": "An kāsa tabbatar da wannan lambar smartcard.",
-    "successTitle": "An biya cikin nasara!",
-    "successMessage": "{{plan}} a {{recipient}}."
+    "invalidSmartcard": "Shigar da ingantacciyar lambar smartcard.",
+    "couldntConfirmSmartcard": "An kasa tabbatar da wannan smartcard.",
+    "couldntVerifySmartcard": "An kasa tabbatar da wannan lambar smartcard.",
+    "successTitle": "Rajista ta yi nasara!",
+    "successMessage": "{{plan}} a kan {{recipient}}."
   }
 }
