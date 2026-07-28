@@ -428,6 +428,71 @@
       "postItem": "Post an item",
       "countOne": "{{count}} item",
       "countOther": "{{count}} items"
+    },
+    "sell": {
+      "heading": "Selling",
+      "subtitle": "Your listings, enquiries and plan.",
+      "statPlan": "Plan",
+      "statListings": "Listings",
+      "statEnquiries": "Enquiries",
+      "until": "until {{date}}",
+      "unlimited": "unlimited",
+      "limitReached": "limit reached",
+      "active": "active",
+      "awaitingReply": "{{count}} awaiting reply",
+      "allAnswered": "all answered",
+      "planUpdatedTitle": "Plan updated.",
+      "planUpdatedBody": "Your new listing allowance is active.",
+      "atLimit": "You've used all {{limit}} listings on the {{tier}} plan. Upgrade below, or remove a listing to post something new.",
+      "upgradeTitleFree": "List more, sell more",
+      "upgradeTitlePro": "Go unlimited",
+      "upgradeSubtitle": "Paid plans also give your listings featured placement, which puts them above free listings in search.",
+      "perMonth": "/mo",
+      "currentPlan": "Current plan",
+      "choose": "Choose {{tier}}",
+      "redirecting": "Redirecting…",
+      "enquiriesCountOne": "{{count}} buyer enquiry",
+      "enquiriesCountOther": "{{count}} buyer enquiries",
+      "waitingReply": "{{count}} waiting for your reply",
+      "nothingNeeds": "Nothing needs your attention",
+      "myListings": "My listings",
+      "nothingListed": "Nothing listed yet",
+      "nothingListedBody": "Your first three listings are free. Photos and an honest description sell far faster than a low price alone.",
+      "edit": "Edit",
+      "editTitle": "Edit this listing",
+      "renew": "Renew",
+      "renewTitle": "Renew this listing",
+      "deleteTitle": "Delete this listing",
+      "deleteConfirm": "Delete this listing? This can't be undone.",
+      "featuredTag": "featured",
+      "errPayment": "Couldn't start that payment.",
+      "errRenew": "Couldn't renew that listing.",
+      "errDelete": "Couldn't delete that listing."
+    },
+    "tiers": {
+      "free": {
+        "label": "Free",
+        "perks": [
+          "Up to 3 active listings",
+          "Message buyers in-app"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Up to 20 active listings",
+          "Featured placement",
+          "Message buyers in-app"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Unlimited listings",
+          "Featured placement",
+          "Priority in search"
+        ]
+      }
     }
   }
 }

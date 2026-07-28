@@ -428,6 +428,71 @@
       "postItem": "Publier un article",
       "countOne": "{{count}} article",
       "countOther": "{{count}} articles"
+    },
+    "sell": {
+      "heading": "Vente",
+      "subtitle": "Vos annonces, demandes et forfait.",
+      "statPlan": "Forfait",
+      "statListings": "Annonces",
+      "statEnquiries": "Demandes",
+      "until": "jusqu'au {{date}}",
+      "unlimited": "illimité",
+      "limitReached": "limite atteinte",
+      "active": "actives",
+      "awaitingReply": "{{count}} en attente de réponse",
+      "allAnswered": "tout répondu",
+      "planUpdatedTitle": "Forfait mis à jour.",
+      "planUpdatedBody": "Votre nouveau quota d'annonces est actif.",
+      "atLimit": "Vous avez utilisé vos {{limit}} annonces du forfait {{tier}}. Améliorez ci-dessous ou supprimez une annonce pour en publier une nouvelle.",
+      "upgradeTitleFree": "Publiez plus, vendez plus",
+      "upgradeTitlePro": "Passez en illimité",
+      "upgradeSubtitle": "Les forfaits payants placent aussi vos annonces en vedette, au-dessus des annonces gratuites dans la recherche.",
+      "perMonth": "/mois",
+      "currentPlan": "Forfait actuel",
+      "choose": "Choisir {{tier}}",
+      "redirecting": "Redirection…",
+      "enquiriesCountOne": "{{count}} demande d'acheteur",
+      "enquiriesCountOther": "{{count}} demandes d'acheteurs",
+      "waitingReply": "{{count}} en attente de votre réponse",
+      "nothingNeeds": "Rien ne requiert votre attention",
+      "myListings": "Mes annonces",
+      "nothingListed": "Rien de publié pour l'instant",
+      "nothingListedBody": "Vos trois premières annonces sont gratuites. Des photos et une description honnête se vendent bien plus vite qu'un simple prix bas.",
+      "edit": "Modifier",
+      "editTitle": "Modifier cette annonce",
+      "renew": "Renouveler",
+      "renewTitle": "Renouveler cette annonce",
+      "deleteTitle": "Supprimer cette annonce",
+      "deleteConfirm": "Supprimer cette annonce ? Cette action est irréversible.",
+      "featuredTag": "en vedette",
+      "errPayment": "Impossible de démarrer ce paiement.",
+      "errRenew": "Impossible de renouveler cette annonce.",
+      "errDelete": "Impossible de supprimer cette annonce."
+    },
+    "tiers": {
+      "free": {
+        "label": "Gratuit",
+        "perks": [
+          "Jusqu'à 3 annonces actives",
+          "Message aux acheteurs dans l'app"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Jusqu'à 20 annonces actives",
+          "Placement en vedette",
+          "Message aux acheteurs dans l'app"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Annonces illimitées",
+          "Placement en vedette",
+          "Priorité dans la recherche"
+        ]
+      }
     }
   }
 }

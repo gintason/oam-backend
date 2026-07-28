@@ -428,6 +428,71 @@
       "postItem": "İlan ver",
       "countOne": "{{count}} ürün",
       "countOther": "{{count}} ürün"
+    },
+    "sell": {
+      "heading": "Satış",
+      "subtitle": "İlanlarınız, talepleriniz ve planınız.",
+      "statPlan": "Plan",
+      "statListings": "İlanlar",
+      "statEnquiries": "Talepler",
+      "until": "{{date}} tarihine kadar",
+      "unlimited": "sınırsız",
+      "limitReached": "sınıra ulaşıldı",
+      "active": "aktif",
+      "awaitingReply": "{{count}} yanıt bekliyor",
+      "allAnswered": "tümü yanıtlandı",
+      "planUpdatedTitle": "Plan güncellendi.",
+      "planUpdatedBody": "Yeni ilan hakkınız aktif.",
+      "atLimit": "{{tier}} planındaki {{limit}} ilanın tümünü kullandınız. Aşağıdan yükseltin veya yeni bir ilan yayınlamak için bir ilanı kaldırın.",
+      "upgradeTitleFree": "Daha çok yayınla, daha çok sat",
+      "upgradeTitlePro": "Sınırsıza geç",
+      "upgradeSubtitle": "Ücretli planlar ayrıca ilanlarınızı öne çıkarır ve aramada ücretsiz ilanların üstüne yerleştirir.",
+      "perMonth": "/ay",
+      "currentPlan": "Mevcut plan",
+      "choose": "{{tier}} seç",
+      "redirecting": "Yönlendiriliyor…",
+      "enquiriesCountOne": "{{count}} alıcı talebi",
+      "enquiriesCountOther": "{{count}} alıcı talebi",
+      "waitingReply": "{{count}} yanıtınızı bekliyor",
+      "nothingNeeds": "Dikkatinizi gerektiren bir şey yok",
+      "myListings": "İlanlarım",
+      "nothingListed": "Henüz ilan yok",
+      "nothingListedBody": "İlk üç ilanınız ücretsiz. Fotoğraflar ve dürüst bir açıklama, sadece düşük fiyattan çok daha hızlı satar.",
+      "edit": "Düzenle",
+      "editTitle": "Bu ilanı düzenle",
+      "renew": "Yenile",
+      "renewTitle": "Bu ilanı yenile",
+      "deleteTitle": "Bu ilanı sil",
+      "deleteConfirm": "Bu ilan silinsin mi? Bu işlem geri alınamaz.",
+      "featuredTag": "öne çıkan",
+      "errPayment": "Ödeme başlatılamadı.",
+      "errRenew": "İlan yenilenemedi.",
+      "errDelete": "İlan silinemedi."
+    },
+    "tiers": {
+      "free": {
+        "label": "Ücretsiz",
+        "perks": [
+          "En fazla 3 aktif ilan",
+          "Alıcılarla uygulama içi mesajlaşma"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "En fazla 20 aktif ilan",
+          "Öne çıkan yerleşim",
+          "Alıcılarla uygulama içi mesajlaşma"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Sınırsız ilan",
+          "Öne çıkan yerleşim",
+          "Aramada öncelik"
+        ]
+      }
     }
   }
 }

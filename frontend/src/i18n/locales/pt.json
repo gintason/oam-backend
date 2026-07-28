@@ -428,6 +428,71 @@
       "postItem": "Publicar um item",
       "countOne": "{{count}} item",
       "countOther": "{{count}} itens"
+    },
+    "sell": {
+      "heading": "A vender",
+      "subtitle": "Os seus anúncios, pedidos e plano.",
+      "statPlan": "Plano",
+      "statListings": "Anúncios",
+      "statEnquiries": "Pedidos",
+      "until": "até {{date}}",
+      "unlimited": "ilimitado",
+      "limitReached": "limite atingido",
+      "active": "ativos",
+      "awaitingReply": "{{count}} a aguardar resposta",
+      "allAnswered": "tudo respondido",
+      "planUpdatedTitle": "Plano atualizado.",
+      "planUpdatedBody": "O seu novo limite de anúncios está ativo.",
+      "atLimit": "Usou todos os {{limit}} anúncios do plano {{tier}}. Faça upgrade abaixo ou remova um anúncio para publicar outro.",
+      "upgradeTitleFree": "Publique mais, venda mais",
+      "upgradeTitlePro": "Torne ilimitado",
+      "upgradeSubtitle": "Os planos pagos também destacam os seus anúncios, colocando-os acima dos gratuitos na pesquisa.",
+      "perMonth": "/mês",
+      "currentPlan": "Plano atual",
+      "choose": "Escolher {{tier}}",
+      "redirecting": "A redirecionar…",
+      "enquiriesCountOne": "{{count}} pedido de comprador",
+      "enquiriesCountOther": "{{count}} pedidos de compradores",
+      "waitingReply": "{{count}} a aguardar a sua resposta",
+      "nothingNeeds": "Nada precisa da sua atenção",
+      "myListings": "Os meus anúncios",
+      "nothingListed": "Ainda nada publicado",
+      "nothingListedBody": "Os seus primeiros três anúncios são grátis. Fotos e uma descrição honesta vendem muito mais depressa do que apenas um preço baixo.",
+      "edit": "Editar",
+      "editTitle": "Editar este anúncio",
+      "renew": "Renovar",
+      "renewTitle": "Renovar este anúncio",
+      "deleteTitle": "Eliminar este anúncio",
+      "deleteConfirm": "Eliminar este anúncio? Esta ação não pode ser anulada.",
+      "featuredTag": "em destaque",
+      "errPayment": "Não foi possível iniciar esse pagamento.",
+      "errRenew": "Não foi possível renovar esse anúncio.",
+      "errDelete": "Não foi possível eliminar esse anúncio."
+    },
+    "tiers": {
+      "free": {
+        "label": "Grátis",
+        "perks": [
+          "Até 3 anúncios ativos",
+          "Mensagens com compradores na app"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Até 20 anúncios ativos",
+          "Colocação em destaque",
+          "Mensagens com compradores na app"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Anúncios ilimitados",
+          "Colocação em destaque",
+          "Prioridade na pesquisa"
+        ]
+      }
     }
   }
 }

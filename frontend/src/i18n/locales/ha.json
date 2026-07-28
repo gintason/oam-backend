@@ -428,6 +428,71 @@
       "postItem": "Sanya kaya",
       "countOne": "kaya {{count}}",
       "countOther": "kaya {{count}}"
+    },
+    "sell": {
+      "heading": "Sayarwa",
+      "subtitle": "Kayan ka, tambayoyi da shirin ka.",
+      "statPlan": "Shiri",
+      "statListings": "Kaya",
+      "statEnquiries": "Tambayoyi",
+      "until": "har {{date}}",
+      "unlimited": "ba iyaka",
+      "limitReached": "an kai iyaka",
+      "active": "masu aiki",
+      "awaitingReply": "{{count}} na jiran amsa",
+      "allAnswered": "an amsa duka",
+      "planUpdatedTitle": "An sabunta shiri.",
+      "planUpdatedBody": "Sabon adadin kayan ka yana aiki.",
+      "atLimit": "Ka yi amfani da dukkan kaya {{limit}} na shirin {{tier}}. Ka haɓaka a ƙasa, ko ka cire wani kaya don sanya sabo.",
+      "upgradeTitleFree": "Sanya ƙari, sayar ƙari",
+      "upgradeTitlePro": "Mai da shi ba iyaka",
+      "upgradeSubtitle": "Shirye-shiryen biya kuma suna fito da kayan ka, suna sanya su sama da kayan kyauta a bincike.",
+      "perMonth": "/wata",
+      "currentPlan": "Shirin yanzu",
+      "choose": "Zaɓi {{tier}}",
+      "redirecting": "Ana turawa…",
+      "enquiriesCountOne": "tambaya mai saye {{count}}",
+      "enquiriesCountOther": "tambayoyi masu saye {{count}}",
+      "waitingReply": "{{count}} na jiran amsar ka",
+      "nothingNeeds": "Babu abin da ke buƙatar hankalin ka",
+      "myListings": "Kayana",
+      "nothingListed": "Ba a sanya komai ba tukuna",
+      "nothingListedBody": "Kayan ka uku na farko kyauta ne. Hotuna da bayani na gaskiya suna sayarwa da sauri fiye da ƙarancin farashi kawai.",
+      "edit": "Gyara",
+      "editTitle": "Gyara wannan kaya",
+      "renew": "Sabunta",
+      "renewTitle": "Sabunta wannan kaya",
+      "deleteTitle": "Share wannan kaya",
+      "deleteConfirm": "Share wannan kaya? Ba za a iya mayar da shi ba.",
+      "featuredTag": "an fito da shi",
+      "errPayment": "An kasa fara wannan biya.",
+      "errRenew": "An kasa sabunta wannan kaya.",
+      "errDelete": "An kasa share wannan kaya."
+    },
+    "tiers": {
+      "free": {
+        "label": "Kyauta",
+        "perks": [
+          "Har kaya 3 masu aiki",
+          "Aika saƙo ga masu saye a cikin manhaja"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Har kaya 20 masu aiki",
+          "Wuri na musamman",
+          "Aika saƙo ga masu saye a cikin manhaja"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Kaya ba iyaka",
+          "Wuri na musamman",
+          "Fifiko a bincike"
+        ]
+      }
     }
   }
 }

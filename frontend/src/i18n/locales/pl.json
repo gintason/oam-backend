@@ -428,6 +428,71 @@
       "postItem": "Wystaw przedmiot",
       "countOne": "{{count}} przedmiot",
       "countOther": "{{count}} przedmiotów"
+    },
+    "sell": {
+      "heading": "Sprzedaż",
+      "subtitle": "Twoje ogłoszenia, zapytania i plan.",
+      "statPlan": "Plan",
+      "statListings": "Ogłoszenia",
+      "statEnquiries": "Zapytania",
+      "until": "do {{date}}",
+      "unlimited": "bez limitu",
+      "limitReached": "osiągnięto limit",
+      "active": "aktywne",
+      "awaitingReply": "{{count}} oczekuje na odpowiedź",
+      "allAnswered": "wszystko odpowiedziane",
+      "planUpdatedTitle": "Plan zaktualizowany.",
+      "planUpdatedBody": "Twój nowy limit ogłoszeń jest aktywny.",
+      "atLimit": "Wykorzystałeś wszystkie {{limit}} ogłoszeń w planie {{tier}}. Ulepsz plan poniżej lub usuń ogłoszenie, aby dodać nowe.",
+      "upgradeTitleFree": "Wystawiaj więcej, sprzedawaj więcej",
+      "upgradeTitlePro": "Przejdź na bez limitu",
+      "upgradeSubtitle": "Plany płatne dodatkowo wyróżniają Twoje ogłoszenia, umieszczając je nad darmowymi w wynikach.",
+      "perMonth": "/mies.",
+      "currentPlan": "Obecny plan",
+      "choose": "Wybierz {{tier}}",
+      "redirecting": "Przekierowywanie…",
+      "enquiriesCountOne": "{{count}} zapytanie kupującego",
+      "enquiriesCountOther": "{{count}} zapytań kupujących",
+      "waitingReply": "{{count}} czeka na Twoją odpowiedź",
+      "nothingNeeds": "Nic nie wymaga Twojej uwagi",
+      "myListings": "Moje ogłoszenia",
+      "nothingListed": "Nic jeszcze nie wystawiono",
+      "nothingListedBody": "Pierwsze trzy ogłoszenia są darmowe. Zdjęcia i uczciwy opis sprzedają znacznie szybciej niż sama niska cena.",
+      "edit": "Edytuj",
+      "editTitle": "Edytuj to ogłoszenie",
+      "renew": "Odnów",
+      "renewTitle": "Odnów to ogłoszenie",
+      "deleteTitle": "Usuń to ogłoszenie",
+      "deleteConfirm": "Usunąć to ogłoszenie? Tej operacji nie można cofnąć.",
+      "featuredTag": "wyróżnione",
+      "errPayment": "Nie udało się rozpocząć płatności.",
+      "errRenew": "Nie udało się odnowić ogłoszenia.",
+      "errDelete": "Nie udało się usunąć ogłoszenia."
+    },
+    "tiers": {
+      "free": {
+        "label": "Za darmo",
+        "perks": [
+          "Do 3 aktywnych ogłoszeń",
+          "Wiadomości do kupujących w aplikacji"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Do 20 aktywnych ogłoszeń",
+          "Wyróżnione miejsce",
+          "Wiadomości do kupujących w aplikacji"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Ogłoszenia bez limitu",
+          "Wyróżnione miejsce",
+          "Priorytet w wyszukiwaniu"
+        ]
+      }
     }
   }
 }

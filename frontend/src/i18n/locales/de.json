@@ -428,6 +428,71 @@
       "postItem": "Artikel einstellen",
       "countOne": "{{count}} Artikel",
       "countOther": "{{count}} Artikel"
+    },
+    "sell": {
+      "heading": "Verkaufen",
+      "subtitle": "Ihre Anzeigen, Anfragen und Ihr Tarif.",
+      "statPlan": "Tarif",
+      "statListings": "Anzeigen",
+      "statEnquiries": "Anfragen",
+      "until": "bis {{date}}",
+      "unlimited": "unbegrenzt",
+      "limitReached": "Limit erreicht",
+      "active": "aktiv",
+      "awaitingReply": "{{count}} warten auf Antwort",
+      "allAnswered": "alles beantwortet",
+      "planUpdatedTitle": "Tarif aktualisiert.",
+      "planUpdatedBody": "Ihr neues Anzeigenkontingent ist aktiv.",
+      "atLimit": "Sie haben alle {{limit}} Anzeigen im {{tier}}-Tarif genutzt. Führen Sie unten ein Upgrade durch oder entfernen Sie eine Anzeige, um eine neue einzustellen.",
+      "upgradeTitleFree": "Mehr einstellen, mehr verkaufen",
+      "upgradeTitlePro": "Unbegrenzt nutzen",
+      "upgradeSubtitle": "Bezahltarife heben Ihre Anzeigen zudem hervor und platzieren sie in der Suche über kostenlosen Anzeigen.",
+      "perMonth": "/Mon.",
+      "currentPlan": "Aktueller Tarif",
+      "choose": "{{tier}} wählen",
+      "redirecting": "Weiterleitung…",
+      "enquiriesCountOne": "{{count}} Käuferanfrage",
+      "enquiriesCountOther": "{{count}} Käuferanfragen",
+      "waitingReply": "{{count}} warten auf Ihre Antwort",
+      "nothingNeeds": "Nichts erfordert Ihre Aufmerksamkeit",
+      "myListings": "Meine Anzeigen",
+      "nothingListed": "Noch nichts eingestellt",
+      "nothingListedBody": "Ihre ersten drei Anzeigen sind kostenlos. Fotos und eine ehrliche Beschreibung verkaufen viel schneller als nur ein niedriger Preis.",
+      "edit": "Bearbeiten",
+      "editTitle": "Diese Anzeige bearbeiten",
+      "renew": "Erneuern",
+      "renewTitle": "Diese Anzeige erneuern",
+      "deleteTitle": "Diese Anzeige löschen",
+      "deleteConfirm": "Diese Anzeige löschen? Dies kann nicht rückgängig gemacht werden.",
+      "featuredTag": "hervorgehoben",
+      "errPayment": "Zahlung konnte nicht gestartet werden.",
+      "errRenew": "Anzeige konnte nicht erneuert werden.",
+      "errDelete": "Anzeige konnte nicht gelöscht werden."
+    },
+    "tiers": {
+      "free": {
+        "label": "Kostenlos",
+        "perks": [
+          "Bis zu 3 aktive Anzeigen",
+          "Käufer in der App anschreiben"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Bis zu 20 aktive Anzeigen",
+          "Hervorgehobene Platzierung",
+          "Käufer in der App anschreiben"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Unbegrenzte Anzeigen",
+          "Hervorgehobene Platzierung",
+          "Priorität in der Suche"
+        ]
+      }
     }
   }
 }

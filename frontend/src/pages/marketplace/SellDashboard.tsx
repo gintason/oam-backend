@@ -13,10 +13,12 @@ import { marketplaceApi, SELLER_TIERS } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
 import { naira, friendlyTime } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 export default function SellDashboard() {
   const navigate = useNavigate();
   const scope = useUserScope();
+  const { t } = useTranslation();
   const qc = useQueryClient();
   const [params, setParams] = useSearchParams();
   const [error, setError] = useState<string>();
@@ -45,24 +47,24 @@ export default function SellDashboard() {
     onSuccess: (data) => { window.location.href = data.authorization_url; },
     onError: (err) => {
       setPendingTier(null);
-      setError(apiErrorMessage(err, "Couldn't start that payment."));
+      setError(apiErrorMessage(err, t("marketplace.sell.errPayment")));
     },
   });
 
   const renew = useMutation({
     mutationFn: (id: string) => marketplaceApi.renew(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace"] }),
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't renew that listing.")),
+    onError: (err) => setError(apiErrorMessage(err, t("marketplace.sell.errRenew"))),
   });
 
   const remove = useMutation({
     mutationFn: (id: string) => marketplaceApi.remove(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace"] }),
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't delete that listing.")),
+    onError: (err) => setError(apiErrorMessage(err, t("marketplace.sell.errDelete"))),
   });
 
   function onDelete(id: string) {
-    if (window.confirm("Delete this listing? This can't be undone.")) remove.mutate(id);
+    if (window.confirm(t("marketplace.sell.deleteConfirm"))) remove.mutate(id);
   }
 
   // Returning from Paystack.
@@ -96,7 +98,7 @@ export default function SellDashboard() {
           onClick={() => navigate("/marketplace")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Marketplace
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("marketplace.navMarketplace")}
         </button>
 
         <DarkPanel className="mb-4">
@@ -104,10 +106,10 @@ export default function SellDashboard() {
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <h1 className="font-display text-[24px] font-semibold leading-tight sm:text-[26px]">
-                  Selling
+                  {t("marketplace.sell.heading")}
                 </h1>
                 <p className="mt-1 text-[13.5px] text-white/60">
-                  Your listings, enquiries and plan.
+                  {t("marketplace.sell.subtitle")}
                 </p>
               </div>
               <Link
@@ -119,28 +121,28 @@ export default function SellDashboard() {
                     : "bg-brand-red text-white hover:brightness-110"
                 }`}
               >
-                <Plus size={16} strokeWidth={2} /> Post an item
+                <Plus size={16} strokeWidth={2} /> {t("marketplace.postItem")}
               </Link>
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-4 sm:grid-cols-3">
               <Stat
-                label="Plan"
-                value={currentTier === "free" ? "Free" : currentTier === "premium" ? "Premium" : "Pro"}
+                label={t("marketplace.sell.statPlan")}
+                value={t("marketplace.tiers." + currentTier + ".label")}
                 hint={s?.expires_at && currentTier !== "free"
-                  ? `until ${friendlyTime(s.expires_at)}` : undefined}
+                  ? t("marketplace.sell.until", { date: friendlyTime(s.expires_at) }) : undefined}
                 tone={currentTier === "free" ? "default" : "good"}
               />
               <Stat
-                label="Listings"
+                label={t("marketplace.sell.statListings")}
                 value={`${used}${limit === null ? "" : ` / ${limit}`}`}
-                hint={limit === null ? "unlimited" : atLimit ? "limit reached" : "active"}
+                hint={limit === null ? t("marketplace.sell.unlimited") : atLimit ? t("marketplace.sell.limitReached") : t("marketplace.sell.active")}
                 tone={atLimit ? "warn" : "default"}
               />
               <Stat
-                label="Enquiries"
+                label={t("marketplace.sell.statEnquiries")}
                 value={listingEnquiries.length}
-                hint={awaiting > 0 ? `${awaiting} awaiting reply` : "all answered"}
+                hint={awaiting > 0 ? t("marketplace.sell.awaitingReply", { count: awaiting }) : t("marketplace.sell.allAnswered")}
                 tone={awaiting > 0 ? "warn" : "default"}
               />
             </div>
@@ -153,8 +155,7 @@ export default function SellDashboard() {
           <div className="mt-4 flex items-start gap-2 rounded-xl border border-brand-green/30 bg-brand-green/5 p-3.5">
             <Check size={16} strokeWidth={2.25} className="mt-0.5 shrink-0 text-brand-green" />
             <p className="text-[13px] text-ink">
-              <span className="font-semibold">Plan updated.</span> Your new listing
-              allowance is active.
+              <span className="font-semibold">{t("marketplace.sell.planUpdatedTitle")}</span> {t("marketplace.sell.planUpdatedBody")}
             </p>
           </div>
         )}
@@ -163,8 +164,7 @@ export default function SellDashboard() {
           <Card className="mb-4 flex items-start gap-2 border-danger/25 bg-danger/5 p-4">
             <AlertCircle size={15} strokeWidth={2} className="mt-0.5 shrink-0 text-danger" />
             <p className="text-[12.5px] leading-relaxed text-danger">
-              You've used all {limit} listings on the {currentTier} plan. Upgrade below,
-              or remove a listing to post something new.
+              {t("marketplace.sell.atLimit", { limit, tier: t("marketplace.tiers." + currentTier + ".label") })}
             </p>
           </Card>
         )}
@@ -173,60 +173,61 @@ export default function SellDashboard() {
         {currentTier !== "pro" && (
           <Card className="mt-4 p-5">
             <h2 className="font-display text-[16px] font-semibold text-ink">
-              {currentTier === "free" ? "List more, sell more" : "Go unlimited"}
+              {currentTier === "free" ? t("marketplace.sell.upgradeTitleFree") : t("marketplace.sell.upgradeTitlePro")}
             </h2>
             <p className="mt-0.5 text-[12.5px] leading-relaxed text-muted">
-              Paid plans also give your listings featured placement, which puts them
-              above free listings in search.
+              {t("marketplace.sell.upgradeSubtitle")}
             </p>
 
             <div className="mt-3.5 grid gap-2.5 sm:grid-cols-3">
-              {SELLER_TIERS.map((t) => {
-                const isCurrent = t.key === currentTier;
+              {SELLER_TIERS.map((tier) => {
+                const isCurrent = tier.key === currentTier;
                 const isDowngrade =
-                  (currentTier === "premium" && t.key === "free") ||
-                  (currentTier === "pro" && t.key !== "pro");
+                  (currentTier === "premium" && tier.key === "free") ||
+                  (currentTier === "pro" && tier.key !== "pro");
+                const label = t("marketplace.tiers." + tier.key + ".label");
+                const perks = t("marketplace.tiers." + tier.key + ".perks", { returnObjects: true }) as string[];
                 return (
                   <div
-                    key={t.key}
+                    key={tier.key}
                     className={`rounded-xl border-2 p-3.5 ${
                       isCurrent ? "border-brand-green bg-brand-green/5" : "border-hairline bg-paper"
                     }`}
                   >
-                    <p className="text-[13.5px] font-bold text-ink">{t.label}</p>
+                    <p className="text-[13.5px] font-bold text-ink">{label}</p>
                     <p className="mt-0.5 tabular text-[17px] font-bold text-ink">
-                      {t.price === 0 ? "Free" : naira(t.price)}
-                      {t.price > 0 && <span className="text-[11px] font-medium text-muted">/mo</span>}
+                      {tier.price === 0 ? t("marketplace.tiers.free.label") : naira(tier.price)}
+                      {tier.price > 0 && <span className="text-[11px] font-medium text-muted">{t("marketplace.sell.perMonth")}</span>}
                     </p>
                     <ul className="mt-2 space-y-1">
-                      {t.perks.map((p) => (
-                        <li key={p} className="flex items-start gap-1 text-[11.5px] leading-snug text-muted">
+                      {perks.map((perk) => (
+                        <li key={perk} className="flex items-start gap-1 text-[11.5px] leading-snug text-muted">
                           <Check size={10} strokeWidth={3} className="mt-1 shrink-0 text-brand-green" />
-                          {p}
+                          {perk}
                         </li>
                       ))}
                     </ul>
                     {isCurrent ? (
                       <p className="mt-2.5 text-center text-[12px] font-semibold text-brand-green">
-                        Current plan
+                        {t("marketplace.sell.currentPlan")}
                       </p>
-                    ) : isDowngrade || t.key === "free" ? null : (
+                    ) : isDowngrade || tier.key === "free" ? null : (
                       <button
                         onClick={() => {
-                          const tier = t.key as "premium" | "pro";
-                          setPendingTier(tier);
-                          subscribe.mutate(tier);
+                          const tr = tier.key as "premium" | "pro";
+                          setPendingTier(tr);
+                          subscribe.mutate(tr);
                         }}
                         disabled={subscribe.isPending}
                         className="mt-2.5 inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-brand-red text-[12.5px] font-semibold text-white transition hover:brightness-95 disabled:opacity-60"
                       >
-                        {pendingTier === t.key ? (
+                        {pendingTier === tier.key ? (
                           <>
                             <Loader2 size={13} className="animate-spin" />
-                            Redirecting…
+                            {t("marketplace.sell.redirecting")}
                           </>
                         ) : (
-                          `Choose ${t.label}`
+                          t("marketplace.sell.choose", { tier: label })
                         )}
                       </button>
                     )}
@@ -247,10 +248,10 @@ export default function SellDashboard() {
           </span>
           <div className="flex-1">
             <p className="text-[14px] font-semibold text-ink">
-              {listingEnquiries.length} buyer enquir{listingEnquiries.length === 1 ? "y" : "ies"}
+              {t(listingEnquiries.length === 1 ? "marketplace.sell.enquiriesCountOne" : "marketplace.sell.enquiriesCountOther", { count: listingEnquiries.length })}
             </p>
             <p className="text-[12.5px] text-muted">
-              {awaiting > 0 ? `${awaiting} waiting for your reply` : "Nothing needs your attention"}
+              {awaiting > 0 ? t("marketplace.sell.waitingReply", { count: awaiting }) : t("marketplace.sell.nothingNeeds")}
             </p>
           </div>
           {awaiting > 0 && (
@@ -262,7 +263,7 @@ export default function SellDashboard() {
 
         {/* listings */}
         <section className="mt-4">
-          <SectionTitle>My listings</SectionTitle>
+          <SectionTitle>{t("marketplace.sell.myListings")}</SectionTitle>
 
           {mine.isLoading ? (
             <div className="flex justify-center py-12">
@@ -271,14 +272,13 @@ export default function SellDashboard() {
           ) : listings.length === 0 ? (
             <Card className="py-12 text-center">
               <Package size={26} strokeWidth={1.5} className="mx-auto text-muted" />
-              <p className="mt-2.5 text-[14px] font-medium text-ink">Nothing listed yet</p>
+              <p className="mt-2.5 text-[14px] font-medium text-ink">{t("marketplace.sell.nothingListed")}</p>
               <p className="mx-auto mt-1 max-w-xs text-[12.5px] leading-relaxed text-muted">
-                Your first three listings are free. Photos and an honest description
-                sell far faster than a low price alone.
+                {t("marketplace.sell.nothingListedBody")}
               </p>
               <Link to="/marketplace/post"
                     className="mt-3.5 inline-flex h-10 items-center gap-1.5 rounded-lg bg-brand-red px-4 text-[13px] font-semibold text-white transition hover:brightness-95">
-                <Plus size={15} strokeWidth={2} /> Post an item
+                <Plus size={15} strokeWidth={2} /> {t("marketplace.postItem")}
               </Link>
             </Card>
           ) : (
@@ -302,7 +302,7 @@ export default function SellDashboard() {
                         {friendlyTime(l.created_at)}
                         {l.is_featured && (
                           <span className="inline-flex items-center gap-0.5 font-semibold text-warn">
-                            <Star size={8} strokeWidth={3} /> featured
+                            <Star size={8} strokeWidth={3} /> {t("marketplace.sell.featuredTag")}
                           </span>
                         )}
                         {l.is_verified && <VerifiedBadge size="sm" />}
@@ -312,26 +312,26 @@ export default function SellDashboard() {
                   <div className="flex shrink-0 items-center gap-1.5">
                     <Link
                       to={`/marketplace/${l.id}/edit`}
-                      title="Edit this listing"
+                      title={t("marketplace.sell.editTitle")}
                       className="inline-flex h-9 items-center gap-1 rounded-lg border border-hairline bg-paper px-2.5 text-[12px] font-medium text-muted transition hover:bg-mist hover:text-ink"
                     >
-                      <Pencil size={12} strokeWidth={2} /> Edit
+                      <Pencil size={12} strokeWidth={2} /> {t("marketplace.sell.edit")}
                     </Link>
                     <button
                       onClick={() => renew.mutate(l.id)}
                       disabled={renew.isPending}
-                      title="Renew this listing"
+                      title={t("marketplace.sell.renewTitle")}
                       className="inline-flex h-9 items-center gap-1 rounded-lg border border-hairline bg-paper px-2.5 text-[12px] font-medium text-muted transition hover:bg-mist hover:text-ink disabled:opacity-60"
                     >
                       <RefreshCw size={12} strokeWidth={2}
                                  className={renew.isPending ? "animate-spin" : ""} />
-                      Renew
+                      {t("marketplace.sell.renew")}
                     </button>
                     <button
                       onClick={() => onDelete(l.id)}
                       disabled={remove.isPending}
-                      title="Delete this listing"
-                      aria-label="Delete this listing"
+                      title={t("marketplace.sell.deleteTitle")}
+                      aria-label={t("marketplace.sell.deleteTitle")}
                       className="inline-flex h-9 items-center justify-center rounded-lg border border-danger/30 bg-danger/5 px-2.5 text-danger transition hover:bg-danger/10 disabled:opacity-60"
                     >
                       <Trash2 size={13} strokeWidth={2} />

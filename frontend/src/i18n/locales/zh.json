@@ -428,6 +428,71 @@
       "postItem": "发布物品",
       "countOne": "{{count}} 件",
       "countOther": "{{count}} 件"
+    },
+    "sell": {
+      "heading": "出售",
+      "subtitle": "您的商品、咨询和套餐。",
+      "statPlan": "套餐",
+      "statListings": "商品",
+      "statEnquiries": "咨询",
+      "until": "至 {{date}}",
+      "unlimited": "无限",
+      "limitReached": "已达上限",
+      "active": "有效",
+      "awaitingReply": "{{count}} 条待回复",
+      "allAnswered": "已全部回复",
+      "planUpdatedTitle": "套餐已更新。",
+      "planUpdatedBody": "您新的商品额度已生效。",
+      "atLimit": "您已用完 {{tier}} 套餐的全部 {{limit}} 条商品。请在下方升级，或删除一条以发布新商品。",
+      "upgradeTitleFree": "发布更多，卖得更多",
+      "upgradeTitlePro": "升级为无限",
+      "upgradeSubtitle": "付费套餐还会精选您的商品，在搜索中排在免费商品之上。",
+      "perMonth": "/月",
+      "currentPlan": "当前套餐",
+      "choose": "选择 {{tier}}",
+      "redirecting": "正在跳转…",
+      "enquiriesCountOne": "{{count}} 条买家咨询",
+      "enquiriesCountOther": "{{count}} 条买家咨询",
+      "waitingReply": "{{count}} 条等待您回复",
+      "nothingNeeds": "没有需要您处理的事项",
+      "myListings": "我的商品",
+      "nothingListed": "尚未发布任何商品",
+      "nothingListedBody": "您的前三条商品免费。照片和诚实的描述比单纯的低价卖得快得多。",
+      "edit": "编辑",
+      "editTitle": "编辑此商品",
+      "renew": "续期",
+      "renewTitle": "续期此商品",
+      "deleteTitle": "删除此商品",
+      "deleteConfirm": "删除此商品？此操作无法撤销。",
+      "featuredTag": "精选",
+      "errPayment": "无法开始该付款。",
+      "errRenew": "无法续期该商品。",
+      "errDelete": "无法删除该商品。"
+    },
+    "tiers": {
+      "free": {
+        "label": "免费",
+        "perks": [
+          "最多 3 条有效商品",
+          "在应用内与买家沟通"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "最多 20 条有效商品",
+          "精选展示",
+          "在应用内与买家沟通"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "无限商品",
+          "精选展示",
+          "搜索优先"
+        ]
+      }
     }
   }
 }

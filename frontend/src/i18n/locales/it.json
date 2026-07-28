@@ -428,6 +428,71 @@
       "postItem": "Pubblica un articolo",
       "countOne": "{{count}} articolo",
       "countOther": "{{count}} articoli"
+    },
+    "sell": {
+      "heading": "Vendita",
+      "subtitle": "I tuoi annunci, richieste e piano.",
+      "statPlan": "Piano",
+      "statListings": "Annunci",
+      "statEnquiries": "Richieste",
+      "until": "fino al {{date}}",
+      "unlimited": "illimitato",
+      "limitReached": "limite raggiunto",
+      "active": "attivi",
+      "awaitingReply": "{{count}} in attesa di risposta",
+      "allAnswered": "tutto risposto",
+      "planUpdatedTitle": "Piano aggiornato.",
+      "planUpdatedBody": "Il tuo nuovo limite di annunci è attivo.",
+      "atLimit": "Hai usato tutti i {{limit}} annunci del piano {{tier}}. Passa a un piano superiore qui sotto o rimuovi un annuncio per pubblicarne uno nuovo.",
+      "upgradeTitleFree": "Pubblica di più, vendi di più",
+      "upgradeTitlePro": "Passa a illimitato",
+      "upgradeSubtitle": "I piani a pagamento mettono in evidenza i tuoi annunci, posizionandoli sopra quelli gratuiti nella ricerca.",
+      "perMonth": "/mese",
+      "currentPlan": "Piano attuale",
+      "choose": "Scegli {{tier}}",
+      "redirecting": "Reindirizzamento…",
+      "enquiriesCountOne": "{{count}} richiesta di acquirente",
+      "enquiriesCountOther": "{{count}} richieste di acquirenti",
+      "waitingReply": "{{count}} in attesa della tua risposta",
+      "nothingNeeds": "Niente richiede la tua attenzione",
+      "myListings": "I miei annunci",
+      "nothingListed": "Ancora nulla pubblicato",
+      "nothingListedBody": "I tuoi primi tre annunci sono gratuiti. Foto e una descrizione onesta vendono molto più in fretta di un semplice prezzo basso.",
+      "edit": "Modifica",
+      "editTitle": "Modifica questo annuncio",
+      "renew": "Rinnova",
+      "renewTitle": "Rinnova questo annuncio",
+      "deleteTitle": "Elimina questo annuncio",
+      "deleteConfirm": "Eliminare questo annuncio? L'operazione è irreversibile.",
+      "featuredTag": "in evidenza",
+      "errPayment": "Impossibile avviare il pagamento.",
+      "errRenew": "Impossibile rinnovare l'annuncio.",
+      "errDelete": "Impossibile eliminare l'annuncio."
+    },
+    "tiers": {
+      "free": {
+        "label": "Gratis",
+        "perks": [
+          "Fino a 3 annunci attivi",
+          "Messaggia con gli acquirenti nell'app"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Fino a 20 annunci attivi",
+          "Posizionamento in evidenza",
+          "Messaggia con gli acquirenti nell'app"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Annunci illimitati",
+          "Posizionamento in evidenza",
+          "Priorità nella ricerca"
+        ]
+      }
     }
   }
 }

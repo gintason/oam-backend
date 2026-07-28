@@ -428,6 +428,71 @@
       "postItem": "Tinye ihe",
       "countOne": "ihe {{count}}",
       "countOther": "ihe {{count}}"
+    },
+    "sell": {
+      "heading": "Ire ere",
+      "subtitle": "Ndepụta gị, ajụjụ na atụmatụ gị.",
+      "statPlan": "Atụmatụ",
+      "statListings": "Ndepụta",
+      "statEnquiries": "Ajụjụ",
+      "until": "ruo {{date}}",
+      "unlimited": "enweghị oke",
+      "limitReached": "eruola oke",
+      "active": "na-arụ ọrụ",
+      "awaitingReply": "{{count}} na-echere nzaghachi",
+      "allAnswered": "azaala niile",
+      "planUpdatedTitle": "Emelitela atụmatụ.",
+      "planUpdatedBody": "Oke ndepụta ọhụrụ gị na-arụ ọrụ.",
+      "atLimit": "I jirila ndepụta niile {{limit}} nke atụmatụ {{tier}}. Kwalite n'okpuru, ma ọ bụ wepụ ndepụta iji tinye ihe ọhụrụ.",
+      "upgradeTitleFree": "Depụta karịa, ree karịa",
+      "upgradeTitlePro": "Mee ka ọ ghara inwe oke",
+      "upgradeSubtitle": "Atụmatụ akwụ ụgwọ na-emekwa ka ndepụta gị pụta ìhè, na-etinye ha n'elu ndị efu na nchọta.",
+      "perMonth": "/ọnwa",
+      "currentPlan": "Atụmatụ ugbu a",
+      "choose": "Họrọ {{tier}}",
+      "redirecting": "Na-eweghachi…",
+      "enquiriesCountOne": "ajụjụ onye zụrụ {{count}}",
+      "enquiriesCountOther": "ajụjụ ndị zụrụ {{count}}",
+      "waitingReply": "{{count}} na-echere nzaghachi gị",
+      "nothingNeeds": "Ọ dịghị ihe chọrọ nlebara anya gị",
+      "myListings": "Ndepụta m",
+      "nothingListed": "Edepụtaghị ihe ọ bụla ma",
+      "nothingListedBody": "Ndepụta atọ mbụ gị bụ n'efu. Foto na nkọwa eziokwu na-ere ọsọ ọsọ karịa naanị ọnụ ala.",
+      "edit": "Dezie",
+      "editTitle": "Dezie ndepụta a",
+      "renew": "Mee ọhụrụ",
+      "renewTitle": "Mee ndepụta a ọhụrụ",
+      "deleteTitle": "Hichapụ ndepụta a",
+      "deleteConfirm": "Hichapụ ndepụta a? Enweghị ike ịtụgharị ya.",
+      "featuredTag": "emere ka ọ pụta ìhè",
+      "errPayment": "Enweghị ike ịmalite ịkwụ ụgwọ ahụ.",
+      "errRenew": "Enweghị ike imegharị ndepụta ahụ.",
+      "errDelete": "Enweghị ike ihichapụ ndepụta ahụ."
+    },
+    "tiers": {
+      "free": {
+        "label": "N'efu",
+        "perks": [
+          "Ruo ndepụta 3 na-arụ ọrụ",
+          "Zigara ndị na-azụ ahịa ozi na ngwa"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Ruo ndepụta 20 na-arụ ọrụ",
+          "Ntinye pụrụ iche",
+          "Zigara ndị na-azụ ahịa ozi na ngwa"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Ndepụta enweghị oke",
+          "Ntinye pụrụ iche",
+          "Mkpa na nchọta"
+        ]
+      }
     }
   }
 }

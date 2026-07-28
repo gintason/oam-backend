@@ -428,6 +428,71 @@
       "postItem": "Přidat inzerát",
       "countOne": "{{count}} položka",
       "countOther": "{{count}} položek"
+    },
+    "sell": {
+      "heading": "Prodej",
+      "subtitle": "Vaše inzeráty, dotazy a tarif.",
+      "statPlan": "Tarif",
+      "statListings": "Inzeráty",
+      "statEnquiries": "Dotazy",
+      "until": "do {{date}}",
+      "unlimited": "neomezeně",
+      "limitReached": "limit dosažen",
+      "active": "aktivní",
+      "awaitingReply": "{{count}} čeká na odpověď",
+      "allAnswered": "vše zodpovězeno",
+      "planUpdatedTitle": "Tarif aktualizován.",
+      "planUpdatedBody": "Váš nový limit inzerátů je aktivní.",
+      "atLimit": "Využili jste všech {{limit}} inzerátů v tarifu {{tier}}. Přejděte níže na vyšší tarif nebo odeberte inzerát a přidejte nový.",
+      "upgradeTitleFree": "Vystavujte více, prodávejte více",
+      "upgradeTitlePro": "Přejít na neomezené",
+      "upgradeSubtitle": "Placené tarify navíc zvýrazní vaše inzeráty a umístí je ve vyhledávání nad bezplatné.",
+      "perMonth": "/měs.",
+      "currentPlan": "Aktuální tarif",
+      "choose": "Zvolit {{tier}}",
+      "redirecting": "Přesměrování…",
+      "enquiriesCountOne": "{{count}} dotaz kupujícího",
+      "enquiriesCountOther": "{{count}} dotazů kupujících",
+      "waitingReply": "{{count}} čeká na vaši odpověď",
+      "nothingNeeds": "Nic nevyžaduje vaši pozornost",
+      "myListings": "Moje inzeráty",
+      "nothingListed": "Zatím nic nevystaveno",
+      "nothingListedBody": "První tři inzeráty jsou zdarma. Fotky a poctivý popis prodají mnohem rychleji než jen nízká cena.",
+      "edit": "Upravit",
+      "editTitle": "Upravit tento inzerát",
+      "renew": "Obnovit",
+      "renewTitle": "Obnovit tento inzerát",
+      "deleteTitle": "Smazat tento inzerát",
+      "deleteConfirm": "Smazat tento inzerát? Tuto akci nelze vrátit zpět.",
+      "featuredTag": "zvýrazněno",
+      "errPayment": "Platbu se nepodařilo spustit.",
+      "errRenew": "Inzerát se nepodařilo obnovit.",
+      "errDelete": "Inzerát se nepodařilo smazat."
+    },
+    "tiers": {
+      "free": {
+        "label": "Zdarma",
+        "perks": [
+          "Až 3 aktivní inzeráty",
+          "Zprávy kupujícím v aplikaci"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Až 20 aktivních inzerátů",
+          "Zvýrazněné umístění",
+          "Zprávy kupujícím v aplikaci"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Neomezené inzeráty",
+          "Zvýrazněné umístění",
+          "Priorita ve vyhledávání"
+        ]
+      }
     }
   }
 }

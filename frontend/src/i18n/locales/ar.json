@@ -428,6 +428,71 @@
       "postItem": "نشر عنصر",
       "countOne": "{{count}} عنصر",
       "countOther": "{{count}} عناصر"
+    },
+    "sell": {
+      "heading": "البيع",
+      "subtitle": "إعلاناتك واستفساراتك وخطتك.",
+      "statPlan": "الخطة",
+      "statListings": "الإعلانات",
+      "statEnquiries": "الاستفسارات",
+      "until": "حتى {{date}}",
+      "unlimited": "غير محدود",
+      "limitReached": "تم بلوغ الحد",
+      "active": "نشطة",
+      "awaitingReply": "{{count}} بانتظار الرد",
+      "allAnswered": "تم الرد على الكل",
+      "planUpdatedTitle": "تم تحديث الخطة.",
+      "planUpdatedBody": "حصتك الجديدة من الإعلانات نشطة.",
+      "atLimit": "لقد استخدمت كل الإعلانات الـ{{limit}} في خطة {{tier}}. قم بالترقية أدناه أو أزل إعلانًا لنشر إعلان جديد.",
+      "upgradeTitleFree": "انشر أكثر، بِع أكثر",
+      "upgradeTitlePro": "اجعلها غير محدودة",
+      "upgradeSubtitle": "كما تميّز الخطط المدفوعة إعلاناتك وتضعها فوق الإعلانات المجانية في البحث.",
+      "perMonth": "/شهر",
+      "currentPlan": "الخطة الحالية",
+      "choose": "اختر {{tier}}",
+      "redirecting": "جارٍ التحويل…",
+      "enquiriesCountOne": "{{count}} استفسار مشترٍ",
+      "enquiriesCountOther": "{{count}} استفسارات مشترين",
+      "waitingReply": "{{count}} بانتظار ردّك",
+      "nothingNeeds": "لا شيء يتطلب انتباهك",
+      "myListings": "إعلاناتي",
+      "nothingListed": "لم يُنشر شيء بعد",
+      "nothingListedBody": "إعلاناتك الثلاثة الأولى مجانية. الصور والوصف الصادق يبيعان أسرع بكثير من مجرد سعر منخفض.",
+      "edit": "تعديل",
+      "editTitle": "تعديل هذا الإعلان",
+      "renew": "تجديد",
+      "renewTitle": "تجديد هذا الإعلان",
+      "deleteTitle": "حذف هذا الإعلان",
+      "deleteConfirm": "حذف هذا الإعلان؟ لا يمكن التراجع عن هذا.",
+      "featuredTag": "مميّز",
+      "errPayment": "تعذّر بدء هذه الدفعة.",
+      "errRenew": "تعذّر تجديد هذا الإعلان.",
+      "errDelete": "تعذّر حذف هذا الإعلان."
+    },
+    "tiers": {
+      "free": {
+        "label": "مجاني",
+        "perks": [
+          "حتى 3 إعلانات نشطة",
+          "مراسلة المشترين داخل التطبيق"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "حتى 20 إعلانًا نشطًا",
+          "ظهور مميّز",
+          "مراسلة المشترين داخل التطبيق"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "إعلانات غير محدودة",
+          "ظهور مميّز",
+          "أولوية في البحث"
+        ]
+      }
     }
   }
 }

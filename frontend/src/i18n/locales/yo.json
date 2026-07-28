@@ -428,6 +428,71 @@
       "postItem": "Fi ọjà sí",
       "countOne": "ọjà {{count}}",
       "countOther": "ọjà {{count}}"
+    },
+    "sell": {
+      "heading": "Títà",
+      "subtitle": "Àwọn ọjà rẹ, ìbéèrè àti ètò rẹ.",
+      "statPlan": "Ètò",
+      "statListings": "Àwọn ọjà",
+      "statEnquiries": "Ìbéèrè",
+      "until": "títí di {{date}}",
+      "unlimited": "àìlópin",
+      "limitReached": "ó ti dé òpin",
+      "active": "tí ń ṣiṣẹ́",
+      "awaitingReply": "{{count}} ń dúró de ìdáhùn",
+      "allAnswered": "gbogbo rẹ̀ ti dáhùn",
+      "planUpdatedTitle": "A ti ṣàtúnṣe ètò.",
+      "planUpdatedBody": "Ìwọ̀n ọjà tuntun rẹ ti ń ṣiṣẹ́.",
+      "atLimit": "O ti lo gbogbo ọjà {{limit}} nínú ètò {{tier}}. Ṣe ìgbésókè nísàlẹ̀, tàbí kí o yọ ọjà kan kúrò láti fi tuntun sí.",
+      "upgradeTitleFree": "Fi púpọ̀ sí, ta púpọ̀",
+      "upgradeTitlePro": "Sọ di àìlópin",
+      "upgradeSubtitle": "Àwọn ètò tí a ń san owó rẹ̀ tún ń gbé àwọn ọjà rẹ jáde, tí ń fi wọ́n sí orí àwọn ọjà ọ̀fẹ́ nínú ìwádìí.",
+      "perMonth": "/oṣù",
+      "currentPlan": "Ètò lọ́wọ́lọ́wọ́",
+      "choose": "Yan {{tier}}",
+      "redirecting": "Ń darí padà…",
+      "enquiriesCountOne": "ìbéèrè olùrà {{count}}",
+      "enquiriesCountOther": "ìbéèrè àwọn olùrà {{count}}",
+      "waitingReply": "{{count}} ń dúró de ìdáhùn rẹ",
+      "nothingNeeds": "Kò sí ohun tí ó nílò àfiyèsí rẹ",
+      "myListings": "Àwọn ọjà mi",
+      "nothingListed": "Kò sí ohun tí a ti kọ sílẹ̀ síbẹ̀",
+      "nothingListedBody": "Ọjà mẹ́ta àkọ́kọ́ rẹ jẹ́ ọ̀fẹ́. Àwọn àwòrán àti àpèjúwe òtítọ́ ń tà kíákíá ju owó kékeré nìkan lọ.",
+      "edit": "Ṣàtúnṣe",
+      "editTitle": "Ṣàtúnṣe ọjà yìí",
+      "renew": "Sọ ọ̀tun",
+      "renewTitle": "Sọ ọjà yìí di ọ̀tun",
+      "deleteTitle": "Pa ọjà yìí rẹ́",
+      "deleteConfirm": "Pa ọjà yìí rẹ́? A kò lè yí i padà.",
+      "featuredTag": "tí a gbé jáde",
+      "errPayment": "A kò lè bẹ̀rẹ̀ ìsanwó yẹn.",
+      "errRenew": "A kò lè sọ ọjà yẹn di ọ̀tun.",
+      "errDelete": "A kò lè pa ọjà yẹn rẹ́."
+    },
+    "tiers": {
+      "free": {
+        "label": "Ọ̀fẹ́",
+        "perks": [
+          "Títí dé ọjà 3 tí ń ṣiṣẹ́",
+          "Fi ìránṣẹ́ ránṣẹ́ sí àwọn olùrà nínú áàpù"
+        ]
+      },
+      "premium": {
+        "label": "Premium",
+        "perks": [
+          "Títí dé ọjà 20 tí ń ṣiṣẹ́",
+          "Ìgbékalẹ̀ pàtàkì",
+          "Fi ìránṣẹ́ ránṣẹ́ sí àwọn olùrà nínú áàpù"
+        ]
+      },
+      "pro": {
+        "label": "Pro",
+        "perks": [
+          "Ọjà àìlópin",
+          "Ìgbékalẹ̀ pàtàkì",
+          "Ohun àkọ́kọ́ nínú ìwádìí"
+        ]
+      }
     }
   }
 }
