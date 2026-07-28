@@ -259,14 +259,17 @@ function AddAccount({ onDone, onError }: { onDone: () => void; onError: (m?: str
 
   const banksQuery = useQuery({ queryKey: ["payouts", "banks"], queryFn: () => payoutsApi.getBanks("NGN") });
 
-  // Alphabetical, and filtered by what the user types.
+  // Filter by name, code, acronym (GTB -> Guaranty Trust Bank) and common
+  // aliases, then rank the closest matches first.
   const banks = useMemo(() => {
-    const all = [...(banksQuery.data ?? [])].sort((a, b) =>
-      String(a.name).localeCompare(String(b.name))
-    );
+    const all = [...(banksQuery.data ?? [])];
     const q = bankSearch.trim().toLowerCase();
-    if (!q) return all;
-    return all.filter((b) => String(b.name).toLowerCase().includes(q));
+    if (!q) return all.sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    return all
+      .map((b) => ({ b, score: bankScore(String(b.name), String(b.code), q) }))
+      .filter((x) => x.score >= 0)
+      .sort((a, b) => a.score - b.score || String(a.b.name).localeCompare(String(b.b.name)))
+      .map((x) => x.b);
   }, [banksQuery.data, bankSearch]);
 
   const resolve = useMutation({
@@ -468,4 +471,65 @@ function SetPin({ onDone, onError }: { onDone: () => void; onError: (m?: string)
       </button>
     </div>
   );
+}
+
+/* ------------------------------------------------------------------ */
+/* Bank search matching                                                */
+/* ------------------------------------------------------------------ */
+
+// Words we drop when building an abbreviation, so "United Bank For Africa" ->
+// "uba" and "Guaranty Trust Bank" -> "gt" (while the full acronym stays "gtb").
+const BANK_STOPWORDS = new Set([
+  "of", "for", "and", "the", "plc", "ltd", "limited", "co", "company",
+  "nigeria", "microfinance", "mfb", "bank",
+]);
+
+// Nicknames people type that aren't a substring of the official name. The value
+// is a fragment that IS in the official name.
+const BANK_ALIASES: Record<string, string> = {
+  gtb: "guaranty trust", gtbank: "guaranty trust", gtco: "guaranty trust",
+  uba: "united bank for africa",
+  fcmb: "first city monument",
+  firstbank: "first bank", fbn: "first bank",
+  ubn: "union bank",
+  stanbic: "stanbic", ibtc: "stanbic ibtc",
+  zenith: "zenith", access: "access", fidelity: "fidelity", wema: "wema",
+  sterling: "sterling", polaris: "polaris", keystone: "keystone",
+  ecobank: "ecobank", jaiz: "jaiz", providus: "providus", titan: "titan",
+  kuda: "kuda", opay: "opay", palmpay: "palmpay", moniepoint: "moniepoint",
+};
+
+function bankAcronym(words: string[]): string {
+  return words.map((w) => w[0] || "").join("");
+}
+
+/**
+ * Lower score = better match; -1 means no match.
+ *   0  strong (code / exact acronym / name starts with query)
+ *   1  substring of the name, or acronym/alias contains the query
+ */
+function bankScore(name: string, code: string, q: string): number {
+  const n = name.toLowerCase();
+  const c = code.toLowerCase();
+  const query = q.trim().toLowerCase();
+  if (!query) return 2;
+  const qz = query.replace(/[\s.]/g, "");
+
+  const words = n.split(/\s+/).filter(Boolean);
+  const acr = bankAcronym(words);
+  const acrNoStop = bankAcronym(words.filter((w) => !BANK_STOPWORDS.has(w)));
+
+  if (c === query || acr === qz || acrNoStop === qz || n.startsWith(query)) return 0;
+
+  const alias = BANK_ALIASES[qz];
+  if (
+    n.includes(query) ||
+    c.includes(query) ||
+    acr.includes(qz) ||
+    acrNoStop.includes(qz) ||
+    (alias && n.includes(alias))
+  ) {
+    return 1;
+  }
+  return -1;
 }

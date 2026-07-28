@@ -4,13 +4,14 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import FileDrop, { UploadedThumb, UploadedVideo } from "../../components/FileDrop";
+import PhoneInput from "../../components/PhoneInput";
 import { uploadsApi } from "../../services/uploads";
 import { useUserScope } from "../../auth/useUserScope";
 import {
   marketplaceApi, CONDITIONS, type ListingWrite,
 } from "../../services/marketplace";
 import { apiErrorMessage } from "../../lib/api";
-import { formatPhone, naira } from "../../lib/format";
+import { naira } from "../../lib/format";
 
 /** Enough to show an item properly without turning the page into a gallery. */
 // Photos are unlimited; videos are capped so listings stay light to load.
@@ -333,14 +334,18 @@ export default function PostListing() {
 
           <div className="grid gap-3.5 border-t border-hairline pt-3.5 sm:grid-cols-2">
             <Field label="Phone" hint={isEdit ? "Leave blank to keep your current number." : "Shared only after you accept a buyer."}>
-              <Input value={formatPhone(form.contact_phone)} inputMode="numeric"
-                     onChange={(v) => set("contact_phone", v.replace(/\D/g, "").slice(0, 11))}
-                     placeholder="0803 123 4567" />
+              <PhoneInput
+                value={form.contact_phone}
+                onChange={(v) => set("contact_phone", v)}
+                placeholder="803 123 4567"
+              />
             </Field>
-            <Field label="WhatsApp (optional)" hint="With country code, e.g. 234…">
-              <Input value={form.contact_whatsapp} inputMode="numeric"
-                     onChange={(v) => set("contact_whatsapp", v.replace(/\D/g, "").slice(0, 15))}
-                     placeholder="2348031234567" />
+            <Field label="WhatsApp (optional)" hint="Pick the country code, then enter the number.">
+              <PhoneInput
+                value={form.contact_whatsapp}
+                onChange={(v) => set("contact_whatsapp", v)}
+                placeholder="803 123 4567"
+              />
             </Field>
           </div>
 
