@@ -13,7 +13,11 @@ from __future__ import annotations
 
 from integrations.base import register, AffiliateProvider
 from integrations.base.dto import AffiliateLink
+from integrations.base.affiliate_links import sanitize_affiliate_url
 
+# Legacy short-link kept only for reference; it is a tpk.ro domain and is
+# sanitized away before it can ever reach a browser. Configure KLOOK_URL with a
+# clean canonical link (tp.media / direct) to preserve attribution.
 FALLBACK_URL = "https://klook.tpk.ro/5WurYtDG"
 
 # deep-link params Klook can receive as query (advisory pass-through)
@@ -34,6 +38,8 @@ class KlookHotels(AffiliateProvider):
         if params:
             tracking.update({k: v for k, v in params.items()
                              if k in ACCEPTED_PARAMS and v not in (None, "")})
+        # Never expose a blocked tpk.ro host to the browser.
+        url = sanitize_affiliate_url(url, self.category)
         final_url = self._append_query(url, tracking)
         return AffiliateLink(
             program="klook:hotels",

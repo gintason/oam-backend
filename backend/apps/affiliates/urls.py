@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import (
+    AffiliateRedirectView,
     GiftcardLinkView,
     GiftcardProgramsView,
     HotelLinkView,
@@ -16,4 +17,6 @@ urlpatterns = [
     path("giftcards/<str:slug>/link/", GiftcardLinkView.as_view(), name="aff-giftcard-link"),
     path("hotels/", HotelProgramsView.as_view(), name="aff-hotel-programs"),
     path("hotels/<str:slug>/link/", HotelLinkView.as_view(), name="aff-hotel-link"),
+    # Stable internal redirect (clean destinations, no tpk.ro): /go/<slug>/
+    path("go/<str:slug>/", AffiliateRedirectView.as_view(), name="aff-redirect"),
 ]

@@ -43,7 +43,16 @@ class ListingDetailSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "description", "price", "currency", "negotiable", "condition", "location", "category", "category_name", "status", "is_featured", "views_count", "seller_name", "images", "expires_at", "created_at", "updated_at", "vehicle")
 
     def get_seller_name(self, obj):
-        return getattr(obj.seller, "identifier", str(obj.seller_id))
+        """Display the seller's real name, falling back gracefully.
+
+        full name (first + last) -> email/phone identifier -> id. We never
+        expose the raw email when a proper name is available.
+        """
+        seller = obj.seller
+        full_name = (seller.get_full_name() or "").strip() if seller else ""
+        if full_name:
+            return full_name
+        return getattr(seller, "identifier", None) or str(obj.seller_id)
 
 
 class ListingWriteSerializer(serializers.ModelSerializer):

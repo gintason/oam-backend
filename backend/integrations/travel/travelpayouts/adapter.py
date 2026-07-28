@@ -19,6 +19,7 @@ from __future__ import annotations
 
 from integrations.base import register, AffiliateProvider
 from integrations.base.dto import AffiliateLink
+from integrations.base.affiliate_links import sanitize_affiliate_url
 
 # Fallback affiliate links per program (overridden by PROVIDER_CONFIG url).
 PROGRAM_LINKS = {
@@ -57,6 +58,8 @@ class _TravelpayoutsBase(AffiliateProvider):
         if params:
             tracking.update({k: v for k, v in params.items()
                              if k in allowed and v not in (None, "")})
+        # Never expose a blocked tpk.ro host to the browser.
+        url = sanitize_affiliate_url(url, program)
         final_url = self._append_query(url, tracking)
         return AffiliateLink(
             program=f"travelpayouts:{program}",
