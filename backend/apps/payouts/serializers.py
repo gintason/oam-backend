@@ -27,6 +27,7 @@ class WithdrawSerializer(serializers.Serializer):
     bank_account_id = serializers.CharField()
     amount = serializers.DecimalField(max_digits=20, decimal_places=4)
     currency = serializers.CharField(max_length=3, default="NGN")
+    pin = serializers.CharField(max_length=6, write_only=True)
 
     def validate_amount(self, value):
         if value <= 0:

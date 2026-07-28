@@ -29,10 +29,23 @@ class PaystackPayouts(BaseProviderClient):
                 "Authorization": f"Bearer {self.config.get('secret_key', '')}"}
 
     def list_banks(self, currency="NGN"):
-        body = self.get(f"/bank?currency={currency}")
-        return [{"name": b.get("name"), "code": b.get("code"),
+        # Paystack paginates /bank; page through until exhausted so users can
+        # search the COMPLETE list (Nigeria has 100s of banks + fintechs).
+        banks, page, per_page = [], 1, 100
+        for _ in range(50):  # hard cap: 5,000 banks — far beyond reality
+            body = self.get(
+                f"/bank?currency={currency}&perPage={per_page}&page={page}")
+            data = body.get("data") or []
+            if not data:
+                break
+            banks.extend(
+                {"name": b.get("name"), "code": b.get("code"),
                  "currency": b.get("currency", currency)}
-                for b in (body.get("data") or [])]
+                for b in data)
+            if len(data) < per_page:
+                break
+            page += 1
+        return banks
 
     def resolve_account(self, *, account_number, bank_code, currency="NGN"):
         body = self.get(f"/bank/resolve?account_number={account_number}&bank_code={bank_code}")

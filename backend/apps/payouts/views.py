@@ -1,12 +1,18 @@
-"""Admin-only withdrawals to bank (Paystack Transfers)."""
+"""User-facing withdrawals to bank (Paystack Transfers).
+
+Same service, models and status flow as the admin module — these endpoints just
+scope every query to request.user and require a verified account plus a
+transaction PIN to authorize money leaving the wallet.
+"""
 import json
 
 from rest_framework import status
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.common.permissions import IsVerified
 from apps.wallet.exceptions import InsufficientFunds
 from integrations.base import ProviderFactory
 
@@ -22,8 +28,8 @@ from .services import WithdrawalError, WithdrawalService
 
 
 class BankListView(APIView):
-    """GET /banks-list/?currency=NGN — banks supported by the provider."""
-    permission_classes = [IsAdminUser]
+    """GET /banks-list/?currency=NGN — every bank the provider supports."""
+    permission_classes = [IsAuthenticated, IsVerified]
 
     def get(self, request):
         currency = request.query_params.get("currency", "NGN")
@@ -32,7 +38,7 @@ class BankListView(APIView):
 
 class ResolveAccountView(APIView):
     """POST /resolve-account/ {bank_code, account_number} — preview account name."""
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated, IsVerified]
 
     def post(self, request):
         s = ResolveAccountSerializer(data=request.data)
@@ -46,7 +52,7 @@ class ResolveAccountView(APIView):
 
 class BankAccountsView(ListAPIView):
     """GET /banks/ (list saved) ; POST /banks/ (resolve + save a payout account)."""
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated, IsVerified]
     serializer_class = BankAccountSerializer
 
     def get_queryset(self):
@@ -63,13 +69,25 @@ class BankAccountsView(ListAPIView):
 
 
 class WithdrawView(APIView):
-    """POST /withdrawals/ {bank_account_id, amount} — send money to a saved bank."""
-    permission_classes = [IsAdminUser]
+    """POST /withdrawals/ {bank_account_id, amount, pin} — send money to a saved bank."""
+    permission_classes = [IsAuthenticated, IsVerified]
 
     def post(self, request):
         s = WithdrawSerializer(data=request.data)
         s.is_valid(raise_exception=True)
         data = s.validated_data
+
+        # Transaction PIN authorizes money leaving the wallet.
+        if not request.user.has_transaction_pin:
+            return Response(
+                {"detail": "Set a transaction PIN before withdrawing.",
+                 "reason": "pin_not_set"},
+                status=status.HTTP_403_FORBIDDEN)
+        if not request.user.check_transaction_pin(data.get("pin", "")):
+            return Response(
+                {"detail": "Incorrect transaction PIN.", "reason": "invalid_pin"},
+                status=status.HTTP_400_BAD_REQUEST)
+
         account = BankAccount.objects.filter(
             id=data["bank_account_id"], user=request.user, is_active=True).first()
         if account is None:
@@ -90,7 +108,7 @@ class WithdrawView(APIView):
 
 
 class WithdrawalListView(ListAPIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated, IsVerified]
     serializer_class = WithdrawalOrderSerializer
 
     def get_queryset(self):

@@ -71,6 +71,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    # Hashed transaction PIN (Django password hashers). Empty = not yet set.
+    # Used to authorize money-out actions (bank withdrawals/transfers).
+    transaction_pin = models.CharField(max_length=128, blank=True, default="")
+
     date_joined = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -102,6 +106,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def identifier(self):
         return self.email or self.phone
+
+    # ---- transaction PIN -------------------------------------------------
+    @property
+    def has_transaction_pin(self) -> bool:
+        return bool(self.transaction_pin)
+
+    def set_transaction_pin(self, raw_pin: str):
+        """Hash and store a transaction PIN (does not save)."""
+        from django.contrib.auth.hashers import make_password
+        self.transaction_pin = make_password(str(raw_pin))
+
+    def check_transaction_pin(self, raw_pin: str) -> bool:
+        """Verify a raw PIN against the stored hash."""
+        from django.contrib.auth.hashers import check_password
+        if not self.transaction_pin:
+            return False
+        return check_password(str(raw_pin), self.transaction_pin)
 
 
 class OTPCode(models.Model):

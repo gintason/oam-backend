@@ -2,10 +2,12 @@ from django.urls import path
 
 from .views import DefaultCurrencyView, WalletListView, WalletTransactionsView
 from .transfer import ResolveRecipientView, SendTransferView, TransferHistoryView
+from .pin import TransactionPinView
 
 urlpatterns = [
     path("", WalletListView.as_view(), name="wallet-list"),
     path("default-currency/", DefaultCurrencyView.as_view(), name="wallet-default-currency"),
+    path("pin/", TransactionPinView.as_view(), name="wallet-pin"),
     path("transfer/resolve/", ResolveRecipientView.as_view(), name="wallet-transfer-resolve"),
     path("transfer/", SendTransferView.as_view(), name="wallet-transfer"),
     path("transfers/", TransferHistoryView.as_view(), name="wallet-transfers"),
