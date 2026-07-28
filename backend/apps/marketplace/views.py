@@ -6,13 +6,13 @@ from rest_framework import status
 from rest_framework.generics import ListAPIView
 import json
 
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.common.permissions import IsVerified
 
-from .models import Category, Listing, ListingImage, LISTING_TTL_DAYS
+from .models import Category, Listing, ListingImage, ListingVideo, LISTING_TTL_DAYS
 from .serializers import (
     CategorySerializer,
     ListingDetailSerializer,
@@ -58,10 +58,13 @@ class ListingCreateView(APIView):
         except MarketplaceError as exc:
             return Response({"detail": str(exc)}, status=status.HTTP_403_FORBIDDEN)
         images = data.pop("images", [])
+        videos = data.pop("videos", [])
         featured = MarketplaceService.should_feature(request.user)
         listing = Listing.objects.create(seller=request.user, is_featured=featured, **data)
         for i, url in enumerate(images):
             ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
+        for url in videos:
+            ListingVideo.objects.create(listing=listing, url=url)
         return Response(ListingDetailSerializer(listing).data, status=status.HTTP_201_CREATED)
 
 
@@ -85,6 +88,27 @@ class ListingDetailView(APIView):
         s = ListingWriteSerializer(listing, data=request.data, partial=True)
         s.is_valid(raise_exception=True)
         s.save()
+
+        # Media (write-only ListFields aren't model fields, so ModelSerializer
+        # ignores them on update) — replace only when the key was sent.
+        if "images" in request.data:
+            listing.images.all().delete()
+            for i, url in enumerate(s.validated_data.get("images", [])):
+                ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
+        if "videos" in request.data:
+            listing.videos.all().delete()
+            for url in s.validated_data.get("videos", []):
+                ListingVideo.objects.create(listing=listing, url=url)
+
+        # An edit changes what buyers see, so any prior admin verification no
+        # longer applies — reset the badge until it's reviewed again.
+        if listing.is_verified:
+            listing.is_verified = False
+            listing.verified_at = None
+            listing.verified_by = None
+            listing.save(update_fields=["is_verified", "verified_at", "verified_by", "updated_at"])
+
+        listing.refresh_from_db()
         return Response(ListingDetailSerializer(listing).data)
 
     def delete(self, request, listing_id):
@@ -105,6 +129,32 @@ class ListingRenewView(APIView):
         listing.expires_at = timezone.now() + timedelta(days=LISTING_TTL_DAYS)
         listing.status = Listing.Status.ACTIVE
         listing.save(update_fields=["expires_at", "status", "updated_at"])
+        return Response(ListingDetailSerializer(listing).data)
+
+
+class ListingVerifyView(APIView):
+    """Admin-only: attach or remove the 'verified' badge on a listing.
+
+    POST /listings/<id>/verify/        -> verify
+    POST /listings/<id>/verify/ {"verified": false} -> un-verify
+    Listings stay live regardless; this only controls the trust badge.
+    """
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    def post(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        verify = request.data.get("verified", True)
+        if verify in (False, "false", "False", 0, "0"):
+            listing.is_verified = False
+            listing.verified_at = None
+            listing.verified_by = None
+        else:
+            listing.is_verified = True
+            listing.verified_at = timezone.now()
+            listing.verified_by = request.user
+        listing.save(update_fields=["is_verified", "verified_at", "verified_by", "updated_at"])
         return Response(ListingDetailSerializer(listing).data)
 
 

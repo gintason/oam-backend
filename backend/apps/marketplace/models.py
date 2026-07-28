@@ -76,6 +76,17 @@ class Listing(TimeStampedModel):
 
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.ACTIVE)
     is_featured = models.BooleanField(default=False)
+
+    # Trust/verification: listings go live immediately (status stays ACTIVE),
+    # but an admin can verify a listing, which attaches a "verified" badge. Any
+    # owner edit resets this so the badge always reflects reviewed content.
+    is_verified = models.BooleanField(default=False)
+    verified_at = models.DateTimeField(null=True, blank=True)
+    verified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name="+",
+    )
+
     views_count = models.PositiveIntegerField(default=0)
     expires_at = models.DateTimeField(db_index=True)
 
@@ -111,6 +122,17 @@ class ListingImage(TimeStampedModel):
 
     class Meta:
         ordering = ["-is_primary", "created_at"]
+
+
+class ListingVideo(TimeStampedModel):
+    """A short video clip attached to a listing (Cloudinary URL)."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="videos")
+    url = models.URLField(max_length=500)
+    thumbnail_url = models.URLField(max_length=500, blank=True)  # optional poster frame
+
+    class Meta:
+        ordering = ["created_at"]
 
 
 class SellerSubscription(TimeStampedModel):

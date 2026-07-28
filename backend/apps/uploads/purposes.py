@@ -89,6 +89,17 @@ PURPOSES: dict[str, Purpose] = {
         min_width=300,
         min_height=300,
     ),
+    "listing_video": Purpose(
+        key="listing_video",
+        folder="oam/listings/video",
+        resource_type="video",
+        delivery_type="upload",
+        max_bytes=100 * MB,
+        allowed_formats=["mp4", "mov", "webm", "m4v", "3gp"],
+        label="Item video",
+        hint="A short clip of the item — up to 2 minutes.",
+        max_duration=120,
+    ),
     # Admin-only, for the official O.A.M Motors inventory.
     "oam_motors_image": Purpose(
         key="oam_motors_image",

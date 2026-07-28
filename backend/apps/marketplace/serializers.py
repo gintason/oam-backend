@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, Listing, ListingImage, SellerSubscription
+from .models import Category, Listing, ListingImage, ListingVideo, SellerSubscription
 from .motors import VehicleSerializer
 
 
@@ -16,6 +16,12 @@ class ListingImageSerializer(serializers.ModelSerializer):
         fields = ("id", "url", "is_primary")
 
 
+class ListingVideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListingVideo
+        fields = ("id", "url", "thumbnail_url")
+
+
 class ListingListSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source="category.name", read_only=True)
     primary_image = serializers.SerializerMethodField()
@@ -23,7 +29,8 @@ class ListingListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
         fields = ("id", "title", "price", "currency", "negotiable", "condition",
-                  "location", "category_name", "is_featured", "primary_image", "created_at")
+                  "location", "category_name", "is_featured", "is_verified",
+                  "primary_image", "created_at")
 
     def get_primary_image(self, obj):
         img = next((i for i in obj.images.all() if i.is_primary), None) or \
@@ -36,11 +43,12 @@ class ListingDetailSerializer(serializers.ModelSerializer):
     vehicle = VehicleSerializer(read_only=True)
     category_name = serializers.CharField(source="category.name", read_only=True)
     images = ListingImageSerializer(many=True, read_only=True)
+    videos = ListingVideoSerializer(many=True, read_only=True)
     seller_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Listing
-        fields = ("id", "title", "description", "price", "currency", "negotiable", "condition", "location", "category", "category_name", "status", "is_featured", "views_count", "seller_name", "images", "expires_at", "created_at", "updated_at", "vehicle")
+        fields = ("id", "title", "description", "price", "currency", "negotiable", "condition", "location", "category", "category_name", "status", "is_featured", "is_verified", "verified_at", "views_count", "seller_name", "images", "videos", "expires_at", "created_at", "updated_at", "vehicle")
 
     def get_seller_name(self, obj):
         """Display the seller's real name, falling back gracefully.
@@ -58,12 +66,14 @@ class ListingDetailSerializer(serializers.ModelSerializer):
 class ListingWriteSerializer(serializers.ModelSerializer):
     images = serializers.ListField(
         child=serializers.URLField(), required=False, allow_empty=True, write_only=True)
+    videos = serializers.ListField(
+        child=serializers.URLField(), required=False, allow_empty=True, write_only=True)
 
     class Meta:
         model = Listing
         fields = ("id", "category", "title", "description", "price", "currency",
                   "negotiable", "condition", "location", "contact_phone",
-                  "contact_whatsapp", "images")
+                  "contact_whatsapp", "images", "videos")
 
     def validate_price(self, v):
         if v < 0:
