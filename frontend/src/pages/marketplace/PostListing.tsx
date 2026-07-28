@@ -13,7 +13,8 @@ import { apiErrorMessage } from "../../lib/api";
 import { formatPhone, naira } from "../../lib/format";
 
 /** Enough to show an item properly without turning the page into a gallery. */
-const MAX_IMAGES = 6;
+// Photos are unlimited; videos are capped so listings stay light to load.
+const MAX_IMAGES = Infinity;
 const MAX_VIDEOS = 2;
 
 const EMPTY: ListingWrite = {
