@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "ไม่สามารถยืนยันหมายเลขสมาร์ทการ์ดนี้ได้",
     "successTitle": "สมัครสมาชิกสำเร็จ!",
     "successMessage": "{{plan}} บน {{recipient}}"
+  },
+  "marketplace": {
+    "navDashboard": "แดชบอร์ด",
+    "navMarketplace": "ตลาด",
+    "postItem": "ลงประกาศสินค้า",
+    "featured": "แนะนำ",
+    "verified": "ยืนยันแล้ว",
+    "negotiable": "ต่อรองได้",
+    "conditions": {
+      "new": "ใหม่",
+      "used": "มือสอง",
+      "refurbished": "ปรับสภาพใหม่"
+    },
+    "hub": {
+      "title": "ตลาด",
+      "subtitle": "ซื้อและขายภายในชุมชน OAM — พร้อมข้อความในตัว เบอร์ของคุณจึงยังเป็นของคุณจนกว่าคุณจะเลือกเป็นอย่างอื่น",
+      "browseTitle": "เรียกดูสินค้า",
+      "browseDesc": "โทรศัพท์ เฟอร์นิเจอร์ รถยนต์ อุปกรณ์อิเล็กทรอนิกส์ และอื่น ๆ จากผู้ขายทั่วไนจีเรีย",
+      "browseAction": "เริ่มเรียกดู",
+      "sellTitleNew": "ขายอะไรสักอย่าง",
+      "sellTitleMine": "ประกาศของฉัน",
+      "sellDescNew": "ลงประกาศสินค้าได้ในไม่กี่นาที สามรายการฟรี — ไม่ต้องใช้บัตรเพื่อเริ่ม",
+      "sellDescMineOne": "คุณมี {{count}} ประกาศ จัดการหรือลงประกาศเพิ่ม",
+      "sellDescMineOther": "คุณมี {{count}} ประกาศ จัดการหรือลงประกาศเพิ่ม",
+      "sellActionNew": "ลงประกาศสินค้า",
+      "sellActionMine": "จัดการประกาศ",
+      "motorsTitle": "คลังสินค้า O.A.M Motors",
+      "motorsDesc": "เฉพาะเจ้าหน้าที่ — ลงและจัดการยานพาหนะที่ขาย",
+      "privacyTitle": "เบอร์ของคุณยังคงเป็นส่วนตัว",
+      "privacyBody": "แชทในแอป; ข้อมูลติดต่อจะถูกแลกเปลี่ยนเมื่อผู้ขายตกลงขาย",
+      "freeTitle": "เริ่มต้นฟรี",
+      "freeBody": "ประกาศที่ใช้งานสามรายการฟรี Premium และ Pro เพิ่มได้มากขึ้น พร้อมการแสดงแบบแนะนำ"
+    },
+    "browse": {
+      "title": "เรียกดูสินค้า",
+      "subtitle": "จากผู้ขายทั่วไนจีเรีย",
+      "searchPlaceholder": "คุณกำลังมองหาอะไร?",
+      "filters": "ตัวกรอง",
+      "condition": "สภาพ",
+      "anyCondition": "สภาพใดก็ได้",
+      "location": "สถานที่",
+      "locationPlaceholder": "เช่น อาบูจา",
+      "priceRange": "ช่วงราคา (₦)",
+      "min": "ต่ำสุด",
+      "max": "สูงสุด",
+      "clearFilters": "ล้างตัวกรองทั้งหมด",
+      "all": "ทั้งหมด",
+      "categoriesAria": "หมวดหมู่ตลาด",
+      "emptyTitle": "ไม่มีสิ่งใดตรงกัน",
+      "emptyFiltered": "ลองขยายตัวกรองของคุณ",
+      "emptyDefault": "ตลาดเพิ่งเริ่มต้น — เป็นหนึ่งในคนแรก ๆ ที่ลงประกาศ",
+      "postItem": "ลงประกาศสินค้า",
+      "countOne": "{{count}} รายการ",
+      "countOther": "{{count}} รายการ"
+    }
   }
 }

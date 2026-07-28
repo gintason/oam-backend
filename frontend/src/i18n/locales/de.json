@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Diese Smartcard-Nummer konnte nicht verifiziert werden.",
     "successTitle": "Abonnement erfolgreich!",
     "successMessage": "{{plan}} auf {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Dashboard",
+    "navMarketplace": "Marktplatz",
+    "postItem": "Artikel einstellen",
+    "featured": "Hervorgehoben",
+    "verified": "Verifiziert",
+    "negotiable": "verhandelbar",
+    "conditions": {
+      "new": "Neu",
+      "used": "Gebraucht",
+      "refurbished": "Generalüberholt"
+    },
+    "hub": {
+      "title": "Marktplatz",
+      "subtitle": "Kaufen und verkaufen Sie in der OAM-Community — mit integriertem Messaging, sodass Ihre Nummer Ihre bleibt, bis Sie sich anders entscheiden.",
+      "browseTitle": "Artikel durchsuchen",
+      "browseDesc": "Handys, Möbel, Autos, Elektronik und mehr von Verkäufern in ganz Nigeria.",
+      "browseAction": "Jetzt stöbern",
+      "sellTitleNew": "Etwas verkaufen",
+      "sellTitleMine": "Meine Anzeigen",
+      "sellDescNew": "Stellen Sie einen Artikel in Minuten ein. Drei Anzeigen kostenlos — keine Karte zum Starten nötig.",
+      "sellDescMineOne": "Sie haben {{count}} Anzeige. Verwalten Sie sie oder stellen Sie eine weitere ein.",
+      "sellDescMineOther": "Sie haben {{count}} Anzeigen. Verwalten Sie sie oder stellen Sie eine weitere ein.",
+      "sellActionNew": "Artikel einstellen",
+      "sellActionMine": "Anzeigen verwalten",
+      "motorsTitle": "O.A.M Motors Bestand",
+      "motorsDesc": "Nur für Mitarbeiter — Fahrzeuge zum Verkauf einstellen und verwalten.",
+      "privacyTitle": "Ihre Nummer bleibt privat.",
+      "privacyBody": "Chatten Sie in der App; Kontakte werden ausgetauscht, wenn der Verkäufer dem Verkauf zustimmt.",
+      "freeTitle": "Kostenlos starten.",
+      "freeBody": "Drei aktive Anzeigen kostenlos. Premium und Pro bieten mehr, plus hervorgehobene Platzierung."
+    },
+    "browse": {
+      "title": "Artikel durchsuchen",
+      "subtitle": "Von Verkäufern in ganz Nigeria.",
+      "searchPlaceholder": "Wonach suchen Sie?",
+      "filters": "Filter",
+      "condition": "Zustand",
+      "anyCondition": "Jeder Zustand",
+      "location": "Ort",
+      "locationPlaceholder": "z. B. Abuja",
+      "priceRange": "Preisspanne (₦)",
+      "min": "Min",
+      "max": "Max",
+      "clearFilters": "Alle Filter löschen",
+      "all": "Alle",
+      "categoriesAria": "Marktplatz-Kategorien",
+      "emptyTitle": "Nichts passt dazu",
+      "emptyFiltered": "Erweitern Sie Ihre Filter.",
+      "emptyDefault": "Der Marktplatz fängt gerade erst an — seien Sie einer der Ersten, die etwas einstellen.",
+      "postItem": "Artikel einstellen",
+      "countOne": "{{count}} Artikel",
+      "countOther": "{{count}} Artikel"
+    }
   }
 }

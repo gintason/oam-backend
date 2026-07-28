@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Nie udało się zweryfikować tego numeru smartcard.",
     "successTitle": "Subskrypcja zakończona sukcesem!",
     "successMessage": "{{plan}} na {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Panel",
+    "navMarketplace": "Marketplace",
+    "postItem": "Wystaw przedmiot",
+    "featured": "Wyróżnione",
+    "verified": "Zweryfikowane",
+    "negotiable": "do negocjacji",
+    "conditions": {
+      "new": "Nowy",
+      "used": "Używany",
+      "refurbished": "Odnowiony"
+    },
+    "hub": {
+      "title": "Marketplace",
+      "subtitle": "Kupuj i sprzedawaj w społeczności OAM — z wbudowanymi wiadomościami, aby Twój numer pozostał Twój, dopóki nie zdecydujesz inaczej.",
+      "browseTitle": "Przeglądaj przedmioty",
+      "browseDesc": "Telefony, meble, samochody, elektronika i więcej od sprzedawców z całej Nigerii.",
+      "browseAction": "Zacznij przeglądać",
+      "sellTitleNew": "Sprzedaj coś",
+      "sellTitleMine": "Moje ogłoszenia",
+      "sellDescNew": "Wystaw przedmiot w kilka minut. Trzy ogłoszenia za darmo — bez karty na start.",
+      "sellDescMineOne": "Masz {{count}} ogłoszenie. Zarządzaj nim lub wystaw kolejne.",
+      "sellDescMineOther": "Masz {{count}} ogłoszeń. Zarządzaj nimi lub wystaw kolejne.",
+      "sellActionNew": "Wystaw przedmiot",
+      "sellActionMine": "Zarządzaj ogłoszeniami",
+      "motorsTitle": "Inwentarz O.A.M Motors",
+      "motorsDesc": "Tylko personel — wystawiaj i zarządzaj pojazdami na sprzedaż.",
+      "privacyTitle": "Twój numer pozostaje prywatny.",
+      "privacyBody": "Rozmawiaj w aplikacji; kontakty są wymieniane, gdy sprzedawca zgadza się na sprzedaż.",
+      "freeTitle": "Zacznij za darmo.",
+      "freeBody": "Trzy aktywne ogłoszenia bez opłat. Premium i Pro dodają więcej oraz wyróżnienie."
+    },
+    "browse": {
+      "title": "Przeglądaj przedmioty",
+      "subtitle": "Od sprzedawców z całej Nigerii.",
+      "searchPlaceholder": "Czego szukasz?",
+      "filters": "Filtry",
+      "condition": "Stan",
+      "anyCondition": "Dowolny stan",
+      "location": "Lokalizacja",
+      "locationPlaceholder": "np. Abuja",
+      "priceRange": "Zakres cen (₦)",
+      "min": "Min",
+      "max": "Maks",
+      "clearFilters": "Wyczyść wszystkie filtry",
+      "all": "Wszystkie",
+      "categoriesAria": "Kategorie marketplace",
+      "emptyTitle": "Nic nie pasuje",
+      "emptyFiltered": "Spróbuj poszerzyć filtry.",
+      "emptyDefault": "Marketplace dopiero się zaczyna — bądź jednym z pierwszych, którzy coś wystawią.",
+      "postItem": "Wystaw przedmiot",
+      "countOne": "{{count}} przedmiot",
+      "countOther": "{{count}} przedmiotów"
+    }
   }
 }

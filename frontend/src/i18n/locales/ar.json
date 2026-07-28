@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "تعذّر التحقق من رقم البطاقة الذكية هذا.",
     "successTitle": "تم الاشتراك بنجاح!",
     "successMessage": "{{plan}} على {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "لوحة التحكم",
+    "navMarketplace": "السوق",
+    "postItem": "نشر عنصر",
+    "featured": "مميّز",
+    "verified": "موثّق",
+    "negotiable": "قابل للتفاوض",
+    "conditions": {
+      "new": "جديد",
+      "used": "مستعمل",
+      "refurbished": "مُجدَّد"
+    },
+    "hub": {
+      "title": "السوق",
+      "subtitle": "اشترِ وبِع داخل مجتمع OAM — مع المراسلة المدمجة، ليبقى رقمك ملكك حتى تقرر خلاف ذلك.",
+      "browseTitle": "تصفّح العناصر",
+      "browseDesc": "هواتف وأثاث وسيارات وإلكترونيات والمزيد من بائعين في جميع أنحاء نيجيريا.",
+      "browseAction": "ابدأ التصفّح",
+      "sellTitleNew": "بِع شيئًا",
+      "sellTitleMine": "إعلاناتي",
+      "sellDescNew": "انشر عنصرًا في دقائق. ثلاثة إعلانات مجانية — دون بطاقة للبدء.",
+      "sellDescMineOne": "لديك {{count}} إعلان. أدِرها أو انشر إعلانًا آخر.",
+      "sellDescMineOther": "لديك {{count}} إعلانات. أدِرها أو انشر إعلانًا آخر.",
+      "sellActionNew": "نشر عنصر",
+      "sellActionMine": "إدارة الإعلانات",
+      "motorsTitle": "مخزون O.A.M Motors",
+      "motorsDesc": "للموظفين فقط — أدرج وأدِر المركبات المعروضة للبيع.",
+      "privacyTitle": "يبقى رقمك خاصًا.",
+      "privacyBody": "تحدّث داخل التطبيق؛ تُتبادَل جهات الاتصال عندما يوافق البائع على البيع.",
+      "freeTitle": "مجاني للبدء.",
+      "freeBody": "ثلاثة إعلانات نشطة بدون تكلفة. تضيف Premium وPro المزيد، بالإضافة إلى الظهور المميّز."
+    },
+    "browse": {
+      "title": "تصفّح العناصر",
+      "subtitle": "من بائعين في جميع أنحاء نيجيريا.",
+      "searchPlaceholder": "عمّاذا تبحث؟",
+      "filters": "عوامل التصفية",
+      "condition": "الحالة",
+      "anyCondition": "أي حالة",
+      "location": "الموقع",
+      "locationPlaceholder": "مثل أبوجا",
+      "priceRange": "نطاق السعر (₦)",
+      "min": "الأدنى",
+      "max": "الأقصى",
+      "clearFilters": "مسح كل عوامل التصفية",
+      "all": "الكل",
+      "categoriesAria": "فئات السوق",
+      "emptyTitle": "لا شيء يطابق ذلك",
+      "emptyFiltered": "حاول توسيع عوامل التصفية.",
+      "emptyDefault": "السوق في بدايته — كن من أوائل من ينشرون شيئًا.",
+      "postItem": "نشر عنصر",
+      "countOne": "{{count}} عنصر",
+      "countOther": "{{count}} عناصر"
+    }
   }
 }

@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Couldn't verify that smartcard number.",
     "successTitle": "Subscription successful!",
     "successMessage": "{{plan}} on {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Dashboard",
+    "navMarketplace": "Marketplace",
+    "postItem": "Post an item",
+    "featured": "Featured",
+    "verified": "Verified",
+    "negotiable": "negotiable",
+    "conditions": {
+      "new": "Brand new",
+      "used": "Used",
+      "refurbished": "Refurbished"
+    },
+    "hub": {
+      "title": "Marketplace",
+      "subtitle": "Buy and sell within the OAM community — with messaging built in, so your phone number stays yours until you choose otherwise.",
+      "browseTitle": "Browse items",
+      "browseDesc": "Phones, furniture, cars, electronics and more from sellers across Nigeria.",
+      "browseAction": "Start browsing",
+      "sellTitleNew": "Sell something",
+      "sellTitleMine": "My listings",
+      "sellDescNew": "Post an item in minutes. Three listings free — no card needed to start.",
+      "sellDescMineOne": "You have {{count}} listing. Manage them, or post another.",
+      "sellDescMineOther": "You have {{count}} listings. Manage them, or post another.",
+      "sellActionNew": "Post an item",
+      "sellActionMine": "Manage listings",
+      "motorsTitle": "O.A.M Motors inventory",
+      "motorsDesc": "Staff only — list and manage vehicles for sale.",
+      "privacyTitle": "Your number stays private.",
+      "privacyBody": "Chat in the app; contacts are exchanged when the seller agrees to the sale.",
+      "freeTitle": "Free to start.",
+      "freeBody": "Three active listings at no cost. Premium and Pro add more, plus featured placement."
+    },
+    "browse": {
+      "title": "Browse items",
+      "subtitle": "From sellers across Nigeria.",
+      "searchPlaceholder": "What are you looking for?",
+      "filters": "Filters",
+      "condition": "Condition",
+      "anyCondition": "Any condition",
+      "location": "Location",
+      "locationPlaceholder": "e.g. Abuja",
+      "priceRange": "Price range (₦)",
+      "min": "Min",
+      "max": "Max",
+      "clearFilters": "Clear all filters",
+      "all": "All",
+      "categoriesAria": "Marketplace categories",
+      "emptyTitle": "Nothing matches that",
+      "emptyFiltered": "Try widening your filters.",
+      "emptyDefault": "The marketplace is just getting started — be one of the first to list something.",
+      "postItem": "Post an item",
+      "countOne": "{{count}} item",
+      "countOther": "{{count}} items"
+    }
   }
 }

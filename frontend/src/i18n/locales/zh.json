@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "无法验证该智能卡号。",
     "successTitle": "订阅成功！",
     "successMessage": "{{plan}} 在 {{recipient}}。"
+  },
+  "marketplace": {
+    "navDashboard": "仪表板",
+    "navMarketplace": "市场",
+    "postItem": "发布物品",
+    "featured": "精选",
+    "verified": "已验证",
+    "negotiable": "可议价",
+    "conditions": {
+      "new": "全新",
+      "used": "二手",
+      "refurbished": "翻新"
+    },
+    "hub": {
+      "title": "市场",
+      "subtitle": "在 OAM 社区内买卖——内置消息功能，让您的号码始终属于您，除非您另作选择。",
+      "browseTitle": "浏览物品",
+      "browseDesc": "来自尼日利亚各地卖家的手机、家具、汽车、电子产品等。",
+      "browseAction": "开始浏览",
+      "sellTitleNew": "出售物品",
+      "sellTitleMine": "我的商品",
+      "sellDescNew": "几分钟内发布物品。三条免费——无需银行卡即可开始。",
+      "sellDescMineOne": "您有 {{count}} 条商品。管理它们，或再发布一条。",
+      "sellDescMineOther": "您有 {{count}} 条商品。管理它们，或再发布一条。",
+      "sellActionNew": "发布物品",
+      "sellActionMine": "管理商品",
+      "motorsTitle": "O.A.M Motors 库存",
+      "motorsDesc": "仅限员工——列出并管理待售车辆。",
+      "privacyTitle": "您的号码保持私密。",
+      "privacyBody": "在应用内聊天；卖家同意交易后才交换联系方式。",
+      "freeTitle": "免费开始。",
+      "freeBody": "三条有效商品免费。Premium 和 Pro 提供更多，以及精选展示。"
+    },
+    "browse": {
+      "title": "浏览物品",
+      "subtitle": "来自尼日利亚各地的卖家。",
+      "searchPlaceholder": "您在找什么？",
+      "filters": "筛选",
+      "condition": "成色",
+      "anyCondition": "任何成色",
+      "location": "位置",
+      "locationPlaceholder": "例如阿布贾",
+      "priceRange": "价格范围 (₦)",
+      "min": "最低",
+      "max": "最高",
+      "clearFilters": "清除所有筛选",
+      "all": "全部",
+      "categoriesAria": "市场分类",
+      "emptyTitle": "没有匹配的结果",
+      "emptyFiltered": "尝试放宽筛选条件。",
+      "emptyDefault": "市场刚刚起步——成为最早发布商品的人之一。",
+      "postItem": "发布物品",
+      "countOne": "{{count}} 件",
+      "countOther": "{{count}} 件"
+    }
   }
 }

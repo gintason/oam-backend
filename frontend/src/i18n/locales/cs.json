@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Toto číslo smartkarty se nepodařilo ověřit.",
     "successTitle": "Předplatné bylo úspěšné!",
     "successMessage": "{{plan}} na {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Přehled",
+    "navMarketplace": "Tržiště",
+    "postItem": "Přidat inzerát",
+    "featured": "Doporučené",
+    "verified": "Ověřeno",
+    "negotiable": "dohodou",
+    "conditions": {
+      "new": "Nové",
+      "used": "Použité",
+      "refurbished": "Repasované"
+    },
+    "hub": {
+      "title": "Tržiště",
+      "subtitle": "Nakupujte a prodávejte v komunitě OAM — s vestavěnými zprávami, takže vaše číslo zůstane vaše, dokud se nerozhodnete jinak.",
+      "browseTitle": "Procházet položky",
+      "browseDesc": "Telefony, nábytek, auta, elektronika a další od prodejců z celé Nigérie.",
+      "browseAction": "Začít procházet",
+      "sellTitleNew": "Něco prodat",
+      "sellTitleMine": "Moje inzeráty",
+      "sellDescNew": "Přidejte položku během pár minut. Tři inzeráty zdarma — bez karty na začátek.",
+      "sellDescMineOne": "Máte {{count}} inzerát. Spravujte je nebo přidejte další.",
+      "sellDescMineOther": "Máte {{count}} inzerátů. Spravujte je nebo přidejte další.",
+      "sellActionNew": "Přidat inzerát",
+      "sellActionMine": "Spravovat inzeráty",
+      "motorsTitle": "Inventář O.A.M Motors",
+      "motorsDesc": "Pouze personál — přidávejte a spravujte vozidla na prodej.",
+      "privacyTitle": "Vaše číslo zůstává soukromé.",
+      "privacyBody": "Chatujte v aplikaci; kontakty se vymění, když prodejce souhlasí s prodejem.",
+      "freeTitle": "Začněte zdarma.",
+      "freeBody": "Tři aktivní inzeráty zdarma. Premium a Pro přidají více a přednostní umístění."
+    },
+    "browse": {
+      "title": "Procházet položky",
+      "subtitle": "Od prodejců z celé Nigérie.",
+      "searchPlaceholder": "Co hledáte?",
+      "filters": "Filtry",
+      "condition": "Stav",
+      "anyCondition": "Jakýkoli stav",
+      "location": "Místo",
+      "locationPlaceholder": "např. Abuja",
+      "priceRange": "Cenové rozpětí (₦)",
+      "min": "Min",
+      "max": "Max",
+      "clearFilters": "Vymazat všechny filtry",
+      "all": "Vše",
+      "categoriesAria": "Kategorie tržiště",
+      "emptyTitle": "Nic neodpovídá",
+      "emptyFiltered": "Zkuste rozšířit filtry.",
+      "emptyDefault": "Tržiště teprve začíná — buďte jedním z prvních, kdo něco přidá.",
+      "postItem": "Přidat inzerát",
+      "countOne": "{{count}} položka",
+      "countOther": "{{count}} položek"
+    }
   }
 }

@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Não foi possível verificar esse número de smartcard.",
     "successTitle": "Subscrição efetuada!",
     "successMessage": "{{plan}} em {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Painel",
+    "navMarketplace": "Mercado",
+    "postItem": "Publicar um item",
+    "featured": "Em destaque",
+    "verified": "Verificado",
+    "negotiable": "negociável",
+    "conditions": {
+      "new": "Novo",
+      "used": "Usado",
+      "refurbished": "Recondicionado"
+    },
+    "hub": {
+      "title": "Mercado",
+      "subtitle": "Compre e venda na comunidade OAM — com mensagens integradas, para que o seu número continue seu até você decidir o contrário.",
+      "browseTitle": "Explorar itens",
+      "browseDesc": "Telefones, móveis, carros, eletrónicos e muito mais de vendedores por toda a Nigéria.",
+      "browseAction": "Começar a explorar",
+      "sellTitleNew": "Vender algo",
+      "sellTitleMine": "Os meus anúncios",
+      "sellDescNew": "Publique um item em minutos. Três anúncios grátis — sem cartão para começar.",
+      "sellDescMineOne": "Tem {{count}} anúncio. Faça a gestão ou publique outro.",
+      "sellDescMineOther": "Tem {{count}} anúncios. Faça a gestão ou publique outro.",
+      "sellActionNew": "Publicar um item",
+      "sellActionMine": "Gerir anúncios",
+      "motorsTitle": "Inventário O.A.M Motors",
+      "motorsDesc": "Apenas para equipa — liste e faça a gestão de veículos à venda.",
+      "privacyTitle": "O seu número permanece privado.",
+      "privacyBody": "Converse na aplicação; os contactos são trocados quando o vendedor concorda com a venda.",
+      "freeTitle": "Grátis para começar.",
+      "freeBody": "Três anúncios ativos sem custo. Premium e Pro adicionam mais, além de colocação em destaque."
+    },
+    "browse": {
+      "title": "Explorar itens",
+      "subtitle": "De vendedores por toda a Nigéria.",
+      "searchPlaceholder": "O que procura?",
+      "filters": "Filtros",
+      "condition": "Estado",
+      "anyCondition": "Qualquer estado",
+      "location": "Localização",
+      "locationPlaceholder": "ex. Abuja",
+      "priceRange": "Faixa de preço (₦)",
+      "min": "Mín",
+      "max": "Máx",
+      "clearFilters": "Limpar todos os filtros",
+      "all": "Todos",
+      "categoriesAria": "Categorias do mercado",
+      "emptyTitle": "Nada corresponde a isso",
+      "emptyFiltered": "Tente alargar os seus filtros.",
+      "emptyDefault": "O mercado está apenas a começar — seja um dos primeiros a publicar algo.",
+      "postItem": "Publicar um item",
+      "countOne": "{{count}} item",
+      "countOther": "{{count}} itens"
+    }
   }
 }

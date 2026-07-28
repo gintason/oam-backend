@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Kò lè fọwọ́ sí nọ́mbà smartcard yẹn.",
     "successTitle": "Ìforúkọsílẹ̀ yọrí sí rere!",
     "successMessage": "{{plan}} lórí {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Dasibọọdu",
+    "navMarketplace": "Ọjà",
+    "postItem": "Fi ọjà sí",
+    "featured": "Tí a gbé jáde",
+    "verified": "Tí a fọwọ́sí",
+    "negotiable": "a lè náwó rẹ̀",
+    "conditions": {
+      "new": "Tuntun",
+      "used": "Tí a ti lò",
+      "refurbished": "Tí a tún ṣe"
+    },
+    "hub": {
+      "title": "Ọjà",
+      "subtitle": "Ra kí o sì tà nínú àwùjọ OAM — pẹ̀lú ìfìránṣẹ́ tí ó wà nínú rẹ̀, kí nọ́mbà rẹ lè jẹ́ tirẹ títí tí o fi yàn bíbẹ́ẹ̀ kọ́.",
+      "browseTitle": "Wo àwọn ọjà",
+      "browseDesc": "Àwọn fóònù, ohun ọ̀ṣọ́ ilé, ọkọ̀, ẹ̀rọ amúnáṣẹ́ àti bẹ́ẹ̀ bẹ́ẹ̀ lọ láti ọ̀dọ̀ àwọn tó ń tà kárí Nàìjíríà.",
+      "browseAction": "Bẹ̀rẹ̀ wíwò",
+      "sellTitleNew": "Ta ohun kan",
+      "sellTitleMine": "Àwọn ọjà mi",
+      "sellDescNew": "Fi ọjà sí láàárín ìṣẹ́jú. Ọjà mẹ́ta lọ́fẹ̀ẹ́ — kò sí káàdì láti bẹ̀rẹ̀.",
+      "sellDescMineOne": "O ní ọjà {{count}}. Ṣàkóso wọn, tàbí kí o fi òmíràn sí.",
+      "sellDescMineOther": "O ní ọjà {{count}}. Ṣàkóso wọn, tàbí kí o fi òmíràn sí.",
+      "sellActionNew": "Fi ọjà sí",
+      "sellActionMine": "Ṣàkóso àwọn ọjà",
+      "motorsTitle": "Ohun ìní O.A.M Motors",
+      "motorsDesc": "Àwọn òṣìṣẹ́ nìkan — ṣe àkójọ kí o sì ṣàkóso àwọn ọkọ̀ tí à ń tà.",
+      "privacyTitle": "Nọ́mbà rẹ ṣì jẹ́ àṣírí.",
+      "privacyBody": "Bá a sọ̀rọ̀ nínú áàpù; a ó pààrọ̀ àwọn àlàyé ìbánisọ̀rọ̀ nígbà tí olùtà bá gbà láti tà.",
+      "freeTitle": "Lọ́fẹ̀ẹ́ láti bẹ̀rẹ̀.",
+      "freeBody": "Ọjà mẹ́ta tí ó ń ṣiṣẹ́ lọ́fẹ̀ẹ́. Premium àti Pro ń fi kún un, pẹ̀lú ìgbékalẹ̀ pàtàkì."
+    },
+    "browse": {
+      "title": "Wo àwọn ọjà",
+      "subtitle": "Láti ọ̀dọ̀ àwọn tó ń tà kárí Nàìjíríà.",
+      "searchPlaceholder": "Kí ni o ń wá?",
+      "filters": "Àwọn àyẹ̀wò",
+      "condition": "Ipò",
+      "anyCondition": "Ipò yòówù",
+      "location": "Ibi",
+      "locationPlaceholder": "bí Abuja",
+      "priceRange": "Ìwọ̀n iye (₦)",
+      "min": "Kékeré",
+      "max": "Tóbi",
+      "clearFilters": "Pa gbogbo àyẹ̀wò rẹ́",
+      "all": "Gbogbo",
+      "categoriesAria": "Àwọn ẹ̀ka ọjà",
+      "emptyTitle": "Kò sí ohun tí ó bá a mu",
+      "emptyFiltered": "Gbìyànjú láti fẹ̀ àwọn àyẹ̀wò rẹ.",
+      "emptyDefault": "Ọjà ṣẹ̀ṣẹ̀ ń bẹ̀rẹ̀ — jẹ́ ọ̀kan lára àwọn àkọ́kọ́ tí yóò fi ohun kan sí.",
+      "postItem": "Fi ọjà sí",
+      "countOne": "ọjà {{count}}",
+      "countOther": "ọjà {{count}}"
+    }
   }
 }

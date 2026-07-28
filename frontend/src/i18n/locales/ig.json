@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Enweghị ike ịkwado nọmba smartcard a.",
     "successTitle": "Ndenye aha gara nke ọma!",
     "successMessage": "{{plan}} na {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Dashboard",
+    "navMarketplace": "Ahịa",
+    "postItem": "Tinye ihe",
+    "featured": "Emere ka ọ pụta ìhè",
+    "verified": "Enyochara ya",
+    "negotiable": "enwere ike ịkparịta",
+    "conditions": {
+      "new": "Ọhụrụ",
+      "used": "Ejirila ya",
+      "refurbished": "Emezigharịrị"
+    },
+    "hub": {
+      "title": "Ahịa",
+      "subtitle": "Zụta ma ree n'ime obodo OAM — jiri ozi dị n'ime ya, ka nọmba gị nọgide bụrụ nke gị ruo mgbe ị họọrọ ọzọ.",
+      "browseTitle": "Chọgharịa ihe",
+      "browseDesc": "Ekwentị, arịa ụlọ, ụgbọ ala, ngwaeletrọnik na ndị ọzọ site n'aka ndị na-ere ahịa na Naịjirịa niile.",
+      "browseAction": "Malite ịchọgharị",
+      "sellTitleNew": "Ree ihe",
+      "sellTitleMine": "Ndepụta m",
+      "sellDescNew": "Tinye ihe n'ime nkeji. Ndepụta atọ n'efu — ọ dịghị mkpa kaadị iji malite.",
+      "sellDescMineOne": "Ị nwere ndepụta {{count}}. Jikwaa ha, ma ọ bụ tinye ọzọ.",
+      "sellDescMineOther": "Ị nwere ndepụta {{count}}. Jikwaa ha, ma ọ bụ tinye ọzọ.",
+      "sellActionNew": "Tinye ihe",
+      "sellActionMine": "Jikwaa ndepụta",
+      "motorsTitle": "Ngwongwo O.A.M Motors",
+      "motorsDesc": "Naanị ndị ọrụ — depụta ma jikwaa ụgbọ ala a na-ere.",
+      "privacyTitle": "Nọmba gị na-anọgide nzuzo.",
+      "privacyBody": "Kparịta ụka na ngwa; a na-agbanwe kọntaktị mgbe onye na-ere kwenyere ná ire ere.",
+      "freeTitle": "N'efu iji malite.",
+      "freeBody": "Ndepụta atọ na-arụ ọrụ n'efu. Premium na Pro na-agbakwụnye karịa, tinyere ntinye pụrụ iche."
+    },
+    "browse": {
+      "title": "Chọgharịa ihe",
+      "subtitle": "Site n'aka ndị na-ere ahịa na Naịjirịa niile.",
+      "searchPlaceholder": "Gịnị ka ị na-achọ?",
+      "filters": "Nzacha",
+      "condition": "Ọnọdụ",
+      "anyCondition": "Ọnọdụ ọ bụla",
+      "location": "Ebe",
+      "locationPlaceholder": "dịka Abuja",
+      "priceRange": "Oke ọnụahịa (₦)",
+      "min": "Kacha nta",
+      "max": "Kacha ukwu",
+      "clearFilters": "Hichaa nzacha niile",
+      "all": "Niile",
+      "categoriesAria": "Ụdị ahịa",
+      "emptyTitle": "Ọ dịghị ihe dabara",
+      "emptyFiltered": "Gbalịa ịgbasa nzacha gị.",
+      "emptyDefault": "Ahịa ka na-amalite — bụrụ otu n'ime ndị mbụ ga-edepụta ihe.",
+      "postItem": "Tinye ihe",
+      "countOne": "ihe {{count}}",
+      "countOther": "ihe {{count}}"
+    }
   }
 }

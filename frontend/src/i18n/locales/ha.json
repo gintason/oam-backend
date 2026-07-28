@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "An kasa tabbatar da wannan lambar smartcard.",
     "successTitle": "Rajista ta yi nasara!",
     "successMessage": "{{plan}} a kan {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Dashboard",
+    "navMarketplace": "Kasuwa",
+    "postItem": "Sanya kaya",
+    "featured": "Wanda aka fito da shi",
+    "verified": "An tabbatar",
+    "negotiable": "ana iya ciniki",
+    "conditions": {
+      "new": "Sabo",
+      "used": "Da aka yi amfani",
+      "refurbished": "An gyara"
+    },
+    "hub": {
+      "title": "Kasuwa",
+      "subtitle": "Saya da sayarwa cikin al'ummar OAM — tare da saƙonni a ciki, don lambar ka ta kasance taka har sai ka zaɓi in ba haka ba.",
+      "browseTitle": "Bincika kaya",
+      "browseDesc": "Wayoyi, kayan ɗaki, motoci, na'urorin lantarki da ƙari daga masu sayarwa a faɗin Najeriya.",
+      "browseAction": "Fara bincike",
+      "sellTitleNew": "Sayar da wani abu",
+      "sellTitleMine": "Kayan da na sanya",
+      "sellDescNew": "Sanya kaya cikin mintuna. Kaya uku kyauta — ba a bukatar katin don farawa.",
+      "sellDescMineOne": "Kana da tallace-tallace {{count}}. Sarrafa su, ko ka sanya wani.",
+      "sellDescMineOther": "Kana da tallace-tallace {{count}}. Sarrafa su, ko ka sanya wani.",
+      "sellActionNew": "Sanya kaya",
+      "sellActionMine": "Sarrafa kaya",
+      "motorsTitle": "Kayayyakin O.A.M Motors",
+      "motorsDesc": "Ma'aikata kawai — jera da sarrafa motocin da ake sayarwa.",
+      "privacyTitle": "Lambar ka na kasancewa sirri.",
+      "privacyBody": "Yi hira a cikin manhaja; ana musayar bayanan tuntuɓa idan mai sayarwa ya yarda da sayarwa.",
+      "freeTitle": "Kyauta don farawa.",
+      "freeBody": "Tallace-tallace uku masu aiki kyauta. Premium da Pro suna ƙara ƙari, tare da fitowa ta musamman."
+    },
+    "browse": {
+      "title": "Bincika kaya",
+      "subtitle": "Daga masu sayarwa a faɗin Najeriya.",
+      "searchPlaceholder": "Me kake nema?",
+      "filters": "Tacewa",
+      "condition": "Yanayi",
+      "anyCondition": "Kowane yanayi",
+      "location": "Wuri",
+      "locationPlaceholder": "misali Abuja",
+      "priceRange": "Kewayon farashi (₦)",
+      "min": "Mafi ƙanƙanta",
+      "max": "Mafi girma",
+      "clearFilters": "Share duk tacewa",
+      "all": "Duka",
+      "categoriesAria": "Rukunonin kasuwa",
+      "emptyTitle": "Babu abin da ya dace",
+      "emptyFiltered": "Gwada faɗaɗa tacewarka.",
+      "emptyDefault": "Kasuwa tana farawa ne kawai — ka kasance ɗaya daga cikin na farko da za su sanya wani abu.",
+      "postItem": "Sanya kaya",
+      "countOne": "kaya {{count}}",
+      "countOther": "kaya {{count}}"
+    }
   }
 }

@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Impossible de vérifier ce numéro de carte.",
     "successTitle": "Abonnement réussi !",
     "successMessage": "{{plan}} sur {{recipient}}."
+  },
+  "marketplace": {
+    "navDashboard": "Tableau de bord",
+    "navMarketplace": "Marché",
+    "postItem": "Publier un article",
+    "featured": "En vedette",
+    "verified": "Vérifié",
+    "negotiable": "négociable",
+    "conditions": {
+      "new": "Neuf",
+      "used": "Occasion",
+      "refurbished": "Reconditionné"
+    },
+    "hub": {
+      "title": "Marché",
+      "subtitle": "Achetez et vendez au sein de la communauté OAM — avec la messagerie intégrée, votre numéro reste à vous jusqu'à ce que vous en décidiez autrement.",
+      "browseTitle": "Parcourir les articles",
+      "browseDesc": "Téléphones, meubles, voitures, électronique et plus encore, de vendeurs partout au Nigéria.",
+      "browseAction": "Commencer à parcourir",
+      "sellTitleNew": "Vendre un article",
+      "sellTitleMine": "Mes annonces",
+      "sellDescNew": "Publiez un article en quelques minutes. Trois annonces gratuites — sans carte pour commencer.",
+      "sellDescMineOne": "Vous avez {{count}} annonce. Gérez-les ou publiez-en une autre.",
+      "sellDescMineOther": "Vous avez {{count}} annonces. Gérez-les ou publiez-en une autre.",
+      "sellActionNew": "Publier un article",
+      "sellActionMine": "Gérer les annonces",
+      "motorsTitle": "Inventaire O.A.M Motors",
+      "motorsDesc": "Réservé au personnel — répertoriez et gérez les véhicules à vendre.",
+      "privacyTitle": "Votre numéro reste privé.",
+      "privacyBody": "Discutez dans l'application ; les coordonnées sont échangées lorsque le vendeur accepte la vente.",
+      "freeTitle": "Gratuit pour commencer.",
+      "freeBody": "Trois annonces actives sans frais. Premium et Pro en ajoutent plus, avec un placement en vedette."
+    },
+    "browse": {
+      "title": "Parcourir les articles",
+      "subtitle": "De vendeurs partout au Nigéria.",
+      "searchPlaceholder": "Que recherchez-vous ?",
+      "filters": "Filtres",
+      "condition": "État",
+      "anyCondition": "Tout état",
+      "location": "Lieu",
+      "locationPlaceholder": "ex. Abuja",
+      "priceRange": "Fourchette de prix (₦)",
+      "min": "Min",
+      "max": "Max",
+      "clearFilters": "Effacer tous les filtres",
+      "all": "Tous",
+      "categoriesAria": "Catégories du marché",
+      "emptyTitle": "Rien ne correspond",
+      "emptyFiltered": "Essayez d'élargir vos filtres.",
+      "emptyDefault": "Le marché ne fait que commencer — soyez parmi les premiers à publier une annonce.",
+      "postItem": "Publier un article",
+      "countOne": "{{count}} article",
+      "countOther": "{{count}} articles"
+    }
   }
 }

@@ -374,5 +374,60 @@
     "couldntVerifySmartcard": "Bu akıllı kart numarası doğrulanamadı.",
     "successTitle": "Abonelik başarılı!",
     "successMessage": "{{recipient}} üzerinde {{plan}}."
+  },
+  "marketplace": {
+    "navDashboard": "Panel",
+    "navMarketplace": "Pazar Yeri",
+    "postItem": "İlan ver",
+    "featured": "Öne çıkan",
+    "verified": "Doğrulandı",
+    "negotiable": "pazarlık payı var",
+    "conditions": {
+      "new": "Sıfır",
+      "used": "İkinci el",
+      "refurbished": "Yenilenmiş"
+    },
+    "hub": {
+      "title": "Pazar Yeri",
+      "subtitle": "OAM topluluğu içinde alıp satın — yerleşik mesajlaşmayla, siz aksini seçene kadar numaranız size ait kalır.",
+      "browseTitle": "Ürünlere göz at",
+      "browseDesc": "Nijerya'nın dört bir yanındaki satıcılardan telefonlar, mobilyalar, arabalar, elektronik ve daha fazlası.",
+      "browseAction": "Göz atmaya başla",
+      "sellTitleNew": "Bir şey sat",
+      "sellTitleMine": "İlanlarım",
+      "sellDescNew": "Dakikalar içinde ilan ver. Üç ilan ücretsiz — başlamak için kart gerekmez.",
+      "sellDescMineOne": "{{count}} ilanınız var. Yönetin veya bir tane daha ekleyin.",
+      "sellDescMineOther": "{{count}} ilanınız var. Yönetin veya bir tane daha ekleyin.",
+      "sellActionNew": "İlan ver",
+      "sellActionMine": "İlanları yönet",
+      "motorsTitle": "O.A.M Motors envanteri",
+      "motorsDesc": "Yalnızca personel — satılık araçları listeleyin ve yönetin.",
+      "privacyTitle": "Numaranız gizli kalır.",
+      "privacyBody": "Uygulamada sohbet edin; satıcı satışı kabul ettiğinde iletişim bilgileri paylaşılır.",
+      "freeTitle": "Başlaması ücretsiz.",
+      "freeBody": "Üç aktif ilan ücretsiz. Premium ve Pro daha fazlasını ve öne çıkarmayı ekler."
+    },
+    "browse": {
+      "title": "Ürünlere göz at",
+      "subtitle": "Nijerya'nın dört bir yanındaki satıcılardan.",
+      "searchPlaceholder": "Ne arıyorsunuz?",
+      "filters": "Filtreler",
+      "condition": "Durum",
+      "anyCondition": "Herhangi bir durum",
+      "location": "Konum",
+      "locationPlaceholder": "örn. Abuja",
+      "priceRange": "Fiyat aralığı (₦)",
+      "min": "Min",
+      "max": "Maks",
+      "clearFilters": "Tüm filtreleri temizle",
+      "all": "Tümü",
+      "categoriesAria": "Pazar yeri kategorileri",
+      "emptyTitle": "Eşleşen bir şey yok",
+      "emptyFiltered": "Filtrelerinizi genişletmeyi deneyin.",
+      "emptyDefault": "Pazar yeri daha yeni başlıyor — bir şey ekleyen ilk kişilerden biri olun.",
+      "postItem": "İlan ver",
+      "countOne": "{{count}} ürün",
+      "countOther": "{{count}} ürün"
+    }
   }
 }

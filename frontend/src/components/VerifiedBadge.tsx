@@ -1,4 +1,5 @@
 import { BadgeCheck } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /**
  * "Verified" trust badge shown on listings an admin has reviewed. Listings go
@@ -12,6 +13,7 @@ export default function VerifiedBadge({
   size?: "sm" | "md";
   className?: string;
 }) {
+  const { t } = useTranslation();
   const sm = size === "sm";
   return (
     <span
@@ -20,7 +22,7 @@ export default function VerifiedBadge({
         sm ? "px-1.5 py-0.5 text-[10px]" : "px-2 py-0.5 text-[10.5px]"
       } ${className}`}
     >
-      <BadgeCheck size={sm ? 10 : 12} strokeWidth={2.5} /> Verified
+      <BadgeCheck size={sm ? 10 : 12} strokeWidth={2.5} /> {t("marketplace.verified")}
     </span>
   );
 }

@@ -14,9 +14,11 @@ import {
   marketplaceApi, CONDITIONS, type ListingListItem,
 } from "../../services/marketplace";
 import { naira, friendlyTime } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 export default function BrowseListings() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const scope = useUserScope();
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("");
@@ -58,7 +60,7 @@ export default function BrowseListings() {
    * backend returns, in its own order.
    */
   const tabList = [
-    { label: "All", slug: "all" },
+    { label: t("marketplace.browse.all"), slug: "all" },
     ...(categories.data ?? [])
       .map((c) => ({ label: c.slug === "oam-motors" ? "O.A.M Motors" : c.name, slug: c.slug }))
       .sort((a, b) =>
@@ -77,16 +79,16 @@ export default function BrowseListings() {
           onClick={() => navigate("/marketplace")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Marketplace
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("marketplace.navMarketplace")}
         </button>
 
         <DarkPanel className="mb-3">
           <div className="p-5 sm:p-6">
             <h1 className="font-display text-[22px] font-semibold leading-tight sm:text-2xl">
-              Browse items
+              {t("marketplace.browse.title")}
             </h1>
             <p className="mt-1 text-[13px] text-white/60">
-              From sellers across Nigeria.
+              {t("marketplace.browse.subtitle")}
             </p>
           </div>
         </DarkPanel>
@@ -98,7 +100,7 @@ export default function BrowseListings() {
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="What are you looking for?"
+              placeholder={t("marketplace.browse.searchPlaceholder")}
               className="h-11 w-full rounded-xl border border-hairline bg-paper pl-10 pr-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
             />
           </div>
@@ -111,7 +113,7 @@ export default function BrowseListings() {
             }`}
           >
             <SlidersHorizontal size={15} strokeWidth={1.75} />
-            Filters
+            {t("marketplace.browse.filters")}
             {activeFilters > 0 && (
               <span className="flex h-4 w-4 items-center justify-center rounded-full bg-brand-green text-[10px] font-bold text-white">
                 {activeFilters}
@@ -125,37 +127,37 @@ export default function BrowseListings() {
             tabs={tabList}
             activeSlug={category || "all"}
             onSelect={(slug) => setCategory(slug === "all" ? "" : slug)}
-            ariaLabel="Marketplace categories"
+            ariaLabel={t("marketplace.browse.categoriesAria")}
           />
         </div>
 
         {showFilters && (
           <div className="mt-3 grid gap-3 rounded-2xl border border-hairline bg-paper p-4 shadow-[0_1px_2px_rgba(10,10,10,0.04)] sm:grid-cols-2">
             <div>
-              <label className="mb-1.5 block text-[12px] font-semibold text-ink">Condition</label>
+              <label className="mb-1.5 block text-[12px] font-semibold text-ink">{t("marketplace.browse.condition")}</label>
               <select value={condition} onChange={(e) => setCondition(e.target.value)}
                       className="h-10 w-full rounded-lg border border-hairline bg-paper px-2.5 text-[13.5px] text-ink outline-none focus:border-brand-green">
-                <option value="">Any condition</option>
-                {CONDITIONS.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+                <option value="">{t("marketplace.browse.anyCondition")}</option>
+                {CONDITIONS.map((c) => <option key={c.value} value={c.value}>{t("marketplace.conditions." + c.value)}</option>)}
               </select>
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-semibold text-ink">Location</label>
+              <label className="mb-1.5 block text-[12px] font-semibold text-ink">{t("marketplace.browse.location")}</label>
               <input value={location} onChange={(e) => setLocation(e.target.value)}
-                     placeholder="e.g. Abuja"
+                     placeholder={t("marketplace.browse.locationPlaceholder")}
                      className="h-10 w-full rounded-lg border border-hairline bg-paper px-3 text-[13.5px] text-ink outline-none focus:border-brand-green" />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-semibold text-ink">Price range (₦)</label>
+              <label className="mb-1.5 block text-[12px] font-semibold text-ink">{t("marketplace.browse.priceRange")}</label>
               <div className="flex items-center gap-2">
                 <input value={minPrice} inputMode="numeric"
                        onChange={(e) => setMinPrice(e.target.value.replace(/\D/g, ""))}
-                       placeholder="Min"
+                       placeholder={t("marketplace.browse.min")}
                        className="h-10 w-full rounded-lg border border-hairline bg-paper px-3 text-[13.5px] text-ink outline-none focus:border-brand-green" />
                 <span className="text-muted">–</span>
                 <input value={maxPrice} inputMode="numeric"
                        onChange={(e) => setMaxPrice(e.target.value.replace(/\D/g, ""))}
-                       placeholder="Max"
+                       placeholder={t("marketplace.browse.max")}
                        className="h-10 w-full rounded-lg border border-hairline bg-paper px-3 text-[13.5px] text-ink outline-none focus:border-brand-green" />
               </div>
             </div>
@@ -164,7 +166,7 @@ export default function BrowseListings() {
                 onClick={() => { setCondition(""); setLocation(""); setMinPrice(""); setMaxPrice(""); }}
                 className="justify-self-start text-[12.5px] font-medium text-brand-red underline sm:col-span-2"
               >
-                Clear all filters
+                {t("marketplace.browse.clearFilters")}
               </button>
             )}
           </div>
@@ -178,21 +180,21 @@ export default function BrowseListings() {
           ) : items.length === 0 ? (
             <div className="rounded-2xl border border-hairline bg-paper py-12 text-center shadow-[0_1px_2px_rgba(10,10,10,0.04)] sm:py-14">
               <Package size={28} strokeWidth={1.5} className="mx-auto text-muted" />
-              <p className="mt-3 text-[14px] font-medium text-ink">Nothing matches that</p>
+              <p className="mt-3 text-[14px] font-medium text-ink">{t("marketplace.browse.emptyTitle")}</p>
               <p className="mx-auto mt-1 max-w-sm text-[13px] leading-relaxed text-muted">
                 {activeFilters > 0
-                  ? "Try widening your filters."
-                  : "The marketplace is just getting started — be one of the first to list something."}
+                  ? t("marketplace.browse.emptyFiltered")
+                  : t("marketplace.browse.emptyDefault")}
               </p>
               <Link to="/marketplace/sell"
                     className="mt-4 inline-flex h-10 items-center rounded-lg bg-brand-red px-4 text-[13px] font-semibold text-white transition hover:brightness-95">
-                Post an item
+                {t("marketplace.browse.postItem")}
               </Link>
             </div>
           ) : (
             <>
               <p className="mb-3 text-[12.5px] text-muted">
-                {listings.data?.count} item{listings.data?.count === 1 ? "" : "s"}
+                {t(listings.data?.count === 1 ? "marketplace.browse.countOne" : "marketplace.browse.countOther", { count: listings.data?.count ?? 0 })}
               </p>
               <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((l) => <Card key={l.id} listing={l} />)}
@@ -206,6 +208,7 @@ export default function BrowseListings() {
 }
 
 function Card({ listing }: { listing: ListingListItem }) {
+  const { t } = useTranslation();
   return (
     <li>
       <Link
@@ -223,7 +226,7 @@ function Card({ listing }: { listing: ListingListItem }) {
           )}
           {listing.is_featured && (
             <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-md bg-warn px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-              <Star size={9} strokeWidth={2.5} /> Featured
+              <Star size={9} strokeWidth={2.5} /> {t("marketplace.featured")}
             </span>
           )}
           {listing.is_verified && (
@@ -238,7 +241,7 @@ function Card({ listing }: { listing: ListingListItem }) {
           <p className="mt-0.5 text-[16px] font-bold text-brand-red tabular">
             {naira(listing.price)}
             {listing.negotiable && (
-              <span className="ml-1.5 text-[11px] font-medium text-muted">negotiable</span>
+              <span className="ml-1.5 text-[11px] font-medium text-muted">{t("marketplace.negotiable")}</span>
             )}
           </p>
           <p className="mt-1 flex items-center gap-1 text-[11.5px] text-muted">
