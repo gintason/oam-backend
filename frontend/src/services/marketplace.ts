@@ -8,7 +8,7 @@ export type MarketCategory = {
 export type ListingListItem = {
   id: string; title: string; price: string; currency: string;
   negotiable: boolean; condition: string; location: string;
-  category_name: string; is_featured: boolean;
+  category_name: string; is_featured: boolean; is_verified: boolean;
   primary_image: string | null; created_at: string;
 };
 
@@ -17,8 +17,10 @@ export type ListingDetail = {
   id: string; title: string; description: string; price: string; currency: string;
   negotiable: boolean; condition: string; location: string;
   category: string; category_name: string; status: string;
-  is_featured: boolean; views_count: number; seller_name: string;
+  is_featured: boolean; is_verified: boolean; verified_at: string | null;
+  views_count: number; seller_name: string;
   images: { id: string; url: string; is_primary: boolean }[];
+  videos: { id: string; url: string; thumbnail_url: string }[];
   expires_at: string | null; created_at: string; updated_at: string;
 };
 
@@ -28,6 +30,7 @@ export type ListingWrite = {
   condition: string; location: string;
   contact_phone: string; contact_whatsapp: string;
   images?: string[];
+  videos?: string[];
 };
 
 export type Subscription = {
@@ -76,6 +79,17 @@ export const marketplaceApi = {
   async create(input: ListingWrite): Promise<ListingDetail> {
     const { data } = await api.post("/marketplace/listings/create/", input);
     return data;
+  },
+
+  /** Edit an existing listing (owner only). Sending images/videos replaces them. */
+  async update(id: string, input: Partial<ListingWrite>): Promise<ListingDetail> {
+    const { data } = await api.patch(`/marketplace/listings/${id}/`, input);
+    return data;
+  },
+
+  /** Delete a listing (owner only). */
+  async remove(id: string): Promise<void> {
+    await api.delete(`/marketplace/listings/${id}/`);
   },
 
   async renew(id: string): Promise<ListingDetail> {

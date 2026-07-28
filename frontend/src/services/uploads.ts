@@ -19,6 +19,7 @@ export type UploadPurpose =
   | "artisan_id_document"
   | "artisan_profile_photo"
   | "listing_image"
+  | "listing_video"
   | "oam_motors_image";
 
 export type UploadTicket = {
