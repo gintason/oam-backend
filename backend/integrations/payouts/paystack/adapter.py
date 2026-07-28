@@ -29,20 +29,26 @@ class PaystackPayouts(BaseProviderClient):
                 "Authorization": f"Bearer {self.config.get('secret_key', '')}"}
 
     def list_banks(self, currency="NGN"):
-        # Paystack paginates /bank; page through until exhausted so users can
-        # search the COMPLETE list (Nigeria has 100s of banks + fintechs).
-        banks, page, per_page = [], 1, 100
-        for _ in range(50):  # hard cap: 5,000 banks — far beyond reality
+        # Return the COMPLETE bank list. Paystack's /bank returns only ~50 by
+        # default and paginates; we page through, dedupe by code, and stop as
+        # soon as a page adds nothing new — which also guards against Paystack
+        # ignoring `page` (cursor pagination) and repeating the same page.
+        seen, banks, page, per_page = set(), [], 1, 100
+        for _ in range(30):
             body = self.get(
                 f"/bank?currency={currency}&perPage={per_page}&page={page}")
             data = body.get("data") or []
             if not data:
                 break
-            banks.extend(
-                {"name": b.get("name"), "code": b.get("code"),
-                 "currency": b.get("currency", currency)}
-                for b in data)
-            if len(data) < per_page:
+            added = 0
+            for b in data:
+                code = b.get("code")
+                if code and code not in seen:
+                    seen.add(code)
+                    banks.append({"name": b.get("name"), "code": code,
+                                  "currency": b.get("currency", currency)})
+                    added += 1
+            if added == 0 or len(data) < per_page:   # last page, or no new banks
                 break
             page += 1
         return banks
