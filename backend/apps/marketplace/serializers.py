@@ -45,10 +45,16 @@ class ListingDetailSerializer(serializers.ModelSerializer):
     images = ListingImageSerializer(many=True, read_only=True)
     videos = ListingVideoSerializer(many=True, read_only=True)
     seller_name = serializers.SerializerMethodField()
+    is_owner = serializers.SerializerMethodField()
 
     class Meta:
         model = Listing
-        fields = ("id", "title", "description", "price", "currency", "negotiable", "condition", "location", "category", "category_name", "status", "is_featured", "is_verified", "verified_at", "views_count", "seller_name", "images", "videos", "expires_at", "created_at", "updated_at", "vehicle")
+        fields = ("id", "title", "description", "price", "currency", "negotiable", "condition", "location", "category", "category_name", "status", "is_featured", "is_verified", "verified_at", "views_count", "seller_name", "is_owner", "images", "videos", "expires_at", "created_at", "updated_at", "vehicle")
+
+    def get_is_owner(self, obj):
+        request = self.context.get("request")
+        user = getattr(request, "user", None)
+        return bool(user and user.is_authenticated and obj.seller_id == user.id)
 
     def get_seller_name(self, obj):
         """Display the seller's real name, falling back gracefully.

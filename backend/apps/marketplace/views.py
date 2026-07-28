@@ -79,7 +79,7 @@ class ListingDetailView(APIView):
             if listing is None or listing.seller_id != request.user.id:
                 return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
         Listing.objects.filter(pk=listing.pk).update(views_count=listing.views_count + 1)
-        return Response(ListingDetailSerializer(listing).data)
+        return Response(ListingDetailSerializer(listing, context={"request": request}).data)
 
     def patch(self, request, listing_id):
         listing = Listing.objects.filter(id=listing_id, seller=request.user).first()
