@@ -87,17 +87,22 @@ class ListingDetailView(APIView):
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
         s = ListingWriteSerializer(listing, data=request.data, partial=True)
         s.is_valid(raise_exception=True)
+
+        # images/videos are reverse relations on the model, so DRF's update()
+        # would try to assign them to the instance and 500. Pop them out and
+        # apply them ourselves. A missing key (partial edit) leaves media as-is;
+        # an empty list clears it.
+        new_images = s.validated_data.pop("images", None)
+        new_videos = s.validated_data.pop("videos", None)
         s.save()
 
-        # Media (write-only ListFields aren't model fields, so ModelSerializer
-        # ignores them on update) — replace only when the key was sent.
-        if "images" in request.data:
+        if new_images is not None:
             listing.images.all().delete()
-            for i, url in enumerate(s.validated_data.get("images", [])):
+            for i, url in enumerate(new_images):
                 ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
-        if "videos" in request.data:
+        if new_videos is not None:
             listing.videos.all().delete()
-            for url in s.validated_data.get("videos", []):
+            for url in new_videos:
                 ListingVideo.objects.create(listing=listing, url=url)
 
         # An edit changes what buyers see, so any prior admin verification no
