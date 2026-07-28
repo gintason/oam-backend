@@ -5,6 +5,7 @@ import {
   ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin,
 } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
+import VerifiedBadge from "../../components/VerifiedBadge";
 import { DarkPanel } from "../../components/Surface";
 import CategoryTabs from "../../components/CategoryTabs";
 import { useUserScope } from "../../auth/useUserScope";
@@ -223,6 +224,11 @@ function Card({ listing }: { listing: ListingListItem }) {
           {listing.is_featured && (
             <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-md bg-warn px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
               <Star size={9} strokeWidth={2.5} /> Featured
+            </span>
+          )}
+          {listing.is_verified && (
+            <span className="absolute right-2 top-2">
+              <VerifiedBadge size="sm" />
             </span>
           )}
         </div>

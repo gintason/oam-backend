@@ -113,6 +113,7 @@ export default function App() {
               <Route path="/marketplace/browse" element={<RequireAuth><BrowseListings /></RequireAuth>} />
               <Route path="/marketplace/sell" element={<RequireAuth><SellDashboard /></RequireAuth>} />
               <Route path="/marketplace/post" element={<RequireAuth><PostListing /></RequireAuth>} />
+              <Route path="/marketplace/:id/edit" element={<RequireAuth><PostListing /></RequireAuth>} />
               <Route path="/admin/motors" element={<RequireAuth><MotorsAdmin /></RequireAuth>} />
               <Route path="/marketplace/:id" element={<RequireAuth><ListingDetail /></RequireAuth>} />
               {/* Services — airtime is live; the rest are placeholders for now */}

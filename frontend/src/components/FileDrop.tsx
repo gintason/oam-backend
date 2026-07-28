@@ -19,12 +19,14 @@ export default function FileDrop({
   onUploaded,
   disabled,
   compact,
+  multiple,
 }: {
   purpose: UploadPurpose;
   rule?: UploadRule;
   onUploaded: (result: UploadResult) => void | Promise<void>;
   disabled?: boolean;
   compact?: boolean;
+  multiple?: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [progress, setProgress] = useState<number | null>(null);
@@ -55,6 +57,15 @@ export default function FileDrop({
     }
   }
 
+  /** Upload several files one after another (sequential keeps progress sane). */
+  async function handleMany(files: FileList | File[]) {
+    const list = Array.from(files);
+    for (const file of list) {
+      // eslint-disable-next-line no-await-in-loop
+      await handle(file);
+    }
+  }
+
   return (
     <div>
       <div
@@ -64,8 +75,8 @@ export default function FileDrop({
           e.preventDefault();
           setDragging(false);
           if (disabled || busy) return;
-          const file = e.dataTransfer.files?.[0];
-          if (file) handle(file);
+          const files = e.dataTransfer.files;
+          if (files?.length) multiple ? handleMany(files) : handle(files[0]);
         }}
         onClick={() => !disabled && !busy && inputRef.current?.click()}
         role="button"
@@ -123,10 +134,11 @@ export default function FileDrop({
           ref={inputRef}
           type="file"
           accept={accept}
+          multiple={multiple}
           className="hidden"
           onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) handle(file);
+            const files = e.target.files;
+            if (files?.length) multiple ? handleMany(files) : handle(files[0]);
             e.target.value = "";   // so the same file can be retried
           }}
         />
@@ -137,6 +149,36 @@ export default function FileDrop({
           <AlertCircle size={13} strokeWidth={2} className="mt-0.5 shrink-0" />
           {error}
         </p>
+      )}
+    </div>
+  );
+}
+
+/** A small video preview with a remove button, for already-uploaded clips. */
+export function UploadedVideo({
+  url,
+  onRemove,
+}: {
+  url: string;
+  onRemove?: () => void;
+}) {
+  return (
+    <div className="relative w-full max-w-[260px] shrink-0 overflow-hidden rounded-xl border border-hairline bg-black">
+      <video
+        src={url}
+        controls
+        preload="metadata"
+        className="h-40 w-full bg-black object-contain"
+      />
+      {onRemove && (
+        <button
+          type="button"
+          onClick={onRemove}
+          aria-label="Remove video"
+          className="absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-ink/70 text-white transition hover:bg-ink"
+        >
+          <X size={12} strokeWidth={2.5} />
+        </button>
       )}
     </div>
   );

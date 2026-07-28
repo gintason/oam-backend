@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
-import FileDrop, { UploadedThumb } from "../../components/FileDrop";
+import FileDrop, { UploadedThumb, UploadedVideo } from "../../components/FileDrop";
 import { uploadsApi } from "../../services/uploads";
 import { useUserScope } from "../../auth/useUserScope";
 import {
@@ -14,19 +14,50 @@ import { formatPhone, naira } from "../../lib/format";
 
 /** Enough to show an item properly without turning the page into a gallery. */
 const MAX_IMAGES = 6;
+const MAX_VIDEOS = 2;
 
 const EMPTY: ListingWrite = {
   category: "", title: "", description: "", price: "", currency: "NGN",
   negotiable: false, condition: "used", location: "",
-  contact_phone: "", contact_whatsapp: "", images: [],
+  contact_phone: "", contact_whatsapp: "", images: [], videos: [],
 };
 
 export default function PostListing() {
   const navigate = useNavigate();
   const scope = useUserScope();
   const qc = useQueryClient();
+  const { id } = useParams();
+  const isEdit = Boolean(id);
   const [form, setForm] = useState<ListingWrite>(EMPTY);
   const [error, setError] = useState<string>();
+
+  // In edit mode, load the existing listing and prefill the form. Contact
+  // fields aren't returned by the public detail endpoint, so they stay blank —
+  // a partial PATCH leaves the seller's saved number untouched unless retyped.
+  const existing = useQuery({
+    queryKey: ["marketplace", scope, "listing", id],
+    queryFn: () => marketplaceApi.detail(id!),
+    enabled: isEdit,
+  });
+
+  useEffect(() => {
+    const l = existing.data;
+    if (!l) return;
+    setForm({
+      category: l.category,
+      title: l.title,
+      description: l.description,
+      price: String(l.price),
+      currency: l.currency,
+      negotiable: l.negotiable,
+      condition: l.condition || "used",
+      location: l.location,
+      contact_phone: "",
+      contact_whatsapp: "",
+      images: l.images.map((i) => i.url),
+      videos: l.videos.map((v) => v.url),
+    });
+  }, [existing.data]);
 
   const rules = useQuery({
     queryKey: ["upload-rules"],
@@ -47,15 +78,26 @@ export default function PostListing() {
 
   const limit = sub.data?.listing_limit ?? null;
   const used = sub.data?.active_listings ?? 0;
-  const atLimit = limit !== null && used >= limit;
+  const atLimit = !isEdit && limit !== null && used >= limit;
 
-  const create = useMutation({
-    mutationFn: () => marketplaceApi.create(form),
+  const save = useMutation({
+    mutationFn: () => {
+      if (isEdit) {
+        // Partial update: drop empty contact fields so we don't wipe the saved
+        // number when the seller leaves them blank.
+        const payload: Partial<ListingWrite> = { ...form };
+        if (!payload.contact_phone) delete payload.contact_phone;
+        if (!payload.contact_whatsapp) delete payload.contact_whatsapp;
+        return marketplaceApi.update(id!, payload);
+      }
+      return marketplaceApi.create(form);
+    },
     onSuccess: (listing) => {
       qc.invalidateQueries({ queryKey: ["marketplace"] });
       navigate(`/marketplace/${listing.id}`);
     },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't post that listing.")),
+    onError: (err) =>
+      setError(apiErrorMessage(err, isEdit ? "Couldn't save your changes." : "Couldn't post that listing.")),
   });
 
   function set<K extends keyof ListingWrite>(key: K, value: ListingWrite[K]) {
@@ -69,8 +111,11 @@ export default function PostListing() {
     if (!form.category) return setError("Choose a category.");
     if (!form.title.trim()) return setError("Give your item a title.");
     if (!form.price || Number(form.price) <= 0) return setError("Enter a price.");
-    if (!form.contact_phone) return setError("Add a phone number — buyers see it only after you accept.");
-    create.mutate();
+    // Phone is required when posting; on edit it's optional (blank keeps current).
+    if (!isEdit && !form.contact_phone) {
+      return setError("Add a phone number — buyers see it only after you accept.");
+    }
+    save.mutate();
   }
 
   return (
@@ -85,9 +130,13 @@ export default function PostListing() {
           <ArrowLeft size={15} strokeWidth={1.75} /> Selling
         </button>
 
-        <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">Post an item</h1>
+        <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">
+          {isEdit ? "Edit listing" : "Post an item"}
+        </h1>
         <p className="mt-1 text-[14px] text-muted">
-          {limit === null
+          {isEdit
+            ? "Changes go live right away. Editing removes the Verified badge until it's reviewed again."
+            : limit === null
             ? "Unlimited listings on your plan."
             : `${used} of ${limit} listings used on your plan.`}
         </p>
@@ -212,6 +261,7 @@ export default function PostListing() {
                 purpose="listing_image"
                 rule={rules.data?.listing_image}
                 compact={(form.images ?? []).length > 0}
+                multiple
                 onUploaded={(r) => set("images", [...(form.images ?? []), r.url])}
               />
             ) : (
@@ -227,8 +277,38 @@ export default function PostListing() {
             )}
           </Field>
 
+          <Field
+            label="Video (optional)"
+            hint="A short clip helps buyers trust the item. Up to 2 minutes."
+          >
+            {(form.videos ?? []).length > 0 && (
+              <div className="mb-3 flex flex-wrap gap-2">
+                {(form.videos ?? []).map((url, i) => (
+                  <UploadedVideo
+                    key={url}
+                    url={url}
+                    onRemove={() => set("videos", (form.videos ?? []).filter((_, j) => j !== i))}
+                  />
+                ))}
+              </div>
+            )}
+
+            {(form.videos ?? []).length < MAX_VIDEOS ? (
+              <FileDrop
+                purpose="listing_video"
+                rule={rules.data?.listing_video}
+                compact={(form.videos ?? []).length > 0}
+                onUploaded={(r) => set("videos", [...(form.videos ?? []), r.url])}
+              />
+            ) : (
+              <p className="rounded-xl border border-hairline bg-mist px-3.5 py-3 text-[12.5px] text-muted">
+                That's {MAX_VIDEOS} videos — the maximum. Remove one to add another.
+              </p>
+            )}
+          </Field>
+
           <div className="grid gap-3.5 border-t border-hairline pt-3.5 sm:grid-cols-2">
-            <Field label="Phone" hint="Shared only after you accept a buyer.">
+            <Field label="Phone" hint={isEdit ? "Leave blank to keep your current number." : "Shared only after you accept a buyer."}>
               <Input value={formatPhone(form.contact_phone)} inputMode="numeric"
                      onChange={(v) => set("contact_phone", v.replace(/\D/g, "").slice(0, 11))}
                      placeholder="0803 123 4567" />
@@ -242,12 +322,12 @@ export default function PostListing() {
 
           <button
             onClick={submit}
-            disabled={create.isPending || atLimit}
+            disabled={save.isPending || atLimit}
             className="h-12 w-full rounded-xl bg-brand-red text-[14px] font-semibold text-white transition hover:brightness-95 disabled:opacity-50"
           >
-            {create.isPending
+            {save.isPending
               ? <Loader2 size={18} className="mx-auto animate-spin" />
-              : "Post listing"}
+              : isEdit ? "Save changes" : "Post listing"}
           </button>
         </div>
       </main>

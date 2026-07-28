@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft, Package, Star, MapPin, Eye, Loader2, Lock, Send, Tag,
+  Pencil, Trash2,
 } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
+import VerifiedBadge from "../../components/VerifiedBadge";
 import { useUserScope } from "../../auth/useUserScope";
 import { marketplaceApi, CONDITIONS } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
@@ -15,6 +17,7 @@ export default function ListingDetail() {
   const { id = "" } = useParams();
   const navigate = useNavigate();
   const scope = useUserScope();
+  const qc = useQueryClient();
   const [message, setMessage] = useState("");
   const [error, setError] = useState<string>();
   const [activeImage, setActiveImage] = useState(0);
@@ -31,9 +34,23 @@ export default function ListingDetail() {
     onError: (err) => setError(apiErrorMessage(err, "Couldn't send that message.")),
   });
 
+  const remove = useMutation({
+    mutationFn: () => marketplaceApi.remove(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["marketplace"] });
+      navigate("/marketplace/sell");
+    },
+    onError: (err) => setError(apiErrorMessage(err, "Couldn't delete that listing.")),
+  });
+
+  function onDelete() {
+    if (window.confirm("Delete this listing? This can't be undone.")) remove.mutate();
+  }
+
   const l = listing.data;
   const conditionLabel = CONDITIONS.find((c) => c.value === l?.condition)?.label ?? l?.condition;
   const images = l?.images ?? [];
+  const videos = l?.videos ?? [];
 
   return (
     <div className="min-h-screen bg-mist">
@@ -70,6 +87,11 @@ export default function ListingDetail() {
                 {l.is_featured && (
                   <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-warn px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-white">
                     <Star size={9} strokeWidth={2.5} /> Featured
+                  </span>
+                )}
+                {l.is_verified && (
+                  <span className="absolute right-3 top-3">
+                    <VerifiedBadge />
                   </span>
                 )}
               </div>
@@ -111,14 +133,50 @@ export default function ListingDetail() {
                   </p>
                 )}
 
+                {videos.length > 0 && (
+                  <div className="mt-4 space-y-3 border-t border-hairline pt-4">
+                    {videos.map((v) => (
+                      <video
+                        key={v.id}
+                        src={v.url}
+                        poster={v.thumbnail_url || undefined}
+                        controls
+                        preload="metadata"
+                        className="w-full rounded-xl border border-hairline bg-black"
+                      />
+                    ))}
+                  </div>
+                )}
+
                 <p className="mt-4 text-[12.5px] text-muted">
                   Listed by <span className="font-medium text-ink">{l.seller_name}</span>
                   {" · "}{friendlyTime(l.created_at)}
                 </p>
+
+                {l.is_owner && (
+                  <div className="mt-4 flex gap-2 border-t border-hairline pt-4">
+                    <button
+                      onClick={() => navigate(`/marketplace/${l.id}/edit`)}
+                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-xl border border-hairline bg-paper text-[13px] font-semibold text-ink transition hover:bg-mist"
+                    >
+                      <Pencil size={15} strokeWidth={1.75} /> Edit
+                    </button>
+                    <button
+                      onClick={onDelete}
+                      disabled={remove.isPending}
+                      className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-xl border border-danger/30 bg-danger/5 text-[13px] font-semibold text-danger transition hover:bg-danger/10 disabled:opacity-60"
+                    >
+                      {remove.isPending
+                        ? <Loader2 size={15} className="animate-spin" />
+                        : <><Trash2 size={15} strokeWidth={1.75} /> Delete</>}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Message the seller — the only route to a phone number */}
+            {!l.is_owner && (
             <div className="mt-4 rounded-2xl border border-hairline bg-paper p-5 shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
               <h2 className="font-display text-[16px] font-semibold text-ink">
                 Message the seller
@@ -155,6 +213,7 @@ export default function ListingDetail() {
                 someone you haven't met.
               </p>
             </div>
+            )}
           </>
         )}
       </main>

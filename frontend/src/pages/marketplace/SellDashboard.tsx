@@ -3,9 +3,10 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft, Plus, Loader2, Star, Check, MessagesSquare, Package,
-  RefreshCw, AlertCircle,
+  RefreshCw, AlertCircle, Pencil, Trash2,
 } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
+import VerifiedBadge from "../../components/VerifiedBadge";
 import { DarkPanel, Card, Stat, SectionTitle } from "../../components/Surface";
 import { useUserScope } from "../../auth/useUserScope";
 import { marketplaceApi, SELLER_TIERS } from "../../services/marketplace";
@@ -53,6 +54,16 @@ export default function SellDashboard() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace"] }),
     onError: (err) => setError(apiErrorMessage(err, "Couldn't renew that listing.")),
   });
+
+  const remove = useMutation({
+    mutationFn: (id: string) => marketplaceApi.remove(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace"] }),
+    onError: (err) => setError(apiErrorMessage(err, "Couldn't delete that listing.")),
+  });
+
+  function onDelete(id: string) {
+    if (window.confirm("Delete this listing? This can't be undone.")) remove.mutate(id);
+  }
 
   // Returning from Paystack.
   const ref = params.get("reference") || params.get("trxref");
@@ -287,26 +298,45 @@ export default function SellDashboard() {
                       <p className="tabular text-[13px] font-semibold text-brand-red">
                         {naira(l.price)}
                       </p>
-                      <p className="text-[11px] text-muted">
+                      <p className="flex items-center gap-1.5 text-[11px] text-muted">
                         {friendlyTime(l.created_at)}
                         {l.is_featured && (
-                          <span className="ml-1.5 inline-flex items-center gap-0.5 font-semibold text-warn">
+                          <span className="inline-flex items-center gap-0.5 font-semibold text-warn">
                             <Star size={8} strokeWidth={3} /> featured
                           </span>
                         )}
+                        {l.is_verified && <VerifiedBadge size="sm" />}
                       </p>
                     </div>
                   </Link>
-                  <button
-                    onClick={() => renew.mutate(l.id)}
-                    disabled={renew.isPending}
-                    title="Renew this listing"
-                    className="inline-flex h-9 shrink-0 items-center gap-1 rounded-lg border border-hairline bg-paper px-2.5 text-[12px] font-medium text-muted transition hover:bg-mist hover:text-ink disabled:opacity-60"
-                  >
-                    <RefreshCw size={12} strokeWidth={2}
-                               className={renew.isPending ? "animate-spin" : ""} />
-                    Renew
-                  </button>
+                  <div className="flex shrink-0 items-center gap-1.5">
+                    <Link
+                      to={`/marketplace/${l.id}/edit`}
+                      title="Edit this listing"
+                      className="inline-flex h-9 items-center gap-1 rounded-lg border border-hairline bg-paper px-2.5 text-[12px] font-medium text-muted transition hover:bg-mist hover:text-ink"
+                    >
+                      <Pencil size={12} strokeWidth={2} /> Edit
+                    </Link>
+                    <button
+                      onClick={() => renew.mutate(l.id)}
+                      disabled={renew.isPending}
+                      title="Renew this listing"
+                      className="inline-flex h-9 items-center gap-1 rounded-lg border border-hairline bg-paper px-2.5 text-[12px] font-medium text-muted transition hover:bg-mist hover:text-ink disabled:opacity-60"
+                    >
+                      <RefreshCw size={12} strokeWidth={2}
+                                 className={renew.isPending ? "animate-spin" : ""} />
+                      Renew
+                    </button>
+                    <button
+                      onClick={() => onDelete(l.id)}
+                      disabled={remove.isPending}
+                      title="Delete this listing"
+                      aria-label="Delete this listing"
+                      className="inline-flex h-9 items-center justify-center rounded-lg border border-danger/30 bg-danger/5 px-2.5 text-danger transition hover:bg-danger/10 disabled:opacity-60"
+                    >
+                      <Trash2 size={13} strokeWidth={2} />
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
