@@ -105,6 +105,29 @@ export default function PostListing() {
     setError(undefined);
   }
 
+  // Append an uploaded URL using the LATEST state. A functional update is
+  // essential here: multi-file uploads fire onUploaded several times in quick
+  // succession, and reading form.images from the render closure would make each
+  // call overwrite the last (only one file would "stick"). Also caps at max.
+  function addMedia(key: "images" | "videos", url: string, max: number) {
+    setForm((f) => {
+      const current = (f[key] as string[] | undefined) ?? [];
+      if (current.includes(url) || current.length >= max) return f;
+      return { ...f, [key]: [...current, url] };
+    });
+    setError(undefined);
+  }
+
+  // Remove by URL (not index) with a functional update, so removing is correct
+  // even if the list changed since render.
+  function removeMedia(key: "images" | "videos", url: string) {
+    setForm((f) => {
+      const current = (f[key] as string[] | undefined) ?? [];
+      return { ...f, [key]: current.filter((u) => u !== url) };
+    });
+    setError(undefined);
+  }
+
 
   function submit() {
     setError(undefined);
@@ -244,7 +267,7 @@ export default function PostListing() {
                   <div key={url} className="relative">
                     <UploadedThumb
                       url={url}
-                      onRemove={() => set("images", (form.images ?? []).filter((_, j) => j !== i))}
+                      onRemove={() => removeMedia("images", url)}
                     />
                     {i === 0 && (
                       <span className="absolute bottom-1 left-1 rounded bg-ink/75 px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wide text-white">
@@ -262,7 +285,7 @@ export default function PostListing() {
                 rule={rules.data?.listing_image}
                 compact={(form.images ?? []).length > 0}
                 multiple
-                onUploaded={(r) => set("images", [...(form.images ?? []), r.url])}
+                onUploaded={(r) => addMedia("images", r.url, MAX_IMAGES)}
               />
             ) : (
               <p className="rounded-xl border border-hairline bg-mist px-3.5 py-3 text-[12.5px] text-muted">
@@ -287,7 +310,7 @@ export default function PostListing() {
                   <UploadedVideo
                     key={url}
                     url={url}
-                    onRemove={() => set("videos", (form.videos ?? []).filter((_, j) => j !== i))}
+                    onRemove={() => removeMedia("videos", url)}
                   />
                 ))}
               </div>
@@ -298,7 +321,7 @@ export default function PostListing() {
                 purpose="listing_video"
                 rule={rules.data?.listing_video}
                 compact={(form.videos ?? []).length > 0}
-                onUploaded={(r) => set("videos", [...(form.videos ?? []), r.url])}
+                onUploaded={(r) => addMedia("videos", r.url, MAX_VIDEOS)}
               />
             ) : (
               <p className="rounded-xl border border-hairline bg-mist px-3.5 py-3 text-[12.5px] text-muted">
