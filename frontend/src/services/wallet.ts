@@ -53,6 +53,21 @@ export const walletApi = {
     );
     return data;
   },
+
+  /** Whether the user has set a transaction PIN yet. */
+  async getPinStatus(): Promise<{ has_pin: boolean }> {
+    const { data } = await api.get<{ has_pin: boolean }>("/wallet/pin/");
+    return data;
+  },
+
+  /**
+   * Set (first time) or change the transaction PIN.
+   * First-time set needs the account `password`; a change needs `current_pin`.
+   */
+  async setPin(input: { pin: string; password?: string; current_pin?: string }): Promise<{ has_pin: boolean }> {
+    const { data } = await api.post<{ has_pin: boolean }>("/wallet/pin/", input);
+    return data;
+  },
 };
 
 /** Symbols for native-currency balance display (real money, not converted). */

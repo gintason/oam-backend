@@ -87,8 +87,8 @@ export const payoutsApi = {
     return data;
   },
 
-  /** Send money from the wallet to a saved bank account. */
-  async withdraw(input: { bank_account_id: string; amount: number | string; currency?: string }): Promise<Withdrawal> {
+  /** Send money from the wallet to a saved bank account. Requires the PIN. */
+  async withdraw(input: { bank_account_id: string; amount: number | string; pin: string; currency?: string }): Promise<Withdrawal> {
     const { data } = await api.post<Withdrawal>("/payouts/withdrawals/", {
       currency: "NGN",
       ...input,

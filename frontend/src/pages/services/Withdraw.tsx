@@ -20,6 +20,7 @@ export default function Withdraw() {
 
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
+  const [pin, setPin] = useState("");
   const [error, setError] = useState<string>();
   const [done, setDone] = useState<string>();
   const [adding, setAdding] = useState(false);
@@ -37,8 +38,15 @@ export default function Withdraw() {
     enabled: isVerified,
   });
 
+  const pinStatus = useQuery({
+    queryKey: ["wallet", scope, "pin"],
+    queryFn: walletApi.getPinStatus,
+    enabled: isVerified,
+  });
+  const hasPin = pinStatus.data?.has_pin;
+
   const withdraw = useMutation({
-    mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount) }),
+    mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
     onSuccess: (w) => {
       queryClient.invalidateQueries({ queryKey: ["wallet"] });
       queryClient.invalidateQueries({ queryKey: ["payouts"] });
@@ -58,6 +66,7 @@ export default function Withdraw() {
 
       setError(undefined);
       setAmount("");
+      setPin("");
       const pending = w.status === "pending" || w.status === "processing";
       setDone(
         pending
@@ -67,6 +76,7 @@ export default function Withdraw() {
     },
     onError: (err) => {
       setDone(undefined);
+      pinStatus.refetch();
       setError(apiErrorMessage(err, "Withdrawal failed."));
     },
   });
@@ -169,15 +179,58 @@ export default function Withdraw() {
                 <p className="mt-1.5 text-[12.5px] text-danger">That's more than your available balance.</p>
               )}
 
+              {/* Fee summary — the platform currently applies no withdrawal fee,
+                  so what you enter is what's sent. */}
+              {amount && Number(amount) > 0 && (
+                <div className="mt-3 space-y-1 rounded-[11px] border border-hairline bg-mist/50 px-3.5 py-2.5 text-[12.5px]">
+                  <div className="flex justify-between text-muted">
+                    <span>Amount</span><span className="text-ink">{formatBalance(amount, "NGN")}</span>
+                  </div>
+                  <div className="flex justify-between text-muted">
+                    <span>Fee</span><span className="text-ink">{formatBalance(0, "NGN")}</span>
+                  </div>
+                  <div className="flex justify-between border-t border-hairline pt-1 font-semibold">
+                    <span className="text-ink">Total debited</span>
+                    <span className="text-ink">{formatBalance(amount, "NGN")}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Transaction PIN */}
+              {pinStatus.isLoading ? (
+                <div className="mt-4 h-11 animate-pulse rounded-[11px] bg-hairline/60" />
+              ) : hasPin === false ? (
+                <SetPin onDone={() => pinStatus.refetch()} onError={setError} />
+              ) : (
+                <div className="mt-4">
+                  <label htmlFor="pin" className="mb-1.5 block text-[12.5px] font-semibold text-ink">
+                    Transaction PIN
+                  </label>
+                  <input
+                    id="pin"
+                    type="password"
+                    inputMode="numeric"
+                    autoComplete="off"
+                    maxLength={6}
+                    value={pin}
+                    onChange={(e) => setPin(e.target.value.replace(/[^\d]/g, ""))}
+                    placeholder="Enter your PIN"
+                    className="h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[15px] tracking-[0.3em] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
+                  />
+                </div>
+              )}
+
               <button
                 onClick={() => {
                   setError(undefined); setDone(undefined);
                   if (!accountId) return setError("Choose a bank account.");
                   if (!amount || Number(amount) <= 0) return setError("Enter an amount.");
                   if (Number(amount) > balance) return setError("Amount exceeds your wallet balance.");
+                  if (hasPin === false) return setError("Create your transaction PIN first.");
+                  if (pin.length < 4) return setError("Enter your 4–6 digit transaction PIN.");
                   withdraw.mutate();
                 }}
-                disabled={withdraw.isPending}
+                disabled={withdraw.isPending || hasPin === false}
                 className="mt-5 flex h-12 w-full items-center justify-center rounded-[11px] bg-brand-red text-[15px] font-semibold text-white shadow-[0_8px_20px_rgba(227,16,18,0.25)] transition hover:brightness-95 active:scale-[0.99] disabled:opacity-60"
               >
                 {withdraw.isPending
@@ -344,6 +397,74 @@ function AddAccount({ onDone, onError }: { onDone: () => void; onError: (m?: str
         className="mt-3 h-11 w-full rounded-[10px] bg-brand-green text-[14px] font-medium text-white transition hover:brightness-95 disabled:opacity-50"
       >
         {save.isPending ? "Saving…" : "Save account"}
+      </button>
+    </div>
+  );
+}
+
+/** First-time transaction-PIN setup, authorized with the account password. */
+function SetPin({ onDone, onError }: { onDone: () => void; onError: (m?: string) => void }) {
+  const [password, setPassword] = useState("");
+  const [pin, setPin] = useState("");
+  const [confirm, setConfirm] = useState("");
+
+  const create = useMutation({
+    mutationFn: () => walletApi.setPin({ pin, password }),
+    onSuccess: () => onDone(),
+    onError: (err) => onError(apiErrorMessage(err, "Couldn't set your PIN.")),
+  });
+
+  const valid = /^\d{4,6}$/.test(pin) && pin === confirm && password.length > 0;
+
+  return (
+    <div className="mt-4 rounded-[11px] border border-brand-green/30 bg-brand-green/5 p-3.5">
+      <p className="text-[13px] font-semibold text-ink">Create your transaction PIN</p>
+      <p className="mt-0.5 text-[12px] leading-relaxed text-muted">
+        You'll enter this 4–6 digit PIN to authorize withdrawals. Confirm it with
+        your account password to set it up.
+      </p>
+
+      <label className="mt-3 mb-1.5 block text-[12.5px] font-semibold text-ink">Account password</label>
+      <input
+        type="password"
+        autoComplete="current-password"
+        value={password}
+        onChange={(e) => { setPassword(e.target.value); onError(undefined); }}
+        placeholder="Your login password"
+        className="h-11 w-full rounded-[10px] border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
+      />
+
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <div>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">New PIN</label>
+          <input
+            type="password" inputMode="numeric" maxLength={6} value={pin}
+            onChange={(e) => { setPin(e.target.value.replace(/[^\d]/g, "")); onError(undefined); }}
+            placeholder="4–6 digits"
+            className="h-11 w-full rounded-[10px] border border-hairline bg-paper px-3 text-[14px] tracking-[0.3em] text-ink outline-none focus:border-brand-green"
+          />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Confirm PIN</label>
+          <input
+            type="password" inputMode="numeric" maxLength={6} value={confirm}
+            onChange={(e) => { setConfirm(e.target.value.replace(/[^\d]/g, "")); onError(undefined); }}
+            placeholder="Repeat PIN"
+            className="h-11 w-full rounded-[10px] border border-hairline bg-paper px-3 text-[14px] tracking-[0.3em] text-ink outline-none focus:border-brand-green"
+          />
+        </div>
+      </div>
+      {confirm.length > 0 && pin !== confirm && (
+        <p className="mt-1.5 text-[12px] text-danger">PINs don't match.</p>
+      )}
+
+      <button
+        type="button"
+        onClick={() => { if (!valid) return onError("Enter a matching 4–6 digit PIN and your password."); create.mutate(); }}
+        disabled={create.isPending || !valid}
+        className="mt-3 h-11 w-full rounded-[10px] bg-brand-green text-[14px] font-medium text-white transition hover:brightness-95 disabled:opacity-50"
+      >
+        {create.isPending ? "Setting up…" : "Create PIN"}
       </button>
     </div>
   );
