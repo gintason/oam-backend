@@ -1,3 +1,378 @@
 {
-  "_note": "Progressive-fill file. Any key NOT present here falls back to English automatically. Copy keys from en.json and translate their values as reviewed translations become available. Delete this _note when you add real content."
+  "common": {
+    "back": "返回",
+    "done": "完成",
+    "retry": "重试",
+    "seeAll": "查看全部",
+    "verify": "验证",
+    "loading": "加载中…"
+  },
+  "language": {
+    "label": "语言"
+  },
+  "header": {
+    "nav": {
+      "dashboard": "仪表板",
+      "wallet": "钱包",
+      "orders": "订单",
+      "messages": "消息",
+      "earnings": "收入"
+    },
+    "signOut": "退出登录",
+    "menu": "菜单"
+  },
+  "dashboard": {
+    "greeting": "欢迎 👋",
+    "greetingNamed": "欢迎，{{name}} 👋",
+    "walletBalance": "钱包余额",
+    "showBalance": "显示余额",
+    "hideBalance": "隐藏余额",
+    "loadBalanceError": "无法加载余额。",
+    "emptyWallet": "您的钱包是空的——请充值，或用银行卡支付服务费用。",
+    "addMoney": "充值",
+    "send": "发送",
+    "withdraw": "提现",
+    "recentTransactions": "最近交易",
+    "verifyToSeeTransactions": "验证您的账户以查看交易。",
+    "loadTransactionsError": "无法加载交易。",
+    "noTransactions": "暂无交易。为钱包充值即可开始。",
+    "credit": "收入",
+    "debit": "支出",
+    "groups": {
+      "bills": "账单与公共事业",
+      "money": "资金",
+      "travel": "旅行及更多",
+      "shop": "购物与服务"
+    },
+    "services": {
+      "airtime": "话费",
+      "data": "流量",
+      "electricity": "电费",
+      "cable": "有线电视",
+      "fund": "充值",
+      "withdraw": "提现",
+      "transfer": "转账",
+      "giftCards": "礼品卡",
+      "flights": "机票",
+      "hotels": "酒店",
+      "carHire": "租车",
+      "pickup": "取货",
+      "marketplace": "市场",
+      "artisans": "工匠"
+    },
+    "verifyBanner": {
+      "title": "验证您的账户",
+      "body": "在您完成验证之前，钱包和支付将保持锁定。请查收邮件中的验证码。",
+      "cta": "验证"
+    }
+  },
+  "airtime": {
+    "back": "返回",
+    "title": "购买话费",
+    "subtitle": "即时充值，支持所有网络。",
+    "network": "网络",
+    "loadNetworksError": "无法加载网络。",
+    "retry": "重试",
+    "phoneNumber": "电话号码",
+    "phonePlaceholder": "0803 123 4567",
+    "networkGuess": "看起来是 <0>{{network}}</0> 号码——已为您选择。如果不对，请点按其他网络。",
+    "amountLabel": "金额 (₦)",
+    "amountPlaceholder": "输入金额（最低 ₦50）",
+    "payWith": "支付方式",
+    "wallet": "钱包",
+    "card": "银行卡",
+    "lowFunds": "您的钱包余额不足以完成此次购买。",
+    "addMoneyCard": "用银行卡充值",
+    "buyAirtime": "购买话费",
+    "pay": "支付 ₦{{amount}}",
+    "cardHint": "您将通过 Paystack 安全支付。话费将在支付后立即到账。",
+    "walletHint": "已从您的 OAM 钱包即时支付。",
+    "errors": {
+      "chooseNetwork": "请选择网络。",
+      "invalidPhone": "请输入有效的电话号码。",
+      "enterAmount": "请输入金额。",
+      "purchaseFailed": "购买失败。请重试。",
+      "cardStartFailed": "无法开始银行卡支付。"
+    },
+    "confirm": {
+      "title": "确认购买",
+      "service": "服务",
+      "phone": "电话",
+      "amount": "金额",
+      "payWith": "支付方式",
+      "serviceValue": "{{name}} 话费",
+      "confirmLabel": "支付 {{amount}}"
+    },
+    "success": {
+      "titleOk": "话费即将到账！",
+      "titleFailed": "购买失败",
+      "bodyOk": "向 {{recipient}} 充值 ₦{{amount}} 的 {{biller}} 话费。",
+      "bodyPending": "付款已收到，您的运营商正在完成订单。请勿重复购买——稍后查看订单。",
+      "bodyFailed": "运营商无法完成此订单。任何被冻结的金额已退回您的钱包。",
+      "status": "状态",
+      "reference": "参考编号",
+      "buyAgain": "再次购买",
+      "done": "完成"
+    },
+    "gate": {
+      "title": "验证您的账户",
+      "body": "您需要已验证的账户才能购买话费和支付账单。",
+      "back": "返回仪表板"
+    }
+  },
+  "landing": {
+    "nav": {
+      "home": "首页",
+      "about": "关于",
+      "services": "服务",
+      "marketplace": "市场",
+      "findArtisans": "查找工匠",
+      "faq": "常见问题"
+    },
+    "signIn": "登录",
+    "getStarted": "开始使用",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "langCurrency": "语言和货币",
+    "hero": {
+      "badge": "所有服务 · 一个应用 · 无限可能",
+      "headlines": [
+        "一个余额，满足您的所有需求。",
+        "支付账单、转账并交易礼品卡。",
+        "预订全球机票、酒店和租车。",
+        "在我们的市场买卖商品。",
+        "为下一个工作找到经过验证的工匠。"
+      ],
+      "subtitle": "话费、流量、DStv、电费——还有市场、附近的工匠、礼品卡、转账和旅行。全部来自一个钱包。",
+      "signUp": "立即注册！",
+      "howItWorks": "运作方式",
+      "download": "在 Google Play 和 App Store 下载 OAM 应用——将世界握在手中。"
+    },
+    "services": {
+      "eyebrow": "一个应用，包罗万象",
+      "title": "您需要的每项服务，尽在一处",
+      "subtitle": "支付账单、购物、寻求帮助、旅行和转账——全部来自一个钱包，即时到账。",
+      "items": {
+        "airtime": {
+          "title": "话费和流量",
+          "desc": "即时为任何网络充值。"
+        },
+        "cable": {
+          "title": "有线电视",
+          "desc": "DStv、GOtv 和 Startimes。"
+        },
+        "electricity": {
+          "title": "电费",
+          "desc": "预付费令牌和后付费。"
+        },
+        "marketplace": {
+          "title": "市场",
+          "desc": "就近买卖。"
+        },
+        "artisans": {
+          "title": "工匠",
+          "desc": "您附近值得信赖的专业人士。"
+        },
+        "flights": {
+          "title": "机票",
+          "desc": "比较并预订便宜机票。"
+        },
+        "hotels": {
+          "title": "酒店",
+          "desc": "住宿和体验。"
+        },
+        "giftcards": {
+          "title": "礼品卡",
+          "desc": "购买和兑换数字卡。"
+        },
+        "transfer": {
+          "title": "转账",
+          "desc": "快速、安全的转账。"
+        },
+        "carhire": {
+          "title": "租车",
+          "desc": "随时随地租车。"
+        }
+      }
+    },
+    "marketplace": {
+      "eyebrow": "市场",
+      "title": "买卖尽在一处",
+      "subtitle": "从汽车到电子产品再到房产——浏览您附近的商品，或一分钟内发布您的商品。",
+      "viewAll": "查看所有商品",
+      "all": "全部",
+      "categoriesAria": "市场类别",
+      "negotiable": "可议价",
+      "featured": "精选",
+      "emptyFilteredTitle": "此类别暂无商品",
+      "emptyTitle": "首批商品正在上架",
+      "emptyFilteredBody": "试试其他类别，或成为第一个在此发布的人。",
+      "emptyBody": "OAM 市场是全新的。您的前三个商品免费——无需银行卡。",
+      "browseEverything": "浏览全部",
+      "postItem": "发布商品"
+    },
+    "artisans": {
+      "title": "已验证的工匠",
+      "subtitle": "这里的每位工匠在展示前，都经过我们团队对身份、作品照片和视频的审核。",
+      "searchPlaceholder": "水管工、电工、城市…",
+      "findNearMe": "查找我附近的工匠",
+      "all": "全部",
+      "verified": "已验证",
+      "featured": "精选",
+      "emptyFilteredTitle": "暂无匹配的已验证工匠",
+      "emptyTitle": "首批已验证的工匠即将到来",
+      "emptyFilteredBody": "试试其他工种，或浏览您附近的所有人。",
+      "emptyBody": "这里的每位工匠在展示前都经过人工审核，因此本板块会逐步充实。",
+      "browseAll": "浏览所有工匠",
+      "listTrade": "登记您的工种"
+    },
+    "cta": {
+      "title": "一个应用。无限可能。",
+      "subtitle": "加入数千位轻松支付账单、购物和转账的用户。开始免费。",
+      "createAccount": "创建账户",
+      "signIn": "登录"
+    },
+    "footer": {
+      "tagline": "所有服务。一个应用。无限可能。",
+      "followUs": "关注我们",
+      "cols": {
+        "services": "服务",
+        "explore": "探索",
+        "company": "公司"
+      },
+      "links": {
+        "airtimeData": "话费和流量",
+        "cableTv": "有线电视",
+        "electricity": "电费",
+        "giftCards": "礼品卡",
+        "moneyTransfer": "转账",
+        "marketplace": "市场",
+        "artisans": "工匠",
+        "flights": "机票",
+        "hotels": "酒店",
+        "carHire": "租车",
+        "about": "关于",
+        "contact": "联系",
+        "helpCenter": "帮助中心",
+        "terms": "条款",
+        "privacy": "隐私"
+      },
+      "rights": "© {{year}} OAM。保留所有权利。",
+      "developedBy": "由 AiTrend 开发"
+    }
+  },
+  "bills": {
+    "back": "返回",
+    "wallet": "钱包",
+    "card": "银行卡",
+    "payWith": "支付方式",
+    "retry": "重试",
+    "switchToCard": "改用银行卡",
+    "lowFunds": "您的钱包余额不足。请改用银行卡支付。",
+    "payNoteCard": "您将通过 Paystack 安全支付。{{noun}}将在支付后立即到账。",
+    "payNoteWallet": "已从您的 OAM 钱包即时支付。",
+    "verifyGate": {
+      "title": "验证您的账户",
+      "body": "您需要已验证的账户才能支付账单。",
+      "back": "返回仪表板"
+    },
+    "result": {
+      "inProgress": "购买进行中",
+      "issuingToken": "已交付——正在生成您的令牌",
+      "failed": "购买失败",
+      "bodyPending": "您的付款已完成，运营商正在处理订单。通常不到一分钟。",
+      "bodyToken": "您的电量正在路上。我们正在等待运营商发放令牌——它会自动显示在此处。",
+      "bodyFailed": "运营商无法完成此订单。任何被冻结的金额已退回您的钱包。",
+      "dontBuyAgain": "请勿重复购买——此订单已付款。它会自动完成，您随时可在订单中找到它。",
+      "customer": "客户",
+      "status": "状态",
+      "reference": "参考编号",
+      "checking": "检查中…",
+      "checkStatus": "立即检查状态",
+      "tryAgain": "重试",
+      "buyAgain": "再次购买",
+      "viewInOrders": "在订单中查看",
+      "done": "完成"
+    }
+  },
+  "data": {
+    "title": "购买流量",
+    "subtitle": "实时套餐，即时到账。",
+    "network": "网络",
+    "loadNetworksError": "无法加载网络。",
+    "dataPlan": "流量套餐",
+    "loadPlansError": "无法加载套餐。",
+    "noPlans": "该网络当前没有可用套餐。",
+    "phoneNumber": "电话号码",
+    "phonePlaceholder": "080...",
+    "bundleLabel": "流量包",
+    "payAmount": "支付 ₦{{amount}}",
+    "buyData": "购买流量",
+    "payNoun": "流量",
+    "chooseNetwork": "请选择网络。",
+    "choosePlan": "请选择流量套餐。",
+    "invalidPhone": "请输入有效的电话号码。",
+    "purchaseFailed": "购买失败。请重试。",
+    "cardStartFailed": "无法开始银行卡支付。",
+    "successTitle": "流量即将到账！",
+    "failedTitle": "购买失败",
+    "successMessage": "{{plan}} 到 {{recipient}}。"
+  },
+  "electricity": {
+    "title": "电费",
+    "subtitle": "即时购买电表电量。",
+    "provider": "供应商",
+    "loadProvidersError": "无法加载供应商。",
+    "selectDisco": "选择您的供电公司…",
+    "meterType": "电表类型",
+    "prepaid": "预付费",
+    "postpaid": "后付费",
+    "meterNumber": "电表号",
+    "meterPlaceholder": "输入电表号",
+    "checkingMeter": "检查电表中…",
+    "keepTyping": "请继续输入——号码填写完整后，我们将确认电表持有人（{{count}}/11 位）。",
+    "couldntConfirmMeter": "无法确认该电表。",
+    "checkAgain": "重新检查",
+    "chooseProviderFirst": "请在上方选择您的供应商，以确认电表持有人。",
+    "amountLabel": "金额 (₦)",
+    "amountPlaceholder": "输入金额",
+    "districtLine": "区域：{{value}}",
+    "arrearsLine": "未付欠款：₦{{value}}",
+    "minPurchaseLine": "最低购买：₦{{value}}",
+    "onlyName": "您的供应商仅返回了该电表的账户名称。",
+    "buyUnits": "购买电量",
+    "payAmount": "支付 ₦{{amount}}",
+    "label": "电费",
+    "payNoun": "电量",
+    "chooseProvider": "请选择您的供电公司。",
+    "invalidMeter": "请输入有效的电表号。",
+    "minAmount": "请输入至少 ₦100 的金额。",
+    "couldntVerifyMeter": "无法验证该电表号。",
+    "successTitle": "支付成功！",
+    "successMessage": "₦{{amount}} 到电表 {{recipient}}。"
+  },
+  "cable": {
+    "title": "有线电视",
+    "subtitle": "续订 DStv、GOtv、Startimes。",
+    "provider": "供应商",
+    "loadProvidersError": "无法加载供应商。",
+    "package": "套餐",
+    "loadPackagesError": "无法加载套餐。",
+    "noPackages": "当前没有可用套餐。",
+    "smartcard": "智能卡 / IUC 号",
+    "smartcardPlaceholder": "输入智能卡号",
+    "checkingSmartcard": "检查智能卡中…",
+    "label": "电视订阅",
+    "subscribe": "订阅",
+    "payAmount": "支付 ₦{{amount}}",
+    "payNoun": "您的订阅",
+    "chooseProvider": "请选择您的供应商。",
+    "choosePackage": "请选择套餐。",
+    "waitSmartcard": "支付前请等待智能卡确认。",
+    "invalidSmartcard": "请输入有效的智能卡号。",
+    "couldntConfirmSmartcard": "无法确认该智能卡。",
+    "couldntVerifySmartcard": "无法验证该智能卡号。",
+    "successTitle": "订阅成功！",
+    "successMessage": "{{plan}} 在 {{recipient}}。"
+  }
 }
