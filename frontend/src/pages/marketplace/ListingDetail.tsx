@@ -8,14 +8,16 @@ import {
 import AppHeader from "../../components/AppHeader";
 import VerifiedBadge from "../../components/VerifiedBadge";
 import { useUserScope } from "../../auth/useUserScope";
-import { marketplaceApi, CONDITIONS } from "../../services/marketplace";
+import { marketplaceApi } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
 import { naira, friendlyTime } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 export default function ListingDetail() {
   const { id = "" } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const scope = useUserScope();
   const qc = useQueryClient();
   const [message, setMessage] = useState("");
@@ -31,7 +33,7 @@ export default function ListingDetail() {
   const enquire = useMutation({
     mutationFn: () => messagingApi.start({ kind: "listing", id, body: message.trim() }),
     onSuccess: (convo) => navigate(`/messages/${convo.id}`),
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't send that message.")),
+    onError: (err) => setError(apiErrorMessage(err, t("marketplace.detail.errMessage"))),
   });
 
   const remove = useMutation({
@@ -40,15 +42,15 @@ export default function ListingDetail() {
       qc.invalidateQueries({ queryKey: ["marketplace"] });
       navigate("/marketplace/sell");
     },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't delete that listing.")),
+    onError: (err) => setError(apiErrorMessage(err, t("marketplace.sell.errDelete"))),
   });
 
   function onDelete() {
-    if (window.confirm("Delete this listing? This can't be undone.")) remove.mutate();
+    if (window.confirm(t("marketplace.sell.deleteConfirm"))) remove.mutate();
   }
 
   const l = listing.data;
-  const conditionLabel = CONDITIONS.find((c) => c.value === l?.condition)?.label ?? l?.condition;
+  const conditionLabel = l?.condition ? t("marketplace.conditions." + l.condition) : undefined;
   const images = l?.images ?? [];
   const videos = l?.videos ?? [];
 
@@ -61,7 +63,7 @@ export default function ListingDetail() {
           onClick={() => navigate("/marketplace/browse")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Back to browsing
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("marketplace.detail.backToBrowsing")}
         </button>
 
         {listing.isLoading ? (
@@ -70,7 +72,7 @@ export default function ListingDetail() {
           </div>
         ) : !l ? (
           <p className="rounded-xl border border-hairline bg-paper p-6 text-center text-[14px] text-muted">
-            This listing isn't available. It may have been sold or removed.
+            {t("marketplace.detail.unavailable")}
           </p>
         ) : (
           <>
@@ -86,7 +88,7 @@ export default function ListingDetail() {
                 )}
                 {l.is_featured && (
                   <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-warn px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-white">
-                    <Star size={9} strokeWidth={2.5} /> Featured
+                    <Star size={9} strokeWidth={2.5} /> {t("marketplace.featured")}
                   </span>
                 )}
                 {l.is_verified && (
@@ -116,7 +118,7 @@ export default function ListingDetail() {
                 <p className="mt-1 text-2xl font-bold text-brand-red tabular">
                   {naira(l.price)}
                   {l.negotiable && (
-                    <span className="ml-2 text-[12px] font-medium text-muted">negotiable</span>
+                    <span className="ml-2 text-[12px] font-medium text-muted">{t("marketplace.negotiable")}</span>
                   )}
                 </p>
 
@@ -124,7 +126,7 @@ export default function ListingDetail() {
                   <Chip icon={<Tag size={11} strokeWidth={2} />}>{l.category_name}</Chip>
                   {conditionLabel && <Chip>{conditionLabel}</Chip>}
                   {l.location && <Chip icon={<MapPin size={11} strokeWidth={2} />}>{l.location}</Chip>}
-                  <Chip icon={<Eye size={11} strokeWidth={2} />}>{l.views_count} views</Chip>
+                  <Chip icon={<Eye size={11} strokeWidth={2} />}>{t("marketplace.detail.views", { count: l.views_count })}</Chip>
                 </div>
 
                 {l.description && (
@@ -149,7 +151,7 @@ export default function ListingDetail() {
                 )}
 
                 <p className="mt-4 text-[12.5px] text-muted">
-                  Listed by <span className="font-medium text-ink">{l.seller_name}</span>
+                  {t("marketplace.detail.listedBy")} <span className="font-medium text-ink">{l.seller_name}</span>
                   {" · "}{friendlyTime(l.created_at)}
                 </p>
 
@@ -159,7 +161,7 @@ export default function ListingDetail() {
                       onClick={() => navigate(`/marketplace/${l.id}/edit`)}
                       className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-xl border border-hairline bg-paper text-[13px] font-semibold text-ink transition hover:bg-mist"
                     >
-                      <Pencil size={15} strokeWidth={1.75} /> Edit
+                      <Pencil size={15} strokeWidth={1.75} /> {t("marketplace.detail.edit")}
                     </button>
                     <button
                       onClick={onDelete}
@@ -168,7 +170,7 @@ export default function ListingDetail() {
                     >
                       {remove.isPending
                         ? <Loader2 size={15} className="animate-spin" />
-                        : <><Trash2 size={15} strokeWidth={1.75} /> Delete</>}
+                        : <><Trash2 size={15} strokeWidth={1.75} /> {t("marketplace.detail.delete")}</>}
                     </button>
                   </div>
                 )}
@@ -179,12 +181,11 @@ export default function ListingDetail() {
             {!l.is_owner && (
             <div className="mt-4 rounded-2xl border border-hairline bg-paper p-5 shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
               <h2 className="font-display text-[16px] font-semibold text-ink">
-                Message the seller
+                {t("marketplace.detail.messageSeller")}
               </h2>
               <p className="mt-1 flex items-start gap-1.5 text-[12.5px] leading-relaxed text-muted">
                 <Lock size={13} strokeWidth={1.75} className="mt-0.5 shrink-0" />
-                Ask your questions here. Phone numbers are exchanged once the seller
-                accepts — so neither of you gives out a number to a stranger.
+                {t("marketplace.detail.messageLock")}
               </p>
 
               {error && <p className="mt-2.5 text-[12.5px] text-danger">{error}</p>}
@@ -193,7 +194,7 @@ export default function ListingDetail() {
                 value={message}
                 onChange={(e) => { setMessage(e.target.value); setError(undefined); }}
                 rows={3}
-                placeholder="Hi, is this still available? Would you take…"
+                placeholder={t("marketplace.detail.messagePlaceholder")}
                 className="mt-3 w-full resize-none rounded-xl border border-hairline bg-paper px-3.5 py-3 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
               />
 
@@ -204,13 +205,11 @@ export default function ListingDetail() {
               >
                 {enquire.isPending
                   ? <Loader2 size={17} className="animate-spin" />
-                  : <><Send size={16} strokeWidth={1.75} /> Send message</>}
+                  : <><Send size={16} strokeWidth={1.75} /> {t("marketplace.detail.sendMessage")}</>}
               </button>
 
               <p className="mt-3 rounded-lg bg-mist px-3 py-2.5 text-[11.5px] leading-relaxed text-muted">
-                <span className="font-semibold text-ink">Stay safe:</span> meet in a public
-                place, inspect before you pay, and never send money in advance to
-                someone you haven't met.
+                <span className="font-semibold text-ink">{t("marketplace.detail.safeLabel")}</span> {t("marketplace.detail.safeBody")}
               </p>
             </div>
             )}

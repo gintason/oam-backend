@@ -12,6 +12,7 @@ import {
 } from "../../services/marketplace";
 import { apiErrorMessage } from "../../lib/api";
 import { naira } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 /** Enough to show an item properly without turning the page into a gallery. */
 // Photos are unlimited; videos are capped so listings stay light to load.
@@ -27,6 +28,7 @@ const EMPTY: ListingWrite = {
 export default function PostListing() {
   const navigate = useNavigate();
   const scope = useUserScope();
+  const { t } = useTranslation();
   const qc = useQueryClient();
   const { id } = useParams();
   const isEdit = Boolean(id);
@@ -99,7 +101,7 @@ export default function PostListing() {
       navigate(`/marketplace/${listing.id}`);
     },
     onError: (err) =>
-      setError(apiErrorMessage(err, isEdit ? "Couldn't save your changes." : "Couldn't post that listing.")),
+      setError(apiErrorMessage(err, isEdit ? t("marketplace.post.errSave") : t("marketplace.post.errPost"))),
   });
 
   function set<K extends keyof ListingWrite>(key: K, value: ListingWrite[K]) {
@@ -133,12 +135,12 @@ export default function PostListing() {
 
   function submit() {
     setError(undefined);
-    if (!form.category) return setError("Choose a category.");
-    if (!form.title.trim()) return setError("Give your item a title.");
-    if (!form.price || Number(form.price) <= 0) return setError("Enter a price.");
+    if (!form.category) return setError(t("marketplace.post.vCategory"));
+    if (!form.title.trim()) return setError(t("marketplace.post.vTitle"));
+    if (!form.price || Number(form.price) <= 0) return setError(t("marketplace.post.vPrice"));
     // Phone is required when posting; on edit it's optional (blank keeps current).
     if (!isEdit && !form.contact_phone) {
-      return setError("Add a phone number — buyers see it only after you accept.");
+      return setError(t("marketplace.post.vPhone"));
     }
     save.mutate();
   }
@@ -152,18 +154,18 @@ export default function PostListing() {
           onClick={() => navigate("/marketplace/sell")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Selling
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("marketplace.sell.heading")}
         </button>
 
         <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">
-          {isEdit ? "Edit listing" : "Post an item"}
+          {isEdit ? t("marketplace.post.headingEdit") : t("marketplace.postItem")}
         </h1>
         <p className="mt-1 text-[14px] text-muted">
           {isEdit
-            ? "Changes go live right away. Editing removes the Verified badge until it's reviewed again."
+            ? t("marketplace.post.editNote")
             : limit === null
-            ? "Unlimited listings on your plan."
-            : `${used} of ${limit} listings used on your plan.`}
+            ? t("marketplace.post.unlimited")
+            : t("marketplace.post.usage", { used, limit })}
         </p>
 
         {atLimit && (
@@ -171,16 +173,16 @@ export default function PostListing() {
             <AlertCircle size={16} strokeWidth={2} className="mt-0.5 shrink-0 text-danger" />
             <div>
               <p className="text-[13.5px] font-semibold text-danger">
-                You've reached your listing limit
+                {t("marketplace.post.limitTitle")}
               </p>
               <p className="mt-0.5 text-[12.5px] leading-relaxed text-muted">
-                Upgrade your plan, or remove an existing listing to make room.
+                {t("marketplace.post.limitBody")}
               </p>
               <button
                 onClick={() => navigate("/marketplace/sell")}
                 className="mt-2 h-9 rounded-lg bg-brand-red px-3.5 text-[12.5px] font-semibold text-white transition hover:brightness-95"
               >
-                See plans
+                {t("marketplace.post.seePlans")}
               </button>
             </div>
           </div>
@@ -189,52 +191,52 @@ export default function PostListing() {
         <div className="mt-4 space-y-3.5 rounded-2xl border border-hairline bg-paper p-5 shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
           {error && <p className="text-[13px] text-danger">{error}</p>}
 
-          <Field label="Category">
+          <Field label={t("marketplace.post.category")}>
             <select
               value={form.category}
               onChange={(e) => set("category", e.target.value)}
               className="h-11 w-full rounded-xl border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
             >
-              <option value="">Choose a category…</option>
+              <option value="">{t("marketplace.post.categoryPlaceholder")}</option>
               {categories.data?.filter((c) => !c.is_admin_only).map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
           </Field>
 
-          <Field label="Title" hint="Say what it is, plainly. 'iPhone 13 Pro 256GB' beats 'phone for sale'.">
+          <Field label={t("marketplace.post.title")} hint={t("marketplace.post.titleHint")}>
             <Input value={form.title} onChange={(v) => set("title", v)}
-                   placeholder="e.g. Hisense 43-inch Smart TV" />
+                   placeholder={t("marketplace.post.titlePlaceholder")} />
           </Field>
 
-          <Field label="Description" hint="Condition, age, what's included, any faults. Honesty saves wasted trips.">
+          <Field label={t("marketplace.post.description")} hint={t("marketplace.post.descriptionHint")}>
             <textarea
               value={form.description}
               onChange={(e) => set("description", e.target.value)}
               rows={4}
-              placeholder="Describe the item, its condition, and why you're selling."
+              placeholder={t("marketplace.post.descriptionPlaceholder")}
               className="w-full resize-none rounded-xl border border-hairline bg-paper px-3.5 py-3 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
             />
           </Field>
 
           <div className="grid gap-3.5 sm:grid-cols-2">
-            <Field label="Price (₦)">
+            <Field label={t("marketplace.post.price")}>
               <Input value={form.price} inputMode="numeric"
                      onChange={(v) => set("price", v.replace(/\D/g, ""))}
-                     placeholder="145000" />
+                     placeholder={t("marketplace.post.pricePlaceholder")} />
               {form.price && (
                 <p className="mt-1 text-[12px] font-semibold text-brand-red">
                   {naira(form.price)}
                 </p>
               )}
             </Field>
-            <Field label="Condition">
+            <Field label={t("marketplace.post.condition")}>
               <select
                 value={form.condition}
                 onChange={(e) => set("condition", e.target.value)}
                 className="h-11 w-full rounded-xl border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
               >
-                {CONDITIONS.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+                {CONDITIONS.map((c) => <option key={c.value} value={c.value}>{t("marketplace.conditions." + c.value)}</option>)}
               </select>
             </Field>
           </div>
@@ -247,21 +249,21 @@ export default function PostListing() {
               className="h-4 w-4 accent-[#0B7327]"
             />
             <span className="text-[13.5px] text-ink">
-              Price is negotiable
+              {t("marketplace.post.negotiableLabel")}
               <span className="block text-[12px] text-muted">
-                Buyers are likelier to message when they know there's room to talk.
+                {t("marketplace.post.negotiableHint")}
               </span>
             </span>
           </label>
 
-          <Field label="Location" hint="Area and city, so buyers know how far they'd travel.">
+          <Field label={t("marketplace.post.location")} hint={t("marketplace.post.locationHint")}>
             <Input value={form.location} onChange={(v) => set("location", v)}
-                   placeholder="e.g. Wuse 2, Abuja" />
+                   placeholder={t("marketplace.post.locationPlaceholder")} />
           </Field>
 
           <Field
-            label="Photos"
-            hint="The first photo becomes the cover. Listings with photos get far more messages than ones without."
+            label={t("marketplace.post.photos")}
+            hint={t("marketplace.post.photosHint")}
           >
             {(form.images ?? []).length > 0 && (
               <div className="mb-3 flex flex-wrap gap-2">
@@ -273,7 +275,7 @@ export default function PostListing() {
                     />
                     {i === 0 && (
                       <span className="absolute bottom-1 left-1 rounded bg-ink/75 px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wide text-white">
-                        Cover
+                        {t("marketplace.post.cover")}
                       </span>
                     )}
                   </div>
@@ -291,20 +293,20 @@ export default function PostListing() {
               />
             ) : (
               <p className="rounded-xl border border-hairline bg-mist px-3.5 py-3 text-[12.5px] text-muted">
-                That's {MAX_IMAGES} photos — the maximum. Remove one to add another.
+                {t("marketplace.post.photosMax", { max: MAX_IMAGES })}
               </p>
             )}
 
             {(form.images ?? []).length > 1 && (
               <p className="mt-2 text-[11.5px] text-muted">
-                Photos appear in the order you added them. Remove and re-add to change the cover.
+                {t("marketplace.post.photosReorder")}
               </p>
             )}
           </Field>
 
           <Field
-            label="Video (optional)"
-            hint="A short clip helps buyers trust the item. Up to 2 minutes."
+            label={t("marketplace.post.video")}
+            hint={t("marketplace.post.videoHint")}
           >
             {(form.videos ?? []).length > 0 && (
               <div className="mb-3 flex flex-wrap gap-2">
@@ -327,20 +329,20 @@ export default function PostListing() {
               />
             ) : (
               <p className="rounded-xl border border-hairline bg-mist px-3.5 py-3 text-[12.5px] text-muted">
-                That's {MAX_VIDEOS} videos — the maximum. Remove one to add another.
+                {t("marketplace.post.videosMax", { max: MAX_VIDEOS })}
               </p>
             )}
           </Field>
 
           <div className="grid gap-3.5 border-t border-hairline pt-3.5 sm:grid-cols-2">
-            <Field label="Phone" hint={isEdit ? "Leave blank to keep your current number." : "Shared only after you accept a buyer."}>
+            <Field label={t("marketplace.post.phone")} hint={isEdit ? t("marketplace.post.phoneHintEdit") : t("marketplace.post.phoneHintNew")}>
               <PhoneInput
                 value={form.contact_phone}
                 onChange={(v) => set("contact_phone", v)}
                 placeholder="803 123 4567"
               />
             </Field>
-            <Field label="WhatsApp (optional)" hint="Pick the country code, then enter the number.">
+            <Field label={t("marketplace.post.whatsapp")} hint={t("marketplace.post.whatsappHint")}>
               <PhoneInput
                 value={form.contact_whatsapp}
                 onChange={(v) => set("contact_whatsapp", v)}
@@ -356,7 +358,7 @@ export default function PostListing() {
           >
             {save.isPending
               ? <Loader2 size={18} className="mx-auto animate-spin" />
-              : isEdit ? "Save changes" : "Post listing"}
+              : isEdit ? t("marketplace.post.submitSave") : t("marketplace.post.submitPost")}
           </button>
         </div>
       </main>
