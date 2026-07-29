@@ -556,5 +556,74 @@
       "safeLabel": "Güvende kalın:",
       "safeBody": "halka açık bir yerde buluşun, ödemeden önce inceleyin ve tanışmadığınız birine asla önceden para göndermeyin."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Hesabınızı doğrulayın",
+    "verifyBody": "Cüzdanınız, hesabınız doğrulandığında açılır.",
+    "verifyNow": "Şimdi doğrula",
+    "title": "Cüzdan",
+    "refresh": "Yenile",
+    "errOpen": "O cüzdan açılamadı.",
+    "balanceLabel": "{{currency}} bakiyesi",
+    "showBalance": "Bakiyeyi göster",
+    "hideBalance": "Bakiyeyi gizle",
+    "errBalance": "Bakiyeniz yüklenemedi.",
+    "retry": "Tekrar dene",
+    "lastUpdated": "Son güncelleme {{time}}",
+    "empty": "Bu cüzdan boş. Bakiyenizden ödeme yapmak için para ekleyin.",
+    "addMoney": "Para ekle",
+    "transfer": "Transfer",
+    "withdraw": "Çek",
+    "txnHistory": "İşlem geçmişi",
+    "errTxns": "İşlemler yüklenemedi.",
+    "tryAgain": "Tekrar dene",
+    "noTxns": "Henüz {{currency}} işlemi yok. Etkinliği burada görmek için cüzdanınıza para yükleyin veya bir hizmet satın alın."
+  },
+  "orders": {
+    "back": "Geri",
+    "title": "Sipariş geçmişi",
+    "subtitle": "Elektrik jetonlarınız dâhil her satın alma.",
+    "checking": "Kontrol ediliyor…",
+    "refresh": "Yenile",
+    "outstandingOne": "{{count}} sipariş hâlâ tamamlanıyor.",
+    "outstandingOther": "{{count}} sipariş hâlâ tamamlanıyor.",
+    "outstandingBody": "Sağlayıcınızla birkaç saniyede bir kontrol ediyoruz — jetonunuz verilir verilmez burada görünür. Yenile'ye de dokunabilirsiniz. Tekrar satın almanıza gerek yok.",
+    "errLoad": "Siparişleriniz yüklenemedi.",
+    "tryAgain": "Tekrar dene",
+    "emptyTitle": "Henüz sipariş yok",
+    "emptyBody": "Satın alımlarınız burada görünecek.",
+    "tokenReady": "JETON HAZIR",
+    "shownBelow": "aşağıda gösteriliyor",
+    "tapToView": "görüntülemek için dokunun",
+    "tokenOnTheWay": "JETON YOLDA",
+    "tokenBeingIssued": "Jetonunuz veriliyor",
+    "tokenWaiting": "Jetonunuz bekleniyor",
+    "tokenAutoNote": "Burada otomatik görünür — bu sayfa kendini yeniler. Sağlayıcınız genellikle birkaç dakika içinde verir.",
+    "rowCustomer": "Müşteri",
+    "rowService": "Hizmet",
+    "rowMeterType": "Sayaç türü",
+    "rowPaidWith": "Ödeme yöntemi",
+    "rowReference": "Referans",
+    "rowProviderRef": "Sağlayıcı ref.",
+    "status": {
+      "pending": "beklemede",
+      "processing": "işleniyor",
+      "success": "başarılı",
+      "failed": "başarısız"
+    },
+    "category": {
+      "airtime": "kontör",
+      "data": "internet",
+      "electricity": "elektrik",
+      "cable": "kablo TV"
+    },
+    "meter": {
+      "prepaid": "ön ödemeli",
+      "postpaid": "faturalı"
+    },
+    "payWith": {
+      "wallet": "cüzdan",
+      "card": "kart"
+    }
   }
 }

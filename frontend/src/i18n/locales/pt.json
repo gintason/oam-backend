@@ -556,5 +556,74 @@
       "safeLabel": "Mantenha-se seguro:",
       "safeBody": "encontrem-se num local público, inspecione antes de pagar e nunca envie dinheiro adiantado a alguém que não conheceu."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Verifique a sua conta",
+    "verifyBody": "A sua carteira é desbloqueada assim que a conta for verificada.",
+    "verifyNow": "Verificar agora",
+    "title": "Carteira",
+    "refresh": "Atualizar",
+    "errOpen": "Não foi possível abrir essa carteira.",
+    "balanceLabel": "Saldo em {{currency}}",
+    "showBalance": "Mostrar saldo",
+    "hideBalance": "Ocultar saldo",
+    "errBalance": "Não foi possível carregar o seu saldo.",
+    "retry": "Tentar novamente",
+    "lastUpdated": "Atualizado {{time}}",
+    "empty": "Esta carteira está vazia. Adicione dinheiro para pagar a partir do seu saldo.",
+    "addMoney": "Adicionar dinheiro",
+    "transfer": "Transferir",
+    "withdraw": "Levantar",
+    "txnHistory": "Histórico de transações",
+    "errTxns": "Não foi possível carregar as transações.",
+    "tryAgain": "Tentar novamente",
+    "noTxns": "Ainda não há transações em {{currency}}. Carregue a sua carteira ou compre um serviço para ver atividade aqui."
+  },
+  "orders": {
+    "back": "Voltar",
+    "title": "Histórico de pedidos",
+    "subtitle": "Cada compra, incluindo os seus tokens de eletricidade.",
+    "checking": "A verificar…",
+    "refresh": "Atualizar",
+    "outstandingOne": "{{count}} pedido ainda a concluir.",
+    "outstandingOther": "{{count}} pedidos ainda a concluir.",
+    "outstandingBody": "Estamos a verificar com o seu fornecedor a cada poucos segundos — o seu token aparece aqui assim que é emitido. Também pode tocar em Atualizar. Não é preciso comprar de novo.",
+    "errLoad": "Não foi possível carregar os seus pedidos.",
+    "tryAgain": "Tentar novamente",
+    "emptyTitle": "Ainda não há pedidos",
+    "emptyBody": "As suas compras aparecerão aqui.",
+    "tokenReady": "TOKEN PRONTO",
+    "shownBelow": "mostrado abaixo",
+    "tapToView": "toque para ver",
+    "tokenOnTheWay": "TOKEN A CAMINHO",
+    "tokenBeingIssued": "O seu token está a ser emitido",
+    "tokenWaiting": "À espera do seu token",
+    "tokenAutoNote": "Aparece aqui automaticamente — esta página atualiza-se sozinha. O seu fornecedor costuma emiti-lo em poucos minutos.",
+    "rowCustomer": "Cliente",
+    "rowService": "Serviço",
+    "rowMeterType": "Tipo de contador",
+    "rowPaidWith": "Pago com",
+    "rowReference": "Referência",
+    "rowProviderRef": "Ref. do fornecedor",
+    "status": {
+      "pending": "pendente",
+      "processing": "a processar",
+      "success": "bem-sucedido",
+      "failed": "falhado"
+    },
+    "category": {
+      "airtime": "saldo",
+      "data": "dados",
+      "electricity": "eletricidade",
+      "cable": "cabo"
+    },
+    "meter": {
+      "prepaid": "pré-pago",
+      "postpaid": "pós-pago"
+    },
+    "payWith": {
+      "wallet": "carteira",
+      "card": "cartão"
+    }
   }
 }

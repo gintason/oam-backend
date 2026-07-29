@@ -556,5 +556,74 @@
       "safeLabel": "Bleiben Sie sicher:",
       "safeBody": "treffen Sie sich an einem öffentlichen Ort, prüfen Sie vor dem Bezahlen und senden Sie niemals im Voraus Geld an jemanden, den Sie nicht getroffen haben."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Konto verifizieren",
+    "verifyBody": "Ihr Wallet wird freigeschaltet, sobald Ihr Konto verifiziert ist.",
+    "verifyNow": "Jetzt verifizieren",
+    "title": "Wallet",
+    "refresh": "Aktualisieren",
+    "errOpen": "Dieses Wallet konnte nicht geöffnet werden.",
+    "balanceLabel": "{{currency}}-Guthaben",
+    "showBalance": "Guthaben anzeigen",
+    "hideBalance": "Guthaben ausblenden",
+    "errBalance": "Ihr Guthaben konnte nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "lastUpdated": "Aktualisiert {{time}}",
+    "empty": "Dieses Wallet ist leer. Fügen Sie Geld hinzu, um aus Ihrem Guthaben zu bezahlen.",
+    "addMoney": "Geld hinzufügen",
+    "transfer": "Überweisen",
+    "withdraw": "Auszahlen",
+    "txnHistory": "Transaktionsverlauf",
+    "errTxns": "Transaktionen konnten nicht geladen werden.",
+    "tryAgain": "Erneut versuchen",
+    "noTxns": "Noch keine {{currency}}-Transaktionen. Laden Sie Ihr Wallet auf oder kaufen Sie einen Dienst, um hier Aktivität zu sehen."
+  },
+  "orders": {
+    "back": "Zurück",
+    "title": "Bestellverlauf",
+    "subtitle": "Jeder Kauf, einschließlich Ihrer Strom-Token.",
+    "checking": "Wird geprüft…",
+    "refresh": "Aktualisieren",
+    "outstandingOne": "{{count}} Bestellung wird noch abgeschlossen.",
+    "outstandingOther": "{{count}} Bestellungen werden noch abgeschlossen.",
+    "outstandingBody": "Wir fragen alle paar Sekunden bei Ihrem Anbieter nach — Ihr Token erscheint hier, sobald es ausgestellt ist. Sie können auch auf Aktualisieren tippen. Kein erneuter Kauf nötig.",
+    "errLoad": "Ihre Bestellungen konnten nicht geladen werden.",
+    "tryAgain": "Erneut versuchen",
+    "emptyTitle": "Noch keine Bestellungen",
+    "emptyBody": "Ihre Käufe erscheinen hier.",
+    "tokenReady": "TOKEN BEREIT",
+    "shownBelow": "unten angezeigt",
+    "tapToView": "zum Ansehen tippen",
+    "tokenOnTheWay": "TOKEN UNTERWEGS",
+    "tokenBeingIssued": "Ihr Token wird ausgestellt",
+    "tokenWaiting": "Warten auf Ihr Token",
+    "tokenAutoNote": "Es erscheint hier automatisch — diese Seite aktualisiert sich selbst. Ihr Anbieter stellt es meist innerhalb weniger Minuten aus.",
+    "rowCustomer": "Kunde",
+    "rowService": "Dienst",
+    "rowMeterType": "Zählertyp",
+    "rowPaidWith": "Bezahlt mit",
+    "rowReference": "Referenz",
+    "rowProviderRef": "Anbieter-Ref.",
+    "status": {
+      "pending": "ausstehend",
+      "processing": "in Bearbeitung",
+      "success": "erfolgreich",
+      "failed": "fehlgeschlagen"
+    },
+    "category": {
+      "airtime": "Guthaben",
+      "data": "Daten",
+      "electricity": "Strom",
+      "cable": "Kabel"
+    },
+    "meter": {
+      "prepaid": "Prepaid",
+      "postpaid": "Postpaid"
+    },
+    "payWith": {
+      "wallet": "Wallet",
+      "card": "Karte"
+    }
   }
 }

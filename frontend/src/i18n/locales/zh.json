@@ -556,5 +556,74 @@
       "safeLabel": "注意安全：",
       "safeBody": "在公共场所见面，付款前先检查，切勿提前向未曾见面的人转账。"
     }
+  },
+  "wallet": {
+    "verifyTitle": "验证您的账户",
+    "verifyBody": "账户验证后即可解锁您的钱包。",
+    "verifyNow": "立即验证",
+    "title": "钱包",
+    "refresh": "刷新",
+    "errOpen": "无法打开该钱包。",
+    "balanceLabel": "{{currency}} 余额",
+    "showBalance": "显示余额",
+    "hideBalance": "隐藏余额",
+    "errBalance": "无法加载您的余额。",
+    "retry": "重试",
+    "lastUpdated": "最后更新 {{time}}",
+    "empty": "此钱包为空。充值即可用余额支付。",
+    "addMoney": "充值",
+    "transfer": "转账",
+    "withdraw": "提现",
+    "txnHistory": "交易记录",
+    "errTxns": "无法加载交易。",
+    "tryAgain": "重试",
+    "noTxns": "暂无 {{currency}} 交易。充值钱包或购买服务后即可在此查看活动。"
+  },
+  "orders": {
+    "back": "返回",
+    "title": "订单记录",
+    "subtitle": "每笔购买，包括您的电费令牌。",
+    "checking": "正在检查…",
+    "refresh": "刷新",
+    "outstandingOne": "{{count}} 笔订单仍在完成中。",
+    "outstandingOther": "{{count}} 笔订单仍在完成中。",
+    "outstandingBody": "我们每隔几秒就向您的供应商核对——令牌一经发放即会显示在此。您也可以点按刷新。无需重新购买。",
+    "errLoad": "无法加载您的订单。",
+    "tryAgain": "重试",
+    "emptyTitle": "暂无订单",
+    "emptyBody": "您的购买将显示在此。",
+    "tokenReady": "令牌就绪",
+    "shownBelow": "显示在下方",
+    "tapToView": "点按查看",
+    "tokenOnTheWay": "令牌正在发放",
+    "tokenBeingIssued": "您的令牌正在发放",
+    "tokenWaiting": "等待您的令牌",
+    "tokenAutoNote": "它会自动显示在此——本页面会自行刷新。您的供应商通常在几分钟内发放。",
+    "rowCustomer": "客户",
+    "rowService": "服务",
+    "rowMeterType": "电表类型",
+    "rowPaidWith": "支付方式",
+    "rowReference": "参考号",
+    "rowProviderRef": "供应商参考号",
+    "status": {
+      "pending": "待处理",
+      "processing": "处理中",
+      "success": "成功",
+      "failed": "失败"
+    },
+    "category": {
+      "airtime": "话费",
+      "data": "流量",
+      "electricity": "电费",
+      "cable": "电视"
+    },
+    "meter": {
+      "prepaid": "预付费",
+      "postpaid": "后付费"
+    },
+    "payWith": {
+      "wallet": "钱包",
+      "card": "银行卡"
+    }
   }
 }

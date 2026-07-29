@@ -8,6 +8,7 @@ import { useAuth } from "../auth/AuthContext";
 import { walletApi, formatBalance, type Transaction } from "../services/wallet";
 import { describeTransaction, friendlyTime, type TxnKind } from "../lib/format";
 import { apiErrorMessage } from "../lib/api";
+import { useTranslation } from "react-i18next";
 
 /**
  * Full wallet page: real balance per currency, currency switching, and the
@@ -15,6 +16,7 @@ import { apiErrorMessage } from "../lib/api";
  */
 export default function Wallet() {
   const scope = useUserScope();
+  const { t } = useTranslation();
   const { isVerified, user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -56,7 +58,7 @@ export default function Wallet() {
       setSelected(w.currency);
       queryClient.invalidateQueries({ queryKey: ["wallet", scope, "list"] });
     },
-    onError: (err) => setOpenError(apiErrorMessage(err, "Couldn't open that wallet.")),
+    onError: (err) => setOpenError(apiErrorMessage(err, t("wallet.errOpen"))),
   });
 
   const supported = currencyQuery.data?.supported ?? ["NGN", "USD", "GBP", "EUR"];
@@ -68,10 +70,10 @@ export default function Wallet() {
         <AppHeader />
         <main className="mx-auto max-w-md px-5 py-16 text-center">
           <ShieldAlert size={40} strokeWidth={1.5} className="mx-auto text-warn" />
-          <h1 className="mt-4 font-display text-xl font-semibold text-ink">Verify your account</h1>
-          <p className="mt-2 text-[14px] text-muted">Your wallet unlocks once your account is verified.</p>
+          <h1 className="mt-4 font-display text-xl font-semibold text-ink">{t("wallet.verifyTitle")}</h1>
+          <p className="mt-2 text-[14px] text-muted">{t("wallet.verifyBody")}</p>
           <Link to="/verify" state={{ identifier: user?.email ?? user?.phone ?? "" }} className="mt-5 inline-block rounded-lg bg-brand-green px-5 py-2.5 text-[14px] font-medium text-white">
-            Verify now
+            {t("wallet.verifyNow")}
           </Link>
         </main>
       </div>
@@ -83,7 +85,7 @@ export default function Wallet() {
       <AppHeader />
       <main className="mx-auto max-w-4xl px-5 py-8 sm:px-6 sm:py-10">
         <div className="mb-5 flex items-center justify-between">
-          <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Wallet</h1>
+          <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">{t("wallet.title")}</h1>
           <button
             onClick={() => {
               queryClient.invalidateQueries({ queryKey: ["wallet"] });
@@ -91,7 +93,7 @@ export default function Wallet() {
             className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-hairline bg-paper px-3 text-[13px] font-medium text-ink transition hover:bg-mist"
           >
             <RefreshCw size={14} strokeWidth={1.75} className={walletsQuery.isFetching ? "animate-spin" : ""} />
-            Refresh
+            {t("wallet.refresh")}
           </button>
         </div>
 
@@ -143,8 +145,8 @@ export default function Wallet() {
           />
           <div className="relative">
             <div className="flex items-center justify-between">
-              <span className="text-[13px] text-white/60">{active} balance</span>
-              <button onClick={() => setHide((v) => !v)} title={hide ? "Show balance" : "Hide balance"} aria-label={hide ? "Show balance" : "Hide balance"} className="text-white/50 transition hover:text-white/80">
+              <span className="text-[13px] text-white/60">{t("wallet.balanceLabel", { currency: active })}</span>
+              <button onClick={() => setHide((v) => !v)} title={hide ? t("wallet.showBalance") : t("wallet.hideBalance")} aria-label={hide ? t("wallet.showBalance") : t("wallet.hideBalance")} className="text-white/50 transition hover:text-white/80">
                 {hide ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
@@ -154,7 +156,7 @@ export default function Wallet() {
                 <div className="mt-1 h-10 w-44 animate-pulse rounded-lg bg-white/10" />
               ) : walletsQuery.isError ? (
                 <div className="text-[15px] text-white/70">
-                  Couldn't load your balance. <button onClick={() => walletsQuery.refetch()} className="underline">Retry</button>
+                  {t("wallet.errBalance")} <button onClick={() => walletsQuery.refetch()} className="underline">{t("wallet.retry")}</button>
                 </div>
               ) : (
                 <div className="tabular text-[34px] font-bold tracking-tight sm:text-[40px]">
@@ -165,25 +167,25 @@ export default function Wallet() {
 
             {activeWallet?.updated_at && !walletsQuery.isLoading && !walletsQuery.isError && (
               <p className="mt-1 text-[11.5px] text-white/40">
-                Last updated {friendlyTime(activeWallet.updated_at)}
+                {t("wallet.lastUpdated", { time: friendlyTime(activeWallet.updated_at) })}
               </p>
             )}
 
             {!walletsQuery.isLoading && !walletsQuery.isError && Number(activeWallet?.balance ?? 0) === 0 && (
               <p className="mt-1 text-[12.5px] text-white/50">
-                This wallet is empty. Add money to pay from your balance.
+                {t("wallet.empty")}
               </p>
             )}
 
             <div className="mt-5 flex flex-wrap gap-3">
               <Link to="/wallet/fund" className="inline-flex items-center gap-1.5 rounded-lg bg-brand-red px-4 py-2 text-[13px] font-medium text-white transition hover:brightness-95">
-                <Plus size={16} strokeWidth={2} /> Add money
+                <Plus size={16} strokeWidth={2} /> {t("wallet.addMoney")}
               </Link>
               <Link to="/wallet/send" className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.08] px-4 py-2 text-[13px] font-medium text-white transition hover:bg-white/[0.14]">
-                <Send size={15} strokeWidth={2} /> Transfer
+                <Send size={15} strokeWidth={2} /> {t("wallet.transfer")}
               </Link>
               <Link to="/wallet/withdraw" className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.08] px-4 py-2 text-[13px] font-medium text-white transition hover:bg-white/[0.14]">
-                <ArrowUpRight size={15} strokeWidth={2} /> Withdraw
+                <ArrowUpRight size={15} strokeWidth={2} /> {t("wallet.withdraw")}
               </Link>
             </div>
           </div>
@@ -191,7 +193,7 @@ export default function Wallet() {
 
         {/* Transactions */}
         <div className="mt-8">
-          <h2 className="mb-3 text-[15px] font-semibold text-ink">Transaction history</h2>
+          <h2 className="mb-3 text-[15px] font-semibold text-ink">{t("wallet.txnHistory")}</h2>
           <div className="rounded-2xl border border-hairline bg-paper">
             {txnsQuery.isLoading ? (
               <ul className="divide-y divide-hairline">
@@ -207,9 +209,9 @@ export default function Wallet() {
                 ))}
               </ul>
             ) : txnsQuery.isError ? (
-              <Message icon={<Receipt size={20} strokeWidth={1.5} />} text="Couldn't load transactions." action={<button onClick={() => txnsQuery.refetch()} className="mt-3 rounded-lg bg-brand-green px-4 py-2 text-[13px] font-medium text-white">Try again</button>} />
+              <Message icon={<Receipt size={20} strokeWidth={1.5} />} text={t("wallet.errTxns")} action={<button onClick={() => txnsQuery.refetch()} className="mt-3 rounded-lg bg-brand-green px-4 py-2 text-[13px] font-medium text-white">{t("wallet.tryAgain")}</button>} />
             ) : transactions.length === 0 ? (
-              <Message icon={<WalletIcon size={20} strokeWidth={1.5} />} text={`No ${active} transactions yet. Fund your wallet or buy a service to see activity here.`} />
+              <Message icon={<WalletIcon size={20} strokeWidth={1.5} />} text={t("wallet.noTxns", { currency: active })} />
             ) : (
               <ul className="divide-y divide-hairline">
                 {transactions.map((t) => <Row key={t.id} txn={t} />)}

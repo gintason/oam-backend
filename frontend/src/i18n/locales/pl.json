@@ -556,5 +556,74 @@
       "safeLabel": "Zachowaj ostrożność:",
       "safeBody": "spotkajcie się w miejscu publicznym, sprawdź przed zapłatą i nigdy nie wysyłaj pieniędzy z góry komuś, kogo nie spotkałeś."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Zweryfikuj konto",
+    "verifyBody": "Portfel odblokowuje się po zweryfikowaniu konta.",
+    "verifyNow": "Zweryfikuj teraz",
+    "title": "Portfel",
+    "refresh": "Odśwież",
+    "errOpen": "Nie udało się otworzyć tego portfela.",
+    "balanceLabel": "Saldo {{currency}}",
+    "showBalance": "Pokaż saldo",
+    "hideBalance": "Ukryj saldo",
+    "errBalance": "Nie udało się załadować salda.",
+    "retry": "Ponów",
+    "lastUpdated": "Zaktualizowano {{time}}",
+    "empty": "Ten portfel jest pusty. Dodaj środki, aby płacić z salda.",
+    "addMoney": "Dodaj środki",
+    "transfer": "Prześlij",
+    "withdraw": "Wypłać",
+    "txnHistory": "Historia transakcji",
+    "errTxns": "Nie udało się załadować transakcji.",
+    "tryAgain": "Spróbuj ponownie",
+    "noTxns": "Brak transakcji w {{currency}}. Zasil portfel lub kup usługę, aby zobaczyć tu aktywność."
+  },
+  "orders": {
+    "back": "Wstecz",
+    "title": "Historia zamówień",
+    "subtitle": "Każdy zakup, w tym tokeny za prąd.",
+    "checking": "Sprawdzanie…",
+    "refresh": "Odśwież",
+    "outstandingOne": "{{count}} zamówienie wciąż finalizowane.",
+    "outstandingOther": "{{count}} zamówień wciąż finalizowanych.",
+    "outstandingBody": "Co kilka sekund sprawdzamy u Twojego dostawcy — token pojawi się tutaj, gdy tylko zostanie wydany. Możesz też nacisnąć Odśwież. Nie musisz kupować ponownie.",
+    "errLoad": "Nie udało się załadować zamówień.",
+    "tryAgain": "Spróbuj ponownie",
+    "emptyTitle": "Brak zamówień",
+    "emptyBody": "Twoje zakupy pojawią się tutaj.",
+    "tokenReady": "TOKEN GOTOWY",
+    "shownBelow": "pokazany poniżej",
+    "tapToView": "dotknij, aby zobaczyć",
+    "tokenOnTheWay": "TOKEN W DRODZE",
+    "tokenBeingIssued": "Twój token jest wydawany",
+    "tokenWaiting": "Oczekiwanie na token",
+    "tokenAutoNote": "Pojawia się tutaj automatycznie — ta strona sama się odświeża. Dostawca zwykle wydaje go w ciągu kilku minut.",
+    "rowCustomer": "Klient",
+    "rowService": "Usługa",
+    "rowMeterType": "Typ licznika",
+    "rowPaidWith": "Zapłacono",
+    "rowReference": "Numer referencyjny",
+    "rowProviderRef": "Ref. dostawcy",
+    "status": {
+      "pending": "oczekuje",
+      "processing": "przetwarzanie",
+      "success": "udane",
+      "failed": "nieudane"
+    },
+    "category": {
+      "airtime": "doładowanie",
+      "data": "internet",
+      "electricity": "prąd",
+      "cable": "telewizja"
+    },
+    "meter": {
+      "prepaid": "przedpłata",
+      "postpaid": "abonament"
+    },
+    "payWith": {
+      "wallet": "portfel",
+      "card": "karta"
+    }
   }
 }

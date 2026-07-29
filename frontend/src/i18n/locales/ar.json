@@ -556,5 +556,74 @@
       "safeLabel": "حافظ على سلامتك:",
       "safeBody": "التقيا في مكان عام، وافحص قبل الدفع، ولا ترسل المال مقدمًا أبدًا لشخص لم تقابله."
     }
+  },
+  "wallet": {
+    "verifyTitle": "وثّق حسابك",
+    "verifyBody": "تُفتح محفظتك بمجرد توثيق حسابك.",
+    "verifyNow": "وثّق الآن",
+    "title": "المحفظة",
+    "refresh": "تحديث",
+    "errOpen": "تعذّر فتح تلك المحفظة.",
+    "balanceLabel": "رصيد {{currency}}",
+    "showBalance": "إظهار الرصيد",
+    "hideBalance": "إخفاء الرصيد",
+    "errBalance": "تعذّر تحميل رصيدك.",
+    "retry": "إعادة المحاولة",
+    "lastUpdated": "آخر تحديث {{time}}",
+    "empty": "هذه المحفظة فارغة. أضف أموالاً للدفع من رصيدك.",
+    "addMoney": "إضافة أموال",
+    "transfer": "تحويل",
+    "withdraw": "سحب",
+    "txnHistory": "سجل المعاملات",
+    "errTxns": "تعذّر تحميل المعاملات.",
+    "tryAgain": "حاول مرة أخرى",
+    "noTxns": "لا توجد معاملات بـ{{currency}} بعد. اشحن محفظتك أو اشترِ خدمة لرؤية النشاط هنا."
+  },
+  "orders": {
+    "back": "رجوع",
+    "title": "سجل الطلبات",
+    "subtitle": "كل عملية شراء، بما في ذلك رموز الكهرباء الخاصة بك.",
+    "checking": "جارٍ التحقق…",
+    "refresh": "تحديث",
+    "outstandingOne": "{{count}} طلب لا يزال قيد الإتمام.",
+    "outstandingOther": "{{count}} طلبات لا تزال قيد الإتمام.",
+    "outstandingBody": "نتحقق من مزوّدك كل بضع ثوانٍ — يظهر رمزك هنا فور إصداره. يمكنك أيضًا الضغط على تحديث. لا حاجة للشراء مجددًا.",
+    "errLoad": "تعذّر تحميل طلباتك.",
+    "tryAgain": "حاول مرة أخرى",
+    "emptyTitle": "لا توجد طلبات بعد",
+    "emptyBody": "ستظهر مشترياتك هنا.",
+    "tokenReady": "الرمز جاهز",
+    "shownBelow": "معروض أدناه",
+    "tapToView": "اضغط للعرض",
+    "tokenOnTheWay": "الرمز في الطريق",
+    "tokenBeingIssued": "يجري إصدار رمزك",
+    "tokenWaiting": "في انتظار رمزك",
+    "tokenAutoNote": "يظهر هنا تلقائيًا — تُحدَّث هذه الصفحة من تلقاء نفسها. عادةً ما يصدره مزوّدك خلال دقائق.",
+    "rowCustomer": "العميل",
+    "rowService": "الخدمة",
+    "rowMeterType": "نوع العداد",
+    "rowPaidWith": "وسيلة الدفع",
+    "rowReference": "المرجع",
+    "rowProviderRef": "مرجع المزوّد",
+    "status": {
+      "pending": "قيد الانتظار",
+      "processing": "قيد المعالجة",
+      "success": "ناجح",
+      "failed": "فشل"
+    },
+    "category": {
+      "airtime": "رصيد اتصال",
+      "data": "بيانات",
+      "electricity": "كهرباء",
+      "cable": "قنوات"
+    },
+    "meter": {
+      "prepaid": "مسبق الدفع",
+      "postpaid": "آجل الدفع"
+    },
+    "payWith": {
+      "wallet": "محفظة",
+      "card": "بطاقة"
+    }
   }
 }

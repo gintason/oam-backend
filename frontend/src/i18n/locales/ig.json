@@ -556,5 +556,74 @@
       "safeLabel": "Nọrọ ná nchekwa:",
       "safeBody": "zute n'ebe ọha, nyochaa tupu ị kwụọ ụgwọ, ma ezila ego tupu oge nye onye ị na-ahụtụbeghị."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Nyochaa akaụntụ gị",
+    "verifyBody": "Obere akpa ego gị na-emeghe ozugbo enyochara akaụntụ gị.",
+    "verifyNow": "Nyochaa ugbu a",
+    "title": "Obere akpa ego",
+    "refresh": "Megharịa",
+    "errOpen": "Enweghị ike imeghe obere akpa ego ahụ.",
+    "balanceLabel": "Ego fọdụrụ {{currency}}",
+    "showBalance": "Gosi ego fọdụrụ",
+    "hideBalance": "Zoo ego fọdụrụ",
+    "errBalance": "Enweghị ike ibudata ego gị fọdụrụ.",
+    "retry": "Nwaa ọzọ",
+    "lastUpdated": "E melitere {{time}}",
+    "empty": "Obere akpa ego a tọgbọ chakoo. Tinye ego iji kwụọ site na ego gị fọdụrụ.",
+    "addMoney": "Tinye ego",
+    "transfer": "Nyefee",
+    "withdraw": "Wepụta",
+    "txnHistory": "Akụkọ azụmahịa",
+    "errTxns": "Enweghị ike ibudata azụmahịa.",
+    "tryAgain": "Nwaa ọzọ",
+    "noTxns": "Enwebeghị azụmahịa {{currency}} ma. Tinye ego n'obere akpa ego gị ma ọ bụ zụta ọrụ iji hụ ọrụ ebe a."
+  },
+  "orders": {
+    "back": "Laghachi",
+    "title": "Akụkọ iodu",
+    "subtitle": "Ịzụta ọ bụla, gụnyere token ọkụ eletrik gị.",
+    "checking": "Na-enyocha…",
+    "refresh": "Megharịa",
+    "outstandingOne": "iodu {{count}} ka na-emecha.",
+    "outstandingOther": "iodu {{count}} ka na-emecha.",
+    "outstandingBody": "Anyị na-enyocha na onye na-eweta gị kwa sekọnd ole na ole — token gị na-apụta ebe a ozugbo e nyere ya. Ị nwekwara ike ịpị Megharịa. Ọ dịghị mkpa ịzụ ọzọ.",
+    "errLoad": "Enweghị ike ibudata iodu gị.",
+    "tryAgain": "Nwaa ọzọ",
+    "emptyTitle": "Enwebeghị iodu ma",
+    "emptyBody": "Ihe ị zụrụ ga-apụta ebe a.",
+    "tokenReady": "TOKEN DỊ NJIKERE",
+    "shownBelow": "egosiri n'okpuru",
+    "tapToView": "pịa iji lee",
+    "tokenOnTheWay": "TOKEN NA-ABỊA",
+    "tokenBeingIssued": "A na-enye token gị",
+    "tokenWaiting": "Na-eche token gị",
+    "tokenAutoNote": "Ọ na-apụta ebe a na-akpaghị aka — ibe a na-emegharị onwe ya. Onye na-eweta gị na-enyekarị ya n'ime nkeji ole na ole.",
+    "rowCustomer": "Onye ahịa",
+    "rowService": "Ọrụ",
+    "rowMeterType": "Ụdị mita",
+    "rowPaidWith": "Eji kwụọ",
+    "rowReference": "Ntụaka",
+    "rowProviderRef": "Ntụaka onye na-eweta",
+    "status": {
+      "pending": "na-echere",
+      "processing": "na-ahazi",
+      "success": "ọ gara nke ọma",
+      "failed": "ọ dara"
+    },
+    "category": {
+      "airtime": "ego ekwentị",
+      "data": "data",
+      "electricity": "ọkụ eletrik",
+      "cable": "telivishọn"
+    },
+    "meter": {
+      "prepaid": "akwụ ụgwọ tupu",
+      "postpaid": "akwụ ụgwọ mgbe e mechara"
+    },
+    "payWith": {
+      "wallet": "obere akpa ego",
+      "card": "kaadị"
+    }
   }
 }

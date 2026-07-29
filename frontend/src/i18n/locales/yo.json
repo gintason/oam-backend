@@ -556,5 +556,74 @@
       "safeLabel": "Wà láìséwu:",
       "safeBody": "ẹ pàdé ní ibi gbangba, yẹ̀ ẹ́ wò kí o tó san owó, kí o sì má fi owó ránṣẹ́ ṣáájú láé sí ẹni tí o kò tíì pàdé."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Ṣàyẹ̀wò àkàntì rẹ",
+    "verifyBody": "Àpamọ́wọ́ rẹ ń ṣí sílẹ̀ ní kété tí a bá ti fọwọ́sí àkàntì rẹ.",
+    "verifyNow": "Ṣàyẹ̀wò báyìí",
+    "title": "Àpamọ́wọ́",
+    "refresh": "Sọ dọ̀tun",
+    "errOpen": "A kò lè ṣí àpamọ́wọ́ yẹn.",
+    "balanceLabel": "Ìyókù {{currency}}",
+    "showBalance": "Fi ìyókù hàn",
+    "hideBalance": "Fi ìyókù pamọ́",
+    "errBalance": "A kò lè gbé ìyókù rẹ wọlé.",
+    "retry": "Tún gbìyànjú",
+    "lastUpdated": "Ìmúdojúìwọ̀n {{time}}",
+    "empty": "Àpamọ́wọ́ yìí ṣófo. Fi owó kún láti san láti inú ìyókù rẹ.",
+    "addMoney": "Fi owó kún",
+    "transfer": "Gbé owó",
+    "withdraw": "Yọ owó",
+    "txnHistory": "Ìtàn ìdúnàdúrà",
+    "errTxns": "A kò lè gbé àwọn ìdúnàdúrà wọlé.",
+    "tryAgain": "Tún gbìyànjú",
+    "noTxns": "Kò sí ìdúnàdúrà {{currency}} síbẹ̀. Fi owó sí àpamọ́wọ́ rẹ tàbí ra iṣẹ́ láti rí ìgbòkègbodò níbí."
+  },
+  "orders": {
+    "back": "Padà",
+    "title": "Ìtàn àwọn ìbéèrè",
+    "subtitle": "Gbogbo ìrajà, pẹ̀lú àwọn tóókẹ̀nì iná mànàmáná rẹ.",
+    "checking": "Ń ṣàyẹ̀wò…",
+    "refresh": "Sọ dọ̀tun",
+    "outstandingOne": "ìbéèrè {{count}} ṣì ń parí.",
+    "outstandingOther": "ìbéèrè {{count}} ṣì ń parí.",
+    "outstandingBody": "À ń ṣàyẹ̀wò pẹ̀lú olùpèsè rẹ ní gbogbo ìṣẹ́jú-àáyá díẹ̀ — tóókẹ̀nì rẹ máa fara hàn níbí ní kété tí a bá gbé e jáde. O tún lè tẹ Sọ dọ̀tun. Kò sí ìdí láti tún rà.",
+    "errLoad": "A kò lè gbé àwọn ìbéèrè rẹ wọlé.",
+    "tryAgain": "Tún gbìyànjú",
+    "emptyTitle": "Kò sí ìbéèrè síbẹ̀",
+    "emptyBody": "Àwọn ìrajà rẹ yóò fara hàn níbí.",
+    "tokenReady": "TÓÓKẸ̀NÌ TI ṢETÁN",
+    "shownBelow": "tí a fi hàn nísàlẹ̀",
+    "tapToView": "tẹ láti wò",
+    "tokenOnTheWay": "TÓÓKẸ̀NÌ Ń BỌ̀",
+    "tokenBeingIssued": "À ń gbé tóókẹ̀nì rẹ jáde",
+    "tokenWaiting": "Ń dúró de tóókẹ̀nì rẹ",
+    "tokenAutoNote": "Ó máa fara hàn níbí fúnraarẹ̀ — ojú-ìwé yìí ń sọ ara rẹ̀ dọ̀tun. Olùpèsè rẹ máa ń gbé e jáde láàárín ìṣẹ́jú díẹ̀ lọ́pọ̀ ìgbà.",
+    "rowCustomer": "Oníbàárà",
+    "rowService": "Iṣẹ́",
+    "rowMeterType": "Irú mítà",
+    "rowPaidWith": "Sanwó pẹ̀lú",
+    "rowReference": "Ìtọ́kasí",
+    "rowProviderRef": "Ìtọ́kasí olùpèsè",
+    "status": {
+      "pending": "ìdúró",
+      "processing": "ń ṣiṣẹ́",
+      "success": "àṣeyọrí",
+      "failed": "kùnà"
+    },
+    "category": {
+      "airtime": "káàdì ìpè",
+      "data": "dátà",
+      "electricity": "iná mànàmáná",
+      "cable": "tẹlifíṣọ̀n"
+    },
+    "meter": {
+      "prepaid": "sanwó-ṣáájú",
+      "postpaid": "sanwó-lẹ́yìn"
+    },
+    "payWith": {
+      "wallet": "àpamọ́wọ́",
+      "card": "káàdì"
+    }
   }
 }

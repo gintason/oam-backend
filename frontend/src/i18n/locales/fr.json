@@ -556,5 +556,74 @@
       "safeLabel": "Restez prudent :",
       "safeBody": "retrouvez-vous dans un lieu public, inspectez avant de payer, et n'envoyez jamais d'argent à l'avance à quelqu'un que vous n'avez pas rencontré."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Vérifiez votre compte",
+    "verifyBody": "Votre portefeuille se débloque une fois votre compte vérifié.",
+    "verifyNow": "Vérifier maintenant",
+    "title": "Portefeuille",
+    "refresh": "Actualiser",
+    "errOpen": "Impossible d'ouvrir ce portefeuille.",
+    "balanceLabel": "Solde en {{currency}}",
+    "showBalance": "Afficher le solde",
+    "hideBalance": "Masquer le solde",
+    "errBalance": "Impossible de charger votre solde.",
+    "retry": "Réessayer",
+    "lastUpdated": "Mis à jour {{time}}",
+    "empty": "Ce portefeuille est vide. Ajoutez de l'argent pour payer depuis votre solde.",
+    "addMoney": "Ajouter de l'argent",
+    "transfer": "Transférer",
+    "withdraw": "Retirer",
+    "txnHistory": "Historique des transactions",
+    "errTxns": "Impossible de charger les transactions.",
+    "tryAgain": "Réessayer",
+    "noTxns": "Aucune transaction en {{currency}} pour l'instant. Approvisionnez votre portefeuille ou achetez un service pour voir l'activité ici."
+  },
+  "orders": {
+    "back": "Retour",
+    "title": "Historique des commandes",
+    "subtitle": "Chaque achat, y compris vos jetons d'électricité.",
+    "checking": "Vérification…",
+    "refresh": "Actualiser",
+    "outstandingOne": "{{count}} commande encore en cours.",
+    "outstandingOther": "{{count}} commandes encore en cours.",
+    "outstandingBody": "Nous vérifions auprès de votre fournisseur toutes les quelques secondes — votre jeton apparaît ici dès son émission. Vous pouvez aussi appuyer sur Actualiser. Pas besoin de racheter.",
+    "errLoad": "Impossible de charger vos commandes.",
+    "tryAgain": "Réessayer",
+    "emptyTitle": "Aucune commande pour l'instant",
+    "emptyBody": "Vos achats apparaîtront ici.",
+    "tokenReady": "JETON PRÊT",
+    "shownBelow": "affiché ci-dessous",
+    "tapToView": "appuyez pour voir",
+    "tokenOnTheWay": "JETON EN ROUTE",
+    "tokenBeingIssued": "Votre jeton est en cours d'émission",
+    "tokenWaiting": "En attente de votre jeton",
+    "tokenAutoNote": "Il apparaît ici automatiquement — cette page s'actualise d'elle-même. Votre fournisseur l'émet généralement en quelques minutes.",
+    "rowCustomer": "Client",
+    "rowService": "Service",
+    "rowMeterType": "Type de compteur",
+    "rowPaidWith": "Payé avec",
+    "rowReference": "Référence",
+    "rowProviderRef": "Réf. fournisseur",
+    "status": {
+      "pending": "en attente",
+      "processing": "en cours",
+      "success": "réussi",
+      "failed": "échoué"
+    },
+    "category": {
+      "airtime": "crédit d'appel",
+      "data": "data",
+      "electricity": "électricité",
+      "cable": "câble"
+    },
+    "meter": {
+      "prepaid": "prépayé",
+      "postpaid": "postpayé"
+    },
+    "payWith": {
+      "wallet": "portefeuille",
+      "card": "carte"
+    }
   }
 }

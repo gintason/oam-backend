@@ -556,5 +556,74 @@
       "safeLabel": "Resta al sicuro:",
       "safeBody": "incontratevi in un luogo pubblico, controlla prima di pagare e non inviare mai denaro in anticipo a qualcuno che non hai incontrato."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Verifica il tuo account",
+    "verifyBody": "Il tuo portafoglio si sblocca una volta verificato l'account.",
+    "verifyNow": "Verifica ora",
+    "title": "Portafoglio",
+    "refresh": "Aggiorna",
+    "errOpen": "Impossibile aprire quel portafoglio.",
+    "balanceLabel": "Saldo {{currency}}",
+    "showBalance": "Mostra saldo",
+    "hideBalance": "Nascondi saldo",
+    "errBalance": "Impossibile caricare il tuo saldo.",
+    "retry": "Riprova",
+    "lastUpdated": "Aggiornato {{time}}",
+    "empty": "Questo portafoglio è vuoto. Aggiungi denaro per pagare dal tuo saldo.",
+    "addMoney": "Aggiungi denaro",
+    "transfer": "Trasferisci",
+    "withdraw": "Preleva",
+    "txnHistory": "Cronologia transazioni",
+    "errTxns": "Impossibile caricare le transazioni.",
+    "tryAgain": "Riprova",
+    "noTxns": "Ancora nessuna transazione in {{currency}}. Ricarica il portafoglio o acquista un servizio per vedere l'attività qui."
+  },
+  "orders": {
+    "back": "Indietro",
+    "title": "Cronologia ordini",
+    "subtitle": "Ogni acquisto, inclusi i tuoi token dell'elettricità.",
+    "checking": "Verifica…",
+    "refresh": "Aggiorna",
+    "outstandingOne": "{{count}} ordine ancora in completamento.",
+    "outstandingOther": "{{count}} ordini ancora in completamento.",
+    "outstandingBody": "Verifichiamo con il tuo fornitore ogni pochi secondi — il tuo token appare qui appena viene emesso. Puoi anche toccare Aggiorna. Non serve riacquistare.",
+    "errLoad": "Impossibile caricare i tuoi ordini.",
+    "tryAgain": "Riprova",
+    "emptyTitle": "Ancora nessun ordine",
+    "emptyBody": "I tuoi acquisti appariranno qui.",
+    "tokenReady": "TOKEN PRONTO",
+    "shownBelow": "mostrato sotto",
+    "tapToView": "tocca per vedere",
+    "tokenOnTheWay": "TOKEN IN ARRIVO",
+    "tokenBeingIssued": "Il tuo token è in emissione",
+    "tokenWaiting": "In attesa del tuo token",
+    "tokenAutoNote": "Appare qui automaticamente — questa pagina si aggiorna da sola. Il tuo fornitore di solito lo emette in pochi minuti.",
+    "rowCustomer": "Cliente",
+    "rowService": "Servizio",
+    "rowMeterType": "Tipo di contatore",
+    "rowPaidWith": "Pagato con",
+    "rowReference": "Riferimento",
+    "rowProviderRef": "Rif. fornitore",
+    "status": {
+      "pending": "in attesa",
+      "processing": "in elaborazione",
+      "success": "riuscito",
+      "failed": "fallito"
+    },
+    "category": {
+      "airtime": "credito",
+      "data": "dati",
+      "electricity": "elettricità",
+      "cable": "cavo"
+    },
+    "meter": {
+      "prepaid": "prepagato",
+      "postpaid": "postpagato"
+    },
+    "payWith": {
+      "wallet": "portafoglio",
+      "card": "carta"
+    }
   }
 }

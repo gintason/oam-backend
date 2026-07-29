@@ -556,5 +556,74 @@
       "safeLabel": "Kasance lafiya:",
       "safeBody": "ku hadu a wuri na jama'a, duba kafin ka biya, kuma kada ka taɓa aika kuɗi gaba ga wanda ba ka hadu da shi ba."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Tabbatar da asusun ka",
+    "verifyBody": "Walat ɗin ka na buɗewa da zarar an tabbatar da asusun ka.",
+    "verifyNow": "Tabbatar yanzu",
+    "title": "Walat",
+    "refresh": "Sabunta",
+    "errOpen": "An kasa buɗe wannan walat.",
+    "balanceLabel": "Ma'aunin {{currency}}",
+    "showBalance": "Nuna ma'auni",
+    "hideBalance": "Ɓoye ma'auni",
+    "errBalance": "An kasa loda ma'aunin ka.",
+    "retry": "Sake gwadawa",
+    "lastUpdated": "An sabunta {{time}}",
+    "empty": "Wannan walat babu komai. Ƙara kuɗi don biya daga ma'aunin ka.",
+    "addMoney": "Ƙara kuɗi",
+    "transfer": "Tura",
+    "withdraw": "Cire",
+    "txnHistory": "Tarihin ma'amaloli",
+    "errTxns": "An kasa loda ma'amaloli.",
+    "tryAgain": "Sake gwadawa",
+    "noTxns": "Babu ma'amalar {{currency}} tukuna. Ƙara kuɗi a walat ko sayi sabis don ganin ayyuka a nan."
+  },
+  "orders": {
+    "back": "Koma",
+    "title": "Tarihin oda",
+    "subtitle": "Kowace saye, haɗe da tokenan wutar lantarki naka.",
+    "checking": "Ana bincike…",
+    "refresh": "Sabunta",
+    "outstandingOne": "oda {{count}} na ci gaba da kammalawa.",
+    "outstandingOther": "oda {{count}} suna ci gaba da kammalawa.",
+    "outstandingBody": "Muna bincike da mai baka sabis kowane daƙiƙa kaɗan — tokenka na bayyana a nan da zarar an fitar da shi. Za ka iya danna Sabunta kuma. Ba sai ka sake saye ba.",
+    "errLoad": "An kasa loda ododinka.",
+    "tryAgain": "Sake gwadawa",
+    "emptyTitle": "Babu oda tukuna",
+    "emptyBody": "Sayayyar ka za ta bayyana a nan.",
+    "tokenReady": "TOKEN YA SHIRYA",
+    "shownBelow": "an nuna a ƙasa",
+    "tapToView": "danna don gani",
+    "tokenOnTheWay": "TOKEN NA ZUWA",
+    "tokenBeingIssued": "Ana fitar da tokenka",
+    "tokenWaiting": "Ana jiran tokenka",
+    "tokenAutoNote": "Yana bayyana a nan kai tsaye — wannan shafi na sabunta kansa. Yawanci mai baka sabis na fitar da shi cikin mintuna kaɗan.",
+    "rowCustomer": "Abokin ciniki",
+    "rowService": "Sabis",
+    "rowMeterType": "Nau'in mita",
+    "rowPaidWith": "An biya da",
+    "rowReference": "Manuni",
+    "rowProviderRef": "Manunin mai bayarwa",
+    "status": {
+      "pending": "jira",
+      "processing": "ana sarrafawa",
+      "success": "nasara",
+      "failed": "gaza"
+    },
+    "category": {
+      "airtime": "kuɗin waya",
+      "data": "data",
+      "electricity": "wutar lantarki",
+      "cable": "talabijin"
+    },
+    "meter": {
+      "prepaid": "biya-kafin",
+      "postpaid": "biya-baya"
+    },
+    "payWith": {
+      "wallet": "walat",
+      "card": "kati"
+    }
   }
 }

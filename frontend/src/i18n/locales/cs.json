@@ -556,5 +556,74 @@
       "safeLabel": "Buďte v bezpečí:",
       "safeBody": "sejděte se na veřejném místě, před zaplacením zkontrolujte a nikdy neposílejte peníze předem někomu, koho jste nepotkali."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Ověřte svůj účet",
+    "verifyBody": "Peněženka se odemkne, jakmile ověříte účet.",
+    "verifyNow": "Ověřit nyní",
+    "title": "Peněženka",
+    "refresh": "Obnovit",
+    "errOpen": "Tuto peněženku se nepodařilo otevřít.",
+    "balanceLabel": "Zůstatek {{currency}}",
+    "showBalance": "Zobrazit zůstatek",
+    "hideBalance": "Skrýt zůstatek",
+    "errBalance": "Zůstatek se nepodařilo načíst.",
+    "retry": "Zkusit znovu",
+    "lastUpdated": "Aktualizováno {{time}}",
+    "empty": "Tato peněženka je prázdná. Přidejte peníze, abyste platili ze zůstatku.",
+    "addMoney": "Přidat peníze",
+    "transfer": "Převést",
+    "withdraw": "Vybrat",
+    "txnHistory": "Historie transakcí",
+    "errTxns": "Transakce se nepodařilo načíst.",
+    "tryAgain": "Zkusit znovu",
+    "noTxns": "Zatím žádné transakce v {{currency}}. Dobijte peněženku nebo si kupte službu, abyste zde viděli aktivitu."
+  },
+  "orders": {
+    "back": "Zpět",
+    "title": "Historie objednávek",
+    "subtitle": "Každý nákup, včetně vašich tokenů za elektřinu.",
+    "checking": "Kontrola…",
+    "refresh": "Obnovit",
+    "outstandingOne": "{{count}} objednávka se stále dokončuje.",
+    "outstandingOther": "{{count}} objednávek se stále dokončuje.",
+    "outstandingBody": "Každých pár sekund ověřujeme u vašeho poskytovatele — token se zde objeví, jakmile je vydán. Můžete také klepnout na Obnovit. Není třeba kupovat znovu.",
+    "errLoad": "Vaše objednávky se nepodařilo načíst.",
+    "tryAgain": "Zkusit znovu",
+    "emptyTitle": "Zatím žádné objednávky",
+    "emptyBody": "Vaše nákupy se zobrazí zde.",
+    "tokenReady": "TOKEN PŘIPRAVEN",
+    "shownBelow": "zobrazen níže",
+    "tapToView": "klepněte pro zobrazení",
+    "tokenOnTheWay": "TOKEN NA CESTĚ",
+    "tokenBeingIssued": "Váš token se vydává",
+    "tokenWaiting": "Čeká se na váš token",
+    "tokenAutoNote": "Objeví se zde automaticky — tato stránka se sama obnovuje. Poskytovatel jej obvykle vydá během několika minut.",
+    "rowCustomer": "Zákazník",
+    "rowService": "Služba",
+    "rowMeterType": "Typ měřiče",
+    "rowPaidWith": "Zaplaceno",
+    "rowReference": "Reference",
+    "rowProviderRef": "Ref. poskytovatele",
+    "status": {
+      "pending": "čeká",
+      "processing": "zpracovává se",
+      "success": "úspěšné",
+      "failed": "selhalo"
+    },
+    "category": {
+      "airtime": "kredit",
+      "data": "data",
+      "electricity": "elektřina",
+      "cable": "televize"
+    },
+    "meter": {
+      "prepaid": "předplacené",
+      "postpaid": "následné"
+    },
+    "payWith": {
+      "wallet": "peněženka",
+      "card": "karta"
+    }
   }
 }

@@ -7,6 +7,7 @@ import TokenCard from "../components/TokenCard";
 import { useUserScope } from "../auth/useUserScope";
 import { useAuth } from "../auth/AuthContext";
 import { billingApi, type BillOrder } from "../services/billing";
+import { useTranslation } from "react-i18next";
 
 const ICONS: Record<string, React.ReactNode> = {
   airtime: <Smartphone size={17} strokeWidth={1.75} />,
@@ -21,6 +22,7 @@ const ICONS: Record<string, React.ReactNode> = {
  */
 export default function Orders() {
   const scope = useUserScope();
+  const { t } = useTranslation();
   const { isVerified } = useAuth();
   const navigate = useNavigate();
   const [openRef, setOpenRef] = useState<string | null>(null);
@@ -83,13 +85,13 @@ export default function Orders() {
       <AppHeader />
       <main className="mx-auto max-w-3xl px-5 py-8 sm:px-6 sm:py-10">
         <button onClick={() => navigate("/dashboard")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> Back
+          <ArrowLeft size={15} /> {t("orders.back")}
         </button>
 
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Order history</h1>
-            <p className="mt-1 text-[14px] text-muted">Every purchase, including your electricity tokens.</p>
+            <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">{t("orders.title")}</h1>
+            <p className="mt-1 text-[14px] text-muted">{t("orders.subtitle")}</p>
           </div>
           <button
             onClick={() => refresh.mutate()}
@@ -97,7 +99,7 @@ export default function Orders() {
             className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg border border-hairline bg-paper px-3 text-[13px] font-medium text-ink transition hover:bg-mist disabled:opacity-60"
           >
             <RefreshCw size={14} strokeWidth={1.75} className={refresh.isPending || ordersQuery.isFetching ? "animate-spin" : ""} />
-            {refresh.isPending ? "Checking…" : "Refresh"}
+            {refresh.isPending ? t("orders.checking") : t("orders.refresh")}
           </button>
         </div>
 
@@ -106,10 +108,9 @@ export default function Orders() {
             <Loader2 size={16} strokeWidth={2} className="mt-0.5 shrink-0 animate-spin text-warn" />
             <p className="text-[12.5px] leading-relaxed text-ink">
               <span className="font-semibold">
-                {outstanding} order{outstanding > 1 ? "s" : ""} still completing.
+                {t(outstanding === 1 ? "orders.outstandingOne" : "orders.outstandingOther", { count: outstanding })}
               </span>{" "}
-              We're checking with your provider every few seconds — your token appears
-              here the moment it's issued. You can also tap Refresh. No need to buy again.
+              {t("orders.outstandingBody")}
             </p>
           </div>
         )}
@@ -120,14 +121,14 @@ export default function Orders() {
           </div>
         ) : ordersQuery.isError ? (
           <div className="rounded-2xl border border-danger/20 bg-danger/[0.03] p-8 text-center">
-            <p className="text-[14px] text-ink">Couldn't load your orders.</p>
-            <button onClick={() => ordersQuery.refetch()} className="mt-3 rounded-lg bg-brand-green px-4 py-2 text-[13px] font-medium text-white">Try again</button>
+            <p className="text-[14px] text-ink">{t("orders.errLoad")}</p>
+            <button onClick={() => ordersQuery.refetch()} className="mt-3 rounded-lg bg-brand-green px-4 py-2 text-[13px] font-medium text-white">{t("orders.tryAgain")}</button>
           </div>
         ) : orders.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-hairline bg-paper p-12 text-center">
             <Receipt size={26} strokeWidth={1.5} className="mx-auto text-muted" />
-            <h2 className="mt-3 text-[15px] font-semibold text-ink">No orders yet</h2>
-            <p className="mt-1 text-[13px] text-muted">Your purchases will appear here.</p>
+            <h2 className="mt-3 text-[15px] font-semibold text-ink">{t("orders.emptyTitle")}</h2>
+            <p className="mt-1 text-[13px] text-muted">{t("orders.emptyBody")}</p>
           </div>
         ) : (
           <ul className="space-y-2">
@@ -150,20 +151,20 @@ export default function Orders() {
                       <p className="text-[11.5px] text-muted">
                         {new Date(o.created_at).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
                         {" · "}
-                        <span className={ok ? "text-brand-green" : o.status === "failed" ? "text-danger" : "text-warn"}>{o.status}</span>
+                        <span className={ok ? "text-brand-green" : o.status === "failed" ? "text-danger" : "text-warn"}>{t("orders.status." + o.status, { defaultValue: o.status })}</span>
                       </p>
 
                       {o.token && (
                         <span className="mt-1 inline-flex items-center gap-1 rounded-md bg-brand-green/10 px-1.5 py-0.5 text-[10.5px] font-semibold text-brand-green">
                           <KeyRound size={10} strokeWidth={2.5} />
-                          TOKEN READY — {open ? "shown below" : "tap to view"}
+                          {t("orders.tokenReady")} — {open ? t("orders.shownBelow") : t("orders.tapToView")}
                         </span>
                       )}
                       {!o.token && o.category === "electricity" && o.meter_type !== "postpaid" &&
                         ["pending", "processing"].includes(String(o.status).toLowerCase()) && (
                         <span className="mt-1 inline-flex items-center gap-1 rounded-md bg-warn/10 px-1.5 py-0.5 text-[10.5px] font-semibold text-warn">
                           <Loader2 size={10} strokeWidth={2.5} className="animate-spin" />
-                          TOKEN ON THE WAY
+                          {t("orders.tokenOnTheWay")}
                         </span>
                       )}
                     </div>
@@ -184,22 +185,21 @@ export default function Orders() {
                           <Loader2 size={18} strokeWidth={2} className="mx-auto animate-spin text-warn" />
                           <p className="mt-2 text-[12.5px] font-medium text-ink">
                             {["pending", "processing"].includes(String(o.status).toLowerCase())
-                              ? "Your token is being issued"
-                              : "Waiting for your token"}
+                              ? t("orders.tokenBeingIssued")
+                              : t("orders.tokenWaiting")}
                           </p>
                           <p className="mt-0.5 text-[11.5px] leading-relaxed text-muted">
-                            It appears here automatically — this page refreshes itself.
-                            Your provider usually issues it within a few minutes.
+                            {t("orders.tokenAutoNote")}
                           </p>
                         </div>
                       ) : null}
                       <dl className="space-y-1.5 text-[12.5px]">
-                        {o.customer_name && <Row label="Customer" value={o.customer_name} />}
-                        <Row label="Service" value={o.category} />
-                        {o.meter_type && <Row label="Meter type" value={o.meter_type} />}
-                        <Row label="Paid with" value={o.pay_with} />
-                        <Row label="Reference" value={o.reference} mono />
-                        {o.provider_reference && <Row label="Provider ref" value={o.provider_reference} mono />}
+                        {o.customer_name && <Row label={t("orders.rowCustomer")} value={o.customer_name} />}
+                        <Row label={t("orders.rowService")} value={t("orders.category." + o.category, { defaultValue: o.category })} />
+                        {o.meter_type && <Row label={t("orders.rowMeterType")} value={t("orders.meter." + o.meter_type, { defaultValue: o.meter_type })} />}
+                        <Row label={t("orders.rowPaidWith")} value={t("orders.payWith." + o.pay_with, { defaultValue: o.pay_with })} />
+                        <Row label={t("orders.rowReference")} value={o.reference} mono />
+                        {o.provider_reference && <Row label={t("orders.rowProviderRef")} value={o.provider_reference} mono />}
                       </dl>
                     </div>
                   )}

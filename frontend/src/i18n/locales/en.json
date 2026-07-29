@@ -556,5 +556,74 @@
       "safeLabel": "Stay safe:",
       "safeBody": "meet in a public place, inspect before you pay, and never send money in advance to someone you haven't met."
     }
+  },
+  "wallet": {
+    "verifyTitle": "Verify your account",
+    "verifyBody": "Your wallet unlocks once your account is verified.",
+    "verifyNow": "Verify now",
+    "title": "Wallet",
+    "refresh": "Refresh",
+    "errOpen": "Couldn't open that wallet.",
+    "balanceLabel": "{{currency}} balance",
+    "showBalance": "Show balance",
+    "hideBalance": "Hide balance",
+    "errBalance": "Couldn't load your balance.",
+    "retry": "Retry",
+    "lastUpdated": "Last updated {{time}}",
+    "empty": "This wallet is empty. Add money to pay from your balance.",
+    "addMoney": "Add money",
+    "transfer": "Transfer",
+    "withdraw": "Withdraw",
+    "txnHistory": "Transaction history",
+    "errTxns": "Couldn't load transactions.",
+    "tryAgain": "Try again",
+    "noTxns": "No {{currency}} transactions yet. Fund your wallet or buy a service to see activity here."
+  },
+  "orders": {
+    "back": "Back",
+    "title": "Order history",
+    "subtitle": "Every purchase, including your electricity tokens.",
+    "checking": "Checking…",
+    "refresh": "Refresh",
+    "outstandingOne": "{{count}} order still completing.",
+    "outstandingOther": "{{count}} orders still completing.",
+    "outstandingBody": "We're checking with your provider every few seconds — your token appears here the moment it's issued. You can also tap Refresh. No need to buy again.",
+    "errLoad": "Couldn't load your orders.",
+    "tryAgain": "Try again",
+    "emptyTitle": "No orders yet",
+    "emptyBody": "Your purchases will appear here.",
+    "tokenReady": "TOKEN READY",
+    "shownBelow": "shown below",
+    "tapToView": "tap to view",
+    "tokenOnTheWay": "TOKEN ON THE WAY",
+    "tokenBeingIssued": "Your token is being issued",
+    "tokenWaiting": "Waiting for your token",
+    "tokenAutoNote": "It appears here automatically — this page refreshes itself. Your provider usually issues it within a few minutes.",
+    "rowCustomer": "Customer",
+    "rowService": "Service",
+    "rowMeterType": "Meter type",
+    "rowPaidWith": "Paid with",
+    "rowReference": "Reference",
+    "rowProviderRef": "Provider ref",
+    "status": {
+      "pending": "pending",
+      "processing": "processing",
+      "success": "success",
+      "failed": "failed"
+    },
+    "category": {
+      "airtime": "airtime",
+      "data": "data",
+      "electricity": "electricity",
+      "cable": "cable"
+    },
+    "meter": {
+      "prepaid": "prepaid",
+      "postpaid": "postpaid"
+    },
+    "payWith": {
+      "wallet": "wallet",
+      "card": "card"
+    }
   }
 }
