@@ -6,6 +6,7 @@ import AppHeader from "../../components/AppHeader";
 import { useAuth } from "../../auth/AuthContext";
 import { paymentsApi } from "../../services/payments";
 import { apiErrorMessage } from "../../lib/api";
+import { useTranslation } from "react-i18next";
 
 const QUICK = [1000, 2000, 5000, 10000, 20000];
 
@@ -16,6 +17,7 @@ const QUICK = [1000, 2000, 5000, 10000, 20000];
  */
 export default function FundWallet() {
   const { isVerified } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [amount, setAmount] = useState("");
   const [error, setError] = useState<string>();
@@ -26,14 +28,14 @@ export default function FundWallet() {
       // Hand off to Paystack's secure hosted checkout.
       window.location.href = data.authorization_url;
     },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't start payment. Try again.")),
+    onError: (err) => setError(apiErrorMessage(err, t("fund.errStart"))),
   });
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(undefined);
     const n = Number(amount);
-    if (!n || n < 100) return setError("Enter an amount of at least ₦100.");
+    if (!n || n < 100) return setError(t("fund.minAmount"));
     init.mutate();
   }
 
@@ -42,10 +44,10 @@ export default function FundWallet() {
       <div className="min-h-screen bg-mist">
         <AppHeader />
         <main className="mx-auto max-w-md px-5 py-16 text-center">
-          <h1 className="font-display text-xl font-semibold text-ink">Verify your account</h1>
-          <p className="mt-2 text-[14px] text-muted">You need a verified account to fund your wallet.</p>
+          <h1 className="font-display text-xl font-semibold text-ink">{t("fund.verifyTitle")}</h1>
+          <p className="mt-2 text-[14px] text-muted">{t("fund.verifyBody")}</p>
           <button onClick={() => navigate("/dashboard")} className="mt-5 rounded-lg bg-brand-green px-5 py-2.5 text-[14px] font-medium text-white">
-            Back to dashboard
+            {t("fund.backToDashboard")}
           </button>
         </main>
       </div>
@@ -57,7 +59,7 @@ export default function FundWallet() {
       <AppHeader />
       <main className="mx-auto max-w-md px-5 py-8 sm:py-10">
         <button onClick={() => navigate("/dashboard")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> Back
+          <ArrowLeft size={15} /> {t("fund.back")}
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -65,8 +67,8 @@ export default function FundWallet() {
             <CreditCard size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink">Add money</h1>
-            <p className="text-[13px] text-muted">Fund your wallet with your card.</p>
+            <h1 className="font-display text-xl font-semibold text-ink">{t("fund.title")}</h1>
+            <p className="text-[13px] text-muted">{t("fund.subtitle")}</p>
           </div>
         </div>
 
@@ -77,7 +79,7 @@ export default function FundWallet() {
             </div>
           )}
 
-          <label htmlFor="amount" className="mb-1.5 block text-[12.5px] font-semibold text-ink">Amount (₦)</label>
+          <label htmlFor="amount" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("fund.amountLabel")}</label>
           <input
             id="amount"
             inputMode="numeric"
@@ -108,13 +110,13 @@ export default function FundWallet() {
             {init.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
-              <>Continue to payment{amount ? ` · ₦${Number(amount).toLocaleString()}` : ""}</>
+              <>{amount ? t("fund.continueAmount", { amount: `₦${Number(amount).toLocaleString()}` }) : t("fund.continue")}</>
             )}
           </button>
 
           <div className="mt-4 flex items-center justify-center gap-1.5 text-[12px] text-muted">
             <ShieldCheck size={14} strokeWidth={1.75} className="text-brand-green" />
-            Secured by Paystack. Your card details never touch OAM.
+            {t("fund.secured")}
           </div>
         </form>
       </main>
