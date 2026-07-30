@@ -11,6 +11,7 @@ import { useDebounced } from "../../hooks/useDebounced";
 import {
   homeServicesApi, CITIES, type ArtisanListItem,
 } from "../../services/homeservices";
+import { useTranslation } from "react-i18next";
 
 const RADII = [5, 10, 25, 50];
 
@@ -26,6 +27,7 @@ const RADII = [5, 10, 25, 50];
 export default function FindArtisans() {
   const navigate = useNavigate();
   const scope = useUserScope();
+  const { t } = useTranslation();
 
   const [city, setCity] = useState<(typeof CITIES)[number]>(CITIES[0]);
   const [coords, setCoords] = useState<{ lat: number; lng: number }>({
@@ -77,19 +79,19 @@ export default function FindArtisans() {
           onClick={() => navigate("/artisans")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Home services
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("artisans.find.back")}
         </button>
 
-        <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">Find an artisan</h1>
+        <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">{t("artisans.find.title")}</h1>
 
         {/* location + radius */}
         <div className="mt-4 rounded-2xl border border-hairline bg-paper p-4 shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
           <div className="flex flex-wrap items-center gap-2">
             <MapPin size={15} strokeWidth={1.75} className="text-muted" />
-            <span className="text-[13px] text-muted">Searching near</span>
+            <span className="text-[13px] text-muted">{t("artisans.find.searchingNear")}</span>
             {usingDevice ? (
               <span className="inline-flex items-center gap-1.5 rounded-lg bg-brand-green/10 px-2.5 py-1 text-[13px] font-semibold text-brand-green">
-                <Navigation size={12} strokeWidth={2.25} /> your location
+                <Navigation size={12} strokeWidth={2.25} /> {t("artisans.find.yourLocation")}
               </span>
             ) : (
               <select
@@ -110,14 +112,14 @@ export default function FindArtisans() {
                 onClick={() => { setUsingDevice(false); setCoords({ lat: city.lat, lng: city.lng }); }}
                 className="text-[12.5px] font-medium text-muted underline transition hover:text-ink"
               >
-                choose a city instead
+                {t("artisans.find.chooseCity")}
               </button>
             ) : (
               <button
                 onClick={useMyLocation}
                 className="text-[12.5px] font-medium text-brand-green underline transition hover:brightness-90"
               >
-                use my location
+                {t("artisans.find.useMyLocation")}
               </button>
             )}
           </div>
@@ -132,7 +134,7 @@ export default function FindArtisans() {
                               : "border border-hairline bg-paper text-muted hover:bg-mist hover:text-ink"
                 }`}
               >
-                {r} km
+                {t("artisans.find.radiusKm", { n: r })}
               </button>
             ))}
           </div>
@@ -146,7 +148,7 @@ export default function FindArtisans() {
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Plumber, electrician, mechanic…"
+              placeholder={t("artisans.find.searchPlaceholder")}
               className="h-11 w-full rounded-xl border border-hairline bg-paper pl-10 pr-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
             />
           </div>
@@ -155,7 +157,7 @@ export default function FindArtisans() {
             onChange={(e) => setCategory(e.target.value)}
             className="h-11 rounded-xl border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green sm:w-52"
           >
-            <option value="">All trades</option>
+            <option value="">{t("artisans.find.allTrades")}</option>
             {categories.data?.map((c) => (
               <option key={c.id} value={c.slug}>{c.name}</option>
             ))}
@@ -170,27 +172,26 @@ export default function FindArtisans() {
             </div>
           ) : results.isError ? (
             <p className="rounded-xl border border-hairline bg-paper p-5 text-center text-[13.5px] text-muted">
-              Couldn't load artisans just now. Try again in a moment.
+              {t("artisans.find.errLoad")}
             </p>
           ) : artisans.length === 0 ? (
             <div className="rounded-2xl border border-hairline bg-paper py-12 text-center shadow-[0_1px_2px_rgba(10,10,10,0.04)] sm:py-14">
               <Wrench size={28} strokeWidth={1.5} className="mx-auto text-muted" />
               <p className="mt-3 text-[14px] font-medium text-ink">
-                No artisans within {radius} km
+                {t("artisans.find.emptyTitle", { radius })}
               </p>
               <p className="mx-auto mt-1 max-w-sm text-[13px] leading-relaxed text-muted">
-                Try a wider radius or a different trade. This is a new service, so
-                coverage is still growing.
+                {t("artisans.find.emptyBody")}
               </p>
               <Link to="/artisans/me"
                     className="mt-4 inline-flex h-10 items-center rounded-lg bg-brand-red px-4 text-[13px] font-semibold text-white transition hover:brightness-95">
-                List your own trade
+                {t("artisans.find.listOwn")}
               </Link>
             </div>
           ) : (
             <>
               <p className="mb-2.5 text-[12.5px] text-muted">
-                {results.data?.count} artisan{results.data?.count === 1 ? "" : "s"} within {radius} km
+                {t(results.data?.count === 1 ? "artisans.find.countOne" : "artisans.find.countOther", { count: results.data?.count ?? 0, radius })}
               </p>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {artisans.map((a) => <Card key={a.id} artisan={a} />)}
@@ -204,6 +205,7 @@ export default function FindArtisans() {
 }
 
 function Card({ artisan }: { artisan: ArtisanListItem }) {
+  const { t } = useTranslation();
   return (
     <li>
       <Link
@@ -228,11 +230,11 @@ function Card({ artisan }: { artisan: ArtisanListItem }) {
           <p className="text-[12.5px] text-muted">{artisan.category_name}</p>
           <p className="mt-0.5 line-clamp-1 text-[12px] text-muted">
             {[artisan.city, artisan.state].filter(Boolean).join(", ")}
-            {artisan.distance_km != null && ` · ${artisan.distance_km.toFixed(1)} km away`}
+            {artisan.distance_km != null && ` · ${t("artisans.distanceAway", { km: artisan.distance_km.toFixed(1) })}`}
           </p>
           {artisan.is_featured && (
             <span className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-warn/10 px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-warn">
-              <Star size={9} strokeWidth={2.5} /> Featured
+              <Star size={9} strokeWidth={2.5} /> {t("artisans.featured")}
             </span>
           )}
         </div>

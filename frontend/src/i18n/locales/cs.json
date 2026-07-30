@@ -757,5 +757,58 @@
       "resend": "Odeslat kód znovu",
       "resendIn": "Znovu za {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "Doporučený",
+    "distanceAway": "{{km}} km daleko",
+    "hub": {
+      "back": "Přehled",
+      "title": "Domácí služby",
+      "subtitle": "Instalatéři, elektrikáři, mechanici a uklízeči ve vašem okolí — dostupní přes OAM, bez předávání čísla cizímu člověku.",
+      "findTitle": "Najít řemeslníka",
+      "findDesc": "Procházejte řemeslníky ve vašem okolí, napište jim a domluvte práci před sdílením jakýchkoli údajů.",
+      "findAction": "Procházet řemeslníky",
+      "profileTitleMine": "Můj profil řemeslníka",
+      "profileTitleNew": "Nabídněte své služby",
+      "profileDescMine": "Spravujte profil, odpovídejte na poptávky a zvyšte svou viditelnost.",
+      "profileDescNew": "Uveďte svůj obor, nechte se najít zákazníky v okolí a přijímejte poptávky v aplikaci.",
+      "profileActionMine": "Otevřít přehled",
+      "profileActionNew": "Zveřejnit se",
+      "privacyTitle": "Kontakty zůstávají soukromé.",
+      "privacyBody": "Čísla se sdílejí až poté, co řemeslník přijme vaši zakázku.",
+      "boostTitle": "Zvýhodnění řemeslníci se zobrazují první.",
+      "boostBody": "Zvýhodněné umístění od ₦2,500 na 30 dní."
+    },
+    "find": {
+      "back": "Domácí služby",
+      "title": "Najít řemeslníka",
+      "searchingNear": "Hledání poblíž",
+      "yourLocation": "vaší polohy",
+      "chooseCity": "vyberte místo toho město",
+      "useMyLocation": "použít mou polohu",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Instalatér, elektrikář, mechanik…",
+      "allTrades": "Všechny obory",
+      "errLoad": "Řemeslníky se teď nepodařilo načíst. Zkuste to za chvíli.",
+      "emptyTitle": "Žádní řemeslníci do {{radius}} km",
+      "emptyBody": "Zkuste větší okruh nebo jiný obor. Je to nová služba, pokrytí stále roste.",
+      "listOwn": "Uvést vlastní obor",
+      "countOne": "{{count}} řemeslník do {{radius}} km",
+      "countOther": "{{count}} řemeslníků do {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Poptávku se nepodařilo odeslat.",
+      "back": "Zpět na hledání",
+      "unavailable": "Tento profil řemeslníka není dostupný.",
+      "available": "Dostupný",
+      "busy": "Zaneprázdněný",
+      "basedIn": "Sídlí v",
+      "experience": "Praxe",
+      "years": "{{years}} let",
+      "enquiryTitle": "Odeslat poptávku",
+      "enquiryLock": "Popište zakázku. {{name}} odpoví zde a jakmile práci přijme, uvidíte oba navzájem svá telefonní čísla.",
+      "enquiryPlaceholder": "např. Kuchyňský dřez teče pod skříňkou. Máte tento týden čas?",
+      "sendEnquiry": "Odeslat poptávku"
+    }
   }
 }

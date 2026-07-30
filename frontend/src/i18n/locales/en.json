@@ -757,5 +757,58 @@
       "resend": "Resend code",
       "resendIn": "Resend in {{seconds}}s"
     }
+  },
+  "artisans": {
+    "featured": "Featured",
+    "distanceAway": "{{km}} km away",
+    "hub": {
+      "back": "Dashboard",
+      "title": "Home services",
+      "subtitle": "Plumbers, electricians, mechanics and cleaners near you — reachable through OAM, without handing your number to a stranger.",
+      "findTitle": "Find an artisan",
+      "findDesc": "Browse tradespeople near you, message them, and agree the work before sharing any details.",
+      "findAction": "Browse artisans",
+      "profileTitleMine": "My artisan profile",
+      "profileTitleNew": "Offer your services",
+      "profileDescMine": "Manage your profile, answer enquiries, and boost your visibility.",
+      "profileDescNew": "List your trade, get found by customers nearby, and take enquiries in the app.",
+      "profileActionMine": "Open dashboard",
+      "profileActionNew": "Get listed",
+      "privacyTitle": "Contacts stay private.",
+      "privacyBody": "Numbers are shared only after an artisan accepts your job.",
+      "boostTitle": "Boosted artisans appear first.",
+      "boostBody": "Featured placement from ₦2,500 for 30 days."
+    },
+    "find": {
+      "back": "Home services",
+      "title": "Find an artisan",
+      "searchingNear": "Searching near",
+      "yourLocation": "your location",
+      "chooseCity": "choose a city instead",
+      "useMyLocation": "use my location",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Plumber, electrician, mechanic…",
+      "allTrades": "All trades",
+      "errLoad": "Couldn't load artisans just now. Try again in a moment.",
+      "emptyTitle": "No artisans within {{radius}} km",
+      "emptyBody": "Try a wider radius or a different trade. This is a new service, so coverage is still growing.",
+      "listOwn": "List your own trade",
+      "countOne": "{{count}} artisan within {{radius}} km",
+      "countOther": "{{count}} artisans within {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Couldn't send that enquiry.",
+      "back": "Back to search",
+      "unavailable": "This artisan profile isn't available.",
+      "available": "Available",
+      "busy": "Busy",
+      "basedIn": "Based in",
+      "experience": "Experience",
+      "years": "{{years}} years",
+      "enquiryTitle": "Send an enquiry",
+      "enquiryLock": "Describe the job. {{name}} will reply here, and you'll both see each other's phone number once they accept the work.",
+      "enquiryPlaceholder": "e.g. Kitchen sink is leaking under the cupboard. Are you free this week?",
+      "sendEnquiry": "Send enquiry"
+    }
   }
 }

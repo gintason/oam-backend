@@ -757,5 +757,58 @@
       "resend": "Reenviar código",
       "resendIn": "Reenviar en {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "Destacado",
+    "distanceAway": "a {{km}} km",
+    "hub": {
+      "back": "Panel",
+      "title": "Servicios a domicilio",
+      "subtitle": "Fontaneros, electricistas, mecánicos y personal de limpieza cerca de ti — localizables a través de OAM, sin dar tu número a un desconocido.",
+      "findTitle": "Buscar un artesano",
+      "findDesc": "Explora profesionales cerca de ti, escríbeles y acuerda el trabajo antes de compartir cualquier dato.",
+      "findAction": "Explorar artesanos",
+      "profileTitleMine": "Mi perfil de artesano",
+      "profileTitleNew": "Ofrece tus servicios",
+      "profileDescMine": "Gestiona tu perfil, responde consultas y aumenta tu visibilidad.",
+      "profileDescNew": "Publica tu oficio, deja que te encuentren clientes cercanos y recibe consultas en la app.",
+      "profileActionMine": "Abrir panel",
+      "profileActionNew": "Publicarme",
+      "privacyTitle": "Los contactos quedan privados.",
+      "privacyBody": "Los números se comparten solo después de que un artesano acepta tu trabajo.",
+      "boostTitle": "Los artesanos impulsados aparecen primero.",
+      "boostBody": "Colocación destacada desde ₦2.500 por 30 días."
+    },
+    "find": {
+      "back": "Servicios a domicilio",
+      "title": "Buscar un artesano",
+      "searchingNear": "Buscando cerca de",
+      "yourLocation": "tu ubicación",
+      "chooseCity": "elegir una ciudad",
+      "useMyLocation": "usar mi ubicación",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Fontanero, electricista, mecánico…",
+      "allTrades": "Todos los oficios",
+      "errLoad": "No se pudieron cargar los artesanos ahora mismo. Inténtalo en un momento.",
+      "emptyTitle": "No hay artesanos en {{radius}} km",
+      "emptyBody": "Prueba un radio más amplio u otro oficio. Es un servicio nuevo, así que la cobertura sigue creciendo.",
+      "listOwn": "Publica tu propio oficio",
+      "countOne": "{{count}} artesano en {{radius}} km",
+      "countOther": "{{count}} artesanos en {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "No se pudo enviar esa consulta.",
+      "back": "Volver a la búsqueda",
+      "unavailable": "Este perfil de artesano no está disponible.",
+      "available": "Disponible",
+      "busy": "Ocupado",
+      "basedIn": "Ubicado en",
+      "experience": "Experiencia",
+      "years": "{{years}} años",
+      "enquiryTitle": "Enviar una consulta",
+      "enquiryLock": "Describe el trabajo. {{name}} responderá aquí, y ambos veréis el número de teléfono del otro una vez acepte el trabajo.",
+      "enquiryPlaceholder": "p. ej. El fregadero de la cocina gotea bajo el mueble. ¿Estás libre esta semana?",
+      "sendEnquiry": "Enviar consulta"
+    }
   }
 }

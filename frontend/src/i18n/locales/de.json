@@ -757,5 +757,58 @@
       "resend": "Code erneut senden",
       "resendIn": "Erneut senden in {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "Hervorgehoben",
+    "distanceAway": "{{km}} km entfernt",
+    "hub": {
+      "back": "Dashboard",
+      "title": "Dienste für zu Hause",
+      "subtitle": "Klempner, Elektriker, Mechaniker und Reinigungskräfte in Ihrer Nähe — erreichbar über OAM, ohne Ihre Nummer an Fremde weiterzugeben.",
+      "findTitle": "Handwerker finden",
+      "findDesc": "Durchsuchen Sie Handwerker in Ihrer Nähe, schreiben Sie ihnen und vereinbaren Sie die Arbeit, bevor Sie Details teilen.",
+      "findAction": "Handwerker durchsuchen",
+      "profileTitleMine": "Mein Handwerkerprofil",
+      "profileTitleNew": "Bieten Sie Ihre Dienste an",
+      "profileDescMine": "Verwalten Sie Ihr Profil, beantworten Sie Anfragen und steigern Sie Ihre Sichtbarkeit.",
+      "profileDescNew": "Listen Sie Ihr Gewerbe, werden Sie von Kunden in der Nähe gefunden und nehmen Sie Anfragen in der App an.",
+      "profileActionMine": "Dashboard öffnen",
+      "profileActionNew": "Eintragen",
+      "privacyTitle": "Kontakte bleiben privat.",
+      "privacyBody": "Nummern werden erst geteilt, nachdem ein Handwerker Ihren Auftrag angenommen hat.",
+      "boostTitle": "Geboostete Handwerker erscheinen zuerst.",
+      "boostBody": "Hervorgehobene Platzierung ab ₦2.500 für 30 Tage."
+    },
+    "find": {
+      "back": "Dienste für zu Hause",
+      "title": "Handwerker finden",
+      "searchingNear": "Suche in der Nähe von",
+      "yourLocation": "Ihr Standort",
+      "chooseCity": "stattdessen eine Stadt wählen",
+      "useMyLocation": "meinen Standort verwenden",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Klempner, Elektriker, Mechaniker…",
+      "allTrades": "Alle Gewerke",
+      "errLoad": "Handwerker konnten gerade nicht geladen werden. Versuchen Sie es gleich noch einmal.",
+      "emptyTitle": "Keine Handwerker im Umkreis von {{radius}} km",
+      "emptyBody": "Versuchen Sie einen größeren Radius oder ein anderes Gewerbe. Dies ist ein neuer Dienst, die Abdeckung wächst noch.",
+      "listOwn": "Eigenes Gewerbe eintragen",
+      "countOne": "{{count}} Handwerker im Umkreis von {{radius}} km",
+      "countOther": "{{count}} Handwerker im Umkreis von {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Diese Anfrage konnte nicht gesendet werden.",
+      "back": "Zurück zur Suche",
+      "unavailable": "Dieses Handwerkerprofil ist nicht verfügbar.",
+      "available": "Verfügbar",
+      "busy": "Beschäftigt",
+      "basedIn": "Ansässig in",
+      "experience": "Erfahrung",
+      "years": "{{years}} Jahre",
+      "enquiryTitle": "Anfrage senden",
+      "enquiryLock": "Beschreiben Sie die Arbeit. {{name}} antwortet hier, und Sie sehen beide die Telefonnummer des anderen, sobald der Auftrag angenommen wurde.",
+      "enquiryPlaceholder": "z. B. Küchenspüle leckt unter dem Schrank. Haben Sie diese Woche Zeit?",
+      "sendEnquiry": "Anfrage senden"
+    }
   }
 }

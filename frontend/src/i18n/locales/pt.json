@@ -757,5 +757,58 @@
       "resend": "Reenviar código",
       "resendIn": "Reenviar em {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "Em destaque",
+    "distanceAway": "a {{km}} km",
+    "hub": {
+      "back": "Painel",
+      "title": "Serviços ao domicílio",
+      "subtitle": "Canalizadores, eletricistas, mecânicos e pessoal de limpeza perto de si — contactáveis através da OAM, sem dar o seu número a um estranho.",
+      "findTitle": "Encontrar um artesão",
+      "findDesc": "Explore profissionais perto de si, envie-lhes mensagem e combine o trabalho antes de partilhar quaisquer dados.",
+      "findAction": "Explorar artesãos",
+      "profileTitleMine": "O meu perfil de artesão",
+      "profileTitleNew": "Ofereça os seus serviços",
+      "profileDescMine": "Faça a gestão do seu perfil, responda a pedidos e aumente a sua visibilidade.",
+      "profileDescNew": "Anuncie o seu ofício, deixe que clientes próximos o encontrem e receba pedidos na app.",
+      "profileActionMine": "Abrir painel",
+      "profileActionNew": "Anunciar-me",
+      "privacyTitle": "Os contactos ficam privados.",
+      "privacyBody": "Os números só são partilhados depois de um artesão aceitar o seu trabalho.",
+      "boostTitle": "Os artesãos impulsionados aparecem primeiro.",
+      "boostBody": "Colocação em destaque a partir de ₦2.500 por 30 dias."
+    },
+    "find": {
+      "back": "Serviços ao domicílio",
+      "title": "Encontrar um artesão",
+      "searchingNear": "A procurar perto de",
+      "yourLocation": "a sua localização",
+      "chooseCity": "escolher uma cidade",
+      "useMyLocation": "usar a minha localização",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Canalizador, eletricista, mecânico…",
+      "allTrades": "Todos os ofícios",
+      "errLoad": "Não foi possível carregar os artesãos agora. Tente novamente daqui a pouco.",
+      "emptyTitle": "Nenhum artesão num raio de {{radius}} km",
+      "emptyBody": "Experimente um raio maior ou outro ofício. É um serviço novo, por isso a cobertura ainda está a crescer.",
+      "listOwn": "Anuncie o seu próprio ofício",
+      "countOne": "{{count}} artesão num raio de {{radius}} km",
+      "countOther": "{{count}} artesãos num raio de {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Não foi possível enviar esse pedido.",
+      "back": "Voltar à pesquisa",
+      "unavailable": "Este perfil de artesão não está disponível.",
+      "available": "Disponível",
+      "busy": "Ocupado",
+      "basedIn": "Sediado em",
+      "experience": "Experiência",
+      "years": "{{years}} anos",
+      "enquiryTitle": "Enviar um pedido",
+      "enquiryLock": "Descreva o trabalho. {{name}} responderá aqui, e ambos verão o número de telefone um do outro assim que ele aceitar o trabalho.",
+      "enquiryPlaceholder": "ex. O lava-loiça da cozinha está a pingar por baixo do armário. Está livre esta semana?",
+      "sendEnquiry": "Enviar pedido"
+    }
   }
 }

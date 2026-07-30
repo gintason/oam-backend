@@ -757,5 +757,58 @@
       "resend": "Kodu yeniden gönder",
       "resendIn": "{{seconds}} sn sonra yeniden gönder"
     }
+  },
+  "artisans": {
+    "featured": "Öne çıkan",
+    "distanceAway": "{{km}} km uzakta",
+    "hub": {
+      "back": "Panel",
+      "title": "Ev hizmetleri",
+      "subtitle": "Yakınınızdaki tesisatçılar, elektrikçiler, tamirciler ve temizlikçiler — numaranızı bir yabancıya vermeden OAM üzerinden ulaşılabilir.",
+      "findTitle": "Usta bul",
+      "findDesc": "Yakınınızdaki ustalara göz atın, mesaj gönderin ve herhangi bir bilgi paylaşmadan önce işi anlaşın.",
+      "findAction": "Ustalara göz at",
+      "profileTitleMine": "Usta profilim",
+      "profileTitleNew": "Hizmetlerinizi sunun",
+      "profileDescMine": "Profilinizi yönetin, taleplere yanıt verin ve görünürlüğünüzü artırın.",
+      "profileDescNew": "Mesleğinizi listeleyin, yakındaki müşteriler tarafından bulunun ve talepleri uygulamada alın.",
+      "profileActionMine": "Paneli aç",
+      "profileActionNew": "Listeye gir",
+      "privacyTitle": "İletişim bilgileri gizli kalır.",
+      "privacyBody": "Numaralar yalnızca bir usta işinizi kabul ettikten sonra paylaşılır.",
+      "boostTitle": "Öne çıkarılan ustalar ilk sırada görünür.",
+      "boostBody": "30 gün için ₦2,500'den başlayan öne çıkarma."
+    },
+    "find": {
+      "back": "Ev hizmetleri",
+      "title": "Usta bul",
+      "searchingNear": "Yakınında aranıyor:",
+      "yourLocation": "konumunuz",
+      "chooseCity": "bunun yerine bir şehir seçin",
+      "useMyLocation": "konumumu kullan",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Tesisatçı, elektrikçi, tamirci…",
+      "allTrades": "Tüm meslekler",
+      "errLoad": "Ustalar şu anda yüklenemedi. Birazdan tekrar deneyin.",
+      "emptyTitle": "{{radius}} km içinde usta yok",
+      "emptyBody": "Daha geniş bir yarıçap veya farklı bir meslek deneyin. Bu yeni bir hizmet, kapsama hâlâ büyüyor.",
+      "listOwn": "Kendi mesleğinizi listeleyin",
+      "countOne": "{{radius}} km içinde {{count}} usta",
+      "countOther": "{{radius}} km içinde {{count}} usta"
+    },
+    "profile": {
+      "errEnquiry": "O talep gönderilemedi.",
+      "back": "Aramaya dön",
+      "unavailable": "Bu usta profili mevcut değil.",
+      "available": "Müsait",
+      "busy": "Meşgul",
+      "basedIn": "Konum:",
+      "experience": "Deneyim",
+      "years": "{{years}} yıl",
+      "enquiryTitle": "Talep gönder",
+      "enquiryLock": "İşi açıklayın. {{name}} buradan yanıtlayacak ve işi kabul ettiğinde ikiniz de birbirinizin telefon numarasını göreceksiniz.",
+      "enquiryPlaceholder": "örn. Mutfak lavabosu dolabın altından sızıyor. Bu hafta müsait misiniz?",
+      "sendEnquiry": "Talep gönder"
+    }
   }
 }

@@ -757,5 +757,58 @@
       "resend": "Invia di nuovo il codice",
       "resendIn": "Invia di nuovo tra {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "In evidenza",
+    "distanceAway": "a {{km}} km",
+    "hub": {
+      "back": "Dashboard",
+      "title": "Servizi a domicilio",
+      "subtitle": "Idraulici, elettricisti, meccanici e addetti alle pulizie vicino a te — raggiungibili tramite OAM, senza dare il tuo numero a uno sconosciuto.",
+      "findTitle": "Trova un artigiano",
+      "findDesc": "Esplora i professionisti vicino a te, scrivi loro e concorda il lavoro prima di condividere qualsiasi dettaglio.",
+      "findAction": "Esplora artigiani",
+      "profileTitleMine": "Il mio profilo artigiano",
+      "profileTitleNew": "Offri i tuoi servizi",
+      "profileDescMine": "Gestisci il tuo profilo, rispondi alle richieste e aumenta la tua visibilità.",
+      "profileDescNew": "Pubblica il tuo mestiere, fatti trovare dai clienti vicini e ricevi richieste nell'app.",
+      "profileActionMine": "Apri dashboard",
+      "profileActionNew": "Iscriviti",
+      "privacyTitle": "I contatti restano privati.",
+      "privacyBody": "I numeri vengono condivisi solo dopo che un artigiano accetta il tuo lavoro.",
+      "boostTitle": "Gli artigiani in evidenza appaiono per primi.",
+      "boostBody": "Posizionamento in evidenza da ₦2.500 per 30 giorni."
+    },
+    "find": {
+      "back": "Servizi a domicilio",
+      "title": "Trova un artigiano",
+      "searchingNear": "Ricerca vicino a",
+      "yourLocation": "la tua posizione",
+      "chooseCity": "scegli una città",
+      "useMyLocation": "usa la mia posizione",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Idraulico, elettricista, meccanico…",
+      "allTrades": "Tutti i mestieri",
+      "errLoad": "Impossibile caricare gli artigiani in questo momento. Riprova tra poco.",
+      "emptyTitle": "Nessun artigiano entro {{radius}} km",
+      "emptyBody": "Prova un raggio più ampio o un altro mestiere. È un servizio nuovo, la copertura è ancora in crescita.",
+      "listOwn": "Pubblica il tuo mestiere",
+      "countOne": "{{count}} artigiano entro {{radius}} km",
+      "countOther": "{{count}} artigiani entro {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Impossibile inviare quella richiesta.",
+      "back": "Torna alla ricerca",
+      "unavailable": "Questo profilo artigiano non è disponibile.",
+      "available": "Disponibile",
+      "busy": "Occupato",
+      "basedIn": "Con sede a",
+      "experience": "Esperienza",
+      "years": "{{years}} anni",
+      "enquiryTitle": "Invia una richiesta",
+      "enquiryLock": "Descrivi il lavoro. {{name}} risponderà qui e vedrete entrambi il numero di telefono dell'altro una volta accettato il lavoro.",
+      "enquiryPlaceholder": "es. Il lavello della cucina perde sotto il mobile. Sei libero questa settimana?",
+      "sendEnquiry": "Invia richiesta"
+    }
   }
 }

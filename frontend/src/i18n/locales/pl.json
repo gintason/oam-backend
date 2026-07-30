@@ -757,5 +757,58 @@
       "resend": "Wyślij kod ponownie",
       "resendIn": "Ponów za {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "Wyróżniony",
+    "distanceAway": "{{km}} km stąd",
+    "hub": {
+      "back": "Panel",
+      "title": "Usługi domowe",
+      "subtitle": "Hydraulicy, elektrycy, mechanicy i sprzątacze w pobliżu — dostępni przez OAM, bez podawania numeru obcej osobie.",
+      "findTitle": "Znajdź rzemieślnika",
+      "findDesc": "Przeglądaj fachowców w pobliżu, pisz do nich i uzgadniaj pracę przed udostępnieniem jakichkolwiek danych.",
+      "findAction": "Przeglądaj rzemieślników",
+      "profileTitleMine": "Mój profil rzemieślnika",
+      "profileTitleNew": "Zaoferuj swoje usługi",
+      "profileDescMine": "Zarządzaj profilem, odpowiadaj na zapytania i zwiększaj widoczność.",
+      "profileDescNew": "Wystaw swój fach, daj się znaleźć klientom w pobliżu i przyjmuj zapytania w aplikacji.",
+      "profileActionMine": "Otwórz panel",
+      "profileActionNew": "Dodaj się",
+      "privacyTitle": "Kontakty pozostają prywatne.",
+      "privacyBody": "Numery są udostępniane dopiero po przyjęciu zlecenia przez rzemieślnika.",
+      "boostTitle": "Promowani rzemieślnicy są pokazywani jako pierwsi.",
+      "boostBody": "Wyróżnione miejsce od ₦2,500 na 30 dni."
+    },
+    "find": {
+      "back": "Usługi domowe",
+      "title": "Znajdź rzemieślnika",
+      "searchingNear": "Szukanie w pobliżu",
+      "yourLocation": "twojej lokalizacji",
+      "chooseCity": "wybierz zamiast tego miasto",
+      "useMyLocation": "użyj mojej lokalizacji",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Hydraulik, elektryk, mechanik…",
+      "allTrades": "Wszystkie fachy",
+      "errLoad": "Nie udało się teraz załadować rzemieślników. Spróbuj za chwilę.",
+      "emptyTitle": "Brak rzemieślników w promieniu {{radius}} km",
+      "emptyBody": "Spróbuj większego promienia lub innego fachu. To nowa usługa, więc zasięg wciąż rośnie.",
+      "listOwn": "Wystaw własny fach",
+      "countOne": "{{count}} rzemieślnik w promieniu {{radius}} km",
+      "countOther": "{{count}} rzemieślników w promieniu {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Nie udało się wysłać zapytania.",
+      "back": "Wróć do wyszukiwania",
+      "unavailable": "Ten profil rzemieślnika jest niedostępny.",
+      "available": "Dostępny",
+      "busy": "Zajęty",
+      "basedIn": "Z siedzibą w",
+      "experience": "Doświadczenie",
+      "years": "{{years}} lat",
+      "enquiryTitle": "Wyślij zapytanie",
+      "enquiryLock": "Opisz zlecenie. {{name}} odpowie tutaj, a oboje zobaczycie swoje numery telefonów, gdy przyjmie pracę.",
+      "enquiryPlaceholder": "np. Zlew kuchenny cieknie pod szafką. Masz czas w tym tygodniu?",
+      "sendEnquiry": "Wyślij zapytanie"
+    }
   }
 }

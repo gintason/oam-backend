@@ -757,5 +757,58 @@
       "resend": "重新发送验证码",
       "resendIn": "{{seconds}} 秒后重发"
     }
+  },
+  "artisans": {
+    "featured": "精选",
+    "distanceAway": "{{km}} 公里外",
+    "hub": {
+      "back": "仪表板",
+      "title": "家庭服务",
+      "subtitle": "您附近的水管工、电工、机修工和保洁员——通过 OAM 联系，无需把号码给陌生人。",
+      "findTitle": "寻找工匠",
+      "findDesc": "浏览附近的工匠，给他们留言，并在分享任何信息前谈妥工作。",
+      "findAction": "浏览工匠",
+      "profileTitleMine": "我的工匠资料",
+      "profileTitleNew": "提供您的服务",
+      "profileDescMine": "管理资料、回复咨询并提升您的曝光度。",
+      "profileDescNew": "登记您的工种，让附近的客户找到您，并在应用内接收咨询。",
+      "profileActionMine": "打开仪表板",
+      "profileActionNew": "登记",
+      "privacyTitle": "联系方式保持私密。",
+      "privacyBody": "只有在工匠接受您的工作后才会共享号码。",
+      "boostTitle": "推广的工匠优先显示。",
+      "boostBody": "精选展示 ₦2,500 起，为期 30 天。"
+    },
+    "find": {
+      "back": "家庭服务",
+      "title": "寻找工匠",
+      "searchingNear": "搜索附近",
+      "yourLocation": "您的位置",
+      "chooseCity": "改为选择城市",
+      "useMyLocation": "使用我的位置",
+      "radiusKm": "{{n}} 公里",
+      "searchPlaceholder": "水管工、电工、机修工…",
+      "allTrades": "所有工种",
+      "errLoad": "暂时无法加载工匠。请稍后再试。",
+      "emptyTitle": "{{radius}} 公里内没有工匠",
+      "emptyBody": "试试更大的范围或不同的工种。这是新服务，覆盖范围仍在扩大。",
+      "listOwn": "登记您自己的工种",
+      "countOne": "{{radius}} 公里内 {{count}} 位工匠",
+      "countOther": "{{radius}} 公里内 {{count}} 位工匠"
+    },
+    "profile": {
+      "errEnquiry": "无法发送该咨询。",
+      "back": "返回搜索",
+      "unavailable": "该工匠资料不可用。",
+      "available": "有空",
+      "busy": "忙碌",
+      "basedIn": "所在地",
+      "experience": "经验",
+      "years": "{{years}} 年",
+      "enquiryTitle": "发送咨询",
+      "enquiryLock": "描述工作内容。{{name}} 会在此回复，一旦其接受工作，你们双方都会看到彼此的电话号码。",
+      "enquiryPlaceholder": "例如 厨房水槽在橱柜下漏水。您这周有空吗？",
+      "sendEnquiry": "发送咨询"
+    }
   }
 }

@@ -757,5 +757,58 @@
       "resend": "Sake aika lamba",
       "resendIn": "Sake aikawa cikin {{seconds}}s"
     }
+  },
+  "artisans": {
+    "featured": "Wanda aka nuna",
+    "distanceAway": "nisan {{km}} km",
+    "hub": {
+      "back": "Dashboard",
+      "title": "Sabis na gida",
+      "subtitle": "Masu famfo, masu wutar lantarki, makanikai da masu tsaftacewa kusa da kai — ana iya samun su ta OAM, ba tare da ba wa baƙo lambar ka ba.",
+      "findTitle": "Nemo ma'aikaci",
+      "findDesc": "Duba masu sana'a kusa da kai, aika musu saƙo, kuma ku amince da aikin kafin raba wani bayani.",
+      "findAction": "Duba masu sana'a",
+      "profileTitleMine": "Bayanina na ma'aikaci",
+      "profileTitleNew": "Ba da sabis ɗin ka",
+      "profileDescMine": "Sarrafa bayanin ka, amsa tambayoyi, kuma haɓaka ganin ka.",
+      "profileDescNew": "Lissafa sana'ar ka, a same ka daga abokan ciniki kusa, kuma karɓi tambayoyi a cikin manhaja.",
+      "profileActionMine": "Buɗe dashboard",
+      "profileActionNew": "A lissafa ka",
+      "privacyTitle": "Bayanan tuntuɓa suna zaman sirri.",
+      "privacyBody": "Ana raba lambobi ne kawai bayan ma'aikaci ya amshi aikin ka.",
+      "boostTitle": "Ma'aikatan da aka haɓaka suna bayyana da farko.",
+      "boostBody": "Wurin nunawa daga ₦2,500 na kwanaki 30."
+    },
+    "find": {
+      "back": "Sabis na gida",
+      "title": "Nemo ma'aikaci",
+      "searchingNear": "Ana nema kusa da",
+      "yourLocation": "wurin ka",
+      "chooseCity": "maimakon haka zaɓi birni",
+      "useMyLocation": "yi amfani da wurina",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Mai famfo, mai wutar lantarki, makanike…",
+      "allTrades": "Dukan sana'o'i",
+      "errLoad": "An kasa loda masu sana'a yanzu. Sake gwadawa nan gaba kaɗan.",
+      "emptyTitle": "Babu masu sana'a cikin {{radius}} km",
+      "emptyBody": "Gwada faɗi mai nisa ko wata sana'a. Wannan sabon sabis ne, don haka ɗaukar hoto na ci gaba da girma.",
+      "listOwn": "Lissafa sana'ar ka",
+      "countOne": "ma'aikaci {{count}} cikin {{radius}} km",
+      "countOther": "masu sana'a {{count}} cikin {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "An kasa aika wannan tambaya.",
+      "back": "Koma bincike",
+      "unavailable": "Wannan bayanin ma'aikaci babu shi.",
+      "available": "Akwai",
+      "busy": "Mai aiki",
+      "basedIn": "Yana zaune a",
+      "experience": "Gogewa",
+      "years": "shekaru {{years}}",
+      "enquiryTitle": "Aika tambaya",
+      "enquiryLock": "Bayyana aikin. {{name}} zai amsa a nan, kuma ku biyu za ku ga lambar wayar juna da zarar ya amshi aikin.",
+      "enquiryPlaceholder": "misali Kwatancen kicin yana zubar da ruwa a ƙarƙashin kabad. Kana da lokaci wannan mako?",
+      "sendEnquiry": "Aika tambaya"
+    }
   }
 }

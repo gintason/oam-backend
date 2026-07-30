@@ -757,5 +757,58 @@
       "resend": "Zigaghachi koodu",
       "resendIn": "Zigaghachi n'ime {{seconds}}s"
     }
+  },
+  "artisans": {
+    "featured": "Emere ka ọ pụta ìhè",
+    "distanceAway": "{{km}} km n'ebe dị anya",
+    "hub": {
+      "back": "Dashboard",
+      "title": "Ọrụ ụlọ",
+      "subtitle": "Ndị na-arụ ọrụ mmiri, ndị eletrik, ndị mekaniki na ndị na-ehicha dị gị nso — enwere ike iru ha site na OAM, na-enyeghị onye ọbịa nọmba gị.",
+      "findTitle": "Chọta onye ọrụ aka",
+      "findDesc": "Chọgharịa ndị ọrụ aka dị gị nso, zigara ha ozi, ma kwekọrịta ọrụ tupu ị kesaa nkọwa ọ bụla.",
+      "findAction": "Chọgharịa ndị ọrụ aka",
+      "profileTitleMine": "Profaịlụ ọrụ aka m",
+      "profileTitleNew": "Nye ọrụ gị",
+      "profileDescMine": "Jikwaa profaịlụ gị, zaa ajụjụ, ma bulie ọ pụta ìhè gị.",
+      "profileDescNew": "Depụta ọrụ aka gị, ka ndị ahịa dị nso chọta gị, ma nabata ajụjụ na ngwa.",
+      "profileActionMine": "Mepee dashboard",
+      "profileActionNew": "Depụta onwe gị",
+      "privacyTitle": "Kọntaktị na-anọ nzuzo.",
+      "privacyBody": "A na-ekekọrịta nọmba naanị mgbe onye ọrụ aka nabatara ọrụ gị.",
+      "boostTitle": "Ndị ọrụ aka e boostiri na-apụta na mbụ.",
+      "boostBody": "Ọnọdụ pụrụ iche site na ₦2,500 maka ụbọchị 30."
+    },
+    "find": {
+      "back": "Ọrụ ụlọ",
+      "title": "Chọta onye ọrụ aka",
+      "searchingNear": "Na-achọ nso",
+      "yourLocation": "ebe ị nọ",
+      "chooseCity": "kama họrọ obodo",
+      "useMyLocation": "jiri ebe m nọ",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Onye mmiri, onye eletrik, onye mekaniki…",
+      "allTrades": "Ọrụ aka niile",
+      "errLoad": "Enweghị ike ibudata ndị ọrụ aka ugbu a. Nwaa ọzọ n'oge na-adịghị anya.",
+      "emptyTitle": "Ọ dịghị onye ọrụ aka n'ime {{radius}} km",
+      "emptyBody": "Nwaa radius buru ibu ma ọ bụ ọrụ dị iche. Nke a bụ ọrụ ọhụrụ, ya mere mkpuchi ka na-eto.",
+      "listOwn": "Depụta ọrụ aka nke gị",
+      "countOne": "onye ọrụ aka {{count}} n'ime {{radius}} km",
+      "countOther": "ndị ọrụ aka {{count}} n'ime {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Enweghị ike izipu ajụjụ ahụ.",
+      "back": "Laghachi na nchọ",
+      "unavailable": "Profaịlụ onye ọrụ aka a adịghị.",
+      "available": "Dị",
+      "busy": "Ọ na-arụsi ọrụ ike",
+      "basedIn": "Dabeere na",
+      "experience": "Ahụmịhe",
+      "years": "afọ {{years}}",
+      "enquiryTitle": "Zipu ajụjụ",
+      "enquiryLock": "Kọwaa ọrụ ahụ. {{name}} ga-aza ebe a, ma unu abụọ ga-ahụ nọmba ekwentị ibe unu ozugbo ọ nabatara ọrụ ahụ.",
+      "enquiryPlaceholder": "dịka Ebe a na-asa efere na kichin na-agba mmiri n'okpuru kabịnetị. Ị nwere oge n'izu a?",
+      "sendEnquiry": "Zipu ajụjụ"
+    }
   }
 }

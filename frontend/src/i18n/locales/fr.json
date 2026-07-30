@@ -757,5 +757,58 @@
       "resend": "Renvoyer le code",
       "resendIn": "Renvoyer dans {{seconds}} s"
     }
+  },
+  "artisans": {
+    "featured": "En vedette",
+    "distanceAway": "à {{km}} km",
+    "hub": {
+      "back": "Tableau de bord",
+      "title": "Services à domicile",
+      "subtitle": "Plombiers, électriciens, mécaniciens et agents d'entretien près de chez vous — joignables via OAM, sans donner votre numéro à un inconnu.",
+      "findTitle": "Trouver un artisan",
+      "findDesc": "Parcourez les artisans près de chez vous, contactez-les et convenez du travail avant de partager le moindre détail.",
+      "findAction": "Parcourir les artisans",
+      "profileTitleMine": "Mon profil d'artisan",
+      "profileTitleNew": "Proposez vos services",
+      "profileDescMine": "Gérez votre profil, répondez aux demandes et boostez votre visibilité.",
+      "profileDescNew": "Référencez votre métier, faites-vous trouver par des clients proches et recevez les demandes dans l'app.",
+      "profileActionMine": "Ouvrir le tableau de bord",
+      "profileActionNew": "Se référencer",
+      "privacyTitle": "Les contacts restent privés.",
+      "privacyBody": "Les numéros ne sont partagés qu'après qu'un artisan a accepté votre travail.",
+      "boostTitle": "Les artisans boostés apparaissent en premier.",
+      "boostBody": "Placement en vedette à partir de ₦2 500 pour 30 jours."
+    },
+    "find": {
+      "back": "Services à domicile",
+      "title": "Trouver un artisan",
+      "searchingNear": "Recherche à proximité de",
+      "yourLocation": "votre position",
+      "chooseCity": "choisir une ville à la place",
+      "useMyLocation": "utiliser ma position",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Plombier, électricien, mécanicien…",
+      "allTrades": "Tous les métiers",
+      "errLoad": "Impossible de charger les artisans pour le moment. Réessayez dans un instant.",
+      "emptyTitle": "Aucun artisan dans un rayon de {{radius}} km",
+      "emptyBody": "Essayez un rayon plus large ou un autre métier. C'est un nouveau service, la couverture s'étend encore.",
+      "listOwn": "Référencez votre propre métier",
+      "countOne": "{{count}} artisan dans un rayon de {{radius}} km",
+      "countOther": "{{count}} artisans dans un rayon de {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "Impossible d'envoyer cette demande.",
+      "back": "Retour à la recherche",
+      "unavailable": "Ce profil d'artisan n'est pas disponible.",
+      "available": "Disponible",
+      "busy": "Occupé",
+      "basedIn": "Situé à",
+      "experience": "Expérience",
+      "years": "{{years}} ans",
+      "enquiryTitle": "Envoyer une demande",
+      "enquiryLock": "Décrivez le travail. {{name}} répondra ici, et vous verrez chacun le numéro de téléphone de l'autre une fois qu'il aura accepté le travail.",
+      "enquiryPlaceholder": "ex. L'évier de la cuisine fuit sous le meuble. Êtes-vous disponible cette semaine ?",
+      "sendEnquiry": "Envoyer la demande"
+    }
   }
 }

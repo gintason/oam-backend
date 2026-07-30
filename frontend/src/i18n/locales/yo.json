@@ -757,5 +757,58 @@
       "resend": "Tún kóòdù ránṣẹ́",
       "resendIn": "Tún ránṣẹ́ ní {{seconds}}s"
     }
+  },
+  "artisans": {
+    "featured": "Àfihàn",
+    "distanceAway": "{{km}} km sí",
+    "hub": {
+      "back": "Dasibọọdu",
+      "title": "Àwọn iṣẹ́ ilé",
+      "subtitle": "Àwọn atúbọ̀tán, oníná, mẹkánìkì àti olùmọ́tótó nítòsí rẹ — a lè dé ọ̀dọ̀ wọn nípasẹ̀ OAM, láìfi nọ́mbà rẹ fún àjèjì.",
+      "findTitle": "Wá oníṣọ̀nà",
+      "findDesc": "Ṣàyẹ̀wò àwọn oníṣọ̀nà nítòsí rẹ, fi ìránṣẹ́ ránṣẹ́ sí wọn, kí o sì fohùnṣọ̀kan lórí iṣẹ́ náà kí o tó pín àlàyé kankan.",
+      "findAction": "Ṣàyẹ̀wò àwọn oníṣọ̀nà",
+      "profileTitleMine": "Profáìlì oníṣọ̀nà mi",
+      "profileTitleNew": "Pèsè àwọn iṣẹ́ rẹ",
+      "profileDescMine": "Ṣàkóso profáìlì rẹ, dáhùn àwọn ìbéèrè, kí o sì mú kí a rí ọ dáadáa.",
+      "profileDescNew": "Ṣàkọsílẹ̀ iṣẹ́ rẹ, kí àwọn oníbàárà nítòsí rí ọ, kí o sì gba àwọn ìbéèrè nínú áàpù.",
+      "profileActionMine": "Ṣí dasibọọdu",
+      "profileActionNew": "Jẹ́ kí a ṣàkọsílẹ̀ rẹ",
+      "privacyTitle": "Àwọn olùbáṣepọ̀ dúró ní àṣírí.",
+      "privacyBody": "A ó pín àwọn nọ́mbà nìkan lẹ́yìn tí oníṣọ̀nà bá gba iṣẹ́ rẹ.",
+      "boostTitle": "Àwọn oníṣọ̀nà tí a gbé sókè máa fara hàn ní àkọ́kọ́.",
+      "boostBody": "Ìfihàn àpéjọ láti ₦2,500 fún ọjọ́ 30."
+    },
+    "find": {
+      "back": "Àwọn iṣẹ́ ilé",
+      "title": "Wá oníṣọ̀nà",
+      "searchingNear": "Ń wá nítòsí",
+      "yourLocation": "ibi tí o wà",
+      "chooseCity": "yan ìlú dípò rẹ̀",
+      "useMyLocation": "lo ibi tí mo wà",
+      "radiusKm": "{{n}} km",
+      "searchPlaceholder": "Atúbọ̀tán, oníná, mẹkánìkì…",
+      "allTrades": "Gbogbo iṣẹ́ ọwọ́",
+      "errLoad": "A kò lè gbé àwọn oníṣọ̀nà wọlé nísinsìnyí. Tún gbìyànjú láìpẹ́.",
+      "emptyTitle": "Kò sí oníṣọ̀nà láàrín {{radius}} km",
+      "emptyBody": "Gbìyànjú àyíká gbòòrò tàbí iṣẹ́ mìíràn. Iṣẹ́ tuntun ni èyí, nítorí náà àgbègbè ṣì ń dàgbà.",
+      "listOwn": "Ṣàkọsílẹ̀ iṣẹ́ tìrẹ",
+      "countOne": "oníṣọ̀nà {{count}} láàrín {{radius}} km",
+      "countOther": "oníṣọ̀nà {{count}} láàrín {{radius}} km"
+    },
+    "profile": {
+      "errEnquiry": "A kò lè fi ìbéèrè yẹn ránṣẹ́.",
+      "back": "Padà sí wíwá",
+      "unavailable": "Profáìlì oníṣọ̀nà yìí kò sí.",
+      "available": "Ó wà",
+      "busy": "Ó ń ṣiṣẹ́",
+      "basedIn": "Ó wà ní",
+      "experience": "Ìrírí",
+      "years": "ọdún {{years}}",
+      "enquiryTitle": "Fi ìbéèrè ránṣẹ́",
+      "enquiryLock": "Ṣàpèjúwe iṣẹ́ náà. {{name}} yóò dáhùn níbí, ẹ̀yin méjèèjì yóò sì rí nọ́mbà fóònù ara yín ní kété tí ó bá gba iṣẹ́ náà.",
+      "enquiryPlaceholder": "bí Ìbùsùn ìdáná ń jò lábẹ́ káàbù. Ṣé o ní àyè ní ọ̀sẹ̀ yìí?",
+      "sendEnquiry": "Fi ìbéèrè ránṣẹ́"
+    }
   }
 }

@@ -5,6 +5,7 @@ import AppHeader from "../../components/AppHeader";
 import { DarkPanel, ChoiceCard, Card } from "../../components/Surface";
 import { useUserScope } from "../../auth/useUserScope";
 import { homeServicesApi } from "../../services/homeservices";
+import { useTranslation } from "react-i18next";
 
 /**
  * The decision hub: are you here to hire, or to be hired?
@@ -14,6 +15,7 @@ import { homeServicesApi } from "../../services/homeservices";
 export default function ArtisansHub() {
   const navigate = useNavigate();
   const scope = useUserScope();
+  const { t } = useTranslation();
 
   const mine = useQuery({
     queryKey: ["artisan", scope, "me"],
@@ -32,17 +34,16 @@ export default function ArtisansHub() {
           onClick={() => navigate("/dashboard")}
           className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Dashboard
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("artisans.hub.back")}
         </button>
 
         <DarkPanel className="mb-5">
           <div className="p-5 sm:p-7">
             <h1 className="font-display text-[26px] font-semibold leading-tight tracking-tight sm:text-3xl">
-              Home services
+              {t("artisans.hub.title")}
             </h1>
             <p className="mt-2 max-w-md text-[14px] leading-relaxed text-white/70 sm:text-[15px]">
-              Plumbers, electricians, mechanics and cleaners near you — reachable
-              through OAM, without handing your number to a stranger.
+              {t("artisans.hub.subtitle")}
             </p>
           </div>
         </DarkPanel>
@@ -51,20 +52,20 @@ export default function ArtisansHub() {
           <ChoiceCard
             to="/artisans/find"
             icon={<Search size={20} strokeWidth={1.75} />}
-            title="Find an artisan"
-            description="Browse tradespeople near you, message them, and agree the work before sharing any details."
-            action="Browse artisans"
+            title={t("artisans.hub.findTitle")}
+            description={t("artisans.hub.findDesc")}
+            action={t("artisans.hub.findAction")}
           />
           <ChoiceCard
             to="/artisans/me"
             icon={<Wrench size={20} strokeWidth={1.75} />}
-            title={isArtisan ? "My artisan profile" : "Offer your services"}
+            title={isArtisan ? t("artisans.hub.profileTitleMine") : t("artisans.hub.profileTitleNew")}
             description={
               isArtisan
-                ? "Manage your profile, answer enquiries, and boost your visibility."
-                : "List your trade, get found by customers nearby, and take enquiries in the app."
+                ? t("artisans.hub.profileDescMine")
+                : t("artisans.hub.profileDescNew")
             }
-            action={isArtisan ? "Open dashboard" : "Get listed"}
+            action={isArtisan ? t("artisans.hub.profileActionMine") : t("artisans.hub.profileActionNew")}
           />
         </div>
 
@@ -72,15 +73,14 @@ export default function ArtisansHub() {
           <Card className="flex items-start gap-2.5 p-4">
             <BadgeCheck size={17} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-green" />
             <p className="text-[12.5px] leading-relaxed text-muted">
-              <span className="font-semibold text-ink">Contacts stay private.</span> Numbers
-              are shared only after an artisan accepts your job.
+              <span className="font-semibold text-ink">{t("artisans.hub.privacyTitle")}</span> {t("artisans.hub.privacyBody")}
             </p>
           </Card>
           <Card className="flex items-start gap-2.5 p-4">
             <Star size={17} strokeWidth={1.75} className="mt-0.5 shrink-0 text-warn" />
             <p className="text-[12.5px] leading-relaxed text-muted">
-              <span className="font-semibold text-ink">Boosted artisans appear first.</span>{" "}
-              Featured placement from ₦2,500 for 30 days.
+              <span className="font-semibold text-ink">{t("artisans.hub.boostTitle")}</span>{" "}
+              {t("artisans.hub.boostBody")}
             </p>
           </Card>
         </div>

@@ -10,11 +10,13 @@ import { useUserScope } from "../../auth/useUserScope";
 import { homeServicesApi } from "../../services/homeservices";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
+import { useTranslation } from "react-i18next";
 
 export default function ArtisanProfile() {
   const { id = "" } = useParams();
   const navigate = useNavigate();
   const scope = useUserScope();
+  const { t } = useTranslation();
   const [message, setMessage] = useState("");
   const [error, setError] = useState<string>();
 
@@ -27,7 +29,7 @@ export default function ArtisanProfile() {
   const enquire = useMutation({
     mutationFn: () => messagingApi.start({ kind: "artisan", id, body: message.trim() }),
     onSuccess: (convo) => navigate(`/messages/${convo.id}`),
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't send that enquiry.")),
+    onError: (err) => setError(apiErrorMessage(err, t("artisans.profile.errEnquiry"))),
   });
 
   const a = artisan.data;
@@ -41,7 +43,7 @@ export default function ArtisanProfile() {
           onClick={() => navigate("/artisans/find")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Back to search
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("artisans.profile.back")}
         </button>
 
         {artisan.isLoading ? (
@@ -50,7 +52,7 @@ export default function ArtisanProfile() {
           </div>
         ) : !a ? (
           <p className="rounded-xl border border-hairline bg-paper p-6 text-center text-[14px] text-muted">
-            This artisan profile isn't available.
+            {t("artisans.profile.unavailable")}
           </p>
         ) : (
           <>
@@ -74,13 +76,13 @@ export default function ArtisanProfile() {
                   <div className="mt-1.5 flex flex-wrap gap-2">
                     {a.is_featured && (
                       <span className="inline-flex items-center gap-1 rounded-md bg-warn/10 px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-warn">
-                        <Star size={9} strokeWidth={2.5} /> Featured
+                        <Star size={9} strokeWidth={2.5} /> {t("artisans.featured")}
                       </span>
                     )}
                     <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wide ${
                       a.is_available ? "bg-brand-green/25 text-white" : "bg-white/10 text-white/60"
                     }`}>
-                      {a.is_available ? "Available" : "Busy"}
+                      {a.is_available ? t("artisans.profile.available") : t("artisans.profile.busy")}
                     </span>
                   </div>
                 </div>
@@ -97,11 +99,11 @@ export default function ArtisanProfile() {
                 <div className="flex items-start gap-2">
                   <MapPin size={14} strokeWidth={1.75} className="mt-0.5 shrink-0 text-muted" />
                   <div>
-                    <dt className="text-muted">Based in</dt>
+                    <dt className="text-muted">{t("artisans.profile.basedIn")}</dt>
                     <dd className="font-medium text-ink">
                       {[a.city, a.state].filter(Boolean).join(", ") || "—"}
                       {a.distance_km != null && (
-                        <span className="font-normal text-muted"> · {a.distance_km.toFixed(1)} km away</span>
+                        <span className="font-normal text-muted"> · {t("artisans.distanceAway", { km: a.distance_km.toFixed(1) })}</span>
                       )}
                     </dd>
                   </div>
@@ -109,9 +111,9 @@ export default function ArtisanProfile() {
                 <div className="flex items-start gap-2">
                   <Clock size={14} strokeWidth={1.75} className="mt-0.5 shrink-0 text-muted" />
                   <div>
-                    <dt className="text-muted">Experience</dt>
+                    <dt className="text-muted">{t("artisans.profile.experience")}</dt>
                     <dd className="font-medium text-ink">
-                      {a.years_experience ? `${a.years_experience} years` : "—"}
+                      {a.years_experience ? t("artisans.profile.years", { years: a.years_experience }) : "—"}
                     </dd>
                   </div>
                 </div>
@@ -122,12 +124,11 @@ export default function ArtisanProfile() {
             {/* Enquiry — the only route to a phone number */}
             <div className="mt-4 rounded-2xl border border-hairline bg-paper p-5 shadow-[0_1px_2px_rgba(10,10,10,0.04)]">
               <h2 className="font-display text-[16px] font-semibold text-ink">
-                Send an enquiry
+                {t("artisans.profile.enquiryTitle")}
               </h2>
               <p className="mt-1 flex items-start gap-1.5 text-[12.5px] leading-relaxed text-muted">
                 <Lock size={13} strokeWidth={1.75} className="mt-0.5 shrink-0" />
-                Describe the job. {a.business_name.replace(/^\[demo\]\s*/, "")} will reply here, and
-                you'll both see each other's phone number once they accept the work.
+                {t("artisans.profile.enquiryLock", { name: a.business_name.replace(/^\[demo\]\s*/, "") })}
               </p>
 
               {error && <p className="mt-2.5 text-[12.5px] text-danger">{error}</p>}
@@ -136,7 +137,7 @@ export default function ArtisanProfile() {
                 value={message}
                 onChange={(e) => { setMessage(e.target.value); setError(undefined); }}
                 rows={4}
-                placeholder="e.g. Kitchen sink is leaking under the cupboard. Are you free this week?"
+                placeholder={t("artisans.profile.enquiryPlaceholder")}
                 className="mt-3 w-full resize-none rounded-xl border border-hairline bg-paper px-3.5 py-3 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
               />
 
@@ -147,7 +148,7 @@ export default function ArtisanProfile() {
               >
                 {enquire.isPending
                   ? <Loader2 size={17} className="animate-spin" />
-                  : <><Send size={16} strokeWidth={1.75} /> Send enquiry</>}
+                  : <><Send size={16} strokeWidth={1.75} /> {t("artisans.profile.sendEnquiry")}</>}
               </button>
             </div>
           </>
