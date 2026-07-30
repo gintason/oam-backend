@@ -14,6 +14,7 @@ import {
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
 import { naira, formatPhone } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 const EMPTY: ArtisanWrite = {
   category: "", business_name: "", description: "", phone: "", whatsapp: "",
@@ -26,6 +27,7 @@ const EMPTY: ArtisanWrite = {
  * enquiries. Reachable from the hub, and links back to it.
  */
 export default function ArtisanDashboard() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const scope = useUserScope();
   const qc = useQueryClient();
@@ -90,7 +92,7 @@ export default function ArtisanDashboard() {
       qc.invalidateQueries({ queryKey: ["artisan"] });
       setTimeout(() => setSaved(false), 2500);
     },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't save your profile.")),
+    onError: (err) => setError(apiErrorMessage(err, t("artisans.dashboard.errSave"))),
   });
 
   const boost = useMutation({
@@ -98,7 +100,7 @@ export default function ArtisanDashboard() {
     onSuccess: (data) => { window.location.href = data.authorization_url; },
     onError: (err) => {
       setPendingDays(null);
-      setError(apiErrorMessage(err, "Couldn't start that payment."));
+      setError(apiErrorMessage(err, t("artisans.dashboard.errBoost")));
     },
   });
 
@@ -131,38 +133,38 @@ export default function ArtisanDashboard() {
           onClick={() => navigate("/artisans")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Home services
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("artisans.dashboard.backHome")}
         </button>
 
         <DarkPanel className="mb-4">
           <div className="p-5 sm:p-6">
             <h1 className="font-display text-[24px] font-semibold leading-tight sm:text-[26px]">
-              {hasProfile ? "My artisan profile" : "Offer your services"}
+              {hasProfile ? t("artisans.dashboard.titleMine") : t("artisans.dashboard.titleNew")}
             </h1>
             <p className="mt-1 max-w-md text-[13.5px] leading-relaxed text-white/60">
               {hasProfile
-                ? "Keep your details current — customers see this before they message you."
-                : "List your trade so customers nearby can find and message you."}
+                ? t("artisans.dashboard.subMine")
+                : t("artisans.dashboard.subNew")}
             </p>
 
             {hasProfile && (
               <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-4 sm:grid-cols-3">
                 <Stat
-                  label="Visibility"
-                  value={mine.data?.is_featured ? "Boosted" : "Standard"}
-                  hint={mine.data?.is_featured ? "shown first in search" : "boost to rank higher"}
+                  label={t("artisans.dashboard.statVisibility")}
+                  value={mine.data?.is_featured ? t("artisans.dashboard.boosted") : t("artisans.dashboard.standard")}
+                  hint={mine.data?.is_featured ? t("artisans.dashboard.hintShownFirst") : t("artisans.dashboard.hintBoostRank")}
                   tone={mine.data?.is_featured ? "good" : "default"}
                 />
                 <Stat
-                  label="Enquiries"
+                  label={t("artisans.dashboard.statEnquiries")}
                   value={artisanEnquiries.length}
-                  hint={awaiting > 0 ? `${awaiting} awaiting reply` : "all answered"}
+                  hint={awaiting > 0 ? t("artisans.dashboard.awaitingReply", { count: awaiting }) : t("artisans.dashboard.allAnswered")}
                   tone={awaiting > 0 ? "warn" : "default"}
                 />
                 <Stat
-                  label="Status"
-                  value={form.is_available ? "Available" : "Busy"}
-                  hint={mine.data?.is_verified ? "verified profile" : "not yet verified"}
+                  label={t("artisans.dashboard.statStatus")}
+                  value={form.is_available ? t("artisans.dashboard.available") : t("artisans.dashboard.busy")}
+                  hint={mine.data?.is_verified ? t("artisans.dashboard.verifiedProfile") : t("artisans.dashboard.notYetVerified")}
                   tone={form.is_available ? "good" : "warn"}
                 />
               </div>
@@ -174,8 +176,7 @@ export default function ArtisanDashboard() {
           <div className="mt-4 flex items-start gap-2 rounded-xl border border-brand-green/30 bg-brand-green/5 p-3.5">
             <Check size={16} strokeWidth={2.25} className="mt-0.5 shrink-0 text-brand-green" />
             <p className="text-[13px] text-ink">
-              <span className="font-semibold">Boost active.</span> Your profile will appear
-              above unboosted artisans in search results.
+              <span className="font-semibold">{t("artisans.dashboard.boostActiveTitle")}</span> {t("artisans.dashboard.boostActiveBody")}
             </p>
           </div>
         )}
@@ -191,12 +192,12 @@ export default function ArtisanDashboard() {
             </span>
             <div className="flex-1">
               <p className="text-[14px] font-semibold text-ink">
-                {artisanEnquiries.length} enquir{artisanEnquiries.length === 1 ? "y" : "ies"}
+                {t(artisanEnquiries.length === 1 ? "artisans.dashboard.enquiriesCountOne" : "artisans.dashboard.enquiriesCountOther", { count: artisanEnquiries.length })}
               </p>
               <p className="text-[12.5px] text-muted">
                 {awaiting > 0
-                  ? `${awaiting} waiting for your reply`
-                  : "Nothing needs your attention"}
+                  ? t("artisans.dashboard.waitingReply", { count: awaiting })
+                  : t("artisans.dashboard.nothingNeeds")}
               </p>
             </div>
             {awaiting > 0 && (
@@ -220,12 +221,12 @@ export default function ArtisanDashboard() {
             </span>
             <div className="flex-1">
               <p className="text-[14px] font-semibold text-ink">
-                {mine.data?.is_verified ? "Verified artisan" : "Get verified"}
+                {mine.data?.is_verified ? t("artisans.dashboard.verifiedArtisan") : t("artisans.dashboard.getVerified")}
               </p>
               <p className="text-[12.5px] leading-relaxed text-muted">
                 {mine.data?.is_verified
-                  ? "Your badge is live and you're eligible for Featured."
-                  : "Add photos, a short video and your ID. Verified artisans rank higher and can be Featured."}
+                  ? t("artisans.dashboard.verifiedLive")
+                  : t("artisans.dashboard.getVerifiedBody")}
               </p>
             </div>
             <ChevronRight size={17} className="shrink-0 text-muted" />
@@ -239,47 +240,46 @@ export default function ArtisanDashboard() {
               <Rocket size={17} strokeWidth={1.75} className="mt-0.5 text-warn" />
               <div>
                 <h2 className="font-display text-[16px] font-semibold text-ink">
-                  Get seen first
+                  {t("artisans.dashboard.boostSectionTitle")}
                 </h2>
                 <p className="mt-0.5 text-[12.5px] leading-relaxed text-muted">
-                  Boosted profiles appear above others in search. Customers rarely
-                  scroll far, so placement is most of the battle.
+                  {t("artisans.dashboard.boostSectionBody")}
                 </p>
               </div>
             </div>
 
             {mine.data?.is_featured && (
               <p className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-warn/10 px-2.5 py-1 text-[12px] font-semibold text-warn">
-                <Star size={11} strokeWidth={2.5} /> Currently boosted
+                <Star size={11} strokeWidth={2.5} /> {t("artisans.dashboard.currentlyBoosted")}
               </p>
             )}
 
             <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-              {BOOST_TIERS.map((t) => (
+              {BOOST_TIERS.map((tier) => (
                 <button
-                  key={t.key}
-                  onClick={() => { setPendingDays(t.days); boost.mutate(t.days); }}
+                  key={tier.key}
+                  onClick={() => { setPendingDays(tier.days); boost.mutate(tier.days); }}
                   disabled={boost.isPending}
                   className={`rounded-xl border-2 p-3.5 text-left transition disabled:opacity-60 ${
-                    pendingDays === t.days
+                    pendingDays === tier.days
                       ? "border-brand-red bg-brand-red/5"
                       : "border-hairline bg-paper hover:border-brand-red/40 hover:bg-mist"
                   }`}
                 >
-                  <p className="text-[13.5px] font-bold text-ink">{t.label}</p>
+                  <p className="text-[13.5px] font-bold text-ink">{tier.label}</p>
                   <p className="mt-0.5 text-[17px] font-bold text-brand-red tabular">
-                    {naira(t.price)}
+                    {naira(tier.price)}
                   </p>
-                  {pendingDays === t.days && (
+                  {pendingDays === tier.days && (
                     <p className="mt-1 inline-flex items-center gap-1 text-[11.5px] font-semibold text-brand-red">
-                      <Loader2 size={11} className="animate-spin" /> Redirecting…
+                      <Loader2 size={11} className="animate-spin" /> {t("artisans.dashboard.redirecting")}
                     </p>
                   )}
                   <p className="mt-0.5 text-[12px] text-muted">
-                    {t.days} days featured
-                    {t.days >= 90 && (
+                    {t("artisans.dashboard.daysFeatured", { days: tier.days })}
+                    {tier.days >= 90 && (
                       <span className="ml-1 font-semibold text-brand-green">
-                        · {naira(Math.round(t.price / (t.days / 30)))}/mo
+                        {t("artisans.dashboard.perMonth", { price: naira(Math.round(tier.price / (tier.days / 30))) })}
                       </span>
                     )}
                   </p>
@@ -287,8 +287,7 @@ export default function ArtisanDashboard() {
               ))}
             </div>
             <p className="mt-2.5 text-[11.5px] text-muted">
-              One-off payment by card. This isn't a subscription — it won't renew
-              automatically.
+              {t("artisans.dashboard.oneOff")}
             </p>
           </Card>
         )}
@@ -296,15 +295,15 @@ export default function ArtisanDashboard() {
         {/* profile form */}
         <Card className="mt-4 p-5">
           <h2 className="font-display text-[16px] font-semibold text-ink">
-            {hasProfile ? "Profile details" : "Your details"}
+            {hasProfile ? t("artisans.dashboard.detailsMine") : t("artisans.dashboard.detailsNew")}
           </h2>
 
           {error && <p className="mt-2.5 text-[13px] text-danger">{error}</p>}
 
           <div className="mt-4 space-y-3.5">
             <Field
-              label="Profile photo"
-              hint="A clear photo of you, or your business logo. It's the first thing customers see."
+              label={t("artisans.dashboard.photoLabel")}
+              hint={t("artisans.dashboard.photoHint")}
             >
               <div className="flex items-start gap-3">
                 {form.profile_photo ? (
@@ -324,63 +323,63 @@ export default function ArtisanDashboard() {
               </div>
             </Field>
 
-            <Field label="Trade">
+            <Field label={t("artisans.dashboard.tradeLabel")}>
               <select
                 value={form.category}
                 onChange={(e) => set("category", e.target.value)}
                 className="h-11 w-full rounded-xl border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
               >
-                <option value="">Choose your trade…</option>
+                <option value="">{t("artisans.dashboard.tradeChoose")}</option>
                 {categories.data?.map((c) => (
                   <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>
             </Field>
 
-            <Field label="Business name">
+            <Field label={t("artisans.dashboard.businessLabel")}>
               <Input value={form.business_name} onChange={(v) => set("business_name", v)}
-                     placeholder="e.g. Sure Flow Plumbing" />
+                     placeholder={t("artisans.dashboard.businessPlaceholder")} />
             </Field>
 
-            <Field label="What you do" hint="Customers read this before messaging you.">
+            <Field label={t("artisans.dashboard.whatLabel")} hint={t("artisans.dashboard.whatHint")}>
               <textarea
                 value={form.description}
                 onChange={(e) => set("description", e.target.value)}
                 rows={4}
-                placeholder="Describe your services, the areas you cover, and your typical response time."
+                placeholder={t("artisans.dashboard.whatPlaceholder")}
                 className="w-full resize-none rounded-xl border border-hairline bg-paper px-3.5 py-3 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
               />
             </Field>
 
             <div className="grid gap-3.5 sm:grid-cols-2">
-              <Field label="Phone" hint="Shared only after you accept a job.">
+              <Field label={t("artisans.dashboard.phoneLabel")} hint={t("artisans.dashboard.phoneHint")}>
                 <Input value={formatPhone(form.phone)} inputMode="numeric"
                        onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 11))}
-                       placeholder="0803 123 4567" />
+                       placeholder={t("artisans.dashboard.phonePlaceholder")} />
               </Field>
-              <Field label="WhatsApp" hint="With country code, e.g. 234…">
+              <Field label={t("artisans.dashboard.whatsappLabel")} hint={t("artisans.dashboard.whatsappHint")}>
                 <Input value={form.whatsapp} inputMode="numeric"
                        onChange={(v) => set("whatsapp", v.replace(/\D/g, "").slice(0, 15))}
-                       placeholder="2348031234567" />
+                       placeholder={t("artisans.dashboard.whatsappPlaceholder")} />
               </Field>
             </div>
 
-            <Field label="Address">
+            <Field label={t("artisans.dashboard.addressLabel")}>
               <Input value={form.address} onChange={(v) => set("address", v)}
-                     placeholder="Street and area" />
+                     placeholder={t("artisans.dashboard.addressPlaceholder")} />
             </Field>
 
             <div className="grid gap-3.5 sm:grid-cols-3">
-              <Field label="City">
-                <Input value={form.city} onChange={(v) => set("city", v)} placeholder="Abuja" />
+              <Field label={t("artisans.dashboard.cityLabel")}>
+                <Input value={form.city} onChange={(v) => set("city", v)} placeholder={t("artisans.dashboard.cityPlaceholder")} />
               </Field>
-              <Field label="State">
-                <Input value={form.state} onChange={(v) => set("state", v)} placeholder="FCT" />
+              <Field label={t("artisans.dashboard.stateLabel")}>
+                <Input value={form.state} onChange={(v) => set("state", v)} placeholder={t("artisans.dashboard.statePlaceholder")} />
               </Field>
-              <Field label="Years working">
+              <Field label={t("artisans.dashboard.yearsLabel")}>
                 <Input value={String(form.years_experience || "")} inputMode="numeric"
                        onChange={(v) => set("years_experience", Number(v.replace(/\D/g, "")) || 0)}
-                       placeholder="5" />
+                       placeholder={t("artisans.dashboard.yearsPlaceholder")} />
               </Field>
             </div>
 
@@ -392,9 +391,9 @@ export default function ArtisanDashboard() {
                 className="h-4 w-4 accent-[#0B7327]"
               />
               <span className="text-[13.5px] text-ink">
-                Available for work
+                {t("artisans.dashboard.availableForWork")}
                 <span className="block text-[12px] text-muted">
-                  Turn this off when you're fully booked — you'll still appear, marked busy.
+                  {t("artisans.dashboard.availableHint")}
                 </span>
               </span>
             </label>
@@ -406,8 +405,8 @@ export default function ArtisanDashboard() {
             className="mt-5 inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-xl bg-brand-green text-[14px] font-semibold text-white transition hover:brightness-95 disabled:opacity-50"
           >
             {save.isPending ? <Loader2 size={17} className="animate-spin" />
-              : saved ? <><BadgeCheck size={16} strokeWidth={2} /> Saved</>
-              : <><Save size={16} strokeWidth={1.75} /> {hasProfile ? "Save changes" : "Create my profile"}</>}
+              : saved ? <><BadgeCheck size={16} strokeWidth={2} /> {t("artisans.dashboard.saved")}</>
+              : <><Save size={16} strokeWidth={1.75} /> {hasProfile ? t("artisans.dashboard.saveChanges") : t("artisans.dashboard.createProfile")}</>}
           </button>
         </Card>
       </main>
