@@ -929,5 +929,46 @@
       "submitForReview": "Wyślij do weryfikacji",
       "addAllThree": "Dodaj wszystkie trzy elementy powyżej, aby wysłać."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Panel",
+      "title": "Wiadomości",
+      "subtitle": "Czaty o przedmiotach z marketplace i usługach rzemieślników.",
+      "tabAll": "Wszystkie",
+      "tabMine": "Moje zapytania",
+      "tabToMe": "Zapytania do mnie",
+      "emptyTitle": "Brak rozmów",
+      "emptyBody": "Gdy napiszesz do sprzedawcy lub rzemieślnika — albo ktoś napisze do Ciebie — pojawi się tutaj.",
+      "marketplace": "Marketplace",
+      "artisans": "Rzemieślnicy",
+      "needsReply": "· czeka na Twoją odpowiedź"
+    },
+    "chat": {
+      "errSend": "Nie udało się wysłać tej wiadomości.",
+      "errUpdate": "Nie udało się zaktualizować tej rozmowy.",
+      "back": "Wszystkie wiadomości",
+      "unavailable": "Ta rozmowa jest niedostępna.",
+      "kindListing": "Przedmiot z marketplace",
+      "kindArtisan": "Usługa rzemieślnika",
+      "with": "z {{name}}",
+      "contactShared": "Dane kontaktowe udostępnione",
+      "providerGateTitle": "Zaakceptuj, aby udostępnić dane kontaktowe",
+      "providerGateBody": "Najpierw porozmawiajcie tutaj. Gdy będziesz gotów się tego podjąć, zaakceptuj — wtedy oboje zobaczycie swoje numery telefonów.",
+      "accept": "Akceptuj",
+      "decline": "Odrzuć",
+      "customerGate": "Dane kontaktowe są udostępniane, gdy {{name}} zaakceptuje. Do tego czasu prowadź rozmowę tutaj — tak bezpieczniej dla was obojga.",
+      "wasStatus": "Ta rozmowa została {{status}}.",
+      "status": {
+        "closed": "zamknięta",
+        "declined": "odrzucona",
+        "accepted": "zaakceptowana",
+        "expired": "wygasła"
+      },
+      "noMessages": "Brak wiadomości.",
+      "placeholder": "Napisz wiadomość…",
+      "sendAria": "Wyślij",
+      "safetyNote": "Trzymaj płatności i szczegóły w OAM. Nigdy nie wysyłaj pieniędzy poza aplikacją."
+    }
   }
 }

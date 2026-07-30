@@ -929,5 +929,46 @@
       "submitForReview": "Zur Prüfung einreichen",
       "addAllThree": "Fügen Sie alle drei Elemente oben hinzu, um einzureichen."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Dashboard",
+      "title": "Nachrichten",
+      "subtitle": "Chats über Marktplatz-Artikel und Handwerkerdienste.",
+      "tabAll": "Alle",
+      "tabMine": "Meine Anfragen",
+      "tabToMe": "Anfragen an mich",
+      "emptyTitle": "Noch keine Gespräche",
+      "emptyBody": "Wenn Sie einem Verkäufer oder Handwerker schreiben — oder jemand Ihnen schreibt — erscheint es hier.",
+      "marketplace": "Marktplatz",
+      "artisans": "Handwerker",
+      "needsReply": "· wartet auf Ihre Antwort"
+    },
+    "chat": {
+      "errSend": "Diese Nachricht konnte nicht gesendet werden.",
+      "errUpdate": "Dieses Gespräch konnte nicht aktualisiert werden.",
+      "back": "Alle Nachrichten",
+      "unavailable": "Dieses Gespräch ist nicht verfügbar.",
+      "kindListing": "Marktplatz-Artikel",
+      "kindArtisan": "Handwerkerdienst",
+      "with": "mit {{name}}",
+      "contactShared": "Kontaktdaten geteilt",
+      "providerGateTitle": "Annehmen, um Kontaktdaten zu teilen",
+      "providerGateBody": "Chatten Sie hier zuerst. Wenn Sie bereit sind, das zu übernehmen, nehmen Sie an — dann sehen Sie beide die Telefonnummern des anderen.",
+      "accept": "Annehmen",
+      "decline": "Ablehnen",
+      "customerGate": "Kontaktdaten werden geteilt, sobald {{name}} annimmt. Bis dahin führen Sie das Gespräch hier — das ist für Sie beide sicherer.",
+      "wasStatus": "Dieses Gespräch wurde {{status}}.",
+      "status": {
+        "closed": "geschlossen",
+        "declined": "abgelehnt",
+        "accepted": "angenommen",
+        "expired": "abgelaufen"
+      },
+      "noMessages": "Noch keine Nachrichten.",
+      "placeholder": "Nachricht schreiben…",
+      "sendAria": "Senden",
+      "safetyNote": "Halten Sie Zahlungen und Details auf OAM. Senden Sie niemals Geld außerhalb der App."
+    }
   }
 }

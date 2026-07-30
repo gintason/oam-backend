@@ -9,6 +9,7 @@ import { useUserScope } from "../../auth/useUserScope";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
 import { friendlyTime } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 /**
  * One thread, used by both Marketplace and Home Services.
@@ -18,6 +19,7 @@ import { friendlyTime } from "../../lib/format";
  * indistinguishable to the user for a fraction of the operational weight.
  */
 export default function Chat() {
+  const { t } = useTranslation();
   const { id = "" } = useParams();
   const navigate = useNavigate();
   const scope = useUserScope();
@@ -43,7 +45,7 @@ export default function Chat() {
   const send = useMutation({
     mutationFn: (body: string) => messagingApi.send(id, body),
     onSuccess: () => { setDraft(""); thread.refetch(); },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't send that message.")),
+    onError: (err) => setError(apiErrorMessage(err, t("messages.chat.errSend"))),
   });
 
   const act = useMutation({
@@ -52,7 +54,7 @@ export default function Chat() {
       thread.refetch();
       qc.invalidateQueries({ queryKey: ["messaging"] });
     },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't update this conversation.")),
+    onError: (err) => setError(apiErrorMessage(err, t("messages.chat.errUpdate"))),
   });
 
   function submit(e: React.FormEvent) {
@@ -72,7 +74,7 @@ export default function Chat() {
           onClick={() => navigate("/messages")}
           className="mb-3 inline-flex items-center gap-1.5 self-start text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> All messages
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("messages.chat.back")}
         </button>
 
         {thread.isLoading ? (
@@ -81,20 +83,20 @@ export default function Chat() {
           </div>
         ) : !convo ? (
           <p className="rounded-xl border border-hairline bg-paper p-5 text-center text-[14px] text-muted">
-            This conversation isn't available.
+            {t("messages.chat.unavailable")}
           </p>
         ) : (
           <>
             {/* Subject */}
             <div className="rounded-t-2xl border border-hairline bg-paper px-4 py-3.5">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">
-                {convo.kind === "listing" ? "Marketplace item" : "Artisan service"}
+                {convo.kind === "listing" ? t("messages.chat.kindListing") : t("messages.chat.kindArtisan")}
               </p>
               <h1 className="mt-0.5 font-display text-[16px] font-semibold text-ink">
                 {convo.subject.title}
               </h1>
               <p className="mt-0.5 text-[12.5px] text-muted">
-                with {convo.other_party_name}
+                {t("messages.chat.with", { name: convo.other_party_name })}
                 {convo.subject.price && ` · ₦${Number(convo.subject.price).toLocaleString()}`}
               </p>
             </div>
@@ -103,7 +105,7 @@ export default function Chat() {
             {convo.contacts ? (
               <div className="border-x border-hairline bg-brand-green/5 px-4 py-3">
                 <p className="flex items-center gap-1.5 text-[12px] font-semibold text-brand-green">
-                  <ShieldCheck size={13} strokeWidth={2.25} /> Contact details shared
+                  <ShieldCheck size={13} strokeWidth={2.25} /> {t("messages.chat.contactShared")}
                 </p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {convo.contacts.phone && (
@@ -126,11 +128,10 @@ export default function Chat() {
                 {convo.role === "provider" ? (
                   <>
                     <p className="flex items-center gap-1.5 text-[12.5px] font-medium text-ink">
-                      <Lock size={13} strokeWidth={1.75} /> Accept to share contact details
+                      <Lock size={13} strokeWidth={1.75} /> {t("messages.chat.providerGateTitle")}
                     </p>
                     <p className="mt-1 text-[12px] leading-relaxed text-muted">
-                      Chat here first. When you're ready to take this on, accept — then
-                      you'll both see each other's phone numbers.
+                      {t("messages.chat.providerGateBody")}
                     </p>
                     <div className="mt-2.5 flex gap-2">
                       <button
@@ -138,29 +139,28 @@ export default function Chat() {
                         disabled={act.isPending}
                         className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-brand-green px-3.5 text-[13px] font-semibold text-white transition hover:brightness-95 disabled:opacity-60"
                       >
-                        <Check size={14} strokeWidth={2.5} /> Accept
+                        <Check size={14} strokeWidth={2.5} /> {t("messages.chat.accept")}
                       </button>
                       <button
                         onClick={() => act.mutate("decline")}
                         disabled={act.isPending}
                         className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-hairline bg-paper px-3.5 text-[13px] font-medium text-muted transition hover:bg-mist hover:text-ink disabled:opacity-60"
                       >
-                        <X size={14} strokeWidth={2} /> Decline
+                        <X size={14} strokeWidth={2} /> {t("messages.chat.decline")}
                       </button>
                     </div>
                   </>
                 ) : (
                   <p className="flex items-start gap-1.5 text-[12px] leading-relaxed text-muted">
                     <Lock size={13} strokeWidth={1.75} className="mt-0.5 shrink-0" />
-                    Contact details are shared once {convo.other_party_name} accepts. Until
-                    then, keep the conversation here — it's safer for you both.
+                    {t("messages.chat.customerGate", { name: convo.other_party_name })}
                   </p>
                 )}
               </div>
             ) : (
               <div className="border-x border-hairline bg-mist px-4 py-2.5">
                 <p className="text-[12px] text-muted">
-                  This conversation was {convo.status}.
+                  {t("messages.chat.wasStatus", { status: t("messages.chat.status." + convo.status, { defaultValue: convo.status }) })}
                 </p>
               </div>
             )}
@@ -168,7 +168,7 @@ export default function Chat() {
             {/* Messages */}
             <div className="flex-1 space-y-2.5 overflow-y-auto border-x border-hairline bg-paper px-4 py-4">
               {messages.length === 0 && (
-                <p className="py-8 text-center text-[13px] text-muted">No messages yet.</p>
+                <p className="py-8 text-center text-[13px] text-muted">{t("messages.chat.noMessages")}</p>
               )}
               {messages.map((m) => (
                 <div key={m.id} className={`flex ${m.is_mine ? "justify-end" : "justify-start"}`}>
@@ -198,7 +198,7 @@ export default function Chat() {
                     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit(e); }
                   }}
                   rows={1}
-                  placeholder="Write a message…"
+                  placeholder={t("messages.chat.placeholder")}
                   disabled={convo.status === "closed"}
                   className="max-h-28 min-h-[44px] flex-1 resize-none rounded-xl border border-hairline bg-paper px-3.5 py-3 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10 disabled:opacity-60"
                 />
@@ -206,7 +206,7 @@ export default function Chat() {
                   type="submit"
                   disabled={!draft.trim() || send.isPending || convo.status === "closed"}
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-red text-white transition hover:brightness-95 disabled:opacity-40"
-                  aria-label="Send"
+                  aria-label={t("messages.chat.sendAria")}
                 >
                   {send.isPending
                     ? <Loader2 size={17} className="animate-spin" />
@@ -214,7 +214,7 @@ export default function Chat() {
                 </button>
               </div>
               <p className="mt-1.5 text-[11px] text-muted">
-                Keep payments and details on OAM. Never send money outside the app.
+                {t("messages.chat.safetyNote")}
               </p>
             </form>
           </>

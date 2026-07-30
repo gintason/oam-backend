@@ -8,6 +8,7 @@ import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { messagingApi, type Conversation } from "../../services/messaging";
 import { friendlyTime } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 type Tab = "all" | "customer" | "provider";
 
@@ -19,6 +20,7 @@ type Tab = "all" | "customer" | "provider";
  * fast. The tabs mirror the two decision hubs.
  */
 export default function Inbox() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const scope = useUserScope();
   const [tab, setTab] = useState<Tab>("all");
@@ -32,9 +34,9 @@ export default function Inbox() {
   const conversations = query.data?.results ?? [];
 
   const TABS: { key: Tab; label: string }[] = [
-    { key: "all", label: "All" },
-    { key: "customer", label: "My enquiries" },
-    { key: "provider", label: "Enquiries to me" },
+    { key: "all", label: t("messages.inbox.tabAll") },
+    { key: "customer", label: t("messages.inbox.tabMine") },
+    { key: "provider", label: t("messages.inbox.tabToMe") },
   ];
 
   return (
@@ -46,26 +48,26 @@ export default function Inbox() {
           onClick={() => navigate("/dashboard")}
           className="mb-3 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Dashboard
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("messages.inbox.back")}
         </button>
 
-        <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">Messages</h1>
+        <h1 className="font-display text-[22px] font-semibold text-ink sm:text-2xl">{t("messages.inbox.title")}</h1>
         <p className="mt-1 text-[14px] text-muted">
-          Chats about marketplace items and artisan services.
+          {t("messages.inbox.subtitle")}
         </p>
 
         <div className="mt-4 flex gap-2">
-          {TABS.map((t) => (
+          {TABS.map((tb) => (
             <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
+              key={tb.key}
+              onClick={() => setTab(tb.key)}
               className={`h-9 rounded-lg px-3.5 text-[13px] font-medium transition ${
                 tab === t.key
                   ? "bg-ink text-white"
                   : "border border-hairline bg-paper text-muted hover:bg-mist hover:text-ink"
               }`}
             >
-              {t.label}
+              {tb.label}
             </button>
           ))}
         </div>
@@ -78,19 +80,18 @@ export default function Inbox() {
           ) : conversations.length === 0 ? (
             <div className="rounded-2xl border border-hairline bg-paper py-12 text-center shadow-[0_1px_2px_rgba(10,10,10,0.04)] sm:py-14">
               <MessagesSquare size={30} strokeWidth={1.5} className="mx-auto text-muted" />
-              <p className="mt-3 text-[14px] font-medium text-ink">No conversations yet</p>
+              <p className="mt-3 text-[14px] font-medium text-ink">{t("messages.inbox.emptyTitle")}</p>
               <p className="mx-auto mt-1 max-w-xs text-[13px] leading-relaxed text-muted">
-                When you message a seller or an artisan — or someone messages you — it'll
-                appear here.
+                {t("messages.inbox.emptyBody")}
               </p>
               <div className="mt-4 flex justify-center gap-2">
                 <Link to="/marketplace"
                       className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-hairline bg-paper px-4 text-[13px] font-medium text-ink transition hover:bg-mist">
-                  <Store size={14} strokeWidth={1.75} /> Marketplace
+                  <Store size={14} strokeWidth={1.75} /> {t("messages.inbox.marketplace")}
                 </Link>
                 <Link to="/artisans"
                       className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-hairline bg-paper px-4 text-[13px] font-medium text-ink transition hover:bg-mist">
-                  <Wrench size={14} strokeWidth={1.75} /> Artisans
+                  <Wrench size={14} strokeWidth={1.75} /> {t("messages.inbox.artisans")}
                 </Link>
               </div>
             </div>
@@ -106,6 +107,7 @@ export default function Inbox() {
 }
 
 function Row({ convo }: { convo: Conversation }) {
+  const { t } = useTranslation();
   return (
     <li>
       <Link to={`/messages/${convo.id}`} className="flex items-center gap-3 px-4 py-3.5 transition hover:bg-mist">
@@ -131,7 +133,7 @@ function Row({ convo }: { convo: Conversation }) {
           <p className="mt-0.5 text-[11px] text-muted">
             {friendlyTime(convo.last_message_at)}
             {convo.role === "provider" && convo.status === "open" && (
-              <span className="ml-1.5 font-semibold text-warn">· needs your reply</span>
+              <span className="ml-1.5 font-semibold text-warn">{t("messages.inbox.needsReply")}</span>
             )}
           </p>
         </div>

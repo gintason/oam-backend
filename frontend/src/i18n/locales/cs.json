@@ -929,5 +929,46 @@
       "submitForReview": "Odeslat ke kontrole",
       "addAllThree": "Přidejte všechny tři položky výše a odešlete."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Přehled",
+      "title": "Zprávy",
+      "subtitle": "Konverzace o položkách tržiště a službách řemeslníků.",
+      "tabAll": "Vše",
+      "tabMine": "Mé poptávky",
+      "tabToMe": "Poptávky pro mě",
+      "emptyTitle": "Zatím žádné konverzace",
+      "emptyBody": "Když napíšete prodejci nebo řemeslníkovi — nebo někdo napíše vám — objeví se to zde.",
+      "marketplace": "Tržiště",
+      "artisans": "Řemeslníci",
+      "needsReply": "· čeká na vaši odpověď"
+    },
+    "chat": {
+      "errSend": "Tuto zprávu se nepodařilo odeslat.",
+      "errUpdate": "Tuto konverzaci se nepodařilo aktualizovat.",
+      "back": "Všechny zprávy",
+      "unavailable": "Tato konverzace není dostupná.",
+      "kindListing": "Položka tržiště",
+      "kindArtisan": "Služba řemeslníka",
+      "with": "s {{name}}",
+      "contactShared": "Kontaktní údaje sdíleny",
+      "providerGateTitle": "Přijměte pro sdílení kontaktních údajů",
+      "providerGateBody": "Nejdřív si zde napište. Až budete připraveni to vzít, přijměte — pak oba uvidíte svá telefonní čísla.",
+      "accept": "Přijmout",
+      "decline": "Odmítnout",
+      "customerGate": "Kontaktní údaje se sdílejí, jakmile {{name}} přijme. Do té doby veďte konverzaci zde — je to bezpečnější pro oba.",
+      "wasStatus": "Tato konverzace byla {{status}}.",
+      "status": {
+        "closed": "uzavřena",
+        "declined": "odmítnuta",
+        "accepted": "přijata",
+        "expired": "vypršela"
+      },
+      "noMessages": "Zatím žádné zprávy.",
+      "placeholder": "Napsat zprávu…",
+      "sendAria": "Odeslat",
+      "safetyNote": "Platby a údaje řešte na OAM. Nikdy neposílejte peníze mimo aplikaci."
+    }
   }
 }

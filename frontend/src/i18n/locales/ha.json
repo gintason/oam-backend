@@ -929,5 +929,46 @@
       "submitForReview": "Mika don dubawa",
       "addAllThree": "Ƙara dukan abubuwa uku a sama don mika."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Dashboard",
+      "title": "Saƙonni",
+      "subtitle": "Tattaunawa game da kayan kasuwa da sabis na masu sana'a.",
+      "tabAll": "Duka",
+      "tabMine": "Tambayoyina",
+      "tabToMe": "Tambayoyi zuwa gare ni",
+      "emptyTitle": "Babu tattaunawa tukuna",
+      "emptyBody": "Lokacin da ka aika saƙo ga mai sayarwa ko ma'aikaci — ko wani ya aiko maka — zai bayyana a nan.",
+      "marketplace": "Kasuwa",
+      "artisans": "Masu sana'a",
+      "needsReply": "· yana jiran amsar ka"
+    },
+    "chat": {
+      "errSend": "An kasa aika wannan saƙo.",
+      "errUpdate": "An kasa sabunta wannan tattaunawa.",
+      "back": "Dukan saƙonni",
+      "unavailable": "Wannan tattaunawa babu ta.",
+      "kindListing": "Kayan kasuwa",
+      "kindArtisan": "Sabis na ma'aikaci",
+      "with": "da {{name}}",
+      "contactShared": "An raba bayanan tuntuɓa",
+      "providerGateTitle": "Amshi don raba bayanan tuntuɓa",
+      "providerGateBody": "Yi hira a nan da farko. Lokacin da ka shirya ka ɗauki wannan, amshi — sannan ku biyu za ku ga lambar wayar juna.",
+      "accept": "Amshi",
+      "decline": "Ƙi",
+      "customerGate": "Ana raba bayanan tuntuɓa da zarar {{name}} ya amshi. Har zuwa lokacin, ci gaba da tattaunawa a nan — ya fi aminci gare ku biyu.",
+      "wasStatus": "Wannan tattaunawa an {{status}}.",
+      "status": {
+        "closed": "rufe",
+        "declined": "ƙi",
+        "accepted": "amshe",
+        "expired": "ƙare"
+      },
+      "noMessages": "Babu saƙonni tukuna.",
+      "placeholder": "Rubuta saƙo…",
+      "sendAria": "Aika",
+      "safetyNote": "Ka riƙe biyan kuɗi da bayanai a OAM. Kada ka taɓa aika kuɗi a wajen manhaja."
+    }
   }
 }

@@ -929,5 +929,46 @@
       "submitForReview": "Submeter para análise",
       "addAllThree": "Adicione os três itens acima para submeter."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Painel",
+      "title": "Mensagens",
+      "subtitle": "Conversas sobre artigos do mercado e serviços de artesãos.",
+      "tabAll": "Todas",
+      "tabMine": "As minhas consultas",
+      "tabToMe": "Consultas para mim",
+      "emptyTitle": "Ainda não há conversas",
+      "emptyBody": "Quando enviar mensagem a um vendedor ou artesão — ou alguém lhe enviar — aparecerá aqui.",
+      "marketplace": "Mercado",
+      "artisans": "Artesãos",
+      "needsReply": "· aguarda a sua resposta"
+    },
+    "chat": {
+      "errSend": "Não foi possível enviar essa mensagem.",
+      "errUpdate": "Não foi possível atualizar esta conversa.",
+      "back": "Todas as mensagens",
+      "unavailable": "Esta conversa não está disponível.",
+      "kindListing": "Artigo do mercado",
+      "kindArtisan": "Serviço de artesão",
+      "with": "com {{name}}",
+      "contactShared": "Contactos partilhados",
+      "providerGateTitle": "Aceite para partilhar os contactos",
+      "providerGateBody": "Converse aqui primeiro. Quando estiver pronto para aceitar o trabalho, aceite — depois ambos verão os números de telefone um do outro.",
+      "accept": "Aceitar",
+      "decline": "Recusar",
+      "customerGate": "Os contactos são partilhados quando {{name}} aceitar. Até lá, mantenha a conversa aqui — é mais seguro para ambos.",
+      "wasStatus": "Esta conversa foi {{status}}.",
+      "status": {
+        "closed": "fechada",
+        "declined": "recusada",
+        "accepted": "aceite",
+        "expired": "expirada"
+      },
+      "noMessages": "Ainda não há mensagens.",
+      "placeholder": "Escrever uma mensagem…",
+      "sendAria": "Enviar",
+      "safetyNote": "Mantenha pagamentos e detalhes na OAM. Nunca envie dinheiro fora da app."
+    }
   }
 }

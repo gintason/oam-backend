@@ -929,5 +929,46 @@
       "submitForReview": "提交审核",
       "addAllThree": "添加上方全部三项以提交。"
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "仪表板",
+      "title": "消息",
+      "subtitle": "关于市场商品和工匠服务的对话。",
+      "tabAll": "全部",
+      "tabMine": "我的咨询",
+      "tabToMe": "发给我的咨询",
+      "emptyTitle": "暂无对话",
+      "emptyBody": "当您给卖家或工匠留言——或有人给您留言时——会显示在此。",
+      "marketplace": "市场",
+      "artisans": "工匠",
+      "needsReply": "· 等待您回复"
+    },
+    "chat": {
+      "errSend": "无法发送该消息。",
+      "errUpdate": "无法更新此对话。",
+      "back": "全部消息",
+      "unavailable": "此对话不可用。",
+      "kindListing": "市场商品",
+      "kindArtisan": "工匠服务",
+      "with": "与 {{name}}",
+      "contactShared": "已共享联系方式",
+      "providerGateTitle": "接受以共享联系方式",
+      "providerGateBody": "先在此聊天。当您准备好承接时，点接受——然后你们双方都能看到彼此的电话号码。",
+      "accept": "接受",
+      "decline": "拒绝",
+      "customerGate": "{{name}} 接受后会共享联系方式。在此之前请在此对话——这对双方都更安全。",
+      "wasStatus": "此对话已{{status}}。",
+      "status": {
+        "closed": "关闭",
+        "declined": "拒绝",
+        "accepted": "接受",
+        "expired": "过期"
+      },
+      "noMessages": "暂无消息。",
+      "placeholder": "写一条消息…",
+      "sendAria": "发送",
+      "safetyNote": "请在 OAM 内处理付款和细节。切勿在应用外汇款。"
+    }
   }
 }

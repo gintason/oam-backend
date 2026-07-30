@@ -929,5 +929,46 @@
       "submitForReview": "Fi ránṣẹ́ fún àyẹ̀wò",
       "addAllThree": "Fi gbogbo àwọn nǹkan mẹ́ta sí òkè kún láti fi ránṣẹ́."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Dasibọọdu",
+      "title": "Àwọn ìránṣẹ́",
+      "subtitle": "Ìfọ̀rọ̀wérọ̀ nípa àwọn ọjà ọjà àti àwọn iṣẹ́ oníṣọ̀nà.",
+      "tabAll": "Gbogbo",
+      "tabMine": "Àwọn ìbéèrè mi",
+      "tabToMe": "Àwọn ìbéèrè sí mi",
+      "emptyTitle": "Kò sí ìfọ̀rọ̀wérọ̀ síbẹ̀",
+      "emptyBody": "Nígbà tí o bá fi ìránṣẹ́ ránṣẹ́ sí onítajà tàbí oníṣọ̀nà — tàbí ẹnìkan bá fi ránṣẹ́ sí ọ — yóò fara hàn níbí.",
+      "marketplace": "Ọjà",
+      "artisans": "Àwọn oníṣọ̀nà",
+      "needsReply": "· ń dúró de ìdáhùn rẹ"
+    },
+    "chat": {
+      "errSend": "A kò lè fi ìránṣẹ́ yẹn ránṣẹ́.",
+      "errUpdate": "A kò lè ṣàtúnṣe ìfọ̀rọ̀wérọ̀ yìí.",
+      "back": "Gbogbo àwọn ìránṣẹ́",
+      "unavailable": "Ìfọ̀rọ̀wérọ̀ yìí kò sí.",
+      "kindListing": "Ọjà ọjà",
+      "kindArtisan": "Iṣẹ́ oníṣọ̀nà",
+      "with": "pẹ̀lú {{name}}",
+      "contactShared": "A pín àwọn àlàyé olùbáṣepọ̀",
+      "providerGateTitle": "Gbà láti pín àwọn àlàyé olùbáṣepọ̀",
+      "providerGateBody": "Sọ̀rọ̀ níbí ní àkọ́kọ́. Nígbà tí o bá ṣetán láti gbà á, gbà — nígbà náà ẹ̀yin méjèèjì yóò rí nọ́mbà fóònù ara yín.",
+      "accept": "Gbà",
+      "decline": "Kọ̀",
+      "customerGate": "A ó pín àwọn àlàyé olùbáṣepọ̀ ní kété tí {{name}} bá gbà. Títí di ìgbà náà, jẹ́ kí ìfọ̀rọ̀wérọ̀ wà níbí — ó ní ààbò jù fún ẹ̀yin méjèèjì.",
+      "wasStatus": "Ìfọ̀rọ̀wérọ̀ yìí ti {{status}}.",
+      "status": {
+        "closed": "tì",
+        "declined": "kọ̀",
+        "accepted": "gbà",
+        "expired": "parí"
+      },
+      "noMessages": "Kò sí ìránṣẹ́ síbẹ̀.",
+      "placeholder": "Kọ ìránṣẹ́…",
+      "sendAria": "Fi ránṣẹ́",
+      "safetyNote": "Jẹ́ kí ìsanwó àti àwọn àlàyé wà lórí OAM. Má fi owó ránṣẹ́ ní ìta áàpù láé."
+    }
   }
 }

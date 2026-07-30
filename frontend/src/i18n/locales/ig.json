@@ -929,5 +929,46 @@
       "submitForReview": "Nyefee maka nyocha",
       "addAllThree": "Tinye ihe atọ niile dị n'elu iji nyefee."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Dashboard",
+      "title": "Ozi",
+      "subtitle": "Mkparịta ụka gbasara ngwongwo ahịa na ọrụ ndị ọrụ aka.",
+      "tabAll": "Niile",
+      "tabMine": "Ajụjụ m",
+      "tabToMe": "Ajụjụ nye m",
+      "emptyTitle": "Enwebeghị mkparịta ụka",
+      "emptyBody": "Mgbe ị zigara onye na-ere ma ọ bụ onye ọrụ aka ozi — ma ọ bụ mmadụ zigara gị — ọ ga-apụta ebe a.",
+      "marketplace": "Ahịa",
+      "artisans": "Ndị ọrụ aka",
+      "needsReply": "· na-echere nzaghachi gị"
+    },
+    "chat": {
+      "errSend": "Enweghị ike izipu ozi ahụ.",
+      "errUpdate": "Enweghị ike imelite mkparịta ụka a.",
+      "back": "Ozi niile",
+      "unavailable": "Mkparịta ụka a adịghị.",
+      "kindListing": "Ngwongwo ahịa",
+      "kindArtisan": "Ọrụ onye ọrụ aka",
+      "with": "na {{name}}",
+      "contactShared": "Ekesara nkọwa kọntaktị",
+      "providerGateTitle": "Nabata iji kesaa nkọwa kọntaktị",
+      "providerGateBody": "Kparịta ụka ebe a mbụ. Mgbe ị dị njikere ịnara ya, nabata — mgbe ahụ unu abụọ ga-ahụ nọmba ekwentị ibe unu.",
+      "accept": "Nabata",
+      "decline": "Jụ",
+      "customerGate": "A na-ekesa nkọwa kọntaktị ozugbo {{name}} nabatara. Ruo mgbe ahụ, debe mkparịta ụka ebe a — ọ dị mma karịa maka unu abụọ.",
+      "wasStatus": "Mkparịta ụka a {{status}}.",
+      "status": {
+        "closed": "mechiri",
+        "declined": "jụrụ",
+        "accepted": "nabatara",
+        "expired": "agwụla"
+      },
+      "noMessages": "Enwebeghị ozi.",
+      "placeholder": "Dee ozi…",
+      "sendAria": "Zipu",
+      "safetyNote": "Debe ịkwụ ụgwọ na nkọwa na OAM. Ezipụla ego mpụga ngwa ma ọlị."
+    }
   }
 }

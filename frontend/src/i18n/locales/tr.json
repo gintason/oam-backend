@@ -929,5 +929,46 @@
       "submitForReview": "İncelemeye gönder",
       "addAllThree": "Göndermek için yukarıdaki üç öğeyi de ekleyin."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Panel",
+      "title": "Mesajlar",
+      "subtitle": "Pazar yeri ürünleri ve usta hizmetleri hakkında sohbetler.",
+      "tabAll": "Tümü",
+      "tabMine": "Taleplerim",
+      "tabToMe": "Bana gelen talepler",
+      "emptyTitle": "Henüz konuşma yok",
+      "emptyBody": "Bir satıcıya veya ustaya mesaj attığınızda — ya da biri size attığında — burada görünecek.",
+      "marketplace": "Pazar yeri",
+      "artisans": "Ustalar",
+      "needsReply": "· yanıtınızı bekliyor"
+    },
+    "chat": {
+      "errSend": "O mesaj gönderilemedi.",
+      "errUpdate": "Bu konuşma güncellenemedi.",
+      "back": "Tüm mesajlar",
+      "unavailable": "Bu konuşma mevcut değil.",
+      "kindListing": "Pazar yeri ürünü",
+      "kindArtisan": "Usta hizmeti",
+      "with": "{{name}} ile",
+      "contactShared": "İletişim bilgileri paylaşıldı",
+      "providerGateTitle": "İletişim bilgilerini paylaşmak için kabul edin",
+      "providerGateBody": "Önce burada sohbet edin. Bu işi üstlenmeye hazır olduğunuzda kabul edin — o zaman ikiniz de birbirinizin telefon numarasını görürsünüz.",
+      "accept": "Kabul et",
+      "decline": "Reddet",
+      "customerGate": "İletişim bilgileri {{name}} kabul ettiğinde paylaşılır. O zamana kadar konuşmayı burada tutun — ikiniz için de daha güvenli.",
+      "wasStatus": "Bu konuşma {{status}}.",
+      "status": {
+        "closed": "kapatıldı",
+        "declined": "reddedildi",
+        "accepted": "kabul edildi",
+        "expired": "süresi doldu"
+      },
+      "noMessages": "Henüz mesaj yok.",
+      "placeholder": "Bir mesaj yazın…",
+      "sendAria": "Gönder",
+      "safetyNote": "Ödemeleri ve ayrıntıları OAM'da tutun. Uygulama dışında asla para göndermeyin."
+    }
   }
 }

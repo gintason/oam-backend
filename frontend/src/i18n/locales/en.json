@@ -929,5 +929,46 @@
       "submitForReview": "Submit for review",
       "addAllThree": "Add all three items above to submit."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Dashboard",
+      "title": "Messages",
+      "subtitle": "Chats about marketplace items and artisan services.",
+      "tabAll": "All",
+      "tabMine": "My enquiries",
+      "tabToMe": "Enquiries to me",
+      "emptyTitle": "No conversations yet",
+      "emptyBody": "When you message a seller or an artisan — or someone messages you — it'll appear here.",
+      "marketplace": "Marketplace",
+      "artisans": "Artisans",
+      "needsReply": "· needs your reply"
+    },
+    "chat": {
+      "errSend": "Couldn't send that message.",
+      "errUpdate": "Couldn't update this conversation.",
+      "back": "All messages",
+      "unavailable": "This conversation isn't available.",
+      "kindListing": "Marketplace item",
+      "kindArtisan": "Artisan service",
+      "with": "with {{name}}",
+      "contactShared": "Contact details shared",
+      "providerGateTitle": "Accept to share contact details",
+      "providerGateBody": "Chat here first. When you're ready to take this on, accept — then you'll both see each other's phone numbers.",
+      "accept": "Accept",
+      "decline": "Decline",
+      "customerGate": "Contact details are shared once {{name}} accepts. Until then, keep the conversation here — it's safer for you both.",
+      "wasStatus": "This conversation was {{status}}.",
+      "status": {
+        "closed": "closed",
+        "declined": "declined",
+        "accepted": "accepted",
+        "expired": "expired"
+      },
+      "noMessages": "No messages yet.",
+      "placeholder": "Write a message…",
+      "sendAria": "Send",
+      "safetyNote": "Keep payments and details on OAM. Never send money outside the app."
+    }
   }
 }

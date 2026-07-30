@@ -929,5 +929,46 @@
       "submitForReview": "Invia per la revisione",
       "addAllThree": "Aggiungi tutti e tre gli elementi sopra per inviare."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Dashboard",
+      "title": "Messaggi",
+      "subtitle": "Chat su articoli del mercato e servizi di artigiani.",
+      "tabAll": "Tutti",
+      "tabMine": "Le mie richieste",
+      "tabToMe": "Richieste per me",
+      "emptyTitle": "Ancora nessuna conversazione",
+      "emptyBody": "Quando scrivi a un venditore o a un artigiano — o qualcuno scrive a te — apparirà qui.",
+      "marketplace": "Mercato",
+      "artisans": "Artigiani",
+      "needsReply": "· in attesa della tua risposta"
+    },
+    "chat": {
+      "errSend": "Impossibile inviare il messaggio.",
+      "errUpdate": "Impossibile aggiornare questa conversazione.",
+      "back": "Tutti i messaggi",
+      "unavailable": "Questa conversazione non è disponibile.",
+      "kindListing": "Articolo del mercato",
+      "kindArtisan": "Servizio di artigiano",
+      "with": "con {{name}}",
+      "contactShared": "Contatti condivisi",
+      "providerGateTitle": "Accetta per condividere i contatti",
+      "providerGateBody": "Chatta prima qui. Quando sei pronto ad accettare il lavoro, accetta — allora vedrete entrambi i vostri numeri di telefono.",
+      "accept": "Accetta",
+      "decline": "Rifiuta",
+      "customerGate": "I contatti vengono condivisi quando {{name}} accetta. Fino ad allora, mantieni la conversazione qui — è più sicuro per entrambi.",
+      "wasStatus": "Questa conversazione è stata {{status}}.",
+      "status": {
+        "closed": "chiusa",
+        "declined": "rifiutata",
+        "accepted": "accettata",
+        "expired": "scaduta"
+      },
+      "noMessages": "Ancora nessun messaggio.",
+      "placeholder": "Scrivi un messaggio…",
+      "sendAria": "Invia",
+      "safetyNote": "Mantieni pagamenti e dettagli su OAM. Non inviare mai denaro fuori dall'app."
+    }
   }
 }

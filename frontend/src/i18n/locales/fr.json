@@ -929,5 +929,46 @@
       "submitForReview": "Soumettre pour examen",
       "addAllThree": "Ajoutez les trois éléments ci-dessus pour soumettre."
     }
+  },
+  "messages": {
+    "inbox": {
+      "back": "Tableau de bord",
+      "title": "Messages",
+      "subtitle": "Discussions sur les articles du marché et les services d'artisans.",
+      "tabAll": "Tous",
+      "tabMine": "Mes demandes",
+      "tabToMe": "Demandes reçues",
+      "emptyTitle": "Aucune conversation pour l'instant",
+      "emptyBody": "Quand vous écrivez à un vendeur ou à un artisan — ou que quelqu'un vous écrit — cela apparaît ici.",
+      "marketplace": "Marché",
+      "artisans": "Artisans",
+      "needsReply": "· en attente de votre réponse"
+    },
+    "chat": {
+      "errSend": "Impossible d'envoyer ce message.",
+      "errUpdate": "Impossible de mettre à jour cette conversation.",
+      "back": "Tous les messages",
+      "unavailable": "Cette conversation n'est pas disponible.",
+      "kindListing": "Article du marché",
+      "kindArtisan": "Service d'artisan",
+      "with": "avec {{name}}",
+      "contactShared": "Coordonnées partagées",
+      "providerGateTitle": "Acceptez pour partager les coordonnées",
+      "providerGateBody": "Discutez ici d'abord. Quand vous êtes prêt à vous en charger, acceptez — vous verrez alors vos numéros de téléphone respectifs.",
+      "accept": "Accepter",
+      "decline": "Refuser",
+      "customerGate": "Les coordonnées sont partagées une fois que {{name}} accepte. En attendant, gardez la conversation ici — c'est plus sûr pour vous deux.",
+      "wasStatus": "Cette conversation a été {{status}}.",
+      "status": {
+        "closed": "fermée",
+        "declined": "refusée",
+        "accepted": "acceptée",
+        "expired": "expirée"
+      },
+      "noMessages": "Aucun message pour l'instant.",
+      "placeholder": "Écrire un message…",
+      "sendAria": "Envoyer",
+      "safetyNote": "Gardez les paiements et les détails sur OAM. N'envoyez jamais d'argent en dehors de l'app."
+    }
   }
 }
