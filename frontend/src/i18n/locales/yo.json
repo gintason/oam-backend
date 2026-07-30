@@ -696,5 +696,66 @@
     "amountPlaceholder": "Iye",
     "errEnterSweep": "Tẹ iye tí o fẹ́ gbá jọ.",
     "sweep": "Gbá jọ"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Gbogbo ohun tí o nílò, nínú ìyókù kan.",
+      "tagline": "Àwọn owó, ọjà, oníṣọ̀nà, ìrìnàjò àti ìgbé owó — àkàntì kan tí ó ní ààbò fún gbogbo rẹ̀.",
+      "badgeSecurity": "Ààbò ìpele báǹkì",
+      "badgeDelivery": "Ìfijíṣẹ́ lẹ́sẹ̀kẹsẹ̀",
+      "developedBy": "AiTrend ló ṣe é",
+      "logoAlt": "OAM — Gbogbo iṣẹ́. Áàpù kan."
+    },
+    "fields": {
+      "showPassword": "Fi ọ̀rọ̀ ìpamọ́ hàn",
+      "hidePassword": "Fi ọ̀rọ̀ ìpamọ́ pamọ́",
+      "continueWith": "Tẹ̀síwájú pẹ̀lú {{provider}}",
+      "opening": "Ń ṣí…",
+      "orEmail": "tàbí tẹ̀síwájú pẹ̀lú ímeèlì"
+    },
+    "signIn": {
+      "title": "Káàbọ̀ padà",
+      "subtitle": "Wọlé láti tẹ̀síwájú sí àkàntì rẹ.",
+      "altPrompt": "Tuntun ní OAM?",
+      "altLabel": "Ṣẹ̀dá àkàntì",
+      "identifierLabel": "Ímeèlì tàbí fóònù",
+      "identifierPlaceholder": "iwo@apeere.com",
+      "passwordLabel": "Ọ̀rọ̀ ìpamọ́",
+      "passwordPlaceholder": "Ọ̀rọ̀ ìpamọ́ rẹ",
+      "forgot": "Gbàgbé ọ̀rọ̀ ìpamọ́?",
+      "submit": "Wọlé",
+      "errFailed": "A kò lè wọ̀ ọ́ wọlé."
+    },
+    "signUp": {
+      "title": "Ṣẹ̀dá àkàntì rẹ",
+      "subtitle": "Ìyókù kan fún gbogbo ohun tí o nílò.",
+      "altPrompt": "Ó ti ní àkàntì?",
+      "altLabel": "Wọlé",
+      "firstNameLabel": "Orúkọ àkọ́kọ́",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Ímeèlì",
+      "emailPlaceholder": "iwo@apeere.com",
+      "passwordLabel": "Ọ̀rọ̀ ìpamọ́",
+      "passwordPlaceholder": "Ó kéré tán lẹ́tà 8",
+      "terms": "Nípa ṣíṣẹ̀dá àkàntì o gbà pẹ̀lú Àwọn Òfin àti Ìlànà Àṣírí OAM.",
+      "submit": "Ṣẹ̀dá àkàntì",
+      "errFailed": "A kò lè ṣẹ̀dá àkàntì rẹ."
+    },
+    "otp": {
+      "title": "Ṣàyẹ̀wò àkàntì rẹ",
+      "subtitleTo": "Tẹ kóòdù olónọ́mbà 6 tí a fi ránṣẹ́ sí {{destination}}.",
+      "subtitleGeneric": "Tẹ kóòdù olónọ́mbà 6 tí a fi ránṣẹ́ sí ọ.",
+      "altPrompt": "Àkàntì tí kò tọ́?",
+      "altLabel": "Padà sí ìwọlé",
+      "digitAria": "Nọ́mbà {{n}}",
+      "submit": "Ṣàyẹ̀wò",
+      "errWrong": "Kóòdù yẹn kò ṣiṣẹ́. Tún gbìyànjú.",
+      "errFull": "Tẹ kóòdù olónọ́mbà 6 ní kíkún.",
+      "errResend": "A kò lè tún kóòdù ránṣẹ́.",
+      "noticeSent": "A ti fi kóòdù tuntun ránṣẹ́.",
+      "didntGet": "O kò rí i?",
+      "resend": "Tún kóòdù ránṣẹ́",
+      "resendIn": "Tún ránṣẹ́ ní {{seconds}}s"
+    }
   }
 }

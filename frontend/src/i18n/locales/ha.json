@@ -696,5 +696,66 @@
     "amountPlaceholder": "Adadi",
     "errEnterSweep": "Shigar da adadin da za a tara.",
     "sweep": "Tara"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Duk abin da kake buƙata, a ma'auni ɗaya.",
+      "tagline": "Kuɗaɗe, kasuwa, masu sana'a, tafiye-tafiye da turawa — asusu ɗaya amintacce don duka.",
+      "badgeSecurity": "Tsaro matakin banki",
+      "badgeDelivery": "Kai da sauri",
+      "developedBy": "AiTrend ne ya ƙera",
+      "logoAlt": "OAM — Duk sabis. Manhaja ɗaya."
+    },
+    "fields": {
+      "showPassword": "Nuna kalmar sirri",
+      "hidePassword": "Ɓoye kalmar sirri",
+      "continueWith": "Ci gaba da {{provider}}",
+      "opening": "Ana buɗewa…",
+      "orEmail": "ko ci gaba da imel"
+    },
+    "signIn": {
+      "title": "Barka da dawowa",
+      "subtitle": "Shiga don ci gaba zuwa asusun ka.",
+      "altPrompt": "Sabo ne a OAM?",
+      "altLabel": "Ƙirƙiri asusu",
+      "identifierLabel": "Imel ko waya",
+      "identifierPlaceholder": "kai@misali.com",
+      "passwordLabel": "Kalmar sirri",
+      "passwordPlaceholder": "Kalmar sirrin ka",
+      "forgot": "Ka manta kalmar sirri?",
+      "submit": "Shiga",
+      "errFailed": "An kasa shigar da kai."
+    },
+    "signUp": {
+      "title": "Ƙirƙiri asusun ka",
+      "subtitle": "Ma'auni ɗaya don duk abin da kake buƙata.",
+      "altPrompt": "Kana da asusu tuni?",
+      "altLabel": "Shiga",
+      "firstNameLabel": "Sunan farko",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Imel",
+      "emailPlaceholder": "kai@misali.com",
+      "passwordLabel": "Kalmar sirri",
+      "passwordPlaceholder": "Aƙalla haruffa 8",
+      "terms": "Ta hanyar ƙirƙiri asusu ka yarda da Sharuɗɗa da Manufar Sirri na OAM.",
+      "submit": "Ƙirƙiri asusu",
+      "errFailed": "An kasa ƙirƙiri asusun ka."
+    },
+    "otp": {
+      "title": "Tabbatar da asusun ka",
+      "subtitleTo": "Shigar da lambar lamba 6 da aka aika zuwa {{destination}}.",
+      "subtitleGeneric": "Shigar da lambar lamba 6 da muka aika maka.",
+      "altPrompt": "Asusun kuskure?",
+      "altLabel": "Koma shiga",
+      "digitAria": "Lamba {{n}}",
+      "submit": "Tabbatar",
+      "errWrong": "Lambar ba ta yi aiki ba. Sake gwadawa.",
+      "errFull": "Shigar da cikakkiyar lambar lamba 6.",
+      "errResend": "An kasa sake aika lambar.",
+      "noticeSent": "An aika sabuwar lamba.",
+      "didntGet": "Ba ka samu ba?",
+      "resend": "Sake aika lamba",
+      "resendIn": "Sake aikawa cikin {{seconds}}s"
+    }
   }
 }

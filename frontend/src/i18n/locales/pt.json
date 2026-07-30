@@ -696,5 +696,66 @@
     "amountPlaceholder": "Valor",
     "errEnterSweep": "Introduza um valor a transferir.",
     "sweep": "Transferir"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Tudo o que precisa, num só saldo.",
+      "tagline": "Faturas, mercado, artesãos, viagens e transferências — uma conta segura para tudo.",
+      "badgeSecurity": "Segurança de nível bancário",
+      "badgeDelivery": "Entrega instantânea",
+      "developedBy": "Desenvolvido pela AiTrend",
+      "logoAlt": "OAM — Todos os serviços. Uma app."
+    },
+    "fields": {
+      "showPassword": "Mostrar palavra-passe",
+      "hidePassword": "Ocultar palavra-passe",
+      "continueWith": "Continuar com {{provider}}",
+      "opening": "A abrir…",
+      "orEmail": "ou continuar com e-mail"
+    },
+    "signIn": {
+      "title": "Bem-vindo de volta",
+      "subtitle": "Inicie sessão para continuar para a sua conta.",
+      "altPrompt": "Novo na OAM?",
+      "altLabel": "Criar uma conta",
+      "identifierLabel": "E-mail ou telefone",
+      "identifierPlaceholder": "voce@exemplo.com",
+      "passwordLabel": "Palavra-passe",
+      "passwordPlaceholder": "A sua palavra-passe",
+      "forgot": "Esqueceu-se da palavra-passe?",
+      "submit": "Iniciar sessão",
+      "errFailed": "Não foi possível iniciar a sua sessão."
+    },
+    "signUp": {
+      "title": "Crie a sua conta",
+      "subtitle": "Um só saldo para tudo o que precisa.",
+      "altPrompt": "Já tem uma conta?",
+      "altLabel": "Iniciar sessão",
+      "firstNameLabel": "Nome próprio",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "voce@exemplo.com",
+      "passwordLabel": "Palavra-passe",
+      "passwordPlaceholder": "Pelo menos 8 caracteres",
+      "terms": "Ao criar uma conta, aceita os Termos e a Política de Privacidade da OAM.",
+      "submit": "Criar conta",
+      "errFailed": "Não foi possível criar a sua conta."
+    },
+    "otp": {
+      "title": "Verifique a sua conta",
+      "subtitleTo": "Introduza o código de 6 dígitos enviado para {{destination}}.",
+      "subtitleGeneric": "Introduza o código de 6 dígitos que lhe enviámos.",
+      "altPrompt": "Conta errada?",
+      "altLabel": "Voltar ao início de sessão",
+      "digitAria": "Dígito {{n}}",
+      "submit": "Verificar",
+      "errWrong": "Esse código não funcionou. Tente novamente.",
+      "errFull": "Introduza o código completo de 6 dígitos.",
+      "errResend": "Não foi possível reenviar o código.",
+      "noticeSent": "Foi enviado um novo código.",
+      "didntGet": "Não o recebeu?",
+      "resend": "Reenviar código",
+      "resendIn": "Reenviar em {{seconds}} s"
+    }
   }
 }

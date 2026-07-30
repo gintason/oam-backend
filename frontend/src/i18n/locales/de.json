@@ -696,5 +696,66 @@
     "amountPlaceholder": "Betrag",
     "errEnterSweep": "Geben Sie einen zu übertragenden Betrag ein.",
     "sweep": "Übertragen"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Alles, was Sie brauchen, in einem Guthaben.",
+      "tagline": "Rechnungen, Marktplatz, Handwerker, Reisen und Überweisungen — ein sicheres Konto für alles.",
+      "badgeSecurity": "Sicherheit auf Bankniveau",
+      "badgeDelivery": "Sofortige Lieferung",
+      "developedBy": "Entwickelt von AiTrend",
+      "logoAlt": "OAM — Alle Dienste. Eine App."
+    },
+    "fields": {
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verbergen",
+      "continueWith": "Weiter mit {{provider}}",
+      "opening": "Wird geöffnet…",
+      "orEmail": "oder mit E-Mail fortfahren"
+    },
+    "signIn": {
+      "title": "Willkommen zurück",
+      "subtitle": "Melden Sie sich an, um zu Ihrem Konto zu gelangen.",
+      "altPrompt": "Neu bei OAM?",
+      "altLabel": "Konto erstellen",
+      "identifierLabel": "E-Mail oder Telefon",
+      "identifierPlaceholder": "sie@beispiel.com",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Ihr Passwort",
+      "forgot": "Passwort vergessen?",
+      "submit": "Anmelden",
+      "errFailed": "Anmeldung fehlgeschlagen."
+    },
+    "signUp": {
+      "title": "Konto erstellen",
+      "subtitle": "Ein Guthaben für alles, was Sie brauchen.",
+      "altPrompt": "Haben Sie bereits ein Konto?",
+      "altLabel": "Anmelden",
+      "firstNameLabel": "Vorname",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "sie@beispiel.com",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Mindestens 8 Zeichen",
+      "terms": "Mit der Erstellung eines Kontos stimmen Sie den Nutzungsbedingungen und der Datenschutzrichtlinie von OAM zu.",
+      "submit": "Konto erstellen",
+      "errFailed": "Ihr Konto konnte nicht erstellt werden."
+    },
+    "otp": {
+      "title": "Konto verifizieren",
+      "subtitleTo": "Geben Sie den 6-stelligen Code ein, der an {{destination}} gesendet wurde.",
+      "subtitleGeneric": "Geben Sie den 6-stelligen Code ein, den wir Ihnen gesendet haben.",
+      "altPrompt": "Falsches Konto?",
+      "altLabel": "Zurück zur Anmeldung",
+      "digitAria": "Ziffer {{n}}",
+      "submit": "Verifizieren",
+      "errWrong": "Dieser Code hat nicht funktioniert. Versuchen Sie es erneut.",
+      "errFull": "Geben Sie den vollständigen 6-stelligen Code ein.",
+      "errResend": "Code konnte nicht erneut gesendet werden.",
+      "noticeSent": "Ein neuer Code wurde gesendet.",
+      "didntGet": "Nicht erhalten?",
+      "resend": "Code erneut senden",
+      "resendIn": "Erneut senden in {{seconds}} s"
+    }
   }
 }

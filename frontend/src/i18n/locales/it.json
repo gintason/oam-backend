@@ -696,5 +696,66 @@
     "amountPlaceholder": "Importo",
     "errEnterSweep": "Inserisci un importo da trasferire.",
     "sweep": "Trasferisci"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Tutto ciò di cui hai bisogno, in un unico saldo.",
+      "tagline": "Bollette, mercato, artigiani, viaggi e trasferimenti — un unico account sicuro per tutto.",
+      "badgeSecurity": "Sicurezza di livello bancario",
+      "badgeDelivery": "Consegna istantanea",
+      "developedBy": "Sviluppato da AiTrend",
+      "logoAlt": "OAM — Tutti i servizi. Un'unica app."
+    },
+    "fields": {
+      "showPassword": "Mostra password",
+      "hidePassword": "Nascondi password",
+      "continueWith": "Continua con {{provider}}",
+      "opening": "Apertura…",
+      "orEmail": "oppure continua con l'email"
+    },
+    "signIn": {
+      "title": "Bentornato",
+      "subtitle": "Accedi per continuare al tuo account.",
+      "altPrompt": "Nuovo su OAM?",
+      "altLabel": "Crea un account",
+      "identifierLabel": "Email o telefono",
+      "identifierPlaceholder": "tu@esempio.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "La tua password",
+      "forgot": "Password dimenticata?",
+      "submit": "Accedi",
+      "errFailed": "Impossibile effettuare l'accesso."
+    },
+    "signUp": {
+      "title": "Crea il tuo account",
+      "subtitle": "Un unico saldo per tutto ciò di cui hai bisogno.",
+      "altPrompt": "Hai già un account?",
+      "altLabel": "Accedi",
+      "firstNameLabel": "Nome",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@esempio.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "terms": "Creando un account accetti i Termini e l'Informativa sulla privacy di OAM.",
+      "submit": "Crea account",
+      "errFailed": "Impossibile creare il tuo account."
+    },
+    "otp": {
+      "title": "Verifica il tuo account",
+      "subtitleTo": "Inserisci il codice a 6 cifre inviato a {{destination}}.",
+      "subtitleGeneric": "Inserisci il codice a 6 cifre che ti abbiamo inviato.",
+      "altPrompt": "Account sbagliato?",
+      "altLabel": "Torna all'accesso",
+      "digitAria": "Cifra {{n}}",
+      "submit": "Verifica",
+      "errWrong": "Quel codice non ha funzionato. Riprova.",
+      "errFull": "Inserisci il codice completo a 6 cifre.",
+      "errResend": "Impossibile inviare di nuovo il codice.",
+      "noticeSent": "È stato inviato un nuovo codice.",
+      "didntGet": "Non l'hai ricevuto?",
+      "resend": "Invia di nuovo il codice",
+      "resendIn": "Invia di nuovo tra {{seconds}} s"
+    }
   }
 }

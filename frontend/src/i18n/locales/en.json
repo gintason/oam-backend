@@ -696,5 +696,66 @@
     "amountPlaceholder": "Amount",
     "errEnterSweep": "Enter an amount to sweep.",
     "sweep": "Sweep"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Everything you need, in one balance.",
+      "tagline": "Bills, marketplace, artisans, travel and transfers — one secure account for it all.",
+      "badgeSecurity": "Bank-grade security",
+      "badgeDelivery": "Instant delivery",
+      "developedBy": "Developed by AiTrend",
+      "logoAlt": "OAM — All services. One app."
+    },
+    "fields": {
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "continueWith": "Continue with {{provider}}",
+      "opening": "Opening…",
+      "orEmail": "or continue with email"
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to continue to your account.",
+      "altPrompt": "New to OAM?",
+      "altLabel": "Create an account",
+      "identifierLabel": "Email or phone",
+      "identifierPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Your password",
+      "forgot": "Forgot password?",
+      "submit": "Sign in",
+      "errFailed": "Could not sign you in."
+    },
+    "signUp": {
+      "title": "Create your account",
+      "subtitle": "One balance for everything you need.",
+      "altPrompt": "Already have an account?",
+      "altLabel": "Sign in",
+      "firstNameLabel": "First name",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "terms": "By creating an account you agree to OAM's Terms and Privacy Policy.",
+      "submit": "Create account",
+      "errFailed": "Could not create your account."
+    },
+    "otp": {
+      "title": "Verify your account",
+      "subtitleTo": "Enter the 6-digit code sent to {{destination}}.",
+      "subtitleGeneric": "Enter the 6-digit code we sent you.",
+      "altPrompt": "Wrong account?",
+      "altLabel": "Back to sign in",
+      "digitAria": "Digit {{n}}",
+      "submit": "Verify",
+      "errWrong": "That code didn't work. Try again.",
+      "errFull": "Enter the full 6-digit code.",
+      "errResend": "Could not resend the code.",
+      "noticeSent": "A new code has been sent.",
+      "didntGet": "Didn't get it?",
+      "resend": "Resend code",
+      "resendIn": "Resend in {{seconds}}s"
+    }
   }
 }

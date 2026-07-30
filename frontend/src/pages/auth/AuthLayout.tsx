@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
 
 /**
@@ -23,6 +24,7 @@ export default function AuthLayout({
   altLink?: string;
   altLabel?: string;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="relative flex min-h-screen bg-white">
       {/* Brand panel — desktop only. Diagonal cut slanting into the white side,
@@ -57,33 +59,30 @@ export default function AuthLayout({
         <div className="relative flex h-full w-[80%] flex-col justify-between p-10 xl:p-12">
           {/* logo */}
           <Link to="/" className="inline-flex">
-            <img src={logo} alt="OAM — All services. One app." className="h-9 w-auto brightness-0 invert" />
+            <img src={logo} alt={t("auth.layout.logoAlt")} className="h-9 w-auto brightness-0 invert" />
           </Link>
 
           {/* centerpiece */}
           <div>
             <h2 className="font-display text-[2rem] font-semibold leading-[1.15] tracking-tight text-white xl:text-[2.25rem]">
-              Everything you need,
-              <br />
-              in one balance.
+              {t("auth.layout.hero")}
             </h2>
             <p className="mt-3.5 max-w-xs text-[13.5px] leading-relaxed text-white/60">
-              Bills, marketplace, artisans, travel and transfers — one secure
-              account for it all.
+              {t("auth.layout.tagline")}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.06] px-2.5 py-1.5 text-[11px] text-white/75 backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#1a9c44]" />
-                Bank-grade security
+                {t("auth.layout.badgeSecurity")}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.06] px-2.5 py-1.5 text-[11px] text-white/75 backdrop-blur">
-                Instant delivery
+                {t("auth.layout.badgeDelivery")}
               </span>
             </div>
           </div>
 
-          <p className="text-[11px] text-white/40">Developed by AiTrend</p>
+          <p className="text-[11px] text-white/40">{t("auth.layout.developedBy")}</p>
         </div>
       </div>
 

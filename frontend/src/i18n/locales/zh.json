@@ -696,5 +696,66 @@
     "amountPlaceholder": "金额",
     "errEnterSweep": "请输入要归集的金额。",
     "sweep": "归集"
+  },
+  "auth": {
+    "layout": {
+      "hero": "您所需的一切，尽在一个余额。",
+      "tagline": "账单、市场、工匠、出行与转账——一个安全账户搞定一切。",
+      "badgeSecurity": "银行级安全",
+      "badgeDelivery": "即时到账",
+      "developedBy": "由 AiTrend 开发",
+      "logoAlt": "OAM — 所有服务，一个应用。"
+    },
+    "fields": {
+      "showPassword": "显示密码",
+      "hidePassword": "隐藏密码",
+      "continueWith": "使用 {{provider}} 继续",
+      "opening": "正在打开…",
+      "orEmail": "或使用邮箱继续"
+    },
+    "signIn": {
+      "title": "欢迎回来",
+      "subtitle": "登录以继续进入您的账户。",
+      "altPrompt": "初次使用 OAM？",
+      "altLabel": "创建账户",
+      "identifierLabel": "邮箱或电话",
+      "identifierPlaceholder": "you@example.com",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "您的密码",
+      "forgot": "忘记密码？",
+      "submit": "登录",
+      "errFailed": "无法登录。"
+    },
+    "signUp": {
+      "title": "创建您的账户",
+      "subtitle": "一个余额，满足您的一切所需。",
+      "altPrompt": "已有账户？",
+      "altLabel": "登录",
+      "firstNameLabel": "名字",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "邮箱",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "至少 8 个字符",
+      "terms": "创建账户即表示您同意 OAM 的条款和隐私政策。",
+      "submit": "创建账户",
+      "errFailed": "无法创建您的账户。"
+    },
+    "otp": {
+      "title": "验证您的账户",
+      "subtitleTo": "输入发送至 {{destination}} 的 6 位验证码。",
+      "subtitleGeneric": "输入我们发送给您的 6 位验证码。",
+      "altPrompt": "账户不对？",
+      "altLabel": "返回登录",
+      "digitAria": "第 {{n}} 位",
+      "submit": "验证",
+      "errWrong": "该验证码无效。请重试。",
+      "errFull": "请输入完整的 6 位验证码。",
+      "errResend": "无法重新发送验证码。",
+      "noticeSent": "新验证码已发送。",
+      "didntGet": "没有收到？",
+      "resend": "重新发送验证码",
+      "resendIn": "{{seconds}} 秒后重发"
+    }
   }
 }

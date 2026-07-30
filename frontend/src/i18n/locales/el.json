@@ -696,5 +696,66 @@
     "amountPlaceholder": "Ποσό",
     "errEnterSweep": "Εισαγάγετε ποσό για μεταφορά.",
     "sweep": "Μεταφορά"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Ό,τι χρειάζεστε, σε ένα υπόλοιπο.",
+      "tagline": "Λογαριασμοί, αγορά, τεχνίτες, ταξίδια και μεταφορές — ένας ασφαλής λογαριασμός για όλα.",
+      "badgeSecurity": "Ασφάλεια τραπεζικού επιπέδου",
+      "badgeDelivery": "Άμεση παράδοση",
+      "developedBy": "Αναπτύχθηκε από την AiTrend",
+      "logoAlt": "OAM — Όλες οι υπηρεσίες. Μία εφαρμογή."
+    },
+    "fields": {
+      "showPassword": "Εμφάνιση κωδικού",
+      "hidePassword": "Απόκρυψη κωδικού",
+      "continueWith": "Συνέχεια με {{provider}}",
+      "opening": "Άνοιγμα…",
+      "orEmail": "ή συνεχίστε με email"
+    },
+    "signIn": {
+      "title": "Καλώς ήρθατε ξανά",
+      "subtitle": "Συνδεθείτε για να συνεχίσετε στον λογαριασμό σας.",
+      "altPrompt": "Νέος στο OAM;",
+      "altLabel": "Δημιουργία λογαριασμού",
+      "identifierLabel": "Email ή τηλέφωνο",
+      "identifierPlaceholder": "eseis@paradeigma.com",
+      "passwordLabel": "Κωδικός",
+      "passwordPlaceholder": "Ο κωδικός σας",
+      "forgot": "Ξεχάσατε τον κωδικό;",
+      "submit": "Σύνδεση",
+      "errFailed": "Δεν ήταν δυνατή η σύνδεσή σας."
+    },
+    "signUp": {
+      "title": "Δημιουργήστε τον λογαριασμό σας",
+      "subtitle": "Ένα υπόλοιπο για όλα όσα χρειάζεστε.",
+      "altPrompt": "Έχετε ήδη λογαριασμό;",
+      "altLabel": "Σύνδεση",
+      "firstNameLabel": "Όνομα",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Email",
+      "emailPlaceholder": "eseis@paradeigma.com",
+      "passwordLabel": "Κωδικός",
+      "passwordPlaceholder": "Τουλάχιστον 8 χαρακτήρες",
+      "terms": "Δημιουργώντας λογαριασμό αποδέχεστε τους Όρους και την Πολιτική Απορρήτου του OAM.",
+      "submit": "Δημιουργία λογαριασμού",
+      "errFailed": "Δεν ήταν δυνατή η δημιουργία του λογαριασμού σας."
+    },
+    "otp": {
+      "title": "Επαληθεύστε τον λογαριασμό σας",
+      "subtitleTo": "Εισαγάγετε τον 6ψήφιο κωδικό που στάλθηκε στο {{destination}}.",
+      "subtitleGeneric": "Εισαγάγετε τον 6ψήφιο κωδικό που σας στείλαμε.",
+      "altPrompt": "Λάθος λογαριασμός;",
+      "altLabel": "Επιστροφή στη σύνδεση",
+      "digitAria": "Ψηφίο {{n}}",
+      "submit": "Επαλήθευση",
+      "errWrong": "Αυτός ο κωδικός δεν λειτούργησε. Δοκιμάστε ξανά.",
+      "errFull": "Εισαγάγετε τον πλήρη 6ψήφιο κωδικό.",
+      "errResend": "Δεν ήταν δυνατή η εκ νέου αποστολή του κωδικού.",
+      "noticeSent": "Στάλθηκε νέος κωδικός.",
+      "didntGet": "Δεν τον λάβατε;",
+      "resend": "Επαναποστολή κωδικού",
+      "resendIn": "Επαναποστολή σε {{seconds}} δ"
+    }
   }
 }

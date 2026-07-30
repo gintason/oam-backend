@@ -696,5 +696,66 @@
     "amountPlaceholder": "Ego",
     "errEnterSweep": "Tinye ego iji kpokọta.",
     "sweep": "Kpokọta"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Ihe niile ị chọrọ, n'otu ego.",
+      "tagline": "Ụgwọ, ahịa, ndị ọrụ aka, njem na mbufe — otu akaụntụ echedoro maka ihe niile.",
+      "badgeSecurity": "Nchekwa ọkwa ụlọ akụ",
+      "badgeDelivery": "Nnyefe ozugbo",
+      "developedBy": "AiTrend mepụtara ya",
+      "logoAlt": "OAM — Ọrụ niile. Otu ngwa."
+    },
+    "fields": {
+      "showPassword": "Gosi okwuntughe",
+      "hidePassword": "Zoo okwuntughe",
+      "continueWith": "Jiri {{provider}} gaa n'ihu",
+      "opening": "Na-emeghe…",
+      "orEmail": "ma ọ bụ jiri email gaa n'ihu"
+    },
+    "signIn": {
+      "title": "Nnọọ ọzọ",
+      "subtitle": "Banye iji gaa n'ihu na akaụntụ gị.",
+      "altPrompt": "Ọhụrụ na OAM?",
+      "altLabel": "Mepụta akaụntụ",
+      "identifierLabel": "Email ma ọ bụ ekwentị",
+      "identifierPlaceholder": "gi@ihe.com",
+      "passwordLabel": "Okwuntughe",
+      "passwordPlaceholder": "Okwuntughe gị",
+      "forgot": "Chefuru okwuntughe?",
+      "submit": "Banye",
+      "errFailed": "Enweghị ike ịbanye gị."
+    },
+    "signUp": {
+      "title": "Mepụta akaụntụ gị",
+      "subtitle": "Otu ego maka ihe niile ị chọrọ.",
+      "altPrompt": "Ị nweelarị akaụntụ?",
+      "altLabel": "Banye",
+      "firstNameLabel": "Aha mbụ",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Email",
+      "emailPlaceholder": "gi@ihe.com",
+      "passwordLabel": "Okwuntughe",
+      "passwordPlaceholder": "Opekata mpe mkpụrụedemede 8",
+      "terms": "Site na imepụta akaụntụ ị kwenyere na Usoro na Amụma Nzuzo nke OAM.",
+      "submit": "Mepụta akaụntụ",
+      "errFailed": "Enweghị ike imepụta akaụntụ gị."
+    },
+    "otp": {
+      "title": "Nyochaa akaụntụ gị",
+      "subtitleTo": "Tinye koodu ọnụọgụ 6 ezigara na {{destination}}.",
+      "subtitleGeneric": "Tinye koodu ọnụọgụ 6 anyị zigaara gị.",
+      "altPrompt": "Akaụntụ na-ezighi ezi?",
+      "altLabel": "Laghachi na nbanye",
+      "digitAria": "Ọnụọgụ {{n}}",
+      "submit": "Nyochaa",
+      "errWrong": "Koodu ahụ arụghị ọrụ. Nwaa ọzọ.",
+      "errFull": "Tinye koodu ọnụọgụ 6 zuru oke.",
+      "errResend": "Enweghị ike izighachi koodu.",
+      "noticeSent": "E zigaala koodu ọhụrụ.",
+      "didntGet": "Ị nwetaghị ya?",
+      "resend": "Zigaghachi koodu",
+      "resendIn": "Zigaghachi n'ime {{seconds}}s"
+    }
   }
 }

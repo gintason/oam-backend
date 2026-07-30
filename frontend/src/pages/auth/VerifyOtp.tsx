@@ -5,11 +5,13 @@ import { SubmitButton, FormError, FormNotice } from "./fields";
 import { useAuth } from "../../auth/AuthContext";
 import { authApi } from "../../auth/authApi";
 import { apiErrorMessage } from "../../lib/api";
+import { useTranslation } from "react-i18next";
 
 const CODE_LENGTH = 6;
 const RESEND_COOLDOWN = 60;
 
 export default function VerifyOtp() {
+  const { t } = useTranslation();
   const { verifyOtp } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,7 +72,7 @@ export default function VerifyOtp() {
       await verifyOtp(identifier, codeToCheck);
       navigate("/dashboard", { replace: true });
     } catch (err) {
-      setError(apiErrorMessage(err, "That code didn't work. Try again."));
+      setError(apiErrorMessage(err, t("auth.otp.errWrong")));
       // Let the user (or auto-submit) retry after a correction.
       autoSubmitted.current = "";
     } finally {
@@ -81,7 +83,7 @@ export default function VerifyOtp() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (code.length !== CODE_LENGTH) {
-      setError("Enter the full 6-digit code.");
+      setError(t("auth.otp.errFull"));
       return;
     }
     autoSubmitted.current = code;
@@ -103,10 +105,10 @@ export default function VerifyOtp() {
     setNotice(undefined);
     try {
       await authApi.resendOtp({ identifier });
-      setNotice("A new code has been sent.");
+      setNotice(t("auth.otp.noticeSent"));
       setCooldown(RESEND_COOLDOWN);
     } catch (err) {
-      setError(apiErrorMessage(err, "Could not resend the code."));
+      setError(apiErrorMessage(err, t("auth.otp.errResend")));
     }
   }
 
@@ -114,11 +116,11 @@ export default function VerifyOtp() {
 
   return (
     <AuthLayout
-      title="Verify your account"
-      subtitle={masked ? `Enter the 6-digit code sent to ${masked}.` : "Enter the 6-digit code we sent you."}
-      altPrompt="Wrong account?"
+      title={t("auth.otp.title")}
+      subtitle={masked ? t("auth.otp.subtitleTo", { destination: masked }) : t("auth.otp.subtitleGeneric")}
+      altPrompt={t("auth.otp.altPrompt")}
       altLink="/sign-in"
-      altLabel="Back to sign in"
+      altLabel={t("auth.otp.altLabel")}
     >
       <form onSubmit={onSubmit} noValidate>
         <FormError message={error} />
@@ -135,23 +137,23 @@ export default function VerifyOtp() {
               value={d}
               onChange={(e) => setDigit(i, e.target.value)}
               onKeyDown={(e) => onKeyDown(i, e)}
-              aria-label={`Digit ${i + 1}`}
+              aria-label={t("auth.otp.digitAria", { n: i + 1 })}
               className="h-12 w-full min-w-0 rounded-[10px] border border-hairline bg-white text-center text-[18px] font-semibold text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10 xs:h-14 xs:rounded-[11px] xs:text-[22px]"
             />
           ))}
         </div>
 
-        <SubmitButton loading={loading}>Verify</SubmitButton>
+        <SubmitButton loading={loading}>{t("auth.otp.submit")}</SubmitButton>
       </form>
 
       <div className="mt-5 text-center text-[13.5px] text-muted">
-        Didn't get it?{" "}
+        {t("auth.otp.didntGet")}{" "}
         <button
           onClick={onResend}
           disabled={cooldown > 0}
           className="font-semibold text-brand-red hover:underline disabled:text-muted disabled:no-underline"
         >
-          {cooldown > 0 ? `Resend in ${cooldown}s` : "Resend code"}
+          {cooldown > 0 ? t("auth.otp.resendIn", { seconds: cooldown }) : t("auth.otp.resend")}
         </button>
       </div>
     </AuthLayout>

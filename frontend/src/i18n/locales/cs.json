@@ -696,5 +696,66 @@
     "amountPlaceholder": "Částka",
     "errEnterSweep": "Zadejte částku k převodu.",
     "sweep": "Převést"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Vše, co potřebujete, na jednom zůstatku.",
+      "tagline": "Účty, tržiště, řemeslníci, cestování a převody — jeden bezpečný účet pro vše.",
+      "badgeSecurity": "Zabezpečení na bankovní úrovni",
+      "badgeDelivery": "Okamžité doručení",
+      "developedBy": "Vyvinuto společností AiTrend",
+      "logoAlt": "OAM — Všechny služby. Jedna aplikace."
+    },
+    "fields": {
+      "showPassword": "Zobrazit heslo",
+      "hidePassword": "Skrýt heslo",
+      "continueWith": "Pokračovat s {{provider}}",
+      "opening": "Otevírání…",
+      "orEmail": "nebo pokračovat e-mailem"
+    },
+    "signIn": {
+      "title": "Vítejte zpět",
+      "subtitle": "Přihlaste se a pokračujte ke svému účtu.",
+      "altPrompt": "Nový v OAM?",
+      "altLabel": "Vytvořit účet",
+      "identifierLabel": "E-mail nebo telefon",
+      "identifierPlaceholder": "vy@priklad.com",
+      "passwordLabel": "Heslo",
+      "passwordPlaceholder": "Vaše heslo",
+      "forgot": "Zapomněli jste heslo?",
+      "submit": "Přihlásit se",
+      "errFailed": "Nepodařilo se vás přihlásit."
+    },
+    "signUp": {
+      "title": "Vytvořte si účet",
+      "subtitle": "Jeden zůstatek pro vše, co potřebujete.",
+      "altPrompt": "Už máte účet?",
+      "altLabel": "Přihlásit se",
+      "firstNameLabel": "Jméno",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vy@priklad.com",
+      "passwordLabel": "Heslo",
+      "passwordPlaceholder": "Alespoň 8 znaků",
+      "terms": "Vytvořením účtu souhlasíte s Podmínkami a Zásadami ochrany osobních údajů OAM.",
+      "submit": "Vytvořit účet",
+      "errFailed": "Nepodařilo se vytvořit váš účet."
+    },
+    "otp": {
+      "title": "Ověřte svůj účet",
+      "subtitleTo": "Zadejte 6místný kód zaslaný na {{destination}}.",
+      "subtitleGeneric": "Zadejte 6místný kód, který jsme vám poslali.",
+      "altPrompt": "Špatný účet?",
+      "altLabel": "Zpět na přihlášení",
+      "digitAria": "Číslice {{n}}",
+      "submit": "Ověřit",
+      "errWrong": "Tento kód nefungoval. Zkuste to znovu.",
+      "errFull": "Zadejte celý 6místný kód.",
+      "errResend": "Kód se nepodařilo znovu odeslat.",
+      "noticeSent": "Byl odeslán nový kód.",
+      "didntGet": "Nedorazil?",
+      "resend": "Odeslat kód znovu",
+      "resendIn": "Znovu za {{seconds}} s"
+    }
   }
 }

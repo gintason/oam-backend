@@ -696,5 +696,66 @@
     "amountPlaceholder": "Сума",
     "errEnterSweep": "Въведете сума за прехвърляне.",
     "sweep": "Прехвърли"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Всичко необходимо, в един баланс.",
+      "tagline": "Сметки, пазар, майстори, пътувания и преводи — един защитен акаунт за всичко.",
+      "badgeSecurity": "Сигурност на банково ниво",
+      "badgeDelivery": "Незабавна доставка",
+      "developedBy": "Разработено от AiTrend",
+      "logoAlt": "OAM — Всички услуги. Едно приложение."
+    },
+    "fields": {
+      "showPassword": "Покажи паролата",
+      "hidePassword": "Скрий паролата",
+      "continueWith": "Продължи с {{provider}}",
+      "opening": "Отваряне…",
+      "orEmail": "или продължи с имейл"
+    },
+    "signIn": {
+      "title": "Добре дошли отново",
+      "subtitle": "Влезте, за да продължите към акаунта си.",
+      "altPrompt": "Нов в OAM?",
+      "altLabel": "Създай акаунт",
+      "identifierLabel": "Имейл или телефон",
+      "identifierPlaceholder": "vie@primer.com",
+      "passwordLabel": "Парола",
+      "passwordPlaceholder": "Вашата парола",
+      "forgot": "Забравена парола?",
+      "submit": "Вход",
+      "errFailed": "Входът не бе успешен."
+    },
+    "signUp": {
+      "title": "Създайте акаунт",
+      "subtitle": "Един баланс за всичко необходимо.",
+      "altPrompt": "Вече имате акаунт?",
+      "altLabel": "Вход",
+      "firstNameLabel": "Име",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Имейл",
+      "emailPlaceholder": "vie@primer.com",
+      "passwordLabel": "Парола",
+      "passwordPlaceholder": "Поне 8 знака",
+      "terms": "Създавайки акаунт, приемате Условията и Политиката за поверителност на OAM.",
+      "submit": "Създай акаунт",
+      "errFailed": "Акаунтът ви не можа да бъде създаден."
+    },
+    "otp": {
+      "title": "Потвърдете акаунта си",
+      "subtitleTo": "Въведете 6-цифрения код, изпратен до {{destination}}.",
+      "subtitleGeneric": "Въведете 6-цифрения код, който ви изпратихме.",
+      "altPrompt": "Грешен акаунт?",
+      "altLabel": "Назад към входа",
+      "digitAria": "Цифра {{n}}",
+      "submit": "Потвърди",
+      "errWrong": "Този код не сработи. Опитайте отново.",
+      "errFull": "Въведете пълния 6-цифрен код.",
+      "errResend": "Кодът не можа да бъде изпратен отново.",
+      "noticeSent": "Изпратен е нов код.",
+      "didntGet": "Не го получихте?",
+      "resend": "Изпрати кода отново",
+      "resendIn": "Отново след {{seconds}} с"
+    }
   }
 }

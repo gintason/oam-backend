@@ -696,5 +696,66 @@
     "amountPlaceholder": "Montant",
     "errEnterSweep": "Saisissez un montant à transférer.",
     "sweep": "Transférer"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Tout ce dont vous avez besoin, sur un seul solde.",
+      "tagline": "Factures, marché, artisans, voyages et transferts — un seul compte sécurisé pour tout.",
+      "badgeSecurity": "Sécurité de niveau bancaire",
+      "badgeDelivery": "Livraison instantanée",
+      "developedBy": "Développé par AiTrend",
+      "logoAlt": "OAM — Tous les services. Une seule app."
+    },
+    "fields": {
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "continueWith": "Continuer avec {{provider}}",
+      "opening": "Ouverture…",
+      "orEmail": "ou continuer avec l'e-mail"
+    },
+    "signIn": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous pour continuer vers votre compte.",
+      "altPrompt": "Nouveau sur OAM ?",
+      "altLabel": "Créer un compte",
+      "identifierLabel": "E-mail ou téléphone",
+      "identifierPlaceholder": "vous@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "forgot": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "errFailed": "Impossible de vous connecter."
+    },
+    "signUp": {
+      "title": "Créez votre compte",
+      "subtitle": "Un seul solde pour tout ce dont vous avez besoin.",
+      "altPrompt": "Vous avez déjà un compte ?",
+      "altLabel": "Se connecter",
+      "firstNameLabel": "Prénom",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "vous@exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Au moins 8 caractères",
+      "terms": "En créant un compte, vous acceptez les Conditions et la Politique de confidentialité d'OAM.",
+      "submit": "Créer un compte",
+      "errFailed": "Impossible de créer votre compte."
+    },
+    "otp": {
+      "title": "Vérifiez votre compte",
+      "subtitleTo": "Saisissez le code à 6 chiffres envoyé à {{destination}}.",
+      "subtitleGeneric": "Saisissez le code à 6 chiffres que nous vous avons envoyé.",
+      "altPrompt": "Mauvais compte ?",
+      "altLabel": "Retour à la connexion",
+      "digitAria": "Chiffre {{n}}",
+      "submit": "Vérifier",
+      "errWrong": "Ce code n'a pas fonctionné. Réessayez.",
+      "errFull": "Saisissez le code complet à 6 chiffres.",
+      "errResend": "Impossible de renvoyer le code.",
+      "noticeSent": "Un nouveau code a été envoyé.",
+      "didntGet": "Vous ne l'avez pas reçu ?",
+      "resend": "Renvoyer le code",
+      "resendIn": "Renvoyer dans {{seconds}} s"
+    }
   }
 }

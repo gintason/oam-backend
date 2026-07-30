@@ -1,10 +1,12 @@
 import { type InputHTMLAttributes, forwardRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Field = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }
 >(({ label, error, id, type, ...props }, ref) => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const isPassword = type === "password";
   const inputType = isPassword ? (show ? "text" : "password") : type;
@@ -28,7 +30,7 @@ export const Field = forwardRef<
           <button
             type="button"
             onClick={() => setShow((v) => !v)}
-            aria-label={show ? "Hide password" : "Show password"}
+            aria-label={show ? t("auth.fields.hidePassword") : t("auth.fields.showPassword")}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted transition hover:text-ink"
           >
             {show ? <EyeOff size={17} strokeWidth={1.75} /> : <Eye size={17} strokeWidth={1.75} />}
@@ -129,14 +131,15 @@ function SocialButton({ label, children, onClick, busy, disabled }: {
   busy?: boolean;
   disabled?: boolean;
 }) {
+  const { t } = useTranslation();
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={`Continue with ${label}`}
+      aria-label={t("auth.fields.continueWith", { provider: label })}
       aria-busy={busy || undefined}
-      title={`Continue with ${label}`}
+      title={t("auth.fields.continueWith", { provider: label })}
       className="flex h-11 flex-1 items-center justify-center gap-2 rounded-[11px] border border-hairline bg-white text-[13px] font-medium text-ink transition hover:border-ink/20 hover:bg-mist disabled:cursor-not-allowed disabled:opacity-50"
     >
       {busy ? (
@@ -144,16 +147,17 @@ function SocialButton({ label, children, onClick, busy, disabled }: {
       ) : (
         children
       )}
-      <span className="hidden xs:inline">{busy ? "Opening…" : label}</span>
+      <span className="hidden xs:inline">{busy ? t("auth.fields.opening") : label}</span>
     </button>
   );
 }
 
-export function OrDivider({ label = "or continue with email" }: { label?: string }) {
+export function OrDivider({ label }: { label?: string }) {
+  const { t } = useTranslation();
   return (
     <div className="my-5 flex items-center gap-3">
       <div className="h-px flex-1 bg-hairline" />
-      <span className="text-[11px] font-medium text-muted">{label}</span>
+      <span className="text-[11px] font-medium text-muted">{label ?? t("auth.fields.orEmail")}</span>
       <div className="h-px flex-1 bg-hairline" />
     </div>
   );

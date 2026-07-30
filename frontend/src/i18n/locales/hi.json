@@ -696,5 +696,66 @@
     "amountPlaceholder": "राशि",
     "errEnterSweep": "स्वीप करने के लिए राशि दर्ज करें।",
     "sweep": "स्वीप"
+  },
+  "auth": {
+    "layout": {
+      "hero": "जो कुछ आपको चाहिए, एक ही बैलेंस में।",
+      "tagline": "बिल, मार्केटप्लेस, कारीगर, यात्रा और ट्रांसफ़र — सबके लिए एक सुरक्षित खाता।",
+      "badgeSecurity": "बैंक-स्तरीय सुरक्षा",
+      "badgeDelivery": "तुरंत डिलीवरी",
+      "developedBy": "AiTrend द्वारा विकसित",
+      "logoAlt": "OAM — सभी सेवाएँ। एक ऐप।"
+    },
+    "fields": {
+      "showPassword": "पासवर्ड दिखाएँ",
+      "hidePassword": "पासवर्ड छिपाएँ",
+      "continueWith": "{{provider}} के साथ जारी रखें",
+      "opening": "खुल रहा है…",
+      "orEmail": "या ईमेल से जारी रखें"
+    },
+    "signIn": {
+      "title": "वापसी पर स्वागत है",
+      "subtitle": "अपने खाते में जारी रखने के लिए साइन इन करें।",
+      "altPrompt": "OAM पर नए हैं?",
+      "altLabel": "खाता बनाएँ",
+      "identifierLabel": "ईमेल या फ़ोन",
+      "identifierPlaceholder": "you@example.com",
+      "passwordLabel": "पासवर्ड",
+      "passwordPlaceholder": "आपका पासवर्ड",
+      "forgot": "पासवर्ड भूल गए?",
+      "submit": "साइन इन",
+      "errFailed": "आपको साइन इन नहीं कर सके।"
+    },
+    "signUp": {
+      "title": "अपना खाता बनाएँ",
+      "subtitle": "जो कुछ आपको चाहिए, उसके लिए एक बैलेंस।",
+      "altPrompt": "पहले से खाता है?",
+      "altLabel": "साइन इन",
+      "firstNameLabel": "पहला नाम",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "ईमेल",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "पासवर्ड",
+      "passwordPlaceholder": "कम से कम 8 अक्षर",
+      "terms": "खाता बनाकर आप OAM की शर्तों और गोपनीयता नीति से सहमत होते हैं।",
+      "submit": "खाता बनाएँ",
+      "errFailed": "आपका खाता नहीं बना सके।"
+    },
+    "otp": {
+      "title": "अपना खाता सत्यापित करें",
+      "subtitleTo": "{{destination}} पर भेजा गया 6-अंकीय कोड दर्ज करें।",
+      "subtitleGeneric": "हमने आपको भेजा 6-अंकीय कोड दर्ज करें।",
+      "altPrompt": "गलत खाता?",
+      "altLabel": "साइन इन पर वापस",
+      "digitAria": "अंक {{n}}",
+      "submit": "सत्यापित करें",
+      "errWrong": "वह कोड काम नहीं आया। फिर कोशिश करें।",
+      "errFull": "पूरा 6-अंकीय कोड दर्ज करें।",
+      "errResend": "कोड फिर से नहीं भेज सके।",
+      "noticeSent": "एक नया कोड भेजा गया है।",
+      "didntGet": "नहीं मिला?",
+      "resend": "कोड फिर भेजें",
+      "resendIn": "{{seconds}}से में फिर भेजें"
+    }
   }
 }

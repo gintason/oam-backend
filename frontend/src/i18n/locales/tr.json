@@ -696,5 +696,66 @@
     "amountPlaceholder": "Tutar",
     "errEnterSweep": "Aktarılacak bir tutar girin.",
     "sweep": "Aktar"
+  },
+  "auth": {
+    "layout": {
+      "hero": "İhtiyacınız olan her şey, tek bakiyede.",
+      "tagline": "Faturalar, pazar yeri, ustalar, seyahat ve transferler — hepsi için tek güvenli hesap.",
+      "badgeSecurity": "Banka düzeyinde güvenlik",
+      "badgeDelivery": "Anında teslimat",
+      "developedBy": "AiTrend tarafından geliştirildi",
+      "logoAlt": "OAM — Tüm hizmetler. Tek uygulama."
+    },
+    "fields": {
+      "showPassword": "Şifreyi göster",
+      "hidePassword": "Şifreyi gizle",
+      "continueWith": "{{provider}} ile devam et",
+      "opening": "Açılıyor…",
+      "orEmail": "veya e-posta ile devam et"
+    },
+    "signIn": {
+      "title": "Tekrar hoş geldiniz",
+      "subtitle": "Hesabınıza devam etmek için giriş yapın.",
+      "altPrompt": "OAM'da yeni misiniz?",
+      "altLabel": "Hesap oluştur",
+      "identifierLabel": "E-posta veya telefon",
+      "identifierPlaceholder": "siz@ornek.com",
+      "passwordLabel": "Şifre",
+      "passwordPlaceholder": "Şifreniz",
+      "forgot": "Şifrenizi mi unuttunuz?",
+      "submit": "Giriş yap",
+      "errFailed": "Giriş yapılamadı."
+    },
+    "signUp": {
+      "title": "Hesabınızı oluşturun",
+      "subtitle": "İhtiyacınız olan her şey için tek bakiye.",
+      "altPrompt": "Zaten hesabınız var mı?",
+      "altLabel": "Giriş yap",
+      "firstNameLabel": "Ad",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "E-posta",
+      "emailPlaceholder": "siz@ornek.com",
+      "passwordLabel": "Şifre",
+      "passwordPlaceholder": "En az 8 karakter",
+      "terms": "Hesap oluşturarak OAM'ın Koşullarını ve Gizlilik Politikasını kabul edersiniz.",
+      "submit": "Hesap oluştur",
+      "errFailed": "Hesabınız oluşturulamadı."
+    },
+    "otp": {
+      "title": "Hesabınızı doğrulayın",
+      "subtitleTo": "{{destination}} adresine gönderilen 6 haneli kodu girin.",
+      "subtitleGeneric": "Size gönderdiğimiz 6 haneli kodu girin.",
+      "altPrompt": "Yanlış hesap mı?",
+      "altLabel": "Girişe dön",
+      "digitAria": "Hane {{n}}",
+      "submit": "Doğrula",
+      "errWrong": "Bu kod işe yaramadı. Tekrar deneyin.",
+      "errFull": "Tam 6 haneli kodu girin.",
+      "errResend": "Kod yeniden gönderilemedi.",
+      "noticeSent": "Yeni bir kod gönderildi.",
+      "didntGet": "Almadınız mı?",
+      "resend": "Kodu yeniden gönder",
+      "resendIn": "{{seconds}} sn sonra yeniden gönder"
+    }
   }
 }

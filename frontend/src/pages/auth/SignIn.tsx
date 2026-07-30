@@ -5,8 +5,10 @@ import { Field, SubmitButton, FormError } from "./fields";
 import { useAuth } from "../../auth/AuthContext";
 import { apiErrorMessage } from "../../lib/api";
 import { AxiosError } from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
+  const { t } = useTranslation();
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,7 +34,7 @@ export default function SignIn() {
         navigate("/verify", { state: { identifier: form.identifier.trim() } });
         return;
       }
-      setError(apiErrorMessage(err, "Could not sign you in."));
+      setError(apiErrorMessage(err, t("auth.signIn.errFailed")));
     } finally {
       setLoading(false);
     }
@@ -41,19 +43,19 @@ export default function SignIn() {
 
   return (
     <AuthLayout
-      title="Welcome back"
-      subtitle="Sign in to continue to your account."
-      altPrompt="New to OAM?"
+      title={t("auth.signIn.title")}
+      subtitle={t("auth.signIn.subtitle")}
+      altPrompt={t("auth.signIn.altPrompt")}
       altLink="/sign-up"
-      altLabel="Create an account"
+      altLabel={t("auth.signIn.altLabel")}
     >
 
       <form onSubmit={onSubmit} noValidate>
         <FormError message={error} />
         <Field
           id="identifier"
-          label="Email or phone"
-          placeholder="you@example.com"
+          label={t("auth.signIn.identifierLabel")}
+          placeholder={t("auth.signIn.identifierPlaceholder")}
           value={form.identifier}
           onChange={update("identifier")}
           autoComplete="username"
@@ -61,9 +63,9 @@ export default function SignIn() {
         />
         <Field
           id="password"
-          label="Password"
+          label={t("auth.signIn.passwordLabel")}
           type="password"
-          placeholder="Your password"
+          placeholder={t("auth.signIn.passwordPlaceholder")}
           value={form.password}
           onChange={update("password")}
           autoComplete="current-password"
@@ -71,10 +73,10 @@ export default function SignIn() {
         />
         <div className="mb-5 text-right">
           <Link to="/forgot-password" className="text-[12.5px] font-medium text-brand-green hover:underline">
-            Forgot password?
+            {t("auth.signIn.forgot")}
           </Link>
         </div>
-        <SubmitButton loading={loading}>Sign in</SubmitButton>
+        <SubmitButton loading={loading}>{t("auth.signIn.submit")}</SubmitButton>
       </form>
     </AuthLayout>
   );

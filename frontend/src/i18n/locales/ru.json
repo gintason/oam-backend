@@ -696,5 +696,66 @@
     "amountPlaceholder": "Сумма",
     "errEnterSweep": "Введите сумму для перевода.",
     "sweep": "Перевести"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Всё, что нужно, на одном балансе.",
+      "tagline": "Счета, маркетплейс, мастера, путешествия и переводы — один защищённый аккаунт для всего.",
+      "badgeSecurity": "Безопасность банковского уровня",
+      "badgeDelivery": "Мгновенная доставка",
+      "developedBy": "Разработано AiTrend",
+      "logoAlt": "OAM — Все услуги. Одно приложение."
+    },
+    "fields": {
+      "showPassword": "Показать пароль",
+      "hidePassword": "Скрыть пароль",
+      "continueWith": "Продолжить с {{provider}}",
+      "opening": "Открытие…",
+      "orEmail": "или продолжить по эл. почте"
+    },
+    "signIn": {
+      "title": "С возвращением",
+      "subtitle": "Войдите, чтобы продолжить в свой аккаунт.",
+      "altPrompt": "Впервые в OAM?",
+      "altLabel": "Создать аккаунт",
+      "identifierLabel": "Эл. почта или телефон",
+      "identifierPlaceholder": "you@example.com",
+      "passwordLabel": "Пароль",
+      "passwordPlaceholder": "Ваш пароль",
+      "forgot": "Забыли пароль?",
+      "submit": "Войти",
+      "errFailed": "Не удалось выполнить вход."
+    },
+    "signUp": {
+      "title": "Создайте аккаунт",
+      "subtitle": "Один баланс для всего, что вам нужно.",
+      "altPrompt": "Уже есть аккаунт?",
+      "altLabel": "Войти",
+      "firstNameLabel": "Имя",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Эл. почта",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Пароль",
+      "passwordPlaceholder": "Не менее 8 символов",
+      "terms": "Создавая аккаунт, вы соглашаетесь с Условиями и Политикой конфиденциальности OAM.",
+      "submit": "Создать аккаунт",
+      "errFailed": "Не удалось создать аккаунт."
+    },
+    "otp": {
+      "title": "Подтвердите аккаунт",
+      "subtitleTo": "Введите 6-значный код, отправленный на {{destination}}.",
+      "subtitleGeneric": "Введите 6-значный код, который мы вам отправили.",
+      "altPrompt": "Не тот аккаунт?",
+      "altLabel": "Назад ко входу",
+      "digitAria": "Цифра {{n}}",
+      "submit": "Подтвердить",
+      "errWrong": "Этот код не подошёл. Повторите попытку.",
+      "errFull": "Введите полный 6-значный код.",
+      "errResend": "Не удалось повторно отправить код.",
+      "noticeSent": "Новый код отправлен.",
+      "didntGet": "Не получили?",
+      "resend": "Отправить код повторно",
+      "resendIn": "Повторно через {{seconds}} с"
+    }
   }
 }

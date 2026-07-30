@@ -696,5 +696,66 @@
     "amountPlaceholder": "المبلغ",
     "errEnterSweep": "أدخِل مبلغًا للتحويل.",
     "sweep": "تحويل"
+  },
+  "auth": {
+    "layout": {
+      "hero": "كل ما تحتاجه، في رصيد واحد.",
+      "tagline": "الفواتير والسوق والحرفيون والسفر والتحويلات — حساب آمن واحد لكل شيء.",
+      "badgeSecurity": "أمان بمستوى البنوك",
+      "badgeDelivery": "تسليم فوري",
+      "developedBy": "تطوير AiTrend",
+      "logoAlt": "OAM — جميع الخدمات. تطبيق واحد."
+    },
+    "fields": {
+      "showPassword": "إظهار كلمة المرور",
+      "hidePassword": "إخفاء كلمة المرور",
+      "continueWith": "المتابعة عبر {{provider}}",
+      "opening": "جارٍ الفتح…",
+      "orEmail": "أو المتابعة بالبريد الإلكتروني"
+    },
+    "signIn": {
+      "title": "مرحبًا بعودتك",
+      "subtitle": "سجّل الدخول للمتابعة إلى حسابك.",
+      "altPrompt": "جديد على OAM؟",
+      "altLabel": "إنشاء حساب",
+      "identifierLabel": "البريد أو الهاتف",
+      "identifierPlaceholder": "you@example.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "كلمة المرور الخاصة بك",
+      "forgot": "نسيت كلمة المرور؟",
+      "submit": "تسجيل الدخول",
+      "errFailed": "تعذّر تسجيل دخولك."
+    },
+    "signUp": {
+      "title": "أنشئ حسابك",
+      "subtitle": "رصيد واحد لكل ما تحتاجه.",
+      "altPrompt": "لديك حساب بالفعل؟",
+      "altLabel": "تسجيل الدخول",
+      "firstNameLabel": "الاسم الأول",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "8 أحرف على الأقل",
+      "terms": "بإنشاء حساب فإنك توافق على شروط OAM وسياسة الخصوصية.",
+      "submit": "إنشاء حساب",
+      "errFailed": "تعذّر إنشاء حسابك."
+    },
+    "otp": {
+      "title": "وثّق حسابك",
+      "subtitleTo": "أدخِل الرمز المكوّن من 6 أرقام المرسَل إلى {{destination}}.",
+      "subtitleGeneric": "أدخِل الرمز المكوّن من 6 أرقام الذي أرسلناه إليك.",
+      "altPrompt": "حساب خاطئ؟",
+      "altLabel": "العودة إلى تسجيل الدخول",
+      "digitAria": "الرقم {{n}}",
+      "submit": "تحقّق",
+      "errWrong": "لم ينجح هذا الرمز. حاول مرة أخرى.",
+      "errFull": "أدخِل الرمز الكامل المكوّن من 6 أرقام.",
+      "errResend": "تعذّر إعادة إرسال الرمز.",
+      "noticeSent": "تم إرسال رمز جديد.",
+      "didntGet": "لم يصلك؟",
+      "resend": "إعادة إرسال الرمز",
+      "resendIn": "إعادة الإرسال خلال {{seconds}} ث"
+    }
   }
 }

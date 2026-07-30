@@ -696,5 +696,66 @@
     "amountPlaceholder": "Kwota",
     "errEnterSweep": "Wpisz kwotę do przeniesienia.",
     "sweep": "Przenieś"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Wszystko, czego potrzebujesz, na jednym saldzie.",
+      "tagline": "Rachunki, marketplace, rzemieślnicy, podróże i przelewy — jedno bezpieczne konto do wszystkiego.",
+      "badgeSecurity": "Bezpieczeństwo na poziomie bankowym",
+      "badgeDelivery": "Natychmiastowa dostawa",
+      "developedBy": "Opracowane przez AiTrend",
+      "logoAlt": "OAM — Wszystkie usługi. Jedna aplikacja."
+    },
+    "fields": {
+      "showPassword": "Pokaż hasło",
+      "hidePassword": "Ukryj hasło",
+      "continueWith": "Kontynuuj z {{provider}}",
+      "opening": "Otwieranie…",
+      "orEmail": "lub kontynuuj przez e-mail"
+    },
+    "signIn": {
+      "title": "Witamy ponownie",
+      "subtitle": "Zaloguj się, aby przejść do swojego konta.",
+      "altPrompt": "Nowy w OAM?",
+      "altLabel": "Utwórz konto",
+      "identifierLabel": "E-mail lub telefon",
+      "identifierPlaceholder": "ty@przyklad.com",
+      "passwordLabel": "Hasło",
+      "passwordPlaceholder": "Twoje hasło",
+      "forgot": "Nie pamiętasz hasła?",
+      "submit": "Zaloguj się",
+      "errFailed": "Nie udało się zalogować."
+    },
+    "signUp": {
+      "title": "Utwórz konto",
+      "subtitle": "Jedno saldo na wszystko, czego potrzebujesz.",
+      "altPrompt": "Masz już konto?",
+      "altLabel": "Zaloguj się",
+      "firstNameLabel": "Imię",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "ty@przyklad.com",
+      "passwordLabel": "Hasło",
+      "passwordPlaceholder": "Co najmniej 8 znaków",
+      "terms": "Tworząc konto, akceptujesz Regulamin i Politykę prywatności OAM.",
+      "submit": "Utwórz konto",
+      "errFailed": "Nie udało się utworzyć konta."
+    },
+    "otp": {
+      "title": "Zweryfikuj konto",
+      "subtitleTo": "Wpisz 6-cyfrowy kod wysłany na {{destination}}.",
+      "subtitleGeneric": "Wpisz 6-cyfrowy kod, który wysłaliśmy.",
+      "altPrompt": "Złe konto?",
+      "altLabel": "Wróć do logowania",
+      "digitAria": "Cyfra {{n}}",
+      "submit": "Zweryfikuj",
+      "errWrong": "Ten kod nie zadziałał. Spróbuj ponownie.",
+      "errFull": "Wpisz pełny 6-cyfrowy kod.",
+      "errResend": "Nie udało się wysłać kodu ponownie.",
+      "noticeSent": "Wysłano nowy kod.",
+      "didntGet": "Nie otrzymałeś?",
+      "resend": "Wyślij kod ponownie",
+      "resendIn": "Ponów za {{seconds}} s"
+    }
   }
 }

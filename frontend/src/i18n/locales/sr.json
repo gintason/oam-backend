@@ -696,5 +696,66 @@
     "amountPlaceholder": "Износ",
     "errEnterSweep": "Унесите износ за пренос.",
     "sweep": "Пренеси"
+  },
+  "auth": {
+    "layout": {
+      "hero": "Све што вам треба, на једном стању.",
+      "tagline": "Рачуни, пијаца, мајстори, путовања и преноси — један безбедан налог за све.",
+      "badgeSecurity": "Безбедност на банкарском нивоу",
+      "badgeDelivery": "Тренутна испорука",
+      "developedBy": "Развио AiTrend",
+      "logoAlt": "OAM — Све услуге. Једна апликација."
+    },
+    "fields": {
+      "showPassword": "Прикажи лозинку",
+      "hidePassword": "Сакриј лозинку",
+      "continueWith": "Настави са {{provider}}",
+      "opening": "Отварање…",
+      "orEmail": "или наставите имејлом"
+    },
+    "signIn": {
+      "title": "Добро дошли назад",
+      "subtitle": "Пријавите се да наставите на свој налог.",
+      "altPrompt": "Нови сте на OAM?",
+      "altLabel": "Направи налог",
+      "identifierLabel": "Имејл или телефон",
+      "identifierPlaceholder": "vi@primer.com",
+      "passwordLabel": "Лозинка",
+      "passwordPlaceholder": "Ваша лозинка",
+      "forgot": "Заборавили сте лозинку?",
+      "submit": "Пријави се",
+      "errFailed": "Није могуће пријавити вас."
+    },
+    "signUp": {
+      "title": "Направите налог",
+      "subtitle": "Једно стање за све што вам треба.",
+      "altPrompt": "Већ имате налог?",
+      "altLabel": "Пријави се",
+      "firstNameLabel": "Име",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "Имејл",
+      "emailPlaceholder": "vi@primer.com",
+      "passwordLabel": "Лозинка",
+      "passwordPlaceholder": "Најмање 8 знакова",
+      "terms": "Прављењем налога прихватате Услове и Политику приватности OAM.",
+      "submit": "Направи налог",
+      "errFailed": "Није могуће направити ваш налог."
+    },
+    "otp": {
+      "title": "Верификујте налог",
+      "subtitleTo": "Унесите 6-цифрени код послат на {{destination}}.",
+      "subtitleGeneric": "Унесите 6-цифрени код који смо вам послали.",
+      "altPrompt": "Погрешан налог?",
+      "altLabel": "Назад на пријаву",
+      "digitAria": "Цифра {{n}}",
+      "submit": "Верификуј",
+      "errWrong": "Тај код није радио. Покушајте поново.",
+      "errFull": "Унесите цео 6-цифрени код.",
+      "errResend": "Није могуће поново послати код.",
+      "noticeSent": "Послат је нови код.",
+      "didntGet": "Нисте га добили?",
+      "resend": "Поново пошаљи код",
+      "resendIn": "Поново за {{seconds}} с"
+    }
   }
 }

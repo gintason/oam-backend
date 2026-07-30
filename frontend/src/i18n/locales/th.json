@@ -696,5 +696,66 @@
     "amountPlaceholder": "จำนวน",
     "errEnterSweep": "กรอกจำนวนที่จะกวาด",
     "sweep": "กวาด"
+  },
+  "auth": {
+    "layout": {
+      "hero": "ทุกสิ่งที่คุณต้องการ ในยอดเดียว",
+      "tagline": "บิล ตลาด ช่างฝีมือ การเดินทาง และการโอน — บัญชีปลอดภัยเดียวสำหรับทุกอย่าง",
+      "badgeSecurity": "ความปลอดภัยระดับธนาคาร",
+      "badgeDelivery": "ส่งมอบทันที",
+      "developedBy": "พัฒนาโดย AiTrend",
+      "logoAlt": "OAM — ทุกบริการ แอปเดียว"
+    },
+    "fields": {
+      "showPassword": "แสดงรหัสผ่าน",
+      "hidePassword": "ซ่อนรหัสผ่าน",
+      "continueWith": "ดำเนินการต่อด้วย {{provider}}",
+      "opening": "กำลังเปิด…",
+      "orEmail": "หรือดำเนินการต่อด้วยอีเมล"
+    },
+    "signIn": {
+      "title": "ยินดีต้อนรับกลับ",
+      "subtitle": "ลงชื่อเข้าใช้เพื่อไปยังบัญชีของคุณ",
+      "altPrompt": "เพิ่งเริ่มใช้ OAM?",
+      "altLabel": "สร้างบัญชี",
+      "identifierLabel": "อีเมลหรือโทรศัพท์",
+      "identifierPlaceholder": "you@example.com",
+      "passwordLabel": "รหัสผ่าน",
+      "passwordPlaceholder": "รหัสผ่านของคุณ",
+      "forgot": "ลืมรหัสผ่าน?",
+      "submit": "ลงชื่อเข้าใช้",
+      "errFailed": "ไม่สามารถลงชื่อเข้าใช้ได้"
+    },
+    "signUp": {
+      "title": "สร้างบัญชีของคุณ",
+      "subtitle": "ยอดเดียวสำหรับทุกสิ่งที่คุณต้องการ",
+      "altPrompt": "มีบัญชีอยู่แล้ว?",
+      "altLabel": "ลงชื่อเข้าใช้",
+      "firstNameLabel": "ชื่อ",
+      "firstNamePlaceholder": "Preye",
+      "emailLabel": "อีเมล",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "รหัสผ่าน",
+      "passwordPlaceholder": "อย่างน้อย 8 ตัวอักษร",
+      "terms": "การสร้างบัญชีถือว่าคุณยอมรับข้อกำหนดและนโยบายความเป็นส่วนตัวของ OAM",
+      "submit": "สร้างบัญชี",
+      "errFailed": "ไม่สามารถสร้างบัญชีของคุณได้"
+    },
+    "otp": {
+      "title": "ยืนยันบัญชีของคุณ",
+      "subtitleTo": "กรอกรหัส 6 หลักที่ส่งไปยัง {{destination}}",
+      "subtitleGeneric": "กรอกรหัส 6 หลักที่เราส่งให้คุณ",
+      "altPrompt": "บัญชีผิด?",
+      "altLabel": "กลับไปลงชื่อเข้าใช้",
+      "digitAria": "หลักที่ {{n}}",
+      "submit": "ยืนยัน",
+      "errWrong": "รหัสนั้นใช้ไม่ได้ ลองอีกครั้ง",
+      "errFull": "กรอกรหัส 6 หลักให้ครบ",
+      "errResend": "ไม่สามารถส่งรหัสอีกครั้งได้",
+      "noticeSent": "ส่งรหัสใหม่แล้ว",
+      "didntGet": "ไม่ได้รับ?",
+      "resend": "ส่งรหัสอีกครั้ง",
+      "resendIn": "ส่งอีกครั้งใน {{seconds}} วิ"
+    }
   }
 }
