@@ -970,5 +970,119 @@
       "sendAria": "Send",
       "safetyNote": "Keep payments and details on OAM. Never send money outside the app."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Travel",
+      "subtitle": "Flights, hotels, cars and transfers worldwide — searched across trusted partners.",
+      "guide": "Guide",
+      "svc": {
+        "flights": {
+          "title": "Flights",
+          "text": "Compare hundreds of airlines and agencies on one search."
+        },
+        "carhire": {
+          "title": "Car hire",
+          "text": "Rent a car — self-drive or with a driver — at thousands of locations."
+        },
+        "pickup": {
+          "title": "Airport pick-up",
+          "text": "A driver waiting when you land, at a price fixed before you fly."
+        },
+        "hotels": {
+          "title": "Hotels",
+          "text": "Stays in over 100 countries, with instant confirmation."
+        },
+        "giftcards": {
+          "title": "Gift cards",
+          "text": "Gaming, streaming and retail codes from sellers worldwide."
+        }
+      },
+      "howTitle": "How booking works",
+      "howBody": "OAM searches trusted travel partners rather than holding seats or rooms itself. You fill in your trip here, we carry those details across, and you complete payment securely with the partner — so you get their full inventory, their prices and their customer protection, with nothing extra added on top.",
+      "mechTitle": "Need a mechanic instead?",
+      "mechBody": "For roadside help and vehicle repairs, browse verified artisans near you.",
+      "mechLink": "Find artisans"
+    },
+    "carhire": {
+      "errOpen": "Couldn't open car hire search.",
+      "back": "Travel",
+      "title": "Car hire",
+      "subtitle": "Rent a car at thousands of locations.",
+      "locationLabel": "Pick-up location",
+      "locationPlaceholder": "City or airport",
+      "pickupDate": "Pick-up date",
+      "dropoffDate": "Drop-off date",
+      "search": "Search cars",
+      "partnerNote": "Opens with our partner to complete booking.",
+      "tipsTitle": "Renting in Nigeria",
+      "tip1Label": "Chauffeur-driven is the norm.",
+      "tip1Body": "Many Nigerian rentals include a driver — often easier than self-drive if you don't know the roads.",
+      "tip2Label": "Confirm what's included:",
+      "tip2Body": "fuel policy, driver's allowance, and whether trips outside the city cost extra.",
+      "tip3Label": "Self-drive usually needs",
+      "tip3Body": "a valid licence (an international permit if you're visiting), a deposit, and sometimes a guarantor.",
+      "tip4Label": "Photograph the car before and after.",
+      "tip4Body": "It settles any dispute over existing scratches."
+    },
+    "pickup": {
+      "errOpen": "Couldn't open transfer search.",
+      "back": "Travel",
+      "title": "Airport pick-up",
+      "subtitle": "A driver waiting when you land, at a fixed price.",
+      "arrivingLabel": "Arriving at",
+      "goingLabel": "Going to",
+      "goingPlaceholder": "Hotel, address or area",
+      "arrivalDate": "Arrival date",
+      "passengersLabel": "Passengers",
+      "passengerOne": "{{count}} passenger",
+      "passengerOther": "{{count}} passengers",
+      "search": "Find a transfer",
+      "partnerNote": "Opens with our partner to confirm your driver.",
+      "tipsTitle": "Why pre-book",
+      "tip1Label": "The price is fixed before you land",
+      "tip1Body": "— no negotiating at arrivals after a long flight.",
+      "tip2Label": "Your driver tracks the flight",
+      "tip2Body": ", so a delay doesn't leave you stranded.",
+      "tip3Label": "Give your flight number",
+      "tip3Body": "when booking, and share your driver's details with someone at home.",
+      "tip4Label": "Lagos traffic is unpredictable.",
+      "tip4Body": "Allow generous time for the return trip to the airport."
+    },
+    "flights": {
+      "errOpen": "Couldn't open flight search.",
+      "back": "Travel",
+      "title": "Find flights",
+      "subtitle": "Compare hundreds of airlines and agencies.",
+      "roundTrip": "Round trip",
+      "oneWay": "One way",
+      "from": "From",
+      "to": "To",
+      "swap": "Swap",
+      "departing": "Departing",
+      "returning": "Returning",
+      "passengers": "Passengers",
+      "adultOne": "{{count}} adult",
+      "adultOther": "{{count}} adults",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} non-stop",
+      "comparePrices": "Compare prices",
+      "compareFares": "Compare fares from hundreds of airlines and travel agencies.",
+      "secureSearch": "Secure search",
+      "newTab": "Opens in a new tab",
+      "poweredBy": "Powered by Aviasales",
+      "popularRoutes": "Popular routes",
+      "exploreDest": "Explore destinations",
+      "beforeBook": "Before you book",
+      "tip1Label": "Name must match your passport.",
+      "tip1Body": "Airlines charge to correct names, and some won't allow changes at all.",
+      "tip2Label": "Check visa and transit rules early.",
+      "tip2Body": "Some connections need a transit visa even if you never leave the airport.",
+      "tip3Label": "Lagos and Abuja have separate domestic and international terminals.",
+      "tip3Body": "Allow extra time if you're connecting between them.",
+      "tip4Label": "Mid-week departures are usually cheaper",
+      "tip4Body": "than Friday and Sunday, and prices tend to climb closer to departure.",
+      "tip5Label": "Confirm baggage allowance",
+      "tip5Body": "before paying — the cheapest fare often excludes checked bags."
+    }
   }
 }

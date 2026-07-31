@@ -970,5 +970,119 @@
       "sendAria": "Odeslat",
       "safetyNote": "Platby a údaje řešte na OAM. Nikdy neposílejte peníze mimo aplikaci."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Cestování",
+      "subtitle": "Lety, hotely, auta a transfery po celém světě — vyhledávané u důvěryhodných partnerů.",
+      "guide": "Průvodce",
+      "svc": {
+        "flights": {
+          "title": "Lety",
+          "text": "Porovnejte stovky aerolinek a agentur v jednom hledání."
+        },
+        "carhire": {
+          "title": "Půjčovna aut",
+          "text": "Půjčte si auto — s řidičem nebo bez — na tisících míst."
+        },
+        "pickup": {
+          "title": "Transfer z letiště",
+          "text": "Řidič čekající po přistání, za cenu stanovenou před odletem."
+        },
+        "hotels": {
+          "title": "Hotely",
+          "text": "Pobyty ve více než 100 zemích s okamžitým potvrzením."
+        },
+        "giftcards": {
+          "title": "Dárkové karty",
+          "text": "Kódy pro hry, streamování a nákupy od prodejců po celém světě."
+        }
+      },
+      "howTitle": "Jak funguje rezervace",
+      "howBody": "OAM hledá u důvěryhodných cestovních partnerů, místo aby sama držela místa nebo pokoje. Vyplníte zde svou cestu, my ty údaje předáme a platbu bezpečně dokončíte u partnera — získáte tak celou jejich nabídku, jejich ceny a jejich ochranu zákazníka, bez čehokoli navíc.",
+      "mechTitle": "Potřebujete raději mechanika?",
+      "mechBody": "Pro pomoc na cestě a opravy vozidel projděte ověřené řemeslníky ve vašem okolí.",
+      "mechLink": "Najít řemeslníky"
+    },
+    "carhire": {
+      "errOpen": "Vyhledávání půjčovny se nepodařilo otevřít.",
+      "back": "Cestování",
+      "title": "Půjčovna aut",
+      "subtitle": "Půjčte si auto na tisících míst.",
+      "locationLabel": "Místo vyzvednutí",
+      "locationPlaceholder": "Město nebo letiště",
+      "pickupDate": "Datum vyzvednutí",
+      "dropoffDate": "Datum vrácení",
+      "search": "Hledat auta",
+      "partnerNote": "Otevře se u našeho partnera pro dokončení rezervace.",
+      "tipsTitle": "Půjčování v Nigérii",
+      "tip1Label": "S řidičem je to běžné.",
+      "tip1Body": "Mnoho nigerijských půjčoven zahrnuje řidiče — často snazší než řídit sami, pokud neznáte cesty.",
+      "tip2Label": "Ověřte, co je zahrnuto:",
+      "tip2Body": "palivová politika, diety řidiče a zda cesty mimo město stojí navíc.",
+      "tip3Label": "Samostatné řízení obvykle vyžaduje",
+      "tip3Body": "platný řidičský průkaz (mezinárodní, pokud jste na návštěvě), zálohu a někdy ručitele.",
+      "tip4Label": "Vyfotografujte auto před a po.",
+      "tip4Body": "Vyřeší to jakýkoli spor o stávající škrábance."
+    },
+    "pickup": {
+      "errOpen": "Vyhledávání transferu se nepodařilo otevřít.",
+      "back": "Cestování",
+      "title": "Transfer z letiště",
+      "subtitle": "Řidič čekající po přistání, za pevnou cenu.",
+      "arrivingLabel": "Přílet na",
+      "goingLabel": "Kam",
+      "goingPlaceholder": "Hotel, adresa nebo oblast",
+      "arrivalDate": "Datum příletu",
+      "passengersLabel": "Cestující",
+      "passengerOne": "{{count}} cestující",
+      "passengerOther": "{{count}} cestujících",
+      "search": "Najít transfer",
+      "partnerNote": "Otevře se u našeho partnera pro potvrzení řidiče.",
+      "tipsTitle": "Proč rezervovat předem",
+      "tip1Label": "Cena je stanovena před přistáním",
+      "tip1Body": " — žádné vyjednávání na příletech po dlouhém letu.",
+      "tip2Label": "Váš řidič sleduje let",
+      "tip2Body": ", takže zpoždění vás nenechá na holičkách.",
+      "tip3Label": "Uveďte číslo letu",
+      "tip3Body": "při rezervaci a sdílejte údaje o řidiči s někým doma.",
+      "tip4Label": "Doprava v Lagosu je nepředvídatelná.",
+      "tip4Body": "Nechte si dost času na zpáteční cestu na letiště."
+    },
+    "flights": {
+      "errOpen": "Vyhledávání letů se nepodařilo otevřít.",
+      "back": "Cestování",
+      "title": "Najít lety",
+      "subtitle": "Porovnejte stovky aerolinek a agentur.",
+      "roundTrip": "Zpáteční",
+      "oneWay": "Jednosměrná",
+      "from": "Odkud",
+      "to": "Kam",
+      "swap": "Prohodit",
+      "departing": "Odlet",
+      "returning": "Návrat",
+      "passengers": "Cestující",
+      "adultOne": "{{count}} dospělý",
+      "adultOther": "{{count}} dospělých",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} bez mezipřistání",
+      "comparePrices": "Porovnat ceny",
+      "compareFares": "Porovnejte ceny stovek aerolinek a cestovních agentur.",
+      "secureSearch": "Bezpečné vyhledávání",
+      "newTab": "Otevře se na nové kartě",
+      "poweredBy": "Využívá Aviasales",
+      "popularRoutes": "Oblíbené trasy",
+      "exploreDest": "Objevovat destinace",
+      "beforeBook": "Než si zarezervujete",
+      "tip1Label": "Jméno musí odpovídat vašemu pasu.",
+      "tip1Body": "Aerolinky si za opravu jmen účtují a některé změny vůbec nepovolí.",
+      "tip2Label": "Zkontrolujte včas vízová a tranzitní pravidla.",
+      "tip2Body": "Některé přestupy vyžadují tranzitní vízum, i když letiště nikdy neopustíte.",
+      "tip3Label": "Lagos a Abuja mají oddělené vnitrostátní a mezinárodní terminály.",
+      "tip3Body": "Počítejte s časem navíc, pokud mezi nimi přestupujete.",
+      "tip4Label": "Odlety uprostřed týdne bývají levnější",
+      "tip4Body": "než v pátek a v neděli a ceny obvykle stoupají blíže k odletu.",
+      "tip5Label": "Potvrďte váhový limit zavazadel",
+      "tip5Body": "před zaplacením — nejlevnější tarif často nezahrnuje odbavená zavazadla."
+    }
   }
 }

@@ -970,5 +970,119 @@
       "sendAria": "Aika",
       "safetyNote": "Ka riƙe biyan kuɗi da bayanai a OAM. Kada ka taɓa aika kuɗi a wajen manhaja."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Tafiye-tafiye",
+      "subtitle": "Jiragen sama, otal-otal, motoci da jigilar mutane a duniya — ana nema daga abokan haɗin gwiwa amintattu.",
+      "guide": "Jagora",
+      "svc": {
+        "flights": {
+          "title": "Jiragen sama",
+          "text": "Kwatanta ɗaruruwan kamfanonin jirgi da hukumomi a nema ɗaya."
+        },
+        "carhire": {
+          "title": "Hayar mota",
+          "text": "Yi hayar mota — ka tuƙa da kanka ko da direba — a wurare dubbai."
+        },
+        "pickup": {
+          "title": "Ɗauka daga filin jirgi",
+          "text": "Direba na jira lokacin da ka sauka, a farashin da aka daidaita kafin ka tashi."
+        },
+        "hotels": {
+          "title": "Otal-otal",
+          "text": "Zama a ƙasashe sama da 100, tare da tabbatarwa nan take."
+        },
+        "giftcards": {
+          "title": "Katunan kyauta",
+          "text": "Lambobin wasanni, yawo da sayayya daga masu sayarwa a duniya."
+        }
+      },
+      "howTitle": "Yadda ajiya ke aiki",
+      "howBody": "OAM na nema daga abokan haɗin gwiwar tafiye-tafiye amintattu maimakon riƙe wuraren zama ko ɗakuna da kansa. Kana cika tafiyar ka a nan, muna ɗaukar waɗannan bayanai, kuma kana kammala biya cikin aminci tare da abokin haɗin gwiwa — don haka kana samun cikakken kayansu, farashinsu da kariyar abokan cinikinsu, ba tare da ƙari a sama ba.",
+      "mechTitle": "Kana buƙatar makanike a maimako?",
+      "mechBody": "Don taimako a hanya da gyaran mota, duba masu sana'a tabbatattu kusa da kai.",
+      "mechLink": "Nemo masu sana'a"
+    },
+    "carhire": {
+      "errOpen": "An kasa buɗe binciken hayar mota.",
+      "back": "Tafiye-tafiye",
+      "title": "Hayar mota",
+      "subtitle": "Yi hayar mota a wurare dubbai.",
+      "locationLabel": "Wurin ɗauka",
+      "locationPlaceholder": "Birni ko filin jirgi",
+      "pickupDate": "Ranar ɗauka",
+      "dropoffDate": "Ranar mayarwa",
+      "search": "Nemo motoci",
+      "partnerNote": "Yana buɗewa tare da abokin haɗin gwiwarmu don kammala ajiya.",
+      "tipsTitle": "Hayar mota a Najeriya",
+      "tip1Label": "Da direba shine al'ada.",
+      "tip1Body": "Yawancin hayar mota a Najeriya sun haɗa da direba — sau da yawa ya fi sauƙi fiye da tuƙi da kanka idan ba ka san hanyoyi ba.",
+      "tip2Label": "Tabbatar da abin da aka haɗa:",
+      "tip2Body": "manufar mai, alawus na direba, da ko tafiye-tafiye wajen birni suna biyan ƙari.",
+      "tip3Label": "Tuƙi da kanka yawanci na buƙatar",
+      "tip3Body": "lasisi mai inganci (izinin ƙasa da ƙasa idan kana ziyara), ajiya, kuma wani lokaci lamuni.",
+      "tip4Label": "Ɗauki hoton mota kafin da bayan.",
+      "tip4Body": "Yana warware duk wata takaddama kan tsaguwa da ke akwai."
+    },
+    "pickup": {
+      "errOpen": "An kasa buɗe binciken jigila.",
+      "back": "Tafiye-tafiye",
+      "title": "Ɗauka daga filin jirgi",
+      "subtitle": "Direba na jira lokacin da ka sauka, a farashi ƙayyadadde.",
+      "arrivingLabel": "Ana zuwa",
+      "goingLabel": "Za a je",
+      "goingPlaceholder": "Otal, adireshi ko yanki",
+      "arrivalDate": "Ranar isowa",
+      "passengersLabel": "Fasinjoji",
+      "passengerOne": "fasinja {{count}}",
+      "passengerOther": "fasinjoji {{count}}",
+      "search": "Nemo jigila",
+      "partnerNote": "Yana buɗewa tare da abokin haɗin gwiwarmu don tabbatar da direban ka.",
+      "tipsTitle": "Me ya sa za a yi ajiya da wuri",
+      "tip1Label": "An ƙayyade farashin kafin ka sauka",
+      "tip1Body": " — babu ciniki a wurin isowa bayan dogon tafiya.",
+      "tip2Label": "Direban ka na bin diddigin jirgi",
+      "tip2Body": ", don haka jinkiri ba zai bar ka a makale ba.",
+      "tip3Label": "Ba da lambar jirgin ka",
+      "tip3Body": "lokacin ajiya, kuma raba bayanan direban ka da wani a gida.",
+      "tip4Label": "Cunkoson Legas ba a iya hasashe.",
+      "tip4Body": "Ka bar isasshen lokaci don komawa filin jirgi."
+    },
+    "flights": {
+      "errOpen": "An kasa buɗe binciken jirgin sama.",
+      "back": "Tafiya",
+      "title": "Nemo jirgin sama",
+      "subtitle": "Kwatanta ɗaruruwan kamfanonin jirgi da hukumomi.",
+      "roundTrip": "Zuwa da dawowa",
+      "oneWay": "Hanya ɗaya",
+      "from": "Daga",
+      "to": "Zuwa",
+      "swap": "Musanya",
+      "departing": "Tashi",
+      "returning": "Dawowa",
+      "passengers": "Fasinjoji",
+      "adultOne": "babba {{count}}",
+      "adultOther": "manya {{count}}",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} ba tsayawa",
+      "comparePrices": "Kwatanta farashi",
+      "compareFares": "Kwatanta kuɗin fito daga ɗaruruwan kamfanonin jirgi da hukumomin tafiya.",
+      "secureSearch": "Bincike mai tsaro",
+      "newTab": "Yana buɗewa a sabon shafi",
+      "poweredBy": "Aviasales ne ke tallafawa",
+      "popularRoutes": "Shahararrun hanyoyi",
+      "exploreDest": "Bincika wuraren zuwa",
+      "beforeBook": "Kafin ka yi ajiya",
+      "tip1Label": "Suna dole ya yi daidai da fasfo ɗinka.",
+      "tip1Body": "Kamfanonin jirgi suna caji don gyara sunaye, kuma wasu ba sa ba da damar canji ko kaɗan.",
+      "tip2Label": "Duba dokokin biza da wucewa da wuri.",
+      "tip2Body": "Wasu haɗe-haɗe suna buƙatar bizar wucewa ko da ba ka taɓa fita filin jirgi ba.",
+      "tip3Label": "Legas da Abuja suna da tashoshin cikin gida da na ƙasashen waje daban.",
+      "tip3Body": "Ka ba da ƙarin lokaci idan kana haɗawa tsakaninsu.",
+      "tip4Label": "Tashin tsakiyar mako yawanci ya fi arha",
+      "tip4Body": "fiye da Jumma'a da Lahadi, kuma farashi na ƙara hawa yayin da ranar tashi ke gabatowa.",
+      "tip5Label": "Tabbatar da adadin kaya",
+      "tip5Body": "kafin biya — farashin da ya fi arha sau da yawa ba ya haɗa da kayan da aka ajiye."
+    }
   }
 }

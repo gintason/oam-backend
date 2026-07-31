@@ -970,5 +970,119 @@
       "sendAria": "Gönder",
       "safetyNote": "Ödemeleri ve ayrıntıları OAM'da tutun. Uygulama dışında asla para göndermeyin."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Seyahat",
+      "subtitle": "Dünya genelinde uçuşlar, oteller, arabalar ve transferler — güvenilir ortaklarda arandı.",
+      "guide": "Rehber",
+      "svc": {
+        "flights": {
+          "title": "Uçuşlar",
+          "text": "Tek aramada yüzlerce havayolu ve acenteyi karşılaştırın."
+        },
+        "carhire": {
+          "title": "Araç kiralama",
+          "text": "Binlerce lokasyonda araç kiralayın — kendiniz sürün ya da şoförlü."
+        },
+        "pickup": {
+          "title": "Havalimanı transferi",
+          "text": "İndiğinizde bekleyen bir şoför, uçmadan önce sabitlenen bir fiyata."
+        },
+        "hotels": {
+          "title": "Oteller",
+          "text": "100'den fazla ülkede anında onaylı konaklamalar."
+        },
+        "giftcards": {
+          "title": "Hediye kartları",
+          "text": "Dünya genelindeki satıcılardan oyun, yayın ve alışveriş kodları."
+        }
+      },
+      "howTitle": "Rezervasyon nasıl işler",
+      "howBody": "OAM, koltuk veya oda tutmak yerine güvenilir seyahat ortaklarında arar. Seyahatinizi burada girersiniz, bu bilgileri aktarırız ve ödemeyi ortakta güvenle tamamlarsınız — böylece tüm envanterlerini, fiyatlarını ve müşteri korumalarını, üstüne hiçbir ek olmadan alırsınız.",
+      "mechTitle": "Onun yerine tamirci mi lazım?",
+      "mechBody": "Yol yardımı ve araç onarımı için yakınınızdaki doğrulanmış ustalara göz atın.",
+      "mechLink": "Usta bul"
+    },
+    "carhire": {
+      "errOpen": "Araç kiralama araması açılamadı.",
+      "back": "Seyahat",
+      "title": "Araç kiralama",
+      "subtitle": "Binlerce lokasyonda araç kiralayın.",
+      "locationLabel": "Teslim alma yeri",
+      "locationPlaceholder": "Şehir veya havalimanı",
+      "pickupDate": "Teslim alma tarihi",
+      "dropoffDate": "İade tarihi",
+      "search": "Araç ara",
+      "partnerNote": "Rezervasyonu tamamlamak için ortağımızda açılır.",
+      "tipsTitle": "Nijerya'da kiralama",
+      "tip1Label": "Şoförlü olması normaldir.",
+      "tip1Body": "Birçok Nijerya kiralaması şoför içerir — yolları bilmiyorsanız genelde kendiniz sürmekten kolaydır.",
+      "tip2Label": "Neyin dâhil olduğunu doğrulayın:",
+      "tip2Body": "yakıt politikası, şoför harcırahı ve şehir dışı seferlerin ekstra ücretli olup olmadığı.",
+      "tip3Label": "Kendiniz sürmek genellikle şunları gerektirir",
+      "tip3Body": "geçerli bir ehliyet (ziyaretçiyseniz uluslararası izin), bir depozito ve bazen bir kefil.",
+      "tip4Label": "Aracı öncesi ve sonrası fotoğraflayın.",
+      "tip4Body": "Mevcut çiziklerle ilgili her anlaşmazlığı çözer."
+    },
+    "pickup": {
+      "errOpen": "Transfer araması açılamadı.",
+      "back": "Seyahat",
+      "title": "Havalimanı transferi",
+      "subtitle": "İndiğinizde bekleyen bir şoför, sabit fiyata.",
+      "arrivingLabel": "Varış yeri",
+      "goingLabel": "Gidiş yeri",
+      "goingPlaceholder": "Otel, adres veya bölge",
+      "arrivalDate": "Varış tarihi",
+      "passengersLabel": "Yolcular",
+      "passengerOne": "{{count}} yolcu",
+      "passengerOther": "{{count}} yolcu",
+      "search": "Transfer bul",
+      "partnerNote": "Şoförünüzü onaylamak için ortağımızda açılır.",
+      "tipsTitle": "Neden önceden rezervasyon",
+      "tip1Label": "Fiyat inmeden önce sabitlenir",
+      "tip1Body": " — uzun bir uçuştan sonra varışta pazarlık yok.",
+      "tip2Label": "Şoförünüz uçuşu takip eder",
+      "tip2Body": ", böylece bir gecikme sizi ortada bırakmaz.",
+      "tip3Label": "Uçuş numaranızı verin",
+      "tip3Body": "rezervasyon sırasında ve şoförünüzün bilgilerini evdeki biriyle paylaşın.",
+      "tip4Label": "Lagos trafiği öngörülemez.",
+      "tip4Body": "Havalimanına dönüş için bol zaman ayırın."
+    },
+    "flights": {
+      "errOpen": "Uçuş araması açılamadı.",
+      "back": "Seyahat",
+      "title": "Uçuş bul",
+      "subtitle": "Yüzlerce havayolu ve acenteyi karşılaştırın.",
+      "roundTrip": "Gidiş-dönüş",
+      "oneWay": "Tek yön",
+      "from": "Nereden",
+      "to": "Nereye",
+      "swap": "Değiştir",
+      "departing": "Gidiş",
+      "returning": "Dönüş",
+      "passengers": "Yolcular",
+      "adultOne": "{{count}} yetişkin",
+      "adultOther": "{{count}} yetişkin",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} aktarmasız",
+      "comparePrices": "Fiyatları karşılaştır",
+      "compareFares": "Yüzlerce havayolu ve seyahat acentesinin ücretlerini karşılaştırın.",
+      "secureSearch": "Güvenli arama",
+      "newTab": "Yeni sekmede açılır",
+      "poweredBy": "Aviasales tarafından desteklenir",
+      "popularRoutes": "Popüler rotalar",
+      "exploreDest": "Destinasyonları keşfet",
+      "beforeBook": "Rezervasyondan önce",
+      "tip1Label": "Ad, pasaportunuzla eşleşmelidir.",
+      "tip1Body": "Havayolları ad düzeltmesi için ücret alır ve bazıları değişikliğe hiç izin vermez.",
+      "tip2Label": "Vize ve transit kurallarını erkenden kontrol edin.",
+      "tip2Body": "Bazı aktarmalar, havaalanından hiç çıkmasanız bile transit vize gerektirir.",
+      "tip3Label": "Lagos ve Abuja'nın ayrı iç hat ve dış hat terminalleri vardır.",
+      "tip3Body": "Aralarında aktarma yapıyorsanız fazladan zaman ayırın.",
+      "tip4Label": "Hafta ortası kalkışlar genellikle daha ucuzdur",
+      "tip4Body": "cumaya ve pazara göre, ve fiyatlar kalkışa yaklaştıkça yükselme eğilimindedir.",
+      "tip5Label": "Bagaj hakkını onaylayın",
+      "tip5Body": "ödemeden önce — en ucuz ücret genellikle kayıtlı bagajı içermez."
+    }
   }
 }

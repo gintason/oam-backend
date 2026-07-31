@@ -970,5 +970,119 @@
       "sendAria": "Fi ránṣẹ́",
       "safetyNote": "Jẹ́ kí ìsanwó àti àwọn àlàyé wà lórí OAM. Má fi owó ránṣẹ́ ní ìta áàpù láé."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Ìrìnàjò",
+      "subtitle": "Ọkọ̀ òfuurufú, hotẹ́ẹ̀lì, ọkọ̀ àti ìgbé wọ̀ọ̀nú kárí ayé — a wádìí láti ọ̀dọ̀ àwọn alábàáṣiṣẹ́pọ̀ tí a fọkàntán.",
+      "guide": "Ìtọ́sọ́nà",
+      "svc": {
+        "flights": {
+          "title": "Ọkọ̀ òfuurufú",
+          "text": "Fi ọgọ́rọ̀ọ̀rún àwọn ilé-iṣẹ́ ọkọ̀ òfuurufú àti àjọ wéra nínú ìwádìí kan."
+        },
+        "carhire": {
+          "title": "Háyà ọkọ̀",
+          "text": "Háyà ọkọ̀ — kí o wa á fúnrarẹ tàbí pẹ̀lú awakọ̀ — ní ẹgbẹẹgbẹ̀rún àwọn ibi."
+        },
+        "pickup": {
+          "title": "Ìkó ní pápá ọkọ̀ òfuurufú",
+          "text": "Awakọ̀ tí ń dúró dè ọ́ nígbà tí o bá gúnlẹ̀, ní iye tí a gbé kalẹ̀ kí o tó fò."
+        },
+        "hotels": {
+          "title": "Àwọn hotẹ́ẹ̀lì",
+          "text": "Ìdúró ní orílẹ̀-èdè tí ó ju 100, pẹ̀lú ìfìdíìmúlẹ̀ lẹ́sẹ̀kẹsẹ̀."
+        },
+        "giftcards": {
+          "title": "Àwọn káàdì ẹ̀bùn",
+          "text": "Àwọn kóòdù eré, ìtànkálẹ̀ àti ọjà láti ọ̀dọ̀ àwọn tí ń tà kárí ayé."
+        }
+      },
+      "howTitle": "Bí ìfọ̀wọ́sí ṣe ń ṣiṣẹ́",
+      "howBody": "OAM ń wádìí láti ọ̀dọ̀ àwọn alábàáṣiṣẹ́pọ̀ ìrìnàjò tí a fọkàntán dípò kí ó dì àwọn ìjókòó tàbí yàrá mú fúnrarẹ̀. O kún ìrìnàjò rẹ síbí, a gbé àwọn àlàyé yẹn kọjá, o sì parí ìsanwó láìséwu pẹ̀lú alábàáṣiṣẹ́pọ̀ — nítorí náà o rí gbogbo ọjà wọn, iye wọn àti ààbò oníbàárà wọn, láìsí ohunkóhun tí a fikún.",
+      "mechTitle": "Ṣé mẹkánìkì ni o nílò dípò?",
+      "mechBody": "Fún ìrànlọ́wọ́ ní ojú ọ̀nà àti àtúnṣe ọkọ̀, ṣàyẹ̀wò àwọn oníṣọ̀nà tí a fọwọ́sí nítòsí rẹ.",
+      "mechLink": "Wá àwọn oníṣọ̀nà"
+    },
+    "carhire": {
+      "errOpen": "A kò lè ṣí ìwádìí háyà ọkọ̀.",
+      "back": "Ìrìnàjò",
+      "title": "Háyà ọkọ̀",
+      "subtitle": "Háyà ọkọ̀ ní ẹgbẹẹgbẹ̀rún àwọn ibi.",
+      "locationLabel": "Ibi ìkó",
+      "locationPlaceholder": "Ìlú tàbí pápá ọkọ̀ òfuurufú",
+      "pickupDate": "Ọjọ́ ìkó",
+      "dropoffDate": "Ọjọ́ ìdápadà",
+      "search": "Wá àwọn ọkọ̀",
+      "partnerNote": "Ó ṣí pẹ̀lú alábàáṣiṣẹ́pọ̀ wa láti parí ìfọ̀wọ́sí.",
+      "tipsTitle": "Híhàyà ní Nàìjíríà",
+      "tip1Label": "Pẹ̀lú awakọ̀ ni ó wọ́pọ̀.",
+      "tip1Body": "Ọ̀pọ̀ háyà ọkọ̀ ní Nàìjíríà ní awakọ̀ nínú — ó sábà rọrùn ju kí o wa á fúnrarẹ bí o kò bá mọ àwọn ọ̀nà.",
+      "tip2Label": "Fìdí ohun tí ó wà nínú rẹ̀ múlẹ̀:",
+      "tip2Body": "ìlànà epo, owó ìdáǹdè awakọ̀, àti bóyá àwọn ìrìnàjò lóde ìlú náwó àfikún.",
+      "tip3Label": "Wíwa fúnrarẹ sábà máa ń nílò",
+      "tip3Body": "ìwé ìyọ̀ǹda tí ó wúlò (ìyọ̀ǹda àgbáyé bí o bá ń bẹ̀wò), owó ìdógó, àti nígbà mìíràn onígbọ̀wọ́.",
+      "tip4Label": "Ya àwòrán ọkọ̀ ṣáájú àti lẹ́yìn.",
+      "tip4Body": "Ó yanjú àríyànjiyàn èyíkéyìí lórí ìhá tí ó ti wà."
+    },
+    "pickup": {
+      "errOpen": "A kò lè ṣí ìwádìí ìgbé wọ̀ọ̀nú.",
+      "back": "Ìrìnàjò",
+      "title": "Ìkó ní pápá ọkọ̀ òfuurufú",
+      "subtitle": "Awakọ̀ tí ń dúró dè ọ́ nígbà tí o bá gúnlẹ̀, ní iye tí a gbé kalẹ̀.",
+      "arrivingLabel": "Ń dé sí",
+      "goingLabel": "Ń lọ sí",
+      "goingPlaceholder": "Hotẹ́ẹ̀lì, àdírẹ́sì tàbí agbègbè",
+      "arrivalDate": "Ọjọ́ ìdé",
+      "passengersLabel": "Àwọn èrò",
+      "passengerOne": "èrò {{count}}",
+      "passengerOther": "àwọn èrò {{count}}",
+      "search": "Wá ìgbé wọ̀ọ̀nú",
+      "partnerNote": "Ó ṣí pẹ̀lú alábàáṣiṣẹ́pọ̀ wa láti fìdí awakọ̀ rẹ múlẹ̀.",
+      "tipsTitle": "Ìdí tí o fi ń fọ̀wọ́sí ṣáájú",
+      "tip1Label": "A gbé iye kalẹ̀ kí o tó gúnlẹ̀",
+      "tip1Body": " — kò sí ìdúnàádúrà ní ibi ìdé lẹ́yìn ọkọ̀ òfuurufú gígùn.",
+      "tip2Label": "Awakọ̀ rẹ ń tọ́jú ọkọ̀ òfuurufú",
+      "tip2Body": ", nítorí náà ìdádúró kì yóò fi ọ́ sílẹ̀ láìní ìrànlọ́wọ́.",
+      "tip3Label": "Fúnni ní nọ́mbà ọkọ̀ òfuurufú rẹ",
+      "tip3Body": "nígbà ìfọ̀wọ́sí, kí o sì pín àwọn àlàyé awakọ̀ rẹ pẹ̀lú ẹnìkan nílé.",
+      "tip4Label": "Ìjàkadì Lagos kò ṣeé sọtẹ́lẹ̀.",
+      "tip4Body": "Fi àkókò tó pọ̀ sílẹ̀ fún ìrìnàjò ìpadà sí pápá ọkọ̀ òfuurufú."
+    },
+    "flights": {
+      "errOpen": "A kò lè ṣí ìwádìí ọkọ̀ òfuurufú.",
+      "back": "Ìrìnàjò",
+      "title": "Wá àwọn ọkọ̀ òfuurufú",
+      "subtitle": "Fi ọ̀pọ̀lọpọ̀ ọgọ́rọ̀ọ̀rún ilé-iṣẹ́ ọkọ̀ òfuurufú àti àwọn àjọ wéra.",
+      "roundTrip": "Lílọ àti bíbọ̀",
+      "oneWay": "Ọ̀nà kan",
+      "from": "Láti",
+      "to": "Sí",
+      "swap": "Pààrọ̀",
+      "departing": "Ìlọ",
+      "returning": "Ìpadà",
+      "passengers": "Àwọn èrò",
+      "adultOne": "àgbà {{count}}",
+      "adultOther": "àwọn àgbà {{count}}",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} láìdúró",
+      "comparePrices": "Fi owó wéra",
+      "compareFares": "Fi àwọn owó ọ̀pọ̀lọpọ̀ ọgọ́rọ̀ọ̀rún ilé-iṣẹ́ ọkọ̀ òfuurufú àti àwọn àjọ ìrìnàjò wéra.",
+      "secureSearch": "Ìwádìí tí ó ní ààbò",
+      "newTab": "Ó ń ṣí ní táàbù tuntun",
+      "poweredBy": "Aviasales ló ń ṣàtìlẹ́yìn",
+      "popularRoutes": "Àwọn ọ̀nà gbajúmọ̀",
+      "exploreDest": "Ṣàwárí àwọn ibi tí a ń lọ",
+      "beforeBook": "Kí o tó fàṣẹ́",
+      "tip1Label": "Orúkọ gbọ́dọ̀ bá ìwé ìrìnnà rẹ mu.",
+      "tip1Body": "Àwọn ilé-iṣẹ́ ọkọ̀ ń gba owó láti tún orúkọ ṣe, àwọn kan kò sì gba ìyípadà rárá.",
+      "tip2Label": "Ṣàyẹ̀wò àwọn òfin fíìsà àti ìrékọjá ní kùtùkùtù.",
+      "tip2Body": "Àwọn ìsopọ̀ kan nílò fíìsà ìrékọjá kódà bí o kò bá kúrò ní pápá ọkọ̀ òfuurufú rí.",
+      "tip3Label": "Èkó àti Abuja ní àwọn ibùdó inú ilẹ̀ àti ti òkèèrè lọ́tọ̀ọ̀tọ̀.",
+      "tip3Body": "Fi àkókò kún un tí o bá ń sopọ̀ láàrín wọn.",
+      "tip4Label": "Ìlọ àárín ọ̀sẹ̀ máa ń din owó jù",
+      "tip4Body": "ju ọjọ́ Ẹtì àti Àìkú lọ, owó sì máa ń gòkè bí ọjọ́ ìlọ ṣe ń súnmọ́.",
+      "tip5Label": "Ìdánilójú iye ẹrù tí a gbà",
+      "tip5Body": "kí o tó san owó — owó tí ó din jù sábà kì í ní ẹrù tí a fi sínú ọkọ̀."
+    }
   }
 }

@@ -970,5 +970,119 @@
       "sendAria": "发送",
       "safetyNote": "请在 OAM 内处理付款和细节。切勿在应用外汇款。"
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "旅行",
+      "subtitle": "全球机票、酒店、租车和接送——在可信赖的合作伙伴间搜索。",
+      "guide": "指南",
+      "svc": {
+        "flights": {
+          "title": "机票",
+          "text": "一次搜索比较数百家航空公司和代理。"
+        },
+        "carhire": {
+          "title": "租车",
+          "text": "在数千个地点租车——自驾或配司机。"
+        },
+        "pickup": {
+          "title": "机场接机",
+          "text": "落地时有司机等候，价格在出行前锁定。"
+        },
+        "hotels": {
+          "title": "酒店",
+          "text": "覆盖100多个国家的住宿，即时确认。"
+        },
+        "giftcards": {
+          "title": "礼品卡",
+          "text": "来自全球卖家的游戏、流媒体和零售兑换码。"
+        }
+      },
+      "howTitle": "预订如何运作",
+      "howBody": "OAM 在可信赖的旅行合作伙伴间搜索，而非自行持有座位或房间。您在此填写行程，我们将这些信息带过去，您与合作伙伴安全完成付款——因此您获得其全部库存、其价格和其客户保障，不额外加价。",
+      "mechTitle": "需要的是修车师傅？",
+      "mechBody": "如需道路救援和车辆维修，浏览您附近经过验证的工匠。",
+      "mechLink": "寻找工匠"
+    },
+    "carhire": {
+      "errOpen": "无法打开租车搜索。",
+      "back": "旅行",
+      "title": "租车",
+      "subtitle": "在数千个地点租车。",
+      "locationLabel": "取车地点",
+      "locationPlaceholder": "城市或机场",
+      "pickupDate": "取车日期",
+      "dropoffDate": "还车日期",
+      "search": "搜索车辆",
+      "partnerNote": "将在我们的合作伙伴处打开以完成预订。",
+      "tipsTitle": "在尼日利亚租车",
+      "tip1Label": "配司机是常态。",
+      "tip1Body": "许多尼日利亚租车含司机——如果你不熟悉路况，往往比自驾更省心。",
+      "tip2Label": "确认包含哪些内容：",
+      "tip2Body": "燃油政策、司机补贴，以及市外行程是否另收费。",
+      "tip3Label": "自驾通常需要",
+      "tip3Body": "有效驾照（如为访客则需国际驾照）、押金，有时还需担保人。",
+      "tip4Label": "取车前后都拍照。",
+      "tip4Body": "这能解决关于既有划痕的任何纠纷。"
+    },
+    "pickup": {
+      "errOpen": "无法打开接送搜索。",
+      "back": "旅行",
+      "title": "机场接机",
+      "subtitle": "落地时有司机等候，价格固定。",
+      "arrivingLabel": "抵达",
+      "goingLabel": "前往",
+      "goingPlaceholder": "酒店、地址或区域",
+      "arrivalDate": "抵达日期",
+      "passengersLabel": "乘客",
+      "passengerOne": "{{count}} 名乘客",
+      "passengerOther": "{{count}} 名乘客",
+      "search": "查找接送",
+      "partnerNote": "将在我们的合作伙伴处打开以确认您的司机。",
+      "tipsTitle": "为何提前预订",
+      "tip1Label": "价格在落地前锁定",
+      "tip1Body": "——长途飞行后无需在到达处讨价还价。",
+      "tip2Label": "您的司机会跟踪航班",
+      "tip2Body": "，因此延误也不会让您滞留。",
+      "tip3Label": "提供您的航班号",
+      "tip3Body": "预订时填写，并把司机信息告诉家里的人。",
+      "tip4Label": "拉各斯的交通难以预测。",
+      "tip4Body": "返回机场的行程请预留充裕时间。"
+    },
+    "flights": {
+      "errOpen": "无法打开航班搜索。",
+      "back": "旅行",
+      "title": "查找航班",
+      "subtitle": "比较数百家航空公司和代理机构。",
+      "roundTrip": "往返",
+      "oneWay": "单程",
+      "from": "出发地",
+      "to": "目的地",
+      "swap": "交换",
+      "departing": "出发",
+      "returning": "返回",
+      "passengers": "乘客",
+      "adultOne": "{{count}} 名成人",
+      "adultOther": "{{count}} 名成人",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} 直飞",
+      "comparePrices": "比较价格",
+      "compareFares": "比较数百家航空公司和旅行社的票价。",
+      "secureSearch": "安全搜索",
+      "newTab": "在新标签页打开",
+      "poweredBy": "由 Aviasales 提供支持",
+      "popularRoutes": "热门航线",
+      "exploreDest": "探索目的地",
+      "beforeBook": "预订前须知",
+      "tip1Label": "姓名必须与护照一致。",
+      "tip1Body": "航空公司更正姓名会收费，有些甚至完全不允许更改。",
+      "tip2Label": "尽早查看签证和过境规定。",
+      "tip2Body": "有些中转即使从不出机场也需要过境签证。",
+      "tip3Label": "拉各斯和阿布贾的国内与国际航站楼是分开的。",
+      "tip3Body": "如果要在它们之间中转，请预留额外时间。",
+      "tip4Label": "平日出发通常更便宜",
+      "tip4Body": "相比周五和周日，而且越接近出发日期价格往往越高。",
+      "tip5Label": "确认行李额度",
+      "tip5Body": "付款前——最便宜的票价往往不含托运行李。"
+    }
   }
 }

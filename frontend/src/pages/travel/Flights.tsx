@@ -7,6 +7,7 @@ import {
   affiliatesApi, AIRPORTS, REGIONS, ROUTE_INFO, POPULAR_BY_REGION, POPULAR_ROUTES, airportName,
 } from "../../services/affiliates";
 import { apiErrorMessage } from "../../lib/api";
+import { useTranslation } from "react-i18next";
 
 function today() { return new Date().toISOString().slice(0, 10); }
 
@@ -17,6 +18,7 @@ function today() { return new Date().toISOString().slice(0, 10); }
  * they land on results rather than a blank homepage.
  */
 export default function Flights() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [origin, setOrigin] = useState("LOS");
   const [destination, setDestination] = useState("LHR");
@@ -35,7 +37,7 @@ export default function Flights() {
         adults,
       }),
     onSuccess: (link) => window.open(link.url, "_blank", "noopener,noreferrer"),
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't open flight search.")),
+    onError: (err) => setError(apiErrorMessage(err, t("travel.flights.errOpen"))),
   });
 
   const routeKey = `${origin}-${destination}`;
@@ -60,7 +62,7 @@ export default function Flights() {
       <AppHeader />
       <main className="mx-auto max-w-3xl px-5 py-8 sm:px-6 sm:py-10">
         <button onClick={() => navigate("/travel")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> Travel
+          <ArrowLeft size={15} /> {t("travel.flights.back")}
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -68,8 +70,8 @@ export default function Flights() {
             <Plane size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink sm:text-2xl">Find flights</h1>
-            <p className="text-[13px] text-muted">Compare hundreds of airlines and agencies.</p>
+            <h1 className="font-display text-xl font-semibold text-ink sm:text-2xl">{t("travel.flights.title")}</h1>
+            <p className="text-[13px] text-muted">{t("travel.flights.subtitle")}</p>
           </div>
         </div>
 
@@ -82,37 +84,37 @@ export default function Flights() {
               onClick={() => setRoundTrip(true)}
               className={`h-9 flex-1 rounded-lg text-[13px] font-medium transition ${roundTrip ? "bg-brand-green/10 text-brand-green" : "bg-mist text-muted hover:text-ink"}`}
             >
-              Round trip
+              {t("travel.flights.roundTrip")}
             </button>
             <button
               onClick={() => { setRoundTrip(false); setRet(""); }}
               className={`h-9 flex-1 rounded-lg text-[13px] font-medium transition ${!roundTrip ? "bg-brand-green/10 text-brand-green" : "bg-mist text-muted hover:text-ink"}`}
             >
-              One way
+              {t("travel.flights.oneWay")}
             </button>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
             <div>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">From</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.from")}</label>
               <AirportSelect value={origin} onChange={setOrigin} />
             </div>
             <button
               onClick={swap}
-              aria-label="Swap"
+              aria-label={t("travel.flights.swap")}
               className="mx-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-hairline bg-paper text-muted transition hover:bg-mist hover:text-ink"
             >
               <ArrowRightLeft size={16} strokeWidth={1.75} />
             </button>
             <div>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">To</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.to")}</label>
               <AirportSelect value={destination} onChange={setDestination} />
             </div>
           </div>
 
           <div className={`mt-4 grid gap-3 ${roundTrip ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
             <div>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Departing</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.departing")}</label>
               <input
                 type="date"
                 value={depart}
@@ -123,7 +125,7 @@ export default function Flights() {
             </div>
             {roundTrip && (
               <div>
-                <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Returning</label>
+                <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.returning")}</label>
                 <input
                   type="date"
                   value={ret}
@@ -134,14 +136,14 @@ export default function Flights() {
               </div>
             )}
             <div>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Passengers</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.passengers")}</label>
               <select
                 value={adults}
                 onChange={(e) => setAdults(Number(e.target.value))}
                 className="h-11 w-full rounded-[10px] border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
               >
                 {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <option key={n} value={n}>{n} adult{n > 1 ? "s" : ""}</option>
+                  <option key={n} value={n}>{t(n === 1 ? "travel.flights.adultOne" : "travel.flights.adultOther", { count: n })}</option>
                 ))}
               </select>
             </div>
@@ -151,7 +153,7 @@ export default function Flights() {
             <div className="mt-4 flex items-start gap-2 rounded-lg bg-mist px-3.5 py-2.5">
               <Clock size={15} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-green" />
               <p className="text-[12.5px] text-muted">
-                <span className="font-medium text-ink">{origin} → {destination} · {info.hours} non-stop</span>
+                <span className="font-medium text-ink">{t("travel.flights.nonStop", { origin, destination, hours: info.hours })}</span>
                 <span className="block">{info.note}</span>
               </p>
             </div>
@@ -164,25 +166,25 @@ export default function Flights() {
           >
             {search.isPending
               ? <Loader2 size={18} className="animate-spin" />
-              : <><Plane size={17} strokeWidth={2} /> Compare prices</>}
+              : <><Plane size={17} strokeWidth={2} /> {t("travel.flights.comparePrices")}</>}
           </button>
 
           <p className="mt-3 text-center text-[12.5px] text-muted">
-            Compare fares from hundreds of airlines and travel agencies.
+            {t("travel.flights.compareFares")}
           </p>
           <p className="mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[11.5px] text-muted">
-            <span className="inline-flex items-center gap-1"><Lock size={11} strokeWidth={2} /> Secure search</span>
+            <span className="inline-flex items-center gap-1"><Lock size={11} strokeWidth={2} /> {t("travel.flights.secureSearch")}</span>
             <span aria-hidden="true">·</span>
-            <span className="inline-flex items-center gap-1"><ExternalLink size={11} strokeWidth={2} /> Opens in a new tab</span>
+            <span className="inline-flex items-center gap-1"><ExternalLink size={11} strokeWidth={2} /> {t("travel.flights.newTab")}</span>
             <span aria-hidden="true">·</span>
-            <span>Powered by Aviasales</span>
+            <span>{t("travel.flights.poweredBy")}</span>
           </p>
         </div>
 
         {/* Popular destinations */}
         {/* One-tap popular routes */}
         <section className="mt-8">
-          <h2 className="mb-3 text-[15px] font-semibold text-ink">Popular routes</h2>
+          <h2 className="mb-3 text-[15px] font-semibold text-ink">{t("travel.flights.popularRoutes")}</h2>
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
             {POPULAR_ROUTES.map((r) => {
               const ri = ROUTE_INFO[`${r.from}-${r.to}`];
@@ -205,7 +207,7 @@ export default function Flights() {
         </section>
 
         <section className="mt-8">
-          <h2 className="mb-3 text-[15px] font-semibold text-ink">Explore destinations</h2>
+          <h2 className="mb-3 text-[15px] font-semibold text-ink">{t("travel.flights.exploreDest")}</h2>
           <div className="scrollbar-hide -mx-5 mb-3 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:px-0">
             {REGIONS.map((r) => (
               <button
@@ -243,14 +245,14 @@ export default function Flights() {
         <section className="mt-8 rounded-2xl border border-hairline bg-paper p-5">
           <h2 className="flex items-center gap-2 text-[15px] font-semibold text-ink">
             <Info size={16} strokeWidth={1.75} className="text-brand-green" />
-            Before you book
+            {t("travel.flights.beforeBook")}
           </h2>
           <ul className="mt-3 space-y-2.5 text-[13px] leading-relaxed text-muted">
-            <li><span className="font-medium text-ink">Name must match your passport.</span> Airlines charge to correct names, and some won't allow changes at all.</li>
-            <li><span className="font-medium text-ink">Check visa and transit rules early.</span> Some connections need a transit visa even if you never leave the airport.</li>
-            <li><span className="font-medium text-ink">Lagos and Abuja have separate domestic and international terminals.</span> Allow extra time if you're connecting between them.</li>
-            <li><span className="font-medium text-ink">Mid-week departures are usually cheaper</span> than Friday and Sunday, and prices tend to climb closer to departure.</li>
-            <li><span className="font-medium text-ink">Confirm baggage allowance</span> before paying — the cheapest fare often excludes checked bags.</li>
+            <li><span className="font-medium text-ink">{t("travel.flights.tip1Label")}</span> {t("travel.flights.tip1Body")}</li>
+            <li><span className="font-medium text-ink">{t("travel.flights.tip2Label")}</span> {t("travel.flights.tip2Body")}</li>
+            <li><span className="font-medium text-ink">{t("travel.flights.tip3Label")}</span> {t("travel.flights.tip3Body")}</li>
+            <li><span className="font-medium text-ink">{t("travel.flights.tip4Label")}</span> {t("travel.flights.tip4Body")}</li>
+            <li><span className="font-medium text-ink">{t("travel.flights.tip5Label")}</span> {t("travel.flights.tip5Body")}</li>
           </ul>
         </section>
       </main>

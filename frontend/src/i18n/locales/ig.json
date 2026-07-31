@@ -970,5 +970,119 @@
       "sendAria": "Zipu",
       "safetyNote": "Debe ịkwụ ụgwọ na nkọwa na OAM. Ezipụla ego mpụga ngwa ma ọlị."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Njem",
+      "subtitle": "Ụgbọ elu, họtel, ụgbọ ala na mbufe gburugburu ụwa — a na-achọ site n'aka ndị mmekọ a tụkwasịrị obi.",
+      "guide": "Ntuziaka",
+      "svc": {
+        "flights": {
+          "title": "Ụgbọ elu",
+          "text": "Tụlee ọtụtụ narị ụlọ ọrụ ụgbọ elu na ụlọ ọrụ na otu nchọ."
+        },
+        "carhire": {
+          "title": "Mgbazinye ụgbọ ala",
+          "text": "Gbazinye ụgbọ ala — gị onwe gị na-anya ma ọ bụ jiri onye ọkwọ — n'ọtụtụ puku ebe."
+        },
+        "pickup": {
+          "title": "Nnata site n'ọdụ ụgbọ elu",
+          "text": "Onye ọkwọ na-echere gị mgbe ị rutere, n'ọnụ ahịa e dozicha tupu ị fee."
+        },
+        "hotels": {
+          "title": "Họtel",
+          "text": "Ọnọdụ n'ihe karịrị mba 100, na nkwenye ozugbo."
+        },
+        "giftcards": {
+          "title": "Kaadị onyinye",
+          "text": "Koodu egwuregwu, streaming na ahịa site n'aka ndị na-ere ere gburugburu ụwa."
+        }
+      },
+      "howTitle": "Otú ndebe si arụ ọrụ",
+      "howBody": "OAM na-achọ site n'aka ndị mmekọ njem a tụkwasịrị obi kama ijide oche ma ọ bụ ọnụ ụlọ n'onwe ya. Ị na-ejuputa njem gị ebe a, anyị na-ebufe nkọwa ndị ahụ, ị na-emechakwa ịkwụ ụgwọ n'enweghị nsogbu na onye mmekọ — ya mere ị na-enweta ngwongwo ha niile, ọnụ ahịa ha na nchekwa ndị ahịa ha, na-agbakwụnyeghị ihe ọ bụla n'elu.",
+      "mechTitle": "Ị chọrọ onye mekaniki kama?",
+      "mechBody": "Maka enyemaka n'okporo ụzọ na nrụzi ụgbọ ala, chọgharịa ndị ọrụ aka enyochara dị gị nso.",
+      "mechLink": "Chọta ndị ọrụ aka"
+    },
+    "carhire": {
+      "errOpen": "Enweghị ike imepe nchọ mgbazinye ụgbọ ala.",
+      "back": "Njem",
+      "title": "Mgbazinye ụgbọ ala",
+      "subtitle": "Gbazinye ụgbọ ala n'ọtụtụ puku ebe.",
+      "locationLabel": "Ebe nnata",
+      "locationPlaceholder": "Obodo ma ọ bụ ọdụ ụgbọ elu",
+      "pickupDate": "Ụbọchị nnata",
+      "dropoffDate": "Ụbọchị nnyeghachi",
+      "search": "Chọọ ụgbọ ala",
+      "partnerNote": "Ọ na-emeghe na onye mmekọ anyị iji mezue ndebe.",
+      "tipsTitle": "Mgbazinye na Naịjirịa",
+      "tip1Label": "Iji onye ọkwọ bụ ihe a na-emekarị.",
+      "tip1Body": "Ọtụtụ mgbazinye Naịjirịa gụnyere onye ọkwọ — na-adịkarị mfe karịa ịnya n'onwe gị ma ọ bụrụ na ị maghị okporo ụzọ.",
+      "tip2Label": "Kwenye ihe e tinyere:",
+      "tip2Body": "amụma mmanụ, ego onye ọkwọ, na ma njem mpụga obodo na-akwụ ụgwọ ọzọ.",
+      "tip3Label": "Ịnya n'onwe gị na-achọkarị",
+      "tip3Body": "akwụkwọ ikike dị irè (nke mba ụwa ma ọ bụrụ na ị na-eleta), ego ntinye, na mgbe ụfọdụ onye nkwụchi.",
+      "tip4Label": "Sepụta foto ụgbọ ala tupu na mgbe e mechara.",
+      "tip4Body": "Ọ na-edozi esemokwu ọ bụla gbasara mkpọ dị adị."
+    },
+    "pickup": {
+      "errOpen": "Enweghị ike imepe nchọ mbufe.",
+      "back": "Njem",
+      "title": "Nnata site n'ọdụ ụgbọ elu",
+      "subtitle": "Onye ọkwọ na-echere gị mgbe ị rutere, n'ọnụ ahịa e doziri.",
+      "arrivingLabel": "Na-erute na",
+      "goingLabel": "Na-aga",
+      "goingPlaceholder": "Họtel, adreesị ma ọ bụ mpaghara",
+      "arrivalDate": "Ụbọchị mbata",
+      "passengersLabel": "Ndị njem",
+      "passengerOne": "onye njem {{count}}",
+      "passengerOther": "ndị njem {{count}}",
+      "search": "Chọta mbufe",
+      "partnerNote": "Ọ na-emeghe na onye mmekọ anyị iji kwado onye ọkwọ gị.",
+      "tipsTitle": "Ihe mere ị ga-eji debe tupu oge",
+      "tip1Label": "E dozie ọnụ ahịa tupu ị rute",
+      "tip1Body": " — enweghị ịzụ ahịa n'ebe mbata mgbe ụgbọ elu ogologo gasịrị.",
+      "tip2Label": "Onye ọkwọ gị na-eso ụgbọ elu",
+      "tip2Body": ", ya mere igbu oge agaghị ahapụ gị na-akwụsị.",
+      "tip3Label": "Nye nọmba ụgbọ elu gị",
+      "tip3Body": "mgbe ị na-edebe, ma kesaa nkọwa onye ọkwọ gị na onye nọ n'ụlọ.",
+      "tip4Label": "Okporo ụzọ Legos enweghị atụ.",
+      "tip4Body": "Hapụ oge zuru ezu maka njem nlọghachi na ọdụ ụgbọ elu."
+    },
+    "flights": {
+      "errOpen": "Enweghị ike imepe nchọ ụgbọ elu.",
+      "back": "Njem",
+      "title": "Chọta ụgbọ elu",
+      "subtitle": "Tụlee ọtụtụ narị ụlọ ọrụ ụgbọ elu na ụlọ ọrụ njem.",
+      "roundTrip": "Njem laghachi",
+      "oneWay": "Ụzọ otu",
+      "from": "Site",
+      "to": "Ruo",
+      "swap": "Gbanwee",
+      "departing": "Mpụ",
+      "returning": "Nlọghachi",
+      "passengers": "Ndị njem",
+      "adultOne": "okenye {{count}}",
+      "adultOther": "ndị okenye {{count}}",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} na-akwụsịghị akwụsị",
+      "comparePrices": "Tụlee ọnụ ahịa",
+      "compareFares": "Tụlee ọnụ ahịa site n'ọtụtụ narị ụlọ ọrụ ụgbọ elu na ụlọ ọrụ njem.",
+      "secureSearch": "Nchọ echedoro",
+      "newTab": "Ọ na-emeghe na taabụ ọhụrụ",
+      "poweredBy": "Aviasales na-akwado ya",
+      "popularRoutes": "Ụzọ ndị a ma ama",
+      "exploreDest": "Nyochaa ebe ndị a na-aga",
+      "beforeBook": "Tupu ị debe",
+      "tip1Label": "Aha ga-adaba na paspọtụ gị.",
+      "tip1Body": "Ụlọ ọrụ ụgbọ elu na-ana ụgwọ maka idozi aha, ụfọdụ anaghịkwa ekwe mgbanwe ma ọlị.",
+      "tip2Label": "Lelee iwu visa na ngafe n'oge.",
+      "tip2Body": "Ụfọdụ njikọ chọrọ visa ngafe ọ bụrụgodị na ị naghị apụ n'ọdụ ụgbọ elu.",
+      "tip3Label": "Legos na Abuja nwere ọdụ ụgbọ elu ime obodo na mba ọzọ dịiche.",
+      "tip3Body": "Nye oge ọzọ ma ọ bụrụ na ị na-ejikọ n'etiti ha.",
+      "tip4Label": "Mpụ n'etiti izu na-adịkarị ọnụ ala",
+      "tip4Body": "karịa Fraịde na Sọnde, ọnụ ahịa na-arịgo ka ụbọchị mpụ na-eru nso.",
+      "tip5Label": "Kwenye ọtụtụ ibu ị ga-ebu",
+      "tip5Body": "tupu ịkwụ ụgwọ — ọnụ ahịa kacha ọnụ ala anaghị agụnye ibu e debere."
+    }
   }
 }

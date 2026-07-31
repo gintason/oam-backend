@@ -970,5 +970,119 @@
       "sendAria": "Senden",
       "safetyNote": "Halten Sie Zahlungen und Details auf OAM. Senden Sie niemals Geld außerhalb der App."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Reisen",
+      "subtitle": "Flüge, Hotels, Autos und Transfers weltweit — bei vertrauenswürdigen Partnern gesucht.",
+      "guide": "Ratgeber",
+      "svc": {
+        "flights": {
+          "title": "Flüge",
+          "text": "Vergleichen Sie Hunderte Airlines und Agenturen in einer Suche."
+        },
+        "carhire": {
+          "title": "Mietwagen",
+          "text": "Mieten Sie ein Auto — selbst fahren oder mit Fahrer — an Tausenden Standorten."
+        },
+        "pickup": {
+          "title": "Flughafen-Transfer",
+          "text": "Ein Fahrer wartet bei der Landung, zu einem vor dem Flug festgelegten Preis."
+        },
+        "hotels": {
+          "title": "Hotels",
+          "text": "Aufenthalte in über 100 Ländern, mit sofortiger Bestätigung."
+        },
+        "giftcards": {
+          "title": "Geschenkkarten",
+          "text": "Gaming-, Streaming- und Handelscodes von Verkäufern weltweit."
+        }
+      },
+      "howTitle": "So funktioniert die Buchung",
+      "howBody": "OAM durchsucht vertrauenswürdige Reisepartner, statt selbst Sitze oder Zimmer zu halten. Sie tragen Ihre Reise hier ein, wir übertragen diese Angaben, und Sie schließen die Zahlung sicher beim Partner ab — so erhalten Sie deren gesamtes Angebot, deren Preise und deren Kundenschutz, ohne Aufschlag.",
+      "mechTitle": "Lieber einen Mechaniker?",
+      "mechBody": "Für Pannenhilfe und Reparaturen durchsuchen Sie verifizierte Handwerker in Ihrer Nähe.",
+      "mechLink": "Handwerker finden"
+    },
+    "carhire": {
+      "errOpen": "Mietwagensuche konnte nicht geöffnet werden.",
+      "back": "Reisen",
+      "title": "Mietwagen",
+      "subtitle": "Mieten Sie ein Auto an Tausenden Standorten.",
+      "locationLabel": "Abholort",
+      "locationPlaceholder": "Stadt oder Flughafen",
+      "pickupDate": "Abholdatum",
+      "dropoffDate": "Rückgabedatum",
+      "search": "Autos suchen",
+      "partnerNote": "Öffnet bei unserem Partner zum Abschluss der Buchung.",
+      "tipsTitle": "Mieten in Nigeria",
+      "tip1Label": "Mit Fahrer ist die Norm.",
+      "tip1Body": "Viele nigerianische Mietwagen beinhalten einen Fahrer — oft einfacher als selbst zu fahren, wenn Sie die Straßen nicht kennen.",
+      "tip2Label": "Klären Sie, was enthalten ist:",
+      "tip2Body": "Kraftstoffregelung, Fahrerpauschale und ob Fahrten außerhalb der Stadt extra kosten.",
+      "tip3Label": "Selbstfahren erfordert meist",
+      "tip3Body": "einen gültigen Führerschein (einen internationalen bei Besuch), eine Kaution und manchmal einen Bürgen.",
+      "tip4Label": "Fotografieren Sie das Auto vorher und nachher.",
+      "tip4Body": "Das klärt jeden Streit über vorhandene Kratzer."
+    },
+    "pickup": {
+      "errOpen": "Transfersuche konnte nicht geöffnet werden.",
+      "back": "Reisen",
+      "title": "Flughafen-Transfer",
+      "subtitle": "Ein Fahrer wartet bei der Landung, zum Festpreis.",
+      "arrivingLabel": "Ankunft an",
+      "goingLabel": "Ziel",
+      "goingPlaceholder": "Hotel, Adresse oder Gegend",
+      "arrivalDate": "Ankunftsdatum",
+      "passengersLabel": "Passagiere",
+      "passengerOne": "{{count}} Passagier",
+      "passengerOther": "{{count}} Passagiere",
+      "search": "Transfer finden",
+      "partnerNote": "Öffnet bei unserem Partner zur Bestätigung Ihres Fahrers.",
+      "tipsTitle": "Warum vorab buchen",
+      "tip1Label": "Der Preis steht vor der Landung fest",
+      "tip1Body": " — kein Verhandeln bei der Ankunft nach einem langen Flug.",
+      "tip2Label": "Ihr Fahrer verfolgt den Flug",
+      "tip2Body": ", sodass eine Verspätung Sie nicht stranden lässt.",
+      "tip3Label": "Geben Sie Ihre Flugnummer an",
+      "tip3Body": "bei der Buchung, und teilen Sie die Angaben Ihres Fahrers mit jemandem zu Hause.",
+      "tip4Label": "Der Verkehr in Lagos ist unberechenbar.",
+      "tip4Body": "Planen Sie reichlich Zeit für die Rückfahrt zum Flughafen ein."
+    },
+    "flights": {
+      "errOpen": "Flugsuche konnte nicht geöffnet werden.",
+      "back": "Reisen",
+      "title": "Flüge finden",
+      "subtitle": "Vergleichen Sie Hunderte von Fluggesellschaften und Agenturen.",
+      "roundTrip": "Hin- und Rückflug",
+      "oneWay": "Nur Hinflug",
+      "from": "Von",
+      "to": "Nach",
+      "swap": "Tauschen",
+      "departing": "Abflug",
+      "returning": "Rückflug",
+      "passengers": "Passagiere",
+      "adultOne": "{{count}} Erwachsener",
+      "adultOther": "{{count}} Erwachsene",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} nonstop",
+      "comparePrices": "Preise vergleichen",
+      "compareFares": "Vergleichen Sie Tarife von Hunderten Fluggesellschaften und Reisebüros.",
+      "secureSearch": "Sichere Suche",
+      "newTab": "Öffnet in einem neuen Tab",
+      "poweredBy": "Bereitgestellt von Aviasales",
+      "popularRoutes": "Beliebte Strecken",
+      "exploreDest": "Reiseziele entdecken",
+      "beforeBook": "Vor der Buchung",
+      "tip1Label": "Der Name muss mit Ihrem Reisepass übereinstimmen.",
+      "tip1Body": "Fluggesellschaften berechnen Gebühren für Namenskorrekturen, und einige erlauben sie gar nicht.",
+      "tip2Label": "Prüfen Sie Visum- und Transitregeln frühzeitig.",
+      "tip2Body": "Manche Verbindungen erfordern ein Transitvisum, selbst wenn Sie den Flughafen nie verlassen.",
+      "tip3Label": "Lagos und Abuja haben getrennte Inlands- und Auslandsterminals.",
+      "tip3Body": "Planen Sie zusätzliche Zeit ein, wenn Sie dazwischen umsteigen.",
+      "tip4Label": "Abflüge unter der Woche sind meist günstiger",
+      "tip4Body": "als freitags und sonntags, und die Preise steigen tendenziell näher am Abflug.",
+      "tip5Label": "Bestätigen Sie die Gepäckmenge",
+      "tip5Body": "vor der Zahlung — der günstigste Tarif schließt oft aufgegebenes Gepäck aus."
+    }
   }
 }

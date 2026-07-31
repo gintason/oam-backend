@@ -970,5 +970,119 @@
       "sendAria": "Enviar",
       "safetyNote": "Mantén los pagos y los detalles en OAM. Nunca envíes dinero fuera de la app."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Viajes",
+      "subtitle": "Vuelos, hoteles, coches y traslados en todo el mundo — buscados entre socios de confianza.",
+      "guide": "Guía",
+      "svc": {
+        "flights": {
+          "title": "Vuelos",
+          "text": "Compara cientos de aerolíneas y agencias en una sola búsqueda."
+        },
+        "carhire": {
+          "title": "Alquiler de coches",
+          "text": "Alquila un coche — sin o con conductor — en miles de ubicaciones."
+        },
+        "pickup": {
+          "title": "Traslado del aeropuerto",
+          "text": "Un conductor esperándote al aterrizar, a un precio fijado antes de volar."
+        },
+        "hotels": {
+          "title": "Hoteles",
+          "text": "Estancias en más de 100 países, con confirmación instantánea."
+        },
+        "giftcards": {
+          "title": "Tarjetas regalo",
+          "text": "Códigos de juegos, streaming y comercio de vendedores de todo el mundo."
+        }
+      },
+      "howTitle": "Cómo funciona la reserva",
+      "howBody": "OAM busca entre socios de viaje de confianza en lugar de retener asientos o habitaciones. Rellenas tu viaje aquí, trasladamos esos datos y completas el pago de forma segura con el socio — así obtienes todo su inventario, sus precios y su protección al cliente, sin nada añadido encima.",
+      "mechTitle": "¿Necesitas un mecánico?",
+      "mechBody": "Para asistencia en carretera y reparaciones, explora artesanos verificados cerca de ti.",
+      "mechLink": "Buscar artesanos"
+    },
+    "carhire": {
+      "errOpen": "No se pudo abrir la búsqueda de alquiler.",
+      "back": "Viajes",
+      "title": "Alquiler de coches",
+      "subtitle": "Alquila un coche en miles de ubicaciones.",
+      "locationLabel": "Lugar de recogida",
+      "locationPlaceholder": "Ciudad o aeropuerto",
+      "pickupDate": "Fecha de recogida",
+      "dropoffDate": "Fecha de devolución",
+      "search": "Buscar coches",
+      "partnerNote": "Se abre con nuestro socio para completar la reserva.",
+      "tipsTitle": "Alquilar en Nigeria",
+      "tip1Label": "Con conductor es lo habitual.",
+      "tip1Body": "Muchos alquileres nigerianos incluyen conductor — a menudo más fácil que conducir tú mismo si no conoces las carreteras.",
+      "tip2Label": "Confirma lo que se incluye:",
+      "tip2Body": "política de combustible, dieta del conductor, y si los viajes fuera de la ciudad cuestan más.",
+      "tip3Label": "Conducir uno mismo suele requerir",
+      "tip3Body": "un permiso válido (uno internacional si estás de visita), un depósito y a veces un aval.",
+      "tip4Label": "Fotografía el coche antes y después.",
+      "tip4Body": "Resuelve cualquier disputa por arañazos existentes."
+    },
+    "pickup": {
+      "errOpen": "No se pudo abrir la búsqueda de traslado.",
+      "back": "Viajes",
+      "title": "Traslado del aeropuerto",
+      "subtitle": "Un conductor esperándote al aterrizar, a precio fijo.",
+      "arrivingLabel": "Llegada a",
+      "goingLabel": "Destino",
+      "goingPlaceholder": "Hotel, dirección o zona",
+      "arrivalDate": "Fecha de llegada",
+      "passengersLabel": "Pasajeros",
+      "passengerOne": "{{count}} pasajero",
+      "passengerOther": "{{count}} pasajeros",
+      "search": "Buscar un traslado",
+      "partnerNote": "Se abre con nuestro socio para confirmar tu conductor.",
+      "tipsTitle": "Por qué reservar con antelación",
+      "tip1Label": "El precio se fija antes de aterrizar",
+      "tip1Body": " — sin negociar en llegadas tras un vuelo largo.",
+      "tip2Label": "Tu conductor sigue el vuelo",
+      "tip2Body": ", así que un retraso no te deja tirado.",
+      "tip3Label": "Da tu número de vuelo",
+      "tip3Body": "al reservar, y comparte los datos de tu conductor con alguien de confianza.",
+      "tip4Label": "El tráfico de Lagos es impredecible.",
+      "tip4Body": "Deja tiempo de sobra para el viaje de vuelta al aeropuerto."
+    },
+    "flights": {
+      "errOpen": "No se pudo abrir la búsqueda de vuelos.",
+      "back": "Viajes",
+      "title": "Buscar vuelos",
+      "subtitle": "Compara cientos de aerolíneas y agencias.",
+      "roundTrip": "Ida y vuelta",
+      "oneWay": "Solo ida",
+      "from": "Desde",
+      "to": "Hasta",
+      "swap": "Intercambiar",
+      "departing": "Salida",
+      "returning": "Regreso",
+      "passengers": "Pasajeros",
+      "adultOne": "{{count}} adulto",
+      "adultOther": "{{count}} adultos",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} sin escalas",
+      "comparePrices": "Comparar precios",
+      "compareFares": "Compara tarifas de cientos de aerolíneas y agencias de viajes.",
+      "secureSearch": "Búsqueda segura",
+      "newTab": "Se abre en una pestaña nueva",
+      "poweredBy": "Con tecnología de Aviasales",
+      "popularRoutes": "Rutas populares",
+      "exploreDest": "Explorar destinos",
+      "beforeBook": "Antes de reservar",
+      "tip1Label": "El nombre debe coincidir con tu pasaporte.",
+      "tip1Body": "Las aerolíneas cobran por corregir nombres, y algunas no permiten cambios en absoluto.",
+      "tip2Label": "Verifica pronto las normas de visado y tránsito.",
+      "tip2Body": "Algunas conexiones requieren visado de tránsito aunque nunca salgas del aeropuerto.",
+      "tip3Label": "Lagos y Abuya tienen terminales nacionales e internacionales separadas.",
+      "tip3Body": "Deja tiempo extra si haces conexión entre ellas.",
+      "tip4Label": "Las salidas entre semana suelen ser más baratas",
+      "tip4Body": "que el viernes y el domingo, y los precios tienden a subir cerca de la salida.",
+      "tip5Label": "Confirma la franquicia de equipaje",
+      "tip5Body": "antes de pagar — la tarifa más barata suele excluir el equipaje facturado."
+    }
   }
 }

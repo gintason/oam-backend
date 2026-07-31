@@ -970,5 +970,119 @@
       "sendAria": "Wyślij",
       "safetyNote": "Trzymaj płatności i szczegóły w OAM. Nigdy nie wysyłaj pieniędzy poza aplikacją."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Podróże",
+      "subtitle": "Loty, hotele, samochody i transfery na całym świecie — wyszukiwane u zaufanych partnerów.",
+      "guide": "Poradnik",
+      "svc": {
+        "flights": {
+          "title": "Loty",
+          "text": "Porównaj setki linii i agencji w jednym wyszukiwaniu."
+        },
+        "carhire": {
+          "title": "Wynajem aut",
+          "text": "Wynajmij auto — z kierowcą lub bez — w tysiącach lokalizacji."
+        },
+        "pickup": {
+          "title": "Transfer z lotniska",
+          "text": "Kierowca czekający po wylądowaniu, w cenie ustalonej przed lotem."
+        },
+        "hotels": {
+          "title": "Hotele",
+          "text": "Pobyty w ponad 100 krajach, z natychmiastowym potwierdzeniem."
+        },
+        "giftcards": {
+          "title": "Karty podarunkowe",
+          "text": "Kody do gier, streamingu i sklepów od sprzedawców z całego świata."
+        }
+      },
+      "howTitle": "Jak działa rezerwacja",
+      "howBody": "OAM przeszukuje zaufanych partnerów podróży, zamiast samodzielnie trzymać miejsca czy pokoje. Wpisujesz tu swoją podróż, przekazujemy te dane, a płatność finalizujesz bezpiecznie u partnera — dzięki czemu masz cały ich zasób, ich ceny i ich ochronę klienta, bez żadnych dopłat.",
+      "mechTitle": "Potrzebujesz raczej mechanika?",
+      "mechBody": "W razie pomocy drogowej i napraw przejrzyj zweryfikowanych rzemieślników w pobliżu.",
+      "mechLink": "Znajdź rzemieślników"
+    },
+    "carhire": {
+      "errOpen": "Nie udało się otworzyć wyszukiwania wynajmu.",
+      "back": "Podróże",
+      "title": "Wynajem aut",
+      "subtitle": "Wynajmij auto w tysiącach lokalizacji.",
+      "locationLabel": "Miejsce odbioru",
+      "locationPlaceholder": "Miasto lub lotnisko",
+      "pickupDate": "Data odbioru",
+      "dropoffDate": "Data zwrotu",
+      "search": "Szukaj aut",
+      "partnerNote": "Otwiera się u naszego partnera, by dokończyć rezerwację.",
+      "tipsTitle": "Wynajem w Nigerii",
+      "tip1Label": "Z kierowcą to norma.",
+      "tip1Body": "Wiele nigeryjskich wypożyczeń obejmuje kierowcę — często łatwiej niż samemu, jeśli nie znasz dróg.",
+      "tip2Label": "Potwierdź, co jest wliczone:",
+      "tip2Body": "polityka paliwowa, dieta kierowcy oraz czy przejazdy poza miasto kosztują więcej.",
+      "tip3Label": "Jazda samodzielna zwykle wymaga",
+      "tip3Body": "ważnego prawa jazdy (międzynarodowego, jeśli jesteś z wizytą), kaucji, a czasem poręczyciela.",
+      "tip4Label": "Sfotografuj auto przed i po.",
+      "tip4Body": "Rozstrzyga to każdy spór o istniejące rysy."
+    },
+    "pickup": {
+      "errOpen": "Nie udało się otworzyć wyszukiwania transferu.",
+      "back": "Podróże",
+      "title": "Transfer z lotniska",
+      "subtitle": "Kierowca czekający po wylądowaniu, w stałej cenie.",
+      "arrivingLabel": "Przylot do",
+      "goingLabel": "Dokąd",
+      "goingPlaceholder": "Hotel, adres lub okolica",
+      "arrivalDate": "Data przylotu",
+      "passengersLabel": "Pasażerowie",
+      "passengerOne": "{{count}} pasażer",
+      "passengerOther": "{{count}} pasażerów",
+      "search": "Znajdź transfer",
+      "partnerNote": "Otwiera się u naszego partnera, by potwierdzić kierowcę.",
+      "tipsTitle": "Dlaczego rezerwować z wyprzedzeniem",
+      "tip1Label": "Cena jest ustalona przed lądowaniem",
+      "tip1Body": " — bez negocjacji na przylotach po długim locie.",
+      "tip2Label": "Twój kierowca śledzi lot",
+      "tip2Body": ", więc opóźnienie nie zostawi cię bez transferu.",
+      "tip3Label": "Podaj numer lotu",
+      "tip3Body": "przy rezerwacji i przekaż dane kierowcy komuś w domu.",
+      "tip4Label": "Ruch w Lagos jest nieprzewidywalny.",
+      "tip4Body": "Zaplanuj sporo czasu na powrót na lotnisko."
+    },
+    "flights": {
+      "errOpen": "Nie udało się otworzyć wyszukiwarki lotów.",
+      "back": "Podróże",
+      "title": "Znajdź loty",
+      "subtitle": "Porównaj setki linii lotniczych i agencji.",
+      "roundTrip": "W obie strony",
+      "oneWay": "W jedną stronę",
+      "from": "Skąd",
+      "to": "Dokąd",
+      "swap": "Zamień",
+      "departing": "Wylot",
+      "returning": "Powrót",
+      "passengers": "Pasażerowie",
+      "adultOne": "{{count}} dorosły",
+      "adultOther": "{{count}} dorosłych",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} bez przesiadek",
+      "comparePrices": "Porównaj ceny",
+      "compareFares": "Porównaj taryfy setek linii lotniczych i biur podróży.",
+      "secureSearch": "Bezpieczne wyszukiwanie",
+      "newTab": "Otwiera się w nowej karcie",
+      "poweredBy": "Obsługiwane przez Aviasales",
+      "popularRoutes": "Popularne trasy",
+      "exploreDest": "Odkryj kierunki",
+      "beforeBook": "Przed rezerwacją",
+      "tip1Label": "Imię musi zgadzać się z paszportem.",
+      "tip1Body": "Linie pobierają opłatę za poprawę nazwisk, a niektóre w ogóle nie pozwalają na zmiany.",
+      "tip2Label": "Wcześnie sprawdź zasady wizowe i tranzytowe.",
+      "tip2Body": "Niektóre przesiadki wymagają wizy tranzytowej, nawet jeśli nie opuszczasz lotniska.",
+      "tip3Label": "Lagos i Abudża mają oddzielne terminale krajowe i międzynarodowe.",
+      "tip3Body": "Zaplanuj dodatkowy czas, jeśli przesiadasz się między nimi.",
+      "tip4Label": "Wyloty w środku tygodnia są zwykle tańsze",
+      "tip4Body": "niż w piątki i niedziele, a ceny zwykle rosną bliżej wylotu.",
+      "tip5Label": "Potwierdź limit bagażu",
+      "tip5Body": "przed zapłatą — najtańsza taryfa często nie obejmuje bagażu rejestrowanego."
+    }
   }
 }

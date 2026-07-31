@@ -970,5 +970,119 @@
       "sendAria": "Envoyer",
       "safetyNote": "Gardez les paiements et les détails sur OAM. N'envoyez jamais d'argent en dehors de l'app."
     }
+  },
+  "travel": {
+    "hub": {
+      "title": "Voyages",
+      "subtitle": "Vols, hôtels, voitures et transferts dans le monde entier — recherchés auprès de partenaires de confiance.",
+      "guide": "Guide",
+      "svc": {
+        "flights": {
+          "title": "Vols",
+          "text": "Comparez des centaines de compagnies et d'agences en une seule recherche."
+        },
+        "carhire": {
+          "title": "Location de voiture",
+          "text": "Louez une voiture — sans ou avec chauffeur — dans des milliers d'endroits."
+        },
+        "pickup": {
+          "title": "Transfert aéroport",
+          "text": "Un chauffeur qui vous attend à l'atterrissage, à un prix fixé avant le départ."
+        },
+        "hotels": {
+          "title": "Hôtels",
+          "text": "Des séjours dans plus de 100 pays, avec confirmation instantanée."
+        },
+        "giftcards": {
+          "title": "Cartes cadeaux",
+          "text": "Codes de jeux, streaming et commerce de vendeurs du monde entier."
+        }
+      },
+      "howTitle": "Comment fonctionne la réservation",
+      "howBody": "OAM recherche des partenaires de voyage de confiance plutôt que de détenir lui-même sièges ou chambres. Vous renseignez votre voyage ici, nous transmettons ces détails, et vous réglez en toute sécurité auprès du partenaire — vous bénéficiez ainsi de tout leur inventaire, de leurs prix et de leur protection client, sans rien ajouté en plus.",
+      "mechTitle": "Besoin d'un mécanicien plutôt ?",
+      "mechBody": "Pour un dépannage et des réparations, parcourez les artisans vérifiés près de chez vous.",
+      "mechLink": "Trouver des artisans"
+    },
+    "carhire": {
+      "errOpen": "Impossible d'ouvrir la recherche de location.",
+      "back": "Voyages",
+      "title": "Location de voiture",
+      "subtitle": "Louez une voiture dans des milliers d'endroits.",
+      "locationLabel": "Lieu de prise en charge",
+      "locationPlaceholder": "Ville ou aéroport",
+      "pickupDate": "Date de prise en charge",
+      "dropoffDate": "Date de restitution",
+      "search": "Rechercher des voitures",
+      "partnerNote": "S'ouvre chez notre partenaire pour finaliser la réservation.",
+      "tipsTitle": "Louer au Nigéria",
+      "tip1Label": "Avec chauffeur, c'est la norme.",
+      "tip1Body": "De nombreuses locations nigérianes incluent un chauffeur — souvent plus simple que la conduite soi-même si vous ne connaissez pas les routes.",
+      "tip2Label": "Vérifiez ce qui est inclus :",
+      "tip2Body": "politique de carburant, indemnité du chauffeur, et si les trajets hors ville coûtent un supplément.",
+      "tip3Label": "La conduite autonome nécessite généralement",
+      "tip3Body": "un permis valide (un permis international si vous êtes en visite), une caution, et parfois un garant.",
+      "tip4Label": "Photographiez la voiture avant et après.",
+      "tip4Body": "Cela règle tout litige sur des rayures existantes."
+    },
+    "pickup": {
+      "errOpen": "Impossible d'ouvrir la recherche de transfert.",
+      "back": "Voyages",
+      "title": "Transfert aéroport",
+      "subtitle": "Un chauffeur qui vous attend à l'atterrissage, à prix fixe.",
+      "arrivingLabel": "Arrivée à",
+      "goingLabel": "Destination",
+      "goingPlaceholder": "Hôtel, adresse ou quartier",
+      "arrivalDate": "Date d'arrivée",
+      "passengersLabel": "Passagers",
+      "passengerOne": "{{count}} passager",
+      "passengerOther": "{{count}} passagers",
+      "search": "Trouver un transfert",
+      "partnerNote": "S'ouvre chez notre partenaire pour confirmer votre chauffeur.",
+      "tipsTitle": "Pourquoi réserver à l'avance",
+      "tip1Label": "Le prix est fixé avant votre arrivée",
+      "tip1Body": " — pas de négociation à l'arrivée après un long vol.",
+      "tip2Label": "Votre chauffeur suit le vol",
+      "tip2Body": ", donc un retard ne vous laisse pas bloqué.",
+      "tip3Label": "Indiquez votre numéro de vol",
+      "tip3Body": "lors de la réservation, et partagez les coordonnées de votre chauffeur avec un proche.",
+      "tip4Label": "Le trafic de Lagos est imprévisible.",
+      "tip4Body": "Prévoyez large pour le trajet retour vers l'aéroport."
+    },
+    "flights": {
+      "errOpen": "Impossible d'ouvrir la recherche de vols.",
+      "back": "Voyage",
+      "title": "Trouver des vols",
+      "subtitle": "Comparez des centaines de compagnies et d'agences.",
+      "roundTrip": "Aller-retour",
+      "oneWay": "Aller simple",
+      "from": "De",
+      "to": "À",
+      "swap": "Inverser",
+      "departing": "Départ",
+      "returning": "Retour",
+      "passengers": "Passagers",
+      "adultOne": "{{count}} adulte",
+      "adultOther": "{{count}} adultes",
+      "nonStop": "{{origin}} → {{destination}} · {{hours}} sans escale",
+      "comparePrices": "Comparer les prix",
+      "compareFares": "Comparez les tarifs de centaines de compagnies et d'agences de voyage.",
+      "secureSearch": "Recherche sécurisée",
+      "newTab": "S'ouvre dans un nouvel onglet",
+      "poweredBy": "Propulsé par Aviasales",
+      "popularRoutes": "Itinéraires populaires",
+      "exploreDest": "Explorer les destinations",
+      "beforeBook": "Avant de réserver",
+      "tip1Label": "Le nom doit correspondre à votre passeport.",
+      "tip1Body": "Les compagnies facturent la correction des noms, et certaines ne les autorisent pas du tout.",
+      "tip2Label": "Vérifiez tôt les règles de visa et de transit.",
+      "tip2Body": "Certaines correspondances nécessitent un visa de transit même si vous ne quittez jamais l'aéroport.",
+      "tip3Label": "Lagos et Abuja ont des terminaux domestiques et internationaux séparés.",
+      "tip3Body": "Prévoyez du temps supplémentaire si vous y faites une correspondance.",
+      "tip4Label": "Les départs en milieu de semaine sont généralement moins chers",
+      "tip4Body": "que le vendredi et le dimanche, et les prix ont tendance à grimper à l'approche du départ.",
+      "tip5Label": "Confirmez la franchise bagages",
+      "tip5Body": "avant de payer — le tarif le moins cher exclut souvent les bagages en soute."
+    }
   }
 }
