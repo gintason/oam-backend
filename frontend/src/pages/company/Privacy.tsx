@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import { AlertTriangle } from "lucide-react";
-import PageShell, { Block, Notice } from "./PageShell";
+import { useTranslation, Trans } from "react-i18next";
+import PageShell, { Block } from "./PageShell";
+
+const emailLink = <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline" />;
+const mono = <span className="font-mono text-[12px]" />;
 
 /**
  * DRAFT privacy policy.
@@ -15,138 +18,103 @@ import PageShell, { Block, Notice } from "./PageShell";
  * that need proper advice. Hence the visible banner.
  */
 export default function Privacy() {
+  const { t } = useTranslation();
   return (
     <PageShell
-      title="Privacy Policy"
-      intro="What we collect, why, who else sees it, and what you can ask us to do about it."
-      updated="23 July 2026"
+      title={t("company.privacy.title")}
+      intro={t("company.privacy.intro")}
+      updated={t("company.privacy.updated")}
     >
-
-      <Block heading="Who controls your data">
+      <Block heading={t("company.privacy.controlTitle")}>
         <p>
-          <strong>O.A.M Motors Limited</strong> (RC{" "}
-          <span className="font-mono text-[12px]">[TO CONFIRM]</span>) is the data controller.
-          For any privacy question or request, email{" "}
-          <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline">
-            info@oam-app.com
-          </a>
-          .
+          <Trans i18nKey="company.privacy.controlBody" components={{ 1: <strong />, 2: mono, 3: emailLink }} />
         </p>
       </Block>
 
-      <Block heading="What we collect">
-        <p><strong>You give us:</strong></p>
+      <Block heading={t("company.privacy.collectTitle")}>
+        <p><strong>{t("company.privacy.collectGive")}</strong></p>
         <ul className="ml-4 list-disc space-y-1.5">
-          <li>Name, email address and phone number when you register</li>
-          <li>Bank account details when you set up a withdrawal</li>
-          <li>Meter numbers, smartcard numbers and phone numbers you pay bills for</li>
-          <li>Listing details, artisan profile details, and the contact numbers on them</li>
-          <li>Messages you send to other users through OAM</li>
+          <li>{t("company.privacy.giveLi1")}</li>
+          <li>{t("company.privacy.giveLi2")}</li>
+          <li>{t("company.privacy.giveLi3")}</li>
+          <li>{t("company.privacy.giveLi4")}</li>
+          <li>{t("company.privacy.giveLi5")}</li>
         </ul>
-        <p><strong>Created as you use OAM:</strong></p>
+        <p><strong>{t("company.privacy.collectCreated")}</strong></p>
         <ul className="ml-4 list-disc space-y-1.5">
-          <li>Wallet balance and full transaction history</li>
-          <li>Orders, references, and electricity tokens issued to you</li>
-          <li>Approximate location, if you allow it, to find artisans near you</li>
+          <li>{t("company.privacy.createdLi1")}</li>
+          <li>{t("company.privacy.createdLi2")}</li>
+          <li>{t("company.privacy.createdLi3")}</li>
         </ul>
         <p>
-          <strong>We never see or store your card details.</strong> Cards are entered on
-          Paystack's own checkout and stay with them.
+          <Trans i18nKey="company.privacy.collectCard" components={{ 1: <strong /> }} />
         </p>
       </Block>
 
-      <Block heading="Why we use it">
+      <Block heading={t("company.privacy.whyTitle")}>
         <ul className="ml-4 list-disc space-y-1.5">
-          <li><strong>To run your account and process payments</strong> — we can't deliver airtime or units without the number or meter</li>
-          <li><strong>To send receipts and tokens</strong> by email, so a delivered token isn't lost when you close the app</li>
-          <li><strong>To connect buyers and sellers</strong> — contact details are released only when an enquiry is accepted</li>
-          <li><strong>To prevent fraud</strong> and investigate misuse</li>
-          <li><strong>To meet legal and regulatory obligations</strong>, including financial record-keeping</li>
+          <li><Trans i18nKey="company.privacy.whyLi1" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whyLi2" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whyLi3" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whyLi4" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whyLi5" components={{ 1: <strong /> }} /></li>
         </ul>
         <p>
-          We do <strong>not</strong> sell your personal data, and we don't show
-          advertising based on it.
+          <Trans i18nKey="company.privacy.whyNoSell" components={{ 1: <strong /> }} />
         </p>
       </Block>
 
-      <Block heading="Who else sees it">
-        <p>Only what each partner needs to do their job:</p>
+      <Block heading={t("company.privacy.whoTitle")}>
+        <p>{t("company.privacy.whoIntro")}</p>
         <ul className="ml-4 list-disc space-y-1.5">
-          <li><strong>Paystack</strong> — payments and withdrawals; they receive your name, email and payment details</li>
-          <li><strong>Bill providers</strong> — the phone number, meter or smartcard number for that purchase</li>
-          <li><strong>Other OAM users</strong> — your name and, once you accept an enquiry, your contact number</li>
-          <li><strong>Travel partners</strong> — if you follow a booking link, their own privacy policy applies from that point</li>
-          <li><strong>Regulators or law enforcement</strong> — where we're legally required to disclose</li>
+          <li><Trans i18nKey="company.privacy.whoLi1" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whoLi2" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whoLi3" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whoLi4" components={{ 1: <strong /> }} /></li>
+          <li><Trans i18nKey="company.privacy.whoLi5" components={{ 1: <strong /> }} /></li>
         </ul>
       </Block>
 
-      <Block heading="Contact details on listings and profiles">
+      <Block heading={t("company.privacy.contactTitle")}>
         <p>
-          The number on your listing or artisan profile is{" "}
-          <strong>not published publicly</strong>. It's held privately and released to one
-          specific person only when you accept their enquiry.
+          <Trans i18nKey="company.privacy.contactP1" components={{ 1: <strong /> }} />
         </p>
-        <p>
-          This is deliberate: numbers on public pages get harvested and reused for
-          impersonation scams. Keeping the release under your control is the single most
-          useful protection we can offer, so it's built into the product rather than left as
-          a setting.
-        </p>
+        <p>{t("company.privacy.contactP2")}</p>
       </Block>
 
-      <Block heading="How long we keep it">
+      <Block heading={t("company.privacy.keepTitle")}>
         <p>
-          Account and transaction records are kept while your account is open, and for a
-          period afterwards to meet financial record-keeping obligations.{" "}
-          <span className="font-mono text-[12px]">[TO CONFIRM — the exact retention period
-          should be set with advice; financial records in Nigeria are typically kept for
-          several years.]</span>
+          <Trans i18nKey="company.privacy.keepP1" components={{ 1: mono }} />
         </p>
-        <p>Messages between users are kept while both accounts remain open.</p>
+        <p>{t("company.privacy.keepP2")}</p>
       </Block>
 
-      <Block heading="Your rights">
-        <p>Under the Nigeria Data Protection Act 2023 you can ask us to:</p>
+      <Block heading={t("company.privacy.rightsTitle")}>
+        <p>{t("company.privacy.rightsIntro")}</p>
         <ul className="ml-4 list-disc space-y-1.5">
-          <li>show you the personal data we hold about you</li>
-          <li>correct anything inaccurate</li>
-          <li>delete data we no longer have a lawful reason to keep</li>
-          <li>stop using your data for a particular purpose</li>
-          <li>provide your data in a portable form</li>
+          <li>{t("company.privacy.rightsLi1")}</li>
+          <li>{t("company.privacy.rightsLi2")}</li>
+          <li>{t("company.privacy.rightsLi3")}</li>
+          <li>{t("company.privacy.rightsLi4")}</li>
+          <li>{t("company.privacy.rightsLi5")}</li>
         </ul>
         <p>
-          Email{" "}
-          <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline">
-            info@oam-app.com
-          </a>
-          . We'll respond within one month.
+          <Trans i18nKey="company.privacy.rightsEmail" components={{ 1: emailLink }} />
         </p>
-        <p>
-          Some data we must keep even after you ask — completed financial transactions, for
-          instance, where the law requires a record. We'll tell you if that applies.
-        </p>
+        <p>{t("company.privacy.rightsKeep")}</p>
       </Block>
 
-      <Block heading="Security">
-        <p>
-          Passwords are stored hashed, never in readable form. Payments go through Paystack's
-          secure checkout. Access to customer data inside OAM is limited to the people who
-          need it to run the service.
-        </p>
-        <p>
-          No system is perfectly secure. If a breach affects your data, we'll tell you and
-          the regulator as the law requires.
-        </p>
+      <Block heading={t("company.privacy.securityTitle")}>
+        <p>{t("company.privacy.securityP1")}</p>
+        <p>{t("company.privacy.securityP2")}</p>
       </Block>
 
-      <Block heading="Changes">
+      <Block heading={t("company.privacy.changesTitle")}>
         <p>
-          If we change this policy materially, we'll notify you by email or in the app before
-          it takes effect. See also our{" "}
-          <Link to="/terms" className="font-medium text-brand-green underline">
-            Terms of Service
-          </Link>
-          .
+          <Trans
+            i18nKey="company.privacy.changesBody"
+            components={{ 1: <Link to="/terms" className="font-medium text-brand-green underline" /> }}
+          />
         </p>
       </Block>
     </PageShell>
