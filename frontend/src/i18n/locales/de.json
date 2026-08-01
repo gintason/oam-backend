@@ -1185,6 +1185,61 @@
       "responseTitle": "Antwortzeiten",
       "responseBody": "Wir wollen jede E-Mail innerhalb <1>eines Werktags</1> beantworten. Zahlungsprobleme sehen wir zuerst an. Ohne Antwort nach zwei Werktagen antworten Sie auf Ihre eigene E-Mail, um sie hochzuholen — das ist zuverlässiger als eine neue.",
       "scamBody": "<1>Wir fragen Sie niemals nach Ihrem Passwort, Karten-PIN oder einem Einmalcode.</1> Wer das tut — per Anruf, SMS oder WhatsApp — ist nicht von OAM, so überzeugend es auch klingt. Legen Sie auf und schreiben Sie uns."
+    },
+    "help": {
+      "title": "Hilfezentrum",
+      "intro": "Antworten auf die häufigsten Fragen — beginnend mit der, die zählt, wenn Geld im Spiel ist.",
+      "searchPlaceholder": "Hilfe durchsuchen…",
+      "noMatch": "Nichts passt zu „{{query}}“. Schreiben Sie an <1>info@oam-app.com</1> und eine Person antwortet.",
+      "stillStuck": "Immer noch nicht weiter? Schreiben Sie an <1>info@oam-app.com</1> mit Ihrer Bestellreferenz und wir schauen nach. Siehe <2>Kontakt</2> dafür, was anzugeben ist.",
+      "groups": {
+        "electricity": {
+          "title": "Strom-Token",
+          "q1": "Ich habe Einheiten bezahlt, aber kein Token erschien. Was nun?",
+          "a1p1": "<1>Kaufen Sie nicht erneut.</1> Ihre Zahlung ist erfolgt und die Bestellung liegt bei Ihrem Anbieter — ein zweiter Kauf berechnet Sie doppelt für denselben Zähler.",
+          "a1p2": "Öffnen Sie den <1>Bestellverlauf</1>. Während eine Bestellung abgeschlossen wird, sehen Sie „Token unterwegs“, und die Seite prüft alle paar Sekunden bei Ihrem Anbieter. Token kommen meist in ein bis zwei Minuten, zu Stoßzeiten gelegentlich länger.",
+          "a1p3": "Das Token wird Ihnen auch per E-Mail gesendet, sobald es ausgestellt ist, Sie erhalten es also selbst bei geschlossener App.",
+          "q2": "Wo finde ich ein altes Token?",
+          "a2": "Jedes Token wird dauerhaft im <1>Bestellverlauf</1> gespeichert — öffnen Sie die Bestellung, dort ist es mit einer Kopieren-Schaltfläche. Es steht auch in der damals gesendeten Beleg-E-Mail.",
+          "q3": "Die Zählernummer wurde nicht akzeptiert.",
+          "a3": "Nigerianische Prepaid-Zähler haben <1>11 Ziffern</1>. Wir prüfen bei Ihrem Disco erst, wenn alle 11 eingegeben sind, eine Meldung während der Eingabe heißt also nur, dass wir warten. Wird eine vollständige Nummer weiter abgelehnt, prüfen Sie das richtige Disco — ein gültiger Zähler beim falschen Disco schlägt immer fehl."
+        },
+        "wallet": {
+          "title": "Wallet und Zahlungen",
+          "q1": "Warum geht meine Kartenzahlung zuerst in mein Wallet?",
+          "a1p1": "Kartenzahlungen schreiben Ihrem Wallet gut, und das Wallet bezahlt dann Ihren Einkauf. Es wirkt wie ein zusätzlicher Schritt und ist beabsichtigt.",
+          "a1p2": "Scheitert eine Lieferung, liegt das Geld bereits sicher als Guthaben in Ihrem Wallet, das Sie ausgeben oder abheben können. Einen Anbieter direkt zu bezahlen würde Ihr Geld zwischen Kartenabwickler und Anbieter festsetzen, ohne sauberen Rückweg.",
+          "q2": "Gibt es versteckte Gebühren?",
+          "a2": "Nein. Die vor der Zahlung angezeigte Summe ist, was Sie zahlen — die Gebührenzeile zeigt ₦0, weil es keine gibt. Unsere Marge ist im Rechnungspreis enthalten, also wird beim Bezahlen nichts hinzugefügt.",
+          "q3": "Wie lange dauern Auszahlungen?",
+          "a3": "Banküberweisungen kommen meist in Minuten an, können bei Bankausfällen aber länger dauern. Scheitert eine Auszahlung, wird der Betrag automatisch in Ihr Wallet zurückgebucht — er ist nicht verloren, und Sie können es erneut versuchen.",
+          "q4": "Kann ich Geld an einen anderen OAM-Nutzer senden?",
+          "a4": "Ja — <1>Überweisen</1> bewegt Geld sofort und kostenlos zwischen OAM-Wallets. Geben Sie E-Mail oder Nummer ein, und der Name erscheint vor der Bestätigung. <2>Prüfen Sie diesen Namen sorgfältig</2>: abgeschlossene Überweisungen sind nicht umkehrbar."
+        },
+        "marketplace": {
+          "title": "Marktplatz und Handwerker",
+          "q1": "Warum sehe ich die Nummer eines Verkäufers nicht?",
+          "a1p1": "Nummern werden nie veröffentlicht. Senden Sie eine Nachricht zum Artikel, und sobald der Verkäufer annimmt, sehen Sie beide die Kontaktdaten des anderen.",
+          "a1p2": "Es ist etwas langsamer und der wirksamste Schutz, den wir bieten können: veröffentlichte Nummern werden abgegriffen, und abgegriffene Nummern für Identitätsbetrug genutzt.",
+          "q2": "Wie viele Dinge kann ich kostenlos inserieren?",
+          "a2": "Drei aktive Inserate, unbegrenzt lange, ohne Karte. Premium (₦2,500) fügt bis zu 20 Inserate plus hervorgehobene Platzierung hinzu, und Pro (₦5,000) ist unbegrenzt.",
+          "q3": "Wie bleibe ich beim Kaufen und Verkaufen sicher?",
+          "a3li1": "Treffen Sie sich tagsüber an einem öffentlichen Ort",
+          "a3li2": "Prüfen Sie den Artikel, bevor Geld den Besitzer wechselt",
+          "a3li3": "Senden Sie nie im Voraus Geld an jemanden, den Sie nicht getroffen haben",
+          "a3li4": "Führen Sie das Gespräch in OAM, damit es einen Nachweis des Vereinbarten gibt",
+          "a3li5": "Werten Sie jede Bitte, „für einen besseren Preis“ zu WhatsApp zu wechseln, als Warnsignal",
+          "q4": "Was bewirkt das Hervorheben eines Handwerkerprofils?",
+          "a4": "Es platziert Ihr Profil in den Ergebnissen über nicht hervorgehobenen, wo die meisten suchen. Premium kostet ₦2,500 für 30 Tage und Pro ₦5,000 für 90. Beide sind <1>Einmalzahlungen</1> — nichts verlängert sich automatisch."
+        },
+        "account": {
+          "title": "Konto",
+          "q1": "Kann ich dasselbe Konto zum Kaufen und Verkaufen nutzen?",
+          "a1": "Ja. Ein Konto macht alles — Sie könnten in derselben Woche einen Kühlschrank verkaufen und einen Klempner beauftragen. Ihre Nachrichten sind in „Meine Anfragen“ und „Anfragen an mich“ getrennt, damit sich beides nicht vermischt.",
+          "q2": "Wird meine Karte bei OAM gespeichert?",
+          "a2": "Nein. Kartendaten werden im sicheren Checkout von Paystack eingegeben und von uns nie gesehen oder gespeichert."
+        }
+      }
     }
   }
 }

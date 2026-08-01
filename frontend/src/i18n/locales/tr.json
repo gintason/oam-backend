@@ -1185,6 +1185,61 @@
       "responseTitle": "Yanıt süreleri",
       "responseBody": "Her e-postayı <1>bir iş günü</1> içinde yanıtlamayı hedefliyoruz. Ödeme sorunlarına önce bakılır. İki iş günü sonra yanıt alamazsanız, öne çıkarmak için kendi e-postanıza yanıt verin — yeni bir tane göndermekten daha güvenilirdir.",
       "scamBody": "<1>Sizden asla şifrenizi, kart PIN'inizi veya tek kullanımlık bir kod istemeyiz.</1> Bunu yapan herkes — arama, SMS veya WhatsApp ile — ne kadar inandırıcı olursa olsun OAM'dan değildir. Telefonu kapatın ve bize e-posta gönderin."
+    },
+    "help": {
+      "title": "Yardım merkezi",
+      "intro": "En çok sorulanların yanıtları — para söz konusu olduğunda önemli olanla başlıyoruz.",
+      "searchPlaceholder": "Yardımda ara…",
+      "noMatch": "\"{{query}}\" ile eşleşen yok. <1>info@oam-app.com</1> adresine yazın, bir kişi yanıtlasın.",
+      "stillStuck": "Hâlâ takıldınız mı? Sipariş referansınızla <1>info@oam-app.com</1> adresine yazın, biz bulalım. Neyi ekleyeceğinizi <2>İletişim</2> bölümünde görün.",
+      "groups": {
+        "electricity": {
+          "title": "Elektrik jetonları",
+          "q1": "Birim ödedim ama jeton gelmedi. Şimdi ne olacak?",
+          "a1p1": "<1>Tekrar satın almayın.</1> Ödemeniz geçti ve sipariş sağlayıcınızda — ikinci kez almak aynı sayaç için sizi iki kez ücretlendirir.",
+          "a1p2": "<1>Sipariş geçmişi</1>'ni açın. Bir sipariş tamamlanırken \"Jeton yolda\" görürsünüz ve sayfa her birkaç saniyede sağlayıcınıza sorar. Jetonlar genellikle bir iki dakikada gelir, yoğun saatlerde bazen daha uzun.",
+          "a1p3": "Jeton, düzenlenir düzenlenmez size e-posta ile de gönderilir, böylece uygulamayı kapatmış olsanız bile alırsınız.",
+          "q2": "Eski bir jetonu nerede bulurum?",
+          "a2": "Her jeton <1>sipariş geçmişi</1>'nde kalıcı olarak saklanır — siparişi açın, kopyalama düğmesiyle orada. Ayrıca o zaman gönderdiğimiz makbuz e-postasında da var.",
+          "q3": "Sayaç numarası kabul edilmedi.",
+          "a3": "Nijerya ön ödemeli sayaçları <1>11 hanelidir</1>. Disco'nuza yalnızca 11'i de girildikten sonra sorarız, yani yazarken çıkan mesaj sadece beklediğimiz anlamına gelir. Tam bir numara hâlâ reddediliyorsa doğru disco'yu seçtiğinizi kontrol edin — yanlış disco'daki geçerli sayaç her zaman başarısız olur."
+        },
+        "wallet": {
+          "title": "Cüzdan ve ödemeler",
+          "q1": "Kart ödemem neden önce cüzdanıma gidiyor?",
+          "a1p1": "Kart ödemeleri cüzdanınıza yüklenir, cüzdan da satın aldığınız şeyi öder. Fazladan bir adım gibi görünür ve bilinçlidir.",
+          "a1p2": "Bir teslimat başarısız olursa, para zaten cüzdanınızda harcayabileceğiniz ya da çekebileceğiniz bir bakiye olarak güvende durur. Bir sağlayıcıya doğrudan ödemek paranızı kart işlemcisiyle onun arasında, temiz bir dönüş yolu olmadan sıkışık bırakırdı.",
+          "q2": "Gizli ücretler var mı?",
+          "a2": "Hayır. Ödemeden önce gösterilen toplam ödediğinizdir — ücret satırı ₦0 yazar çünkü yoktur. Kârımız faturaların fiyatına dahildir, bu yüzden ödemede hiçbir şey eklenmez.",
+          "q3": "Para çekme ne kadar sürer?",
+          "a3": "Banka havaleleri genellikle dakikalar içinde ulaşır, ancak banka kesintilerinde daha uzun sürebilir. Bir çekim başarısız olursa tutar otomatik olarak cüzdanınıza döner — kaybolmaz ve tekrar deneyebilirsiniz.",
+          "q4": "Başka bir OAM kullanıcısına para gönderebilir miyim?",
+          "a4": "Evet — <1>Transfer</1> OAM cüzdanları arasında parayı anında ve ücretsiz taşır. E-postalarını veya numaralarını girin, adları onaylamadan önce görünür. <2>O adı dikkatle kontrol edin</2>: tamamlanan transferler geri alınamaz."
+        },
+        "marketplace": {
+          "title": "Pazar ve ustalar",
+          "q1": "Bir satıcının telefon numarasını neden göremiyorum?",
+          "a1p1": "Numaralar asla yayınlanmaz. Ürünle ilgili bir mesaj gönderin, satıcı kabul ettiğinde ikiniz de birbirinizin iletişim bilgilerini görürsünüz.",
+          "a1p2": "Biraz daha yavaştır ve sunabileceğimiz en etkili korumadır: yayınlanan numaralar toplanır, toplanan numaralar da kimlik taklidi dolandırıcılıklarında kullanılır.",
+          "q2": "Ücretsiz kaç şey listeleyebilirim?",
+          "a2": "Süresiz üç aktif ilan, kart gerekmez. Premium (₦2,500) 20 ilana kadar ve öne çıkarma ekler, Pro (₦5,000) sınırsızdır.",
+          "q3": "Alım satımda nasıl güvende kalırım?",
+          "a3li1": "Gündüz kamuya açık bir yerde buluşun",
+          "a3li2": "Para el değiştirmeden önce ürünü inceleyin",
+          "a3li3": "Tanışmadığınız birine asla önceden para göndermeyin",
+          "a3li4": "Konuşmayı OAM'de tutun, böylece anlaşılanın kaydı olur",
+          "a3li5": "\"Daha iyi fiyat için\" WhatsApp'a geçme isteğini uyarı işareti sayın",
+          "q4": "Bir usta profilini öne çıkarmak ne yapar?",
+          "a4": "Profilinizi arama sonuçlarında öne çıkarılmayanların üstüne, çoğu kişinin baktığı yere koyar. Premium 30 gün için ₦2,500, Pro 90 için ₦5,000'dir. İkisi de <1>tek seferlik ödemedir</1> — hiçbir şey otomatik yenilenmez."
+        },
+        "account": {
+          "title": "Hesap",
+          "q1": "Aynı hesabı hem alım hem satım için kullanabilir miyim?",
+          "a1": "Evet. Tek hesap her şeyi yapar — aynı hafta bir buzdolabı satıp bir tesisatçı tutabilirsiniz. Mesajlarınız \"Taleplerim\" ve \"Bana gelen talepler\" olarak ayrılır, böylece karışmaz.",
+          "q2": "Kartım OAM'de saklanıyor mu?",
+          "a2": "Hayır. Kart bilgileri Paystack'in güvenli ödemesinde girilir ve bizim tarafımızdan asla görülmez veya saklanmaz."
+        }
+      }
     }
   }
 }

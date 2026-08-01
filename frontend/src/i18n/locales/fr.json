@@ -1185,6 +1185,61 @@
       "responseTitle": "Délais de réponse",
       "responseBody": "Nous visons à répondre à chaque e-mail sous <1>un jour ouvré</1>. Les problèmes de paiement sont traités en premier. Sans réponse après deux jours ouvrés, répondez à votre propre e-mail pour le relancer — c'est plus fiable que d'en envoyer un nouveau.",
       "scamBody": "<1>Nous ne vous demanderons jamais votre mot de passe, votre code PIN de carte ou un code à usage unique.</1> Quiconque le fait — par appel, SMS ou WhatsApp — n'est pas d'OAM, aussi convaincant soit-il. Raccrochez et écrivez-nous plutôt."
+    },
+    "help": {
+      "title": "Centre d'aide",
+      "intro": "Réponses aux questions les plus fréquentes — en commençant par celle qui compte quand il s'agit d'argent.",
+      "searchPlaceholder": "Rechercher de l'aide…",
+      "noMatch": "Rien ne correspond à « {{query}} ». Écrivez à <1>info@oam-app.com</1> et une personne vous répondra.",
+      "stillStuck": "Toujours bloqué ? Écrivez à <1>info@oam-app.com</1> avec votre référence de commande et nous la retrouverons. Consultez <2>Contact</2> pour savoir quoi inclure.",
+      "groups": {
+        "electricity": {
+          "title": "Jetons d'électricité",
+          "q1": "J'ai payé des unités mais aucun jeton n'est apparu. Que faire ?",
+          "a1p1": "<1>N'achetez pas à nouveau.</1> Votre paiement est passé et la commande est chez votre fournisseur — acheter une seconde fois vous facture deux fois pour le même compteur.",
+          "a1p2": "Ouvrez <1>l'historique des commandes</1>. Tant qu'une commande se termine, vous verrez « Jeton en route », et la page vérifie auprès de votre fournisseur toutes les quelques secondes. Les jetons arrivent généralement en une minute ou deux, parfois plus aux heures de pointe.",
+          "a1p3": "Le jeton vous est aussi envoyé par e-mail dès son émission, vous l'aurez donc même si vous avez fermé l'application.",
+          "q2": "Où puis-je retrouver un ancien jeton ?",
+          "a2": "Chaque jeton est conservé en permanence dans <1>l'historique des commandes</1> — ouvrez la commande et il s'y trouve avec un bouton de copie. Il est aussi dans l'e-mail de reçu envoyé à ce moment-là.",
+          "q3": "Le numéro de compteur n'a pas été accepté.",
+          "a3": "Les compteurs prépayés nigérians ont <1>11 chiffres</1>. Nous vérifions auprès de votre disco seulement une fois les 11 saisis, donc un message pendant que vous tapez signifie juste que nous attendons. Si un numéro complet est toujours rejeté, vérifiez d'avoir choisi le bon disco — un compteur valide sur le mauvais disco échouera toujours."
+        },
+        "wallet": {
+          "title": "Portefeuille et paiements",
+          "q1": "Pourquoi mon paiement par carte va-t-il d'abord dans mon portefeuille ?",
+          "a1p1": "Les paiements par carte créditent votre portefeuille, qui règle ensuite votre achat. Cela ressemble à une étape en plus, et c'est délibéré.",
+          "a1p2": "Si une livraison échoue, l'argent est déjà en sécurité dans votre portefeuille, un solde que vous pouvez dépenser ou retirer. Payer un fournisseur directement laisserait votre argent bloqué entre le processeur de carte et lui, sans retour propre.",
+          "q2": "Y a-t-il des frais cachés ?",
+          "a2": "Non. Le total affiché avant de payer est ce que vous payez — la ligne de frais indique ₦0 car il n'y en a pas. Notre marge est intégrée au prix des factures, donc rien n'est ajouté au paiement.",
+          "q3": "Combien de temps prennent les retraits ?",
+          "a3": "Les virements bancaires arrivent généralement en quelques minutes, mais peuvent prendre plus longtemps lors d'indisponibilités bancaires. Si un retrait échoue, le montant est automatiquement renvoyé dans votre portefeuille — il n'est pas perdu, et vous pouvez réessayer.",
+          "q4": "Puis-je envoyer de l'argent à un autre utilisateur OAM ?",
+          "a4": "Oui — <1>Transfert</1> déplace de l'argent entre portefeuilles OAM instantanément et gratuitement. Saisissez leur e-mail ou numéro et leur nom apparaît avant confirmation. <2>Vérifiez ce nom attentivement</2> : les transferts effectués ne peuvent pas être annulés."
+        },
+        "marketplace": {
+          "title": "Marché et artisans",
+          "q1": "Pourquoi ne puis-je pas voir le numéro d'un vendeur ?",
+          "a1p1": "Les numéros ne sont jamais publiés. Envoyez un message au sujet de l'article, et une fois que le vendeur accepte, vous verrez tous les deux vos coordonnées.",
+          "a1p2": "C'est légèrement plus lent, et c'est la protection la plus efficace que nous puissions offrir : les numéros publiés sont collectés, et les numéros collectés servent aux arnaques par usurpation.",
+          "q2": "Combien d'articles puis-je publier gratuitement ?",
+          "a2": "Trois annonces actives, indéfiniment, sans carte requise. Premium (₦2,500) ajoute jusqu'à 20 annonces plus un placement en vedette, et Pro (₦5,000) est illimité.",
+          "q3": "Comment rester en sécurité en achetant et vendant ?",
+          "a3li1": "Rencontrez-vous dans un lieu public en journée",
+          "a3li2": "Inspectez l'article avant tout échange d'argent",
+          "a3li3": "N'envoyez jamais d'argent à l'avance à quelqu'un que vous n'avez pas rencontré",
+          "a3li4": "Gardez la conversation dans OAM, pour garder une trace de ce qui a été convenu",
+          "a3li5": "Considérez toute demande de passer sur WhatsApp « pour un meilleur prix » comme un signal d'alerte",
+          "q4": "À quoi sert la mise en avant d'un profil d'artisan ?",
+          "a4": "Elle place votre profil au-dessus des profils non mis en avant dans les résultats, là où la plupart regardent. Premium coûte ₦2,500 pour 30 jours et Pro ₦5,000 pour 90. Les deux sont des <1>paiements uniques</1> — rien ne se renouvelle automatiquement."
+        },
+        "account": {
+          "title": "Compte",
+          "q1": "Puis-je utiliser le même compte pour acheter et vendre ?",
+          "a1": "Oui. Un seul compte fait tout — vous pourriez vendre un frigo et engager un plombier la même semaine. Vos messages sont séparés en « Mes demandes » et « Demandes reçues » pour ne pas les mélanger.",
+          "q2": "Ma carte est-elle enregistrée sur OAM ?",
+          "a2": "Non. Les détails de carte sont saisis sur le paiement sécurisé de Paystack et ne sont jamais vus ni conservés par nous."
+        }
+      }
     }
   }
 }

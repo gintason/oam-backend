@@ -1185,6 +1185,61 @@
       "responseTitle": "Tiempos de respuesta",
       "responseBody": "Intentamos responder a cada correo en <1>un día laborable</1>. Los problemas de pago se revisan primero. Si no tienes respuesta tras dos días laborables, responde a tu propio correo para insistir — es más fiable que enviar uno nuevo.",
       "scamBody": "<1>Nunca te pediremos tu contraseña, el PIN de tu tarjeta ni un código de un solo uso.</1> Quien lo haga — por llamada, SMS o WhatsApp — no es de OAM, por convincente que suene. Cuelga y escríbenos."
+    },
+    "help": {
+      "title": "Centro de ayuda",
+      "intro": "Respuestas a lo que más se pregunta — empezando por lo que importa cuando hay dinero de por medio.",
+      "searchPlaceholder": "Buscar ayuda…",
+      "noMatch": "Nada coincide con «{{query}}». Escribe a <1>info@oam-app.com</1> y una persona responderá.",
+      "stillStuck": "¿Sigues atascado? Escribe a <1>info@oam-app.com</1> con tu referencia de pedido y la buscaremos. Consulta <2>Contacto</2> para saber qué incluir.",
+      "groups": {
+        "electricity": {
+          "title": "Tokens de electricidad",
+          "q1": "Pagué unidades pero no apareció ningún token. ¿Y ahora?",
+          "a1p1": "<1>No compres de nuevo.</1> Tu pago se realizó y el pedido está con tu proveedor — comprar por segunda vez te cobra dos veces por el mismo medidor.",
+          "a1p2": "Abre el <1>historial de pedidos</1>. Mientras un pedido se completa verás «Token en camino», y la página consulta a tu proveedor cada pocos segundos. Los tokens suelen llegar en un minuto o dos, a veces más en horas punta.",
+          "a1p3": "El token también se te envía por correo en cuanto se emite, así que lo recibirás aunque hayas cerrado la app.",
+          "q2": "¿Dónde encuentro un token antiguo?",
+          "a2": "Cada token se guarda permanentemente en el <1>historial de pedidos</1> — abre el pedido y ahí está con un botón de copiar. También está en el correo de recibo que enviamos entonces.",
+          "q3": "El número de medidor no fue aceptado.",
+          "a3": "Los medidores prepago nigerianos tienen <1>11 dígitos</1>. Solo consultamos a tu disco una vez introducidos los 11, así que un mensaje mientras escribes solo significa que esperamos. Si un número completo sigue rechazándose, verifica haber elegido el disco correcto — un medidor válido en el disco equivocado siempre fallará."
+        },
+        "wallet": {
+          "title": "Monedero y pagos",
+          "q1": "¿Por qué mi pago con tarjeta va primero a mi monedero?",
+          "a1p1": "Los pagos con tarjeta acreditan tu monedero, y el monedero paga lo que compraste. Parece un paso extra, y es deliberado.",
+          "a1p2": "Si una entrega falla, el dinero ya está seguro en tu monedero como saldo que puedes gastar o retirar. Pagar a un proveedor directamente dejaría tu dinero varado entre el procesador de tarjeta y él, sin una vía limpia de vuelta.",
+          "q2": "¿Hay comisiones ocultas?",
+          "a2": "No. El total mostrado antes de pagar es lo que pagas — la línea de comisión indica ₦0 porque no hay ninguna. Nuestro margen está incluido en el precio de las facturas, así que no se añade nada al pagar.",
+          "q3": "¿Cuánto tardan los retiros?",
+          "a3": "Las transferencias bancarias suelen llegar en minutos, aunque pueden tardar más durante caídas del banco. Si un retiro falla, el importe vuelve automáticamente a tu monedero — no se pierde, y puedes intentarlo de nuevo.",
+          "q4": "¿Puedo enviar dinero a otro usuario de OAM?",
+          "a4": "Sí — <1>Transferir</1> mueve dinero entre monederos OAM al instante y gratis. Introduce su correo o teléfono y su nombre aparece antes de confirmar. <2>Verifica ese nombre con cuidado</2>: las transferencias completadas no se pueden revertir."
+        },
+        "marketplace": {
+          "title": "Mercado y artesanos",
+          "q1": "¿Por qué no veo el teléfono de un vendedor?",
+          "a1p1": "Los números nunca se publican. Envía un mensaje sobre el artículo, y una vez que el vendedor acepte, ambos veréis vuestros datos de contacto.",
+          "a1p2": "Es algo más lento, y es la protección más eficaz que podemos ofrecer: los números publicados se recopilan, y los números recopilados se usan para estafas de suplantación.",
+          "q2": "¿Cuántas cosas puedo publicar gratis?",
+          "a2": "Tres anuncios activos, indefinidamente, sin tarjeta. Premium (₦2,500) añade hasta 20 anuncios más colocación destacada, y Pro (₦5,000) es ilimitado.",
+          "q3": "¿Cómo me mantengo seguro comprando y vendiendo?",
+          "a3li1": "Quedad en un lugar público a la luz del día",
+          "a3li2": "Inspecciona el artículo antes de cualquier intercambio de dinero",
+          "a3li3": "Nunca envíes dinero por adelantado a alguien que no has conocido",
+          "a3li4": "Mantén la conversación en OAM, para que haya registro de lo acordado",
+          "a3li5": "Trata cualquier petición de pasar a WhatsApp «por un mejor precio» como señal de alarma",
+          "q4": "¿Qué hace destacar un perfil de artesano?",
+          "a4": "Coloca tu perfil por encima de los no destacados en los resultados, donde mira la mayoría. Premium cuesta ₦2,500 por 30 días y Pro ₦5,000 por 90. Ambos son <1>pagos únicos</1> — nada se renueva automáticamente."
+        },
+        "account": {
+          "title": "Cuenta",
+          "q1": "¿Puedo usar la misma cuenta para comprar y vender?",
+          "a1": "Sí. Una cuenta lo hace todo — podrías vender una nevera y contratar un fontanero la misma semana. Tus mensajes se dividen en «Mis consultas» y «Consultas para mí» para que no se mezclen.",
+          "q2": "¿Se guarda mi tarjeta en OAM?",
+          "a2": "No. Los datos de la tarjeta se introducen en el pago seguro de Paystack y nunca los vemos ni guardamos."
+        }
+      }
     }
   }
 }

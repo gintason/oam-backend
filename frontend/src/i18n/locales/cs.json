@@ -1185,6 +1185,61 @@
       "responseTitle": "Doba odezvy",
       "responseBody": "Snažíme se odpovědět na každý e-mail do <1>jednoho pracovního dne</1>. Problémy s platbami řešíme jako první. Pokud nemáte odpověď po dvou pracovních dnech, odpovězte na svůj vlastní e-mail, abyste ho posunuli — je to spolehlivější než posílat nový.",
       "scamBody": "<1>Nikdy vás nepožádáme o heslo, PIN karty ani jednorázový kód.</1> Kdokoli to udělá — telefonem, SMS nebo přes WhatsApp — není z OAM, ať zní jakkoli přesvědčivě. Zavěste a napište nám."
+    },
+    "help": {
+      "title": "Centrum nápovědy",
+      "intro": "Odpovědi na nejčastější dotazy — počínaje tím, který se počítá, když jde o peníze.",
+      "searchPlaceholder": "Hledat nápovědu…",
+      "noMatch": "Nic neodpovídá „{{query}}“. Napište na <1>info@oam-app.com</1> a odpoví vám člověk.",
+      "stillStuck": "Stále nevíte? Napište na <1>info@oam-app.com</1> s referencí objednávky a najdeme ji. Co uvést, viz <2>Kontakt</2>.",
+      "groups": {
+        "electricity": {
+          "title": "Tokeny elektřiny",
+          "q1": "Zaplatil jsem jednotky, ale token se neobjevil. Co teď?",
+          "a1p1": "<1>Nekupujte znovu.</1> Vaše platba proběhla a objednávka je u vašeho dodavatele — druhý nákup vám naúčtuje dvakrát za stejný elektroměr.",
+          "a1p2": "Otevřete <1>historii objednávek</1>. Dokud se objednávka dokončuje, uvidíte „Token na cestě“ a stránka se u dodavatele ptá každých pár sekund. Tokeny obvykle dorazí za minutu dvě, ve špičce občas déle.",
+          "a1p3": "Token vám také přijde e-mailem hned po vydání, takže ho dostanete, i když aplikaci zavřete.",
+          "q2": "Kde najdu starý token?",
+          "a2": "Každý token je trvale uložen v <1>historii objednávek</1> — otevřete objednávku a je tam s tlačítkem kopírovat. Je také v e-mailu s účtenkou, který jsme tehdy poslali.",
+          "q3": "Číslo elektroměru nebylo přijato.",
+          "a3": "Nigerijské předplacené elektroměry mají <1>11 číslic</1>. U vašeho disco ověřujeme až po zadání všech 11, takže zpráva při psaní znamená jen, že čekáme. Pokud je úplné číslo stále odmítáno, zkontrolujte, že jste vybrali správné disco — platný elektroměr na špatném disco vždy selže."
+        },
+        "wallet": {
+          "title": "Peněženka a platby",
+          "q1": "Proč moje platba kartou jde nejdřív do peněženky?",
+          "a1p1": "Platby kartou připíší do peněženky, a peněženka pak zaplatí, co jste koupili. Vypadá to jako krok navíc a je to záměr.",
+          "a1p2": "Pokud dodání selže, peníze už jsou bezpečně v peněžence jako zůstatek, který můžete utratit nebo vybrat. Přímá platba dodavateli by nechala peníze uvízlé mezi zpracovatelem karty a ním, bez čisté cesty zpět.",
+          "q2": "Jsou tu skryté poplatky?",
+          "a2": "Ne. Součet zobrazený před platbou je to, co platíte — řádek poplatku ukazuje ₦0, protože žádný není. Naše marže je zahrnuta v ceně účtů, takže při placení se nic nepřidává.",
+          "q3": "Jak dlouho trvají výběry?",
+          "a3": "Bankovní převody obvykle dorazí za minuty, i když při výpadku banky mohou trvat déle. Pokud výběr selže, částka se automaticky vrátí do peněženky — není ztracená a můžete to zkusit znovu.",
+          "q4": "Mohu poslat peníze jinému uživateli OAM?",
+          "a4": "Ano — <1>Převod</1> přesouvá peníze mezi peněženkami OAM okamžitě a zdarma. Zadejte jejich e-mail nebo číslo a jméno se zobrazí před potvrzením. <2>Pečlivě to jméno zkontrolujte</2>: dokončené převody nelze vrátit."
+        },
+        "marketplace": {
+          "title": "Tržiště a řemeslníci",
+          "q1": "Proč nevidím číslo prodejce?",
+          "a1p1": "Čísla se nikdy nezveřejňují. Pošlete zprávu o položce, a jakmile prodejce přijme, oba uvidíte vzájemné kontakty.",
+          "a1p2": "Je to o něco pomalejší a je to nejúčinnější ochrana, kterou nabízíme: zveřejněná čísla se sbírají a sesbíraná se používají k podvodům s vydáváním se za někoho.",
+          "q2": "Kolik věcí mohu vystavit zdarma?",
+          "a2": "Tři aktivní inzeráty, bez omezení času, bez karty. Premium (₦2,500) přidá až 20 inzerátů plus zvýhodněné umístění a Pro (₦5,000) je neomezené.",
+          "q3": "Jak zůstat v bezpečí při nákupu a prodeji?",
+          "a3li1": "Sejděte se na veřejném místě za denního světla",
+          "a3li2": "Prohlédněte položku dříve, než změní majitele peníze",
+          "a3li3": "Nikdy neposílejte peníze předem někomu, koho jste nepotkali",
+          "a3li4": "Veďte konverzaci v OAM, ať je záznam o domluveném",
+          "a3li5": "Každou žádost o přesun na WhatsApp „za lepší cenu“ berte jako varovný signál",
+          "q4": "Co dělá zvýhodnění profilu řemeslníka?",
+          "a4": "Umístí váš profil nad nezvýhodněné ve výsledcích, kam se dívá většina. Premium je ₦2,500 na 30 dní a Pro ₦5,000 na 90. Obojí jsou <1>jednorázové platby</1> — nic se automaticky neobnovuje."
+        },
+        "account": {
+          "title": "Účet",
+          "q1": "Mohu použít stejný účet k nákupu i prodeji?",
+          "a1": "Ano. Jeden účet zvládne vše — můžete prodat lednici a najmout instalatéra ve stejném týdnu. Vaše zprávy jsou rozděleny na „Mé poptávky“ a „Poptávky mně“, aby se nepletly.",
+          "q2": "Je moje karta uložena v OAM?",
+          "a2": "Ne. Údaje karty se zadávají v zabezpečené pokladně Paystack a nikdy je nevidíme ani neukládáme."
+        }
+      }
     }
   }
 }

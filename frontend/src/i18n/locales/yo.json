@@ -1185,6 +1185,61 @@
       "responseTitle": "Àkókò ìdáhùn",
       "responseBody": "À ń gbìyànjú láti dáhùn ímeèlì kọ̀ọ̀kan láàrín <1>ọjọ́ iṣẹ́ kan</1>. À ń wo àwọn ìṣòro ìsanwó ní àkọ́kọ́. Tí o kò bá gbọ́ padà lẹ́yìn ọjọ́ iṣẹ́ méjì, dáhùn ímeèlì tìrẹ láti rán an létí — ó ṣe é gbáralé ju fífi tuntun ránṣẹ́ lọ.",
       "scamBody": "<1>A kì yóò béèrè ọ̀rọ̀ àṣínà rẹ, PIN káàdì, tàbí kóòdù ẹ̀ẹ̀kan láé.</1> Ẹnikẹ́ni tí ó bá béèrè — nípa ìpè, SMS tàbí WhatsApp — kì í ṣe láti OAM, bí ó ti wù kí wọ́n dà bí olóòótọ́ tó. Gé ẹ̀rọ ìbánisọ̀rọ̀ kúrò kí o sì fi ímeèlì ránṣẹ́ sí wa."
+    },
+    "help": {
+      "title": "Ilé-iṣẹ́ ìrànlọ́wọ́",
+      "intro": "Àwọn ìdáhùn sí ohun tí àwọn ènìyàn ń béèrè jù — bẹ̀rẹ̀ láti ọ̀dọ̀ èyí tí ó ṣe pàtàkì nígbà tí owó bá kàn.",
+      "searchPlaceholder": "Wá ìrànlọ́wọ́…",
+      "noMatch": "Kò sí ohun tí ó bá \"{{query}}\" mu. Fi ímeèlì ránṣẹ́ sí <1>info@oam-app.com</1> ẹnìkan yóò sì dáhùn.",
+      "stillStuck": "Ṣé o ṣì dí lọ́wọ́? Fi ímeèlì ránṣẹ́ sí <1>info@oam-app.com</1> pẹ̀lú ìtọ́kasí ọ̀rọ̀-àṣẹ rẹ a ó sì wá a. Wo <2>Kàn sí wa</2> fún ohun tí o ó fi kún un.",
+      "groups": {
+        "electricity": {
+          "title": "Tókà iná mànàmáná",
+          "q1": "Mo san owó fún àwọn ẹ̀ka ṣùgbọ́n kò sí tókà tí ó farahàn. Kí ni báyìí?",
+          "a1p1": "<1>Má ra á lẹ́ẹ̀kejì.</1> Ìsanwó rẹ ti kọjá, ọ̀rọ̀-àṣẹ náà sì wà lọ́wọ́ olùpèsè rẹ — rírà lẹ́ẹ̀kejì ń gba owó lọ́wọ́ rẹ lẹ́ẹ̀mejì fún mítà kan náà.",
+          "a1p2": "Ṣí <1>Ìtàn ọ̀rọ̀-àṣẹ</1>. Nígbà tí ọ̀rọ̀-àṣẹ bá ń parí o ó rí \"Tókà ń bọ̀\", ojú-ìwé náà sì ń bá olùpèsè rẹ ṣàyẹ̀wò ní gbogbo ìṣẹ́jú-àáyá díẹ̀. Àwọn tókà sábà máa ń dé láàrín ìṣẹ́jú kan tàbí méjì, nígbà mìíràn pẹ́ díẹ̀ ní àkókò tí ó pọ̀.",
+          "a1p3": "A tún ń fi tókà náà ránṣẹ́ sí ọ nípa ímeèlì gbàrà tí a bá ti gbé e jáde, nítorí náà o ó rí i kódà bí o bá ti pa áàpù náà.",
+          "q2": "Níbo ni mo ti lè rí tókà àtijọ́?",
+          "a2": "A ń pa tókà kọ̀ọ̀kan mọ́ pẹ́ títí nínú <1>Ìtàn ọ̀rọ̀-àṣẹ</1> — ṣí ọ̀rọ̀-àṣẹ náà ó sì wà níbẹ̀ pẹ̀lú bọ́tìnì àdàkọ. Ó tún wà nínú ímeèlì ìwé ẹ̀rí tí a fi ránṣẹ́ nígbà náà.",
+          "q3": "A kò gba nọ́mbà mítà.",
+          "a3": "Àwọn mítà onísanwó-ṣáájú ti Nàìjíríà ní <1>nọ́mbà 11</1>. A ń bá disco rẹ ṣàyẹ̀wò nìkan lẹ́yìn tí a bá ti tẹ gbogbo 11, nítorí náà ìránṣẹ́ nígbà tí o ṣì ń tẹ̀ túmọ̀ sí pé à ń dúró nìkan. Bí a bá ṣì kọ̀ nọ́mbà pípé, ṣàyẹ̀wò pé o yan disco tí ó tọ́ — mítà tí ó tọ́ lórí disco tí kò tọ́ yóò kùnà nígbà gbogbo."
+        },
+        "wallet": {
+          "title": "Àpò owó àti ìsanwó",
+          "q1": "Kí nìdí tí ìsanwó káàdì mi fi ń lọ sínú àpò owó mi lákọ̀ọ́kọ́?",
+          "a1p1": "Àwọn ìsanwó káàdì ń fi owó sí àpò owó rẹ, àpò owó náà á sì san fún ohun tí o rà. Ó dà bí ìgbésẹ̀ àfikún, ó sì jẹ́ àmọ̀ọ́mọ̀ṣe.",
+          "a1p2": "Bí ìfijíṣẹ́ bá kùnà, owó náà ti wà láìléwu nínú àpò owó rẹ gẹ́gẹ́ bí ìyókù tí o lè ná tàbí yọ jáde. Sísan fún olùpèsè tààrà yóò fi owó rẹ sílẹ̀ ní àárín olùṣàkóso káàdì àti òun, láìsí ọ̀nà mímọ́ láti padà.",
+          "q2": "Ǹjẹ́ àwọn owó tí a fi pamọ́ wà?",
+          "a2": "Bẹ́ẹ̀ kọ́. Àpapọ̀ tí a fihàn kí o tó san ni ohun tí o ń san — ìlà owó ń ka ₦0 nítorí kò sí ọ̀kan. Èrè wa wà nínú owó àwọn ìwé owó, nítorí náà kò sí ohun tí a fi kún un ní ìsanwó.",
+          "q3": "Ìgbà mélòó ni yíyọ owó ń gbà?",
+          "a3": "Àwọn ìfìwéránṣẹ́ báǹkì sábà máa ń dé láàrín ìṣẹ́jú, bí ó tilẹ̀ jẹ́ pé wọ́n lè gba àkókò pẹ́ nígbà ìdádúró báǹkì. Bí yíyọ owó bá kùnà, a ó dá iye náà padà sí àpò owó rẹ fúnraarẹ̀ — kò nù, o sì lè tún gbìyànjú.",
+          "q4": "Ṣé mo lè fi owó ránṣẹ́ sí olùmúlò OAM mìíràn?",
+          "a4": "Bẹ́ẹ̀ ni — <1>Ìfiránṣẹ́</1> ń gbé owó láàrín àwọn àpò owó OAM lẹ́sẹ̀kẹsẹ̀ àti ọ̀fẹ́. Tẹ ímeèlì tàbí nọ́mbà wọn orúkọ wọn á sì farahàn kí o tó fìdí rẹ̀ múlẹ̀. <2>Ṣàyẹ̀wò orúkọ náà dáradára</2>: àwọn ìfiránṣẹ́ tí a parí ni a kò lè yí padà."
+        },
+        "marketplace": {
+          "title": "Ọjà àti àwọn oníṣọ̀nà",
+          "q1": "Kí nìdí tí èmi kò fi lè rí nọ́mbà fóònù olùtà?",
+          "a1p1": "A kì í tẹ àwọn nọ́mbà jáde láé. Fi ìránṣẹ́ ránṣẹ́ nípa ohun náà, gbàrà tí olùtà bá gbà, ẹ̀yin méjèèjì á rí àwọn àlàyé olùbáṣepọ̀ ara yín.",
+          "a1p2": "Ó lọ́ra díẹ̀, ó sì jẹ́ ààbò tí ó gbéṣẹ́ jù tí a lè pèsè: àwọn nọ́mbà tí a tẹ̀ jáde ni a ń kórè, àwọn tí a kórè sì ni a ń lò fún ìwà ẹ̀tàn àfarawé.",
+          "q2": "Iye nǹkan mélòó ni mo lè ṣàkọsílẹ̀ lọ́fẹ̀ẹ́?",
+          "a2": "Àkọsílẹ̀ mẹ́ta tí ó ń ṣiṣẹ́, láìní àkókò, láìsí káàdì. Premium (₦2,500) ń fi kún un títí dé àkọsílẹ̀ 20 pẹ̀lú ipò àfihàn, Pro (₦5,000) sì jẹ́ àìlópin.",
+          "q3": "Báwo ni mo ṣe lè wà láìléwu nígbà rírà àti títà?",
+          "a3li1": "Ẹ pàdé ní ibi gbangba ní ọ̀sán",
+          "a3li2": "Ṣàyẹ̀wò ohun náà kí owó kankan tó yí ọwọ́ padà",
+          "a3li3": "Má fi owó ránṣẹ́ ṣáájú láé sí ẹni tí o kò tíì pàdé",
+          "a3li4": "Jẹ́ kí ìjíròrò wà nínú OAM, kí àkọsílẹ̀ ohun tí a gbà lè wà",
+          "a3li5": "Ka ìbéèrè èyíkéyìí láti kọjá sí WhatsApp \"fún iye tí ó dára jù\" gẹ́gẹ́ bí àmì ìkìlọ̀",
+          "q4": "Kí ni gbígbé profáìlì oníṣọ̀nà sókè ń ṣe?",
+          "a4": "Ó gbé profáìlì rẹ sí orí àwọn tí a kò gbé sókè nínú àwọn àbájáde ìwádìí, níbi tí ọ̀pọ̀ ènìyàn ti ń wò. Premium jẹ́ ₦2,500 fún ọjọ́ 30, Pro sì jẹ́ ₦5,000 fún 90. Àwọn méjèèjì jẹ́ <1>ìsanwó ẹ̀ẹ̀kan</1> — kò sí ohun tí ń tún ara rẹ̀ ṣe fúnraarẹ̀."
+        },
+        "account": {
+          "title": "Àkáǹtì",
+          "q1": "Ṣé mo lè lo àkáǹtì kan náà láti rà àti láti tà?",
+          "a1": "Bẹ́ẹ̀ ni. Àkáǹtì kan ń ṣe ohun gbogbo — o lè ta firíìjì kí o sì gba atúbọ̀tán ní ọ̀sẹ̀ kan náà. A pín àwọn ìránṣẹ́ rẹ sí \"Àwọn ìbéèrè mi\" àti \"Àwọn ìbéèrè sí mi\" kí àwọn méjì má bàa dàrú.",
+          "q2": "Ǹjẹ́ a fi káàdì mi pamọ́ sórí OAM?",
+          "a2": "Bẹ́ẹ̀ kọ́. A ń tẹ àwọn àlàyé káàdì sórí ojú ìsanwó tí ó ní ààbò ti Paystack, a kì í sì í rí wọn tàbí pa wọ́n mọ́ láé."
+        }
+      }
     }
   }
 }

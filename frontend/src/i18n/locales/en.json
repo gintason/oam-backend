@@ -1185,6 +1185,61 @@
       "responseTitle": "Response times",
       "responseBody": "We aim to reply to every email within <1>one working day</1>. Payment problems are looked at first. If you haven't heard back after two working days, reply to your own email to bump it — it's more reliable than sending a new one.",
       "scamBody": "<1>We will never ask for your password, card PIN, or a one-time code.</1> Anyone who does — by call, SMS or WhatsApp — is not from OAM, however convincing they sound. Hang up and email us instead."
+    },
+    "help": {
+      "title": "Help centre",
+      "intro": "Answers to the things people ask most — starting with the one that matters when money is involved.",
+      "searchPlaceholder": "Search help…",
+      "noMatch": "Nothing matches \"{{query}}\". Email <1>info@oam-app.com</1> and a person will answer.",
+      "stillStuck": "Still stuck? Email <1>info@oam-app.com</1> with your order reference and we'll look it up. See <2>Contact</2> for what to include.",
+      "groups": {
+        "electricity": {
+          "title": "Electricity tokens",
+          "q1": "I paid for units but no token appeared. What now?",
+          "a1p1": "<1>Don't buy again.</1> Your payment has gone through and the order is with your provider — buying a second time charges you twice for the same meter.",
+          "a1p2": "Open <1>Order history</1>. While an order is still completing you'll see \"Token on the way\", and the page checks with your provider every few seconds. Tokens usually arrive within a minute or two, occasionally longer at busy times.",
+          "a1p3": "The token is also emailed to you as soon as it's issued, so you'll get it even if you've closed the app.",
+          "q2": "Where can I find an old token?",
+          "a2": "Every token is stored permanently in <1>Order history</1> — open the order and it's there with a copy button. It's also in the receipt email we sent at the time.",
+          "q3": "The meter number wasn't accepted.",
+          "a3": "Nigerian prepaid meters are <1>11 digits</1>. We only check with your disco once all 11 are entered, so a message while you're still typing just means we're waiting. If a complete number is still rejected, check you've picked the right disco — a valid meter on the wrong disco will always fail."
+        },
+        "wallet": {
+          "title": "Wallet and payments",
+          "q1": "Why does my card payment go into my wallet first?",
+          "a1p1": "Card payments credit your wallet, and the wallet then pays for what you bought. It looks like an extra step, and it's deliberate.",
+          "a1p2": "If a delivery fails, the money is already sitting safely in your wallet as a balance you can spend or withdraw. Paying a provider directly would leave your money stranded between the card processor and them, with no clean way back.",
+          "q2": "Are there hidden fees?",
+          "a2": "No. The total shown before you pay is what you pay — the fee line reads ₦0 because there isn't one. Our margin is built into the price of bills, so nothing is added at checkout.",
+          "q3": "How long do withdrawals take?",
+          "a3": "Bank transfers usually land within minutes, though they can take longer during bank downtime. If a withdrawal fails, the amount is returned to your wallet automatically — it isn't lost, and you can try again.",
+          "q4": "Can I send money to another OAM user?",
+          "a4": "Yes — <1>Transfer</1> moves money between OAM wallets instantly and free. Enter their email or phone number and their name appears before you confirm. <2>Check that name carefully</2>: completed transfers can't be reversed."
+        },
+        "marketplace": {
+          "title": "Marketplace and artisans",
+          "q1": "Why can't I see a seller's phone number?",
+          "a1p1": "Numbers are never published. Send a message about the item, and once the seller accepts, you'll both see each other's contact details.",
+          "a1p2": "It's slightly slower, and it's the single most effective protection we can offer: published numbers get scraped, and scraped numbers get used for impersonation scams.",
+          "q2": "How many things can I list for free?",
+          "a2": "Three active listings, indefinitely, with no card required. Premium (₦2,500) adds up to 20 listings plus featured placement, and Pro (₦5,000) is unlimited.",
+          "q3": "How do I stay safe buying and selling?",
+          "a3li1": "Meet in a public place during daylight",
+          "a3li2": "Inspect the item before any money changes hands",
+          "a3li3": "Never send money in advance to someone you haven't met",
+          "a3li4": "Keep the conversation in OAM, so there's a record of what was agreed",
+          "a3li5": "Treat any request to move to WhatsApp \"for a better price\" as a warning sign",
+          "q4": "What does boosting an artisan profile do?",
+          "a4": "It places your profile above unboosted ones in search results, where most people look. Premium is ₦2,500 for 30 days and Pro is ₦5,000 for 90. Both are <1>one-off payments</1> — nothing renews automatically."
+        },
+        "account": {
+          "title": "Account",
+          "q1": "Can I use the same account to buy and to sell?",
+          "a1": "Yes. One account does everything — you might sell a fridge and hire a plumber in the same week. Your messages are split into \"My enquiries\" and \"Enquiries to me\" so the two don't get tangled.",
+          "q2": "Is my card stored on OAM?",
+          "a2": "No. Card details are entered on Paystack's secure checkout and are never seen or stored by us."
+        }
+      }
     }
   }
 }

@@ -1185,6 +1185,61 @@
       "responseTitle": "Lokutan amsa",
       "responseBody": "Muna nufin mu amsa kowace imel cikin <1>ranar aiki ɗaya</1>. Matsalolin biya ana dubansu da farko. Idan ba ka ji komai ba bayan kwanaki biyu na aiki, amsa imel ɗinka don tunatarwa — ya fi aika sabuwa aminci.",
       "scamBody": "<1>Ba za mu taɓa neman kalmar sirrinka, PIN na kati, ko lambar sau ɗaya ba.</1> Duk wanda ya nema — ta kira, SMS ko WhatsApp — ba na OAM ba ne, ko da yaya suka yi kamar gaskiya. Ka rufe waya ka aiko mana imel."
+    },
+    "help": {
+      "title": "Cibiyar taimako",
+      "intro": "Amsoshi ga abubuwan da mutane suka fi tambaya — mun fara da wanda ya fi muhimmanci idan kuɗi na ciki.",
+      "searchPlaceholder": "Nemi taimako…",
+      "noMatch": "Babu abin da ya yi daidai da \"{{query}}\". Aika imel zuwa <1>info@oam-app.com</1> kuma mutum zai amsa.",
+      "stillStuck": "Har yanzu kana makale? Aika imel zuwa <1>info@oam-app.com</1> tare da lambar tunanin odarka mu neme ta. Duba <2>Tuntuɓa</2> don abin da za ka haɗa.",
+      "groups": {
+        "electricity": {
+          "title": "Tokan wutar lantarki",
+          "q1": "Na biya don raka'o'i amma babu tokan da ya bayyana. Yanzu fa?",
+          "a1p1": "<1>Kada ka sāke saya.</1> Biyan ka ya wuce kuma odar tana wurin mai bautar ka — saya sau na biyu na cajin ka sau biyu don mita ɗaya.",
+          "a1p2": "Buɗe <1>Tarihin oda</1>. Yayin da oda ke kammalawa za ka ga \"Tokan yana kan hanya\", kuma shafin yana bincike da mai bautar ka kowane ƴan daƙiƙa. Tokan yawanci na zuwa cikin minti ɗaya ko biyu, wani lokaci ya fi tsawo a lokutan cushewa.",
+          "a1p3": "Ana kuma aiko maka tokan ta imel da zarar an fitar da shi, don haka za ka same shi ko da ka rufe manhajar.",
+          "q2": "A ina zan sami tsohon tokan?",
+          "a2": "Ana adana kowane tokan na dindindin a <1>Tarihin oda</1> — buɗe odar kuma yana nan tare da maɓallin kwafi. Yana kuma cikin imel ɗin rasit da muka aiko a lokacin.",
+          "q3": "Ba a karɓi lambar mita ba.",
+          "a3": "Mitocin Najeriya na biya kafin amfani suna da <1>lambobi 11</1>. Muna bincike da disco ɗinka ne kawai da zarar an shigar da dukan 11, don haka saƙo yayin da kake rubutu na nufin muna jira ne kawai. Idan cikakkiyar lamba har yanzu aka ƙi, duba ka tabbata ka zaɓi disco daidai — mita mai inganci a kan disco mara kyau koyaushe zai gaza."
+        },
+        "wallet": {
+          "title": "Walat da biyan kuɗi",
+          "q1": "Me ya sa biyan katina ke shiga walat ɗina da farko?",
+          "a1p1": "Biyan kati na shiga walat ɗinka, sannan walat ɗin ya biya abin da ka saya. Yana kama da ƙarin mataki, kuma da gangan ne.",
+          "a1p2": "Idan isar da kaya ta gaza, kuɗin ya riga ya kwanta lafiya a walat ɗinka a matsayin ma'auni da za ka iya kashewa ko cirewa. Biyan mai bautar kai tsaye zai bar kuɗin ka a makale tsakanin mai sarrafa kati da shi, ba tare da hanyar dawowa mai tsafta ba.",
+          "q2": "Akwai ɓoyayyun kuɗaɗe?",
+          "a2": "A'a. Jimlar da aka nuna kafin ka biya shine abin da kake biya — layin kuɗi ya nuna ₦0 domin babu shi. Ribar mu na cikin farashin kuɗaɗe, don haka ba a ƙara komai a lokacin biya.",
+          "q3": "Har yaushe cire kuɗi ke ɗauka?",
+          "a3": "Turawar banki yawanci na sauka cikin mintuna, ko da yake za su iya ɗaukar lokaci mai tsawo yayin katsewar banki. Idan cire kuɗi ya gaza, ana mayar da adadin zuwa walat ɗinka ta atomatik — ba a rasa shi ba, kuma za ka iya sāke gwadawa.",
+          "q4": "Zan iya tura kuɗi zuwa wani mai amfani da OAM?",
+          "a4": "Ee — <1>Turawa</1> na motsa kuɗi tsakanin walat na OAM nan take kuma kyauta. Shigar da imel ɗinsu ko lambar waya kuma sunansu zai bayyana kafin ka tabbatar. <2>Duba sunan a hankali</2>: turawar da aka kammala ba za a iya juyawa ba."
+        },
+        "marketplace": {
+          "title": "Kasuwa da masu sana'a",
+          "q1": "Me ya sa ba na ganin lambar wayar mai sayarwa?",
+          "a1p1": "Ba a taɓa buga lambobi ba. Aika saƙo game da abin, kuma da zarar mai sayarwa ya amince, ku biyu za ku ga bayanan tuntuɓar juna.",
+          "a1p2": "Ya ɗan yi jinkiri, kuma shine mafi inganci kariyar da za mu iya bayarwa: ana girbin lambobin da aka buga, kuma ana amfani da lambobin da aka girba don zamba na maimaita mutum.",
+          "q2": "Nawa abubuwa zan iya lissafawa kyauta?",
+          "a2": "Tallace-tallace uku masu aiki, har abada, ba tare da kati ba. Premium (₦2,500) na ƙara har talla 20 tare da wurin nunawa na musamman, kuma Pro (₦5,000) babu iyaka.",
+          "q3": "Yaya zan tsare kaina yayin saya da sayarwa?",
+          "a3li1": "Ku hadu a wuri na jama'a da rana",
+          "a3li2": "Duba abin kafin kowane kuɗi ya canza hannu",
+          "a3li3": "Kada ka taɓa tura kuɗi da wuri ga wanda ba ka taɓa ganawa da shi ba",
+          "a3li4": "Ci gaba da tattaunawa a cikin OAM, don a sami rikodin abin da aka amince",
+          "a3li5": "Ka ɗauki duk wani buƙatar matsawa zuwa WhatsApp \"don mafi kyawun farashi\" a matsayin alamar gargaɗi",
+          "q4": "Menene haɓaka bayanin ma'aikaci ke yi?",
+          "a4": "Yana sanya bayanin ka sama da waɗanda ba a haɓaka ba a sakamakon bincike, inda mafi yawan mutane suke duba. Premium ₦2,500 ne na kwanaki 30 kuma Pro ₦5,000 na 90. Duka <1>biyan kuɗi ne na sau ɗaya</1> — babu abin da ke sabunta kansa."
+        },
+        "account": {
+          "title": "Asusu",
+          "q1": "Zan iya amfani da asusu ɗaya don saya da sayarwa?",
+          "a1": "Ee. Asusu ɗaya na yin komai — za ka iya sayar da firiji ka ɗauki mai famfo a mako guda. An raba saƙonninka zuwa \"Tambayoyina\" da \"Tambayoyi zuwa gare ni\" don kada su rikice.",
+          "q2": "Ana adana katina a OAM?",
+          "a2": "A'a. Ana shigar da bayanan kati a shafin biya mai tsaro na Paystack kuma ba mu taɓa gani ko adana su ba."
+        }
+      }
     }
   }
 }

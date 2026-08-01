@@ -1185,6 +1185,61 @@
       "responseTitle": "Oge nzaghachi",
       "responseBody": "Anyị bu n'obi ịzaghachi email ọ bụla n'ime <1>otu ụbọchị ọrụ</1>. A na-elebu anya na nsogbu ịkwụ ụgwọ. Ọ bụrụ na ị nụghị okwu mgbe ụbọchị ọrụ abụọ gasịrị, zaghachi email nke gị iji chetara ya — ọ ka email ọhụrụ ntụkwasị obi.",
       "scamBody": "<1>Anyị agaghị arịọ gị paswọọdụ gị, PIN kaadị, ma ọ bụ koodu otu oge ma ọlị.</1> Onye ọ bụla rịọrọ — site na oku, SMS ma ọ bụ WhatsApp — esighị na OAM, agbanyeghị otú ha si dabara. Kwụsị oku ma zitere anyị email."
+    },
+    "help": {
+      "title": "Ebe enyemaka",
+      "intro": "Azịza nye ihe ndị mmadụ na-ajụkarị — na-amalite na nke dị mkpa mgbe ego so.",
+      "searchPlaceholder": "Chọọ enyemaka…",
+      "noMatch": "Ọ dịghị ihe dabara na \"{{query}}\". Zipu email na <1>info@oam-app.com</1> mmadụ ga-aza.",
+      "stillStuck": "Ka rapaara gị? Zipu email na <1>info@oam-app.com</1> na ntụaka iwu gị, anyị ga-achọta ya. Lelee <2>Kpọtụrụ</2> maka ihe ị ga-etinye.",
+      "groups": {
+        "electricity": {
+          "title": "Tokin eletrik",
+          "q1": "Akwụrụ m ụgwọ maka nkeji ma tokin apụtaghị. Gịnị ugbu a?",
+          "a1p1": "<1>Azụla ọzọ.</1> Ịkwụ ụgwọ gị agafeela na iwu nọ n'aka onye na-enye gị ọrụ — ịzụ nke ugboro abụọ na-ana gị ụgwọ ugboro abụọ maka otu mita.",
+          "a1p2": "Mepee <1>Akụkọ iwu</1>. Ka iwu ka na-emecha ị ga-ahụ \"Tokin nọ n'ụzọ\", peeji na-ejikwa onye na-enye gị ọrụ na-elele kwa sekọnd ole na ole. Tokin na-abịakarị n'ime otu nkeji ma ọ bụ abụọ, mgbe ụfọdụ ogologo n'oge ọgbaghara.",
+          "a1p3": "A na-ezitakwara gị tokin site na email ozugbo e nyere ya, ya mere ị ga-enweta ya ọ bụrụgodị na ị mechiri ngwa.",
+          "q2": "Ebee ka m ga-achọta tokin ochie?",
+          "a2": "A na-echekwa tokin ọ bụla na-adịgide na <1>Akụkọ iwu</1> — mepee iwu ọ nọ ebe ahụ na bọtịnụ nnomi. Ọ nọkwa na email nnata anyị zitere n'oge ahụ.",
+          "q3": "A nabataghị nọmba mita.",
+          "a3": "Mita ndị Naịjirịa na-akwụ ụgwọ tupu iji nwere <1>ọnụọgụ 11</1>. Anyị na-elele na disco gị naanị mgbe etinyechara ha niile 11, ya mere ozi mgbe ị ka na-ede pụtara naanị na anyị na-echere. Ọ bụrụ na a jụ nọmba zuru oke, lelee na ị họọrọ disco ziri ezi — mita ziri ezi na disco na-ezighi ezi ga-ada mgbe niile."
+        },
+        "wallet": {
+          "title": "Akpa ego na ịkwụ ụgwọ",
+          "q1": "Gịnị mere ịkwụ ụgwọ kaadị m ji buru ụzọ banye n'akpa ego m?",
+          "a1p1": "Ịkwụ ụgwọ kaadị na-etinye n'akpa ego gị, akpa ego wee kwụọ ụgwọ ihe ị zụrụ. Ọ dị ka nzọ ọzọ, ọ bụkwa ihe ebumnuche.",
+          "a1p2": "Ọ bụrụ na nnyefe daghara, ego nọ ọzụzụ n'akpa ego gị dịka ego ị nwere ike iji mefuo ma ọ bụ wepụ. Ịkwụ onye na-enye ọrụ ụgwọ ozugbo ga-ahapụ ego gị ka ọ rapaara n'etiti onye na-ahazi kaadị na ya, na-enweghị ụzọ dị ọcha isi laghachi.",
+          "q2": "Enwere ụgwọ zoro ezo?",
+          "a2": "Mba. Mkpokọta e gosiri tupu ị kwụọ ụgwọ bụ ihe ị na-akwụ — ahịrị ụgwọ na-egosi ₦0 n'ihi na ọ dịghị. Uru anyị dị n'ọnụ ahịa ụgwọ, ya mere a naghị agbakwụnye ihe ọ bụla na mkpọchi.",
+          "q3": "Ogologo oge ole ka mwepụ na-ewe?",
+          "a3": "Mbufe ụlọ akụ na-abịakarị n'ime nkeji, ọ bụ ezie na ha nwere ike iwe ogologo oge n'oge nkwụsị ụlọ akụ. Ọ bụrụ na mwepụ daghara, a na-eweghachi ego ahụ na akpa ego gị na-akpaghị aka — ọ dịghị efu, ị nwekwara ike ịnwa ọzọ.",
+          "q4": "Enwere m ike izipu ego nye onye ọzọ na-eji OAM?",
+          "a4": "Ee — <1>Mbufe</1> na-ebugharị ego n'etiti akpa ego OAM ozugbo na n'efu. Tinye email ha ma ọ bụ nọmba ekwentị, aha ha ga-apụta tupu ị kwenye. <2>Lelee aha ahụ nke ọma</2>: mbufe emechara enweghị ike ịtụgharị."
+        },
+        "marketplace": {
+          "title": "Ahịa na ndị ọrụ aka",
+          "q1": "Gịnị mere na m apụghị ịhụ nọmba ekwentị onye na-ere ere?",
+          "a1p1": "A naghị ebipụta nọmba ma ọlị. Zipu ozi gbasara ihe ahụ, ozugbo onye na-ere nabatara, unu abụọ ga-ahụ nkọwa kọntaktị ibe unu.",
+          "a1p2": "Ọ na-adị nwayọọ nwayọọ, ọ bụkwa nchebe kacha arụ ọrụ anyị nwere ike inye: a na-akpakọta nọmba e bipụtara, a na-ejikwa nọmba akpakọtara maka aghụghọ nnọchi mmadụ.",
+          "q2": "Ihe ole ka m nwere ike ịdepụta n'efu?",
+          "a2": "Ndepụta atọ na-arụ ọrụ, ruo mgbe ebighị ebi, na-enweghị kaadị. Premium (₦2,500) na-agbakwụnye ruo ndepụta 20 na ọnọdụ pụrụ iche, Pro (₦5,000) enweghị oke.",
+          "q3": "Kedu ka m ga-esi nọrọ n'enweghị nsogbu mgbe m na-azụ ma na-ere?",
+          "a3li1": "Zute n'ebe ọha n'ehihie",
+          "a3li2": "Nyochaa ihe ahụ tupu ego ọ bụla agbanwee aka",
+          "a3li3": "Ezipụla ego tupu oge nye onye ị na-ezutebeghị",
+          "a3li4": "Debe mkparịta ụka n'ime OAM, ka e nwee ndekọ ihe e kwetara",
+          "a3li5": "Were arịrịọ ọ bụla ịkwaga na WhatsApp \"maka ọnụ ahịa ka mma\" dị ka akara ịdọ aka ná ntị",
+          "q4": "Gịnị ka ịkwalite profaịlụ onye ọrụ aka na-eme?",
+          "a4": "Ọ na-etinye profaịlụ gị n'elu ndị a na-akwaliteghị na nsonaazụ nchọ, ebe ọtụtụ mmadụ na-ele. Premium bụ ₦2,500 maka ụbọchị 30, Pro bụ ₦5,000 maka 90. Ha abụọ bụ <1>ịkwụ ụgwọ otu ugboro</1> — ọ dịghị ihe na-emeghari onwe ya."
+        },
+        "account": {
+          "title": "Akaụntụ",
+          "q1": "Enwere m ike iji otu akaụntụ zụọ ma ree?",
+          "a1": "Ee. Otu akaụntụ na-eme ihe niile — ị nwere ike ire friji ma were onye ọrụ mmiri n'otu izu. E kewara ozi gị ka ọ bụrụ \"Ajụjụ m\" na \"Ajụjụ nye m\" ka ha ghara ịgwakọta.",
+          "q2": "A na-echekwa kaadị m na OAM?",
+          "a2": "Mba. A na-etinye nkọwa kaadị na mkpọchi echekwara nke Paystack, anyị anaghị ahụ ma ọ bụ chekwaa ha ma ọlị."
+        }
+      }
     }
   }
 }

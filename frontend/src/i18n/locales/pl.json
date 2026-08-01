@@ -1185,6 +1185,61 @@
       "responseTitle": "Czas odpowiedzi",
       "responseBody": "Staramy się odpowiadać na każdy e-mail w ciągu <1>jednego dnia roboczego</1>. Problemy z płatnościami rozpatrujemy najpierw. Jeśli po dwóch dniach roboczych nie ma odpowiedzi, odpisz na własny e-mail, by go podbić — to pewniejsze niż wysyłanie nowego.",
       "scamBody": "<1>Nigdy nie poprosimy o Twoje hasło, PIN karty ani kod jednorazowy.</1> Ktokolwiek to robi — przez telefon, SMS czy WhatsApp — nie jest z OAM, jakkolwiek przekonująco brzmi. Rozłącz się i napisz do nas."
+    },
+    "help": {
+      "title": "Centrum pomocy",
+      "intro": "Odpowiedzi na najczęstsze pytania — zaczynając od tego, które liczy się, gdy w grę wchodzą pieniądze.",
+      "searchPlaceholder": "Szukaj pomocy…",
+      "noMatch": "Brak wyników dla „{{query}}”. Napisz na <1>info@oam-app.com</1>, a odpowie osoba.",
+      "stillStuck": "Nadal utknąłeś? Napisz na <1>info@oam-app.com</1> z numerem zamówienia, a je odszukamy. Zobacz <2>Kontakt</2>, co dołączyć.",
+      "groups": {
+        "electricity": {
+          "title": "Tokeny prądu",
+          "q1": "Zapłaciłem za jednostki, ale token się nie pojawił. Co teraz?",
+          "a1p1": "<1>Nie kupuj ponownie.</1> Płatność przeszła, a zamówienie jest u dostawcy — drugi zakup obciąży cię dwukrotnie za ten sam licznik.",
+          "a1p2": "Otwórz <1>historię zamówień</1>. Gdy zamówienie się finalizuje, zobaczysz „Token w drodze”, a strona sprawdza u dostawcy co kilka sekund. Tokeny zwykle docierają w minutę lub dwie, czasem dłużej w godzinach szczytu.",
+          "a1p3": "Token jest też wysyłany e-mailem zaraz po wydaniu, więc otrzymasz go nawet po zamknięciu aplikacji.",
+          "q2": "Gdzie znajdę stary token?",
+          "a2": "Każdy token jest trwale przechowywany w <1>historii zamówień</1> — otwórz zamówienie i jest tam z przyciskiem kopiowania. Jest też w e-mailu z potwierdzeniem wysłanym wtedy.",
+          "q3": "Numer licznika nie został przyjęty.",
+          "a3": "Nigeryjskie liczniki przedpłacone mają <1>11 cyfr</1>. Sprawdzamy u twojego disco dopiero po wpisaniu wszystkich 11, więc komunikat podczas pisania znaczy tylko, że czekamy. Jeśli pełny numer wciąż jest odrzucany, sprawdź, czy wybrałeś właściwe disco — poprawny licznik na złym disco zawsze zawiedzie."
+        },
+        "wallet": {
+          "title": "Portfel i płatności",
+          "q1": "Dlaczego płatność kartą trafia najpierw do portfela?",
+          "a1p1": "Płatności kartą zasilają portfel, a portfel płaci za zakup. Wygląda to jak dodatkowy krok i jest zamierzone.",
+          "a1p2": "Jeśli dostawa się nie powiedzie, pieniądze są już bezpieczne w portfelu jako saldo do wydania lub wypłaty. Płacenie dostawcy bezpośrednio zostawiłoby pieniądze uwięzione między procesorem karty a nim, bez czystej drogi powrotu.",
+          "q2": "Czy są ukryte opłaty?",
+          "a2": "Nie. Suma pokazana przed zapłatą to tyle, ile płacisz — wiersz opłaty pokazuje ₦0, bo jej nie ma. Nasza marża jest wliczona w cenę rachunków, więc przy płatności nic nie dochodzi.",
+          "q3": "Ile trwają wypłaty?",
+          "a3": "Przelewy bankowe zwykle docierają w minuty, choć mogą trwać dłużej podczas awarii banku. Jeśli wypłata się nie powiedzie, kwota wraca automatycznie do portfela — nie ginie i możesz spróbować ponownie.",
+          "q4": "Czy mogę wysłać pieniądze innemu użytkownikowi OAM?",
+          "a4": "Tak — <1>Przelew</1> przenosi pieniądze między portfelami OAM natychmiast i za darmo. Wpisz e-mail lub numer, a nazwisko pojawi się przed potwierdzeniem. <2>Sprawdź to nazwisko uważnie</2>: zakończonych przelewów nie da się cofnąć."
+        },
+        "marketplace": {
+          "title": "Rynek i rzemieślnicy",
+          "q1": "Dlaczego nie widzę numeru sprzedającego?",
+          "a1p1": "Numery nigdy nie są publikowane. Wyślij wiadomość o przedmiocie, a gdy sprzedający zaakceptuje, oboje zobaczycie swoje dane kontaktowe.",
+          "a1p2": "Jest to nieco wolniejsze i to najskuteczniejsza ochrona, jaką możemy dać: opublikowane numery są zbierane, a zebrane używane do oszustw z podszywaniem.",
+          "q2": "Ile rzeczy mogę wystawić za darmo?",
+          "a2": "Trzy aktywne ogłoszenia, bezterminowo, bez karty. Premium (₦2,500) dodaje do 20 ogłoszeń plus wyróżnienie, a Pro (₦5,000) jest bez limitu.",
+          "q3": "Jak zachować bezpieczeństwo przy kupnie i sprzedaży?",
+          "a3li1": "Spotykajcie się w miejscu publicznym za dnia",
+          "a3li2": "Obejrzyj przedmiot przed jakąkolwiek wymianą pieniędzy",
+          "a3li3": "Nigdy nie wysyłaj pieniędzy z góry komuś, kogo nie spotkałeś",
+          "a3li4": "Prowadź rozmowę w OAM, by był zapis ustaleń",
+          "a3li5": "Każdą prośbę o przejście na WhatsApp „dla lepszej ceny” traktuj jako sygnał ostrzegawczy",
+          "q4": "Co daje wyróżnienie profilu rzemieślnika?",
+          "a4": "Umieszcza twój profil nad niewyróżnionymi w wynikach, gdzie patrzy większość. Premium to ₦2,500 na 30 dni, a Pro ₦5,000 na 90. Oba to <1>płatności jednorazowe</1> — nic nie odnawia się automatycznie."
+        },
+        "account": {
+          "title": "Konto",
+          "q1": "Czy mogę używać tego samego konta do kupna i sprzedaży?",
+          "a1": "Tak. Jedno konto robi wszystko — możesz sprzedać lodówkę i wynająć hydraulika w tym samym tygodniu. Twoje wiadomości dzielą się na „Moje zapytania” i „Zapytania do mnie”, by się nie mieszały.",
+          "q2": "Czy moja karta jest zapisana w OAM?",
+          "a2": "Nie. Dane karty wpisuje się w bezpiecznym płatności Paystack i nigdy nie są przez nas widziane ani przechowywane."
+        }
+      }
     }
   }
 }
