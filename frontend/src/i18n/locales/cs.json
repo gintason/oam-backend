@@ -1119,5 +1119,72 @@
       "readyTitle": "Připraveni najít své ubytování?",
       "readyBody": "Hledejte hotely, apartmány a resorty po celém světě a pak bezpečně rezervujte u našeho partnera."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Domů",
+      "lastUpdated": "Naposledy aktualizováno {{updated}}",
+      "questions": "Dotazy? Napište na"
+    },
+    "about": {
+      "title": "O OAM",
+      "intro": "Jedna aplikace pro každodenní věci, které Nigerijci platí, prodávají a najímají — rychlá, poctivá a bezpečná pro vaše peníze.",
+      "whatTitle": "Co je OAM",
+      "whatP1": "OAM je multiservisní platforma provozovaná společností <1>O.A.M Motors Limited</1>. Spojuje to, co dnes většina lidí řeší přes půl tuctu aplikací: dobití kreditu, nákup elektřiny, platbu za TV, posílání peněz, prodej nepotřebného a nalezení řemeslníka, kterému lze věřit.",
+      "whatP2": "Vše běží přes jednu peněženku, takže přesně vidíte, co jste utratili a co vám náleží — a každý nákup vytvoří účtenku, kterou znovu najdete.",
+      "doTitle": "Co tu můžete dělat",
+      "svc": {
+        "bills": {
+          "title": "Účty a služby",
+          "body": "Kredit, data, tokeny elektřiny a předplatné TV, doručené během sekund a s účtenkou e-mailem."
+        },
+        "wallet": {
+          "title": "Peněženka a převody",
+          "body": "Dobijte kartou, pošlete ihned jinému uživateli OAM nebo vyberte na vlastní bankovní účet."
+        },
+        "marketplace": {
+          "title": "Tržiště",
+          "body": "Nakupujte a prodávejte v komunitě OAM s vestavěnými zprávami, aby vaše číslo zůstalo soukromé."
+        },
+        "services": {
+          "title": "Domácí služby",
+          "body": "Najděte ověřené instalatéry, elektrikáře, mechaniky a uklízeče ve svém okolí."
+        },
+        "travel": {
+          "title": "Cestování",
+          "body": "Porovnávejte lety, hotely, půjčovny aut a letištní transfery po celém světě."
+        }
+      },
+      "moneyTitle": "Jak vyděláváme",
+      "moneyP1": "Myslíme, že byste to měli vědět, protože služba, která skrývá svůj model příjmů, k tomu obvykle má důvod.",
+      "moneyP2": "U účtů vyděláváme <1>malou marži</1> — obvykle 10 až 20 ₦ z nákupu za 1 000 ₦ — zahrnutou v ceně, kterou vidíte. Při platbě se nepřidává žádný samostatný poplatek a zobrazená částka je ta, kterou zaplatíte.",
+      "moneyP3": "Na Tržišti a v Domácích službách vyděláváme z <1>volitelných placených plánů</1>: prodejci si mohou předplatit více inzerátů a zvýraznění a řemeslníci si mohou vylepšit profil, aby se zobrazovali výše. Inzerce a zprávy jsou zdarma.",
+      "moneyP4": "U cestování dostáváme <1>zprostředkovatelskou provizi</1> od rezervačních partnerů bez dalších nákladů pro vás.",
+      "safetyTitle": "Jak řešíme bezpečnost",
+      "safetyP1": "Telefonní čísla na Tržišti a v Domácích službách se <1>nikdy nezveřejňují</1>. Vyměňují se až poté, co prodejce nebo řemeslník přijme vaši poptávku — takže žádné číslo neleží na veřejné stránce k posbírání a získáte kontakt jen na někoho, kdo skutečně souhlasil, že s vámi bude jednat.",
+      "safetyP2": "Platby zpracovává <1>Paystack</1>. Údaje karty se zadávají na vlastní zabezpečené pokladně Paystack a OAM je nikdy nevidí ani neukládá.",
+      "noteBody": "<1>Pár slov o tom, kde jsme.</1> OAM byla právě spuštěna, takže některé sekce — zejména Tržiště a adresář řemeslníků — se stále plní. Pokrytí roste, jak se přidává více lidí, a raději to řekneme, než abychom předstírali opak.",
+      "createAccount": "Vytvořit účet",
+      "talkToUs": "Napište nám"
+    },
+    "contact": {
+      "title": "Kontaktujte nás",
+      "intro": "Něco se pokazilo nebo máte dotaz před začátkem? Takto se dostanete k člověku.",
+      "emailTitle": "E-mail",
+      "emailBody": "Nejrychlejší cesta pro cokoli ohledně platby, chybějícího tokenu nebo problému s účtem.",
+      "paymentTitle": "Pokud se platba nezdařila",
+      "paymentP1": "<1>Prosím, neplaťte dvakrát.</1> Pokud objednávka ukazuje „zpracovává se“, peníze už odešly a nákup je u vašeho poskytovatele — opětovný nákup obvykle znamená zaplatit totéž podruhé.",
+      "paymentList": "Místo toho nám napište s:",
+      "paymentLi1": "<1>referenčním číslem</1> objednávky (začíná na BILL-, FUND- nebo TRF-)",
+      "paymentLi2": "e-mailem vašeho účtu OAM",
+      "paymentLi3": "přibližně, kdy se to stalo",
+      "paymentP2": "To nám obvykle stačí, abychom transakci našli a řekli vám přesně, kde je. Referenci najdete v <1>Historii objednávek</1>.",
+      "mktTitle": "Nákup nebo prodej na Tržišti",
+      "mktP1": "Dotazy ke konkrétní položce nebo zakázce je nejlepší klást <1>přímo v chatu</1> u daného inzerátu nebo profilu řemeslníka — druhá osoba dostane upozornění a zůstane záznam o tom, co bylo dohodnuto.",
+      "mktP2": "Kontaktujte nás naopak, pokud vás někdo žádá o platbu mimo OAM, tlačí na platbu předem nebo se chová způsobem, který vám nesedí. Raději o tom uslyšíme včas.",
+      "responseTitle": "Doba odezvy",
+      "responseBody": "Snažíme se odpovědět na každý e-mail do <1>jednoho pracovního dne</1>. Problémy s platbami řešíme jako první. Pokud nemáte odpověď po dvou pracovních dnech, odpovězte na svůj vlastní e-mail, abyste ho posunuli — je to spolehlivější než posílat nový.",
+      "scamBody": "<1>Nikdy vás nepožádáme o heslo, PIN karty ani jednorázový kód.</1> Kdokoli to udělá — telefonem, SMS nebo přes WhatsApp — není z OAM, ať zní jakkoli přesvědčivě. Zavěste a napište nám."
+    }
   }
 }

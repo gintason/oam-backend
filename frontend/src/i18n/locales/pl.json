@@ -1119,5 +1119,72 @@
       "readyTitle": "Gotowy znaleźć swój nocleg?",
       "readyBody": "Szukaj hoteli, apartamentów i kurortów na całym świecie, a potem rezerwuj bezpiecznie z naszym partnerem."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Strona główna",
+      "lastUpdated": "Ostatnia aktualizacja {{updated}}",
+      "questions": "Pytania? Napisz na"
+    },
+    "about": {
+      "title": "O OAM",
+      "intro": "Jedna aplikacja do codziennych rzeczy, za które Nigeryjczycy płacą, które sprzedają i zamawiają — szybka, uczciwa i bezpieczna dla Twoich pieniędzy.",
+      "whatTitle": "Czym jest OAM",
+      "whatP1": "OAM to platforma wielousługowa prowadzona przez <1>O.A.M Motors Limited</1>. Łączy to, czym większość dziś żongluje w kilku aplikacjach: doładowanie, zakup prądu, opłatę za TV, wysyłanie pieniędzy, sprzedaż niepotrzebnych rzeczy i znalezienie fachowca, któremu można zaufać.",
+      "whatP2": "Wszystko działa przez jeden portfel, więc widzisz dokładnie, ile wydałeś i ile ci się należy — a każdy zakup tworzy paragon, który znów odnajdziesz.",
+      "doTitle": "Co możesz tu zrobić",
+      "svc": {
+        "bills": {
+          "title": "Rachunki i media",
+          "body": "Doładowania, dane, tokeny prądu i abonamenty TV, dostarczane w sekundy i z paragonem e-mailem."
+        },
+        "wallet": {
+          "title": "Portfel i przelewy",
+          "body": "Zasil kartą, wyślij natychmiast innemu użytkownikowi OAM lub wypłać na własne konto bankowe."
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "body": "Kupuj i sprzedawaj w społeczności OAM, z wbudowanymi wiadomościami, aby Twój numer pozostał prywatny."
+        },
+        "services": {
+          "title": "Usługi domowe",
+          "body": "Znajdź zweryfikowanych hydraulików, elektryków, mechaników i sprzątaczy w pobliżu."
+        },
+        "travel": {
+          "title": "Podróże",
+          "body": "Porównuj loty, hotele, wynajem aut i transfery lotniskowe na całym świecie."
+        }
+      },
+      "moneyTitle": "Jak zarabiamy",
+      "moneyP1": "Uważamy, że powinieneś to wiedzieć, bo usługa ukrywająca swój model przychodów zwykle ma ku temu powód.",
+      "moneyP2": "Na rachunkach zarabiamy <1>niewielką marżę</1> — zwykle 10 do 20 ₦ przy zakupie za 1000 ₦ — wliczoną w widoczną cenę. Przy płatności nie ma osobnej opłaty, a pokazana kwota jest tą, którą płacisz.",
+      "moneyP3": "Na Marketplace i w Usługach domowych zarabiamy na <1>opcjonalnych planach płatnych</1>: sprzedawcy mogą wykupić więcej ofert i wyróżnienie, a rzemieślnicy mogą podbić profil, by pojawiać się wyżej. Wystawianie i wiadomości są darmowe.",
+      "moneyP4": "Na podróżach otrzymujemy <1>prowizję za polecenie</1> od partnerów rezerwacyjnych, bez dodatkowego kosztu dla Ciebie.",
+      "safetyTitle": "Jak dbamy o bezpieczeństwo",
+      "safetyP1": "Numery telefonów na Marketplace i w Usługach domowych <1>nigdy nie są publikowane</1>. Wymieniane są dopiero, gdy sprzedawca lub rzemieślnik zaakceptuje Twoje zapytanie — dzięki temu żaden numer nie leży na publicznej stronie do zebrania, a dane kontaktowe dostajesz tylko od kogoś, kto naprawdę zgodził się z Tobą działać.",
+      "safetyP2": "Płatności obsługuje <1>Paystack</1>. Dane karty wpisujesz na własnej bezpiecznej stronie Paystack i OAM nigdy ich nie widzi ani nie przechowuje.",
+      "noteBody": "<1>Słowo o tym, gdzie jesteśmy.</1> OAM dopiero wystartowała, więc niektóre sekcje — zwłaszcza Marketplace i katalog rzemieślników — wciąż się zapełniają. Zasięg rośnie, gdy dołącza więcej osób, i wolimy to powiedzieć, niż udawać inaczej.",
+      "createAccount": "Utwórz konto",
+      "talkToUs": "Porozmawiaj z nami"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "intro": "Coś poszło nie tak albo masz pytanie przed startem? Oto jak dotrzeć do człowieka.",
+      "emailTitle": "E-mail",
+      "emailBody": "Najszybsza droga do wszystkiego, co dotyczy płatności, brakującego tokenu lub problemu z kontem.",
+      "paymentTitle": "Jeśli płatność się nie powiodła",
+      "paymentP1": "<1>Prosimy, nie płać dwa razy.</1> Jeśli zamówienie pokazuje „w trakcie”, pieniądze już wyszły, a zakup jest u Twojego dostawcy — ponowny zakup zwykle oznacza zapłatę drugi raz za to samo.",
+      "paymentList": "Zamiast tego napisz do nas, podając:",
+      "paymentLi1": "<1>numer referencyjny</1> zamówienia (zaczyna się od BILL-, FUND- lub TRF-)",
+      "paymentLi2": "adres e-mail Twojego konta OAM",
+      "paymentLi3": "mniej więcej, kiedy to się stało",
+      "paymentP2": "To zwykle wystarcza, byśmy znaleźli transakcję i powiedzieli dokładnie, gdzie jest. Numer referencyjny znajdziesz w <1>Historii zamówień</1>.",
+      "mktTitle": "Kupno lub sprzedaż na Marketplace",
+      "mktP1": "Pytania o konkretny przedmiot lub zlecenie najlepiej zadawać <1>bezpośrednio na czacie</1> przypisanym do danej oferty lub profilu rzemieślnika — druga osoba dostaje powiadomienie, a ustalenia są zapisane.",
+      "mktP2": "Skontaktuj się z nami natomiast, jeśli ktoś prosi o zapłatę poza OAM, naciska na przedpłatę lub zachowuje się w sposób, który nie wygląda dobrze. Wolimy usłyszeć o tym wcześnie.",
+      "responseTitle": "Czas odpowiedzi",
+      "responseBody": "Staramy się odpowiadać na każdy e-mail w ciągu <1>jednego dnia roboczego</1>. Problemy z płatnościami rozpatrujemy najpierw. Jeśli po dwóch dniach roboczych nie ma odpowiedzi, odpisz na własny e-mail, by go podbić — to pewniejsze niż wysyłanie nowego.",
+      "scamBody": "<1>Nigdy nie poprosimy o Twoje hasło, PIN karty ani kod jednorazowy.</1> Ktokolwiek to robi — przez telefon, SMS czy WhatsApp — nie jest z OAM, jakkolwiek przekonująco brzmi. Rozłącz się i napisz do nas."
+    }
   }
 }

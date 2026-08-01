@@ -1119,5 +1119,72 @@
       "readyTitle": "A shirye ka nemo wurin zamanka?",
       "readyBody": "Nemo otal-otal, gidaje da wuraren hutu a duniya, sannan ka yi ajiya cikin aminci da abokin haɗin gwiwarmu."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Gida",
+      "lastUpdated": "An sabunta ta ƙarshe {{updated}}",
+      "questions": "Tambayoyi? Aika imel"
+    },
+    "about": {
+      "title": "Game da OAM",
+      "intro": "Manhaja ɗaya don abubuwan yau da kullum da 'yan Najeriya suke biya, sayarwa, da ɗaukar aiki — an gina ta don ta yi sauri, ta yi gaskiya, kuma ta kasance da tsaro ga kuɗinka.",
+      "whatTitle": "Menene OAM",
+      "whatP1": "OAM dandamali ne mai sabis daban-daban wanda <1>O.A.M Motors Limited</1> ke gudanarwa. Yana haɗa abubuwan da mafi yawan mutane ke gwabza a manhajoji da dama: cika lokacin waya, sayen wutar lantarki, biyan TV, aika kuɗi, sayar da abin da ba ka bukata kuma, da nemo ma'aikacin da za ka amince da shi.",
+      "whatP2": "Komai yana gudana ta walat ɗaya, don ka ga daidai abin da ka kashe da abin da ake bin ka — kuma kowace saya tana samar da rasit da za ka iya samu kuma.",
+      "doTitle": "Abin da za ka iya yi a nan",
+      "svc": {
+        "bills": {
+          "title": "Kuɗaɗe da abubuwan amfani",
+          "body": "Lokacin waya, data, tokan wutar lantarki da biyan TV, ana kai su cikin daƙiƙa kuma ana rasit ta imel."
+        },
+        "wallet": {
+          "title": "Walat da tura kuɗi",
+          "body": "Cika da kati, tura wa wani mai amfani da OAM nan take, ko cire zuwa asusun bankinka."
+        },
+        "marketplace": {
+          "title": "Kasuwa",
+          "body": "Saya da sayarwa cikin al'ummar OAM, tare da saƙo a ciki don lambar wayarka ta kasance a ɓoye."
+        },
+        "services": {
+          "title": "Sabis na gida",
+          "body": "Nemo masu famfo, masu wutar lantarki, makanikai da masu tsaftacewa da aka tabbatar kusa da kai."
+        },
+        "travel": {
+          "title": "Tafiya",
+          "body": "Kwatanta jirage, otal-otal, hayar mota da ɗaukar filin jirgi a duniya."
+        }
+      },
+      "moneyTitle": "Yadda muke samun kuɗi",
+      "moneyP1": "Muna ganin ya kamata ka san wannan, domin sabis ɗin da ke ɓoye yadda yake samun kuɗi yawanci yana da dalili.",
+      "moneyP2": "A kan kuɗaɗe, muna samun <1>ɗan riba kaɗan</1> — yawanci ₦10 zuwa ₦20 a kan saya ta ₦1,000 — a haɗe cikin farashin da kake gani. Babu wani kuɗi na daban da aka ƙara a lokacin biya, kuma adadin da aka nuna maka shine adadin da kake biya.",
+      "moneyP3": "A kan Kasuwa da Sabis na Gida, muna samu daga <1>tsare-tsaren biya na zaɓi</1>: masu sayarwa na iya biyan kuɗi don ƙarin talla da wurin nunawa na musamman, kuma ma'aikata na iya haɓaka bayanansu su bayyana sama a bincike. Talla da saƙo kyauta ne.",
+      "moneyP4": "A kan tafiya, muna samun <1>kwamitin tura abokan ciniki</1> daga abokan ajiya ba tare da ƙarin kuɗi a gare ka ba.",
+      "safetyTitle": "Yadda muke tafiyar da tsaro",
+      "safetyP1": "Lambobin waya a Kasuwa da Sabis na Gida <1>ba a taɓa buga su</1>. Ana musanya su ne kawai da zarar mai sayarwa ko ma'aikaci ya amshi tambayarka — don kada lambar kowa ta zauna a shafi na jama'a tana jiran girbi, kuma kai kawai kake samun bayanan tuntuɓar wanda ya yarda ya yi ma'amala da kai.",
+      "safetyP2": "Ana sarrafa biyan kuɗi ta <1>Paystack</1>. Ana shigar da bayanan kati a shafin biya mai tsaro na Paystack kuma OAM ba ta taɓa ganin su ko adana su ba.",
+      "noteBody": "<1>Bayani game da inda muke.</1> An ƙaddamar da OAM kwanan nan, don haka wasu sassa — musamman Kasuwa da jerin ma'aikata — har yanzu suna cika. Ɗaukar hoto na girma yayin da mutane da yawa ke shiga, kuma mun gwammace mu faɗi haka fiye da mu yi kamar ba haka ba.",
+      "createAccount": "Ƙirƙiri asusu",
+      "talkToUs": "Yi magana da mu"
+    },
+    "contact": {
+      "title": "Tuntuɓe mu",
+      "intro": "Wani abu ya lalace, ko tambaya kafin ka fara? Ga yadda za ka isa ga mutum.",
+      "emailTitle": "Imel",
+      "emailBody": "Hanya mafi sauri ga duk abin da ya shafi biya, tokan da ya ɓace, ko matsalar asusu.",
+      "paymentTitle": "Idan biya ya yi kuskure",
+      "paymentP1": "<1>Don Allah kada ka biya sau biyu.</1> Idan oda ta nuna \"ana sarrafawa\", kuɗin ya riga ya fita kuma sayan yana wurin mai bautar ka — sāke saya yawanci na nufin biyan abu ɗaya sau na biyu.",
+      "paymentList": "Maimakon haka, aiko mana imel da:",
+      "paymentLi1": "<1>lambar tunani</1> daga odar (tana farawa da BILL-, FUND- ko TRF-)",
+      "paymentLi2": "adireshin imel ɗin da ke asusun OAM ɗinka",
+      "paymentLi3": "kusan lokacin da ya faru",
+      "paymentP2": "Wannan yawanci ya isa mu sami ma'amalar mu gaya maka daidai inda take. Za ka iya samun lambar tunani a ƙarƙashin <1>Tarihin oda</1>.",
+      "mktTitle": "Saya ko sayarwa a Kasuwa",
+      "mktP1": "Tambayoyi game da wani abu ko aiki takamaimai an fi tambayarsu <1>kai tsaye a cikin taɗi</1> da ke haɗe da wannan talla ko bayanin ma'aikaci — ana sanar da ɗayan mutumin, kuma akwai bayanin abin da aka amince.",
+      "mktP2": "Maimakon haka ka tuntuɓe mu idan wani ya nemi ka biya a wajen OAM, ya matsa maka don kuɗi tun da wuri, ko ya yi hali da bai dace ba. Mun gwammace mu ji game da shi da wuri.",
+      "responseTitle": "Lokutan amsa",
+      "responseBody": "Muna nufin mu amsa kowace imel cikin <1>ranar aiki ɗaya</1>. Matsalolin biya ana dubansu da farko. Idan ba ka ji komai ba bayan kwanaki biyu na aiki, amsa imel ɗinka don tunatarwa — ya fi aika sabuwa aminci.",
+      "scamBody": "<1>Ba za mu taɓa neman kalmar sirrinka, PIN na kati, ko lambar sau ɗaya ba.</1> Duk wanda ya nema — ta kira, SMS ko WhatsApp — ba na OAM ba ne, ko da yaya suka yi kamar gaskiya. Ka rufe waya ka aiko mana imel."
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
 
 /**
@@ -20,6 +21,7 @@ export default function PageShell({
   updated?: string;
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-mist">
       <header className="sticky top-0 z-40 border-b border-hairline bg-paper/90 backdrop-blur">
@@ -31,7 +33,7 @@ export default function PageShell({
             to="/"
             className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
           >
-            <ArrowLeft size={15} strokeWidth={1.75} /> Home
+            <ArrowLeft size={15} strokeWidth={1.75} /> {t("company.shell.home")}
           </Link>
         </div>
       </header>
@@ -60,7 +62,7 @@ export default function PageShell({
             )}
             {updated && (
               <p className="mt-3 text-[11.5px] uppercase tracking-wider text-white/40">
-                Last updated {updated}
+                {t("company.shell.lastUpdated", { updated })}
               </p>
             )}
           </div>
@@ -69,7 +71,7 @@ export default function PageShell({
         <div className="mt-5 space-y-4">{children}</div>
 
         <p className="mt-8 text-center text-[12.5px] text-muted">
-          Questions? Email{" "}
+          {t("company.shell.questions")}{" "}
           <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline">
             info@oam-app.com
           </a>

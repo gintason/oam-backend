@@ -1119,5 +1119,72 @@
       "readyTitle": "Konaklamanızı bulmaya hazır mısınız?",
       "readyBody": "Dünya çapında otelleri, daireleri ve tatil köylerini arayın, ardından ortağımızla güvenle rezervasyon yapın."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Ana sayfa",
+      "lastUpdated": "Son güncelleme {{updated}}",
+      "questions": "Sorularınız mı var? E-posta:"
+    },
+    "about": {
+      "title": "OAM Hakkında",
+      "intro": "Nijeryalıların ödediği, sattığı ve kiraladığı günlük işler için tek uygulama — hızlı, dürüst ve paranızla güvenli olacak şekilde tasarlandı.",
+      "whatTitle": "OAM nedir",
+      "whatP1": "OAM, <1>O.A.M Motors Limited</1> tarafından işletilen çok hizmetli bir platformdur. Çoğu kişinin bugün yarım düzine uygulama arasında yaptığı işleri bir araya getirir: kontör yükleme, elektrik birimi alma, TV ödemesi, para gönderme, ihtiyaç fazlasını satma ve güvenebileceğiniz bir usta bulma.",
+      "whatP2": "Her şey tek bir cüzdandan geçer, böylece ne harcadığınızı ve size ne borçlu olunduğunu tam olarak görürsünüz — ve her satın alma yeniden bulabileceğiniz bir makbuz üretir.",
+      "doTitle": "Burada neler yapabilirsiniz",
+      "svc": {
+        "bills": {
+          "title": "Faturalar ve hizmetler",
+          "body": "Kontör, internet, elektrik jetonları ve TV abonelikleri, saniyeler içinde teslim ve e-posta ile makbuzlu."
+        },
+        "wallet": {
+          "title": "Cüzdan ve transferler",
+          "body": "Kartla yükleyin, anında başka bir OAM kullanıcısına gönderin veya kendi banka hesabınıza çekin."
+        },
+        "marketplace": {
+          "title": "Pazar yeri",
+          "body": "OAM topluluğu içinde alın satın; numaranız gizli kalsın diye mesajlaşma yerleşiktir."
+        },
+        "services": {
+          "title": "Ev hizmetleri",
+          "body": "Yakınınızda doğrulanmış tesisatçı, elektrikçi, tamirci ve temizlikçi bulun."
+        },
+        "travel": {
+          "title": "Seyahat",
+          "body": "Dünya çapında uçuş, otel, araç kiralama ve havaalanı transferi karşılaştırın."
+        }
+      },
+      "moneyTitle": "Nasıl para kazanıyoruz",
+      "moneyP1": "Bunu bilmeniz gerektiğini düşünüyoruz, çünkü gelir modelini gizleyen bir hizmetin genellikle bir nedeni vardır.",
+      "moneyP2": "Faturalarda <1>küçük bir kâr</1> kazanırız — genellikle 1.000 ₦'lik bir alışverişte 10 ila 20 ₦ — gördüğünüz fiyata dahildir. Ödemede ayrı bir ücret eklenmez ve size gösterilen tutar ödediğiniz tutardır.",
+      "moneyP3": "Pazar yeri ve Ev hizmetlerinde <1>isteğe bağlı ücretli planlardan</1> kazanırız: satıcılar daha fazla ilan ve öne çıkma için abone olabilir, ustalar aramada üstte görünmek için profillerini öne çıkarabilir. İlan vermek ve mesajlaşmak ücretsizdir.",
+      "moneyP4": "Seyahatte, size ek maliyet olmadan rezervasyon ortaklarından <1>yönlendirme komisyonu</1> kazanırız.",
+      "safetyTitle": "Güvenliği nasıl ele alıyoruz",
+      "safetyP1": "Pazar yeri ve Ev hizmetlerindeki telefon numaraları <1>asla yayımlanmaz</1>. Yalnızca bir satıcı veya usta talebinizi kabul ettiğinde paylaşılır — böylece hiçbir numara toplanmayı bekleyen bir kamuya açık sayfada durmaz ve yalnızca sizinle iş yapmayı gerçekten kabul eden birinin iletişim bilgilerini alırsınız.",
+      "safetyP2": "Ödemeler <1>Paystack</1> tarafından işlenir. Kart bilgileri Paystack'in kendi güvenli ödeme sayfasında girilir ve OAM tarafından asla görülmez veya saklanmaz.",
+      "noteBody": "<1>Nerede olduğumuza dair bir not.</1> OAM yeni başlatıldı, bu yüzden bazı bölümler — özellikle Pazar yeri ve usta rehberi — hâlâ doluyor. Daha fazla kişi katıldıkça kapsam büyür; bunu tersini iddia etmektense söylemeyi tercih ederiz.",
+      "createAccount": "Hesap oluştur",
+      "talkToUs": "Bizimle konuşun"
+    },
+    "contact": {
+      "title": "Bize ulaşın",
+      "intro": "Bir şey mi ters gitti ya da başlamadan önce bir soru mu var? İşte bir kişiye nasıl ulaşacağınız.",
+      "emailTitle": "E-posta",
+      "emailBody": "Bir ödeme, eksik jeton veya hesap sorunuyla ilgili her şey için en hızlı yol.",
+      "paymentTitle": "Bir ödeme ters gittiyse",
+      "paymentP1": "<1>Lütfen iki kez ödemeyin.</1> Bir sipariş \"işleniyor\" görünüyorsa para çoktan çıkmıştır ve satın alma sağlayıcınızdadır — tekrar almak genellikle aynı şeyi ikinci kez ödemek demektir.",
+      "paymentList": "Bunun yerine, şunları içeren bir e-posta gönderin:",
+      "paymentLi1": "siparişin <1>referans numarası</1> (BILL-, FUND- veya TRF- ile başlar)",
+      "paymentLi2": "OAM hesabınızdaki e-posta adresi",
+      "paymentLi3": "kabaca ne zaman olduğu",
+      "paymentP2": "Bu, işlemi bulup size tam olarak nerede olduğunu söylememiz için genellikle yeterlidir. Referansı <1>Sipariş geçmişi</1> altında bulabilirsiniz.",
+      "mktTitle": "Pazar yerinde alım veya satım",
+      "mktP1": "Belirli bir ürün veya iş hakkındaki sorular en iyi, o ilana veya usta profiline bağlı <1>doğrudan sohbette</1> sorulur — karşı taraf bildirim alır ve neyin kararlaştırıldığına dair bir kayıt kalır.",
+      "mktP2": "Bunun yerine biri OAM dışında ödeme yapmanızı isterse, peşin ödeme için baskı yaparsa veya doğru gelmeyen bir şekilde davranırsa bize ulaşın. Bunu erken duymayı tercih ederiz.",
+      "responseTitle": "Yanıt süreleri",
+      "responseBody": "Her e-postayı <1>bir iş günü</1> içinde yanıtlamayı hedefliyoruz. Ödeme sorunlarına önce bakılır. İki iş günü sonra yanıt alamazsanız, öne çıkarmak için kendi e-postanıza yanıt verin — yeni bir tane göndermekten daha güvenilirdir.",
+      "scamBody": "<1>Sizden asla şifrenizi, kart PIN'inizi veya tek kullanımlık bir kod istemeyiz.</1> Bunu yapan herkes — arama, SMS veya WhatsApp ile — ne kadar inandırıcı olursa olsun OAM'dan değildir. Telefonu kapatın ve bize e-posta gönderin."
+    }
   }
 }

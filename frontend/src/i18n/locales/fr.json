@@ -1119,5 +1119,72 @@
       "readyTitle": "Prêt à trouver votre séjour ?",
       "readyBody": "Recherchez des hôtels, appartements et complexes dans le monde entier, puis réservez en toute sécurité avec notre partenaire."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Accueil",
+      "lastUpdated": "Dernière mise à jour {{updated}}",
+      "questions": "Des questions ? Écrivez à"
+    },
+    "about": {
+      "title": "À propos d'OAM",
+      "intro": "Une seule app pour les choses du quotidien que les Nigérians paient, vendent et louent — conçue pour être rapide, honnête et sûre avec votre argent.",
+      "whatTitle": "Ce qu'est OAM",
+      "whatP1": "OAM est une plateforme multiservices exploitée par <1>O.A.M Motors Limited</1>. Elle réunit ce que la plupart des gens jonglent aujourd'hui entre une demi-douzaine d'applis : recharger du crédit, acheter des unités d'électricité, payer la télé, envoyer de l'argent, vendre ce dont vous n'avez plus besoin et trouver un artisan de confiance.",
+      "whatP2": "Tout passe par un portefeuille unique, vous voyez donc exactement ce que vous avez dépensé et ce qu'on vous doit — et chaque achat génère un reçu que vous pouvez retrouver.",
+      "doTitle": "Ce que vous pouvez faire ici",
+      "svc": {
+        "bills": {
+          "title": "Factures et services",
+          "body": "Crédit, data, jetons d'électricité et abonnements TV, livrés en quelques secondes et facturés par e-mail."
+        },
+        "wallet": {
+          "title": "Portefeuille et transferts",
+          "body": "Approvisionnez par carte, envoyez à un autre utilisateur OAM instantanément, ou retirez vers votre propre compte bancaire."
+        },
+        "marketplace": {
+          "title": "Marché",
+          "body": "Achetez et vendez au sein de la communauté OAM, avec messagerie intégrée pour que votre numéro reste privé."
+        },
+        "services": {
+          "title": "Services à domicile",
+          "body": "Trouvez près de chez vous des plombiers, électriciens, mécaniciens et agents d'entretien vérifiés."
+        },
+        "travel": {
+          "title": "Voyage",
+          "body": "Comparez vols, hôtels, location de voiture et transferts aéroport dans le monde entier."
+        }
+      },
+      "moneyTitle": "Comment nous gagnons de l'argent",
+      "moneyP1": "Nous pensons que vous devez le savoir, car un service qui cache son modèle de revenus a généralement une raison de le faire.",
+      "moneyP2": "Sur les factures, nous gagnons une <1>petite marge</1> — généralement 10 à 20 ₦ sur un achat de 1 000 ₦ — intégrée au prix affiché. Aucun frais séparé n'est ajouté au paiement, et le montant affiché est celui que vous payez.",
+      "moneyP3": "Sur le Marché et les Services à domicile, nous gagnons grâce à des <1>forfaits payants optionnels</1> : les vendeurs peuvent s'abonner pour plus d'annonces et une mise en avant, et les artisans peuvent booster leur profil pour apparaître plus haut. Publier et échanger des messages est gratuit.",
+      "moneyP4": "Sur le voyage, nous percevons une <1>commission de recommandation</1> de nos partenaires de réservation, sans coût supplémentaire pour vous.",
+      "safetyTitle": "Comment nous gérons la sécurité",
+      "safetyP1": "Les numéros de téléphone sur le Marché et les Services à domicile ne sont <1>jamais publiés</1>. Ils ne sont échangés qu'une fois qu'un vendeur ou un artisan accepte votre demande — ainsi, aucun numéro ne traîne sur une page publique à récupérer, et vous n'obtenez que les coordonnées de quelqu'un qui a réellement accepté de traiter avec vous.",
+      "safetyP2": "Les paiements sont traités par <1>Paystack</1>. Les données de carte sont saisies sur la page de paiement sécurisée de Paystack et ne sont jamais vues ni stockées par OAM.",
+      "noteBody": "<1>Un mot sur notre situation.</1> OAM vient d'être lancée, donc certaines sections — en particulier le Marché et l'annuaire d'artisans — se remplissent encore. La couverture grandit à mesure que d'autres nous rejoignent, et nous préférons le dire plutôt que prétendre le contraire.",
+      "createAccount": "Créer un compte",
+      "talkToUs": "Nous contacter"
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "intro": "Un souci, ou une question avant de commencer ? Voici comment joindre une personne.",
+      "emailTitle": "E-mail",
+      "emailBody": "La voie la plus rapide pour tout ce qui concerne un paiement, un jeton manquant ou un problème de compte.",
+      "paymentTitle": "Si un paiement a échoué",
+      "paymentP1": "<1>Ne payez pas deux fois.</1> Si une commande indique « en traitement », l'argent est déjà parti et l'achat est chez votre fournisseur — racheter revient généralement à payer deux fois la même chose.",
+      "paymentList": "À la place, écrivez-nous avec :",
+      "paymentLi1": "le <1>numéro de référence</1> de la commande (il commence par BILL-, FUND- ou TRF-)",
+      "paymentLi2": "l'adresse e-mail de votre compte OAM",
+      "paymentLi3": "à peu près quand cela s'est produit",
+      "paymentP2": "Cela nous suffit généralement pour retrouver la transaction et vous dire exactement où elle en est. Vous trouverez la référence dans l'<1>Historique des commandes</1>.",
+      "mktTitle": "Acheter ou vendre sur le Marché",
+      "mktP1": "Les questions sur un article ou un travail précis se posent de préférence <1>directement dans le chat</1> lié à cette annonce ou à ce profil d'artisan — l'autre personne est notifiée, et il y a une trace de ce qui a été convenu.",
+      "mktP2": "Contactez-nous plutôt si quelqu'un vous demande de payer en dehors d'OAM, vous pousse à payer d'avance, ou se comporte d'une manière qui ne vous semble pas correcte. Nous préférons en être informés tôt.",
+      "responseTitle": "Délais de réponse",
+      "responseBody": "Nous visons à répondre à chaque e-mail sous <1>un jour ouvré</1>. Les problèmes de paiement sont traités en premier. Sans réponse après deux jours ouvrés, répondez à votre propre e-mail pour le relancer — c'est plus fiable que d'en envoyer un nouveau.",
+      "scamBody": "<1>Nous ne vous demanderons jamais votre mot de passe, votre code PIN de carte ou un code à usage unique.</1> Quiconque le fait — par appel, SMS ou WhatsApp — n'est pas d'OAM, aussi convaincant soit-il. Raccrochez et écrivez-nous plutôt."
+    }
   }
 }

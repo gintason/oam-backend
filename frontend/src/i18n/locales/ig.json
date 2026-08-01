@@ -1119,5 +1119,72 @@
       "readyTitle": "Ị dị njikere ịchọta ebe obibi gị?",
       "readyBody": "Chọọ hotel, ụlọ na ebe izu ike gburugburu ụwa, wee debe n'echekwa site n'aka onye mmekọ anyị."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Ụlọ",
+      "lastUpdated": "E melitere ikpeazụ {{updated}}",
+      "questions": "Ajụjụ? Zipu email"
+    },
+    "about": {
+      "title": "Gbasara OAM",
+      "intro": "Otu ngwa maka ihe ndị ụbọchị niile ndị Naịjirịa na-akwụ ụgwọ, na-ere, ma na-egbu — e wuru ka ọ dị ọsọ ọsọ, kwụwa ọtọ, ma nwee nchekwa maka ego gị.",
+      "whatTitle": "Ihe OAM bụ",
+      "whatP1": "OAM bụ ọ̀tù ọrụ ọtụtụ ọrụ nke <1>O.A.M Motors Limited</1> na-arụ. Ọ na-ejikọta ihe ọtụtụ ndị mmadụ na-ejizi ọtụtụ ngwa: ịtụba airtime, ịzụ eletrik, ịkwụ ụgwọ TV, izipu ego, ire ihe ị na-achọghịzi, na ịchọta onye ọrụ aka ị nwere ike ịtụkwasị obi.",
+      "whatP2": "Ihe niile na-agafe site n'otu obere akpa ego, ka ị wee hụ kpọmkwem ihe i mefuru na ihe e ji gị — na azụm ọ bụla na-emepụta akwụkwọ nnata ị nwere ike ịchọta ọzọ.",
+      "doTitle": "Ihe ị nwere ike ime ebe a",
+      "svc": {
+        "bills": {
+          "title": "Ụgwọ na ọrụ eletrik",
+          "body": "Airtime, data, tokin eletrik na ndenye TV, e nyefere n'ime sekọnd ma nweta akwụkwọ nnata site na email."
+        },
+        "wallet": {
+          "title": "Akpa ego na mbufe",
+          "body": "Debe site na kaadị, zipu na onye ọzọ na-eji OAM ozugbo, ma ọ bụ wepụ na akaụntụ ụlọ akụ gị."
+        },
+        "marketplace": {
+          "title": "Ahịa",
+          "body": "Zụọ ma ree n'ime obodo OAM, jiri ozi wụnyere ka nọmba ekwentị gị nọrọ nzuzo."
+        },
+        "services": {
+          "title": "Ọrụ ụlọ",
+          "body": "Chọta ndị ọrụ mmiri, ndị eletrik, ndị mekaniki na ndị na-ehicha enyochara dị gị nso."
+        },
+        "travel": {
+          "title": "Njem",
+          "body": "Tụlee ụgbọ elu, hotel, mgbazinye ụgbọ ala na mbuli ọdụ ụgbọ elu gburugburu ụwa."
+        }
+      },
+      "moneyTitle": "Otu anyị si enweta ego",
+      "moneyP1": "Anyị chere na ị kwesịrị ịmara nke a, n'ihi na ọrụ na-ezochi otu ọ si enweta ego na-enwekarị ihe kpatara ya.",
+      "moneyP2": "N'ụgwọ, anyị na-enweta <1>obere uru</1> — na-abụkarị ₦10 ruo ₦20 na azụmahịa ₦1,000 — e tinyere n'ọnụ ahịa ị na-ahụ. Enweghị ụgwọ ọzọ dịiche agbakwụnyere na mkpọchi, na ọnụọgụ e gosiri gị bụ ọnụọgụ ị na-akwụ.",
+      "moneyP3": "Na Ahịa na Ọrụ Ụlọ, anyị na-enweta site na <1>atụmatụ akwụ ụgwọ nhọrọ</1>: ndị na-ere ahịa nwere ike ịkwụ ụgwọ maka ọtụtụ ntinye na ọnọdụ pụrụ iche, ndị ọrụ aka nwekwara ike ịkwalite profaịlụ ha ka ha pụta n'elu na nchọ. Ntinye na izipu ozi bụ n'efu.",
+      "moneyP4": "Na njem, anyị na-enweta <1>ọrụ ntụnyere</1> site n'aka ndị mmekọ ndebe na-enweghị ụgwọ ọzọ n'ahụ gị.",
+      "safetyTitle": "Otu anyị si ahụ maka nchekwa",
+      "safetyP1": "Nọmba ekwentị na Ahịa na Ọrụ Ụlọ <1>anaghị ebipụta ma ọlị</1>. A na-agbanwe ha naanị mgbe onye na-ere ma ọ bụ onye ọrụ aka nabatara ajụjụ gị — ka nọmba onye ọ bụla ghara ịnọ na peeji ọha na-echere ka a ghọrọ ya, na naanị gị na-enweta nkọwa kọntaktị nke onye kwetara imekọ ihe gị.",
+      "safetyP2": "Paystack na-ahazi ịkwụ ụgwọ <1>Paystack</1>. A na-etinye nkọwa kaadị na mkpọchi echekwara nke Paystack ma OAM adịghị ahụ ma ọ bụ chekwaa ha.",
+      "noteBody": "<1>Ihe ederede gbasara ebe anyị nọ.</1> E wepụtara OAM ọhụrụ, ya mere akụkụ ụfọdụ — karịsịa Ahịa na ndekọ ndị ọrụ aka — ka na-ejubiga. Mkpuchi na-eto ka ọtụtụ mmadụ na-esonyere, anyị ga-akara ekwu ya karịa ime ka à ga-asị na ọ bụghị otú ahụ.",
+      "createAccount": "Mepụta akaụntụ",
+      "talkToUs": "Gwa anyị okwu"
+    },
+    "contact": {
+      "title": "Kpọtụrụ anyị",
+      "intro": "Ọ nwere ihe mebiri, ma ọ bụ ajụjụ tupu ị malite? Nke a bụ otú ị ga-esi ruo mmadụ.",
+      "emailTitle": "Email",
+      "emailBody": "Ụzọ kacha ọsọ maka ihe ọ bụla metụtara ịkwụ ụgwọ, tokin na-efu, ma ọ bụ nsogbu akaụntụ.",
+      "paymentTitle": "Ọ bụrụ na ịkwụ ụgwọ emebiela",
+      "paymentP1": "<1>Biko akwụla ụgwọ ugboro abụọ.</1> Ọ bụrụ na iwu na-egosi \"na-ahazi\", ego apụọlarị na azụ ihe nọ n'aka onye na-enye gị ọrụ — ịzụ ọzọ na-apụtakarị ịkwụ ụgwọ maka otu ihe ugboro abụọ.",
+      "paymentList": "Kama, zitere anyị email na:",
+      "paymentLi1": "<1>nọmba ntụaka</1> sitere n'iwu ahụ (ọ na-amalite na BILL-, FUND- ma ọ bụ TRF-)",
+      "paymentLi2": "adreesị email dị na akaụntụ OAM gị",
+      "paymentLi3": "ihe dịka mgbe ọ mere",
+      "paymentP2": "Nke ahụ na-ezukarị ka anyị chọta azụmahịa ahụ ma gwa gị kpọmkwem ebe ọ nọ. Ị nwere ike ịchọta nọmba ntụaka n'okpuru <1>Akụkọ iwu</1>.",
+      "mktTitle": "Ịzụ ma ọ bụ ire n'Ahịa",
+      "mktP1": "Ajụjụ gbasara otu ihe ma ọ bụ ọrụ ka mma ịjụ <1>ozugbo na nkata</1> jikọtara na ntinye ahụ ma ọ bụ profaịlụ onye ọrụ aka — a na-agwa onye nke ọzọ, na e nwere ndekọ ihe e kwetara.",
+      "mktP2": "Kpọtụrụ anyị kama ma ọ bụrụ na mmadụ na-arịọ gị ka ị kwụọ ụgwọ na mpụga OAM, na-anyagide gị maka ego tupu oge, ma ọ bụ na-eme ihe na-adịghị mma. Anyị ga-akara ịnụ gbasara ya n'oge.",
+      "responseTitle": "Oge nzaghachi",
+      "responseBody": "Anyị bu n'obi ịzaghachi email ọ bụla n'ime <1>otu ụbọchị ọrụ</1>. A na-elebu anya na nsogbu ịkwụ ụgwọ. Ọ bụrụ na ị nụghị okwu mgbe ụbọchị ọrụ abụọ gasịrị, zaghachi email nke gị iji chetara ya — ọ ka email ọhụrụ ntụkwasị obi.",
+      "scamBody": "<1>Anyị agaghị arịọ gị paswọọdụ gị, PIN kaadị, ma ọ bụ koodu otu oge ma ọlị.</1> Onye ọ bụla rịọrọ — site na oku, SMS ma ọ bụ WhatsApp — esighị na OAM, agbanyeghị otú ha si dabara. Kwụsị oku ma zitere anyị email."
+    }
   }
 }

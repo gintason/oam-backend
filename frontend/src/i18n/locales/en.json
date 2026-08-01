@@ -1119,5 +1119,72 @@
       "readyTitle": "Ready to find your stay?",
       "readyBody": "Search hotels, apartments and resorts worldwide, then book securely with our partner."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Home",
+      "lastUpdated": "Last updated {{updated}}",
+      "questions": "Questions? Email"
+    },
+    "about": {
+      "title": "About OAM",
+      "intro": "One app for the everyday things Nigerians pay for, sell, and hire — built to be quick, honest, and safe with your money.",
+      "whatTitle": "What OAM is",
+      "whatP1": "OAM is a multi-service platform operated by <1>O.A.M Motors Limited</1>. It brings together the things most people currently juggle across half a dozen apps: topping up airtime, buying electricity units, paying for TV, sending money, selling something you no longer need, and finding a tradesperson you can trust.",
+      "whatP2": "Everything runs through a single wallet, so you can see exactly what you've spent and what you're owed — and every purchase produces a receipt you can find again.",
+      "doTitle": "What you can do here",
+      "svc": {
+        "bills": {
+          "title": "Bills and utilities",
+          "body": "Airtime, data, electricity tokens and TV subscriptions, delivered in seconds and receipted by email."
+        },
+        "wallet": {
+          "title": "Wallet and transfers",
+          "body": "Fund by card, send to another OAM user instantly, or withdraw to your own bank account."
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "body": "Buy and sell within the OAM community, with messaging built in so your phone number stays private."
+        },
+        "services": {
+          "title": "Home services",
+          "body": "Find verified plumbers, electricians, mechanics and cleaners near you."
+        },
+        "travel": {
+          "title": "Travel",
+          "body": "Compare flights, hotels, car hire and airport pickups worldwide."
+        }
+      },
+      "moneyTitle": "How we make money",
+      "moneyP1": "We think you should know this, because a service that hides its revenue model usually has a reason to.",
+      "moneyP2": "On bills, we earn a <1>small margin</1> — typically ₦10 to ₦20 on a ₦1,000 purchase — built into the price you see. There is no separate fee added at checkout, and the amount you're shown is the amount you pay.",
+      "moneyP3": "On the Marketplace and Home Services, we earn from <1>optional paid plans</1>: sellers can subscribe for more listings and featured placement, and artisans can boost their profile to appear higher in search. Listing and messaging are free.",
+      "moneyP4": "On travel, we earn a <1>referral commission</1> from booking partners at no extra cost to you.",
+      "safetyTitle": "How we handle safety",
+      "safetyP1": "Phone numbers on the Marketplace and Home Services are <1>never published</1>. They're exchanged only once a seller or artisan accepts your enquiry — so nobody's number sits on a public page waiting to be harvested, and you only ever get the contact details of someone who has actually agreed to deal with you.",
+      "safetyP2": "Payments are processed by <1>Paystack</1>. Card details are entered on Paystack's own secure checkout and are never seen or stored by OAM.",
+      "noteBody": "<1>A note on where we are.</1> OAM is newly launched, so some sections — particularly the Marketplace and the artisan directory — are still filling up. Coverage grows as more people join, and we'd rather say so than pretend otherwise.",
+      "createAccount": "Create an account",
+      "talkToUs": "Talk to us"
+    },
+    "contact": {
+      "title": "Contact us",
+      "intro": "Something gone wrong, or a question before you start? Here's how to reach a person.",
+      "emailTitle": "Email",
+      "emailBody": "The fastest route for anything to do with a payment, a missing token, or an account problem.",
+      "paymentTitle": "If a payment has gone wrong",
+      "paymentP1": "<1>Please don't pay twice.</1> If an order shows as \"processing\", the money has already left and the purchase is with your provider — buying again usually means paying for the same thing a second time.",
+      "paymentList": "Instead, email us with:",
+      "paymentLi1": "the <1>reference number</1> from the order (it starts with BILL-, FUND- or TRF-)",
+      "paymentLi2": "the email address on your OAM account",
+      "paymentLi3": "roughly when it happened",
+      "paymentP2": "That's usually enough for us to find the transaction and tell you exactly where it is. You can find the reference under <1>Order history</1>.",
+      "mktTitle": "Buying or selling on the Marketplace",
+      "mktP1": "Questions about a specific item or job are best asked <1>directly in the chat</1> attached to that listing or artisan profile — the other person gets notified, and there's a record of what was agreed.",
+      "mktP2": "Contact us instead if someone asks you to pay outside OAM, pressures you for money in advance, or behaves in a way that doesn't feel right. We'd rather hear about it early.",
+      "responseTitle": "Response times",
+      "responseBody": "We aim to reply to every email within <1>one working day</1>. Payment problems are looked at first. If you haven't heard back after two working days, reply to your own email to bump it — it's more reliable than sending a new one.",
+      "scamBody": "<1>We will never ask for your password, card PIN, or a one-time code.</1> Anyone who does — by call, SMS or WhatsApp — is not from OAM, however convincing they sound. Hang up and email us instead."
+    }
   }
 }

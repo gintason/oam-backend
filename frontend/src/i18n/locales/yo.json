@@ -1119,5 +1119,72 @@
       "readyTitle": "Ṣé o ti ṣetán láti wá ibùgbé rẹ?",
       "readyBody": "Wá àwọn hòtẹ́ẹ̀lì, àwọn fúlàtì àti àwọn ibi ìsinmi káàkiri àgbáyé, kí o sì fàṣẹ́ láìléwu pẹ̀lú alábàáṣiṣẹ́pọ̀ wa."
     }
+  },
+  "company": {
+    "shell": {
+      "home": "Ilé",
+      "lastUpdated": "Ìmúdójúìwọ̀n gbẹ̀yìn {{updated}}",
+      "questions": "Ìbéèrè? Fi ímeèlì ránṣẹ́"
+    },
+    "about": {
+      "title": "Nípa OAM",
+      "intro": "Áàpù kan fún àwọn nǹkan ojoojúmọ́ tí àwọn ọmọ Nàìjíríà ń san owó fún, tà, tí wọ́n sì ń gbà ṣiṣẹ́ — tí a kọ́ láti yára, jẹ́ olóòótọ́, kí ó sì ní ààbò fún owó rẹ.",
+      "whatTitle": "Kí ni OAM",
+      "whatP1": "OAM jẹ́ pátákó oníṣẹ́ púpọ̀ tí <1>O.A.M Motors Limited</1> ń ṣàkóso. Ó kó àwọn nǹkan tí ọ̀pọ̀ ènìyàn ń tòjú káàkiri àwọn áàpù púpọ̀ jọ: fífi owó sí fóònù, rírà iná mànàmáná, sísan owó TV, fífi owó ránṣẹ́, títa ohun tí o kò nílò mọ́, àti wíwá oníṣẹ́ ọwọ́ tí o lè gbẹ́kẹ̀lé.",
+      "whatP2": "Gbogbo rẹ̀ ń lọ nípasẹ̀ àpò owó kan ṣoṣo, kí o lè rí ohun tí o ná gan-an àti ohun tí a jẹ ọ́ ní gbèsè — gbogbo rírà sì ń mú ìwé ẹ̀rí jáde tí o lè rí padà.",
+      "doTitle": "Ohun tí o lè ṣe níbí",
+      "svc": {
+        "bills": {
+          "title": "Àwọn owó àti iṣẹ́ ìlú",
+          "body": "Owó fóònù, dátà, tókà iná mànàmáná àti ìforúkọsílẹ̀ TV, tí a fi jíṣẹ́ láàrín ìṣẹ́jú-àáyá pẹ̀lú ìwé ẹ̀rí nípa ímeèlì."
+        },
+        "wallet": {
+          "title": "Àpò owó àti ìfiránṣẹ́",
+          "body": "Fi owó sí nípasẹ̀ káàdì, fi ránṣẹ́ sí olùmúlò OAM mìíràn lẹ́sẹ̀kẹsẹ̀, tàbí yọ jáde sí àkáǹtì báǹkì tìrẹ."
+        },
+        "marketplace": {
+          "title": "Ọjà",
+          "body": "Rà kí o sì tà nínú àwùjọ OAM, pẹ̀lú ìfìránṣẹ́ tí a kọ́ sínú rẹ̀ kí nọ́mbà fóònù rẹ lè wà ní ìkọ̀kọ̀."
+        },
+        "services": {
+          "title": "Àwọn iṣẹ́ ilé",
+          "body": "Wá àwọn atúbọ̀tán, oníná, mẹkánìkì àti olùmọ́tótó tí a fọwọ́sí nítòsí rẹ."
+        },
+        "travel": {
+          "title": "Ìrìnàjò",
+          "body": "Fi àwọn ọkọ̀ òfuurufú, hòtẹ́ẹ̀lì, háyà ọkọ̀ àti gbígbé ní pápá ọkọ̀ òfuurufú wéra káàkiri àgbáyé."
+        }
+      },
+      "moneyTitle": "Bí a ṣe ń rí owó",
+      "moneyP1": "A rò pé o yẹ kí o mọ èyí, nítorí iṣẹ́ tí ó ń fi bí ó ṣe ń rí owó pamọ́ sábà máa ń ní ìdí kan.",
+      "moneyP2": "Lórí àwọn owó, a ń rí <1>èrè kékeré</1> — ní ọ̀pọ̀ ìgbà ₦10 sí ₦20 lórí rírà ₦1,000 — tí a kọ́ sínú owó tí o rí. Kò sí owó mìíràn lọ́tọ̀ tí a fi kún un ní ìsanwó, owó tí a fi hàn ọ́ sì ni owó tí o ń san.",
+      "moneyP3": "Lórí Ọjà àti Àwọn Iṣẹ́ Ilé, a ń rí owó láti inú <1>àwọn ètò ìsanwó àṣàyàn</1>: àwọn tó ń tà lè forúkọsílẹ̀ fún àwọn àkọsílẹ̀ púpọ̀ sí i àti ipò àfihàn, àwọn oníṣọ̀nà sì lè gbé profáìlì wọn sókè láti fara hàn lókè nínú ìwádìí. Àkọsílẹ̀ àti ìfìránṣẹ́ jẹ́ ọ̀fẹ́.",
+      "moneyP4": "Lórí ìrìnàjò, a ń rí <1>owó ìtọ́kasí</1> láti ọ̀dọ̀ àwọn alábàáṣiṣẹ́pọ̀ ìfàṣẹ́ láìsí owó àfikún fún ọ.",
+      "safetyTitle": "Bí a ṣe ń bójú tó ààbò",
+      "safetyP1": "Àwọn nọ́mbà fóònù lórí Ọjà àti Àwọn Iṣẹ́ Ilé <1>ni a kì í tẹ̀ jáde láé</1>. A ń pààrọ̀ wọn nìkan lẹ́yìn tí olùtà tàbí oníṣọ̀nà bá gba ìbéèrè rẹ — kí nọ́mbà ẹnikẹ́ni má bàa jókòó sórí ojú-ìwé gbangba tí ń dúró de kíkórè, kí ìwọ sì rí àwọn àlàyé olùbáṣepọ̀ ẹni tí ó ti gbà láti bá ọ ṣòwò nìkan.",
+      "safetyP2": "<1>Paystack</1> ni ó ń ṣàkóso àwọn ìsanwó. A ń tẹ àwọn àlàyé káàdì sórí ojú ìsanwó tí ó ní ààbò ti Paystack fúnraarẹ̀, OAM kì í sì í rí wọn tàbí pa wọ́n mọ́ láé.",
+      "noteBody": "<1>Àkíyèsí nípa ibi tí a wà.</1> A ṣẹ̀ṣẹ̀ ṣí OAM sílẹ̀, nítorí náà àwọn apá kan — pàápàá Ọjà àti àkọsílẹ̀ àwọn oníṣọ̀nà — ṣì ń kún. Ìbò ń dàgbà bí àwọn ènìyàn púpọ̀ ṣe ń dara pọ̀, a sì fẹ́ràn láti sọ bẹ́ẹ̀ ju kí a ṣe bí kò ṣe rí bẹ́ẹ̀.",
+      "createAccount": "Ṣẹ̀dá àkáǹtì",
+      "talkToUs": "Bá wa sọ̀rọ̀"
+    },
+    "contact": {
+      "title": "Kàn sí wa",
+      "intro": "Ǹjẹ́ ohun kan ti bàjẹ́, tàbí ìbéèrè kí o tó bẹ̀rẹ̀? Èyí ni bí o ṣe lè dé ọ̀dọ̀ ènìyàn.",
+      "emailTitle": "Ímeèlì",
+      "emailBody": "Ọ̀nà tí ó yára jù fún ohunkóhun tí ó jẹ mọ́ ìsanwó, tókà tí ó sọnù, tàbí ìṣòro àkáǹtì.",
+      "paymentTitle": "Tí ìsanwó bá ti bàjẹ́",
+      "paymentP1": "<1>Jọ̀wọ́ má san owó lẹ́ẹ̀mejì.</1> Tí ọ̀rọ̀-àṣẹ bá fi hàn pé \"ń ṣiṣẹ́\", owó ti jáde tẹ́lẹ̀ rírà náà sì wà lọ́wọ́ olùpèsè rẹ — rírà lẹ́ẹ̀kejì sábà máa ń túmọ̀ sí sísan owó fún ohun kan náà nígbà kejì.",
+      "paymentList": "Dípò, fi ímeèlì ránṣẹ́ sí wa pẹ̀lú:",
+      "paymentLi1": "<1>nọ́mbà ìtọ́kasí</1> láti inú ọ̀rọ̀-àṣẹ (ó ń bẹ̀rẹ̀ pẹ̀lú BILL-, FUND- tàbí TRF-)",
+      "paymentLi2": "àdírẹ́sì ímeèlì tó wà lórí àkáǹtì OAM rẹ",
+      "paymentLi3": "nǹkan bí ìgbà tí ó ṣẹlẹ̀",
+      "paymentP2": "Ìyẹn sábà máa tó fún wa láti wá ìṣòwò náà kí a sì sọ ibi tí ó wà gan-an fún ọ. O lè rí nọ́mbà ìtọ́kasí lábẹ́ <1>Ìtàn ọ̀rọ̀-àṣẹ</1>.",
+      "mktTitle": "Rírà tàbí títà lórí Ọjà",
+      "mktP1": "Àwọn ìbéèrè nípa ohun kan pàtó tàbí iṣẹ́ ni ó dára jù láti béèrè <1>tààrà nínú ìfọ̀rọ̀wérọ̀</1> tí ó so mọ́ àkọsílẹ̀ tàbí profáìlì oníṣọ̀nà náà — a ń fi tọ ẹni kejì létí, ìwé ẹ̀rí ohun tí a gbà sì wà.",
+      "mktP2": "Kàn sí wa dípò tí ẹnìkan bá ní kí o san owó ní ìta OAM, tí ó ń rọ̀ ọ́ fún owó ṣáájú, tàbí tí ó ń hùwà lọ́nà tí kò dára. A fẹ́ràn láti gbọ́ nípa rẹ̀ ní kùtùkùtù.",
+      "responseTitle": "Àkókò ìdáhùn",
+      "responseBody": "À ń gbìyànjú láti dáhùn ímeèlì kọ̀ọ̀kan láàrín <1>ọjọ́ iṣẹ́ kan</1>. À ń wo àwọn ìṣòro ìsanwó ní àkọ́kọ́. Tí o kò bá gbọ́ padà lẹ́yìn ọjọ́ iṣẹ́ méjì, dáhùn ímeèlì tìrẹ láti rán an létí — ó ṣe é gbáralé ju fífi tuntun ránṣẹ́ lọ.",
+      "scamBody": "<1>A kì yóò béèrè ọ̀rọ̀ àṣínà rẹ, PIN káàdì, tàbí kóòdù ẹ̀ẹ̀kan láé.</1> Ẹnikẹ́ni tí ó bá béèrè — nípa ìpè, SMS tàbí WhatsApp — kì í ṣe láti OAM, bí ó ti wù kí wọ́n dà bí olóòótọ́ tó. Gé ẹ̀rọ ìbánisọ̀rọ̀ kúrò kí o sì fi ímeèlì ránṣẹ́ sí wa."
+    }
   }
 }
