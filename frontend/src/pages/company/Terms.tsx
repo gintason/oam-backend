@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import { AlertTriangle } from "lucide-react";
-import PageShell, { Block, Notice } from "./PageShell";
+import { useTranslation, Trans } from "react-i18next";
+import PageShell, { Block } from "./PageShell";
+
+const emailLink = <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline" />;
+const mono = <span className="font-mono text-[12px]" />;
 
 /**
  * DRAFT terms.
@@ -18,167 +21,75 @@ import PageShell, { Block, Notice } from "./PageShell";
  * code are how placeholder legal text reaches production.
  */
 export default function Terms() {
+  const { t } = useTranslation();
   return (
     <PageShell
-      title="Terms of Service"
-      intro="The agreement between you and O.A.M Motors Limited when you use OAM."
-      updated="23 July 2026"
+      title={t("company.terms.title")}
+      intro={t("company.terms.intro")}
+      updated={t("company.terms.updated")}
     >
-
-      <Block heading="1. Who we are">
-        <p>
-          OAM is operated by <strong>O.A.M Motors Limited</strong>, a company registered in
-          Nigeria (RC <span className="font-mono text-[12px]">[TO CONFIRM]</span>), registered
-          address <span className="font-mono text-[12px]">[TO CONFIRM]</span>. In these terms
-          "we", "us" and "OAM" mean that company; "you" means the account holder.
-        </p>
+      <Block heading={t("company.terms.s1Title")}>
+        <p><Trans i18nKey="company.terms.s1Body" components={{ 1: <strong />, 2: mono, 3: mono }} /></p>
       </Block>
 
-      <Block heading="2. Your account">
-        <p>
-          You must be <strong>18 or over</strong> and provide accurate details. One person,
-          one account. You are responsible for keeping your password and one-time codes
-          private — we will never ask you for them, and anyone who does is not from OAM.
-        </p>
-        <p>
-          Tell us immediately at{" "}
-          <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline">
-            info@oam-app.com
-          </a>{" "}
-          if you believe someone else has access to your account.
-        </p>
+      <Block heading={t("company.terms.s2Title")}>
+        <p><Trans i18nKey="company.terms.s2P1" components={{ 1: <strong /> }} /></p>
+        <p><Trans i18nKey="company.terms.s2P2" components={{ 1: emailLink }} /></p>
       </Block>
 
-      <Block heading="3. Your wallet">
-        <p>
-          Your wallet balance is money we hold for you. It is not a bank deposit, it earns no
-          interest, and it is not covered by deposit insurance.
-        </p>
-        <p>
-          You can withdraw your balance to a bank account in your own name at any time,
-          subject to the checks below. Card payments credit your wallet first and the wallet
-          then pays for your purchase — so if a delivery fails, the money remains yours as a
-          wallet balance.
-        </p>
-        <p>
-          <strong>Transfers between OAM users are final.</strong> Check the recipient's name,
-          shown before you confirm, because a completed transfer cannot be reversed.
-        </p>
+      <Block heading={t("company.terms.s3Title")}>
+        <p>{t("company.terms.s3P1")}</p>
+        <p>{t("company.terms.s3P2")}</p>
+        <p><Trans i18nKey="company.terms.s3P3" components={{ 1: <strong /> }} /></p>
       </Block>
 
-      <Block heading="4. Bills, airtime and electricity">
-        <p>
-          We buy these from licensed third-party providers on your instruction. The price you
-          are shown is the price you pay; our margin is included in it and no separate fee is
-          added.
-        </p>
-        <p>
-          <strong>Check the recipient before you confirm.</strong> Airtime sent to a mistyped
-          number, or units sent to the wrong meter, generally cannot be recovered — the value
-          has already been delivered to that number or meter.
-        </p>
-        <p>
-          Where a purchase fails at the provider, the amount is returned to your wallet.
-          Where a provider is delayed, the order remains open until it settles; buying again
-          during a delay means paying twice, and we cannot refund a duplicate purchase you
-          chose to make.
-        </p>
+      <Block heading={t("company.terms.s4Title")}>
+        <p>{t("company.terms.s4P1")}</p>
+        <p><Trans i18nKey="company.terms.s4P2" components={{ 1: <strong /> }} /></p>
+        <p>{t("company.terms.s4P3")}</p>
       </Block>
 
-      <Block heading="5. Marketplace and Home Services">
-        <p>
-          <strong>OAM is not a party to these deals.</strong> We provide the listing and the
-          messaging; the agreement is between buyer and seller, or customer and artisan. We
-          do not verify items, inspect work, hold payment in escrow, or guarantee quality.
-        </p>
-        <p>
-          You are responsible for what you list, and for meeting your side of anything you
-          agree. Contact details are exchanged only when a seller or artisan accepts an
-          enquiry.
-        </p>
-        <p>You may not list, among other things:</p>
+      <Block heading={t("company.terms.s5Title")}>
+        <p><Trans i18nKey="company.terms.s5P1" components={{ 1: <strong /> }} /></p>
+        <p>{t("company.terms.s5P2")}</p>
+        <p>{t("company.terms.s5ListIntro")}</p>
         <ul className="ml-4 list-disc space-y-1.5">
-          <li>anything illegal to sell in Nigeria</li>
-          <li>weapons, controlled drugs, or counterfeit goods</li>
-          <li>stolen property, or anything you don't have the right to sell</li>
-          <li>services you are not qualified or licensed to provide</li>
+          <li>{t("company.terms.s5Li1")}</li>
+          <li>{t("company.terms.s5Li2")}</li>
+          <li>{t("company.terms.s5Li3")}</li>
+          <li>{t("company.terms.s5Li4")}</li>
         </ul>
-        <p>
-          We may remove listings and suspend accounts where these terms are broken. Paid plan
-          fees are generally not refundable where an account is suspended for breach.
-        </p>
+        <p>{t("company.terms.s5P3")}</p>
       </Block>
 
-      <Block heading="6. Paid plans and boosts">
-        <p>
-          Seller subscriptions (Premium and Pro) and artisan boosts are{" "}
-          <strong>one-off payments</strong> for a stated period. They do not renew
-          automatically, and no card is stored for future charges.
-        </p>
-        <p>
-          Featured placement improves where you appear in search. It does not guarantee
-          sales, enquiries, or any particular level of interest.
-        </p>
-        <p>
-          Prices may change; any change applies to new purchases, not to a period you have
-          already paid for.
-        </p>
+      <Block heading={t("company.terms.s6Title")}>
+        <p><Trans i18nKey="company.terms.s6P1" components={{ 1: <strong /> }} /></p>
+        <p>{t("company.terms.s6P2")}</p>
+        <p>{t("company.terms.s6P3")}</p>
       </Block>
 
-      <Block heading="7. Travel bookings">
-        <p>
-          Flights, hotels, car hire and airport transfers are booked with{" "}
-          <strong>third-party partners</strong>, on their sites and under their terms. Your
-          contract for those bookings is with them, not with OAM. We earn a referral
-          commission at no extra cost to you.
-        </p>
+      <Block heading={t("company.terms.s7Title")}>
+        <p><Trans i18nKey="company.terms.s7Body" components={{ 1: <strong /> }} /></p>
       </Block>
 
-      <Block heading="8. Things we can't promise">
-        <p>
-          We work to keep OAM available and accurate, but we depend on banks, card processors
-          and utility providers whose systems occasionally fail. We do not promise
-          uninterrupted service.
-        </p>
-        <p>
-          Nothing here limits our liability for fraud, or for anything that cannot lawfully be
-          limited under Nigerian law.{" "}
-          <span className="font-mono text-[12px]">[TO CONFIRM — a lawyer should draft the
-          liability and indemnity wording; a limitation clause written without advice tends
-          to fail precisely when it is relied on.]</span>
-        </p>
+      <Block heading={t("company.terms.s8Title")}>
+        <p>{t("company.terms.s8P1")}</p>
+        <p><Trans i18nKey="company.terms.s8P2" components={{ 1: mono }} /></p>
       </Block>
 
-      <Block heading="9. Closing your account">
-        <p>
-          You may close your account at any time; withdraw your balance first, as we may need
-          to complete identity checks before releasing funds.
-        </p>
-        <p>
-          We may suspend or close an account where we reasonably suspect fraud, illegal use,
-          or a serious breach of these terms. Where we do, we will return any balance that is
-          rightfully yours, subject to any legal obligation preventing it.
-        </p>
+      <Block heading={t("company.terms.s9Title")}>
+        <p>{t("company.terms.s9P1")}</p>
+        <p>{t("company.terms.s9P2")}</p>
       </Block>
 
-      <Block heading="10. Changes, law and disputes">
+      <Block heading={t("company.terms.s10Title")}>
+        <p>{t("company.terms.s10P1")}</p>
+        <p><Trans i18nKey="company.terms.s10P2" components={{ 1: <strong />, 2: mono }} /></p>
         <p>
-          We may update these terms. Material changes will be notified by email or in the app
-          before they take effect.
-        </p>
-        <p>
-          These terms are governed by the laws of the{" "}
-          <strong>Federal Republic of Nigeria</strong>. Please contact us first — most
-          problems are settled quickly by email.{" "}
-          <span className="font-mono text-[12px]">[TO CONFIRM — dispute resolution and
-          jurisdiction wording.]</span>
-        </p>
-        <p>
-          See also our{" "}
-          <Link to="/privacy" className="font-medium text-brand-green underline">
-            Privacy Policy
-          </Link>
-          .
+          <Trans
+            i18nKey="company.terms.s10P3"
+            components={{ 1: <Link to="/privacy" className="font-medium text-brand-green underline" /> }}
+          />
         </p>
       </Block>
     </PageShell>
