@@ -1448,5 +1448,11 @@
     "errPinMatch": "Shigar da PIN na lambobi 4–6 masu daidai da kalmar sirrinka.",
     "settingUp": "Ana saitawa…",
     "createPin": "Ƙirƙiri PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Lambobin baya-bayan nan",
+    "savedMeters": "Mitocin da aka ajiye",
+    "savedCards": "Katunan da aka ajiye",
+    "remove": "Cire"
   }
 }

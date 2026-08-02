@@ -1448,5 +1448,11 @@
     "errPinMatch": "Въведете съвпадащ 4–6-цифрен PIN и паролата си.",
     "settingUp": "Настройване…",
     "createPin": "Създай PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Скорошни номера",
+    "savedMeters": "Запазени електромери",
+    "savedCards": "Запазени карти",
+    "remove": "Премахни"
   }
 }

@@ -1448,5 +1448,11 @@
     "errPinMatch": "ใส่ PIN 4–6 หลักที่ตรงกันและรหัสผ่านของคุณ",
     "settingUp": "กำลังตั้งค่า…",
     "createPin": "สร้าง PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "หมายเลขล่าสุด",
+    "savedMeters": "มิเตอร์ที่บันทึกไว้",
+    "savedCards": "สมาร์ทการ์ดที่บันทึกไว้",
+    "remove": "นำออก"
   }
 }

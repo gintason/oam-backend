@@ -1448,5 +1448,11 @@
     "errPinMatch": "Enter a matching 4–6 digit PIN and your password.",
     "settingUp": "Setting up…",
     "createPin": "Create PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Recent numbers",
+    "savedMeters": "Saved meters",
+    "savedCards": "Saved smartcards",
+    "remove": "Remove"
   }
 }

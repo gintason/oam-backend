@@ -1448,5 +1448,11 @@
     "errPinMatch": "أدخِل رمزًا متطابقًا من 4–6 أرقام وكلمة مرورك.",
     "settingUp": "جارٍ الإعداد…",
     "createPin": "إنشاء الرمز"
+  },
+  "beneficiaries": {
+    "recentNumbers": "أرقام حديثة",
+    "savedMeters": "عدادات محفوظة",
+    "savedCards": "بطاقات محفوظة",
+    "remove": "إزالة"
   }
 }

@@ -1448,5 +1448,11 @@
     "errPinMatch": "Geben Sie eine übereinstimmende 4–6-stellige PIN und Ihr Passwort ein.",
     "settingUp": "Einrichtung…",
     "createPin": "PIN erstellen"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Letzte Nummern",
+    "savedMeters": "Gespeicherte Zähler",
+    "savedCards": "Gespeicherte Karten",
+    "remove": "Entfernen"
   }
 }

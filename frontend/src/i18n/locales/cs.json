@@ -1448,5 +1448,11 @@
     "errPinMatch": "Zadejte shodný 4–6místný PIN a své heslo.",
     "settingUp": "Nastavování…",
     "createPin": "Vytvořit PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Nedávná čísla",
+    "savedMeters": "Uložené elektroměry",
+    "savedCards": "Uložené karty",
+    "remove": "Odebrat"
   }
 }

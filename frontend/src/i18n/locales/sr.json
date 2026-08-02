@@ -1448,5 +1448,11 @@
     "errPinMatch": "Унесите подударајући 4–6-цифарски PIN и своју лозинку.",
     "settingUp": "Подешавање…",
     "createPin": "Креирај PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Недавни бројеви",
+    "savedMeters": "Сачувана бројила",
+    "savedCards": "Сачуване картице",
+    "remove": "Уклони"
   }
 }

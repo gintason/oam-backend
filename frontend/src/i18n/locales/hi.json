@@ -1448,5 +1448,11 @@
     "errPinMatch": "एक मेल खाता 4–6 अंकों का पिन और अपना पासवर्ड दर्ज करें।",
     "settingUp": "सेट कर रहे हैं…",
     "createPin": "पिन बनाएँ"
+  },
+  "beneficiaries": {
+    "recentNumbers": "हाल के नंबर",
+    "savedMeters": "सहेजे गए मीटर",
+    "savedCards": "सहेजे गए स्मार्टकार्ड",
+    "remove": "हटाएँ"
   }
 }

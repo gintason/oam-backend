@@ -1448,5 +1448,11 @@
     "errPinMatch": "Введите совпадающий PIN из 4–6 цифр и ваш пароль.",
     "settingUp": "Настройка…",
     "createPin": "Создать PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Недавние номера",
+    "savedMeters": "Сохранённые счётчики",
+    "savedCards": "Сохранённые карты",
+    "remove": "Удалить"
   }
 }

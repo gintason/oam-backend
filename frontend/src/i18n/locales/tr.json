@@ -1448,5 +1448,11 @@
     "errPinMatch": "Eşleşen 4–6 haneli bir PIN ve parolanızı girin.",
     "settingUp": "Kuruluyor…",
     "createPin": "PIN oluştur"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Son numaralar",
+    "savedMeters": "Kayıtlı sayaçlar",
+    "savedCards": "Kayıtlı kartlar",
+    "remove": "Kaldır"
   }
 }

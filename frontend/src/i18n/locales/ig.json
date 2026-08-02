@@ -1448,5 +1448,11 @@
     "errPinMatch": "Tinye PIN nke ọnụọgụ 4–6 dabara na paswọọdụ gị.",
     "settingUp": "Na-esetịpụ…",
     "createPin": "Mepụta PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Nọmba na-adịbeghị anya",
+    "savedMeters": "Mita echekwara",
+    "savedCards": "Kaadị echekwara",
+    "remove": "Wepụ"
   }
 }

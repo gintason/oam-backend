@@ -1448,5 +1448,11 @@
     "errPinMatch": "Tẹ PIN nọ́mbà 4–6 tí ó bára mu àti ọ̀rọ̀ àṣínà rẹ.",
     "settingUp": "Ń ṣètò…",
     "createPin": "Ṣẹ̀dá PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Àwọn nọ́mbà àìpẹ́",
+    "savedMeters": "Àwọn mítà tí a fi pamọ́",
+    "savedCards": "Àwọn káàdì tí a fi pamọ́",
+    "remove": "Yọ kúrò"
   }
 }

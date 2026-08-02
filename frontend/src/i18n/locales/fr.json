@@ -1448,5 +1448,11 @@
     "errPinMatch": "Saisissez un PIN de 4–6 chiffres identique et votre mot de passe.",
     "settingUp": "Configuration…",
     "createPin": "Créer le PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "Numéros récents",
+    "savedMeters": "Compteurs enregistrés",
+    "savedCards": "Cartes enregistrées",
+    "remove": "Supprimer"
   }
 }

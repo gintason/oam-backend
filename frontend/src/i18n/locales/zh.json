@@ -1448,5 +1448,11 @@
     "errPinMatch": "请输入一致的 4–6 位 PIN 和你的密码。",
     "settingUp": "正在设置…",
     "createPin": "创建 PIN"
+  },
+  "beneficiaries": {
+    "recentNumbers": "最近号码",
+    "savedMeters": "已保存电表",
+    "savedCards": "已保存智能卡",
+    "remove": "移除"
   }
 }
