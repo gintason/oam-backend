@@ -60,6 +60,7 @@ INSTALLED_APPS = [
      "apps.messaging",
      "apps.homeservices",
      "apps.uploads",
+     "beneficiaries"
     # ...
 ]
 
