@@ -5,6 +5,7 @@ import { ArrowLeft, KeyRound, Loader2, MailCheck } from "lucide-react";
 import { authApi } from "../../auth/authApi";
 import { apiErrorMessage } from "../../lib/api";
 import logo from "../../assets/logo.png";
+import { useTranslation, Trans } from "react-i18next";
 
 /**
  * Step 1: ask for the account identifier and send a reset code.
@@ -16,6 +17,7 @@ import logo from "../../assets/logo.png";
  * to.
  */
 export default function ForgotPassword() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [identifier, setIdentifier] = useState("");
   const [error, setError] = useState<string>();
@@ -24,13 +26,13 @@ export default function ForgotPassword() {
   const request = useMutation({
     mutationFn: () => authApi.requestPasswordReset(identifier.trim()),
     onSuccess: () => { setSent(true); setError(undefined); },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't send a reset code just now.")),
+    onError: (err) => setError(apiErrorMessage(err, t("auth.forgot.errSend"))),
   });
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(undefined);
-    if (!identifier.trim()) return setError("Enter your email address or phone number.");
+    if (!identifier.trim()) return setError(t("auth.forgot.errEnter"));
     request.mutate();
   }
 
@@ -40,7 +42,7 @@ export default function ForgotPassword() {
         <div className="mx-auto flex max-w-md items-center justify-between px-5 py-3">
           <Link to="/"><img src={logo} alt="OAM" className="h-7 w-auto" /></Link>
           <Link to="/sign-in" className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-            <ArrowLeft size={15} strokeWidth={1.75} /> Sign in
+            <ArrowLeft size={15} strokeWidth={1.75} /> {t("auth.forgot.signIn")}
           </Link>
         </div>
       </header>
@@ -52,18 +54,16 @@ export default function ForgotPassword() {
               <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-green/10 text-brand-green">
                 <MailCheck size={22} strokeWidth={1.75} />
               </span>
-              <h1 className="mt-4 font-display text-xl font-semibold text-ink">Check your messages</h1>
+              <h1 className="mt-4 font-display text-xl font-semibold text-ink">{t("auth.forgot.sentTitle")}</h1>
               <p className="mt-2 text-[14px] leading-relaxed text-muted">
-                If an account exists for{" "}
-                <span className="font-medium text-ink">{identifier.trim()}</span>, we've sent a
-                reset code to it. It expires shortly, so use it soon.
+                <Trans i18nKey="auth.forgot.sentBody" values={{ identifier: identifier.trim() }} components={{ 1: <span className="font-medium text-ink" /> }} />
               </p>
 
               <button
                 onClick={() => navigate(`/reset-password?identifier=${encodeURIComponent(identifier.trim())}`)}
                 className="mt-5 h-11 w-full rounded-xl bg-brand-red text-[14px] font-semibold text-white transition hover:brightness-95"
               >
-                I have the code
+                {t("auth.forgot.haveCode")}
               </button>
 
               <button
@@ -71,12 +71,11 @@ export default function ForgotPassword() {
                 disabled={request.isPending}
                 className="mt-2 h-11 w-full rounded-xl border border-hairline bg-paper text-[13.5px] font-medium text-ink transition hover:bg-mist disabled:opacity-60"
               >
-                {request.isPending ? "Sending…" : "Send it again"}
+                {request.isPending ? t("auth.forgot.sending") : t("auth.forgot.sendAgain")}
               </button>
 
               <p className="mt-4 text-[12px] leading-relaxed text-muted">
-                Nothing arrived? Check your spam folder, and make sure you typed the same
-                email or phone number you registered with.
+                {t("auth.forgot.sentHelp")}
               </p>
             </div>
           ) : (
@@ -88,17 +87,16 @@ export default function ForgotPassword() {
                 <KeyRound size={20} strokeWidth={1.75} />
               </span>
               <h1 className="mt-4 font-display text-2xl font-semibold text-ink">
-                Forgot your password?
+                {t("auth.forgot.title")}
               </h1>
               <p className="mt-1.5 text-[14px] leading-relaxed text-muted">
-                Enter the email address or phone number on your account and we'll send you a
-                code to set a new one.
+                {t("auth.forgot.subtitle")}
               </p>
 
               {error && <p className="mt-4 text-[13px] text-danger">{error}</p>}
 
               <label htmlFor="identifier" className="mb-1.5 mt-5 block text-[12.5px] font-semibold text-ink">
-                Email or phone number
+                {t("auth.forgot.label")}
               </label>
               <input
                 id="identifier"
@@ -115,13 +113,13 @@ export default function ForgotPassword() {
                 disabled={request.isPending}
                 className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-xl bg-brand-red text-[14px] font-semibold text-white transition hover:brightness-95 disabled:opacity-60"
               >
-                {request.isPending ? <Loader2 size={18} className="animate-spin" /> : "Send reset code"}
+                {request.isPending ? <Loader2 size={18} className="animate-spin" /> : t("auth.forgot.sendCode")}
               </button>
 
               <p className="mt-4 text-center text-[13px] text-muted">
-                Remembered it?{" "}
+                {t("auth.forgot.remembered")}{" "}
                 <Link to="/sign-in" className="font-medium text-brand-green underline">
-                  Sign in
+                  {t("auth.forgot.signIn")}
                 </Link>
               </p>
             </form>
