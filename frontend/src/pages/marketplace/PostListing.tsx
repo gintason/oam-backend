@@ -12,6 +12,7 @@ import {
 } from "../../services/marketplace";
 import { apiErrorMessage } from "../../lib/api";
 import { naira } from "../../lib/format";
+import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
 /** Enough to show an item properly without turning the page into a gallery. */
@@ -199,7 +200,7 @@ export default function PostListing() {
             >
               <option value="">{t("marketplace.post.categoryPlaceholder")}</option>
               {categories.data?.filter((c) => !c.is_admin_only).map((c) => (
-                <option key={c.id} value={c.id}>{c.name}</option>
+                <option key={c.id} value={c.id}>{categoryLabel(t, c.name)}</option>
               ))}
             </select>
           </Field>

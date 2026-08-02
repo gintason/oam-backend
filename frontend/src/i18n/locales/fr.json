@@ -555,6 +555,13 @@
       "sendMessage": "Envoyer le message",
       "safeLabel": "Restez prudent :",
       "safeBody": "retrouvez-vous dans un lieu public, inspectez avant de payer, et n'envoyez jamais d'argent à l'avance à quelqu'un que vous n'avez pas rencontré."
+    },
+    "categories": {
+      "electronics": "Électronique",
+      "phones": "Téléphones",
+      "computers": "Ordinateurs",
+      "automobiles": "Automobiles",
+      "householdappliances": "Appareils électroménagers"
     }
   },
   "wallet": {

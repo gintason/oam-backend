@@ -14,6 +14,7 @@ import {
   marketplaceApi, CONDITIONS, type ListingListItem,
 } from "../../services/marketplace";
 import { naira, friendlyTime } from "../../lib/format";
+import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
 export default function BrowseListings() {
@@ -62,7 +63,7 @@ export default function BrowseListings() {
   const tabList = [
     { label: t("marketplace.browse.all"), slug: "all" },
     ...(categories.data ?? [])
-      .map((c) => ({ label: c.slug === "oam-motors" ? "O.A.M Motors" : c.name, slug: c.slug }))
+      .map((c) => ({ label: categoryLabel(t, c.slug === "oam-motors" ? "O.A.M Motors" : c.name), slug: c.slug }))
       .sort((a, b) =>
         a.slug === "oam-motors" ? -1 : b.slug === "oam-motors" ? 1 : 0,
       ),

@@ -12,6 +12,7 @@ import { marketplaceApi } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
 import { naira, friendlyTime } from "../../lib/format";
+import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
 export default function ListingDetail() {
@@ -123,7 +124,7 @@ export default function ListingDetail() {
                 </p>
 
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  <Chip icon={<Tag size={11} strokeWidth={2} />}>{l.category_name}</Chip>
+                  <Chip icon={<Tag size={11} strokeWidth={2} />}>{categoryLabel(t, l.category_name)}</Chip>
                   {conditionLabel && <Chip>{conditionLabel}</Chip>}
                   {l.location && <Chip icon={<MapPin size={11} strokeWidth={2} />}>{l.location}</Chip>}
                   <Chip icon={<Eye size={11} strokeWidth={2} />}>{t("marketplace.detail.views", { count: l.views_count })}</Chip>

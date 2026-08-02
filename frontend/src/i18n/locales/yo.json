@@ -555,6 +555,13 @@
       "sendMessage": "Fi ìránṣẹ́ ránṣẹ́",
       "safeLabel": "Wà láìséwu:",
       "safeBody": "ẹ pàdé ní ibi gbangba, yẹ̀ ẹ́ wò kí o tó san owó, kí o sì má fi owó ránṣẹ́ ṣáájú láé sí ẹni tí o kò tíì pàdé."
+    },
+    "categories": {
+      "electronics": "Ẹ̀rọ Ẹlẹ́ktíróníìkì",
+      "phones": "Àwọn Fóònù",
+      "computers": "Àwọn Kọ̀ǹpútà",
+      "automobiles": "Àwọn Ọkọ̀ Ayọ́kẹ́lẹ́",
+      "householdappliances": "Ohun-èlò Inú Ilé"
     }
   },
   "wallet": {

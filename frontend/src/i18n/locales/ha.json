@@ -555,6 +555,13 @@
       "sendMessage": "Aika saƙo",
       "safeLabel": "Kasance lafiya:",
       "safeBody": "ku hadu a wuri na jama'a, duba kafin ka biya, kuma kada ka taɓa aika kuɗi gaba ga wanda ba ka hadu da shi ba."
+    },
+    "categories": {
+      "electronics": "Kayan lantarki",
+      "phones": "Wayoyi",
+      "computers": "Kwamfutoci",
+      "automobiles": "Motoci",
+      "householdappliances": "Na'urorin gida"
     }
   },
   "wallet": {

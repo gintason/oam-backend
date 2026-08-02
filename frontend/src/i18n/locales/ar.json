@@ -555,6 +555,13 @@
       "sendMessage": "إرسال الرسالة",
       "safeLabel": "حافظ على سلامتك:",
       "safeBody": "التقيا في مكان عام، وافحص قبل الدفع، ولا ترسل المال مقدمًا أبدًا لشخص لم تقابله."
+    },
+    "categories": {
+      "electronics": "إلكترونيات",
+      "phones": "هواتف",
+      "computers": "حواسيب",
+      "automobiles": "سيارات",
+      "householdappliances": "أجهزة منزلية"
     }
   },
   "wallet": {

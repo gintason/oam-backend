@@ -555,6 +555,13 @@
       "sendMessage": "发送消息",
       "safeLabel": "注意安全：",
       "safeBody": "在公共场所见面，付款前先检查，切勿提前向未曾见面的人转账。"
+    },
+    "categories": {
+      "electronics": "电子产品",
+      "phones": "手机",
+      "computers": "电脑",
+      "automobiles": "汽车",
+      "householdappliances": "家用电器"
     }
   },
   "wallet": {

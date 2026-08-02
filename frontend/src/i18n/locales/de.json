@@ -555,6 +555,13 @@
       "sendMessage": "Nachricht senden",
       "safeLabel": "Bleiben Sie sicher:",
       "safeBody": "treffen Sie sich an einem öffentlichen Ort, prüfen Sie vor dem Bezahlen und senden Sie niemals im Voraus Geld an jemanden, den Sie nicht getroffen haben."
+    },
+    "categories": {
+      "electronics": "Elektronik",
+      "phones": "Telefone",
+      "computers": "Computer",
+      "automobiles": "Automobile",
+      "householdappliances": "Haushaltsgeräte"
     }
   },
   "wallet": {

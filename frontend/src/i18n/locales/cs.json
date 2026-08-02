@@ -555,6 +555,13 @@
       "sendMessage": "Odeslat zprávu",
       "safeLabel": "Buďte v bezpečí:",
       "safeBody": "sejděte se na veřejném místě, před zaplacením zkontrolujte a nikdy neposílejte peníze předem někomu, koho jste nepotkali."
+    },
+    "categories": {
+      "electronics": "Elektronika",
+      "phones": "Telefony",
+      "computers": "Počítače",
+      "automobiles": "Automobily",
+      "householdappliances": "Domácí spotřebiče"
     }
   },
   "wallet": {

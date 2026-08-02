@@ -555,6 +555,13 @@
       "sendMessage": "Mesaj gönder",
       "safeLabel": "Güvende kalın:",
       "safeBody": "halka açık bir yerde buluşun, ödemeden önce inceleyin ve tanışmadığınız birine asla önceden para göndermeyin."
+    },
+    "categories": {
+      "electronics": "Elektronik",
+      "phones": "Telefonlar",
+      "computers": "Bilgisayarlar",
+      "automobiles": "Otomobiller",
+      "householdappliances": "Ev Aletleri"
     }
   },
   "wallet": {

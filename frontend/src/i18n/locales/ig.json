@@ -555,6 +555,13 @@
       "sendMessage": "Ziga ozi",
       "safeLabel": "Nọrọ ná nchekwa:",
       "safeBody": "zute n'ebe ọha, nyochaa tupu ị kwụọ ụgwọ, ma ezila ego tupu oge nye onye ị na-ahụtụbeghị."
+    },
+    "categories": {
+      "electronics": "Ngwa eletrọnịkị",
+      "phones": "Ekwentị",
+      "computers": "Kọmpụta",
+      "automobiles": "Ụgbọ ala",
+      "householdappliances": "Ngwa ụlọ"
     }
   },
   "wallet": {
