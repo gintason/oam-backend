@@ -1,66 +1,51 @@
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Check, Clock, Pencil, X } from "lucide-react";
-import { beneficiariesApi, type Beneficiary } from "../services/beneficiaries";
+import {
+  useRecents,
+  renameRecent,
+  removeRecent,
+  type Recent,
+} from "../lib/recentBeneficiaries";
 import type { BillCategory } from "../services/billing";
 
 /**
  * "Recent numbers" / "Saved meters & smartcards" for the utility purchase
- * screens. Fetches its own list and renders nothing when empty.
+ * screens. Reads the on-device store and renders nothing when empty.
  *
- * Each saved item can be given a name ("John"), so a returning user picks the
- * name instead of remembering the number. Airtime & Data show a horizontal
- * chip row; Electricity & Cable show a list with the last verified customer
- * name. Tapping an item fills the form — the screen's own auto-verify effect
- * then re-runs the account lookup for meters/smartcards.
+ * Naming: an UNNAMED item shows an explicit green "Name" button, so a returning
+ * user can tag a number as "John" and pick the name next time. A NAMED item
+ * shows a pencil to rename. Tapping the item fills the form — the screen's own
+ * auto-verify effect then re-runs the meter/smartcard lookup.
  *
- * Touch-first: name/delete actions are always visible (no hover-only controls),
- * since the app runs on phones.
+ * Labels use i18n with English fallbacks, so they render correctly whether or
+ * not the translation keys are present. Touch-first: all actions are always
+ * visible (no hover-only controls).
  */
 type Props = {
   type: BillCategory;
-  onPick: (b: Beneficiary) => void;
-  /** Pass the screen's `isVerified` to skip the call for users who can't have any. */
-  enabled?: boolean;
+  onPick: (b: Recent) => void;
+  enabled?: boolean; // accepted for call-site compatibility; not needed on-device
 };
 
-export default function RecentBeneficiaries({ type, onPick, enabled = true }: Props) {
+export default function RecentBeneficiaries({ type, onPick }: Props) {
   const { t } = useTranslation();
-  const qc = useQueryClient();
+  const items = useRecents(type);
 
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
 
-  const q = useQuery({
-    queryKey: ["beneficiaries", type],
-    queryFn: () => beneficiariesApi.list(type),
-    enabled,
-    staleTime: 60_000,
-  });
-
-  const rename = useMutation({
-    mutationFn: ({ id, label }: { id: string; label: string }) =>
-      beneficiariesApi.setLabel(id, label),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["beneficiaries", type] });
-      setEditingId(null);
-      setDraft("");
-    },
-  });
-
-  const items = q.data ?? [];
   if (!items.length) return null;
 
   const isList = type === "electricity" || type === "cable";
   const title =
     type === "electricity"
-      ? t("beneficiaries.savedMeters")
+      ? t("beneficiaries.savedMeters", { defaultValue: "Saved meters" })
       : type === "cable"
-      ? t("beneficiaries.savedCards")
-      : t("beneficiaries.recentNumbers");
+      ? t("beneficiaries.savedCards", { defaultValue: "Saved smartcards" })
+      : t("beneficiaries.recentNumbers", { defaultValue: "Recent numbers" });
 
-  function startEdit(b: Beneficiary) {
+  function startEdit(b: Recent) {
     setEditingId(b.id);
     setDraft(b.label || "");
   }
@@ -69,18 +54,11 @@ export default function RecentBeneficiaries({ type, onPick, enabled = true }: Pr
     setDraft("");
   }
   function saveEdit(id: string) {
-    rename.mutate({ id, label: draft.trim() });
-  }
-  async function remove(id: string) {
-    try {
-      await beneficiariesApi.remove(id);
-      qc.invalidateQueries({ queryKey: ["beneficiaries", type] });
-    } catch {
-      /* non-critical */
-    }
+    renameRecent(type, id, draft.trim());
+    setEditingId(null);
+    setDraft("");
   }
 
-  // Inline name editor, shared by both layouts.
   const editor = (id: string) => (
     <div className="flex flex-1 items-center gap-1.5">
       <input
@@ -91,14 +69,13 @@ export default function RecentBeneficiaries({ type, onPick, enabled = true }: Pr
           if (e.key === "Enter") saveEdit(id);
           if (e.key === "Escape") cancelEdit();
         }}
-        placeholder={t("beneficiaries.namePlaceholder")}
+        placeholder={t("beneficiaries.namePlaceholder", { defaultValue: "Name (e.g. John)" })}
         className="h-8 min-w-0 flex-1 rounded-lg border border-hairline bg-paper px-2.5 text-[13px] text-ink outline-none focus:border-brand-green"
       />
       <button
         type="button"
         onClick={() => saveEdit(id)}
-        disabled={rename.isPending}
-        aria-label={t("beneficiaries.save")}
+        aria-label={t("beneficiaries.save", { defaultValue: "Save" })}
         className="shrink-0 rounded-lg p-1.5 text-brand-green hover:bg-brand-green/10"
       >
         <Check size={16} strokeWidth={2.5} />
@@ -106,13 +83,36 @@ export default function RecentBeneficiaries({ type, onPick, enabled = true }: Pr
       <button
         type="button"
         onClick={cancelEdit}
-        aria-label={t("beneficiaries.cancel")}
+        aria-label={t("beneficiaries.cancel", { defaultValue: "Cancel" })}
         className="shrink-0 rounded-lg p-1.5 text-muted hover:bg-mist hover:text-ink"
       >
         <X size={16} strokeWidth={2.5} />
       </button>
     </div>
   );
+
+  const nameAction = (b: Recent) =>
+    b.label ? (
+      <button
+        type="button"
+        onClick={() => startEdit(b)}
+        aria-label={t("beneficiaries.rename", { defaultValue: "Rename" })}
+        className="shrink-0 rounded-lg p-1.5 text-muted hover:bg-mist hover:text-ink"
+      >
+        <Pencil size={14} strokeWidth={2} />
+      </button>
+    ) : (
+      <button
+        type="button"
+        onClick={() => startEdit(b)}
+        className="inline-flex shrink-0 items-center gap-1 rounded-full border border-brand-green/30 bg-brand-green/[0.06] px-2 py-1 text-[11px] font-semibold text-brand-green"
+      >
+        <Pencil size={11} strokeWidth={2.5} />
+        {t("beneficiaries.name", { defaultValue: "Name" })}
+      </button>
+    );
+
+  const removeLabel = t("beneficiaries.remove", { defaultValue: "Remove" });
 
   return (
     <div className="mb-3">
@@ -145,18 +145,11 @@ export default function RecentBeneficiaries({ type, onPick, enabled = true }: Pr
                       {b.customer_name || b.biller_name}
                     </span>
                   </button>
+                  {nameAction(b)}
                   <button
                     type="button"
-                    onClick={() => startEdit(b)}
-                    aria-label={t("beneficiaries.rename")}
-                    className="shrink-0 rounded-lg p-1.5 text-muted hover:bg-mist hover:text-ink"
-                  >
-                    <Pencil size={14} strokeWidth={2} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => remove(b.id)}
-                    aria-label={t("beneficiaries.remove")}
+                    onClick={() => removeRecent(type, b.id)}
+                    aria-label={removeLabel}
                     className="shrink-0 rounded-lg p-1.5 text-muted hover:bg-mist hover:text-ink"
                   >
                     <X size={15} strokeWidth={2} />
@@ -172,14 +165,14 @@ export default function RecentBeneficiaries({ type, onPick, enabled = true }: Pr
             editingId === b.id ? (
               <div
                 key={b.id}
-                className="inline-flex w-56 shrink-0 items-center rounded-xl border border-hairline bg-paper px-2 py-1"
+                className="inline-flex w-60 shrink-0 items-center rounded-xl border border-hairline bg-paper px-2 py-1"
               >
                 {editor(b.id)}
               </div>
             ) : (
               <div
                 key={b.id}
-                className="inline-flex shrink-0 items-center rounded-2xl border border-hairline bg-paper py-1 pl-3 pr-1"
+                className="inline-flex shrink-0 items-center gap-1 rounded-2xl border border-hairline bg-paper py-1 pl-3 pr-1.5"
               >
                 <button
                   type="button"
@@ -195,18 +188,11 @@ export default function RecentBeneficiaries({ type, onPick, enabled = true }: Pr
                     </span>
                   )}
                 </button>
+                {nameAction(b)}
                 <button
                   type="button"
-                  onClick={() => startEdit(b)}
-                  aria-label={t("beneficiaries.rename")}
-                  className="ml-1 shrink-0 rounded-full p-1 text-muted hover:bg-mist hover:text-ink"
-                >
-                  <Pencil size={12} strokeWidth={2} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => remove(b.id)}
-                  aria-label={t("beneficiaries.remove")}
+                  onClick={() => removeRecent(type, b.id)}
+                  aria-label={removeLabel}
                   className="shrink-0 rounded-full p-1 text-muted hover:bg-mist hover:text-ink"
                 >
                   <X size={12} strokeWidth={2.5} />

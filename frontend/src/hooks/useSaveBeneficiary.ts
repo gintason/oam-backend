@@ -1,13 +1,9 @@
-import { useQueryClient } from "@tanstack/react-query";
-import { beneficiariesApi, type SaveBeneficiaryInput } from "../services/beneficiaries";
+import { saveRecent, type SaveRecentInput } from "../lib/recentBeneficiaries";
 
 /**
  * Returns a fire-and-forget `saveBeneficiary(...)` to call from a purchase's
- * onSuccess. It records the number/meter/smartcard so it appears in "Recent"
- * next time, and refreshes the on-screen list.
- *
- * Deliberately swallows errors: a beneficiary is a convenience record, and a
- * failure to save one must never surface as if the purchase itself failed.
+ * onSuccess. Same call shape the screens already use — it now writes to the
+ * on-device store, so it works with no backend.
  *
  *   const saveBeneficiary = useSaveBeneficiary();
  *   // inside purchase.onSuccess, once status === "success":
@@ -15,14 +11,11 @@ import { beneficiariesApi, type SaveBeneficiaryInput } from "../services/benefic
  *                     biller_code: network, biller_name: data.biller_name });
  */
 export function useSaveBeneficiary() {
-  const qc = useQueryClient();
-  return async (input: SaveBeneficiaryInput): Promise<void> => {
-    if (!input.account_identifier?.trim()) return;
+  return (input: SaveRecentInput): void => {
     try {
-      await beneficiariesApi.save(input);
-      qc.invalidateQueries({ queryKey: ["beneficiaries", input.service_type] });
+      saveRecent(input);
     } catch {
-      /* saving a beneficiary must never break a purchase */
+      /* saving a recent must never break a purchase */
     }
   };
 }

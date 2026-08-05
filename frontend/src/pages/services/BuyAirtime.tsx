@@ -7,6 +7,8 @@ import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
 import { billingApi, cardCheckoutApi, type Biller, type BillOrder } from "../../services/billing";
+import RecentBeneficiaries from "../../components/RecentBeneficiaries";
+import { useSaveBeneficiary } from "../../hooks/useSaveBeneficiary";
 import { apiErrorMessage } from "../../lib/api";
 import { walletApi } from "../../services/wallet";
 import { formatPhone, detectNetwork, naira } from "../../lib/format";
@@ -23,6 +25,7 @@ export default function BuyAirtime() {
   const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
+  const saveBeneficiary = useSaveBeneficiary();
   const navigate = useNavigate();
 
   const [network, setNetwork] = useState<string>("");   // biller code
@@ -69,7 +72,11 @@ export default function BuyAirtime() {
         recipient: phone.trim(),
         amount: Number(amount),
       }),
-    onSuccess: (data) => setOrder(data),
+    onSuccess: (data) => {
+      setOrder(data);
+      if (data.status === "success")
+        saveBeneficiary({ service_type: "airtime", account_identifier: data.recipient, biller_code: network, biller_name: data.biller_name });
+    },
     onError: (err) => {
       const msg = apiErrorMessage(err, t("airtime.errors.purchaseFailed"));
       const status = (err as { response?: { status?: number } })?.response?.status;
@@ -243,6 +250,11 @@ export default function BuyAirtime() {
             </div>
           )}
 
+          <RecentBeneficiaries
+            type="airtime"
+            enabled={isVerified}
+            onPick={(b) => { setPhone(b.account_identifier); if (b.biller_code) { setNetwork(b.biller_code); setTouchedNetwork(true); } }}
+          />
           {/* Phone */}
           <label htmlFor="phone" className="mb-1.5 block text-[12.5px] font-semibold text-ink">
             {t("airtime.phoneNumber")}

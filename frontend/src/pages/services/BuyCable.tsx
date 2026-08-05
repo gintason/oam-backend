@@ -7,6 +7,8 @@ import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
 import { billingApi, cardCheckoutApi, type Biller, type BillOrder, type Plan } from "../../services/billing";
+import RecentBeneficiaries from "../../components/RecentBeneficiaries";
+import { useSaveBeneficiary } from "../../hooks/useSaveBeneficiary";
 import { apiErrorMessage } from "../../lib/api";
 import { walletApi } from "../../services/wallet";
 import { naira } from "../../lib/format";
@@ -19,6 +21,7 @@ export default function BuyCable() {
   const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
+  const saveBeneficiary = useSaveBeneficiary();
   const navigate = useNavigate();
 
   const [provider, setProvider] = useState("");
@@ -95,7 +98,11 @@ export default function BuyCable() {
         variation_id: plan?.variation_id || "",
         verification_id: verificationId,
       }),
-    onSuccess: (data) => setOrder(data),
+    onSuccess: (data) => {
+      setOrder(data);
+      if (data.status === "success")
+        saveBeneficiary({ service_type: "cable", account_identifier: data.recipient, biller_code: provider, biller_name: data.biller_name, customer_name: data.customer_name });
+    },
     onError: (err) => {
       const msg = apiErrorMessage(err, t("data.purchaseFailed"));
       const st = (err as { response?: { status?: number } })?.response?.status;
@@ -227,6 +234,11 @@ export default function BuyCable() {
             </>
           )}
 
+          <RecentBeneficiaries
+            type="cable"
+            enabled={isVerified}
+            onPick={(b) => { setProvider(b.biller_code); setSmartcard(b.account_identifier); setCustomerName(undefined); setVerificationId(""); }}
+          />
           {/* Smartcard */}
           <label htmlFor="smartcard" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("cable.smartcard")}</label>
           <input

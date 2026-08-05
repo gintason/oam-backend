@@ -8,6 +8,8 @@ import TokenCard from "../../components/TokenCard";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
 import { billingApi, cardCheckoutApi, type Biller, type BillOrder, type Plan } from "../../services/billing";
+import RecentBeneficiaries from "../../components/RecentBeneficiaries";
+import { useSaveBeneficiary } from "../../hooks/useSaveBeneficiary";
 import { apiErrorMessage } from "../../lib/api";
 import { walletApi } from "../../services/wallet";
 import { naira } from "../../lib/format";
@@ -18,6 +20,7 @@ export default function BuyData() {
   const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
+  const saveBeneficiary = useSaveBeneficiary();
   const navigate = useNavigate();
 
   const [network, setNetwork] = useState("");
@@ -56,7 +59,11 @@ export default function BuyData() {
         amount: Number(plan?.price ?? 0),
         plan_code: plan?.variation_id,
       }),
-    onSuccess: (data) => setOrder(data),
+    onSuccess: (data) => {
+      setOrder(data);
+      if (data.status === "success")
+        saveBeneficiary({ service_type: "data", account_identifier: data.recipient, biller_code: network, biller_name: data.biller_name });
+    },
     onError: (err) => {
       const msg = apiErrorMessage(err, t("data.purchaseFailed"));
       const st = (err as { response?: { status?: number } })?.response?.status;
@@ -189,6 +196,11 @@ export default function BuyData() {
             </>
           )}
 
+          <RecentBeneficiaries
+            type="data"
+            enabled={isVerified}
+            onPick={(b) => { setPhone(b.account_identifier); if (b.biller_code) setNetwork(b.biller_code); }}
+          />
           {/* Phone */}
           <label htmlFor="phone" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("data.phoneNumber")}</label>
           <input

@@ -9,6 +9,8 @@ import { useAuth } from "../../auth/AuthContext";
 import {
   billingApi, cardCheckoutApi, type Biller, type BillOrder, type CustomerDetails,
 } from "../../services/billing";
+import RecentBeneficiaries from "../../components/RecentBeneficiaries";
+import { useSaveBeneficiary } from "../../hooks/useSaveBeneficiary";
 import { Result } from "./BuyData";
 import { apiErrorMessage } from "../../lib/api";
 import { walletApi } from "../../services/wallet";
@@ -26,6 +28,7 @@ export default function BuyElectricity() {
   const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
+  const saveBeneficiary = useSaveBeneficiary();
   const navigate = useNavigate();
 
   const [disco, setDisco] = useState("");
@@ -100,7 +103,11 @@ export default function BuyElectricity() {
         meter_type: meterType,
         verification_id: verificationId,
       }),
-    onSuccess: (data) => setOrder(data),
+    onSuccess: (data) => {
+      setOrder(data);
+      if (data.status === "success")
+        saveBeneficiary({ service_type: "electricity", account_identifier: data.recipient, biller_code: disco, biller_name: data.biller_name, customer_name: data.customer_name });
+    },
     onError: (err) => {
       const msg = apiErrorMessage(err, t("data.purchaseFailed"));
       const status = (err as { response?: { status?: number } })?.response?.status;
@@ -236,6 +243,11 @@ export default function BuyElectricity() {
             ))}
           </div>
 
+          <RecentBeneficiaries
+            type="electricity"
+            enabled={isVerified}
+            onPick={(b) => { setDisco(b.biller_code); setMeter(b.account_identifier); setCustomerName(undefined); setVerificationId(""); }}
+          />
           {/* Meter number */}
           <label htmlFor="meter" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("electricity.meterNumber")}</label>
           <input
