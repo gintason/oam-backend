@@ -1453,6 +1453,10 @@
     "recentNumbers": "Nedávná čísla",
     "savedMeters": "Uložené elektroměry",
     "savedCards": "Uložené karty",
-    "remove": "Odebrat"
+    "remove": "Odebrat",
+    "namePlaceholder": "Jméno (např. John)",
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "rename": "Přejmenovat"
   }
 }

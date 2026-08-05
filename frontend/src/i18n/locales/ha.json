@@ -1453,6 +1453,10 @@
     "recentNumbers": "Lambobin baya-bayan nan",
     "savedMeters": "Mitocin da aka ajiye",
     "savedCards": "Katunan da aka ajiye",
-    "remove": "Cire"
+    "remove": "Cire",
+    "namePlaceholder": "Suna (misali John)",
+    "save": "Ajiye",
+    "cancel": "Soke",
+    "rename": "Sake suna"
   }
 }

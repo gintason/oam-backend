@@ -1453,6 +1453,10 @@
     "recentNumbers": "أرقام حديثة",
     "savedMeters": "عدادات محفوظة",
     "savedCards": "بطاقات محفوظة",
-    "remove": "إزالة"
+    "remove": "إزالة",
+    "namePlaceholder": "الاسم (مثل John)",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "rename": "إعادة تسمية"
   }
 }

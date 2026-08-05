@@ -1453,6 +1453,10 @@
     "recentNumbers": "Recent numbers",
     "savedMeters": "Saved meters",
     "savedCards": "Saved smartcards",
-    "remove": "Remove"
+    "remove": "Remove",
+    "namePlaceholder": "Name (e.g. John)",
+    "save": "Save",
+    "cancel": "Cancel",
+    "rename": "Rename"
   }
 }

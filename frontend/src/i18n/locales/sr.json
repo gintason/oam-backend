@@ -1453,6 +1453,10 @@
     "recentNumbers": "Недавни бројеви",
     "savedMeters": "Сачувана бројила",
     "savedCards": "Сачуване картице",
-    "remove": "Уклони"
+    "remove": "Уклони",
+    "namePlaceholder": "Име (нпр. Џон)",
+    "save": "Сачувај",
+    "cancel": "Откажи",
+    "rename": "Преименуј"
   }
 }

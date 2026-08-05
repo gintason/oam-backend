@@ -1453,6 +1453,10 @@
     "recentNumbers": "Son numaralar",
     "savedMeters": "Kayıtlı sayaçlar",
     "savedCards": "Kayıtlı kartlar",
-    "remove": "Kaldır"
+    "remove": "Kaldır",
+    "namePlaceholder": "Ad (örn. John)",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "rename": "Yeniden adlandır"
   }
 }

@@ -1453,6 +1453,10 @@
     "recentNumbers": "หมายเลขล่าสุด",
     "savedMeters": "มิเตอร์ที่บันทึกไว้",
     "savedCards": "สมาร์ทการ์ดที่บันทึกไว้",
-    "remove": "นำออก"
+    "remove": "นำออก",
+    "namePlaceholder": "ชื่อ (เช่น John)",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "rename": "เปลี่ยนชื่อ"
   }
 }

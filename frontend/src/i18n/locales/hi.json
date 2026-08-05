@@ -1453,6 +1453,10 @@
     "recentNumbers": "हाल के नंबर",
     "savedMeters": "सहेजे गए मीटर",
     "savedCards": "सहेजे गए स्मार्टकार्ड",
-    "remove": "हटाएँ"
+    "remove": "हटाएँ",
+    "namePlaceholder": "नाम (जैसे John)",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "rename": "नाम बदलें"
   }
 }

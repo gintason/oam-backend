@@ -1453,6 +1453,10 @@
     "recentNumbers": "最近号码",
     "savedMeters": "已保存电表",
     "savedCards": "已保存智能卡",
-    "remove": "移除"
+    "remove": "移除",
+    "namePlaceholder": "名称（例如 John）",
+    "save": "保存",
+    "cancel": "取消",
+    "rename": "重命名"
   }
 }

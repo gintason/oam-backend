@@ -1453,6 +1453,10 @@
     "recentNumbers": "Letzte Nummern",
     "savedMeters": "Gespeicherte Zähler",
     "savedCards": "Gespeicherte Karten",
-    "remove": "Entfernen"
+    "remove": "Entfernen",
+    "namePlaceholder": "Name (z. B. John)",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "rename": "Umbenennen"
   }
 }

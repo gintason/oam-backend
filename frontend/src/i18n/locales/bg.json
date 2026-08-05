@@ -1453,6 +1453,10 @@
     "recentNumbers": "Скорошни номера",
     "savedMeters": "Запазени електромери",
     "savedCards": "Запазени карти",
-    "remove": "Премахни"
+    "remove": "Премахни",
+    "namePlaceholder": "Име (напр. Джон)",
+    "save": "Запази",
+    "cancel": "Отказ",
+    "rename": "Преименувай"
   }
 }

@@ -1453,6 +1453,10 @@
     "recentNumbers": "Nọmba na-adịbeghị anya",
     "savedMeters": "Mita echekwara",
     "savedCards": "Kaadị echekwara",
-    "remove": "Wepụ"
+    "remove": "Wepụ",
+    "namePlaceholder": "Aha (dịka John)",
+    "save": "Chekwaa",
+    "cancel": "Kagbuo",
+    "rename": "Nyegharịa aha"
   }
 }

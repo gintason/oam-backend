@@ -1453,6 +1453,10 @@
     "recentNumbers": "Àwọn nọ́mbà àìpẹ́",
     "savedMeters": "Àwọn mítà tí a fi pamọ́",
     "savedCards": "Àwọn káàdì tí a fi pamọ́",
-    "remove": "Yọ kúrò"
+    "remove": "Yọ kúrò",
+    "namePlaceholder": "Orúkọ (bíi John)",
+    "save": "Fi pamọ́",
+    "cancel": "Fagilé",
+    "rename": "Sọ orúkọ padà"
   }
 }
