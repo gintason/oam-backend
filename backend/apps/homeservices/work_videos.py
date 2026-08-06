@@ -60,7 +60,7 @@ class ArtisanWorkVideo(TimeStampedModel):
 
     class Meta:
         ordering = ["-created_at"]
-        indexes = [models.Index(fields=["artisan", "status"])]
+        indexes = [models.Index(fields=["artisan", "status"], name="hs_workvideo_art_status")]
 
     def __str__(self):
         return f"{self.artisan.business_name} video [{self.status}]"

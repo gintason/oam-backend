@@ -42,3 +42,6 @@ urlpatterns = [
     path("categories/public/", ServiceCategoriesPublicView.as_view(), name="hs-categories-public"),
     path("artisans/<uuid:artisan_id>/", ArtisanDetailView.as_view(), name="hs-detail"),
 ]
+from .work_videos import urlpatterns as work_video_urls
+
+urlpatterns += work_video_urls

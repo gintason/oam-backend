@@ -22,3 +22,4 @@ class BoostPaymentAdmin(admin.ModelAdmin):
     list_display = ("reference", "user", "days", "amount", "status", "created_at")
     list_filter = ("status", "days")
     search_fields = ("reference", "user__email")
+from . import work_videos  # noqa: F401

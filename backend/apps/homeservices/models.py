@@ -123,3 +123,4 @@ from .verification import (  # noqa: E402,F401
     ArtisanServiceImage,
     ArtisanVerification,
 )
+from .work_videos import ArtisanWorkVideo  # noqa: F401
