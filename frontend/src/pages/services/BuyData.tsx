@@ -61,7 +61,7 @@ export default function BuyData() {
       }),
     onSuccess: (data) => {
       setOrder(data);
-      if (data.status === "success")
+      if (data.status !== "failed")
         saveBeneficiary({ service_type: "data", account_identifier: data.recipient, biller_code: network, biller_name: data.biller_name });
     },
     onError: (err) => {

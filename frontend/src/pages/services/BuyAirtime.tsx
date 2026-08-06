@@ -74,7 +74,7 @@ export default function BuyAirtime() {
       }),
     onSuccess: (data) => {
       setOrder(data);
-      if (data.status === "success")
+      if (data.status !== "failed")
         saveBeneficiary({ service_type: "airtime", account_identifier: data.recipient, biller_code: network, biller_name: data.biller_name });
     },
     onError: (err) => {
