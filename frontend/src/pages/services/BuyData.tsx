@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { ArrowLeft, CheckCircle2, CreditCard, Loader2, RefreshCw, Wallet, Wifi, XCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import TokenCard from "../../components/TokenCard";
@@ -17,7 +16,6 @@ import PaySummary from "../../components/PaySummary";
 
 /** Buy Data — pick a network, choose a live bundle, pay by wallet or card. */
 export default function BuyData() {
-  const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
   const saveBeneficiary = useSaveBeneficiary();
@@ -65,7 +63,7 @@ export default function BuyData() {
         saveBeneficiary({ service_type: "data", account_identifier: data.recipient, biller_code: network, biller_name: data.biller_name });
     },
     onError: (err) => {
-      const msg = apiErrorMessage(err, t("data.purchaseFailed"));
+      const msg = apiErrorMessage(err, "Purchase failed. Try again.");
       const st = (err as { response?: { status?: number } })?.response?.status;
       setLowFunds(st === 402 || /insufficient|balance|fund/i.test(msg));
       setError(msg);
@@ -82,16 +80,17 @@ export default function BuyData() {
         plan_code: plan?.variation_id,
       }),
     onSuccess: (data) => { window.location.href = data.authorization_url; },
-    onError: (err) => setError(apiErrorMessage(err, t("data.cardStartFailed"))),
+    onError: (err) => setError(apiErrorMessage(err, "Couldn't start card payment.")),
   });
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(undefined);
     setLowFunds(false);
-    if (!network) return setError(t("data.chooseNetwork"));
-    if (!plan) return setError(t("data.choosePlan"));
-    if (phone.trim().length < 10) return setError(t("data.invalidPhone"));
+    if (!network) return setError("Choose a network.");
+    if (!plan) return setError("Choose a data plan.");
+    if (phone.trim().length < 10) return setError("Enter a valid phone number.");
+    saveBeneficiary({ service_type: "data", account_identifier: phone.trim(), biller_code: network });
     if (payWith === "card") cardPay.mutate();
     else purchase.mutate();
   }
@@ -103,8 +102,8 @@ export default function BuyData() {
     return (
       <Result
         ok={order.status === "success"}
-        title={ok ? t("data.successTitle") : t("data.failedTitle")}
-        message={t("data.successMessage", { plan: plan?.name ?? t("data.title"), recipient: order.recipient })}
+        title={ok ? "Data on the way!" : "Purchase failed"}
+        message={`${plan?.name ?? "Data"} to ${order.recipient}.`}
         order={order}
         onAgain={() => { setOrder(null); setPlan(null); }}
         onDone={() => navigate("/dashboard")}
@@ -117,7 +116,7 @@ export default function BuyData() {
       <AppHeader />
       <main className="mx-auto max-w-md px-5 py-8 sm:py-10">
         <button onClick={() => navigate("/dashboard")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> {t("bills.back")}
+          <ArrowLeft size={15} /> Back
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -125,8 +124,8 @@ export default function BuyData() {
             <Wifi size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink">{t("data.title")}</h1>
-            <p className="text-[13px] text-muted">{t("data.subtitle")}</p>
+            <h1 className="font-display text-xl font-semibold text-ink">Buy Data</h1>
+            <p className="text-[13px] text-muted">Live bundles, instant delivery.</p>
           </div>
         </div>
 
@@ -135,13 +134,13 @@ export default function BuyData() {
           {lowFunds && <LowFunds onCard={() => setPayWith("card")} />}
 
           {/* Network */}
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("data.network")}</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Network</label>
           {billersQuery.isLoading ? (
             <div className="mb-4 grid grid-cols-4 gap-2">
               {Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-11 animate-pulse rounded-lg bg-hairline/60" />)}
             </div>
           ) : billersQuery.isError ? (
-            <p className="mb-4 text-[13px] text-danger">{t("data.loadNetworksError")} <button type="button" onClick={() => billersQuery.refetch()} className="underline">{t("bills.retry")}</button></p>
+            <p className="mb-4 text-[13px] text-danger">Couldn't load networks. <button type="button" onClick={() => billersQuery.refetch()} className="underline">Retry</button></p>
           ) : (
             <div className="mb-4 grid grid-cols-4 gap-2">
               {billersQuery.data?.map((b: Biller) => (
@@ -162,15 +161,15 @@ export default function BuyData() {
           {/* Plans */}
           {network && (
             <>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("data.dataPlan")}</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Data plan</label>
               {plansQuery.isLoading ? (
                 <div className="mb-4 space-y-2">
                   {Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-14 animate-pulse rounded-[11px] bg-hairline/60" />)}
                 </div>
               ) : plansQuery.isError ? (
-                <p className="mb-4 text-[13px] text-danger">{t("data.loadPlansError")} <button type="button" onClick={() => plansQuery.refetch()} className="underline">{t("bills.retry")}</button></p>
+                <p className="mb-4 text-[13px] text-danger">Couldn't load plans. <button type="button" onClick={() => plansQuery.refetch()} className="underline">Retry</button></p>
               ) : (plansQuery.data?.length ?? 0) === 0 ? (
-                <p className="mb-4 text-[13px] text-muted">{t("data.noPlans")}</p>
+                <p className="mb-4 text-[13px] text-muted">No plans available for this network right now.</p>
               ) : (
                 <div className="scrollbar-hide mb-4 max-h-64 space-y-2 overflow-y-auto pr-1">
                   {plansQuery.data?.map((p) => (
@@ -202,13 +201,13 @@ export default function BuyData() {
             onPick={(b) => { setPhone(b.account_identifier); if (b.biller_code) setNetwork(b.biller_code); }}
           />
           {/* Phone */}
-          <label htmlFor="phone" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("data.phoneNumber")}</label>
+          <label htmlFor="phone" className="mb-1.5 block text-[12.5px] font-semibold text-ink">Phone number</label>
           <input
             id="phone"
             inputMode="numeric"
             value={phone}
             onChange={(e) => setPhone(e.target.value.replace(/[^\d]/g, ""))}
-            placeholder={t("data.phonePlaceholder")}
+            placeholder="080..."
             maxLength={11}
             className="mb-5 h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[15px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
           />
@@ -219,7 +218,7 @@ export default function BuyData() {
             amount={Number(plan?.price) || 0}
             payWith={payWith}
             balance={payWith === "wallet" ? ngnBalance : undefined}
-            label={t("data.bundleLabel")}
+            label="Data bundle"
           />
 
           <button
@@ -230,44 +229,42 @@ export default function BuyData() {
             {purchase.isPending || cardPay.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
-              plan ? t("data.payAmount", { amount: Number(plan.price).toLocaleString() }) : t("data.buyData")
+              plan ? `Pay ₦${Number(plan.price).toLocaleString()}` : "Buy data"
             )}
           </button>
-          <PayNote payWith={payWith} noun={t("data.payNoun")} />
+          <PayNote payWith={payWith} noun="Data" />
         </form>
       </main>
     </div>
   );
 }
 
-/* ---------- small shared bits (also used by Cable & Electricity) ---------- */
+/* ---------- small shared bits (also used by Cable) ---------- */
 export function ErrorBox({ message }: { message: string }) {
   return <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">{message}</div>;
 }
 
 export function LowFunds({ onCard }: { onCard: () => void }) {
-  const { t } = useTranslation();
   return (
     <div className="mb-4 rounded-lg border border-brand-green/30 bg-brand-green/5 p-3.5">
-      <p className="text-[13px] text-ink">{t("bills.lowFunds")}</p>
+      <p className="text-[13px] text-ink">Your wallet balance is too low. Pay with your card instead.</p>
       <button type="button" onClick={onCard} className="mt-2 inline-flex h-9 items-center gap-1.5 rounded-lg bg-brand-green px-4 text-[13px] font-medium text-white transition hover:brightness-95">
-        <CreditCard size={15} strokeWidth={2} /> {t("bills.switchToCard")}
+        <CreditCard size={15} strokeWidth={2} /> Switch to card
       </button>
     </div>
   );
 }
 
 export function PayWith({ value, onChange }: { value: "wallet" | "card"; onChange: (v: "wallet" | "card") => void }) {
-  const { t } = useTranslation();
   return (
     <>
-      <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("bills.payWith")}</label>
+      <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay with</label>
       <div className="mb-5 grid grid-cols-2 gap-2">
         <button type="button" onClick={() => onChange("wallet")} className={`flex h-12 items-center justify-center gap-2 rounded-[11px] border text-[13.5px] font-medium transition ${value === "wallet" ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>
-          <Wallet size={16} strokeWidth={1.75} /> {t("bills.wallet")}
+          <Wallet size={16} strokeWidth={1.75} /> Wallet
         </button>
         <button type="button" onClick={() => onChange("card")} className={`flex h-12 items-center justify-center gap-2 rounded-[11px] border text-[13.5px] font-medium transition ${value === "card" ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>
-          <CreditCard size={16} strokeWidth={1.75} /> {t("bills.card")}
+          <CreditCard size={16} strokeWidth={1.75} /> Card
         </button>
       </div>
     </>
@@ -275,41 +272,44 @@ export function PayWith({ value, onChange }: { value: "wallet" | "card"; onChang
 }
 
 export function PayNote({ payWith, noun }: { payWith: "wallet" | "card"; noun: string }) {
-  const { t } = useTranslation();
   return (
     <p className="mt-3 text-center text-[12px] text-muted">
-      {payWith === "card" ? t("bills.payNoteCard", { noun }) : t("bills.payNoteWallet")}
+      {payWith === "card" ? `You'll pay securely on Paystack. ${noun} is delivered right after.` : "Paid instantly from your OAM wallet."}
     </p>
   );
 }
 
 export function VerifyGate({ onBack }: { onBack: () => void }) {
-  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-mist">
       <AppHeader />
       <main className="mx-auto max-w-md px-5 py-16 text-center">
-        <h1 className="font-display text-xl font-semibold text-ink">{t("bills.verifyGate.title")}</h1>
-        <p className="mt-2 text-[14px] text-muted">{t("bills.verifyGate.body")}</p>
-        <button onClick={onBack} className="mt-5 rounded-lg bg-brand-green px-5 py-2.5 text-[14px] font-medium text-white">{t("bills.verifyGate.back")}</button>
+        <h1 className="font-display text-xl font-semibold text-ink">Verify your account</h1>
+        <p className="mt-2 text-[14px] text-muted">You need a verified account to pay bills.</p>
+        <button onClick={onBack} className="mt-5 rounded-lg bg-brand-green px-5 py-2.5 text-[14px] font-medium text-white">Back to dashboard</button>
       </main>
     </div>
   );
 }
 
 /**
- * Purchase result. THREE states, not two — a pending/processing order has
- * already taken the money and been accepted; calling it "failed" would be
- * wrong and dangerous. Pending orders poll until they resolve.
+ * Purchase result.
+ *
+ * THREE states, not two. A `processing` / `pending` order has ALREADY taken the
+ * money and been accepted by the provider — it just hasn't confirmed delivery.
+ * Calling that "failed" would be wrong and dangerous: a customer told their
+ * wallet wasn't charged may buy again and pay twice. Pending orders poll until
+ * they resolve.
  */
 export function Result({ ok, title, message, order, onAgain, onDone }: {
   ok: boolean; title: string; message: string; order: BillOrder; onAgain: () => void; onDone: () => void;
 }) {
-  const { t } = useTranslation();
   const [live, setLive] = useState<BillOrder>(order);
   const [checking, setChecking] = useState(false);
 
   const pending = ["pending", "processing"].includes(String(live.status).toLowerCase());
+  // A successful prepaid electricity order without a token isn't finished from
+  // the customer's point of view — keep chasing it.
   const awaitingToken =
     String(live.status).toLowerCase() === "success" &&
     live.category === "electricity" &&
@@ -318,11 +318,14 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
   const success = String(live.status).toLowerCase() === "success";
   const failed = !pending && !success;
 
+  // Poll a pending order until the provider settles it.
   useEffect(() => {
     if (!pending && !awaitingToken) return;
     let alive = true;
-    const timer = setInterval(async () => {
+    const t = setInterval(async () => {
       try {
+        // Ask the PROVIDER, not just our database — a token that lands after
+        // the status settles is only visible on a fresh provider read.
         const fresh = await billingApi.refreshOrder(live.reference);
         if (alive) setLive(fresh);
       } catch {
@@ -332,7 +335,7 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
         } catch { /* keep trying */ }
       }
     }, 8000);
-    return () => { alive = false; clearInterval(timer); };
+    return () => { alive = false; clearInterval(t); };
   }, [pending, awaitingToken, live.reference]);
 
   async function recheck() {
@@ -346,16 +349,16 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
     }
   }
 
-  const heading = pending ? t("bills.result.inProgress")
-    : awaitingToken ? t("bills.result.issuingToken")
+  const heading = pending ? "Purchase in progress"
+    : awaitingToken ? "Delivered — issuing your token"
     : success ? title
-    : t("bills.result.failed");
+    : "Purchase failed";
   const body = pending
-    ? t("bills.result.bodyPending")
+    ? "Your payment went through and your provider is completing the order. This usually takes under a minute."
     : awaitingToken
-    ? t("bills.result.bodyToken")
+    ? "Your units are on their way. We're waiting for your provider to release the token — it appears here automatically."
     : success ? message
-    : t("bills.result.bodyFailed");
+    : "The provider could not complete this order. Any amount held has been returned to your wallet.";
 
   return (
     <div className="min-h-screen bg-mist">
@@ -371,7 +374,8 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
 
           {(pending || awaitingToken) && (
             <p className="mt-3 rounded-lg border border-warn/30 bg-warn/5 px-3.5 py-2.5 text-[12.5px] leading-relaxed text-warn">
-              {t("bills.result.dontBuyAgain")}
+              Don't buy again — this order has already been paid for. It'll finish
+              on its own, and you can always find it under Orders.
             </p>
           )}
 
@@ -383,10 +387,10 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
 
           <div className="mt-5 rounded-xl bg-mist p-3 text-left text-[12.5px] text-muted">
             {live.customer_name && (
-              <div className="mb-1 flex justify-between"><span>{t("bills.result.customer")}</span><span className="font-medium text-ink">{live.customer_name}</span></div>
+              <div className="mb-1 flex justify-between"><span>Customer</span><span className="font-medium text-ink">{live.customer_name}</span></div>
             )}
-            <div className="flex justify-between"><span>{t("bills.result.status")}</span><span className="font-medium text-ink">{live.status}</span></div>
-            <div className="mt-1 flex justify-between"><span>{t("bills.result.reference")}</span><span className="font-mono text-[11px] text-ink">{live.reference}</span></div>
+            <div className="flex justify-between"><span>Status</span><span className="font-medium text-ink">{live.status}</span></div>
+            <div className="mt-1 flex justify-between"><span>Reference</span><span className="font-mono text-[11px] text-ink">{live.reference}</span></div>
           </div>
 
           {(pending || awaitingToken) && (
@@ -396,18 +400,18 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
               className="mt-4 inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-hairline bg-paper px-4 text-[13px] font-medium text-ink transition hover:bg-mist disabled:opacity-60"
             >
               <RefreshCw size={14} strokeWidth={1.75} className={checking ? "animate-spin" : ""} />
-              {checking ? t("bills.result.checking") : t("bills.result.checkStatus")}
+              {checking ? "Checking…" : "Check status now"}
             </button>
           )}
 
           <div className="mt-6 flex gap-2">
             {!pending && (
               <button onClick={onAgain} className="h-11 flex-1 rounded-lg border border-hairline bg-paper text-[14px] font-medium text-ink transition hover:bg-mist">
-                {failed ? t("bills.result.tryAgain") : t("bills.result.buyAgain")}
+                {failed ? "Try again" : "Buy again"}
               </button>
             )}
             <button onClick={onDone} className="h-11 flex-1 rounded-lg bg-brand-green text-[14px] font-medium text-white transition hover:brightness-95">
-              {pending ? t("bills.result.viewInOrders") : t("bills.result.done")}
+              {pending ? "View in Orders" : "Done"}
             </button>
           </div>
         </div>

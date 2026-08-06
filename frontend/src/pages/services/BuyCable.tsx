@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { ArrowLeft, BadgeCheck, Loader2, Tv } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
@@ -18,7 +17,6 @@ import { useDebounced } from "../../hooks/useDebounced";
 
 /** Cable TV — pick provider + package, verify the smartcard, pay by wallet or card. */
 export default function BuyCable() {
-  const { t } = useTranslation();
   const scope = useUserScope();
   const { isVerified } = useAuth();
   const saveBeneficiary = useSaveBeneficiary();
@@ -62,18 +60,19 @@ export default function BuyCable() {
       } else {
         setCustomerName(undefined);
         setVerificationId("");
-        setError(data.detail || t("cable.couldntConfirmSmartcard"));
+        setError(data.detail || "Couldn't confirm that smartcard.");
       }
     },
     onError: (err) => {
       setCustomerName(undefined);
-      setError(apiErrorMessage(err, t("cable.couldntVerifySmartcard")));
+      setError(apiErrorMessage(err, "Couldn't verify that smartcard number."));
     },
   });
 
   // AUTO-VERIFY the smartcard once it looks complete.
   const debouncedCard = useDebounced(smartcard, 700);
   useEffect(() => {
+    // DStv/GOtv IUC numbers are 10-11 digits; Startimes 11. Wait for 10 before asking.
     if (provider && debouncedCard.trim().length >= 10 && !customerName && !verify.isPending) {
       verify.mutate();
     }
@@ -104,7 +103,7 @@ export default function BuyCable() {
         saveBeneficiary({ service_type: "cable", account_identifier: data.recipient, biller_code: provider, biller_name: data.biller_name, customer_name: data.customer_name });
     },
     onError: (err) => {
-      const msg = apiErrorMessage(err, t("data.purchaseFailed"));
+      const msg = apiErrorMessage(err, "Purchase failed. Try again.");
       const st = (err as { response?: { status?: number } })?.response?.status;
       setLowFunds(st === 402 || /insufficient|balance|fund/i.test(msg));
       setError(msg);
@@ -123,17 +122,18 @@ export default function BuyCable() {
         verification_id: verificationId,
       }),
     onSuccess: (data) => { window.location.href = data.authorization_url; },
-    onError: (err) => setError(apiErrorMessage(err, t("data.cardStartFailed"))),
+    onError: (err) => setError(apiErrorMessage(err, "Couldn't start card payment.")),
   });
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(undefined);
     setLowFunds(false);
-    if (!provider) return setError(t("cable.chooseProvider"));
-    if (!plan) return setError(t("cable.choosePackage"));
-    if (!verificationId) return setError(t("cable.waitSmartcard"));
-    if (smartcard.trim().length < 6) return setError(t("cable.invalidSmartcard"));
+    if (!provider) return setError("Choose your provider.");
+    if (!plan) return setError("Choose a package.");
+    if (!verificationId) return setError("Wait for the smartcard to be confirmed before paying.");
+    if (smartcard.trim().length < 6) return setError("Enter a valid smartcard number.");
+    saveBeneficiary({ service_type: "cable", account_identifier: smartcard.trim(), biller_code: provider, customer_name: customerName ?? "" });
     if (payWith === "card") cardPay.mutate();
     else purchase.mutate();
   }
@@ -141,11 +141,12 @@ export default function BuyCable() {
   if (!isVerified) return <VerifyGate onBack={() => navigate("/dashboard")} />;
 
   if (order) {
+    const ok = order.status === "success" || order.status === "pending";
     return (
       <Result
         ok={order.status === "success"}
-        title={t("cable.successTitle")}
-        message={t("cable.successMessage", { plan: plan?.name ?? t("cable.package"), recipient: order.recipient })}
+        title="Subscription successful!"
+        message={`${plan?.name ?? "Package"} on ${order.recipient}.`}
         order={order}
         onAgain={() => { setOrder(null); setPlan(null); }}
         onDone={() => navigate("/dashboard")}
@@ -158,7 +159,7 @@ export default function BuyCable() {
       <AppHeader />
       <main className="mx-auto max-w-md px-5 py-8 sm:py-10">
         <button onClick={() => navigate("/dashboard")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> {t("bills.back")}
+          <ArrowLeft size={15} /> Back
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -166,8 +167,8 @@ export default function BuyCable() {
             <Tv size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink">{t("cable.title")}</h1>
-            <p className="text-[13px] text-muted">{t("cable.subtitle")}</p>
+            <h1 className="font-display text-xl font-semibold text-ink">Cable TV</h1>
+            <p className="text-[13px] text-muted">Renew DStv, GOtv, Startimes.</p>
           </div>
         </div>
 
@@ -176,13 +177,13 @@ export default function BuyCable() {
           {lowFunds && <LowFunds onCard={() => setPayWith("card")} />}
 
           {/* Provider */}
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("cable.provider")}</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Provider</label>
           {billersQuery.isLoading ? (
             <div className="mb-4 grid grid-cols-3 gap-2">
               {Array.from({ length: 3 }).map((_, i) => <div key={i} className="h-11 animate-pulse rounded-lg bg-hairline/60" />)}
             </div>
           ) : billersQuery.isError ? (
-            <p className="mb-4 text-[13px] text-danger">{t("cable.loadProvidersError")} <button type="button" onClick={() => billersQuery.refetch()} className="underline">{t("bills.retry")}</button></p>
+            <p className="mb-4 text-[13px] text-danger">Couldn't load providers. <button type="button" onClick={() => billersQuery.refetch()} className="underline">Retry</button></p>
           ) : (
             <div className="mb-4 grid grid-cols-3 gap-2">
               {billersQuery.data?.map((b: Biller) => (
@@ -203,15 +204,15 @@ export default function BuyCable() {
           {/* Packages */}
           {provider && (
             <>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("cable.package")}</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Package</label>
               {plansQuery.isLoading ? (
                 <div className="mb-4 space-y-2">
                   {Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-14 animate-pulse rounded-[11px] bg-hairline/60" />)}
                 </div>
               ) : plansQuery.isError ? (
-                <p className="mb-4 text-[13px] text-danger">{t("cable.loadPackagesError")} <button type="button" onClick={() => plansQuery.refetch()} className="underline">{t("bills.retry")}</button></p>
+                <p className="mb-4 text-[13px] text-danger">Couldn't load packages. <button type="button" onClick={() => plansQuery.refetch()} className="underline">Retry</button></p>
               ) : (plansQuery.data?.length ?? 0) === 0 ? (
-                <p className="mb-4 text-[13px] text-muted">{t("cable.noPackages")}</p>
+                <p className="mb-4 text-[13px] text-muted">No packages available right now.</p>
               ) : (
                 <div className="scrollbar-hide mb-4 max-h-64 space-y-2 overflow-y-auto pr-1">
                   {plansQuery.data?.map((p) => (
@@ -240,18 +241,18 @@ export default function BuyCable() {
             onPick={(b) => { setProvider(b.biller_code); setSmartcard(b.account_identifier); setCustomerName(undefined); setVerificationId(""); }}
           />
           {/* Smartcard */}
-          <label htmlFor="smartcard" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("cable.smartcard")}</label>
+          <label htmlFor="smartcard" className="mb-1.5 block text-[12.5px] font-semibold text-ink">Smartcard / IUC number</label>
           <input
             id="smartcard"
             inputMode="numeric"
             value={smartcard}
             onChange={(e) => { setSmartcard(e.target.value.replace(/[^\d]/g, "")); setCustomerName(undefined); setVerificationId(""); setError(undefined); }}
-            placeholder={t("cable.smartcardPlaceholder")}
+            placeholder="Enter smartcard number"
             className="h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[15px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
           />
           {verify.isPending && (
             <div className="mt-2 flex items-center gap-1.5 text-[13px] text-muted">
-              <Loader2 size={14} className="animate-spin" /> {t("cable.checkingSmartcard")}
+              <Loader2 size={14} className="animate-spin" /> Checking smartcard…
             </div>
           )}
           {customerName && (
@@ -268,7 +269,7 @@ export default function BuyCable() {
             amount={Number(plan?.price) || 0}
             payWith={payWith}
             balance={payWith === "wallet" ? ngnBalance : undefined}
-            label={t("cable.label")}
+            label="TV subscription"
           />
 
           <button
@@ -279,10 +280,10 @@ export default function BuyCable() {
             {purchase.isPending || cardPay.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
-              plan ? t("cable.payAmount", { amount: Number(plan.price).toLocaleString() }) : t("cable.subscribe")
+              plan ? `Pay ₦${Number(plan.price).toLocaleString()}` : "Subscribe"
             )}
           </button>
-          <PayNote payWith={payWith} noun={t("cable.payNoun")} />
+          <PayNote payWith={payWith} noun="Your subscription" />
         </form>
       </main>
     </div>

@@ -113,6 +113,7 @@ export default function BuyAirtime() {
 
   function runPurchase() {
     setConfirming(false);
+    saveBeneficiary({ service_type: "airtime", account_identifier: phone.trim(), biller_code: network, biller_name: selectedBiller?.name ?? "" });
     if (payWith === "card") cardPay.mutate();
     else purchase.mutate();
   }
