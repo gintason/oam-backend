@@ -35,8 +35,6 @@ export default function RecentBeneficiaries({ type, onPick }: Props) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
 
-  if (!items.length) return null;
-
   const isList = type === "electricity" || type === "cable";
   const title =
     type === "electricity"
@@ -44,6 +42,32 @@ export default function RecentBeneficiaries({ type, onPick }: Props) {
       : type === "cable"
       ? t("beneficiaries.savedCards", { defaultValue: "Saved smartcards" })
       : t("beneficiaries.recentNumbers", { defaultValue: "Recent numbers" });
+
+  const header = (
+    <div className="mb-1.5 flex items-center gap-1.5 text-[12px] font-semibold text-muted">
+      <Clock size={13} strokeWidth={2} />
+      {title}
+    </div>
+  );
+
+  // Empty state: show a quiet hint so the section is visible and discoverable
+  // before the first save (and so a deploy is easy to confirm).
+  if (!items.length) {
+    const hint =
+      type === "electricity"
+        ? t("beneficiaries.emptyMeters", { defaultValue: "Meters you pay will be saved here." })
+        : type === "cable"
+        ? t("beneficiaries.emptyCards", { defaultValue: "Smartcards you pay will be saved here." })
+        : t("beneficiaries.emptyNumbers", { defaultValue: "Numbers you recharge will appear here." });
+    return (
+      <div className="mb-3">
+        {header}
+        <p className="rounded-xl border border-dashed border-hairline bg-mist/40 px-3 py-2 text-[12px] text-muted">
+          {hint}
+        </p>
+      </div>
+    );
+  }
 
   function startEdit(b: Recent) {
     setEditingId(b.id);
@@ -116,10 +140,7 @@ export default function RecentBeneficiaries({ type, onPick }: Props) {
 
   return (
     <div className="mb-3">
-      <div className="mb-1.5 flex items-center gap-1.5 text-[12px] font-semibold text-muted">
-        <Clock size={13} strokeWidth={2} />
-        {title}
-      </div>
+      {header}
 
       {isList ? (
         <ul className="space-y-1.5">
