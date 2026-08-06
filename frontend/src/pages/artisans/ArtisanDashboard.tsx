@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  ArrowLeft, Loader2, Star, BadgeCheck, MessagesSquare, Save, Rocket, Check, ShieldCheck, ChevronRight } from "lucide-react";
+  ArrowLeft, Loader2, Star, BadgeCheck, MessagesSquare, Save, Rocket, Check, ShieldCheck, ChevronRight, Clock, CheckCircle2, XCircle, Trash2 } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import FileDrop, { UploadedThumb } from "../../components/FileDrop";
+import PhoneField from "../../components/PhoneField";
+import { artisanVideosApi, type ArtisanVideo } from "../../services/artisanVideos";
 import { uploadsApi } from "../../services/uploads";
 import { DarkPanel, Card, Stat, SectionTitle } from "../../components/Surface";
 import { useUserScope } from "../../auth/useUserScope";
@@ -13,7 +15,7 @@ import {
 } from "../../services/homeservices";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
-import { naira, formatPhone } from "../../lib/format";
+import { naira } from "../../lib/format";
 import { useTranslation } from "react-i18next";
 
 const EMPTY: ArtisanWrite = {
@@ -93,6 +95,20 @@ export default function ArtisanDashboard() {
       setTimeout(() => setSaved(false), 2500);
     },
     onError: (err) => setError(apiErrorMessage(err, t("artisans.dashboard.errSave"))),
+  });
+
+  const videos = useQuery({
+    queryKey: ["artisan-videos", scope],
+    queryFn: artisanVideosApi.list,
+    enabled: hasProfile,
+  });
+  const addVideo = useMutation({
+    mutationFn: (input: { video_url: string; public_id?: string }) => artisanVideosApi.add(input),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["artisan-videos"] }),
+  });
+  const removeVideo = useMutation({
+    mutationFn: (id: string) => artisanVideosApi.remove(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["artisan-videos"] }),
   });
 
   const boost = useMutation({
@@ -323,6 +339,40 @@ export default function ArtisanDashboard() {
               </div>
             </Field>
 
+            {hasProfile && (
+              <Field
+                label={t("artisans.dashboard.videosTitle", { defaultValue: "Videos of your work" })}
+                hint={t("artisans.dashboard.videosHint", { defaultValue: "Short clips of jobs you've done. An admin reviews each one before it appears on your public profile." })}
+              >
+                <div className="space-y-2">
+                  {(videos.data ?? []).map((v) => (
+                    <div key={v.id} className="flex items-center gap-3 rounded-xl border border-hairline bg-paper p-2.5">
+                      <video src={v.video_url} className="h-14 w-20 shrink-0 rounded-lg bg-mist object-cover" muted playsInline preload="metadata" />
+                      <div className="min-w-0 flex-1">
+                        <VideoStatusBadge status={v.status} t={t} />
+                        {v.status === "rejected" && v.review_note && (
+                          <p className="mt-1 text-[11.5px] text-danger">{v.review_note}</p>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeVideo.mutate(v.id)}
+                        disabled={removeVideo.isPending}
+                        className="shrink-0 rounded-lg p-2 text-muted transition hover:bg-mist hover:text-danger"
+                      >
+                        <Trash2 size={16} strokeWidth={1.75} />
+                      </button>
+                    </div>
+                  ))}
+                  <FileDrop
+                    purpose="artisan_work_video"
+                    rule={uploadRules.data?.artisan_work_video}
+                    onUploaded={(r) => addVideo.mutate({ video_url: r.url, public_id: r.public_id })}
+                  />
+                </div>
+              </Field>
+            )}
+
             <Field label={t("artisans.dashboard.tradeLabel")}>
               <select
                 value={form.category}
@@ -353,14 +403,12 @@ export default function ArtisanDashboard() {
 
             <div className="grid gap-3.5 sm:grid-cols-2">
               <Field label={t("artisans.dashboard.phoneLabel")} hint={t("artisans.dashboard.phoneHint")}>
-                <Input value={formatPhone(form.phone)} inputMode="numeric"
-                       onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 11))}
-                       placeholder={t("artisans.dashboard.phonePlaceholder")} />
+                <PhoneField value={form.phone} onChange={(v) => set("phone", v)}
+                       placeholder={t("artisans.dashboard.phoneLocalPlaceholder", { defaultValue: "803 123 4567" })} />
               </Field>
               <Field label={t("artisans.dashboard.whatsappLabel")} hint={t("artisans.dashboard.whatsappHint")}>
-                <Input value={form.whatsapp} inputMode="numeric"
-                       onChange={(v) => set("whatsapp", v.replace(/\D/g, "").slice(0, 15))}
-                       placeholder={t("artisans.dashboard.whatsappPlaceholder")} />
+                <PhoneField value={form.whatsapp} onChange={(v) => set("whatsapp", v)}
+                       placeholder={t("artisans.dashboard.whatsappLocalPlaceholder", { defaultValue: "803 123 4567" })} />
               </Field>
             </div>
 
@@ -438,5 +486,22 @@ function Input({ value, onChange, placeholder, inputMode }: {
       placeholder={placeholder}
       className="h-11 w-full rounded-xl border border-hairline bg-paper px-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
     />
+  );
+}
+
+function VideoStatusBadge({ status, t }: {
+  status: ArtisanVideo["status"];
+  t: (k: string, o?: Record<string, unknown>) => string;
+}) {
+  const map = {
+    pending: { cls: "bg-warn/10 text-warn", icon: <Clock size={11} strokeWidth={2.5} />, label: t("artisans.dashboard.videoPending", { defaultValue: "Pending review" }) },
+    approved: { cls: "bg-brand-green/10 text-brand-green", icon: <CheckCircle2 size={11} strokeWidth={2.5} />, label: t("artisans.dashboard.videoApproved", { defaultValue: "Approved" }) },
+    rejected: { cls: "bg-danger/10 text-danger", icon: <XCircle size={11} strokeWidth={2.5} />, label: t("artisans.dashboard.videoRejected", { defaultValue: "Rejected" }) },
+  } as const;
+  const s = map[status] ?? map.pending;
+  return (
+    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${s.cls}`}>
+      {s.icon}{s.label}
+    </span>
   );
 }
