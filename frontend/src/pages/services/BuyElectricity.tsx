@@ -105,7 +105,7 @@ export default function BuyElectricity() {
       }),
     onSuccess: (data) => {
       setOrder(data);
-      if (data.status !== "failed")
+      if (data.recipient)
         saveBeneficiary({ service_type: "electricity", account_identifier: data.recipient, biller_code: disco, biller_name: data.biller_name, customer_name: data.customer_name });
     },
     onError: (err) => {
