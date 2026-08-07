@@ -155,20 +155,10 @@ function ArtisanCard({ artisan }: { artisan: FeaturedArtisan }) {
       className="group flex h-full flex-col rounded-2xl border border-brand-green/[0.18] bg-[linear-gradient(150deg,rgba(11,115,39,0.14),rgba(17,17,17,0.04))] p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(11,115,39,0.12)]"
     >
       <div className="flex items-start gap-3">
-        <span className="relative shrink-0">
-          <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-[#0a0a0a] text-[15px] font-bold text-white">
-            {artisan.profile_photo
-              ? <img src={artisan.profile_photo} alt="" className="h-full w-full object-cover" />
-              : initials || <Wrench size={18} strokeWidth={1.75} />}
-          </span>
-          {artisan.is_verified && (
-            <span
-              className="absolute -bottom-1 -right-1 rounded-full bg-white p-px shadow-[0_1px_3px_rgba(10,10,10,0.25)]"
-              title={t("landing.artisans.verified", { defaultValue: "Verified" })}
-            >
-              <BadgeCheck size={15} strokeWidth={2.5} className="text-brand-green" />
-            </span>
-          )}
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#0a0a0a] text-[15px] font-bold text-white">
+          {artisan.profile_photo
+            ? <img src={artisan.profile_photo} alt="" className="h-full w-full object-cover" />
+            : initials || <Wrench size={18} strokeWidth={1.75} />}
         </span>
         <div className="min-w-0 flex-1">
           <div className="flex items-start gap-1">

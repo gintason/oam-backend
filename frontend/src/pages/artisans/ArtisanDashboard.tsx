@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  ArrowLeft, Loader2, Star, BadgeCheck, MessagesSquare, Save, Rocket, Check, ShieldCheck, ChevronRight, Clock, CheckCircle2, XCircle, Trash2 } from "lucide-react";
+  ArrowLeft, Loader2, Star, BadgeCheck, MessagesSquare, Save, Rocket, Check, ShieldCheck, ChevronRight, Clock, CheckCircle2, XCircle, Trash2, MapPin } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import FileDrop, { UploadedThumb } from "../../components/FileDrop";
 import PhoneField from "../../components/PhoneField";
@@ -11,7 +11,7 @@ import { uploadsApi } from "../../services/uploads";
 import { DarkPanel, Card, Stat, SectionTitle } from "../../components/Surface";
 import { useUserScope } from "../../auth/useUserScope";
 import {
-  homeServicesApi, BOOST_TIERS, type ArtisanWrite,
+  homeServicesApi, BOOST_TIERS, CITIES, type ArtisanWrite,
 } from "../../services/homeservices";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
@@ -86,8 +86,28 @@ export default function ArtisanDashboard() {
     });
   }, [mine.data]);
 
+  function useMyLocation() {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition((pos) => {
+      set("latitude", pos.coords.latitude);
+      set("longitude", pos.coords.longitude);
+    });
+  }
+
   const save = useMutation({
-    mutationFn: () => homeServicesApi.register(form),
+    mutationFn: () => {
+      // Distance search excludes artisans without coordinates. If the artisan
+      // didn't set a precise location, fall back to their city's centre so they
+      // still appear in "Find an artisan".
+      let payload = form;
+      if (form.latitude == null || form.longitude == null) {
+        const c = CITIES.find(
+          (x) => x.name.toLowerCase() === (form.city || "").trim().toLowerCase(),
+        );
+        if (c) payload = { ...form, latitude: c.lat, longitude: c.lng };
+      }
+      return homeServicesApi.register(payload);
+    },
     onSuccess: () => {
       setSaved(true);
       setError(undefined);
@@ -430,6 +450,20 @@ export default function ArtisanDashboard() {
                        placeholder={t("artisans.dashboard.yearsPlaceholder")} />
               </Field>
             </div>
+
+            <button
+              type="button"
+              onClick={useMyLocation}
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-hairline bg-paper px-3.5 py-2.5 text-[13.5px] font-semibold text-ink transition hover:border-brand-green/40"
+            >
+              <MapPin size={15} strokeWidth={2} className={form.latitude != null ? "text-brand-green" : "text-muted"} />
+              {form.latitude != null
+                ? t("artisans.dashboard.locationSet", { defaultValue: "Location set — you'll appear in nearby searches" })
+                : t("artisans.dashboard.useLocation", { defaultValue: "Use my current location" })}
+            </button>
+            <p className="-mt-1 text-[12px] leading-relaxed text-muted">
+              {t("artisans.dashboard.locationHint", { defaultValue: "Customers find artisans by distance. Set your location (or a known city above) so you show up in searches near you." })}
+            </p>
 
             <label className="flex items-center gap-2.5 rounded-xl border border-hairline bg-mist px-3.5 py-3">
               <input

@@ -212,20 +212,10 @@ function Card({ artisan }: { artisan: ArtisanListItem }) {
         to={`/artisans/${artisan.id}`}
         className="flex h-full gap-3 rounded-2xl border border-hairline bg-paper p-4 shadow-[0_1px_2px_rgba(10,10,10,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-brand-green/40 hover:shadow-[0_8px_24px_rgba(10,10,10,0.08)]"
       >
-        <span className="relative shrink-0">
-          <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-mist">
-            {artisan.profile_photo
-              ? <img src={artisan.profile_photo} alt="" className="h-full w-full object-cover" />
-              : <Wrench size={20} strokeWidth={1.75} className="text-muted" />}
-          </span>
-          {artisan.is_verified && (
-            <span
-              className="absolute -bottom-1 -right-1 rounded-full bg-white p-px shadow-[0_1px_3px_rgba(10,10,10,0.25)]"
-              title={t("artisans.find.verified", { defaultValue: "Verified" })}
-            >
-              <BadgeCheck size={15} strokeWidth={2.5} className="text-brand-green" />
-            </span>
-          )}
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-mist">
+          {artisan.profile_photo
+            ? <img src={artisan.profile_photo} alt="" className="h-full w-full object-cover" />
+            : <Wrench size={20} strokeWidth={1.75} className="text-muted" />}
         </span>
 
         <div className="min-w-0 flex-1">
