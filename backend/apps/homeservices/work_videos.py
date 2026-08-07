@@ -131,21 +131,13 @@ class ArtisanWorkVideoAdmin(admin.ModelAdmin):
 
     @admin.action(description="Approve selected videos")
     def approve_selected(self, request, queryset):
-        from .models import ArtisanProfile
-
-        artisan_ids = list(queryset.values_list("artisan_id", flat=True).distinct())
         n = queryset.update(
             status=ArtisanWorkVideo.Status.APPROVED,
             review_note="",
             reviewed_by=request.user,
             reviewed_at=timezone.now(),
         )
-        # Approving a work video grants the artisan the verified badge shown on
-        # their photo across Find Artisans and the home page.
-        ArtisanProfile.objects.filter(id__in=artisan_ids).update(is_verified=True)
-        self.message_user(
-            request, f"{n} video(s) approved; {len(artisan_ids)} artisan(s) marked verified."
-        )
+        self.message_user(request, f"{n} video(s) approved.")
 
     @admin.action(description="Reject selected videos")
     def reject_selected(self, request, queryset):
