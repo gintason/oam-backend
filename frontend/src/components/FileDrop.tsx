@@ -35,7 +35,10 @@ export default function FileDrop({
 
   const busy = progress !== null;
   const accept = rule
-    ? rule.allowed_formats.map((f) => `.${f}`).join(",")
+    ? [
+        rule.resource_type === "video" ? "video/*" : rule.resource_type === "image" ? "image/*" : "",
+        ...rule.allowed_formats.map((f) => `.${f}`),
+      ].filter(Boolean).join(",")
     : undefined;
 
   async function handle(file: File) {

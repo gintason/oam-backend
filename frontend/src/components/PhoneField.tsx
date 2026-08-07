@@ -75,11 +75,11 @@ export default function PhoneField({
         value={dial}
         onChange={(e) => emit(e.target.value, local)}
         aria-label="Country code"
-        className="h-11 shrink-0 rounded-xl border border-hairline bg-paper px-2 text-[14px] text-ink outline-none focus:border-brand-green"
+        className="h-11 w-[104px] shrink-0 rounded-xl border border-hairline bg-paper px-2 text-[14px] text-ink outline-none focus:border-brand-green"
       >
         {DIAL_CODES.map((d) => (
           <option key={d.code} value={d.code}>
-            {d.flag} {d.code}
+            {d.flag} {d.code} · {d.name}
           </option>
         ))}
       </select>
