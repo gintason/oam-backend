@@ -123,4 +123,6 @@ from .verification import (  # noqa: E402,F401
     ArtisanServiceImage,
     ArtisanVerification,
 )
+from . import geocode  # noqa: F401,E402
+
 from .work_videos import ArtisanWorkVideo  # noqa: F401
