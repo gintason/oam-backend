@@ -53,14 +53,21 @@ class ListingCreateView(APIView):
         s = ListingWriteSerializer(data=request.data)
         s.is_valid(raise_exception=True)
         data = s.validated_data
+        # Staff is the O.A.M Motors house account: route everything they post
+        # into the O.A.M Motors category (featured), so it shows on the home page
+        # under O.A.M Motors regardless of the category the form sent.
+        if request.user.is_staff:
+            from .motors import _motors_category
+            data["category"] = _motors_category()
         category = data["category"]
-        try:
-            MarketplaceService.check_can_post(request.user, category)
-        except MarketplaceError as exc:
-            return Response({"detail": str(exc)}, status=status.HTTP_403_FORBIDDEN)
+        if not request.user.is_staff:
+            try:
+                MarketplaceService.check_can_post(request.user, category)
+            except MarketplaceError as exc:
+                return Response({"detail": str(exc)}, status=status.HTTP_403_FORBIDDEN)
         images = data.pop("images", [])
         videos = data.pop("videos", [])
-        featured = MarketplaceService.should_feature(request.user)
+        featured = MarketplaceService.should_feature(request.user) or request.user.is_staff
         listing = Listing.objects.create(seller=request.user, is_featured=featured, **data)
         for i, url in enumerate(images):
             ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
