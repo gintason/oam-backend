@@ -13,7 +13,7 @@ from .views import (
     PurchaseView,
     VtuNgWebhookView,
 )
-
+from .card_return import CardPurchaseReturnView 
 from .refresh import OrderRefreshView, OrdersRefreshAllView
 
 urlpatterns = [
@@ -31,5 +31,8 @@ urlpatterns = [
     path("revenue/", RevenueView.as_view(), name="bill-revenue"),
     path("revenue/sweep/", RevenueSweepView.as_view(), name="bill-revenue-sweep"),
     path("purchase/card/", CardPurchaseStartView.as_view(), name="bill-card-start"),
+    path("purchase/card/<str:reference>/", CardPurchaseStatusView.as_view(), name="bill-card-status"),
+    path("purchase/card/", CardPurchaseStartView.as_view(), name="bill-card-start"),
+    path("purchase/card/return/", CardPurchaseReturnView.as_view(), name="bill-card-return"),   # ← ADD
     path("purchase/card/<str:reference>/", CardPurchaseStatusView.as_view(), name="bill-card-status"),
 ]
