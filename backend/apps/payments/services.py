@@ -32,7 +32,7 @@ def _funding_ref() -> str:
 class FundingService:
     @staticmethod
     @transaction.atomic
-    def initialize(user, amount: Decimal, currency: str, *, provider_key=None):
+    def initialize(user, amount: Decimal, currency: str, *, provider_key=None, callback_url=None):
         currency = currency.upper()
         wallet = WalletService.get_or_create_wallet(user, currency)
         gateway = ProviderFactory.get("payments", provider_key)
@@ -49,6 +49,7 @@ class FundingService:
             amount=amount, currency=currency,
             email=user.email or f"{user.id}@no-email.oam",
             reference=reference, metadata={"user_id": str(user.id), "txn": str(txn.id)},
+            callback_url=callback_url,
         )
         txn.provider_reference = init.provider_reference
         txn.response_payload = init.raw

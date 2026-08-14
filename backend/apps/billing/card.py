@@ -90,12 +90,12 @@ class CardCheckout(TimeStampedModel):
 class CardCheckoutService:
     @staticmethod
     def start(*, user, category, code, recipient, amount, currency="NGN",
-              country="NG", plan_code="", meter_type="", verification_id=""):
+              country="NG", plan_code="", meter_type="", verification_id="", callback_url=""):
         """Validate the biller, then open a Paystack charge for the exact amount."""
         # Fail fast on a bad biller BEFORE taking any money.
         BillingService._resolve_biller(country, category, code)
 
-        txn, init = FundingService.initialize(user, amount, currency)
+        txn, init = FundingService.initialize(user, amount, currency, callback_url=callback_url or None)
 
         checkout = CardCheckout.objects.create(
             user=user, country=country, category=category, code=code,
@@ -224,6 +224,7 @@ class CardCheckoutStartSerializer(serializers.Serializer):
     plan_code = serializers.CharField(max_length=64, required=False, allow_blank=True)
     meter_type = serializers.CharField(max_length=16, required=False, allow_blank=True)
     verification_id = serializers.CharField(max_length=64, required=False, allow_blank=True)
+    callback_url = serializers.CharField(max_length=300, required=False, allow_blank=True)
 
 
 class CardCheckoutSerializer(serializers.ModelSerializer):
@@ -261,6 +262,7 @@ class CardPurchaseStartView(APIView):
                 plan_code=data.get("plan_code", ""),
                 meter_type=data.get("meter_type", ""),
                 verification_id=data.get("verification_id", ""),
+                callback_url=data.get("callback_url", ""),
             )
         except BillingError as exc:
             return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)

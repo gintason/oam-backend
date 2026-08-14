@@ -40,13 +40,13 @@ class PaystackGateway(PaymentGateway):
             "Accept": "application/json",
         }
 
-    def initialize_charge(self, *, amount, currency, email, reference, metadata=None):
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None, callback_url=None):
         subunits = int((Decimal(str(amount)) * 100).to_integral_value())
         payload = {
             "email": email, "amount": subunits, "currency": currency,
             "reference": reference, "metadata": metadata or {},
         }
-        _cb = _paystack_callback_url()
+        _cb = callback_url or _paystack_callback_url()
         if _cb:
             payload["callback_url"] = _cb
         data = self.post("/transaction/initialize", json=payload)
