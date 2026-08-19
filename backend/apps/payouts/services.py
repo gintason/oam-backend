@@ -130,7 +130,9 @@ class WithdrawalService:
                 elif status in _FAILED:
                     WithdrawalService._release(o)
                     o.status = WithdrawalOrder.Status.FAILED
-                    o.failure_reason = "Transfer failed."
+                    _raw = result.get("raw", {}) or {}
+                    _reason = str(_raw.get("error") or _raw.get("message") or "").strip()
+                    o.failure_reason = (f"Transfer failed: {_reason}" if _reason else "Transfer failed.")[:200]
                 else:                                       # pending/otp/queued
                     o.status = WithdrawalOrder.Status.PROCESSING
             o.save(update_fields=["status", "provider", "provider_reference",
