@@ -1,12 +1,11 @@
 import { ArrowRight } from "lucide-react";
+import { ECOMMERCE_PARTNERS, partnerMonogram } from "../services/ecommerce";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import type { ReactElement } from "react";
 
 /** Closing call-to-action, then the footer. */
 
 export function CTA() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -17,24 +16,25 @@ export function CTA() {
           aria-hidden="true"
         />
         <h2 className="relative font-display text-3xl font-medium text-white sm:text-4xl lg:text-5xl">
-          {t("landing.cta.title")}
+          One app. Endless possibilities.
         </h2>
         <p className="relative mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/70 sm:text-base">
-          {t("landing.cta.subtitle")}
+          Join thousands paying bills, shopping, and moving money the easy way.
+          It's free to start.
         </p>
         <div className="relative mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => navigate("/sign-up")}
             className="inline-flex h-12 items-center gap-2 rounded-lg bg-brand-red px-6 text-[15px] font-medium text-white transition hover:brightness-95 active:scale-[0.98]"
           >
-            {t("landing.cta.createAccount")}
+            Create your account
             <ArrowRight size={18} strokeWidth={1.75} />
           </button>
           <button
             onClick={() => navigate("/sign-in")}
             className="h-12 rounded-lg border border-white/35 bg-transparent px-6 text-[15px] font-medium text-white transition hover:bg-white/5 active:scale-[0.98]"
           >
-            {t("landing.cta.signIn")}
+            Sign in
           </button>
         </div>
       </div>
@@ -50,39 +50,36 @@ export function CTA() {
  * meant to go afterwards. Company pages are public: someone deciding whether to
  * trust you with their money shouldn't have to register first to read your
  * terms.
- *
- * `col`/`link` are translation keys: landing.footer.cols.<col> and
- * landing.footer.links.<link>.
  */
-const FOOTER_COLS: { col: string; links: { link: string; to: string }[] }[] = [
+const FOOTER_COLS: { heading: string; links: { label: string; to: string }[] }[] = [
   {
-    col: "services",
+    heading: "Services",
     links: [
-      { link: "airtimeData", to: "/services/airtime" },
-      { link: "cableTv", to: "/services/cable" },
-      { link: "electricity", to: "/services/electricity" },
-      { link: "giftCards", to: "/services/giftcards" },
-      { link: "moneyTransfer", to: "/wallet/send" },
+      { label: "Airtime & Data", to: "/services/airtime" },
+      { label: "Cable TV", to: "/services/cable" },
+      { label: "Electricity", to: "/services/electricity" },
+      { label: "Gift Cards", to: "/services/giftcards" },
+      { label: "Money Transfer", to: "/wallet/send" },
     ],
   },
   {
-    col: "explore",
+    heading: "Explore",
     links: [
-      { link: "marketplace", to: "/marketplace" },
-      { link: "artisans", to: "/artisans" },
-      { link: "flights", to: "/travel/flights" },
-      { link: "hotels", to: "/travel/hotels" },
-      { link: "carHire", to: "/travel/carhire" },
+      { label: "Marketplace", to: "/marketplace" },
+      { label: "Artisans", to: "/artisans" },
+      { label: "Flights", to: "/travel/flights" },
+      { label: "Hotels", to: "/travel/hotels" },
+      { label: "Car Hire", to: "/travel/carhire" },
     ],
   },
   {
-    col: "company",
+    heading: "Company",
     links: [
-      { link: "about", to: "/about" },
-      { link: "contact", to: "/contact" },
-      { link: "helpCenter", to: "/help" },
-      { link: "terms", to: "/terms" },
-      { link: "privacy", to: "/privacy" },
+      { label: "About", to: "/about" },
+      { label: "Contact", to: "/contact" },
+      { label: "Help Center", to: "/help" },
+      { label: "Terms", to: "/terms" },
+      { label: "Privacy", to: "/privacy" },
     ],
   },
 ];
@@ -141,7 +138,6 @@ const SOCIALS: Social[] = [
 ];
 
 export function Footer() {
-  const { t } = useTranslation();
   return (
     <footer className="border-t border-hairline bg-paper">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-14">
@@ -154,11 +150,11 @@ export function Footer() {
               <span className="text-brand-red">.</span>
             </div>
             <p className="mt-3 max-w-[240px] text-[13px] leading-relaxed text-muted">
-              {t("landing.footer.tagline")}
+              All services. One app. Endless possibilities.
             </p>
 
             <h4 className="mb-3 mt-7 text-[13px] font-medium uppercase tracking-wider text-ink">
-              {t("landing.footer.followUs")}
+              Follow us
             </h4>
             <div className="flex items-center gap-2.5">
               {SOCIALS.map((s) => (
@@ -177,15 +173,15 @@ export function Footer() {
           </div>
 
           {FOOTER_COLS.map((col) => (
-            <div key={col.col}>
+            <div key={col.heading}>
               <h4 className="mb-3 text-[13px] font-medium uppercase tracking-wider text-ink">
-                {t(`landing.footer.cols.${col.col}`)}
+                {col.heading}
               </h4>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.to}>
                     <Link to={l.to} className="text-[14px] text-muted transition hover:text-ink">
-                      {t(`landing.footer.links.${l.link}`)}
+                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -196,9 +192,19 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-hairline pt-6 sm:flex-row sm:items-center">
           <p className="text-[13px] text-muted">
-            {t("landing.footer.rights", { year: new Date().getFullYear() })}
+            © {new Date().getFullYear()} OAM. All rights reserved.
           </p>
-          <p className="text-[13px] text-muted">{t("landing.footer.developedBy")}</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            {ECOMMERCE_PARTNERS.map((pt) =>
+              pt.logo ? (
+                <img key={pt.slug} src={pt.logo} alt={pt.name} title={pt.name} className="h-6 w-auto max-w-[84px] object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" loading="lazy" />
+              ) : (
+                <span key={pt.slug} title={pt.name} className="flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-[11px] font-bold text-white" style={{ backgroundColor: pt.accent }}>
+                  {partnerMonogram(pt.name)}
+                </span>
+              )
+            )}
+          </div>
         </div>
       </div>
     </footer>
