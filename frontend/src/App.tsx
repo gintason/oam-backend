@@ -39,6 +39,8 @@ import CarHire from "./pages/travel/CarHire";
 import Pickup from "./pages/travel/Pickup";
 import Hotels from "./pages/travel/Hotels";
 import GiftCards from "./pages/services/GiftCards";
+import Ecommerce from "./pages/services/Ecommerce";
+import EcommerceCompany from "./pages/services/EcommerceCompany";
 import BuyAirtime from "./pages/services/BuyAirtime";
 import BuyElectricity from "./pages/services/BuyElectricity";
 import BuyData from "./pages/services/BuyData";
@@ -113,7 +115,6 @@ export default function App() {
               <Route path="/marketplace/browse" element={<RequireAuth><BrowseListings /></RequireAuth>} />
               <Route path="/marketplace/sell" element={<RequireAuth><SellDashboard /></RequireAuth>} />
               <Route path="/marketplace/post" element={<RequireAuth><PostListing /></RequireAuth>} />
-              <Route path="/marketplace/:id/edit" element={<RequireAuth><PostListing /></RequireAuth>} />
               <Route path="/admin/motors" element={<RequireAuth><MotorsAdmin /></RequireAuth>} />
               <Route path="/marketplace/:id" element={<RequireAuth><ListingDetail /></RequireAuth>} />
               {/* Services — airtime is live; the rest are placeholders for now */}
@@ -124,6 +125,8 @@ export default function App() {
               <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
               <Route path="/services/cable" element={<RequireAuth><BuyCable /></RequireAuth>} />
               <Route path="/services/giftcards" element={<RequireAuth><GiftCards /></RequireAuth>} />
+              <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />
+              <Route path="/ecommerce/:slug" element={<RequireAuth><EcommerceCompany /></RequireAuth>} />
 
               {/* Money */}
               <Route path="/wallet/fund" element={<RequireAuth><FundWallet /></RequireAuth>} />
