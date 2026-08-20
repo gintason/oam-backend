@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, ExternalLink, ShoppingCart, ShieldCheck, Clock } from "lucide-react";
-import { partnerBySlug } from "../../services/ecommerce";
+import { partnerBySlug, partnerMonogram } from "../../services/ecommerce";
 
 export default function EcommerceCompany() {
   const { slug = "" } = useParams();
@@ -36,7 +36,16 @@ export default function EcommerceCompany() {
           <div className="p-6">
             <div className="flex items-center gap-4">
               <span className="flex h-20 w-28 items-center justify-center rounded-xl border border-hairline bg-white p-3">
-                <img src={p.logo} alt={p.name} className="max-h-full max-w-full object-contain" />
+                {p.logo ? (
+                  <img src={p.logo} alt={p.name} className="max-h-full max-w-full object-contain" />
+                ) : (
+                  <span
+                    className="flex h-14 w-14 items-center justify-center rounded-xl text-[18px] font-bold text-white"
+                    style={{ backgroundColor: p.accent }}
+                  >
+                    {partnerMonogram(p.name)}
+                  </span>
+                )}
               </span>
               <div>
                 <h1 className="font-display text-2xl font-semibold text-ink">{p.name}</h1>

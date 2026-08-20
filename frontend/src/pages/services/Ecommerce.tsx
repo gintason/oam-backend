@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag, ExternalLink, Info } from "lucide-react";
-import { ECOMMERCE_PARTNERS } from "../../services/ecommerce";
+import { ECOMMERCE_PARTNERS, partnerMonogram } from "../../services/ecommerce";
 
 /**
  * E-commerce hub — a directory of our affiliate shopping partners. Each opens
@@ -44,7 +44,16 @@ export default function Ecommerce() {
                   </span>
                 )}
                 <span className="flex h-16 w-full items-center justify-center">
-                  <img src={p.logo} alt={p.name} className="max-h-12 max-w-[75%] object-contain" loading="lazy" />
+                  {p.logo ? (
+                    <img src={p.logo} alt={p.name} className="max-h-12 max-w-[75%] object-contain" loading="lazy" />
+                  ) : (
+                    <span
+                      className="flex h-12 w-12 items-center justify-center rounded-xl text-[15px] font-bold text-white"
+                      style={{ backgroundColor: p.accent }}
+                    >
+                      {partnerMonogram(p.name)}
+                    </span>
+                  )}
                 </span>
                 <span className="min-w-0">
                   <span className="block text-[14px] font-semibold text-ink">{p.name}</span>
