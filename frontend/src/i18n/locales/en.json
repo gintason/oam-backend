@@ -58,7 +58,8 @@
       "carHire": "Car Hire",
       "pickup": "Pick Up",
       "marketplace": "Marketplace",
-      "artisans": "Artisans"
+      "artisans": "Artisans",
+      "ecommerce": "E-commerce"
     },
     "verifyBanner": {
       "title": "Verify your account",
@@ -1458,5 +1459,47 @@
     "save": "Save",
     "cancel": "Cancel",
     "rename": "Rename"
+  },
+  "ecommerce": {
+    "title": "E-commerce",
+    "subtitle": "Shop the world's biggest stores through OAM.",
+    "soon": "Soon",
+    "allStores": "All stores",
+    "shopOn": "Shop on {{name}}",
+    "pending": "Our {{name}} partnership is being finalised — shopping opens here shortly.",
+    "popularCategories": "Popular categories",
+    "disclosure": "These are independent partner stores. You shop and pay on the partner's own website — OAM may earn a small commission at no extra cost to you. Prices, availability and delivery are set by each store.",
+    "companyDisclosure": "You'll complete your purchase securely on {{name}}'s own website. OAM may earn a commission at no extra cost to you. Check the store's delivery and returns terms before you buy.",
+    "storeNotFound": "Store not found.",
+    "partners": {
+      "amazon": {
+        "tagline": "The everything store",
+        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
+      },
+      "temu": {
+        "tagline": "Shop like a billionaire",
+        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
+      },
+      "alibaba": {
+        "tagline": "Global wholesale",
+        "blurb": "Source products at wholesale prices directly from verified suppliers."
+      },
+      "banggood": {
+        "tagline": "Gadgets & more",
+        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
+      },
+      "cj": {
+        "tagline": "Dropshipping made easy",
+        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
+      },
+      "shein": {
+        "tagline": "Fashion for less",
+        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
+      },
+      "dhgate": {
+        "tagline": "Wholesale deals",
+        "blurb": "Wholesale and retail across every category, shipped worldwide."
+      }
+    }
   }
 }

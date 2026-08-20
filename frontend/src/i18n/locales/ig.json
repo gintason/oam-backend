@@ -58,7 +58,8 @@
       "carHire": "Mgbazinye ụgbọ ala",
       "pickup": "Nnata",
       "marketplace": "Ahịa",
-      "artisans": "Ndị ǹka"
+      "artisans": "Ndị ǹka",
+      "ecommerce": "Azụmahịa Ọnụ Intanetị"
     },
     "verifyBanner": {
       "title": "Kwenye akaụntụ gị",
@@ -1458,5 +1459,47 @@
     "save": "Chekwaa",
     "cancel": "Kagbuo",
     "rename": "Nyegharịa aha"
+  },
+  "ecommerce": {
+    "title": "Azụmahịa Ọnụ Intanetị",
+    "subtitle": "Zụọ ahịa site na nnukwu ụlọ ahịa ụwa site na OAM.",
+    "soon": "N'oge na-adịghị anya",
+    "allStores": "Ụlọ ahịa niile",
+    "shopOn": "Zụọ ahịa na {{name}}",
+    "pending": "A na-emecha mmekọrịta anyị na {{name}} — ịzụ ahịa ga-emeghe ebe a n'oge na-adịghị anya.",
+    "popularCategories": "Ụdị a ma ama",
+    "disclosure": "Ndị a bụ ụlọ ahịa mmekọ nọ onwe ha. Ị na-azụ ma na-akwụ ụgwọ na weebụsaịtị nke onye mmekọ — OAM nwere ike inweta obere kmishọn na-enweghị ụgwọ ọzọ n'ahụ gị. Ọ bụ ụlọ ahịa ọ bụla na-edozi ọnụ ahịa, ịdị adị na nnyefe.",
+    "companyDisclosure": "Ị ga-emecha ịzụ ahịa gị n'enweghị nsogbu na weebụsaịtị nke {{name}}. OAM nwere ike inweta kmishọn na-enweghị ụgwọ ọzọ. Lelee usoro nnyefe na nloghachi nke ụlọ ahịa tupu ị zụọ.",
+    "storeNotFound": "Achọtaghị ụlọ ahịa.",
+    "partners": {
+      "amazon": {
+        "tagline": "The everything store",
+        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
+      },
+      "temu": {
+        "tagline": "Shop like a billionaire",
+        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
+      },
+      "alibaba": {
+        "tagline": "Global wholesale",
+        "blurb": "Source products at wholesale prices directly from verified suppliers."
+      },
+      "banggood": {
+        "tagline": "Gadgets & more",
+        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
+      },
+      "cj": {
+        "tagline": "Dropshipping made easy",
+        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
+      },
+      "shein": {
+        "tagline": "Fashion for less",
+        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
+      },
+      "dhgate": {
+        "tagline": "Wholesale deals",
+        "blurb": "Wholesale and retail across every category, shipped worldwide."
+      }
+    }
   }
 }

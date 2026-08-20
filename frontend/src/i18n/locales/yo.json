@@ -58,7 +58,8 @@
       "carHire": "Ìháyà ọkọ̀",
       "pickup": "Ìgbàwá",
       "marketplace": "Ọjà",
-      "artisans": "Oníṣẹ́-ọnà"
+      "artisans": "Oníṣẹ́-ọnà",
+      "ecommerce": "Iṣòwò Orí Ayélujára"
     },
     "verifyBanner": {
       "title": "Fọwọ́ sí àkántì rẹ",
@@ -1458,5 +1459,47 @@
     "save": "Fi pamọ́",
     "cancel": "Fagilé",
     "rename": "Sọ orúkọ padà"
+  },
+  "ecommerce": {
+    "title": "Iṣòwò Orí Ayélujára",
+    "subtitle": " Raja láti àwọn ilé ìtajà tó tóbi jù lágbàáyé nípasẹ̀ OAM.",
+    "soon": "Láìpẹ́",
+    "allStores": "Gbogbo ilé ìtajà",
+    "shopOn": "Raja ní {{name}}",
+    "pending": "À ń parí ìfọwọ́sowọ́pọ̀ wa pẹ̀lú {{name}} — ìraja yóò ṣí sílẹ̀ níbí láìpẹ́.",
+    "popularCategories": "Àwọn ẹ̀ka gbajúmọ̀",
+    "disclosure": "Àwọn wọ̀nyí jẹ́ ilé ìtajà alábàáṣiṣẹ́pọ̀ olómìnira. O ń raja o sì ń sanwó lórí ojú-òpó wẹ́ẹ̀bù alábàáṣiṣẹ́pọ̀ — OAM lè gba owó ìdíyelé kékeré láìsí ìnáwó àfikún fún ọ. Iye owó, wíwà àti ìfijíṣẹ́ ni ilé ìtajà kọ̀ọ̀kan ń pinnu.",
+    "companyDisclosure": "Ìwọ yóò parí ìraja rẹ láìséwu lórí ojú-òpó wẹ́ẹ̀bù {{name}}. OAM lè gba owó ìdíyelé láìsí ìnáwó àfikún. Ṣàyẹ̀wò àwọn ìlànà ìfijíṣẹ́ àti ìpadàbọ̀ ilé ìtajà kí o tó raja.",
+    "storeNotFound": "A kò rí ilé ìtajà náà.",
+    "partners": {
+      "amazon": {
+        "tagline": "The everything store",
+        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
+      },
+      "temu": {
+        "tagline": "Shop like a billionaire",
+        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
+      },
+      "alibaba": {
+        "tagline": "Global wholesale",
+        "blurb": "Source products at wholesale prices directly from verified suppliers."
+      },
+      "banggood": {
+        "tagline": "Gadgets & more",
+        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
+      },
+      "cj": {
+        "tagline": "Dropshipping made easy",
+        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
+      },
+      "shein": {
+        "tagline": "Fashion for less",
+        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
+      },
+      "dhgate": {
+        "tagline": "Wholesale deals",
+        "blurb": "Wholesale and retail across every category, shipped worldwide."
+      }
+    }
   }
 }
