@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ShoppingBag, ExternalLink, Info } from "lucide-react";
 import { ECOMMERCE_PARTNERS, partnerMonogram } from "../../services/ecommerce";
 
@@ -8,6 +9,7 @@ import { ECOMMERCE_PARTNERS, partnerMonogram } from "../../services/ecommerce";
  */
 export default function Ecommerce() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-mist">
@@ -16,7 +18,7 @@ export default function Ecommerce() {
           onClick={() => navigate("/dashboard")}
           className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink"
         >
-          <ArrowLeft size={15} strokeWidth={1.75} /> Dashboard
+          <ArrowLeft size={15} strokeWidth={1.75} /> {t("header.nav.dashboard")}
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -24,8 +26,8 @@ export default function Ecommerce() {
             <ShoppingBag size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink">E-commerce</h1>
-            <p className="text-[13px] text-muted">Shop the world's biggest stores through OAM.</p>
+            <h1 className="font-display text-xl font-semibold text-ink">{t("ecommerce.title")}</h1>
+            <p className="text-[13px] text-muted">{t("ecommerce.subtitle")}</p>
           </div>
         </div>
 
@@ -40,7 +42,7 @@ export default function Ecommerce() {
               >
                 {pending && (
                   <span className="absolute right-2 top-2 rounded-md bg-warn/10 px-1.5 py-0.5 text-[9.5px] font-bold uppercase tracking-wide text-warn">
-                    Soon
+                    {t("ecommerce.soon")}
                   </span>
                 )}
                 <span className="flex h-16 w-full items-center justify-center">
@@ -57,7 +59,7 @@ export default function Ecommerce() {
                 </span>
                 <span className="min-w-0">
                   <span className="block text-[14px] font-semibold text-ink">{p.name}</span>
-                  <span className="block truncate text-[11.5px] text-muted">{p.tagline}</span>
+                  <span className="block truncate text-[11.5px] text-muted">{t(`ecommerce.partners.${p.slug}.tagline`, p.tagline)}</span>
                 </span>
               </button>
             );
@@ -67,9 +69,7 @@ export default function Ecommerce() {
         <div className="mt-6 flex items-start gap-2 rounded-xl bg-paper border border-hairline p-4">
           <Info size={16} strokeWidth={1.75} className="mt-0.5 shrink-0 text-muted" />
           <p className="text-[12.5px] leading-relaxed text-muted">
-            These are independent partner stores. You shop and pay on the partner's own website —
-            OAM may earn a small commission at no extra cost to you. Prices, availability and delivery
-            are set by each store. <ExternalLink size={11} className="inline align-[-1px]" /> links open in a new tab.
+            {t("ecommerce.disclosure")} <ExternalLink size={11} className="inline align-[-1px]" />
           </p>
         </div>
       </main>
