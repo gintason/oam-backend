@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import type { ReactElement } from "react";
+import { ECOMMERCE_PARTNERS, partnerMonogram } from "../services/ecommerce";
 
 /** Closing call-to-action, then the footer. */
 
@@ -198,7 +199,20 @@ export function Footer() {
           <p className="text-[13px] text-muted">
             {t("landing.footer.rights", { year: new Date().getFullYear() })}
           </p>
-          <p className="text-[13px] text-muted">{t("landing.footer.developedBy")}</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {ECOMMERCE_PARTNERS.map((pt) =>
+            pt.logo ? (
+              <img key={pt.slug} src={pt.logo} alt={pt.name} title={pt.name}
+                className="h-6 w-auto max-w-[84px] object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0" loading="lazy" />
+            ) : (
+              <span key={pt.slug} title={pt.name}
+                className="flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-[11px] font-bold text-white"
+                style={{ backgroundColor: pt.accent }}>
+                {partnerMonogram(pt.name)}
+              </span>
+            )
+          )}
+        </div>
         </div>
       </div>
     </footer>
