@@ -58,8 +58,7 @@
       "carHire": "เช่ารถ",
       "pickup": "รับสินค้า",
       "marketplace": "มาร์เก็ตเพลส",
-      "artisans": "ช่างฝีมือ",
-      "ecommerce": "อีคอมเมิร์ซ"
+      "artisans": "ช่างฝีมือ"
     },
     "verifyBanner": {
       "title": "ยืนยันบัญชีของคุณ",
@@ -562,7 +561,16 @@
       "phones": "โทรศัพท์",
       "computers": "คอมพิวเตอร์",
       "automobiles": "รถยนต์",
-      "householdappliances": "เครื่องใช้ในบ้าน"
+      "householdappliances": "เครื่องใช้ในบ้าน",
+      "household-appliances": "เครื่องใช้ในบ้าน",
+      "real-estate": "อสังหาริมทรัพย์",
+      "fashion": "แฟชั่น",
+      "furniture": "เฟอร์นิเจอร์",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "เสื้อผ้า",
+      "accessories": "อุปกรณ์เสริม",
+      "equipment": "อุปกรณ์",
+      "others": "อื่นๆ"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "ไม่มีอะไรต้องทำเพิ่ม ระหว่างนี้โปรไฟล์ของคุณแสดงในการค้นหา คุณจึงรับคำถามต่อได้ขณะรอ",
       "submitForReview": "ส่งเพื่อตรวจสอบ",
       "addAllThree": "เพิ่มทั้งสามรายการด้านบนเพื่อส่ง"
+    },
+    "trades": {
+      "mechanic": "ช่างเครื่อง",
+      "plumber": "ช่างประปา",
+      "electrician": "ช่างไฟฟ้า",
+      "carpenter": "ช่างไม้",
+      "painter": "ช่างทาสี",
+      "ac-technician": "ช่างแอร์",
+      "generator-repair": "ซ่อมเครื่องปั่นไฟ",
+      "tiler": "ช่างปูกระเบื้อง",
+      "welder": "ช่างเชื่อม",
+      "bricklayer": "ช่างก่ออิฐ",
+      "hairdresser": "ช่างทำผม",
+      "barber": "ช่างตัดผม",
+      "tailor": "ช่างตัดเสื้อ",
+      "cleaner": "พนักงานทำความสะอาด",
+      "caterer": "ผู้จัดเลี้ยง",
+      "photographer": "ช่างภาพ",
+      "dj": "DJ",
+      "makeup-artist": "ช่างแต่งหน้า",
+      "solar-installer": "ช่างติดตั้งโซลาร์",
+      "plasterer": "ช่างฉาบปูน"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "บันทึก",
     "cancel": "ยกเลิก",
     "rename": "เปลี่ยนชื่อ"
-  },
-  "ecommerce": {
-    "title": "อีคอมเมิร์ซ",
-    "subtitle": "ช้อปจากร้านค้าที่ใหญ่ที่สุดในโลกผ่าน OAM",
-    "soon": "เร็วๆ นี้",
-    "allStores": "ร้านค้าทั้งหมด",
-    "shopOn": "ช้อปที่ {{name}}",
-    "pending": "ความร่วมมือของเรากับ {{name}} กำลังจะเสร็จสมบูรณ์ — การช้อปปิ้งจะเปิดที่นี่เร็วๆ นี้",
-    "popularCategories": "หมวดหมู่ยอดนิยม",
-    "disclosure": "ร้านค้าเหล่านี้เป็นร้านค้าพันธมิตรอิสระ คุณช้อปและชำระเงินบนเว็บไซต์ของพันธมิตรเอง — OAM อาจได้รับค่าคอมมิชชันเล็กน้อยโดยไม่มีค่าใช้จ่ายเพิ่มเติมสำหรับคุณ ราคา ความพร้อมจำหน่าย และการจัดส่งกำหนดโดยร้านค้าแต่ละแห่ง",
-    "companyDisclosure": "คุณจะทำการซื้อให้เสร็จสมบูรณ์อย่างปลอดภัยบนเว็บไซต์ของ {{name}} เอง OAM อาจได้รับค่าคอมมิชชันโดยไม่มีค่าใช้จ่ายเพิ่มเติมสำหรับคุณ โปรดตรวจสอบเงื่อนไขการจัดส่งและการคืนสินค้าของร้านค้าก่อนซื้อ",
-    "storeNotFound": "ไม่พบร้านค้า",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

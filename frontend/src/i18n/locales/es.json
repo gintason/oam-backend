@@ -58,8 +58,7 @@
       "carHire": "Alquiler de coches",
       "pickup": "Recogida",
       "marketplace": "Mercado",
-      "artisans": "Artesanos",
-      "ecommerce": "Comercio electrónico"
+      "artisans": "Artesanos"
     },
     "verifyBanner": {
       "title": "Verifica tu cuenta",
@@ -562,7 +561,16 @@
       "phones": "Teléfonos",
       "computers": "Ordenadores",
       "automobiles": "Automóviles",
-      "householdappliances": "Electrodomésticos"
+      "householdappliances": "Electrodomésticos",
+      "household-appliances": "Electrodomésticos",
+      "real-estate": "Bienes raíces",
+      "fashion": "Moda",
+      "furniture": "Muebles",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Ropa",
+      "accessories": "Accesorios",
+      "equipment": "Equipos",
+      "others": "Otros"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Nada más que hacer. Tu perfil está visible en la búsqueda mientras tanto, así que puedes seguir recibiendo consultas mientras esperas.",
       "submitForReview": "Enviar para revisión",
       "addAllThree": "Añade los tres elementos de arriba para enviar."
+    },
+    "trades": {
+      "mechanic": "Mecánico",
+      "plumber": "Fontanero",
+      "electrician": "Electricista",
+      "carpenter": "Carpintero",
+      "painter": "Pintor",
+      "ac-technician": "Técnico de aire acondicionado",
+      "generator-repair": "Reparación de generadores",
+      "tiler": "Alicatador",
+      "welder": "Soldador",
+      "bricklayer": "Albañil",
+      "hairdresser": "Peluquero",
+      "barber": "Barbero",
+      "tailor": "Sastre",
+      "cleaner": "Limpiador",
+      "caterer": "Servicio de catering",
+      "photographer": "Fotógrafo",
+      "dj": "DJ",
+      "makeup-artist": "Maquillador",
+      "solar-installer": "Instalador solar",
+      "plasterer": "Enlucidor"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Guardar",
     "cancel": "Cancelar",
     "rename": "Renombrar"
-  },
-  "ecommerce": {
-    "title": "Comercio electrónico",
-    "subtitle": "Compra en las tiendas más grandes del mundo a través de OAM.",
-    "soon": "Pronto",
-    "allStores": "Todas las tiendas",
-    "shopOn": "Comprar en {{name}}",
-    "pending": "Estamos finalizando nuestra alianza con {{name}}: las compras se abrirán aquí muy pronto.",
-    "popularCategories": "Categorías populares",
-    "disclosure": "Estas son tiendas asociadas independientes. Compras y pagas en el sitio web del socio; OAM puede ganar una pequeña comisión sin costo adicional para ti. Los precios, la disponibilidad y la entrega los establece cada tienda.",
-    "companyDisclosure": "Completarás tu compra de forma segura en el sitio web de {{name}}. OAM puede ganar una comisión sin costo adicional para ti. Consulta las condiciones de entrega y devolución de la tienda antes de comprar.",
-    "storeNotFound": "Tienda no encontrada.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

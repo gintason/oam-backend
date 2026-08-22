@@ -58,8 +58,7 @@
       "carHire": "Hayar mota",
       "pickup": "Ɗauka",
       "marketplace": "Kasuwa",
-      "artisans": "Masana sana'a",
-      "ecommerce": "Kasuwancin Yanar Gizo"
+      "artisans": "Masana sana'a"
     },
     "verifyBanner": {
       "title": "Tabbatar da asusunka",
@@ -562,7 +561,16 @@
       "phones": "Wayoyi",
       "computers": "Kwamfutoci",
       "automobiles": "Motoci",
-      "householdappliances": "Na'urorin gida"
+      "householdappliances": "Na'urorin gida",
+      "household-appliances": "Kayan gida",
+      "real-estate": "Kadarori",
+      "fashion": "Kayan ado",
+      "furniture": "Kayan daki",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Tufafi",
+      "accessories": "Kayan haɗi",
+      "equipment": "Kayan aiki",
+      "others": "Sauran"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Babu sauran abin yi. Bayanin ka na aiki a bincike a halin yanzu, don haka za ka iya ci gaba da karɓar tambayoyi yayin jira.",
       "submitForReview": "Mika don dubawa",
       "addAllThree": "Ƙara dukan abubuwa uku a sama don mika."
+    },
+    "trades": {
+      "mechanic": "Makanike",
+      "plumber": "Mai famfo",
+      "electrician": "Ma'aikacin lantarki",
+      "carpenter": "Kafinta",
+      "painter": "Mai fenti",
+      "ac-technician": "Injiniyan AC",
+      "generator-repair": "Gyaran janareta",
+      "tiler": "Mai tayal",
+      "welder": "Mai walda",
+      "bricklayer": "Magini",
+      "hairdresser": "Mai kitso",
+      "barber": "Wanzami",
+      "tailor": "Ɗinki",
+      "cleaner": "Mai tsaftacewa",
+      "caterer": "Mai kicin",
+      "photographer": "Mai daukar hoto",
+      "dj": "DJ",
+      "makeup-artist": "Mai shafa kwalliya",
+      "solar-installer": "Mai sanya solar",
+      "plasterer": "Mai filasta"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Ajiye",
     "cancel": "Soke",
     "rename": "Sake suna"
-  },
-  "ecommerce": {
-    "title": "Kasuwancin Yanar Gizo",
-    "subtitle": "Yi siyayya daga manyan shaguna na duniya ta hanyar OAM.",
-    "soon": "Nan ba da jimawa ba",
-    "allStores": "Duk shaguna",
-    "shopOn": "Yi siyayya a {{name}}",
-    "pending": "Ana kammala haɗin gwiwarmu da {{name}} — siyayya zai buɗe a nan nan ba da jimawa ba.",
-    "popularCategories": "Shahararrun rukunoni",
-    "disclosure": "Waɗannan shaguna ne masu zaman kansu na abokan haɗin gwiwa. Kana siyayya kuma kana biya a shafin abokin haɗin gwiwa — OAM na iya samun ƙaramar kwamishan ba tare da ƙarin kuɗi a gare ka ba. Kowane shago ne ke tsara farashi, samuwa da isar da kaya.",
-    "companyDisclosure": "Za ka kammala sayayyarka cikin aminci a shafin {{name}}. OAM na iya samun kwamishan ba tare da ƙarin kuɗi a gare ka ba. Duba sharuɗɗan isarwa da mayarwa na shago kafin ka saya.",
-    "storeNotFound": "Ba a sami shago ba.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

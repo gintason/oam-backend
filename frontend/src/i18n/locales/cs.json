@@ -58,8 +58,7 @@
       "carHire": "Půjčovna aut",
       "pickup": "Vyzvednutí",
       "marketplace": "Tržiště",
-      "artisans": "Řemeslníci",
-      "ecommerce": "E-commerce"
+      "artisans": "Řemeslníci"
     },
     "verifyBanner": {
       "title": "Ověřte svůj účet",
@@ -562,7 +561,16 @@
       "phones": "Telefony",
       "computers": "Počítače",
       "automobiles": "Automobily",
-      "householdappliances": "Domácí spotřebiče"
+      "householdappliances": "Domácí spotřebiče",
+      "household-appliances": "Domácí spotřebiče",
+      "real-estate": "Nemovitosti",
+      "fashion": "Móda",
+      "furniture": "Nábytek",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Oblečení",
+      "accessories": "Doplňky",
+      "equipment": "Vybavení",
+      "others": "Ostatní"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Nic dalšího není třeba. Váš profil je mezitím ve vyhledávání, takže během čekání můžete dál přijímat poptávky.",
       "submitForReview": "Odeslat ke kontrole",
       "addAllThree": "Přidejte všechny tři položky výše a odešlete."
+    },
+    "trades": {
+      "mechanic": "Mechanik",
+      "plumber": "Instalatér",
+      "electrician": "Elektrikář",
+      "carpenter": "Truhlář",
+      "painter": "Malíř",
+      "ac-technician": "Technik klimatizace",
+      "generator-repair": "Oprava generátorů",
+      "tiler": "Obkladač",
+      "welder": "Svářeč",
+      "bricklayer": "Zedník",
+      "hairdresser": "Kadeřník",
+      "barber": "Holič",
+      "tailor": "Krejčí",
+      "cleaner": "Uklízeč",
+      "caterer": "Cateringová firma",
+      "photographer": "Fotograf",
+      "dj": "DJ",
+      "makeup-artist": "Vizážista",
+      "solar-installer": "Montér solárních panelů",
+      "plasterer": "Omítkář"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Uložit",
     "cancel": "Zrušit",
     "rename": "Přejmenovat"
-  },
-  "ecommerce": {
-    "title": "E-commerce",
-    "subtitle": "Nakupujte v největších obchodech světa přes OAM.",
-    "soon": "Brzy",
-    "allStores": "Všechny obchody",
-    "shopOn": "Nakupovat na {{name}}",
-    "pending": "Naše partnerství s {{name}} se finalizuje — nákup zde bude brzy k dispozici.",
-    "popularCategories": "Oblíbené kategorie",
-    "disclosure": "Toto jsou nezávislé partnerské obchody. Nakupujete a platíte na webu partnera — OAM může získat malou provizi bez dalších nákladů pro vás. Ceny, dostupnost a doručení určuje každý obchod.",
-    "companyDisclosure": "Nákup dokončíte bezpečně na webu {{name}}. OAM může získat provizi bez dalších nákladů pro vás. Před nákupem si ověřte podmínky doručení a vrácení obchodu.",
-    "storeNotFound": "Obchod nenalezen.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

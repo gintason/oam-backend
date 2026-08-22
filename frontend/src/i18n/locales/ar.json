@@ -58,8 +58,7 @@
       "carHire": "تأجير سيارات",
       "pickup": "توصيل",
       "marketplace": "السوق",
-      "artisans": "الحرفيون",
-      "ecommerce": "التجارة الإلكترونية"
+      "artisans": "الحرفيون"
     },
     "verifyBanner": {
       "title": "وثّق حسابك",
@@ -562,7 +561,16 @@
       "phones": "هواتف",
       "computers": "حواسيب",
       "automobiles": "سيارات",
-      "householdappliances": "أجهزة منزلية"
+      "householdappliances": "أجهزة منزلية",
+      "household-appliances": "أجهزة منزلية",
+      "real-estate": "عقارات",
+      "fashion": "أزياء",
+      "furniture": "أثاث",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "ملابس",
+      "accessories": "إكسسوارات",
+      "equipment": "معدات",
+      "others": "أخرى"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "لا شيء آخر لتفعله. ملفك ظاهر في البحث في هذه الأثناء، فيمكنك مواصلة استقبال الاستفسارات أثناء الانتظار.",
       "submitForReview": "إرسال للمراجعة",
       "addAllThree": "أضِف العناصر الثلاثة أعلاه للإرسال."
+    },
+    "trades": {
+      "mechanic": "ميكانيكي",
+      "plumber": "سبّاك",
+      "electrician": "كهربائي",
+      "carpenter": "نجّار",
+      "painter": "دهّان",
+      "ac-technician": "فني تكييف",
+      "generator-repair": "إصلاح المولدات",
+      "tiler": "مبلّط",
+      "welder": "لحّام",
+      "bricklayer": "بنّاء",
+      "hairdresser": "مصفّف شعر",
+      "barber": "حلّاق",
+      "tailor": "خيّاط",
+      "cleaner": "عامل نظافة",
+      "caterer": "متعهد طعام",
+      "photographer": "مصوّر",
+      "dj": "DJ",
+      "makeup-artist": "خبير مكياج",
+      "solar-installer": "فني تركيب طاقة شمسية",
+      "plasterer": "لبّاخ"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "حفظ",
     "cancel": "إلغاء",
     "rename": "إعادة تسمية"
-  },
-  "ecommerce": {
-    "title": "التجارة الإلكترونية",
-    "subtitle": "تسوّق من أكبر المتاجر في العالم عبر OAM.",
-    "soon": "قريبًا",
-    "allStores": "كل المتاجر",
-    "shopOn": "تسوّق على {{name}}",
-    "pending": "نعمل على إتمام شراكتنا مع {{name}} — سيتاح التسوّق هنا قريبًا.",
-    "popularCategories": "الفئات الشائعة",
-    "disclosure": "هذه متاجر شريكة مستقلة. تتسوّق وتدفع على الموقع الخاص بالشريك — وقد تحصل OAM على عمولة بسيطة دون أي تكلفة إضافية عليك. الأسعار والتوفر والتوصيل يحددها كل متجر.",
-    "companyDisclosure": "ستُكمل عملية الشراء بأمان على موقع {{name}} نفسه. وقد تحصل OAM على عمولة دون أي تكلفة إضافية عليك. راجع شروط التوصيل والإرجاع لدى المتجر قبل الشراء.",
-    "storeNotFound": "المتجر غير موجود.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

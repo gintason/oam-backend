@@ -58,8 +58,7 @@
       "carHire": "Изнајмљивање аута",
       "pickup": "Преузимање",
       "marketplace": "Пијаца",
-      "artisans": "Мајстори",
-      "ecommerce": "Е-трговина"
+      "artisans": "Мајстори"
     },
     "verifyBanner": {
       "title": "Потврдите налог",
@@ -562,7 +561,16 @@
       "phones": "Телефони",
       "computers": "Рачунари",
       "automobiles": "Аутомобили",
-      "householdappliances": "Кућни апарати"
+      "householdappliances": "Кућни апарати",
+      "household-appliances": "Кућни апарати",
+      "real-estate": "Некретнине",
+      "fashion": "Мода",
+      "furniture": "Намештај",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Одећа",
+      "accessories": "Додаци",
+      "equipment": "Опрема",
+      "others": "Остало"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Ништа више не треба да радите. Ваш профил је у међувремену активан у претрази, па можете наставити да примате упите док чекате.",
       "submitForReview": "Пошаљи на преглед",
       "addAllThree": "Додајте све три ставке изнад да бисте послали."
+    },
+    "trades": {
+      "mechanic": "Механичар",
+      "plumber": "Водоинсталатер",
+      "electrician": "Електричар",
+      "carpenter": "Столар",
+      "painter": "Молер",
+      "ac-technician": "Техничар за климе",
+      "generator-repair": "Поправка генератора",
+      "tiler": "Керамичар",
+      "welder": "Заваривач",
+      "bricklayer": "Зидар",
+      "hairdresser": "Фризер",
+      "barber": "Берберин",
+      "tailor": "Кројач",
+      "cleaner": "Чистач",
+      "caterer": "Кетеринг",
+      "photographer": "Фотограф",
+      "dj": "DJ",
+      "makeup-artist": "Шминкер",
+      "solar-installer": "Монтер соларних панела",
+      "plasterer": "Малтерџија"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Сачувај",
     "cancel": "Откажи",
     "rename": "Преименуј"
-  },
-  "ecommerce": {
-    "title": "Е-трговина",
-    "subtitle": "Купујте у највећим продавницама на свету преко OAM-а.",
-    "soon": "Ускоро",
-    "allStores": "Све продавнице",
-    "shopOn": "Купуј на {{name}}",
-    "pending": "Наше партнерство са {{name}} се финализује — куповина ће се овде ускоро отворити.",
-    "popularCategories": "Популарне категорије",
-    "disclosure": "Ово су независне партнерске продавнице. Купујете и плаћате на сајту партнера — OAM може зарадити малу провизију без додатних трошкова за вас. Цене, доступност и испоруку одређује свака продавница.",
-    "companyDisclosure": "Куповину ћете безбедно завршити на сајту {{name}}. OAM може зарадити провизију без додатних трошкова за вас. Проверите услове испоруке и повраћаја продавнице пре куповине.",
-    "storeNotFound": "Продавница није пронађена.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

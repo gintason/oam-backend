@@ -58,8 +58,7 @@
       "carHire": "Ενοικίαση αυτοκινήτου",
       "pickup": "Παραλαβή",
       "marketplace": "Αγορά",
-      "artisans": "Τεχνίτες",
-      "ecommerce": "Ηλεκτρονικό εμπόριο"
+      "artisans": "Τεχνίτες"
     },
     "verifyBanner": {
       "title": "Επαληθεύστε τον λογαριασμό σας",
@@ -562,7 +561,16 @@
       "phones": "Τηλέφωνα",
       "computers": "Υπολογιστές",
       "automobiles": "Αυτοκίνητα",
-      "householdappliances": "Οικιακές συσκευές"
+      "householdappliances": "Οικιακές συσκευές",
+      "household-appliances": "Οικιακές συσκευές",
+      "real-estate": "Ακίνητα",
+      "fashion": "Μόδα",
+      "furniture": "Έπιπλα",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Ρούχα",
+      "accessories": "Αξεσουάρ",
+      "equipment": "Εξοπλισμός",
+      "others": "Άλλα"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Τίποτα άλλο να κάνετε. Το προφίλ σας είναι εν τω μεταξύ ενεργό στην αναζήτηση, ώστε να συνεχίσετε να δέχεστε αιτήματα όσο περιμένετε.",
       "submitForReview": "Υποβολή για έλεγχο",
       "addAllThree": "Προσθέστε και τα τρία στοιχεία παραπάνω για υποβολή."
+    },
+    "trades": {
+      "mechanic": "Μηχανικός",
+      "plumber": "Υδραυλικός",
+      "electrician": "Ηλεκτρολόγος",
+      "carpenter": "Ξυλουργός",
+      "painter": "Ελαιοχρωματιστής",
+      "ac-technician": "Τεχνικός κλιματισμού",
+      "generator-repair": "Επισκευή γεννητριών",
+      "tiler": "Πλακάς",
+      "welder": "Συγκολλητής",
+      "bricklayer": "Κτίστης",
+      "hairdresser": "Κομμωτής",
+      "barber": "Κουρέας",
+      "tailor": "Ράφτης",
+      "cleaner": "Καθαριστής",
+      "caterer": "Τροφοδότης",
+      "photographer": "Φωτογράφος",
+      "dj": "DJ",
+      "makeup-artist": "Μακιγιέρ",
+      "solar-installer": "Τεχνικός φωτοβολταϊκών",
+      "plasterer": "Σοβατζής"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Αποθήκευση",
     "cancel": "Άκυρο",
     "rename": "Μετονομασία"
-  },
-  "ecommerce": {
-    "title": "Ηλεκτρονικό εμπόριο",
-    "subtitle": "Ψωνίστε από τα μεγαλύτερα καταστήματα του κόσμου μέσω του OAM.",
-    "soon": "Σύντομα",
-    "allStores": "Όλα τα καταστήματα",
-    "shopOn": "Αγορά στο {{name}}",
-    "pending": "Η συνεργασία μας με το {{name}} ολοκληρώνεται — οι αγορές θα ανοίξουν εδώ σύντομα.",
-    "popularCategories": "Δημοφιλείς κατηγορίες",
-    "disclosure": "Αυτά είναι ανεξάρτητα συνεργαζόμενα καταστήματα. Ψωνίζετε και πληρώνετε στον ιστότοπο του συνεργάτη — το OAM ενδέχεται να κερδίσει μια μικρή προμήθεια χωρίς επιπλέον κόστος για εσάς. Οι τιμές, η διαθεσιμότητα και η παράδοση καθορίζονται από κάθε κατάστημα.",
-    "companyDisclosure": "Θα ολοκληρώσετε την αγορά σας με ασφάλεια στον ιστότοπο του {{name}}. Το OAM ενδέχεται να κερδίσει προμήθεια χωρίς επιπλέον κόστος για εσάς. Ελέγξτε τους όρους παράδοσης και επιστροφής του καταστήματος πριν αγοράσετε.",
-    "storeNotFound": "Το κατάστημα δεν βρέθηκε.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

@@ -58,8 +58,7 @@
       "carHire": "租车",
       "pickup": "取货",
       "marketplace": "市场",
-      "artisans": "工匠",
-      "ecommerce": "电子商务"
+      "artisans": "工匠"
     },
     "verifyBanner": {
       "title": "验证您的账户",
@@ -562,7 +561,16 @@
       "phones": "手机",
       "computers": "电脑",
       "automobiles": "汽车",
-      "householdappliances": "家用电器"
+      "householdappliances": "家用电器",
+      "household-appliances": "家用电器",
+      "real-estate": "房地产",
+      "fashion": "时尚",
+      "furniture": "家具",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "服装",
+      "accessories": "配饰",
+      "equipment": "设备",
+      "others": "其他"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "无需再做任何事。其间您的资料在搜索中生效，因此等待期间您可继续接收咨询。",
       "submitForReview": "提交审核",
       "addAllThree": "添加上方全部三项以提交。"
+    },
+    "trades": {
+      "mechanic": "机械师",
+      "plumber": "水管工",
+      "electrician": "电工",
+      "carpenter": "木匠",
+      "painter": "油漆工",
+      "ac-technician": "空调技师",
+      "generator-repair": "发电机维修",
+      "tiler": "瓷砖工",
+      "welder": "焊工",
+      "bricklayer": "砌砖工",
+      "hairdresser": "美发师",
+      "barber": "理发师",
+      "tailor": "裁缝",
+      "cleaner": "清洁工",
+      "caterer": "餐饮服务",
+      "photographer": "摄影师",
+      "dj": "DJ",
+      "makeup-artist": "化妆师",
+      "solar-installer": "太阳能安装工",
+      "plasterer": "抹灰工"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "保存",
     "cancel": "取消",
     "rename": "重命名"
-  },
-  "ecommerce": {
-    "title": "电子商务",
-    "subtitle": "通过 OAM 在全球最大的商店购物。",
-    "soon": "即将上线",
-    "allStores": "所有商店",
-    "shopOn": "在 {{name}} 购物",
-    "pending": "我们与 {{name}} 的合作正在敲定中——购物功能即将在此开放。",
-    "popularCategories": "热门分类",
-    "disclosure": "这些是独立的合作商店。您在合作伙伴的网站上购物和付款——OAM 可能会赚取少量佣金，您无需支付额外费用。价格、库存和配送由各商店自行决定。",
-    "companyDisclosure": "您将在 {{name}} 的官方网站上安全完成购买。OAM 可能会赚取佣金，您无需支付额外费用。购买前请查看商店的配送和退货条款。",
-    "storeNotFound": "未找到商店。",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

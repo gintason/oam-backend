@@ -58,8 +58,7 @@
       "carHire": "Autovermietung",
       "pickup": "Abholung",
       "marketplace": "Marktplatz",
-      "artisans": "Handwerker",
-      "ecommerce": "E-Commerce"
+      "artisans": "Handwerker"
     },
     "verifyBanner": {
       "title": "Verifiziere dein Konto",
@@ -562,7 +561,16 @@
       "phones": "Telefone",
       "computers": "Computer",
       "automobiles": "Automobile",
-      "householdappliances": "Haushaltsgeräte"
+      "householdappliances": "Haushaltsgeräte",
+      "household-appliances": "Haushaltsgeräte",
+      "real-estate": "Immobilien",
+      "fashion": "Mode",
+      "furniture": "Möbel",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Kleidung",
+      "accessories": "Zubehör",
+      "equipment": "Ausrüstung",
+      "others": "Sonstiges"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Nichts weiter zu tun. Ihr Profil ist währenddessen in der Suche sichtbar, sodass Sie weiter Anfragen erhalten können, während Sie warten.",
       "submitForReview": "Zur Prüfung einreichen",
       "addAllThree": "Fügen Sie alle drei Elemente oben hinzu, um einzureichen."
+    },
+    "trades": {
+      "mechanic": "Mechaniker",
+      "plumber": "Klempner",
+      "electrician": "Elektriker",
+      "carpenter": "Zimmermann",
+      "painter": "Maler",
+      "ac-technician": "Klimatechniker",
+      "generator-repair": "Generatorreparatur",
+      "tiler": "Fliesenleger",
+      "welder": "Schweißer",
+      "bricklayer": "Maurer",
+      "hairdresser": "Friseur",
+      "barber": "Barbier",
+      "tailor": "Schneider",
+      "cleaner": "Reinigungskraft",
+      "caterer": "Caterer",
+      "photographer": "Fotograf",
+      "dj": "DJ",
+      "makeup-artist": "Make-up-Artist",
+      "solar-installer": "Solarteur",
+      "plasterer": "Verputzer"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Speichern",
     "cancel": "Abbrechen",
     "rename": "Umbenennen"
-  },
-  "ecommerce": {
-    "title": "E-Commerce",
-    "subtitle": "Kaufe über OAM in den größten Shops der Welt ein.",
-    "soon": "Bald",
-    "allStores": "Alle Shops",
-    "shopOn": "Bei {{name}} einkaufen",
-    "pending": "Unsere Partnerschaft mit {{name}} wird gerade finalisiert – der Einkauf ist hier in Kürze möglich.",
-    "popularCategories": "Beliebte Kategorien",
-    "disclosure": "Dies sind unabhängige Partner-Shops. Du kaufst und bezahlst auf der Website des Partners – OAM erhält ggf. eine kleine Provision ohne Mehrkosten für dich. Preise, Verfügbarkeit und Lieferung legt jeder Shop selbst fest.",
-    "companyDisclosure": "Du schließt deinen Kauf sicher auf der Website von {{name}} ab. OAM erhält ggf. eine Provision ohne Mehrkosten für dich. Prüfe vor dem Kauf die Liefer- und Rückgabebedingungen des Shops.",
-    "storeNotFound": "Shop nicht gefunden.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

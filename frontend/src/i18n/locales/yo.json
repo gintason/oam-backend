@@ -58,8 +58,7 @@
       "carHire": "Ìháyà ọkọ̀",
       "pickup": "Ìgbàwá",
       "marketplace": "Ọjà",
-      "artisans": "Oníṣẹ́-ọnà",
-      "ecommerce": "Iṣòwò Orí Ayélujára"
+      "artisans": "Oníṣẹ́-ọnà"
     },
     "verifyBanner": {
       "title": "Fọwọ́ sí àkántì rẹ",
@@ -562,7 +561,16 @@
       "phones": "Àwọn Fóònù",
       "computers": "Àwọn Kọ̀ǹpútà",
       "automobiles": "Àwọn Ọkọ̀ Ayọ́kẹ́lẹ́",
-      "householdappliances": "Ohun-èlò Inú Ilé"
+      "householdappliances": "Ohun-èlò Inú Ilé",
+      "household-appliances": "Ohun èlò ilé",
+      "real-estate": "Ilé àti ilẹ̀",
+      "fashion": "Aṣọ àti ọ̀ṣọ́",
+      "furniture": "Ohun ọ̀ṣọ́ inú ilé",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Aṣọ",
+      "accessories": "Ohun ìṣaralóge",
+      "equipment": "Ohun èlò iṣẹ́",
+      "others": "Àwọn mìíràn"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Kò sí ohun mìíràn láti ṣe. Profáìlì rẹ wà láàyè nínú ìwádìí ní àkókò yìí, nítorí náà o lè máa gba àwọn ìbéèrè bí o ṣe ń dúró.",
       "submitForReview": "Fi ránṣẹ́ fún àyẹ̀wò",
       "addAllThree": "Fi gbogbo àwọn nǹkan mẹ́ta sí òkè kún láti fi ránṣẹ́."
+    },
+    "trades": {
+      "mechanic": "Onímọ̀ ẹ̀rọ",
+      "plumber": "Onítọ̀gbẹ̀",
+      "electrician": "Onímọ̀ iná",
+      "carpenter": "Gbẹ́nàgbẹ́nà",
+      "painter": "Apẹ́tẹ̀",
+      "ac-technician": "Atúnṣe ẹ̀rọ AC",
+      "generator-repair": "Atúnṣe ẹ̀rọ iná",
+      "tiler": "Atẹ́lẹ̀",
+      "welder": "Aléwélé",
+      "bricklayer": "Abánbékè",
+      "hairdresser": "Onídìrí",
+      "barber": "Onígbàjámọ̀",
+      "tailor": "Aránṣọ",
+      "cleaner": "Afọ̀mọ́",
+      "caterer": "Alápòṣọ oúnjẹ",
+      "photographer": "Ayàwòrán",
+      "dj": "DJ",
+      "makeup-artist": "Aṣaralóge",
+      "solar-installer": "Atẹ̀wọ́ solar",
+      "plasterer": "Apẹ́lẹ́bẹ́"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Fi pamọ́",
     "cancel": "Fagilé",
     "rename": "Sọ orúkọ padà"
-  },
-  "ecommerce": {
-    "title": "Iṣòwò Orí Ayélujára",
-    "subtitle": " Raja láti àwọn ilé ìtajà tó tóbi jù lágbàáyé nípasẹ̀ OAM.",
-    "soon": "Láìpẹ́",
-    "allStores": "Gbogbo ilé ìtajà",
-    "shopOn": "Raja ní {{name}}",
-    "pending": "À ń parí ìfọwọ́sowọ́pọ̀ wa pẹ̀lú {{name}} — ìraja yóò ṣí sílẹ̀ níbí láìpẹ́.",
-    "popularCategories": "Àwọn ẹ̀ka gbajúmọ̀",
-    "disclosure": "Àwọn wọ̀nyí jẹ́ ilé ìtajà alábàáṣiṣẹ́pọ̀ olómìnira. O ń raja o sì ń sanwó lórí ojú-òpó wẹ́ẹ̀bù alábàáṣiṣẹ́pọ̀ — OAM lè gba owó ìdíyelé kékeré láìsí ìnáwó àfikún fún ọ. Iye owó, wíwà àti ìfijíṣẹ́ ni ilé ìtajà kọ̀ọ̀kan ń pinnu.",
-    "companyDisclosure": "Ìwọ yóò parí ìraja rẹ láìséwu lórí ojú-òpó wẹ́ẹ̀bù {{name}}. OAM lè gba owó ìdíyelé láìsí ìnáwó àfikún. Ṣàyẹ̀wò àwọn ìlànà ìfijíṣẹ́ àti ìpadàbọ̀ ilé ìtajà kí o tó raja.",
-    "storeNotFound": "A kò rí ilé ìtajà náà.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }

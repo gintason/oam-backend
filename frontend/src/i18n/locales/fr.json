@@ -58,8 +58,7 @@
       "carHire": "Location de voiture",
       "pickup": "Ramassage",
       "marketplace": "Marché",
-      "artisans": "Artisans",
-      "ecommerce": "E-commerce"
+      "artisans": "Artisans"
     },
     "verifyBanner": {
       "title": "Vérifiez votre compte",
@@ -562,7 +561,16 @@
       "phones": "Téléphones",
       "computers": "Ordinateurs",
       "automobiles": "Automobiles",
-      "householdappliances": "Appareils électroménagers"
+      "householdappliances": "Appareils électroménagers",
+      "household-appliances": "Électroménager",
+      "real-estate": "Immobilier",
+      "fashion": "Mode",
+      "furniture": "Meubles",
+      "oam-motors": "O.A.M Motors",
+      "clothes": "Vêtements",
+      "accessories": "Accessoires",
+      "equipment": "Équipement",
+      "others": "Autres"
     }
   },
   "wallet": {
@@ -977,6 +985,28 @@
       "pendingBody": "Rien de plus à faire. Votre profil est visible dans la recherche entre-temps, vous pouvez donc continuer à recevoir des demandes en attendant.",
       "submitForReview": "Soumettre pour examen",
       "addAllThree": "Ajoutez les trois éléments ci-dessus pour soumettre."
+    },
+    "trades": {
+      "mechanic": "Mécanicien",
+      "plumber": "Plombier",
+      "electrician": "Électricien",
+      "carpenter": "Charpentier",
+      "painter": "Peintre",
+      "ac-technician": "Technicien clim",
+      "generator-repair": "Réparation de générateur",
+      "tiler": "Carreleur",
+      "welder": "Soudeur",
+      "bricklayer": "Maçon",
+      "hairdresser": "Coiffeur",
+      "barber": "Barbier",
+      "tailor": "Tailleur",
+      "cleaner": "Agent de nettoyage",
+      "caterer": "Traiteur",
+      "photographer": "Photographe",
+      "dj": "DJ",
+      "makeup-artist": "Maquilleur",
+      "solar-installer": "Installateur solaire",
+      "plasterer": "Plâtrier"
     }
   },
   "messages": {
@@ -1459,47 +1489,5 @@
     "save": "Enregistrer",
     "cancel": "Annuler",
     "rename": "Renommer"
-  },
-  "ecommerce": {
-    "title": "E-commerce",
-    "subtitle": "Achetez dans les plus grandes boutiques du monde via OAM.",
-    "soon": "Bientôt",
-    "allStores": "Toutes les boutiques",
-    "shopOn": "Acheter sur {{name}}",
-    "pending": "Notre partenariat avec {{name}} est en cours de finalisation — les achats seront bientôt disponibles ici.",
-    "popularCategories": "Catégories populaires",
-    "disclosure": "Ce sont des boutiques partenaires indépendantes. Vous achetez et payez sur le site du partenaire — OAM peut percevoir une petite commission, sans frais supplémentaires pour vous. Les prix, la disponibilité et la livraison sont fixés par chaque boutique.",
-    "companyDisclosure": "Vous finaliserez votre achat en toute sécurité sur le site de {{name}}. OAM peut percevoir une commission, sans frais supplémentaires pour vous. Vérifiez les conditions de livraison et de retour de la boutique avant d'acheter.",
-    "storeNotFound": "Boutique introuvable.",
-    "partners": {
-      "amazon": {
-        "tagline": "The everything store",
-        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
-      },
-      "temu": {
-        "tagline": "Shop like a billionaire",
-        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
-      },
-      "alibaba": {
-        "tagline": "Global wholesale",
-        "blurb": "Source products at wholesale prices directly from verified suppliers."
-      },
-      "banggood": {
-        "tagline": "Gadgets & more",
-        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
-      },
-      "cj": {
-        "tagline": "Dropshipping made easy",
-        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
-      },
-      "shein": {
-        "tagline": "Fashion for less",
-        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
-      },
-      "dhgate": {
-        "tagline": "Wholesale deals",
-        "blurb": "Wholesale and retail across every category, shipped worldwide."
-      }
-    }
   }
 }
