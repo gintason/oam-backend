@@ -15,6 +15,7 @@ PROVIDER_MODULES = [
     "integrations.vtu.mock",
     "integrations.vtu.vtung.adapter",            # NEW (real VTU.ng)
     "integrations.payments.paystack.adapter",
+    "integrations.payments.flutterwave.adapter",
     "integrations.payments.mock",
     "integrations.payouts.mock",
     "integrations.payouts.paystack.adapter",

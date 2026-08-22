@@ -146,9 +146,12 @@ class BoostWebhookView(APIView):
     authentication_classes = []
 
     def post(self, request):
+        from django.conf import settings
         from integrations.base import ProviderFactory
-        gateway = ProviderFactory.get("payments")
         headers = {k.lower(): v for k, v in request.headers.items()}
+        provider = ("flutterwave" if headers.get("verif-hash")
+                    else settings.DEFAULT_PROVIDERS.get("payments", "paystack"))
+        gateway = ProviderFactory.get("payments", provider)
         verify = getattr(gateway, "verify_webhook", None)
         if verify and not verify(request.body, headers):
             return Response({"detail": "Invalid signature."}, status=status.HTTP_403_FORBIDDEN)
@@ -157,7 +160,11 @@ class BoostWebhookView(APIView):
         except ValueError:
             payload = {}
         data = payload.get("data", {}) or {}
-        reference = data.get("reference", "")
-        if payload.get("event") == "charge.success" and reference.startswith("BOOST-"):
+        reference = data.get("reference") or data.get("tx_ref") or ""
+        event = payload.get("event", "")
+        ok = (event == "charge.success") or (
+            event == "charge.completed"
+            and str(data.get("status", "")).lower() == "successful")
+        if ok and reference.startswith("BOOST-"):
             HomeServiceService.activate_by_reference(reference)
         return Response({"status": "ok"})

@@ -34,4 +34,5 @@ urlpatterns = [
     path("subscription/subscribe/", SubscribeView.as_view(), name="mkt-subscribe"),
     path("subscription/verify/", SubscriptionVerifyView.as_view(), name="mkt-subscribe-verify"),
     path("subscription/webhook/paystack/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook"),
+    path("subscription/webhook/flutterwave/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook-flw"),
 ]

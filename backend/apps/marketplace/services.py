@@ -9,6 +9,7 @@ from datetime import timedelta
 from django.db import transaction
 from django.utils import timezone
 
+from django.conf import settings
 from integrations.base import ProviderFactory
 from integrations.base.dto import TxnStatus
 from integrations.base.exceptions import ProviderError
@@ -89,7 +90,7 @@ class MarketplaceService:
         reference = f"SUB-{uuid.uuid4().hex[:20]}"
         email = getattr(user, "email", "") or f"{user.id}@users.oam"
 
-        gateway = ProviderFactory.get("payments")
+        gateway = ProviderFactory.get("payments", settings.LISTING_UPGRADE_PROVIDER)
         try:
             init = gateway.initialize_charge(
                 amount=price, currency=currency.upper(), email=email,
@@ -136,7 +137,7 @@ class MarketplaceService:
         if payment.status == SubscriptionPayment.Status.PAID:
             return MarketplaceService.get_subscription(user), payment  # already done
 
-        gateway = ProviderFactory.get("payments")
+        gateway = ProviderFactory.get("payments", payment.provider or None)
         try:
             status = gateway.verify_charge(reference)
         except ProviderError as exc:

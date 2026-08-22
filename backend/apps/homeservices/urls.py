@@ -31,6 +31,7 @@ urlpatterns = [
     path("artisans/boost/", BoostInitView.as_view(), name="hs-boost"),
     path("artisans/boost/verify/", BoostVerifyView.as_view(), name="hs-boost-verify"),
     path("artisans/boost/webhook/paystack/", BoostWebhookView.as_view(), name="hs-boost-webhook"),
+    path("artisans/boost/webhook/flutterwave/", BoostWebhookView.as_view(), name="hs-boost-webhook-flw"),
     path("artisans/verification/", MyVerificationView.as_view(), name="hs-verification"),
     path("artisans/verification/attach/", AttachDocumentView.as_view(), name="hs-verif-attach"),
     path("artisans/verification/submit/", SubmitVerificationView.as_view(), name="hs-verif-submit"),

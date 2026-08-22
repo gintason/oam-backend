@@ -241,9 +241,12 @@ class SubscriptionWebhookView(APIView):
     authentication_classes = []
 
     def post(self, request):
+        from django.conf import settings
         from integrations.base import ProviderFactory
-        gateway = ProviderFactory.get("payments")
         headers = {k.lower(): v for k, v in request.headers.items()}
+        provider = ("flutterwave" if headers.get("verif-hash")
+                    else settings.DEFAULT_PROVIDERS.get("payments", "paystack"))
+        gateway = ProviderFactory.get("payments", provider)
         verify = getattr(gateway, "verify_webhook", None)
         if verify and not verify(request.body, headers):
             return Response({"detail": "Invalid signature."}, status=status.HTTP_403_FORBIDDEN)
@@ -253,7 +256,10 @@ class SubscriptionWebhookView(APIView):
             payload = {}
         event = payload.get("event", "")
         data = payload.get("data", {}) or {}
-        reference = data.get("reference", "")
-        if event == "charge.success" and reference:
+        reference = data.get("reference") or data.get("tx_ref") or ""
+        ok = (event == "charge.success") or (
+            event == "charge.completed"
+            and str(data.get("status", "")).lower() == "successful")
+        if ok and reference:
             MarketplaceService.activate_by_reference(reference)
         return Response({"status": "ok"})

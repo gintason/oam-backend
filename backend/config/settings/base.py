@@ -255,7 +255,10 @@ PROVIDER_CONFIG = {
     "payments": {
         "paystack": {"secret_key": env("PAYSTACK_SECRET_KEY", default=""),
                      "public_key": env("PAYSTACK_PUBLIC_KEY", default="")},
-        "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default="")},
+        "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default=""),
+                        "public_key": env("FLUTTERWAVE_PUBLIC_KEY", default=""),
+                        "secret_hash": env("FLUTTERWAVE_SECRET_HASH", default=""),
+                        "redirect_url": env("FLUTTERWAVE_REDIRECT_URL", default="")},
     },
     "vtu": {
         # Generic adapter — point it at your chosen aggregator (VTpass,
@@ -364,6 +367,12 @@ EMAIL_BACKEND = env(
 )
 
 PAYSTACK_CALLBACK_URL = env("PAYSTACK_CALLBACK_URL", default="")
+FLUTTERWAVE_REDIRECT_URL = env("FLUTTERWAVE_REDIRECT_URL", default=PAYSTACK_CALLBACK_URL)
+
+# Gateway used ONLY for Marketplace/Artisan listing-upgrade payments (Pro/
+# Premium seller tiers and artisan boosts). Everything else uses
+# DEFAULT_PROVIDERS["payments"]. Set to "paystack" to revert.
+LISTING_UPGRADE_PROVIDER = env("LISTING_UPGRADE_PROVIDER", default="flutterwave")
 
 # --- Cloudinary (file uploads) ----------------------------------------------
 # The browser uploads straight to Cloudinary using a signature generated here,

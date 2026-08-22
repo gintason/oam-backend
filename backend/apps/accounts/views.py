@@ -93,7 +93,7 @@ class ResendOTPView(APIView):
                          "channel": channel, "destination": destination}, status=status.HTTP_200_OK)
 
 
-# ----------------------- Login / Logout / Me -----------------------
+# ----------------------- Login / Logout / Me ----------------------- 
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
