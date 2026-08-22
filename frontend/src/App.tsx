@@ -52,6 +52,7 @@ import Transfer from "./pages/services/Transfer";
 import FundCallback from "./pages/services/FundCallback";
 import ServiceCallback from "./pages/services/ServiceCallback";
 import PaymentCallback from "./pages/services/PaymentCallback";
+import FlutterwaveCallback from "./pages/services/FlutterwaveCallback";
 
 /**
  * App root: global providers + routes.
@@ -120,6 +121,7 @@ export default function App() {
               {/* Services — airtime is live; the rest are placeholders for now */}
               <Route path="/services/airtime" element={<RequireAuth><BuyAirtime /></RequireAuth>} />
               <Route path="/payment/callback" element={<RequireAuth><PaymentCallback /></RequireAuth>} />
+              <Route path="/payment/flutterwave-callback" element={<RequireAuth><FlutterwaveCallback /></RequireAuth>} />
               <Route path="/services/callback" element={<RequireAuth><ServiceCallback /></RequireAuth>} />
               <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
               <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
