@@ -64,6 +64,18 @@ class PaystackWebhookView(APIView):
         return Response({"status": "ok"}, status=status.HTTP_200_OK)
 
 
+class PricingView(APIView):
+    """GET /api/v1/payments/pricing/ -- supported currencies + per-currency listing
+    prices, so the web/mobile apps can show local prices and only offer currencies
+    that are actually enabled. Public; no money moves here."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        from apps.payments.pricing import pricing_payload
+        return Response(pricing_payload())
+
+
 class DevSimulateSuccessView(APIView):
     """
     DEV ONLY. Simulates a confirmed payment for a pending funding reference so you

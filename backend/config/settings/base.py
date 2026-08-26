@@ -236,6 +236,12 @@ CELERY_TASK_ROUTES = {
 def _provider(key, default=""):
     return env(key, default=default).split("#")[0].strip()
 
+SUPPORTED_PAYMENT_CURRENCIES = [
+    c.strip().upper()
+    for c in env("SUPPORTED_PAYMENT_CURRENCIES", default="NGN").split(",")
+    if c.strip()
+]
+
 DEFAULT_PROVIDERS = {
     "payments": _provider("DEFAULT_PROVIDER_PAYMENTS", "paystack"),
     "vtu": _provider("DEFAULT_PROVIDER_VTU", "default"),

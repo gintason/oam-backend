@@ -5,11 +5,13 @@ from .views import (
     FundInitView,
     FundVerifyView,
     PaystackWebhookView,
+    PricingView,
 )
 
 urlpatterns = [
     path("fund/", FundInitView.as_view(), name="fund-init"),
     path("fund/verify/<str:reference>/", FundVerifyView.as_view(), name="fund-verify"),
     path("webhook/paystack/", PaystackWebhookView.as_view(), name="paystack-webhook"),
+    path("pricing/", PricingView.as_view(), name="pricing"),
     path("dev/simulate-success/", DevSimulateSuccessView.as_view(), name="dev-simulate-success"),
 ]

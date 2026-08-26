@@ -11,6 +11,7 @@ from django.utils import timezone
 
 from django.conf import settings
 from integrations.base import ProviderFactory
+from apps.payments.pricing import resolve_payment_currency, subscription_price
 from integrations.base.dto import TxnStatus
 from integrations.base.exceptions import ProviderError
 
@@ -86,7 +87,8 @@ class MarketplaceService:
         tier = str(tier).lower()
         if tier not in SUBSCRIPTION_PRICES:
             raise MarketplaceError("Choose a valid paid tier: pro or premium.")
-        price = SUBSCRIPTION_PRICES[tier]
+        currency = resolve_payment_currency(currency)
+        price = subscription_price(tier, currency)
         reference = f"SUB-{uuid.uuid4().hex[:20]}"
         email = getattr(user, "email", "") or f"{user.id}@users.oam"
 

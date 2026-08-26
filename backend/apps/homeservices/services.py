@@ -11,6 +11,7 @@ from django.utils import timezone
 
 from django.conf import settings
 from integrations.base import ProviderFactory
+from apps.payments.pricing import resolve_payment_currency, boost_price
 from integrations.base.dto import TxnStatus
 from integrations.base.exceptions import ProviderError
 
@@ -82,7 +83,8 @@ class HomeServiceService:
         if not hasattr(user, "artisan_profile"):
             raise HomeServiceError("Create your artisan profile before boosting.")
 
-        price = BOOST_PACKAGES[days]
+        currency = resolve_payment_currency(currency)
+        price = boost_price(days, currency)
         reference = f"BOOST-{uuid.uuid4().hex[:20]}"
         email = getattr(user, "email", "") or f"{user.id}@users.oam"
         gateway = ProviderFactory.get("payments", settings.LISTING_UPGRADE_PROVIDER)
