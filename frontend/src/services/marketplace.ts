@@ -107,8 +107,8 @@ export const marketplaceApi = {
     return data;
   },
 
-  async subscribe(tier: "premium" | "pro"): Promise<{ authorization_url: string; reference: string }> {
-    const { data } = await api.post("/marketplace/subscription/subscribe/", { tier });
+  async subscribe(tier: "premium" | "pro", currency = "NGN"): Promise<{ authorization_url: string; reference: string }> {
+    const { data } = await api.post("/marketplace/subscription/subscribe/", { tier, currency });
     return data;
   },
 

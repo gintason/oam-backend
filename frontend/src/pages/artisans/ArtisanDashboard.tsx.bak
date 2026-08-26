@@ -16,8 +16,6 @@ import {
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
 import { naira } from "../../lib/format";
-import { pricingApi } from "../../services/pricing";
-import { useCurrency, CURRENCIES, type CurrencyCode } from "../../currency/CurrencyContext";
 import { useTranslation } from "react-i18next";
 
 const EMPTY: ArtisanWrite = {
@@ -133,21 +131,8 @@ export default function ArtisanDashboard() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["artisan-videos"] }),
   });
 
-  const pricing = useQuery({ queryKey: ["payments-pricing"], queryFn: pricingApi.get });
-  const supportedCcy = pricing.data?.supported_currencies ?? ["NGN"];
-  const { currency: displayCcy } = useCurrency();
-  const [payCcy, setPayCcy] = useState<string>("NGN");
-  useEffect(() => {
-    setPayCcy(supportedCcy.includes(displayCcy.code) ? displayCcy.code : "NGN");
-  }, [pricing.data, displayCcy.code]);
-  function boostPrice(days: number): string {
-    const p = pricing.data?.boost?.[String(days)]?.[payCcy];
-    const n = p != null ? Number(p) : BOOST_TIERS.find((b) => b.days === days)?.price ?? 0;
-    return `${CURRENCIES[payCcy as CurrencyCode]?.symbol ?? ""}${n.toLocaleString()}`;
-  }
-
   const boost = useMutation({
-    mutationFn: (days: number) => homeServicesApi.startBoost(days, payCcy),
+    mutationFn: (days: number) => homeServicesApi.startBoost(days),
     onSuccess: (data) => { window.location.href = data.authorization_url; },
     onError: (err) => {
       setPendingDays(null);
@@ -305,19 +290,6 @@ export default function ArtisanDashboard() {
               </p>
             )}
 
-            {supportedCcy.length > 1 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {supportedCcy.map((c) => (
-                  <button
-                    key={c}
-                    onClick={() => setPayCcy(c)}
-                    className={`h-8 rounded-full border px-3 text-[12.5px] font-medium transition ${payCcy === c ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}
-                  >
-                    {CURRENCIES[c as CurrencyCode]?.symbol} {c}
-                  </button>
-                ))}
-              </div>
-            )}
             <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
               {BOOST_TIERS.map((tier) => (
                 <button
@@ -332,7 +304,7 @@ export default function ArtisanDashboard() {
                 >
                   <p className="text-[13.5px] font-bold text-ink">{tier.label}</p>
                   <p className="mt-0.5 text-[17px] font-bold text-brand-red tabular">
-                    {boostPrice(tier.days)}
+                    {naira(tier.price)}
                   </p>
                   {pendingDays === tier.days && (
                     <p className="mt-1 inline-flex items-center gap-1 text-[11.5px] font-semibold text-brand-red">

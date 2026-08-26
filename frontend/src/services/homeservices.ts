@@ -89,8 +89,8 @@ export const homeServicesApi = {
     return data;
   },
 
-  async startBoost(days: number): Promise<{ authorization_url: string; reference: string }> {
-    const { data } = await api.post("/homeservices/artisans/boost/", { days });
+  async startBoost(days: number, currency = "NGN"): Promise<{ authorization_url: string; reference: string }> {
+    const { data } = await api.post("/homeservices/artisans/boost/", { days, currency });
     return data;
   },
 
