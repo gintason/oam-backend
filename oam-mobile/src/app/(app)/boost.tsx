@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, ScrollView, Pressable, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -7,9 +7,12 @@ import { ArrowLeft, Check, Rocket, Star, CheckCircle2, Clock, XCircle } from "lu
 import { Screen, Text, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors } from "@/shared/theme";
-import { naira, shortDate } from "@/shared/lib/format";
+import { shortDate } from "@/shared/lib/format";
 import { homeServicesApi } from "@/features/artisans/api/homeservices-api";
 import { CheckoutModal } from "@/features/payments/ui/CheckoutModal";
+import { pricingApi } from "@/features/payments/api/pricing-api";
+import { PaymentCurrencyChips } from "@/features/payments/ui/PaymentCurrencyChips";
+import { useCurrency, CURRENCIES, type CurrencyCode } from "@/features/currency";
 
 const BOOST_TIERS = [
   { key: "premium", label: "Premium", days: 30, price: 2500, perks: ["Featured for 30 days", "Ranks above standard artisans", "The green Featured badge"] },
@@ -28,12 +31,33 @@ export default function Boost() {
   const mine = useQuery({ queryKey: ["artisans", "me"], queryFn: homeServicesApi.me, retry: false });
   const isFeatured = !!mine.data?.is_featured;
 
+  const pricing = useQuery({ queryKey: ["payments", "pricing"], queryFn: pricingApi.get });
+  const supported = pricing.data?.supported_currencies ?? ["NGN"];
+  const { currency: displayCcy } = useCurrency();
+  const [payCcy, setPayCcy] = useState<string>("NGN");
+  useEffect(() => {
+    setPayCcy(supported.includes(displayCcy.code) ? displayCcy.code : "NGN");
+  }, [pricing.data, displayCcy.code]);
+
+  function priceForDays(days: number): number {
+    const p = pricing.data?.boost?.[String(days)]?.[payCcy];
+    return p != null ? Number(p) : (BOOST_TIERS.find((b) => b.days === days)?.price ?? 0);
+  }
+  function fmtCcy(amount: number): string {
+    const sym = CURRENCIES[payCcy as CurrencyCode]?.symbol ?? "";
+    const digits = payCcy === "NGN" || amount >= 1000 || Number.isInteger(amount) ? 0 : 2;
+    return `${sym}${Number(amount).toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits })}`;
+  }
+
   const [checkout, setCheckout] = useState<{ url: string; reference: string } | null>(null);
+  const [pendingDays, setPendingDays] = useState<number | null>(null);
   const [phase, setPhase] = useState<Phase>("plans");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
 
   const start = useMutation({
-    mutationFn: (days: number) => homeServicesApi.startBoost(days),
+    mutationFn: (days: number) => homeServicesApi.startBoost(days, payCcy),
+    onMutate: (days) => setPendingDays(days),
+    onSettled: () => setPendingDays(null),
     onSuccess: (data) => setCheckout({ url: data.authorization_url, reference: data.reference }),
     onError: (err) => {
       setPhase("result");
@@ -125,6 +149,8 @@ export default function Boost() {
           </View>
         ) : null}
 
+        <PaymentCurrencyChips options={supported} value={payCcy} onChange={setPayCcy} />
+
         <View style={{ gap: 12, marginTop: 16 }}>
           {BOOST_TIERS.map((tier) => (
             <View key={tier.key} style={{ borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>
@@ -133,7 +159,7 @@ export default function Boost() {
                   <Text variant="title">{tier.label}</Text>
                   <Text variant="caption" color="muted">{t("artisans.boost.days", "{{days}} days featured", { days: tier.days })}</Text>
                 </View>
-                <Text variant="title" color="ink">{naira(tier.price)}</Text>
+                <Text variant="title" color="ink">{fmtCcy(priceForDays(tier.days))}</Text>
               </View>
               <View style={{ gap: 6, marginTop: 12 }}>
                 {tier.perks.map((perk) => (
@@ -147,7 +173,8 @@ export default function Boost() {
                 <Button
                   title={isFeatured ? t("artisans.boost.extend", "Extend with {{label}}", { label: tier.label }) : t("artisans.boost.choose", "Boost · {{label}}", { label: tier.label })}
                   onPress={() => start.mutate(tier.days)}
-                  loading={start.isPending}
+                  loading={pendingDays === tier.days}
+                  disabled={start.isPending && pendingDays !== tier.days}
                 />
               </View>
             </View>

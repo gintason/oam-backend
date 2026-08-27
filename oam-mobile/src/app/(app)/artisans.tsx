@@ -65,15 +65,15 @@ export default function Artisans() {
         ) : null}
 
         {isArtisan ? (
-          <Pressable onPress={() => router.push("/boost")} style={{ marginTop: 12, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 18, flexDirection: "row", alignItems: "center", gap: 14 }}>
-            <View style={{ height: 46, width: 46, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(227,16,18,0.10)" }}>
-              <Rocket size={22} strokeWidth={1.75} color={colors.brand.red} />
+          <Pressable onPress={() => router.push("/boost")} style={{ marginTop: 12, borderRadius: 18, backgroundColor: colors.brand.green, padding: 18, flexDirection: "row", alignItems: "center", gap: 14 }}>
+            <View style={{ height: 46, width: 46, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.18)" }}>
+              <Rocket size={22} strokeWidth={1.75} color="#FFFFFF" />
             </View>
             <View style={{ flex: 1 }}>
-              <Text variant="title">{t("artisans.boost.hubTitle", "Boost your profile")}</Text>
-              <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("artisans.boost.hubDesc", "Get featured and rank higher in search.")}</Text>
+              <Text variant="title" color="paper">{t("artisans.boost.hubTitle", "Boost your profile")}</Text>
+              <Text variant="caption" color="paper" style={{ marginTop: 2, opacity: 0.85 }}>{t("artisans.boost.hubDesc", "Get featured and rank higher in search.")}</Text>
             </View>
-            <ChevronRight size={20} color={colors.muted} />
+            <ChevronRight size={20} color="#FFFFFF" />
           </Pressable>
         ) : null}
 

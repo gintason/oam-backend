@@ -2,7 +2,7 @@ import { View, ScrollView, Pressable, ActivityIndicator, Image } from "react-nat
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle } from "lucide-react-native";
+import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { naira } from "@/shared/lib/format";
@@ -53,6 +53,18 @@ export default function Marketplace() {
             <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("marketplace.home.sellDesc")}</Text>
           </Pressable>
         </View>
+
+        {/* Seller plans — bold call-to-action so it reads as a tappable button */}
+        <Pressable onPress={() => router.push("/upgrade")} style={{ marginTop: 12, borderRadius: 16, backgroundColor: colors.brand.green, padding: 16, flexDirection: "row", alignItems: "center", gap: 14 }}>
+          <View style={{ height: 42, width: 42, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255,255,255,0.18)" }}>
+            <Crown size={20} strokeWidth={1.75} color="#FFFFFF" />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text variant="label" color="paper">{t("marketplace.upgrade.hubTitle", "Upgrade to Pro")}</Text>
+            <Text variant="caption" color="paper" style={{ marginTop: 2, opacity: 0.85 }}>{t("marketplace.upgrade.hubDesc", "List more items and get seen first.")}</Text>
+          </View>
+          <ChevronRight size={20} color="#FFFFFF" />
+        </Pressable>
 
         {/* Categories */}
         {cats.length > 0 ? (

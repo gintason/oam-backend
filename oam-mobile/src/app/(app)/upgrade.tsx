@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, ScrollView, Pressable, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -7,9 +7,11 @@ import { ArrowLeft, Check, Crown, CheckCircle2, Clock, XCircle } from "lucide-re
 import { Screen, Text, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors } from "@/shared/theme";
-import { naira } from "@/shared/lib/format";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { CheckoutModal } from "@/features/payments/ui/CheckoutModal";
+import { pricingApi } from "@/features/payments/api/pricing-api";
+import { PaymentCurrencyChips } from "@/features/payments/ui/PaymentCurrencyChips";
+import { useCurrency, CURRENCIES, type CurrencyCode } from "@/features/currency";
 
 const SELLER_TIERS = [
   { key: "free", label: "Free", price: 0, perks: ["Up to 3 active listings", "Message buyers in-app"] },
@@ -29,12 +31,33 @@ export default function Upgrade() {
   const sub = useQuery({ queryKey: ["marketplace", "subscription"], queryFn: marketplaceApi.subscription });
   const current = sub.data?.active_tier ?? "free";
 
+  const pricing = useQuery({ queryKey: ["payments", "pricing"], queryFn: pricingApi.get });
+  const supported = pricing.data?.supported_currencies ?? ["NGN"];
+  const { currency: displayCcy } = useCurrency();
+  const [payCcy, setPayCcy] = useState<string>("NGN");
+  useEffect(() => {
+    setPayCcy(supported.includes(displayCcy.code) ? displayCcy.code : "NGN");
+  }, [pricing.data, displayCcy.code]);
+
+  function priceFor(tierKey: string): number {
+    const p = pricing.data?.subscription?.[tierKey]?.[payCcy];
+    return p != null ? Number(p) : (SELLER_TIERS.find((s) => s.key === tierKey)?.price ?? 0);
+  }
+  function fmtCcy(amount: number): string {
+    const sym = CURRENCIES[payCcy as CurrencyCode]?.symbol ?? "";
+    const digits = payCcy === "NGN" || amount >= 1000 || Number.isInteger(amount) ? 0 : 2;
+    return `${sym}${Number(amount).toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits })}`;
+  }
+
   const [checkout, setCheckout] = useState<{ url: string; reference: string } | null>(null);
+  const [pendingTier, setPendingTier] = useState<"premium" | "pro" | null>(null);
   const [phase, setPhase] = useState<Phase>("plans");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
 
   const start = useMutation({
-    mutationFn: (tier: "premium" | "pro") => marketplaceApi.subscribe(tier),
+    mutationFn: (tier: "premium" | "pro") => marketplaceApi.subscribe(tier, payCcy),
+    onMutate: (tier) => setPendingTier(tier),
+    onSettled: () => setPendingTier(null),
     onSuccess: (data) => setCheckout({ url: data.authorization_url, reference: data.reference }),
     onError: (err) => {
       setPhase("result");
@@ -120,6 +143,8 @@ export default function Upgrade() {
           <View><Text variant="heading">{t("marketplace.upgrade.title", "Seller plans")}</Text><Text variant="caption" color="muted">{t("marketplace.upgrade.subtitle", "List more and get seen first.")}</Text></View>
         </View>
 
+        <PaymentCurrencyChips options={supported} value={payCcy} onChange={setPayCcy} />
+
         <View style={{ gap: 12, marginTop: 16 }}>
           {SELLER_TIERS.map((tier) => {
             const isCurrent = tier.key === current;
@@ -133,7 +158,7 @@ export default function Upgrade() {
                       <Text variant="caption" color="green">{t("marketplace.upgrade.current", "Current plan")}</Text>
                     </View>
                   ) : (
-                    <Text variant="title" color="ink">{tier.price === 0 ? t("marketplace.upgrade.freePrice", "Free") : `${naira(tier.price)}${t("marketplace.upgrade.perMonth", "/mo")}`}</Text>
+                    <Text variant="title" color="ink">{tier.price === 0 ? t("marketplace.upgrade.freePrice", "Free") : `${fmtCcy(priceFor(tier.key))}${t("marketplace.upgrade.perMonth", "/mo")}`}</Text>
                   )}
                 </View>
                 <View style={{ gap: 6, marginTop: 12 }}>
@@ -149,7 +174,8 @@ export default function Upgrade() {
                     <Button
                       title={t("marketplace.upgrade.choose", "Choose {{label}}", { label: tier.label })}
                       onPress={() => start.mutate(tier.key as "premium" | "pro")}
-                      loading={start.isPending}
+                      loading={pendingTier === tier.key}
+                      disabled={start.isPending && pendingTier !== tier.key}
                     />
                   </View>
                 ) : null}

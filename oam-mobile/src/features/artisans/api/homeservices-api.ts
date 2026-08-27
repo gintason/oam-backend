@@ -17,8 +17,8 @@ export const homeServicesApi = {
   register: (input: ArtisanWrite) => api.post<ArtisanDetail>("/homeservices/artisans/register/", input).then((r) => r.data),
 
   /** Start a profile boost — returns the Flutterwave checkout link + our reference. */
-  startBoost: (days: number) =>
-    api.post<{ authorization_url: string; reference: string }>("/homeservices/artisans/boost/", { days })
+  startBoost: (days: number, currency = "NGN") =>
+    api.post<{ authorization_url: string; reference: string }>("/homeservices/artisans/boost/", { days, currency })
       .then((r) => r.data),
 
   /** Confirm the boost after checkout; the backend verifies with the gateway and features the profile. */

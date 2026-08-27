@@ -1,4 +1,61 @@
+#!/usr/bin/env python3
 """
+Harden the Flutterwave payment-initialisation payload so the hosted checkout
+stops crashing on "Pay" (TypeError: Cannot read properties of undefined
+(reading 'switch') in card-payment.vue).
+
+Root cause: the payload we POST to /v3/payments was missing `payment_options`
+and sent an incomplete `customer` (email only). Flutterwave's card component
+then hits an undefined config branch and throws.
+
+This patch:
+  1. Rewrites integrations/payments/flutterwave/adapter.py so initialize_charge
+     sends a strict, non-null payload:
+       - payment_options: "card"        (never null/empty)
+       - customer: { email, name, phonenumber? }   (name/phone from metadata,
+         safe fallbacks so nothing is null)
+       - customizations: { title, description }
+       - redirect_url only when configured (never empty)
+       - amount as string, currency upper-cased and non-null
+     tx_ref stays our unique per-attempt reference (already a fresh UUID), and
+     verify still works by that same reference.
+  2. Passes the buyer's name + phone into the metadata from both upgrade flows
+     (marketplace subscription, artisan boost) so the customer object is complete.
+
+Frontends already redirect to the hosted checkout link (data.link) — web via
+window.location, mobile via the checkout WebView — so no inline modal to change.
+
+RUN FROM THE BACKEND ROOT:
+    python3 flutterwave_payload_patch/apply_flutterwave_payload.py
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:200]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# --------------------------------------------------------- 1. rewrite adapter
+ADAPTER = r'''"""
 Flutterwave payment gateway adapter (API v3).
 
 Used for Marketplace and Artisan listing-upgrade payments (Pro/Premium tiers and
@@ -109,3 +166,33 @@ class FlutterwaveGateway(PaymentGateway):
         expected = str(self.config.get("secret_hash", ""))
         got = str((headers or {}).get("verif-hash", ""))
         return bool(expected) and hmac.compare_digest(expected, got)
+'''
+pkg = _p("integrations", "payments", "flutterwave")
+os.makedirs(pkg, exist_ok=True)
+init_file = os.path.join(pkg, "__init__.py")
+if not os.path.exists(init_file):
+    open(init_file, "w").close()
+open(os.path.join(pkg, "adapter.py"), "w", encoding="utf-8").write(ADAPTER)
+print("  + wrote integrations/payments/flutterwave/adapter.py (strict payload)")
+
+# --------------------------------------------- 2. pass name/phone in metadata
+_NAME = ('(f"{getattr(user, \'first_name\', \'\')} {getattr(user, \'last_name\', \'\')}".strip()'
+         ' or getattr(user, "email", "") or "OAM Customer")')
+
+edit("apps/marketplace/services.py", [(
+    '                metadata={"purpose": "marketplace_subscription", "tier": tier,\n'
+    '                          "user": str(user.id)},',
+    '                metadata={"purpose": "marketplace_subscription", "tier": tier,\n'
+    '                          "user": str(user.id),\n'
+    f'                          "name": {_NAME},\n'
+    '                          "phone": getattr(user, "phone", "") or ""},',
+)])
+
+edit("apps/homeservices/services.py", [(
+    '                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id)},',
+    '                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id),\n'
+    f'                          "name": {_NAME},\n'
+    '                          "phone": getattr(user, "phone", "") or ""},',
+)])
+
+print("\nDONE. Flutterwave payload hardened (payment_options=card, full customer, no nulls).")

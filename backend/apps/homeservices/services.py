@@ -91,7 +91,9 @@ class HomeServiceService:
         try:
             init = gateway.initialize_charge(
                 amount=price, currency=currency.upper(), email=email, reference=reference,
-                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id)},
+                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id),
+                          "name": (f"{getattr(user, 'first_name', '')} {getattr(user, 'last_name', '')}".strip() or getattr(user, "email", "") or "OAM Customer"),
+                          "phone": getattr(user, "phone", "") or ""},
             )
         except ProviderError as exc:
             raise HomeServiceError(f"Could not start payment: {exc}")

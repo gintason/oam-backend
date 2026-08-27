@@ -32,8 +32,8 @@ export const marketplaceApi = {
   subscription: () => api.get<Subscription>("/marketplace/subscription/").then((r) => r.data),
 
   /** Start a Pro/Premium upgrade — returns the Flutterwave checkout link + our reference. */
-  subscribe: (tier: "premium" | "pro") =>
-    api.post<{ authorization_url: string; reference: string }>("/marketplace/subscription/subscribe/", { tier })
+  subscribe: (tier: "premium" | "pro", currency = "NGN") =>
+    api.post<{ authorization_url: string; reference: string }>("/marketplace/subscription/subscribe/", { tier, currency })
       .then((r) => r.data),
 
   /** Confirm the upgrade after checkout; the backend verifies with the gateway and activates the tier. */
