@@ -114,6 +114,12 @@ class HomeServiceService:
                 return
             p.status = BoostPayment.Status.PAID
             p.save(update_fields=["status", "updated_at"])
+            try:
+                from apps.referrals.hooks import settle_referral
+                settle_referral(user=p.user, oam_profit=p.amount,
+                                currency=p.currency, source_reference=p.reference)
+            except Exception:
+                pass
             profile = ArtisanProfile.objects.select_for_update().filter(user=p.user).first()
             if profile:
                 now = timezone.now()

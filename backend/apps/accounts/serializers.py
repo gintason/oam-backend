@@ -24,6 +24,7 @@ class RegisterSerializer(serializers.Serializer):
     preferred_language = serializers.ChoiceField(
         choices=[code for code, _ in settings.LANGUAGES], default="en"
     )
+    referral_code = serializers.CharField(required=False, allow_blank=True, allow_null=True, max_length=120)
 
     def validate(self, attrs):
         email = (attrs.get("email") or "").strip().lower() or None

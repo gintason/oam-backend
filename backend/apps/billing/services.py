@@ -387,6 +387,12 @@ class BillingService:
                               metadata={"order": str(order.id)})
         order.cost_amount = cost
         order.revenue_amount = order.amount - cost
+        try:
+            from apps.referrals.hooks import settle_referral
+            settle_referral(user=order.wallet.user, oam_profit=order.revenue_amount,
+                            currency=order.currency, source_reference=order.reference)
+        except Exception:
+            pass
 
     @staticmethod
     def _release(order):

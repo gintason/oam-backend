@@ -130,6 +130,12 @@ class MarketplaceService:
             sub.tier = p.tier
             sub.expires_at = base + timedelta(days=p.period_days)
             sub.save(update_fields=["tier", "expires_at", "updated_at"])
+            try:
+                from apps.referrals.hooks import settle_referral
+                settle_referral(user=p.user, oam_profit=p.amount,
+                                currency=p.currency, source_reference=p.reference)
+            except Exception:
+                pass
         return sub
 
     @staticmethod

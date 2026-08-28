@@ -2,12 +2,13 @@ import { View, ScrollView, Pressable, ActivityIndicator, Alert, Dimensions } fro
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import {
-  Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
+  Menu, Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
   Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Ticket, type LucideIcon,
 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { useAuthStore } from "@/features/auth";
+import { useDrawer } from "@/features/navigation";
 import { useWallets, useTransactions, pickHeadline, BalanceCard, TransactionRow } from "@/features/wallet";
 
 function greetingKey(): string {
@@ -104,6 +105,7 @@ export default function Home() {
   const router = useRouter();
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
+  const drawer = useDrawer();
 
   const wallets = useWallets();
   const headline = pickHeadline(wallets.data?.wallets);
@@ -132,6 +134,9 @@ export default function Home() {
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: H_PADDING, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
+        <Pressable onPress={() => drawer.open()} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 12, backgroundColor: colors.mist, alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+          <Menu size={22} color={colors.ink} />
+        </Pressable>
         <Text variant="body" color="muted">
           {t(greetingKey())}
         </Text>

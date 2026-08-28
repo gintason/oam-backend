@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Local apps
     "apps.common",
     "apps.affiliates",      # affiliate link generation + click/conversion tracking
+    "apps.referrals",       # user referral links + 5% commission engine
     # Domain apps are added phase by phase:
      "apps.accounts",
      "apps.wallet",

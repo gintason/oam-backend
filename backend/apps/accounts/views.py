@@ -48,6 +48,13 @@ class RegisterView(APIView):
         serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        ref_code = serializer.validated_data.get("referral_code")
+        if ref_code:
+            try:
+                from apps.referrals.services import ReferralService
+                ReferralService.attach_referral(user, ref_code)
+            except Exception:
+                pass
         channel, destination = _channel_and_destination(user)
         issue_otp(user, purpose=OTPCode.Purpose.SIGNUP, channel=channel, destination=destination)
         return Response(

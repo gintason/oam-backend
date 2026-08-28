@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { StatusBar } from "expo-status-bar";
 import { queryClient } from "./query-client";
 import { CurrencyProvider } from "@/features/currency";
+import { DrawerProvider } from "@/features/navigation";
 
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
@@ -12,8 +13,10 @@ export function AppProviders({ children }: { children: ReactNode }) {
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <CurrencyProvider>
-            <StatusBar style="dark" />
-            {children}
+            <DrawerProvider>
+              <StatusBar style="dark" />
+              {children}
+            </DrawerProvider>
           </CurrencyProvider>
         </QueryClientProvider>
       </SafeAreaProvider>
