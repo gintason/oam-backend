@@ -82,9 +82,12 @@ class BillingService:
         provider = ProviderFactory.get("vtu")
         result, error = None, None
         try:
+            provider_amount = order.amount
+            if order.category == "betting":
+                provider_amount = Decimal(str((order.metadata or {}).get("betting_amount") or order.amount))
             result = provider.purchase(VTURequest(
                 service=order.category, operator=order.biller.code,
-                recipient=order.recipient, amount=order.amount,
+                recipient=order.recipient, amount=provider_amount,
                 plan_code=order.plan_code, request_id=order.reference,
             ))
         except ProviderError as exc:
@@ -292,6 +295,37 @@ class BillingService:
         order.meter_type = str(meter_type)
         order.customer_name = cv.customer_name
         order.save(update_fields=["meter_type", "customer_name", "updated_at"])
+        return BillingService.execute(order)
+
+    @staticmethod
+    def purchase_betting(*, user, code, customer_id, amount, verification_id,
+                         currency="NGN") -> BillOrder:
+        """Fund a betting account. The user pays amount + a flat ₦50 OAM service
+        fee; the betting account is credited with `amount`."""
+        biller = BillingService._resolve_biller("NG", "betting", code)
+        cv = BillingService._require_verification(user, biller.code, customer_id, verification_id)
+        try:
+            amount = Decimal(str(amount).replace(",", ""))
+        except Exception:
+            raise BillingError("Invalid amount.")
+        if amount < Decimal("100"):
+            raise BillingError("Minimum funding is ₦100.")
+        if amount > Decimal("100000"):
+            raise BillingError("Maximum funding is ₦100,000.")
+        fee = Decimal("50")
+        total = amount + fee
+        order = BillingService.create_and_hold(
+            user=user, country="NG", category="betting", code=code,
+            recipient=str(customer_id), amount=total, currency=currency,
+        )
+        order.cost_amount = amount
+        order.revenue_amount = fee
+        order.customer_name = cv.customer_name
+        md = dict(order.metadata or {})
+        md.update({"betting_amount": str(amount), "fee": str(fee), "service_id": biller.code})
+        order.metadata = md
+        order.save(update_fields=["cost_amount", "revenue_amount", "customer_name",
+                                  "metadata", "updated_at"])
         return BillingService.execute(order)
 
     @staticmethod

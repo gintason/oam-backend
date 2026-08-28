@@ -121,6 +121,12 @@ class VtuNgAdapter(VTUProvider):
                        "service_id": req.operator.lower(), "variation_id": req.plan_code,
                        "amount": int(req.amount)}
             resp = self._post("/api/v2/electricity", payload)
+        elif req.service == "betting":
+            # service_id is the exact provider name (e.g. "Bet9ja"); amount is the
+            # betting credit (the OAM fee is kept in the wallet layer, not sent here).
+            payload = {"request_id": request_id, "customer_id": req.recipient,
+                       "service_id": req.operator, "amount": int(req.amount)}
+            resp = self._post("/api/v2/betting", payload)
         else:
             # data / electricity / cable arrive in later chunks
             raise ProviderValidationError("vtung", f"service '{req.service}' not integrated yet")

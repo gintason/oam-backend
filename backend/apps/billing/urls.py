@@ -1,6 +1,7 @@
 from django.urls import path
 from .card import CardPurchaseStartView, CardPurchaseStatusView
 from .views import (
+    BettingFundView,
     BillerListView,
     DataPlansView,
     TvPlansView,
@@ -21,6 +22,7 @@ urlpatterns = [
     path("data-plans/", DataPlansView.as_view(), name="data-plans"),
     path("tv-plans/", TvPlansView.as_view(), name="tv-plans"),
     path("verify-customer/", VerifyCustomerView.as_view(), name="verify-customer"),
+    path("betting/fund/", BettingFundView.as_view(), name="betting-fund"),
     path("purchase/", PurchaseView.as_view(), name="bill-purchase"),
     path("orders/", OrderListView.as_view(), name="bill-orders"),
     path("orders/refresh/", OrdersRefreshAllView.as_view(), name="orders-refresh-all"),

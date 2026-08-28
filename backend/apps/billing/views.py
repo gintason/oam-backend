@@ -87,6 +87,36 @@ class PurchaseView(APIView):
         return Response(BillOrderSerializer(order).data, status=code)
 
 
+class BettingFundView(APIView):
+    """POST /billing/betting/fund/ {code, customer_id, amount, verification_id}.
+    User pays amount + ₦50; the betting account is credited with amount."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        d = request.data
+        code = d.get("code") or d.get("service_id")
+        customer_id = d.get("customer_id") or d.get("recipient")
+        amount = d.get("amount")
+        verification_id = d.get("verification_id")
+        if not code or not customer_id or amount in (None, "") or not verification_id:
+            return Response({"detail": "code, customer_id, amount and verification_id are required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            order = BillingService.purchase_betting(
+                user=request.user, code=code, customer_id=customer_id,
+                amount=amount, verification_id=verification_id,
+                currency=d.get("currency", "NGN"),
+            )
+        except InsufficientFunds as exc:
+            return Response({"detail": str(exc), "reason": "insufficient_funds"},
+                            status=status.HTTP_402_PAYMENT_REQUIRED)
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        http = status.HTTP_201_CREATED if order.status == BillOrder.Status.SUCCESS \
+            else status.HTTP_200_OK
+        return Response(BillOrderSerializer(order).data, status=http)
+
+
 class DataPlansView(APIView):
     """GET /data-plans/?country=NG&code=MTN — live data bundles for a network."""
     permission_classes = [IsAuthenticated, IsVerified]
@@ -118,8 +148,8 @@ class VerifyCustomerView(APIView):
         code = d.get("code")
         customer_id = d.get("customer_id") or d.get("recipient")
         variation = d.get("variation") or d.get("meter_type") or None
-        if category not in ("cable", "electricity") or not code or not customer_id:
-            return Response({"detail": "category (cable/electricity), code and customer_id are required."},
+        if category not in ("cable", "electricity", "betting") or not code or not customer_id:
+            return Response({"detail": "category (cable/electricity/betting), code and customer_id are required."},
                             status=status.HTTP_400_BAD_REQUEST)
         if category == "electricity" and not variation:
             return Response({"detail": "meter_type (prepaid/postpaid) is required for electricity."},
