@@ -3,15 +3,16 @@ import { View, ScrollView, Pressable, ActivityIndicator, Modal } from "react-nat
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, BadgeCheck, CheckCircle2, Loader2, XCircle, Ticket, ChevronDown, Check } from "lucide-react-native";
+import { ArrowLeft, BadgeCheck, CheckCircle2, Loader2, XCircle, Ticket, ChevronDown, Check, Wallet, CreditCard } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
+import { env } from "@/shared/config/env";
 import { colors } from "@/shared/theme";
 import { naira } from "@/shared/lib/format";
 import { useDebounced } from "@/shared/hooks/use-debounced";
 import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
-import { useBillers, billsApi, ConfirmPurchase } from "@/features/bills";
+import { useBillers, billsApi, ConfirmPurchase, PaystackModal } from "@/features/bills";
 import type { BillOrder } from "@/entities/billing";
 
 const QUICK_AMOUNTS = [500, 1000, 2000, 5000];
@@ -28,11 +29,15 @@ export default function Betting() {
   const [providerOpen, setProviderOpen] = useState(false);
   const [account, setAccount] = useState("");
   const [amount, setAmount] = useState("");
+  const [payWith, setPayWith] = useState<"wallet" | "card">("wallet");
   const [customerName, setCustomerName] = useState<string | undefined>();
   const [verificationId, setVerificationId] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [order, setOrder] = useState<BillOrder | null>(null);
   const [confirming, setConfirming] = useState(false);
+  const [verifying, setVerifying] = useState(false);
+  const [cardUrl, setCardUrl] = useState<string | null>(null);
+  const [cardRef, setCardRef] = useState<string | null>(null);
 
   const billers = useBillers("betting");
   const wallets = useWallets();
@@ -70,8 +75,11 @@ export default function Betting() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provider, debouncedAccount]);
 
+  const amt = Number(amount) || 0;
+  const total = amt > 0 ? amt + SERVICE_FEE : 0;
+
   const fund = useMutation({
-    mutationFn: () => billsApi.fundBetting({ code: provider, customer_id: account.trim(), amount: Number(amount), verification_id: verificationId }),
+    mutationFn: () => billsApi.fundBetting({ code: provider, customer_id: account.trim(), amount: amt, verification_id: verificationId }),
     onSuccess: (data) => { setOrder(data); qc.invalidateQueries({ queryKey: ["wallets"] }); qc.invalidateQueries({ queryKey: ["transactions"] }); },
     onError: (err) => {
       const msg = apiErrorMessage(err, t("betting.errFund", "Funding failed. Try again."));
@@ -80,8 +88,41 @@ export default function Betting() {
     },
   });
 
-  const amt = Number(amount) || 0;
-  const total = amt > 0 ? amt + SERVICE_FEE : 0;
+  const cardPay = useMutation({
+    mutationFn: () => billsApi.cardStart({ category: "betting", code: provider, recipient: account.trim(), amount: total, verification_id: verificationId, callback_url: `${env.apiUrl}/billing/purchase/card/return/` }),
+    onSuccess: (data) => { setConfirming(false); setCardRef(data.reference); setCardUrl(data.authorization_url); },
+    onError: (err) => setError(apiErrorMessage(err, t("betting.errCard", "Couldn't start card payment."))),
+  });
+
+  async function verifyCard(reference: string) {
+    setVerifying(true);
+    try {
+      let checkout = await billsApi.cardStatus(reference);
+      for (let i = 0; i < 4 && ["pending", "payment_received"].includes(String(checkout.status)); i++) {
+        if (checkout.order_status === "success" || checkout.order_status === "failed") break;
+        await new Promise((r) => setTimeout(r, 2000));
+        checkout = await billsApi.cardStatus(reference);
+      }
+      const delivered = checkout.status === "delivered" || checkout.order_status === "success";
+      const failed = checkout.status === "failed" || checkout.order_status === "failed";
+      setOrder({
+        id: checkout.id, category: checkout.category, biller_name: selected?.name ?? "",
+        recipient: checkout.recipient, amount: checkout.amount, cost_amount: String(amt), currency: checkout.currency, pay_with: "card",
+        status: delivered ? "success" : failed ? "failed" : "pending",
+        reference: checkout.order_reference ?? reference,
+        provider: null, customer_name: customerName ?? null, created_at: checkout.created_at, updated_at: checkout.created_at,
+      } as BillOrder);
+      qc.invalidateQueries({ queryKey: ["wallets"] });
+      qc.invalidateQueries({ queryKey: ["transactions"] });
+    } catch (err) {
+      setError(apiErrorMessage(err, t("bills.errVerifyPayment", "Couldn't verify the payment.")));
+    } finally {
+      setVerifying(false);
+    }
+  }
+
+  function onCardDone() { setCardUrl(null); if (cardRef) verifyCard(cardRef); }
+  const pending = fund.isPending || cardPay.isPending;
 
   function submit() {
     setError(null);
@@ -95,7 +136,8 @@ export default function Betting() {
 
   function runFund() {
     setConfirming(false);
-    fund.mutate();
+    if (payWith === "card") cardPay.mutate();
+    else fund.mutate();
   }
 
   if (!isVerified) {
@@ -105,6 +147,18 @@ export default function Betting() {
           <Text variant="heading">{t("bills.verifyGate.title", "Verify your account")}</Text>
           <Text variant="body" color="muted" style={{ textAlign: "center" }}>{t("bills.verifyGate.body", "You need a verified account to fund betting wallets.")}</Text>
           <Button title={t("bills.goBack", "Go back")} variant="secondary" onPress={() => router.back()} style={{ marginTop: 12 }} />
+        </View>
+      </Screen>
+    );
+  }
+
+  if (verifying) {
+    return (
+      <Screen edges={["top"]}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 12 }}>
+          <Loader2 size={40} strokeWidth={1.5} color={colors.brand.green} />
+          <Text variant="heading">{t("bills.verifyingTitle", "Confirming payment…")}</Text>
+          <Text variant="body" color="muted" style={{ textAlign: "center" }}>{t("bills.verifyingBody", "This only takes a moment.")}</Text>
         </View>
       </Screen>
     );
@@ -205,6 +259,20 @@ export default function Betting() {
             })}
           </View>
 
+          {/* Payment method */}
+          <Text variant="label" style={{ marginBottom: 8 }}>{t("bills.payWith", "Pay with")}</Text>
+          <View style={{ flexDirection: "row", gap: 8, marginBottom: 14 }}>
+            {([{ key: "wallet", label: t("bills.wallet", "Wallet"), Icon: Wallet }, { key: "card", label: t("bills.card", "Card"), Icon: CreditCard }] as const).map((m) => {
+              const sel = payWith === m.key;
+              return (
+                <Pressable key={m.key} onPress={() => setPayWith(m.key)} style={{ flex: 1, height: 48, borderRadius: 11, borderWidth: 2, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.10)" : colors.paper, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                  <m.Icon size={16} strokeWidth={1.75} color={sel ? colors.brand.green : colors.muted} />
+                  <Text variant="label" color={sel ? "green" : "muted"}>{m.label}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+
           {/* Fee breakdown */}
           <View style={{ borderRadius: 12, backgroundColor: colors.mist, padding: 14, marginBottom: 4 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -217,16 +285,16 @@ export default function Betting() {
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text variant="label" color="ink">{t("betting.youPay", "You pay")}</Text><Text variant="label" color="ink">{naira(total)}</Text>
             </View>
-            {ngnBalance !== undefined ? (
+            {payWith === "wallet" && ngnBalance !== undefined ? (
               <Text variant="caption" color="muted" style={{ marginTop: 8 }}>{t("betting.walletBalance", "Wallet balance: {{balance}}", { balance: naira(Number(ngnBalance)) })}</Text>
             ) : null}
           </View>
 
           <View style={{ marginTop: 18 }}>
-            <Button title={total ? t("betting.payAmount", "Pay {{amount}}", { amount: naira(total) }) : t("betting.fundWallet", "Fund wallet")} onPress={submit} loading={fund.isPending} />
+            <Button title={total ? t("betting.payAmount", "Pay {{amount}}", { amount: naira(total) }) : t("betting.fundWallet", "Fund wallet")} onPress={submit} loading={pending} />
           </View>
           <Text variant="caption" color="muted" style={{ textAlign: "center", marginTop: 10 }}>
-            {t("betting.payNote", "Paid instantly from your OAM wallet. Includes a ₦50 service fee.")}
+            {payWith === "card" ? t("betting.payNoteCard", "You'll pay securely on Paystack. Includes a ₦50 service fee.") : t("betting.payNote", "Paid instantly from your OAM wallet. Includes a ₦50 service fee.")}
           </Text>
         </View>
       </ScrollView>
@@ -251,6 +319,8 @@ export default function Betting() {
         </Pressable>
       </Modal>
 
+      <PaystackModal visible={!!cardUrl} url={cardUrl ?? ""} onComplete={onCardDone} onCancel={() => setCardUrl(null)} />
+
       <ConfirmPurchase
         open={confirming}
         title={t("bills.confirmTitle", "Confirm payment")}
@@ -261,9 +331,10 @@ export default function Betting() {
           { label: t("betting.credit", "Betting credit"), value: naira(amt) },
           { label: t("betting.serviceFee", "Service fee"), value: naira(SERVICE_FEE) },
           { label: t("betting.youPay", "You pay"), value: naira(total) },
+          { label: t("bills.payWith", "Pay with"), value: payWith === "card" ? t("bills.card", "Card") : t("bills.wallet", "Wallet") },
         ]}
         confirmLabel={t("betting.payAmount", "Pay {{amount}}", { amount: naira(total) })}
-        pending={fund.isPending}
+        pending={pending}
         onConfirm={runFund}
         onCancel={() => setConfirming(false)}
       />

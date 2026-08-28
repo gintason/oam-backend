@@ -37,7 +37,7 @@ export const ECOMMERCE_PARTNERS: EcommercePartner[] = [
     tagline: "Shop like a billionaire", accent: "#FB7701",
     blurb: "Budget-friendly everything — gadgets, fashion, home and more at low prices.",
     categories: ["Fashion", "Home", "Gadgets", "Beauty", "Jewelry", "Outdoor"] },
-  { slug: "alibaba", name: "Alibaba", link: "",
+  { slug: "alibaba", name: "Alibaba", link: "https://offer.alibaba.com/cps/bjeo4au9?bm=cps&src=saf",
     tagline: "Global wholesale", accent: "#FF6A00",
     blurb: "Source products at wholesale prices directly from verified suppliers.",
     categories: ["Wholesale", "Electronics", "Machinery", "Apparel", "Packaging", "Beauty"] },

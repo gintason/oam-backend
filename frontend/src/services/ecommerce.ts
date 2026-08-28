@@ -50,7 +50,7 @@ export const ECOMMERCE_PARTNERS: EcommercePartner[] = [
   },
   {
     slug: "alibaba", name: "Alibaba", logo: resolveLogo("alibaba_logo.png"),
-    link: "", // TODO: paste the Alibaba affiliate link here once approved
+    link: "https://offer.alibaba.com/cps/bjeo4au9?bm=cps&src=saf",
     tagline: "Global wholesale", accent: "#FF6A00",
     blurb: "Source products at wholesale prices directly from verified suppliers.",
     categories: ["Wholesale", "Electronics", "Machinery", "Apparel", "Packaging", "Beauty"],

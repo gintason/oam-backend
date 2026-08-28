@@ -150,7 +150,7 @@ export default function Home() {
               {group.items.map((item) => (
                 <ServiceTile
                   key={item.id}
-                  label={t(`dashboard.services.${item.lkey}`)}
+                  label={t(`dashboard.services.${item.lkey}`, item.label)}
                   Icon={item.Icon}
                   tint={item.tint}
                   onPress={() => onTile(item.id)}

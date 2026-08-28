@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, BadgeCheck, Loader2, Ticket } from "lucide-react";
+import { ArrowLeft, BadgeCheck, CreditCard, Loader2, Ticket, Wallet } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
-import { billingApi, type Biller, type BillOrder } from "../../services/billing";
+import { billingApi, cardCheckoutApi, type Biller, type BillOrder } from "../../services/billing";
 import { Result } from "./BuyData";
 import { apiErrorMessage } from "../../lib/api";
 import { walletApi } from "../../services/wallet";
@@ -28,6 +28,7 @@ export default function BuyBetting() {
   const [provider, setProvider] = useState("");
   const [account, setAccount] = useState("");
   const [amount, setAmount] = useState("");
+  const [payWith, setPayWith] = useState<"wallet" | "card">("wallet");
   const [customerName, setCustomerName] = useState<string>();
   const [verificationId, setVerificationId] = useState<string>("");
   const [error, setError] = useState<string>();
@@ -92,6 +93,19 @@ export default function BuyBetting() {
     },
   });
 
+  const cardPay = useMutation({
+    mutationFn: () =>
+      cardCheckoutApi.start({
+        category: "betting",
+        code: provider,
+        recipient: account.trim(),
+        amount: (Number(amount) || 0) + SERVICE_FEE, // card is charged amount + fee
+        verification_id: verificationId,
+      }),
+    onSuccess: (data) => { window.location.href = data.authorization_url; },
+    onError: (err) => setError(apiErrorMessage(err, "Couldn't start card payment.")),
+  });
+
   const amt = Number(amount) || 0;
   const total = amt > 0 ? amt + SERVICE_FEE : 0;
 
@@ -103,7 +117,8 @@ export default function BuyBetting() {
     if (!verificationId || !customerName) return setError("Confirm the betting account first.");
     if (amt < 100) return setError("Enter an amount of at least ₦100.");
     if (amt > 100000) return setError("Maximum funding is ₦100,000.");
-    fund.mutate();
+    if (payWith === "card") cardPay.mutate();
+    else fund.mutate();
   }
 
   if (!isVerified) {
@@ -231,6 +246,17 @@ export default function BuyBetting() {
             ))}
           </div>
 
+          {/* Payment method */}
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay with</label>
+          <div className="mb-4 grid grid-cols-2 gap-2">
+            <button type="button" onClick={() => setPayWith("wallet")} className={`flex h-12 items-center justify-center gap-2 rounded-[11px] border text-[13.5px] font-medium transition ${payWith === "wallet" ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>
+              <Wallet size={16} strokeWidth={1.75} /> Wallet
+            </button>
+            <button type="button" onClick={() => setPayWith("card")} className={`flex h-12 items-center justify-center gap-2 rounded-[11px] border text-[13.5px] font-medium transition ${payWith === "card" ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>
+              <CreditCard size={16} strokeWidth={1.75} /> Card
+            </button>
+          </div>
+
           {/* Fee breakdown */}
           <div className="mb-5 rounded-xl bg-mist p-3.5 text-[13px]">
             <div className="flex justify-between text-muted">
@@ -249,16 +275,16 @@ export default function BuyBetting() {
 
           <button
             type="submit"
-            disabled={fund.isPending}
+            disabled={fund.isPending || cardPay.isPending}
             className="flex h-12 w-full items-center justify-center rounded-[11px] bg-brand-red text-[15px] font-semibold text-white shadow-[0_8px_20px_rgba(227,16,18,0.25)] transition hover:brightness-95 active:scale-[0.99] disabled:opacity-60"
           >
-            {fund.isPending ? (
+            {fund.isPending || cardPay.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
               total ? `Pay ${naira(total)}` : "Fund wallet"
             )}
           </button>
-          <p className="mt-3 text-center text-[12px] text-muted">Paid instantly from your OAM wallet. Includes a ₦50 service fee.</p>
+          <p className="mt-3 text-center text-[12px] text-muted">{payWith === "card" ? "You\u2019ll pay securely on Paystack. Includes a \u20a650 service fee." : "Paid instantly from your OAM wallet. Includes a \u20a650 service fee."}</p>
         </form>
       </main>
     </div>
