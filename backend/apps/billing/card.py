@@ -142,6 +142,18 @@ class CardCheckoutService:
                 verification_id=c.verification_id, currency=c.currency,
             )
 
+        if c.category == "betting":
+            if not c.verification_id:
+                raise BillingError(
+                    "This betting account was not verified before payment, so "
+                    "delivery cannot be completed. Your money is in your wallet."
+                )
+            credit = Decimal(str(c.amount)) - Decimal("50")
+            return BillingService.purchase_betting(
+                user=c.user, code=c.code, customer_id=c.recipient,
+                amount=credit, verification_id=c.verification_id, currency=c.currency,
+            )
+
         return BillingService.purchase(
             user=c.user, country=c.country, category=c.category,
             code=c.code, recipient=c.recipient, amount=c.amount,

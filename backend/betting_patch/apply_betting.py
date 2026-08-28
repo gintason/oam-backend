@@ -177,6 +177,35 @@ edit("apps/billing/views.py", [
     ),
 ])
 
+# ------------------------------------------ 3b. card delivery (pay with card)
+# When a betting top-up is paid by CARD, the card charges amount + ₦50; the card
+# money funds the wallet, then we deliver via purchase_betting (which re-applies
+# the ₦50 split). credit = charged amount - 50.
+edit("apps/billing/card.py", [(
+    '        return BillingService.purchase(\n'
+    '            user=c.user, country=c.country, category=c.category,\n'
+    '            code=c.code, recipient=c.recipient, amount=c.amount,\n'
+    '            currency=c.currency, plan_code=c.plan_code,\n'
+    '        )',
+    '        if c.category == "betting":\n'
+    '            if not c.verification_id:\n'
+    '                raise BillingError(\n'
+    '                    "This betting account was not verified before payment, so "\n'
+    '                    "delivery cannot be completed. Your money is in your wallet."\n'
+    '                )\n'
+    '            credit = Decimal(str(c.amount)) - Decimal("50")\n'
+    '            return BillingService.purchase_betting(\n'
+    '                user=c.user, code=c.code, customer_id=c.recipient,\n'
+    '                amount=credit, verification_id=c.verification_id, currency=c.currency,\n'
+    '            )\n'
+    '\n'
+    '        return BillingService.purchase(\n'
+    '            user=c.user, country=c.country, category=c.category,\n'
+    '            code=c.code, recipient=c.recipient, amount=c.amount,\n'
+    '            currency=c.currency, plan_code=c.plan_code,\n'
+    '        )',
+)])
+
 # --------------------------------------------------------- 4. urls
 edit("apps/billing/urls.py", [
     (
