@@ -3,7 +3,7 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, type LucideIcon,
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Ticket, type LucideIcon,
 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
@@ -54,6 +54,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "marketplace", lkey: "marketplace", label: "Marketplace", Icon: Store, tint: "green" },
       { id: "artisans", lkey: "artisans", label: "Artisans", Icon: Wrench, tint: "green" },
       { id: "ecommerce", lkey: "ecommerce", label: "E-commerce", Icon: ShoppingBag, tint: "red" },
+      { id: "betting", lkey: "betting", label: "Fund Betting", Icon: Ticket, tint: "red" },
     ],
   },
 ];
@@ -124,6 +125,7 @@ export default function Home() {
     if (id === "marketplace") return router.push("/marketplace");
     if (id === "artisans") return router.push("/artisans");
     if (id === "ecommerce") return router.push("/ecommerce");
+    if (id === "betting") return router.push("/betting");
     Alert.alert("Coming soon", "This service arrives in an upcoming update.");
   }
 

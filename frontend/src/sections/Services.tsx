@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { BedDouble, Car, Gift, Plane, Send, Smartphone, Store, Tv, Wrench, Zap, type LucideIcon } from "lucide-react";
+import { BedDouble, Car, Gift, Plane, Send, Smartphone, Store, Tv, Wrench, Zap, type LucideIcon, ShoppingBag, Ticket } from "lucide-react";
 
 /**
  * Services grid. Each card is an ACTION entry point — clicking routes to that
@@ -26,6 +26,8 @@ const SERVICES: Service[] = [
   { Icon: Zap,        key: "electricity", title: "Electricity",     desc: "Prepaid tokens and postpaid.",  route: "/services/electricity", tint: "green" },
   { Icon: Store,      key: "marketplace", title: "Marketplace",     desc: "Buy and sell locally.",         route: "/marketplace",          tint: "green" },
   { Icon: Wrench,     key: "artisans",    title: "Artisans",        desc: "Trusted pros near you.",        route: "/artisans",             tint: "green" },
+  { Icon: ShoppingBag, key: "ecommerce",   title: "E-commerce",      desc: "Shop from OAM partner stores.", route: "/ecommerce",            tint: "red"   },
+  { Icon: Ticket,     key: "betting",     title: "Fund Betting",    desc: "Top up your betting account.",  route: "/services/betting",     tint: "red"   },
   { Icon: Plane,      key: "flights",     title: "Flights",         desc: "Compare and book cheap fares.", route: "/travel/flights",       tint: "green" },
   { Icon: BedDouble,  key: "hotels",      title: "Hotels",          desc: "Stays and experiences.",        route: "/travel/hotels",        tint: "green" },
   { Icon: Gift,       key: "giftcards",   title: "Gift Cards",      desc: "Buy and redeem digital cards.", route: "/services/giftcards",   tint: "red"   },

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket } from "lucide-react";
 import { useState } from "react";
 import AppHeader from "../components/AppHeader";
 import { useUserScope } from "../auth/useUserScope";
@@ -165,6 +165,7 @@ export default function Dashboard() {
                   { to: "/marketplace", icon: <Store size={20} strokeWidth={1.75} />, label: t("dashboard.services.marketplace"), tint: "green" },
                   { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: t("dashboard.services.artisans"), tint: "green" },
                   { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "E-commerce"), tint: "red" },
+                  { to: "/services/betting", icon: <Ticket size={20} strokeWidth={1.75} />, label: t("dashboard.services.betting", "Fund Betting"), tint: "red" },
                 ]}
               />
             </div>

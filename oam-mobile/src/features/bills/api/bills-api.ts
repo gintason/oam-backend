@@ -30,6 +30,10 @@ export const billsApi = {
   purchase: (input: PurchaseInput) =>
     api.post<BillOrder>("/billing/purchase/", { currency: "NGN", country: "NG", ...input }).then((r) => r.data),
 
+  /** Fund a betting account: user pays amount + ₦50, betting account credited with amount. */
+  fundBetting: (input: { code: string; customer_id: string; amount: number | string; verification_id: string }) =>
+    api.post<BillOrder>("/billing/betting/fund/", { country: "NG", currency: "NGN", ...input }).then((r) => r.data),
+
   cardStart: (input: PurchaseInput) =>
     api.post<{ authorization_url: string; reference: string }>("/billing/purchase/card/", { currency: "NGN", country: "NG", ...input }).then((r) => r.data),
 

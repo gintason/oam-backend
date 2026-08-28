@@ -43,6 +43,7 @@ import Ecommerce from "./pages/services/Ecommerce";
 import EcommerceCompany from "./pages/services/EcommerceCompany";
 import BuyAirtime from "./pages/services/BuyAirtime";
 import BuyElectricity from "./pages/services/BuyElectricity";
+import BuyBetting from "./pages/services/BuyBetting";
 import BuyData from "./pages/services/BuyData";
 import BuyCable from "./pages/services/BuyCable";
 import ComingSoon from "./pages/services/ComingSoon";
@@ -125,6 +126,7 @@ export default function App() {
               <Route path="/services/callback" element={<RequireAuth><ServiceCallback /></RequireAuth>} />
               <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
               <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
+              <Route path="/services/betting" element={<RequireAuth><BuyBetting /></RequireAuth>} />
               <Route path="/services/cable" element={<RequireAuth><BuyCable /></RequireAuth>} />
               <Route path="/services/giftcards" element={<RequireAuth><GiftCards /></RequireAuth>} />
               <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />

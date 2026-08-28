@@ -6,7 +6,7 @@
 import { api } from "../lib/api";
 import type { Paginated } from "./types";
 
-export type BillCategory = "airtime" | "data" | "electricity" | "cable";
+export type BillCategory = "airtime" | "data" | "electricity" | "cable" | "betting";
 
 export type Biller = {
   id: string;
@@ -101,6 +101,24 @@ export const billingApi = {
     return data;
   },
 
+  /**
+   * Fund a betting account. The user pays `amount + ₦50` (flat OAM service fee);
+   * the betting account is credited with `amount`. Wallet-only.
+   */
+  async fundBetting(input: {
+    code: string;            // provider, e.g. "Bet9ja" (case-sensitive)
+    customer_id: string;     // betting account id
+    amount: number | string;
+    verification_id: string;
+  }): Promise<BillOrder> {
+    const { data } = await api.post<BillOrder>("/billing/betting/fund/", {
+      country: "NG",
+      currency: "NGN",
+      ...input,
+    });
+    return data;
+  },
+
   /** Live data bundles for a network (GET /billing/data-plans/?code=MTN). */
   async getDataPlans(code: string, country = "NG"): Promise<Plan[]> {
     const { data } = await api.get<{ plans: Plan[] }>("/billing/data-plans/", {
@@ -119,7 +137,7 @@ export const billingApi = {
 
   /** Confirm a meter/smartcard belongs to a real customer before paying. */
   async verifyCustomer(input: {
-    category: "electricity" | "cable";
+    category: "electricity" | "cable" | "betting";
     code: string;
     customer_id: string;
     meter_type?: string;
