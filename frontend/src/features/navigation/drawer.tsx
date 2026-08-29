@@ -9,7 +9,6 @@ import {
   Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, BadgeCheck,
   Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon,
 } from "lucide-react-native";
-import Svg, { Path } from "react-native-svg";
 import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
 import { useAuthStore } from "@/features/auth";
@@ -32,18 +31,6 @@ const BG_ICONS: { Icon: LucideIcon; left: number; top: number; size: number; o: 
   { Icon: Gift, left: 32, top: 470, size: 26, o: 0.05 },
   { Icon: Send, left: 206, top: 486, size: 30, o: 0.05 },
   { Icon: Ticket, left: 126, top: 576, size: 28, o: 0.05 },
-];
-
-// Social links (open in browser). Update these URLs to your real OAM handles.
-const SOCIALS: { key: string; url: string; d: string }[] = [
-  { key: "facebook", url: "https://facebook.com/oamapp",
-    d: "M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" },
-  { key: "x", url: "https://x.com/oamapp",
-    d: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" },
-  { key: "instagram", url: "https://instagram.com/oamapp",
-    d: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" },
-  { key: "tiktok", url: "https://tiktok.com/@oamapp",
-    d: "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" },
 ];
 
 type Ctx = { open: () => void; close: () => void };
@@ -146,7 +133,7 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
 
       <ScrollView contentContainerStyle={{ paddingTop: insets.top + 22, paddingBottom: insets.bottom + 20, paddingHorizontal: 20 }} showsVerticalScrollIndicator={false}>
         {/* Logo — kept on a white chip so it reads on the dark background. */}
-        <View style={{ alignSelf: "center", backgroundColor: "#FFFFFF", borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
+        <View style={{ alignSelf: "flex-start", backgroundColor: "#FFFFFF", borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
           <Image source={logo} style={{ width: 96, height: 30 }} contentFit="contain" />
         </View>
 
@@ -166,51 +153,39 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
 
         <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 20, marginBottom: 6 }} />
 
-        {/* Nav links: [green icon]  Label  › */}
+        {/* Nav links, one after the other: [icon] label › */}
         {links.map((l) => (
           <Pressable
             key={l.key}
             onPress={l.onPress}
             style={({ pressed }) => ({
+              flexDirection: "row", alignItems: "center", paddingVertical: 12, paddingHorizontal: 12,
               borderRadius: 14, marginBottom: 6,
-              backgroundColor: pressed ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.06)",
+              backgroundColor: pressed ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.05)",
             })}
           >
-            <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 11, paddingHorizontal: 12 }}>
-              <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", marginRight: 12 }}>
-                <l.Icon size={18} strokeWidth={2} color="#FFFFFF" />
-              </View>
-              <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 15, color: "#FFFFFF" }} numberOfLines={1}>{l.label}</Text>
-              <ChevronRight size={18} color="rgba(255,255,255,0.5)" />
+            <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.12)", alignItems: "center", justifyContent: "center", marginRight: 12 }}>
+              <l.Icon size={18} strokeWidth={1.75} color="#FFFFFF" />
             </View>
+            <Text style={{ fontFamily: fonts.bold, fontSize: 14.5, color: "#FFFFFF" }}>{l.label}</Text>
+            <ChevronRight size={16} color="rgba(255,255,255,0.45)" style={{ marginLeft: 8 }} />
           </Pressable>
         ))}
 
         <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 8, marginBottom: 6 }} />
 
-        {/* Sign out — same horizontal row shape as the nav links */}
+        {/* Sign out */}
         <Pressable
           onPress={() => { onClose(); setTimeout(() => signOut().catch(() => {}), 150); }}
-          style={({ pressed }) => ({ borderRadius: 12, backgroundColor: pressed ? "rgba(255,255,255,0.08)" : "transparent" })}
+          style={({ pressed }) => ({ flexDirection: "row", alignItems: "center", gap: 14, paddingVertical: 14, paddingHorizontal: 6, borderRadius: 12, backgroundColor: pressed ? "rgba(255,255,255,0.08)" : "transparent" })}
         >
-          <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 11, paddingHorizontal: 12 }}>
-            <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: "rgba(227,16,18,0.20)", alignItems: "center", justifyContent: "center", marginRight: 12 }}>
-              <LogOut size={18} strokeWidth={2} color="#FF6B6B" />
-            </View>
-            <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 15, color: "#FFD7D7" }}>{t("drawer.signOut", "Sign out")}</Text>
+          <View style={{ height: 38, width: 38, borderRadius: 11, backgroundColor: "rgba(227,16,18,0.20)", alignItems: "center", justifyContent: "center" }}>
+            <LogOut size={18} strokeWidth={1.75} color="#FF6B6B" />
           </View>
+          <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 14.5, color: "#FFD7D7" }}>{t("drawer.signOut", "Sign out")}</Text>
         </Pressable>
 
-        {/* Social media */}
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 22 }}>
-          {SOCIALS.map((sm) => (
-            <Pressable key={sm.key} onPress={() => Linking.openURL(sm.url).catch(() => {})} style={{ height: 42, width: 42, borderRadius: 21, backgroundColor: "rgba(255,255,255,0.10)", alignItems: "center", justifyContent: "center", marginHorizontal: 7 }}>
-              <Svg width={19} height={19} viewBox="0 0 24 24"><Path d={sm.d} fill="#FFFFFF" /></Svg>
-            </Pressable>
-          ))}
-        </View>
-
-        <Text style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 18, textAlign: "center" }}>OAM · {t("drawer.tagline", "One app, everything")}</Text>
+        <Text style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 14, paddingHorizontal: 6 }}>OAM · {t("drawer.tagline", "One app, everything")}</Text>
       </ScrollView>
     </View>
   );

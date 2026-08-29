@@ -30,8 +30,8 @@ class WithdrawSerializer(serializers.Serializer):
     pin = serializers.CharField(max_length=6, write_only=True)
 
     def validate_amount(self, value):
-        if value <= 0:
-            raise serializers.ValidationError("Amount must be positive.")
+        if value < 100:
+            raise serializers.ValidationError("Minimum withdrawal is ₦100.")
         return value
 
 

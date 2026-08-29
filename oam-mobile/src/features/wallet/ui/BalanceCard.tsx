@@ -2,10 +2,10 @@ import { useState } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Eye, EyeOff } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
-import { useCurrency, CurrencyPicker } from "@/features/currency";
+import { naira } from "@/shared/lib/format";
+import { useCurrency, CURRENCIES } from "@/features/currency";
 
 export function BalanceCard({
   balance,
@@ -16,9 +16,18 @@ export function BalanceCard({
   currency?: string;
   loading?: boolean;
 }) {
-  const { t } = useTranslation();
-  const { format, isConverted } = useCurrency();
   const [hidden, setHidden] = useState(false);
+
+  // Convert the NGN balance into whatever display currency is selected in the
+  // currency switcher, so ₦500 shows as its $, £ or € equivalent.
+  const cur: any = useCurrency();
+  const code: string = cur?.code ?? cur?.currency ?? currency ?? "NGN";
+  const meta: any = (CURRENCIES as any)?.[code] ?? { symbol: "₦", perNGN: 1 };
+  const ngn = Number(balance ?? 0);
+  const converted = ngn * (Number(meta.perNGN) || 1);
+  const display = code === "NGN"
+    ? naira(ngn)
+    : `${meta.symbol}${converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   return (
     <View style={{ borderRadius: 20, overflow: "hidden", backgroundColor: "#0a0a0a" }}>
@@ -39,25 +48,22 @@ export function BalanceCard({
       <View style={{ padding: 20 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
           <Text variant="label" color="paper" style={{ opacity: 0.75 }}>
-            {t("dashboard.walletBalance", "Available balance")}
+            Available balance
           </Text>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-            <CurrencyPicker />
-            <Pressable onPress={() => setHidden((h) => !h)} hitSlop={10}>
-              {hidden ? (
-                <EyeOff size={18} color="rgba(255,255,255,0.75)" />
-              ) : (
-                <Eye size={18} color="rgba(255,255,255,0.75)" />
-              )}
-            </Pressable>
-          </View>
+          <Pressable onPress={() => setHidden((h) => !h)} hitSlop={10}>
+            {hidden ? (
+              <EyeOff size={18} color="rgba(255,255,255,0.75)" />
+            ) : (
+              <Eye size={18} color="rgba(255,255,255,0.75)" />
+            )}
+          </Pressable>
         </View>
 
         <Text style={{ fontFamily: fonts.bold, fontSize: 34, color: "#FFFFFF", marginTop: 8 }}>
-          {loading ? "…" : hidden ? "••••••" : format(balance ?? 0)}
+          {loading ? "…" : hidden ? "••••••" : display}
         </Text>
         <Text variant="caption" color="paper" style={{ opacity: 0.6, marginTop: 2 }}>
-          {isConverted ? t("currency.indicative", "Indicative · settled in ₦") : currency}
+          {code}
         </Text>
       </View>
     </View>

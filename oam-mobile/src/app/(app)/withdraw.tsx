@@ -57,7 +57,7 @@ export default function Withdraw() {
   function submit() {
     setError(null); setDone(null);
     if (!accountId) return setError(t("withdraw.errChooseAccount"));
-    if (!amount || Number(amount) <= 0) return setError(t("withdraw.errEnterAmount"));
+    if (!amount || Number(amount) < 100) return setError(t("withdraw.errMin", "Minimum withdrawal is ₦100."));
     if (Number(amount) > balance) return setError(t("withdraw.errExceeds"));
     withdraw.mutate();
   }
