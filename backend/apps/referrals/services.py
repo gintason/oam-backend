@@ -13,7 +13,7 @@ from .models import (ReferralProfile, ReferralRelationship,
                      ReferralCommissionLog, ReferralNotification)
 from .signals import transaction_settled
 
-COMMISSION_RATE = Decimal("0.05")            # 5%
+COMMISSION_RATE = Decimal("0.10")            # 10%
 PROFIT_THRESHOLD_NGN = Decimal("5000")       # only pays out at/above this OAM profit
 
 # NGN per 1 unit of currency (inverse of the display rates), for the threshold
