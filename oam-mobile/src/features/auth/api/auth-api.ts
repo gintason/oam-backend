@@ -13,6 +13,7 @@ export type RegisterInput = {
   first_name?: string;
   last_name?: string;
   preferred_language?: string;
+  referral_code?: string;
 };
 
 export const authApi = {

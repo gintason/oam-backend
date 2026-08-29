@@ -103,7 +103,7 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     { key: "marketplace", label: t("drawer.marketplace", "Market Place"), Icon: Store, onPress: () => go("/marketplace") },
     { key: "betting", label: t("drawer.betting", "Fund Betting Wallet"), Icon: Ticket, onPress: () => go("/betting") },
     { key: "artisans", label: t("drawer.artisans", "Find An Artisan"), Icon: Wrench, onPress: () => go("/artisans-find") },
-    { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => soon(t("drawer.referral", "Get Referral Link")) },
+    { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },
     { key: "ecommerce", label: t("drawer.ecommerce", "E-commerce"), Icon: ShoppingBag, onPress: () => go("/ecommerce") },
   ];
 
@@ -166,8 +166,8 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
             <View style={{ height: 38, width: 38, borderRadius: 11, backgroundColor: "rgba(255,255,255,0.10)", alignItems: "center", justifyContent: "center" }}>
               <l.Icon size={19} strokeWidth={1.75} color="#FFFFFF" />
             </View>
-            <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 14.5, color: "#FFFFFF" }}>{l.label}</Text>
-            <ChevronRight size={18} color="rgba(255,255,255,0.4)" />
+            <Text style={{ fontFamily: fonts.bold, fontSize: 14.5, color: "#FFFFFF" }}>{l.label}</Text>
+            <ChevronRight size={16} color="rgba(255,255,255,0.4)" style={{ marginLeft: 4 }} />
           </Pressable>
         ))}
 

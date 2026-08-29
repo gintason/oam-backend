@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
+import { referralStore } from "@/features/referrals";
 import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
 import { authApi } from "@/features/auth";
 import { apiErrorMessage } from "@/shared/api";
@@ -20,12 +21,13 @@ export default function SignUp() {
   const [error, setError] = useState<string | null>(null);
 
   const register = useMutation({
-    mutationFn: () =>
+    mutationFn: async () =>
       authApi.register({
         email: email.trim().toLowerCase(),
         phone: phone.trim(),
         password,
         first_name: firstName.trim(),
+        referral_code: await referralStore.take(),
       }),
     onSuccess: () => {
       // Backend sends the OTP to email first; carry the identifier to verify.

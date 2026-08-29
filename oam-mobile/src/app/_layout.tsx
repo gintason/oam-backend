@@ -7,6 +7,8 @@ import { GeistMono_400Regular } from "@expo-google-fonts/geist-mono";
 import * as SplashScreen from "expo-splash-screen";
 import { AppProviders } from "./providers";
 import { useAuthStore } from "@/features/auth";
+import * as Linking from "expo-linking";
+import { referralStore, extractReferralToken } from "@/features/referrals";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,6 +28,19 @@ export default function RootLayout() {
   useEffect(() => {
     hydrate();
   }, [hydrate]);
+
+  // Capture inbound referral links (/refer-<slug>-<code>) for the sign-up flow.
+  useEffect(() => {
+    Linking.getInitialURL().then((url) => {
+      const tok = extractReferralToken(url);
+      if (tok) referralStore.set(tok);
+    });
+    const sub = Linking.addEventListener("url", ({ url }) => {
+      const tok = extractReferralToken(url);
+      if (tok) referralStore.set(tok);
+    });
+    return () => sub.remove();
+  }, []);
 
   const ready = (fontsLoaded || Boolean(fontError)) && status !== "loading";
 
