@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { referralStore } from "../../services/referrals";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Field, SubmitButton, FormError } from "./fields";
@@ -24,6 +25,7 @@ export default function SignUp() {
       const res = await authApi.register({
         email: form.email.trim(),
         password: form.password,
+        referral_code: referralStore.take(),
         first_name: form.first_name.trim(),
       });
       navigate("/verify", {

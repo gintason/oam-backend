@@ -8,6 +8,8 @@ import { RequireAuth, RedirectIfAuthed } from "./routes/guards";
 import LandingPage from "./LandingPage";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
+import Referral from "./pages/Referral";
+import { ReferralCapture } from "./routes/ReferralCapture";
 import VerifyOtp from "./pages/auth/VerifyOtp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
@@ -70,6 +72,7 @@ export default function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/:refToken" element={<ReferralCapture />} />
 
               <Route
                 path="/sign-in"
@@ -127,6 +130,7 @@ export default function App() {
               <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
               <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
               <Route path="/services/betting" element={<RequireAuth><BuyBetting /></RequireAuth>} />
+              <Route path="/referral" element={<RequireAuth><Referral /></RequireAuth>} />
               <Route path="/services/cable" element={<RequireAuth><BuyCable /></RequireAuth>} />
               <Route path="/services/giftcards" element={<RequireAuth><GiftCards /></RequireAuth>} />
               <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />

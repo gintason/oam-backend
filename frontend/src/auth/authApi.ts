@@ -67,6 +67,7 @@ export const authApi = {
     first_name?: string;
     last_name?: string;
     preferred_language?: string;
+    referral_code?: string;
   }): Promise<RegisterResponse> {
     const { data } = await api.post<RegisterResponse>("/auth/register/", input);
     if (data.tokens) tokenStore.set(data.tokens);

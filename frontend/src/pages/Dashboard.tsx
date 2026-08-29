@@ -166,6 +166,7 @@ export default function Dashboard() {
                   { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: t("dashboard.services.artisans"), tint: "green" },
                   { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "E-commerce"), tint: "red" },
                   { to: "/services/betting", icon: <Ticket size={20} strokeWidth={1.75} />, label: t("dashboard.services.betting", "Fund Betting"), tint: "red" },
+                  { to: "/referral", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.referral", "Refer & Earn"), tint: "green" },
                 ]}
               />
             </div>
