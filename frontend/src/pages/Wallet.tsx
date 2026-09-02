@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
-import { AlertCircle, ArrowDownLeft, ArrowUpRight, Building2, CreditCard, Eye, EyeOff, Plus, Receipt, RefreshCw, Send, ShieldAlert, Smartphone, Tv, Wallet as WalletIcon, Wifi, Zap } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, Building2, CreditCard, Eye, EyeOff, Plus, Receipt, RefreshCw, Send, ShieldAlert, Smartphone, Tv, Wallet as WalletIcon, Wifi, Zap } from "lucide-react";
 import AppHeader from "../components/AppHeader";
 import { useUserScope } from "../auth/useUserScope";
 import { useAuth } from "../auth/AuthContext";
 import { walletApi, formatBalance, type Transaction } from "../services/wallet";
 import { describeTransaction, friendlyTime, type TxnKind } from "../lib/format";
-import { apiErrorMessage } from "../lib/api";
 import { useTranslation } from "react-i18next";
 
 /**
@@ -22,7 +21,16 @@ export default function Wallet() {
   const queryClient = useQueryClient();
   const [hide, setHide] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [openError, setOpenError] = useState<string>();
+  // Live NGN -> {USD,GBP,EUR} rates for display conversion (settlement stays NGN).
+  const [rates, setRates] = useState<Record<string, number>>({ NGN: 1, USD: 0.00065, GBP: 0.00051, EUR: 0.0006 });
+  useEffect(() => {
+    let alive = true;
+    fetch("https://open.er-api.com/v6/latest/NGN")
+      .then((r) => r.json())
+      .then((d) => { if (alive && d && d.rates) setRates((prev) => ({ ...prev, ...d.rates })); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
 
   const walletsQuery = useQuery({
     queryKey: ["wallet", scope, "list"],
@@ -40,25 +48,22 @@ export default function Wallet() {
   // Default to NGN when present, else the backend's default.
   const wallets = walletsQuery.data?.wallets ?? [];
   const backendDefault = walletsQuery.data?.default_currency ?? "NGN";
-  const active =
-    selected ??
-    (wallets.some((w) => w.currency === "NGN") ? "NGN" : backendDefault);
+  // Data always comes from the funded (NGN / primary) wallet; the tabs only
+  // change which currency we DISPLAY that balance in (converted at live rates).
+  const active = wallets.some((w) => w.currency === "NGN") ? "NGN" : backendDefault;
   const activeWallet = wallets.find((w) => w.currency === active);
+  const shown = selected ?? active;
+  const SYM: Record<string, string> = { NGN: "\u20a6", USD: "$", GBP: "\u00a3", EUR: "\u20ac" };
+  const ngnBalance = Number(activeWallet?.balance ?? 0);
+  const shownBalance =
+    shown === active
+      ? formatBalance(activeWallet?.balance ?? "0", active)
+      : `${SYM[shown] ?? ""}${(ngnBalance * (Number(rates[shown]) || 1)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   const txnsQuery = useQuery({
     queryKey: ["wallet", scope, "transactions", active],
     queryFn: () => walletApi.getTransactions(active),
     enabled: isVerified && Boolean(activeWallet),
-  });
-
-  const openWallet = useMutation({
-    mutationFn: (cur: string) => walletApi.openWallet(cur),
-    onSuccess: (w) => {
-      setOpenError(undefined);
-      setSelected(w.currency);
-      queryClient.invalidateQueries({ queryKey: ["wallet", scope, "list"] });
-    },
-    onError: (err) => setOpenError(apiErrorMessage(err, t("wallet.errOpen"))),
   });
 
   const supported = currencyQuery.data?.supported ?? ["NGN", "USD", "GBP", "EUR"];
@@ -100,36 +105,22 @@ export default function Wallet() {
         {/* Currency switcher */}
         <div className="scrollbar-hide -mx-5 mb-4 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:px-0">
           {supported.map((cur) => {
-            const owned = wallets.some((w) => w.currency === cur);
-            const isActive = active === cur;
+            const isActive = shown === cur;
             return (
               <button
                 key={cur}
-                onClick={() => {
-                  if (owned) setSelected(cur);
-                  else openWallet.mutate(cur);
-                }}
-                disabled={openWallet.isPending}
+                onClick={() => setSelected(cur)}
                 className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition ${
                   isActive
                     ? "bg-brand-green text-white"
-                    : owned
-                    ? "border border-hairline bg-paper text-ink hover:bg-mist"
-                    : "border border-dashed border-hairline bg-paper text-muted hover:bg-mist"
+                    : "border border-hairline bg-paper text-ink hover:bg-mist"
                 }`}
               >
                 {cur}
-                {!owned && " +"}
               </button>
             );
           })}
         </div>
-        {openError && (
-          <div className="mb-4 flex items-start gap-2 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">
-            <AlertCircle size={15} className="mt-0.5 shrink-0" />
-            {openError}
-          </div>
-        )}
 
         {/* Balance card */}
         <div className="relative overflow-hidden rounded-2xl bg-[#0a0a0a] p-6 text-white sm:p-7">
@@ -145,7 +136,7 @@ export default function Wallet() {
           />
           <div className="relative">
             <div className="flex items-center justify-between">
-              <span className="text-[13px] text-white/60">{t("wallet.balanceLabel", { currency: active })}</span>
+              <span className="text-[13px] text-white/60">{t("wallet.balanceLabel", { currency: shown })}</span>
               <button onClick={() => setHide((v) => !v)} title={hide ? t("wallet.showBalance") : t("wallet.hideBalance")} aria-label={hide ? t("wallet.showBalance") : t("wallet.hideBalance")} className="text-white/50 transition hover:text-white/80">
                 {hide ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
@@ -160,7 +151,7 @@ export default function Wallet() {
                 </div>
               ) : (
                 <div className="tabular text-[34px] font-bold tracking-tight sm:text-[40px]">
-                  {hide ? "••••••" : formatBalance(activeWallet?.balance ?? "0", active)}
+                  {hide ? "••••••" : shownBalance}
                 </div>
               )}
             </div>

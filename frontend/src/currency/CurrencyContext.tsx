@@ -44,18 +44,22 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
   const [code, setCode] = useState<CurrencyCode>("NGN");
   const [rates, setRates] = useState(CURRENCIES);
 
-  // Placeholder for a live FX feed. Call your API here and setRates(...).
+  // Live FX feed (free, no key). rates[X] = X per 1 NGN, so it maps to perNGN.
   useEffect(() => {
-    // Example wiring (left disabled on purpose):
-    // fetch("https://api.exchangerate.host/latest?base=NGN&symbols=USD,GBP,EUR")
-    //   .then(r => r.json())
-    //   .then(d => setRates(prev => ({
-    //     ...prev,
-    //     USD: { ...prev.USD, perNGN: d.rates.USD },
-    //     GBP: { ...prev.GBP, perNGN: d.rates.GBP },
-    //     EUR: { ...prev.EUR, perNGN: d.rates.EUR },
-    //   })))
-    //   .catch(() => { /* keep placeholder rates on failure */ });
+    let alive = true;
+    fetch("https://open.er-api.com/v6/latest/NGN")
+      .then((r) => r.json())
+      .then((d) => {
+        if (!alive || !d || !d.rates) return;
+        setRates((prev) => ({
+          NGN: { ...prev.NGN, perNGN: 1 },
+          USD: { ...prev.USD, perNGN: d.rates.USD ?? prev.USD.perNGN },
+          GBP: { ...prev.GBP, perNGN: d.rates.GBP ?? prev.GBP.perNGN },
+          EUR: { ...prev.EUR, perNGN: d.rates.EUR ?? prev.EUR.perNGN },
+        }));
+      })
+      .catch(() => { /* keep placeholder rates on failure */ });
+    return () => { alive = false; };
   }, []);
 
   const currency = rates[code];
