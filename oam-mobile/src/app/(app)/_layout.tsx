@@ -87,6 +87,7 @@ export default function AppLayout() {
       <Tabs.Screen name="artisan-verify" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="ecommerce" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="betting" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="bus" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="referral" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="ecommerce-company" options={{ href: null, tabBarStyle: { display: "none" } }} />
     </Tabs>

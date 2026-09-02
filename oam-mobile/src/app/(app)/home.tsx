@@ -3,7 +3,7 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import {
   Menu, Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Ticket, type LucideIcon,
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Ticket, Bus, type LucideIcon,
 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
@@ -28,7 +28,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "airtime", lkey: "airtime", label: "Airtime", Icon: Smartphone, tint: "green" },
       { id: "data", lkey: "data", label: "Data", Icon: Wifi, tint: "green" },
       { id: "electricity", lkey: "electricity", label: "Electricity", Icon: Zap, tint: "green" },
-      { id: "cable", lkey: "cable", label: "Cable TV", Icon: Tv, tint: "red" },
+      { id: "cable", lkey: "cable", label: "Cable TV", Icon: Tv, tint: "green" },
     ],
   },
   {
@@ -37,7 +37,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "fund", lkey: "fund", label: "Fund", Icon: Plus, tint: "green" },
       { id: "withdraw", lkey: "withdraw", label: "Withdraw", Icon: ArrowUpRight, tint: "green" },
       { id: "transfer", lkey: "transfer", label: "Transfer", Icon: Send, tint: "green" },
-      { id: "giftcards", lkey: "giftCards", label: "Gift Cards", Icon: Gift, tint: "red" },
+      { id: "giftcards", lkey: "giftCards", label: "Gift Cards", Icon: Gift, tint: "green" },
     ],
   },
   {
@@ -47,6 +47,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "hotels", lkey: "hotels", label: "Hotels", Icon: BedDouble, tint: "green" },
       { id: "carhire", lkey: "carHire", label: "Car Hire", Icon: Car, tint: "green" },
       { id: "pickup", lkey: "pickup", label: "Pick Up", Icon: MapPinned, tint: "green" },
+      { id: "bus", lkey: "bus", label: "Bus Tickets", Icon: Bus, tint: "green" },
     ],
   },
   {
@@ -54,8 +55,8 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
     items: [
       { id: "marketplace", lkey: "marketplace", label: "Marketplace", Icon: Store, tint: "green" },
       { id: "artisans", lkey: "artisans", label: "Artisans", Icon: Wrench, tint: "green" },
-      { id: "ecommerce", lkey: "ecommerce", label: "E-commerce", Icon: ShoppingBag, tint: "red" },
-      { id: "betting", lkey: "betting", label: "Fund Betting", Icon: Ticket, tint: "red" },
+      { id: "ecommerce", lkey: "ecommerce", label: "E-commerce", Icon: ShoppingBag, tint: "green" },
+      { id: "betting", lkey: "betting", label: "Fund Betting", Icon: Ticket, tint: "green" },
     ],
   },
 ];
@@ -121,6 +122,7 @@ export default function Home() {
     if (id === "withdraw") return router.push("/withdraw");
     if (id === "giftcards") return router.push("/giftcards");
     if (id === "flights") return router.push("/flights");
+    if (id === "bus") return router.push("/bus");
     if (id === "hotels") return router.push("/hotels");
     if (id === "carhire") return router.push("/carhire");
     if (id === "pickup") return router.push("/pickup");
