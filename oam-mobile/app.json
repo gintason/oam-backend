@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "OAM",
+    "name": "O.A.M Mobile ",
     "slug": "oam-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "oam",
+    "scheme": "O.A.M Mobile",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
@@ -43,6 +43,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d51ee557-4078-4787-8c00-6a2ada5dcaa0"
+      }
     }
   }
 }

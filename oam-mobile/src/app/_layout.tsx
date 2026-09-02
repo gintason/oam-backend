@@ -9,6 +9,7 @@ import { AppProviders } from "./providers";
 import { useAuthStore } from "@/features/auth";
 import * as Linking from "expo-linking";
 import { referralStore, extractReferralToken } from "@/features/referrals";
+import { syncPushToken } from "@/features/notifications";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,6 +42,11 @@ export default function RootLayout() {
     });
     return () => sub.remove();
   }, []);
+
+  // Register this device for push once the user is signed in.
+  useEffect(() => {
+    if (status === "authenticated") syncPushToken();
+  }, [status]);
 
   const ready = (fontsLoaded || Boolean(fontError)) && status !== "loading";
 

@@ -28,6 +28,14 @@ _SUCCESS = {"success"}
 _FAILED = {"failed", "reversed", "abandoned", "declined"}
 
 
+def _transfer_fee(amount, currency="NGN"):
+    """Wallet -> bank transfer fee (OAM revenue). ₦25 from ₦500+, else ₦10. NGN only."""
+    from decimal import Decimal
+    if str(currency).upper() != "NGN":
+        return Decimal("0")
+    return Decimal("25") if Decimal(str(amount)) >= Decimal("500") else Decimal("10")
+
+
 def _wd_ref() -> str:
     return f"WD-{uuid.uuid4().hex[:20]}"
 
@@ -81,17 +89,20 @@ class WithdrawalService:
     @staticmethod
     def create_and_hold(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
         amount = Decimal(str(amount))
+        fee = _transfer_fee(amount, currency)
+        total = amount + fee
         wallet = WalletService.get_or_create_wallet(user, currency)
         with transaction.atomic():
             order = WithdrawalOrder.objects.create(
                 user=user, wallet=wallet, bank_account=bank_account,
                 amount=amount, currency=currency.upper(), reference=_wd_ref(),
                 status=WithdrawalOrder.Status.PENDING,
-                request_payload={"amount": str(amount), "bank_account": str(bank_account.id)},
+                request_payload={"amount": str(amount), "fee": str(fee), "total": str(total),
+                                 "bank_account": str(bank_account.id)},
             )
-            WalletService.hold(wallet, amount, reference=order.reference,
+            WalletService.hold(wallet, total, reference=order.reference,
                                description=f"Withdrawal hold {order.reference}",
-                               metadata={"withdrawal": str(order.id)})
+                               metadata={"withdrawal": str(order.id), "fee": str(fee)})
             order.status = WithdrawalOrder.Status.PROCESSING
             order.save(update_fields=["status", "updated_at"])
         return order
@@ -175,13 +186,17 @@ class WithdrawalService:
     # ---------------- ledger helpers ----------------
     @staticmethod
     def _capture(order):
-        WalletService.capture(order.currency, order.amount, reference=order.reference,
-                              counterpart_code=PAYOUT_ACCOUNT,
+        fee = Decimal(str((order.request_payload or {}).get("fee", "0")))
+        total = order.amount + fee
+        WalletService.capture(order.currency, total, reference=order.reference,
+                              cost=order.amount, counterpart_code=PAYOUT_ACCOUNT,
                               description=f"Withdrawal capture {order.reference}",
-                              metadata={"withdrawal": str(order.id)})
+                              metadata={"withdrawal": str(order.id), "fee": str(fee)})
 
     @staticmethod
     def _release(order):
-        WalletService.release(order.wallet, order.amount, reference=order.reference,
+        fee = Decimal(str((order.request_payload or {}).get("fee", "0")))
+        total = order.amount + fee
+        WalletService.release(order.wallet, total, reference=order.reference,
                               description=f"Withdrawal refund {order.reference}",
                               metadata={"withdrawal": str(order.id)})
