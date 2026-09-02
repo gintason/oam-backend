@@ -87,6 +87,9 @@ export default function Withdraw() {
 
   const accounts = accountsQuery.data ?? [];
   const balance = Number(ngn?.balance ?? 0);
+  const amt = Number(amount) || 0;
+  const fee = amt >= 500 ? 25 : 10;
+  const total = amt > 0 ? amt + fee : 0;
 
   return (
     <div className="min-h-screen bg-mist">
@@ -178,7 +181,7 @@ export default function Withdraw() {
                 placeholder="0"
                 className="h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[15px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
               />
-              {amount && Number(amount) > balance && (
+              {amount && total > balance && (
                 <p className="mt-1.5 text-[12.5px] text-danger">{t("withdraw.exceedsInline")}</p>
               )}
 
@@ -190,11 +193,11 @@ export default function Withdraw() {
                     <span>{t("withdraw.feeAmount")}</span><span className="text-ink">{formatBalance(amount, "NGN")}</span>
                   </div>
                   <div className="flex justify-between text-muted">
-                    <span>{t("withdraw.feeFee")}</span><span className="text-ink">{formatBalance(0, "NGN")}</span>
+                    <span>{t("withdraw.feeFee")}</span><span className="text-ink">{formatBalance(fee, "NGN")}</span>
                   </div>
                   <div className="flex justify-between border-t border-hairline pt-1 font-semibold">
                     <span className="text-ink">{t("withdraw.feeTotal")}</span>
-                    <span className="text-ink">{formatBalance(amount, "NGN")}</span>
+                    <span className="text-ink">{formatBalance(total, "NGN")}</span>
                   </div>
                 </div>
               )}
@@ -227,8 +230,8 @@ export default function Withdraw() {
                 onClick={() => {
                   setError(undefined); setDone(undefined);
                   if (!accountId) return setError(t("withdraw.errChooseAccount"));
-                  if (!amount || Number(amount) <= 0) return setError(t("withdraw.errEnterAmount"));
-                  if (Number(amount) > balance) return setError(t("withdraw.errExceeds"));
+                  if (!amount || Number(amount) < 100) return setError(t("withdraw.errMin", "Minimum transfer is ₦100."));
+                  if (total > balance) return setError(t("withdraw.errExceeds"));
                   if (hasPin === false) return setError(t("withdraw.errCreatePin"));
                   if (pin.length < 4) return setError(t("withdraw.errPinDigits"));
                   withdraw.mutate();

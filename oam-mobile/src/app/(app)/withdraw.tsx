@@ -58,7 +58,7 @@ export default function Withdraw() {
     setError(null); setDone(null);
     if (!accountId) return setError(t("withdraw.errChooseAccount"));
     if (!amount || Number(amount) < 100) return setError(t("withdraw.errMin", "Minimum withdrawal is ₦100."));
-    if (Number(amount) > balance) return setError(t("withdraw.errExceeds"));
+    if (total > balance) return setError(t("withdraw.errExceeds"));
     withdraw.mutate();
   }
 
@@ -74,7 +74,10 @@ export default function Withdraw() {
     );
   }
 
-  const overBalance = Boolean(amount) && Number(amount) > balance;
+  const amt = Number(amount) || 0;
+  const fee = amt >= 500 ? 25 : 10;
+  const total = amt > 0 ? amt + fee : 0;
+  const overBalance = Boolean(amount) && total > balance;
 
   return (
     <Screen edges={["top"]}>
@@ -140,6 +143,20 @@ export default function Withdraw() {
             <>
               <Input label={t("withdraw.amountLabel")} value={amount} onChangeText={(v) => setAmount(v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder="0" />
               {overBalance ? <Text variant="caption" color="danger" style={{ marginTop: -8, marginBottom: 12 }}>{t("withdraw.exceedsInline")}</Text> : null}
+              {amt > 0 ? (
+                <View style={{ borderRadius: 12, backgroundColor: colors.mist, padding: 14, marginBottom: 8 }}>
+                  <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                    <Text variant="caption" color="muted">{t("withdraw.transferAmount", "Transfer amount")}</Text><Text variant="caption" color="ink">{naira(amt)}</Text>
+                  </View>
+                  <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 6 }}>
+                    <Text variant="caption" color="muted">{t("withdraw.transferFee", "Transfer fee")}</Text><Text variant="caption" color="ink">{naira(fee)}</Text>
+                  </View>
+                  <View style={{ height: 1, backgroundColor: colors.hairline, marginVertical: 8 }} />
+                  <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                    <Text variant="label" color="ink">{t("withdraw.totalDebited", "Total debited")}</Text><Text variant="label" color="ink">{naira(total)}</Text>
+                  </View>
+                </View>
+              ) : null}
               <View style={{ marginTop: 4 }}>
                 <Button title={amount ? t("withdraw.withdrawAmount", { amount: Number(amount).toLocaleString() }) : t("withdraw.withdrawBtn")} onPress={submit} loading={withdraw.isPending} />
               </View>
