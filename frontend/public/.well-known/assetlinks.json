@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.gintason.oammobile",
+      "sha256_cert_fingerprints": [
+        "18:7E:09:09:DD:BF:5F:76:41:47:3E:03:3B:DD:07:B3:41:C7:AC:17:DC:65:8A:D5:39:B2:5F:F2:5B:6B:66:B0"
+      ]
+    }
+  }
+]
