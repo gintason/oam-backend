@@ -52,6 +52,7 @@ import ComingSoon from "./pages/services/ComingSoon";
 import FundWallet from "./pages/services/FundWallet";
 import Withdraw from "./pages/services/Withdraw";
 import Transfer from "./pages/services/Transfer";
+import BusTickets from "./pages/services/BusTickets";
 import FundCallback from "./pages/services/FundCallback";
 import ServiceCallback from "./pages/services/ServiceCallback";
 import PaymentCallback from "./pages/services/PaymentCallback";
@@ -141,6 +142,7 @@ export default function App() {
               <Route path="/wallet/fund/callback" element={<RequireAuth><FundCallback /></RequireAuth>} />
               <Route path="/wallet/withdraw" element={<RequireAuth><Withdraw /></RequireAuth>} />
               <Route path="/wallet/send" element={<RequireAuth><Transfer /></RequireAuth>} />
+              <Route path="/travel/bus" element={<RequireAuth><BusTickets /></RequireAuth>} />
               <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
               <Route path="/earnings" element={<RequireAuth><Earnings /></RequireAuth>} />
               <Route path="/orders" element={<RequireAuth><Orders /></RequireAuth>} />

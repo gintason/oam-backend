@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { BedDouble, Car, Gift, Plane, Send, Smartphone, Store, Tv, Wrench, Zap, type LucideIcon, ShoppingBag, Ticket } from "lucide-react";
+import { BedDouble, Car, Gift, Plane, Send, Smartphone, Store, Tv, Wrench, Zap, type LucideIcon, ShoppingBag, Ticket, Bus } from "lucide-react";
 
 /**
  * Services grid. Each card is an ACTION entry point — clicking routes to that
@@ -22,15 +22,16 @@ type Service = {
 
 const SERVICES: Service[] = [
   { Icon: Smartphone, key: "airtime",     title: "Airtime & Data",  desc: "Top up any network instantly.", route: "/services/airtime",     tint: "green" },
-  { Icon: Tv,         key: "cable",       title: "Cable TV",        desc: "DStv, GOtv and Startimes.",     route: "/services/cable",       tint: "red"   },
+  { Icon: Tv,         key: "cable",       title: "Cable TV",        desc: "DStv, GOtv and Startimes.",     route: "/services/cable",       tint: "green"   },
   { Icon: Zap,        key: "electricity", title: "Electricity",     desc: "Prepaid tokens and postpaid.",  route: "/services/electricity", tint: "green" },
   { Icon: Store,      key: "marketplace", title: "Marketplace",     desc: "Buy and sell locally.",         route: "/marketplace",          tint: "green" },
   { Icon: Wrench,     key: "artisans",    title: "Artisans",        desc: "Trusted pros near you.",        route: "/artisans",             tint: "green" },
-  { Icon: ShoppingBag, key: "ecommerce",   title: "E-commerce",      desc: "Shop from OAM partner stores.", route: "/ecommerce",            tint: "red"   },
-  { Icon: Ticket,     key: "betting",     title: "Fund Betting",    desc: "Top up your betting account.",  route: "/services/betting",     tint: "red"   },
+  { Icon: ShoppingBag, key: "ecommerce",   title: "E-commerce",      desc: "Shop from OAM partner stores.", route: "/ecommerce",            tint: "green"   },
+  { Icon: Ticket,     key: "betting",     title: "Fund Betting",    desc: "Top up your betting account.",  route: "/services/betting",     tint: "green"   },
   { Icon: Plane,      key: "flights",     title: "Flights",         desc: "Compare and book cheap fares.", route: "/travel/flights",       tint: "green" },
+  { Icon: Bus,        key: "bus",         title: "Bus Tickets",     desc: "Book intercity bus trips.",     route: "/travel/bus",           tint: "green" },
   { Icon: BedDouble,  key: "hotels",      title: "Hotels",          desc: "Stays and experiences.",        route: "/travel/hotels",        tint: "green" },
-  { Icon: Gift,       key: "giftcards",   title: "Gift Cards",      desc: "Buy and redeem digital cards.", route: "/services/giftcards",   tint: "red"   },
+  { Icon: Gift,       key: "giftcards",   title: "Gift Cards",      desc: "Buy and redeem digital cards.", route: "/services/giftcards",   tint: "green"   },
   { Icon: Send,       key: "transfer",    title: "Money Transfer",  desc: "Fast, secure transfers.",       route: "/wallet/send",          tint: "green" },
   { Icon: Car,        key: "carhire",     title: "Car Hire",        desc: "Rent a ride, anywhere.",        route: "/travel/carhire",       tint: "green" },
 ];

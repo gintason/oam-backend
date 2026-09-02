@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus } from "lucide-react";
 import { useState } from "react";
 import AppHeader from "../components/AppHeader";
 import { useUserScope } from "../auth/useUserScope";
@@ -140,7 +140,7 @@ export default function Dashboard() {
                   { to: "/services/airtime", icon: <Smartphone size={20} strokeWidth={1.75} />, label: t("dashboard.services.airtime"), tint: "green" },
                   { to: "/services/data", icon: <Wifi size={20} strokeWidth={1.75} />, label: t("dashboard.services.data"), tint: "green" },
                   { to: "/services/electricity", icon: <Zap size={20} strokeWidth={1.75} />, label: t("dashboard.services.electricity"), tint: "green" },
-                  { to: "/services/cable", icon: <Tv size={20} strokeWidth={1.75} />, label: t("dashboard.services.cable"), tint: "red" },
+                  { to: "/services/cable", icon: <Tv size={20} strokeWidth={1.75} />, label: t("dashboard.services.cable"), tint: "green" },
                 ]}
               />
               <ServiceGroup
@@ -149,7 +149,7 @@ export default function Dashboard() {
                   { to: "/wallet/fund", icon: <Plus size={20} strokeWidth={1.75} />, label: t("dashboard.services.fund"), tint: "green" },
                   { to: "/wallet/withdraw", icon: <ArrowUpRight size={20} strokeWidth={1.75} />, label: t("dashboard.services.withdraw"), tint: "green" },
                   { to: "/wallet/send", icon: <Send size={20} strokeWidth={1.75} />, label: t("dashboard.services.transfer"), tint: "green" },
-                  { to: "/services/giftcards", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftCards"), tint: "red" },
+                  { to: "/services/giftcards", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftCards"), tint: "green" },
                 ]}
               />
               <ServiceGroup
@@ -159,6 +159,7 @@ export default function Dashboard() {
                   { to: "/travel/hotels", icon: <BedDouble size={20} strokeWidth={1.75} />, label: t("dashboard.services.hotels"), tint: "green" },
                   { to: "/travel/carhire", icon: <Car size={20} strokeWidth={1.75} />, label: t("dashboard.services.carHire"), tint: "green" },
                   { to: "/travel/pickup", icon: <MapPinned size={20} strokeWidth={1.75} />, label: t("dashboard.services.pickup"), tint: "green" },
+                  { to: "/travel/bus", icon: <Bus size={20} strokeWidth={1.75} />, label: t("dashboard.services.bus", "Bus Tickets"), tint: "green" },
                 ]}
               />
               <ServiceGroup
@@ -166,8 +167,8 @@ export default function Dashboard() {
                 items={[
                   { to: "/marketplace", icon: <Store size={20} strokeWidth={1.75} />, label: t("dashboard.services.marketplace"), tint: "green" },
                   { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: t("dashboard.services.artisans"), tint: "green" },
-                  { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "E-commerce"), tint: "red" },
-                  { to: "/services/betting", icon: <Ticket size={20} strokeWidth={1.75} />, label: t("dashboard.services.betting", "Fund Betting"), tint: "red" },
+                  { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "E-commerce"), tint: "green" },
+                  { to: "/services/betting", icon: <Ticket size={20} strokeWidth={1.75} />, label: t("dashboard.services.betting", "Fund Betting"), tint: "green" },
                   { to: "/referral", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.referral", "Refer & Earn"), tint: "green" },
                 ]}
               />
