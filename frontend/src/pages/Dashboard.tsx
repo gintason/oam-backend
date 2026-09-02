@@ -8,6 +8,7 @@ import { useUserScope } from "../auth/useUserScope";
 import { useAuth } from "../auth/AuthContext";
 import { describeTransaction, friendlyTime } from "../lib/format";
 import { walletApi, formatBalance, type Transaction } from "../services/wallet";
+import { useCurrency } from "../currency/CurrencyContext";
 
 /**
  * Real dashboard: wallet balance, quick actions, recent transactions.
@@ -19,6 +20,7 @@ export default function Dashboard() {
   const scope = useUserScope();
   const { user, isVerified } = useAuth();
   const [hideBalance, setHideBalance] = useState(false);
+  const { currency: displayCurrency, format: formatMoney } = useCurrency();
 
   const walletsQuery = useQuery({
     queryKey: ["wallet", scope, "list"],
@@ -77,7 +79,7 @@ export default function Dashboard() {
               <div className="relative">
                 <div className="flex items-center justify-between">
                   <Link to="/wallet" className="text-[13px] text-white/60 transition hover:text-white/85">
-                    {t("dashboard.walletBalance")} {defaultWallet ? `· ${defaultWallet.currency}` : ""} ›
+                    {t("dashboard.walletBalance")} {defaultWallet ? `· ${displayCurrency.code}` : ""} ›
                   </Link>
                   <button
                     onClick={() => setHideBalance((v) => !v)}
@@ -97,7 +99,7 @@ export default function Dashboard() {
                     <div className="text-[15px] text-white/70">{t("dashboard.loadBalanceError")}</div>
                   ) : (
                     <div className="tabular text-[34px] font-bold tracking-tight sm:text-[40px]">
-                      {hideBalance ? "••••••" : formatBalance(defaultWallet?.balance ?? "0", defaultCurrency)}
+                      {hideBalance ? "••••••" : formatMoney(Number(defaultWallet?.balance ?? 0))}
                     </div>
                   )}
                 </div>
