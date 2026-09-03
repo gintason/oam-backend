@@ -23,7 +23,7 @@ urlpatterns = [
     path("api/v1/homeservices/", include("apps.homeservices.urls")),
     path("api/v1/uploads/", include("apps.uploads.urls")),
     path("api/v1/affiliates/", include("apps.affiliates.urls")),
-
+    path("api/v1/bus/", include("apps.travu.urls")),
     # OpenAPI schema + docs (drives the typed web/mobile clients)
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
