@@ -1,1 +1,1 @@
-export { syncPushToken, registerForPush, notificationsApi } from "./push";
+export { syncPushToken, registerForPush, initNotifications, notificationsApi } from "./push";

@@ -1,0 +1,27 @@
+GREEN NATIVE SPLASH — removes the white first-screen flash on Android/iOS.
+
+The white screen showing "O.A.M Mobile" is the OS NATIVE splash (from app.json),
+drawn BEFORE JavaScript loads. To make it green + logo so it matches the in-app
+splash:
+
+1) Copy the image into your project:
+   oam-mobile/assets/images/oam-native-splash.png   (included here)
+
+2) In app.json (inside the "expo" object) set / replace the splash:
+
+   "splash": {
+     "image": "./assets/images/oam-native-splash.png",
+     "resizeMode": "contain",
+     "backgroundColor": "#062616"
+   }
+
+   If your app.json also has per-platform blocks, add the same there:
+   "ios":     { ... , "splash": { "image": "./assets/images/oam-native-splash.png", "resizeMode": "contain", "backgroundColor": "#062616" } },
+   "android": { ... , "splash": { "image": "./assets/images/oam-native-splash.png", "resizeMode": "contain", "backgroundColor": "#062616" } }
+
+3) Clean start:  npx expo start -c
+   (For a dev/production build the native splash only updates after a rebuild.)
+
+Note: the native splash can only show one centred image on a solid colour, so it
+shows green + your white logo panel; then the full moving in-app splash takes over
+once JS loads. That's what removes the white flash.

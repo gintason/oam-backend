@@ -145,6 +145,24 @@ class MeView(APIView):
     def get(self, request):
         return Response(UserSerializer(request.user).data)
 
+    def patch(self, request):
+        """Update first name, last name and phone. Email is read-only."""
+        user = request.user
+        data = request.data
+        phone = data.get("phone")
+        if phone is not None:
+            phone = str(phone).strip() or None
+            if phone and type(user).objects.filter(phone=phone).exclude(pk=user.pk).exists():
+                return Response({"phone": "This phone number is already in use."},
+                                status=status.HTTP_400_BAD_REQUEST)
+            user.phone = phone
+        if data.get("first_name") is not None:
+            user.first_name = str(data.get("first_name")).strip()
+        if data.get("last_name") is not None:
+            user.last_name = str(data.get("last_name")).strip()
+        user.save()
+        return Response(UserSerializer(user).data)
+
 
 # ----------------------- Social -----------------------
 class SocialAuthView(APIView):

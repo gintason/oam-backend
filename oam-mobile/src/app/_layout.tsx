@@ -10,6 +10,7 @@ import { useAuthStore } from "@/features/auth";
 import * as Linking from "expo-linking";
 import { referralStore, extractReferralToken } from "@/features/referrals";
 import { syncPushToken } from "@/features/notifications";
+import { AppSplash } from "@/features/splash/AppSplash";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -54,7 +55,9 @@ export default function RootLayout() {
     if (ready) SplashScreen.hideAsync();
   }, [ready]);
 
-  if (!ready) return null;
+  if (!ready) {
+    return <AppSplash onReady={() => SplashScreen.hideAsync().catch(() => {})} />;
+  }
 
   return (
     <AppProviders>

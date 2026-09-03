@@ -12,6 +12,7 @@ import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
 import { PaystackModal } from "@/features/bills";
 import { busApi, type Trip, type BusBooking, type PassengerInput } from "@/features/bus";
+import { DateField } from "@/features/travel";
 
 type Step = "search" | "results" | "seats" | "pay" | "ticket";
 
@@ -172,7 +173,7 @@ export default function BusScreen() {
           <View style={{ borderRadius: 20, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>
             <StateField label="From (departure state)" value={from} onPress={() => { setPicker("from"); setStateSearch(""); }} />
             <StateField label="To (destination state)" value={to} onPress={() => { setPicker("to"); setStateSearch(""); }} />
-            <Input label="Travel date (YYYY-MM-DD)" value={date} onChangeText={setDate} placeholder="2026-09-10" autoCapitalize="none" />
+            <View style={{ marginBottom: 14 }}><DateField label="Travel date" value={date} onChange={setDate} minimumDate={new Date()} /></View>
             <Button title="Search trips" onPress={() => { setError(null); if (!from || !to || !date) return setError("Choose from, to and a date."); search.mutate(); }} loading={search.isPending} />
           </View>
         )}
