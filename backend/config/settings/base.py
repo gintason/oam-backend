@@ -61,7 +61,9 @@ INSTALLED_APPS = [
      "apps.messaging",
      "apps.homeservices",
      "apps.uploads",
-     "beneficiaries"
+     "beneficiaries",
+     "apps.notifications",
+     "apps.travu",
     # ...
 ]
 
