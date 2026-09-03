@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
-  ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin,
+  ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import VerifiedBadge from "../../components/VerifiedBadge";
@@ -54,6 +54,9 @@ export default function BrowseListings() {
   });
 
   const items = listings.data?.results ?? [];
+  const featured = items.filter((l) => l.is_featured);
+  const railRef = useRef<HTMLDivElement>(null);
+  const slide = (dir: number) => railRef.current?.scrollBy({ left: dir * 280, behavior: "smooth" });
 
   /**
    * "All" first so there's always a way back to everything, then O.A.M Motors —
@@ -194,6 +197,39 @@ export default function BrowseListings() {
             </div>
           ) : (
             <>
+              {featured.length > 0 && (
+                <section className="mb-6">
+                  <div className="mb-3 flex items-center justify-between">
+                    <h2 className="flex items-center gap-1.5 text-[15px] font-semibold text-ink">
+                      <Star size={15} strokeWidth={2.5} className="text-brand-green" /> {t("marketplace.featured")}
+                    </h2>
+                    {featured.length >= 6 && (
+                      <div className="hidden gap-2 sm:flex">
+                        <button type="button" onClick={() => slide(-1)} aria-label="Scroll left" className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline bg-paper text-ink transition hover:bg-mist">
+                          <ChevronLeft size={18} />
+                        </button>
+                        <button type="button" onClick={() => slide(1)} aria-label="Scroll right" className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline bg-paper text-ink transition hover:bg-mist">
+                          <ChevronRight size={18} />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  {featured.length >= 6 ? (
+                    <div ref={railRef} className="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                      {featured.map((l) => (
+                        <div key={l.id} className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-60 lg:w-64">
+                          <Card listing={l} />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                      {featured.map((l) => <Card key={l.id} listing={l} />)}
+                    </ul>
+                  )}
+                </section>
+              )}
+
               <p className="mb-3 text-[12.5px] text-muted">
                 {t(listings.data?.count === 1 ? "marketplace.browse.countOne" : "marketplace.browse.countOther", { count: listings.data?.count ?? 0 })}
               </p>

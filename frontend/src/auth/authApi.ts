@@ -31,6 +31,12 @@ type RegisterResponse = AuthResponse & {
 };
 
 export const authApi = {
+  /** Update the signed-in user's profile (first/last name, phone). Email is read-only. */
+  async updateProfile(input: { first_name?: string; last_name?: string; phone?: string }): Promise<User> {
+    const { data } = await api.patch<User>("/auth/me/", input);
+    return data;
+  },
+
   /**
    * Step 1 of a password reset.
    *
