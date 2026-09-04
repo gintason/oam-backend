@@ -47,8 +47,7 @@ import BuyAirtime from "./pages/services/BuyAirtime";
 import BuyElectricity from "./pages/services/BuyElectricity";
 import BuyBetting from "./pages/services/BuyBetting";
 import BuyData from "./pages/services/BuyData";
-import BuyCable from "./pages/services/BuyCable";
-import ComingSoon from "./pages/services/ComingSoon";
+import BuyCable from "./pages/services/BuyCable"
 import FundWallet from "./pages/services/FundWallet";
 import Withdraw from "./pages/services/Withdraw";
 import Transfer from "./pages/services/Transfer";
@@ -57,6 +56,7 @@ import FundCallback from "./pages/services/FundCallback";
 import ServiceCallback from "./pages/services/ServiceCallback";
 import PaymentCallback from "./pages/services/PaymentCallback";
 import FlutterwaveCallback from "./pages/services/FlutterwaveCallback";
+import Profile from "./pages/Profile";
 
 /**
  * App root: global providers + routes.
@@ -115,7 +115,7 @@ export default function App() {
               <Route path="/terms" element={<Terms />} />
 
               <Route path="/privacy" element={<Privacy />} />
-
+              <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
               <Route path="/marketplace" element={<RequireAuth><MarketplaceHub /></RequireAuth>} />
               <Route path="/marketplace/browse" element={<RequireAuth><BrowseListings /></RequireAuth>} />
@@ -173,3 +173,4 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
