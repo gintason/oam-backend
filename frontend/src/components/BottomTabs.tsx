@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { LayoutGrid, Wallet, Receipt, LogOut } from "lucide-react";
-import { useAuth } from "../auth/AuthContext";
+import { Link, useLocation } from "react-router-dom";
+import { LayoutGrid, Wallet, Receipt, User } from "lucide-react";
 
 /**
  * Mobile bottom navigation.
@@ -19,20 +17,11 @@ const TABS = [
   { label: "Dashboard", to: "/dashboard", icon: LayoutGrid },
   { label: "Wallet", to: "/wallet", icon: Wallet },
   { label: "Orders", to: "/orders", icon: Receipt },
+  { label: "Profile", to: "/profile", icon: User },
 ] as const;
 
 export default function BottomTabs() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { logout } = useAuth();
-  const [signingOut, setSigningOut] = useState(false);
-
-  async function onLogout() {
-    if (signingOut) return;
-    setSigningOut(true);
-    await logout();
-    navigate("/", { replace: true });
-  }
 
   return (
     <nav
@@ -84,20 +73,6 @@ export default function BottomTabs() {
               );
             })}
 
-            <li className="flex-1">
-              <button
-                onClick={onLogout}
-                disabled={signingOut}
-                className="flex h-[62px] w-full flex-col items-center justify-center gap-1 px-1 disabled:opacity-60"
-              >
-                <span className="flex h-7 w-12 items-center justify-center rounded-full text-white/55 transition active:bg-brand-red/25 active:text-white">
-                  <LogOut size={19} strokeWidth={1.75} />
-                </span>
-                <span className="text-[10.5px] font-medium leading-none text-white/55">
-                  {signingOut ? "…" : "Logout"}
-                </span>
-              </button>
-            </li>
           </ul>
       </div>
     </nav>
