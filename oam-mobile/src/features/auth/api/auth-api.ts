@@ -35,6 +35,8 @@ export const authApi = {
     api.post<{ detail?: string }>("/auth/logout/", { refresh }).then((r) => r.data),
 
   me: () => api.get<User>("/auth/me/").then((r) => r.data),
+  updateProfile: (input: { first_name?: string; last_name?: string; phone?: string }) =>
+    api.patch<User>("/auth/me/", input).then((r) => r.data),
 
   passwordResetRequest: (identifier: string) =>
     api
