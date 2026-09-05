@@ -35,7 +35,7 @@ export function TransactionRow({ txn }: { txn: Transaction }) {
         </Text>
       </View>
 
-      <Text variant="label" color={credit ? "green" : "ink"}>
+      <Text variant="label" color={credit ? "green" : "danger"}>
         {credit ? "+" : "-"}
         {naira(txn.amount)}
       </Text>
