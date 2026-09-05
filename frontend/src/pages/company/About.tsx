@@ -1,14 +1,29 @@
 import { Link } from "react-router-dom";
-import { Wallet, Zap, Store, Wrench, Plane, ShieldCheck } from "lucide-react";
+import { 
+  Wallet, 
+  Zap, 
+  Store, 
+  Wrench, 
+  Plane, 
+  ShieldCheck, 
+  Globe, 
+  Gamepad2, 
+  Bus, 
+  ShoppingBag 
+} from "lucide-react";
 import PageShell, { Block, Notice } from "./PageShell";
 import { useTranslation, Trans } from "react-i18next";
 
 const WHAT_WE_DO = [
   { icon: Zap, id: "bills" },
+  { icon: Globe, id: "intAirtime" },
   { icon: Wallet, id: "wallet" },
+  { icon: Gamepad2, id: "betting" },
   { icon: Store, id: "marketplace" },
+  { icon: ShoppingBag, id: "ecommerce" },
   { icon: Wrench, id: "services" },
   { icon: Plane, id: "travel" },
+  { icon: Bus, id: "busTickets" },
 ];
 
 export default function About() {
