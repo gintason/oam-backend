@@ -14,7 +14,7 @@ import logo from "./assets/logo.png";
 // key maps to landing.nav.<key>; href is the on-page anchor (not translated).
 const NAV_LINKS = [
   { key: "home", href: "#" },
-  { key: "about", href: "#about" },
+  { key: "about", href: "https://oam-app.com/about" },
   { key: "services", href: "#services" },
   { key: "marketplace", href: "#marketplace" },
   { key: "findArtisans", href: "#artisans" },

@@ -5,24 +5,34 @@ import {
   Store, 
   Wrench, 
   Plane, 
-  ShieldCheck, 
-  Globe, 
-  Gamepad2, 
+  ShieldCheck,
   Bus, 
-  ShoppingBag 
+  ShoppingBag,
+  Smartphone,
+  Tv,
+  Send,
+  Ticket,
+  BedDouble,
+  Car,
+  Wifi
 } from "lucide-react";
 import PageShell, { Block, Notice } from "./PageShell";
 import { useTranslation, Trans } from "react-i18next";
 
 const WHAT_WE_DO = [
-  { icon: Zap, id: "bills" },
-  { icon: Globe, id: "intAirtime" },
+  { icon: Smartphone, id: "airtimeData" },
+  { icon: Wifi, id: "data" },
+  { icon: Zap, id: "electricity" },
+  { icon: Tv, id: "cable" },
   { icon: Wallet, id: "wallet" },
-  { icon: Gamepad2, id: "betting" },
+  { icon: Send, id: "transfers" },
   { icon: Store, id: "marketplace" },
+  { icon: Wrench, id: "artisans" },
+  { icon: Plane, id: "flights" },
+  { icon: BedDouble, id: "hotels" },
+  { icon: Car, id: "carhire" },
   { icon: ShoppingBag, id: "ecommerce" },
-  { icon: Wrench, id: "services" },
-  { icon: Plane, id: "travel" },
+  { icon: Ticket, id: "betting" },
   { icon: Bus, id: "busTickets" },
 ];
 

@@ -84,7 +84,7 @@ const FOOTER_COLS: { col: string; links: { link: string; to: string }[] }[] = [
       { link: "helpCenter", to: "/help" },
       { link: "terms", to: "/terms" },
       { link: "privacy", to: "/privacy" },
-      { link: "refund", to: "/refund" },
+      { link: "refund", to: "/refund-policy" }, 
     ],
   },
 ];
