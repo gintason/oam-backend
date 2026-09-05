@@ -244,7 +244,7 @@ function Row({ txn }: { txn: Transaction }) {
           {reference && <span className="ml-1.5 font-mono text-[10.5px] opacity-70">{reference}</span>}
         </p>
       </div>
-      <span className={`shrink-0 tabular text-[13.5px] font-semibold ${credit ? "text-brand-green" : "text-ink"}`}>
+      <span className={`shrink-0 tabular text-[13.5px] font-semibold ${credit ? "text-brand-green" : "text-brand-red"}`}>
         {credit ? "+" : "−"}{amt}
       </span>
     </li>

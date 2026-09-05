@@ -280,7 +280,7 @@ function TxnRow({ txn }: { txn: Transaction }) {
         <p className="line-clamp-1 text-[13.5px] font-medium text-ink">{label || (isCredit ? t("dashboard.credit") : t("dashboard.debit"))}</p>
         <p className="text-[11.5px] text-muted">{when}</p>
       </div>
-      <span className={`shrink-0 tabular text-[13.5px] font-semibold ${isCredit ? "text-brand-green" : "text-ink"}`}>
+      <span className={`shrink-0 tabular text-[13.5px] font-semibold ${isCredit ? "text-brand-green" : "text-brand-red"}`}>
         {isCredit ? "+" : "−"}{formatted}
       </span>
     </li>

@@ -107,14 +107,14 @@ export default function AppHeader() {
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher className="hidden sm:block" />
-          <div className="hidden items-center gap-2.5 sm:flex">
+          <Link to="/profile" title={t("header.nav.profile")} className="hidden items-center gap-2.5 rounded-lg px-1.5 py-1 transition hover:bg-mist sm:flex">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green/10 text-[13px] font-semibold text-brand-green">
               {initial}
             </span>
             <span className="max-w-[120px] truncate text-sm font-medium text-ink">
               {user?.first_name || user?.email}
             </span>
-          </div>
+          </Link>
           {/* Red on a very light green wash: unmistakably the exit, without a
               solid red button shouting at everyone who wasn't leaving. */}
           <button
