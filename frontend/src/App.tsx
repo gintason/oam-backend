@@ -34,6 +34,7 @@ import About from "./pages/company/About";
 import Contact from "./pages/company/Contact";
 import Help from "./pages/company/Help";
 import Terms from "./pages/company/Terms";
+import Refund from "./pages/company/Refund";
 import Privacy from "./pages/company/Privacy";
 import Travel from "./pages/travel/Travel";
 import Flights from "./pages/travel/Flights";
@@ -115,6 +116,7 @@ export default function App() {
               <Route path="/terms" element={<Terms />} />
 
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/refund" element={<Refund />} />
               <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
               <Route path="/marketplace" element={<RequireAuth><MarketplaceHub /></RequireAuth>} />
@@ -173,4 +175,3 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-
