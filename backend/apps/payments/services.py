@@ -15,6 +15,7 @@ import json
 import uuid
 from decimal import Decimal
 
+from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
 
@@ -32,7 +33,8 @@ def _funding_ref() -> str:
 class FundingService:
     @staticmethod
     @transaction.atomic
-    def initialize(user, amount: Decimal, currency: str, *, provider_key=None, callback_url=None):
+    def initialize(user, amount: Decimal, currency: str, *, provider_key=None, callback_url=None,
+                   subaccount=None, transaction_charge=None, bearer=None):
         currency = currency.upper()
         wallet = WalletService.get_or_create_wallet(user, currency)
         gateway = ProviderFactory.get("payments", provider_key)
@@ -45,11 +47,24 @@ class FundingService:
             internal_reference=reference, idempotency_key=reference, wallet=wallet,
             request_payload={"amount": str(amount), "currency": currency},
         )
+
+        # Escrow compliance: user wallet funding must settle 100% into the dedicated
+        # deposit subaccount, never the main account balance. (Paystack requirement.)
+        if subaccount is None:
+            dep = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "") or ""
+            if dep:
+                subaccount = dep
+                if transaction_charge is None:
+                    transaction_charge = 0        # 0 to main -> 100% to the reserve
+                if bearer is None:
+                    bearer = "subaccount"         # Paystack fee comes out of the deposit
+
         init = gateway.initialize_charge(
             amount=amount, currency=currency,
             email=user.email or f"{user.id}@no-email.oam",
             reference=reference, metadata={"user_id": str(user.id), "txn": str(txn.id)},
             callback_url=callback_url,
+            subaccount=subaccount, transaction_charge=transaction_charge, bearer=bearer,
         )
         txn.provider_reference = init.provider_reference
         txn.response_payload = init.raw

@@ -40,15 +40,33 @@ class PaystackGateway(PaymentGateway):
             "Accept": "application/json",
         }
 
-    def initialize_charge(self, *, amount, currency, email, reference, metadata=None, callback_url=None):
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None,
+                          callback_url=None, subaccount=None, transaction_charge=None,
+                          bearer=None):
         subunits = int((Decimal(str(amount)) * 100).to_integral_value())
         payload = {
-            "email": email, "amount": subunits, "currency": currency,
-            "reference": reference, "metadata": metadata or {},
+            "email": email,
+            "amount": subunits,
+            "currency": currency,
+            "reference": reference,
+            "metadata": metadata or {},
         }
-        _cb = callback_url or _paystack_callback_url()
-        if _cb:
-            payload["callback_url"] = _cb
+
+        cb = callback_url or _paystack_callback_url()
+        if cb:
+            payload["callback_url"] = cb
+
+        # Split / escrow routing via Paystack subaccounts.
+        if subaccount:
+            payload["subaccount"] = subaccount
+            if transaction_charge is not None:
+                # flat amount to the MAIN account; remainder -> subaccount
+                payload["transaction_charge"] = int(
+                    (Decimal(str(transaction_charge)) * 100).to_integral_value()
+                )
+            if bearer:
+                payload["bearer"] = bearer  # "account" | "subaccount"
+
         data = self.post("/transaction/initialize", json=payload)
         d = data.get("data", {}) or {}
         return ChargeInit(
@@ -57,6 +75,7 @@ class PaystackGateway(PaymentGateway):
             provider_reference=d.get("reference", reference),
             raw=data,
         )
+
 
     def verify_charge(self, reference):
         data = self.get(f"/transaction/verify/{reference}")
