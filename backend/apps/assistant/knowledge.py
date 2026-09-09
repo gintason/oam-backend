@@ -15,9 +15,13 @@ PLATFORM_FACTS = """
 OAM is a multi-service platform operated by O.A.M Motors Limited. It offers:
 
 BILLS AND UTILITIES
-- Airtime and data top-ups
-- Electricity units (prepaid tokens and postpaid)
-- Cable TV subscriptions
+- Airtime and data top-ups for all major Nigerian networks (MTN, Airtel, Glo, 9mobile)
+- International airtime: top up phones in other countries. In the airtime screen,
+  switch from "Local" to "International", pick the country and network, choose an
+  amount, and pay. The price is shown in Naira before you confirm.
+- Electricity units (prepaid tokens and postpaid) across Nigerian discos
+  (e.g. IKEDC, EKEDC, IBEDC, AEDC and others)
+- Cable TV subscriptions (DStv, GOtv, StarTimes and others)
 - The price shown is the price paid. There is NO separate fee at checkout; OAM's
   margin is included in the price.
 
@@ -29,6 +33,19 @@ WALLET
   in the wallet as a balance the customer can spend or withdraw.
 - Transfers between OAM users are instant and free
 - Withdrawals go to a bank account in the customer's own name
+- The wallet can also be funded by bank transfer and by a dedicated virtual account,
+  in addition to card
+
+BETTING WALLET TOP-UP
+- Fund sports betting accounts instantly across top betting providers in Nigeria
+
+BUS TICKETS
+- Search and book intercity bus tickets for travel across Nigeria: choose route and
+  date, pick your seats, enter passenger details, and pay from wallet or by card
+
+E-COMMERCE
+- Shop from top international partner stores (such as Amazon, Temu and Alibaba)
+  through the OAM interface
 
 ELECTRICITY TOKENS
 - Tokens usually arrive within a minute or two, occasionally longer
@@ -45,8 +62,9 @@ MARKETPLACE
 - Premium is 2,500 NGN for 20 listings plus featured placement
 - Pro is 5,000 NGN for unlimited listings plus featured placement and priority
 - These are one-off payments for a period; nothing renews automatically
-- Phone numbers are NEVER published. A buyer messages the seller in the app, and
-  contact details are exchanged only when the seller accepts the enquiry.
+- Phone numbers are NEVER published. Buyers and sellers use built-in, in-app
+  messaging to negotiate and communicate securely; contact details are exchanged
+  only when the seller accepts the enquiry.
 
 HOME SERVICES / ARTISANS
 - Find plumbers, electricians, mechanics, cleaners and other trades
@@ -63,9 +81,12 @@ O.A.M MOTORS
 - Vehicles sold directly by O.A.M Motors, listed in the marketplace under the
   O.A.M Motors category
 
-TRAVEL
-- Flights, hotels, car hire and airport pickups, booked through partner sites.
-  The booking contract is with the partner, not with OAM.
+TRAVEL (FLIGHTS, HOTELS, CAR HIRE)
+- Flights: compare and book domestic and international flights from hundreds of airlines
+- Hotels: search and book stays in over 100 countries with instant confirmation
+- Car hire: rent cars with or without a driver at thousands of locations worldwide
+- Airport pickups are also available. Travel is booked through partner sites, so the
+  booking contract is with the partner, not with OAM.
 
 SECURITY
 - Card details are entered on Paystack's checkout and are never seen or stored
@@ -201,8 +222,9 @@ FAQS = [
 ]
 
 GREETING = (
-    "Hello. I can help with anything about OAM — bills, your wallet, electricity tokens, "
-    "the marketplace, or finding an artisan. What would you like to know?"
+    "Hi, I'm O.A.M Assistant. I can help with anything about OAM — airtime and data, "
+    "bills and electricity tokens, your wallet and transfers, the marketplace, finding "
+    "an artisan, travel, bus tickets and more. What would you like to know?"
 )
 
 CANT_SEE_ACCOUNT = (
@@ -216,6 +238,6 @@ CANT_SEE_ACCOUNT = (
 
 NO_MATCH = (
     "I'm not certain about that one, and I'd rather not guess.\n\n"
-    "The Help Centre (/help) covers most questions, and info@oam-app.com reaches a person who "
-    "can look into anything specific — including your own orders and payments, which I can't see."
+    "For anything I can't cover — or anything specific to your account — please send an email "
+    "with the details to info@oam-app.com and a human support representative will assist you."
 )

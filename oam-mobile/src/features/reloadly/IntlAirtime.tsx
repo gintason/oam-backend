@@ -18,6 +18,7 @@ export function IntlAirtime() {
   const user = useAuthStore((s) => s.user);
   const isVerified = user?.is_verified ?? false;
   const balance = Number(pickHeadline(useWallets().data?.wallets)?.balance ?? 0);
+  const history = useQuery({ queryKey: ["intl", "history"], queryFn: reloadlyApi.topups, enabled: isVerified });
 
   const [country, setCountry] = useState("");
   const [countryName, setCountryName] = useState("");
@@ -94,6 +95,7 @@ export function IntlAirtime() {
 
   function finish(t: AirtimeTopup) {
     qc.invalidateQueries({ queryKey: ["wallets"] });
+    qc.invalidateQueries({ queryKey: ["intl", "history"] });
     setTopup(t);
   }
 
@@ -142,17 +144,14 @@ export function IntlAirtime() {
     <View>
       {error ? <View style={{ marginBottom: 14, borderRadius: 12, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", paddingHorizontal: 12, paddingVertical: 10 }}><Text variant="caption" color="danger">{error}</Text></View> : null}
 
-      {/* Country */}
       <Text variant="label" style={{ marginBottom: 8 }}>Recipient's country</Text>
       <Pressable onPress={() => { setCountryOpen(true); setCountrySearch(""); }} style={{ height: 48, borderRadius: 12, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 14, marginBottom: 14 }}>
         <Text variant="body" color={countryName ? "ink" : "muted"}>{countryName || "Select country"}</Text>
         <ChevronDown size={18} color={colors.muted} />
       </Pressable>
 
-      {/* Recipient phone */}
       <Input label="Recipient phone (with local format)" value={phone} onChangeText={(v) => { setPhone(v.replace(/[^\d+]/g, "")); setOperator(null); }} keyboardType="phone-pad" placeholder="e.g. 233501234567" autoCapitalize="none" />
 
-      {/* Operator */}
       {country ? (
         operators.isLoading ? <ActivityIndicator color={colors.brand.green} style={{ alignSelf: "flex-start", marginBottom: 14 }} /> : (
           <>
@@ -172,7 +171,6 @@ export function IntlAirtime() {
         )
       ) : null}
 
-      {/* Amount */}
       {operator ? (
         <>
           <Text variant="label" style={{ marginBottom: 8 }}>Amount {useLocal ? `(${operator.destination_currency})` : "(USD)"}</Text>
@@ -191,7 +189,6 @@ export function IntlAirtime() {
             <Input label="" value={amount} onChangeText={(v) => setAmount(v.replace(/[^\d.]/g, ""))} keyboardType="decimal-pad" placeholder={`${symbol}0`} />
           )}
 
-          {/* Price */}
           {Number(amount) > 0 ? (
             <View style={{ borderRadius: 12, backgroundColor: colors.mist, padding: 14, marginBottom: 14 }}>
               {quote.isLoading ? <ActivityIndicator color={colors.brand.green} /> : (
@@ -203,7 +200,6 @@ export function IntlAirtime() {
             </View>
           ) : null}
 
-          {/* Pay with */}
           <Text variant="label" style={{ marginBottom: 8 }}>Pay with</Text>
           <View style={{ flexDirection: "row", gap: 8, marginBottom: 14 }}>
             {(["wallet", "card"] as const).map((m) => {
@@ -221,7 +217,24 @@ export function IntlAirtime() {
         </>
       ) : null}
 
-      {/* Country picker */}
+      {(history.data?.length ?? 0) > 0 ? (
+        <View style={{ marginTop: 22, borderTopWidth: 1, borderTopColor: colors.hairline, paddingTop: 16 }}>
+          <Text variant="label" style={{ marginBottom: 10 }}>Recent top-ups</Text>
+          {history.data!.slice(0, 8).map((t) => (
+            <View key={t.reference} style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", backgroundColor: colors.mist, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 8 }}>
+              <View style={{ flex: 1, paddingRight: 10 }}>
+                <Text variant="caption" color="ink" numberOfLines={1}>{t.operator_name || t.country_iso}</Text>
+                <Text variant="caption" color="muted" numberOfLines={1}>{t.recipient_number} · {new Date(t.created_at).toLocaleDateString()}</Text>
+              </View>
+              <View style={{ alignItems: "flex-end" }}>
+                <Text variant="caption" color="ink">{naira(Number(t.total_ngn))}</Text>
+                <Text variant="caption" color={t.status === "success" ? "green" : t.status === "failed" ? "danger" : "muted"}>{t.status}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      ) : null}
+
       <Modal visible={countryOpen} transparent animationType="slide" onRequestClose={() => setCountryOpen(false)}>
         <Pressable onPress={() => setCountryOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
           <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "78%" }}>
