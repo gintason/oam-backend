@@ -61,7 +61,7 @@ export default function Assistant() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          aria-label="Ask OAM"
+          aria-label="O.A.M Assistant"
           className="fixed bottom-[86px] right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#0a0a0a] text-white shadow-[0_8px_24px_rgba(10,10,10,0.28)] transition hover:scale-105 md:bottom-6"
         >
           <span
@@ -94,8 +94,7 @@ export default function Assistant() {
               <div className="relative flex items-center justify-between px-4 py-3.5">
                 <div>
                   <p className="flex items-center gap-1.5 font-display text-[15px] font-semibold">
-                    <Sparkles size={14} strokeWidth={2} className="text-brand-green" />
-                    Ask OAM
+                    <Sparkles size={14} strokeWidth={2} className="text-brand-green" /> O.A.M Assistant
                   </p>
                   <p className="text-[11.5px] text-white/50">
                     Questions about bills, wallet, marketplace and more
@@ -117,7 +116,7 @@ export default function Assistant() {
                 <>
                   <Bubble role="assistant">
                     {status.data?.greeting ??
-                      "Hello. I can help with anything about OAM. What would you like to know?"}
+                      "Hi, I\u2019m O.A.M Assistant. I can help with anything about OAM \u2014 airtime, bills, your wallet, the marketplace, artisans, travel and more. What would you like to know?"}
                   </Bubble>
                   <div className="space-y-1.5 pt-1">
                     {(status.data?.suggestions ?? []).map((s) => (
@@ -159,7 +158,7 @@ export default function Assistant() {
                     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(draft); }
                   }}
                   rows={1}
-                  placeholder="Ask a question…"
+                  placeholder="Ask O.A.M Assistant…"
                   className="max-h-24 min-h-[42px] flex-1 resize-none rounded-xl border border-hairline bg-paper px-3 py-2.5 text-[13.5px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10"
                 />
                 <button
