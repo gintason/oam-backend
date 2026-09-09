@@ -90,6 +90,25 @@ class FundingService:
         if raw:
             txn.response_payload = {**(txn.response_payload or {}), "settle": raw}
         txn.save(update_fields=["journal", "status", "response_payload", "updated_at"])
+
+        # After a successful funding, complete any pending order paid by card.
+        if txn.status == ServiceTransaction.Status.SUCCESS:
+            def _book_bus(ref=reference):
+                try:
+                    from apps.travu.booking import BusBookingService
+                    BusBookingService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_book_bus)
+
+            def _send_airtime(ref=reference):
+                try:
+                    from apps.reloadly.topup import AirtimeTopupService
+                    AirtimeTopupService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_send_airtime)
+
         return txn
 
 
