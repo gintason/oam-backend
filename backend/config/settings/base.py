@@ -64,6 +64,7 @@ INSTALLED_APPS = [
      "beneficiaries",
      "apps.notifications",
      "apps.travu",
+     "reloadly",
     # ...
 ]
 
