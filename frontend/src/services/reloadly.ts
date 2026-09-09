@@ -49,6 +49,10 @@ export const reloadlyApi = {
     const { data } = await api.get<AirtimeTopup>(`/reloadly/topups/${reference}/`);
     return data;
   },
+  async topups(): Promise<AirtimeTopup[]> {
+    const { data } = await api.get<{ results: AirtimeTopup[] }>("/reloadly/topups/");
+    return data.results ?? [];
+  },
 };
 
 const KEY = "oam_intl_air";

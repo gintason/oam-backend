@@ -25,6 +25,7 @@ export default function InternationalAirtime() {
   const countries = useQuery({ queryKey: ["intl", "countries"], queryFn: reloadlyApi.countries, enabled: isVerified, staleTime: 60 * 60 * 1000 });
   const walletsQ = useQuery({ queryKey: ["wallets"], queryFn: walletApi.getWallets, enabled: isVerified });
   const balance = Number(walletsQ.data?.wallets.find((w) => w.currency === "NGN")?.balance ?? 0);
+  const history = useQuery({ queryKey: ["intl", "history"], queryFn: reloadlyApi.topups, enabled: isVerified });
 
   const debouncedPhone = useDebounced(phone, 600);
   const operators = useQuery({
@@ -179,6 +180,26 @@ export default function InternationalAirtime() {
             {buy.isPending ? <Loader2 size={18} className="animate-spin" /> : (quote.data ? `Send ${priceNgn}` : "Send airtime")}
           </button>
         </>
+      )}
+
+      {(history.data?.length ?? 0) > 0 && (
+        <div className="mt-6 border-t border-hairline pt-4">
+          <p className="mb-3 text-[12.5px] font-semibold text-ink">Recent top-ups</p>
+          <ul className="space-y-2">
+            {history.data!.slice(0, 8).map((t) => (
+              <li key={t.reference} className="flex items-center justify-between gap-3 rounded-xl bg-mist px-3.5 py-2.5">
+                <div className="min-w-0">
+                  <p className="truncate text-[13px] font-medium text-ink">{t.operator_name || t.country_iso}</p>
+                  <p className="truncate text-[11.5px] text-muted">{t.recipient_number} · {new Date(t.created_at).toLocaleDateString()}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[13px] font-semibold text-ink">{naira(Number(t.total_ngn))}</p>
+                  <p className={`text-[11px] font-medium ${t.status === "success" ? "text-brand-green" : t.status === "failed" ? "text-danger" : "text-muted"}`}>{t.status}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
