@@ -1,15 +1,24 @@
 """
-Airtime top-up orchestration: price in NGN, take payment (wallet or card),
-call Reloadly, then capture (cost -> Reloadly, markup -> OAM revenue) or refund.
+Airtime top-up orchestration.
+
+Pricing uses Reloadly's LIVE fx.rate only — no markup, no static USD->NGN rate,
+no discount adjustment. The customer is charged the face value converted at
+Reloadly's own rate:
+
+    - local amount   -> charge_ngn = amount / fx.rate   (recipient currency -> merchant NGN)
+    - sender amount   -> charge_ngn = amount             (already in the merchant currency)
+
+OAM's profit is earned automatically by Reloadly's merchant discount, which is
+applied to the OAM Reloadly account balance at settlement — NOT added to the
+customer's charge here.
 """
 import logging
 import uuid
 from decimal import Decimal, ROUND_HALF_UP
 
-from django.conf import settings
 from django.db import transaction
 
-from apps.wallet.services import WalletService, REVENUE_ACCOUNT
+from apps.wallet.services import WalletService
 from apps.payments.services import FundingService
 
 from .services import ReloadlyClient, ReloadlyError, s as _s
@@ -17,23 +26,7 @@ from .models import AirtimeTopup, AirtimeApiLog
 
 logger = logging.getLogger(__name__)
 
-RELOADLY_ACCOUNT = "provider:reloadly"   # OAM's notional cost of airtime
-
-
-def usd_ngn() -> Decimal:
-    val = getattr(settings, "RELOADLY_USD_NGN", None)
-    try:
-        return Decimal(str(val)) if val not in (None, "") else Decimal("1700")
-    except Exception:
-        return Decimal("1700")
-
-
-def _extra_markup() -> Decimal:
-    val = getattr(settings, "RELOADLY_EXTRA_MARKUP_PERCENT", None)
-    try:
-        return Decimal(str(val)) if val not in (None, "") else Decimal("0")
-    except Exception:
-        return Decimal("0")
+RELOADLY_ACCOUNT = "provider:reloadly"   # OAM's Reloadly float (settlement account)
 
 
 def _ref() -> str:
@@ -50,20 +43,19 @@ def _d(v) -> Decimal:
 class AirtimeTopupService:
     @staticmethod
     def quote(*, operator: dict, amount, use_local_amount=False) -> dict:
-        """Price a top-up in NGN. markup = operator Int'l discount % (+ optional extra)."""
-        rate = usd_ngn()
-        disc = _d(operator.get("international_discount"))
+        """Charge in the merchant currency (NGN) using Reloadly's live fx.rate only."""
         fx = _d(operator.get("fx_rate"))
         amt = _d(amount)
-        face_usd = (amt / fx) if (use_local_amount and fx > 0) else amt   # face value in USD
-        markup_pct = disc + _extra_markup()
-        total_ngn = (face_usd * rate * (Decimal("1") + markup_pct / Decimal("100"))).quantize(Decimal("0.01"), ROUND_HALF_UP)
-        cost_ngn = (face_usd * (Decimal("1") - disc / Decimal("100")) * rate).quantize(Decimal("0.01"), ROUND_HALF_UP)
-        markup_ngn = (total_ngn - cost_ngn).quantize(Decimal("0.01"))
+        if use_local_amount and fx > 0:
+            # recipient's local currency -> merchant currency (NGN) at Reloadly's rate
+            total_ngn = (amt / fx).quantize(Decimal("0.01"), ROUND_HALF_UP)
+        else:
+            # amount already expressed in the merchant/sender currency
+            total_ngn = amt.quantize(Decimal("0.01"), ROUND_HALF_UP)
         return {
-            "face_usd": face_usd.quantize(Decimal("0.0001")),
-            "total_ngn": total_ngn, "cost_ngn": cost_ngn, "markup_ngn": markup_ngn,
-            "usd_ngn": rate, "markup_percent": markup_pct,
+            "total_ngn": total_ngn,
+            "fx_rate": fx,
+            "use_local_amount": bool(use_local_amount),
         }
 
     @staticmethod
@@ -81,8 +73,8 @@ class AirtimeTopupService:
             country_iso=op.get("country_iso", ""),
             recipient_number=_s(recipient_number), recipient_iso2=_s(recipient_iso2).upper(),
             use_local_amount=bool(use_local_amount),
-            amount=_d(amount), currency=op.get("sender_currency", "USD") or "USD",
-            total_ngn=q["total_ngn"], cost_ngn=q["cost_ngn"], markup_ngn=q["markup_ngn"],
+            amount=_d(amount), currency=op.get("sender_currency", "NGN") or "NGN",
+            total_ngn=q["total_ngn"], cost_ngn=q["total_ngn"], markup_ngn=Decimal("0"),
             pay_with=pay_with,
             request_payload={"operator": op.get("name"),
                              "quote": {k: str(v) for k, v in q.items()}},
@@ -131,7 +123,7 @@ class AirtimeTopupService:
                            metadata={"airtime": str(topup.id)})
         AirtimeTopupService._fulfill(topup)
 
-    # ---------------- core: send + capture / refund ----------------
+    # ---------------- core: send + settle / refund ----------------
     @staticmethod
     def _fulfill(topup: AirtimeTopup) -> AirtimeTopup:
         wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
@@ -151,10 +143,12 @@ class AirtimeTopupService:
         status_ = str((result or {}).get("status") or "").upper()
         txid = _s((result or {}).get("transactionId") or (result or {}).get("id"))
         if status_ in ("SUCCESSFUL", "PROCESSING", "PENDING") or txid:
+            # Debit the customer's charge to the Reloadly float. OAM's margin is the
+            # merchant discount Reloadly applies to the account balance (external).
             WalletService.capture(
-                "NGN", topup.total_ngn, reference=topup.reference, cost=topup.cost_ngn,
+                "NGN", topup.total_ngn, reference=topup.reference, cost=topup.total_ngn,
                 counterpart_code=RELOADLY_ACCOUNT, description=f"Airtime {topup.reference}",
-                metadata={"airtime": str(topup.id), "markup": str(topup.markup_ngn)},
+                metadata={"airtime": str(topup.id)},
             )
             topup.status = AirtimeTopup.Status.SUCCESS
             topup.reloadly_transaction_id = txid
