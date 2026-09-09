@@ -13,9 +13,12 @@ applied to the OAM Reloadly account balance at settlement — NOT added to the
 customer's charge here.
 """
 import logging
+import time
 import uuid
 from decimal import Decimal, ROUND_HALF_UP
 
+import requests
+from django.conf import settings
 from django.db import transaction
 
 from apps.wallet.services import WalletService
@@ -27,6 +30,35 @@ from .models import AirtimeTopup, AirtimeApiLog
 logger = logging.getLogger(__name__)
 
 RELOADLY_ACCOUNT = "provider:reloadly"   # OAM's Reloadly float (settlement account)
+
+_ER_URL = "https://open.er-api.com/v6/latest/USD"
+_rate_cache = {"rate": None, "exp": 0.0}
+
+
+def usd_to_ngn() -> Decimal:
+    """Live USD->NGN, cached 30 min. Falls back to env RELOADLY_USD_NGN, then a default."""
+    now = time.time()
+    if _rate_cache["rate"] and now < _rate_cache["exp"]:
+        return _rate_cache["rate"]
+    # 1) live rate
+    try:
+        data = requests.get(_ER_URL, timeout=8).json()
+        ngn = (data.get("rates") or {}).get("NGN")
+        if ngn:
+            rate = Decimal(str(ngn))
+            _rate_cache.update(rate=rate, exp=now + 1800)
+            return rate
+    except Exception:
+        pass
+    # 2) optional env pin (fallback only, not a static markup)
+    val = getattr(settings, "RELOADLY_USD_NGN", None)
+    try:
+        if val not in (None, ""):
+            return Decimal(str(val))
+    except Exception:
+        pass
+    # 3) last-resort default so a top-up never prices at ~0
+    return Decimal("1550")
 
 
 def _ref() -> str:
@@ -43,18 +75,25 @@ def _d(v) -> Decimal:
 class AirtimeTopupService:
     @staticmethod
     def quote(*, operator: dict, amount, use_local_amount=False) -> dict:
-        """Charge in the merchant currency (NGN) using Reloadly's live fx.rate only."""
+        """
+        Two-step conversion using Reloadly's live fx.rate (target-per-USD):
+            cost_usd  = local amount / fx.rate     (or the amount itself if already USD)
+            total_ngn = cost_usd * live USD->NGN
+        No markup added — OAM's margin is Reloadly's merchant discount at settlement.
+        """
         fx = _d(operator.get("fx_rate"))
         amt = _d(amount)
         if use_local_amount and fx > 0:
-            # recipient's local currency -> merchant currency (NGN) at Reloadly's rate
-            total_ngn = (amt / fx).quantize(Decimal("0.01"), ROUND_HALF_UP)
+            cost_usd = amt / fx                 # recipient local currency -> USD
         else:
-            # amount already expressed in the merchant/sender currency
-            total_ngn = amt.quantize(Decimal("0.01"), ROUND_HALF_UP)
+            cost_usd = amt                      # amount already in USD (sender currency)
+        rate = usd_to_ngn()
+        total_ngn = (cost_usd * rate).quantize(Decimal("0.01"), ROUND_HALF_UP)
         return {
             "total_ngn": total_ngn,
+            "cost_usd": cost_usd.quantize(Decimal("0.0001")),
             "fx_rate": fx,
+            "usd_ngn": rate,
             "use_local_amount": bool(use_local_amount),
         }
 
