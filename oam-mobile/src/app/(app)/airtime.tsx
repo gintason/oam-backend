@@ -12,6 +12,7 @@ import { naira, formatPhone, detectNetwork } from "@/shared/lib/format";
 import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
 import { useBillers, billsApi, ConfirmPurchase, PaySummary, PaystackModal, RecentBeneficiaries } from "@/features/bills";
+import { IntlAirtime } from "@/features/reloadly";
 import { saveRecent } from "@/shared/lib/recent-beneficiaries";
 import type { BillOrder } from "@/entities/billing";
 
@@ -28,6 +29,7 @@ export default function Airtime() {
   const user = useAuthStore((s) => s.user);
   const isVerified = user?.is_verified ?? false;
 
+  const [mode, setMode] = useState<"local" | "international">("local");
   const [network, setNetwork] = useState("");
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
@@ -254,6 +256,19 @@ export default function Airtime() {
           </View>
         </View>
 
+        {/* Local / International */}
+        <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
+          {(["local", "international"] as const).map((m) => {
+            const sel = mode === m;
+            return (
+              <Pressable key={m} onPress={() => setMode(m)} style={{ flex: 1, height: 44, borderRadius: 11, borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.10)" : colors.paper, alignItems: "center", justifyContent: "center" }}>
+                <Text variant="label" color={sel ? "green" : "muted"}>{m === "local" ? t("airtime.local", "Local") : t("airtime.international", "International")}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+
+        {mode === "international" ? <IntlAirtime /> : (
         <View style={{ borderRadius: 20, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>
           {error ? (
             <View style={{ marginBottom: 14, borderRadius: 12, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", paddingHorizontal: 12, paddingVertical: 10 }}>
@@ -405,6 +420,7 @@ export default function Airtime() {
             {payWith === "card" ? t("bills.payNoteCardShort") : t("bills.payNoteWallet")}
           </Text>
         </View>
+        )}
       </ScrollView>
 
       <PaystackModal

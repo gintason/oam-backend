@@ -14,6 +14,7 @@ import { walletApi } from "../../services/wallet";
 import { formatPhone, detectNetwork, naira } from "../../lib/format";
 import PaySummary from "../../components/PaySummary";
 import ConfirmPurchase from "../../components/ConfirmPurchase";
+import InternationalAirtime from "./InternationalAirtime";
 
 const QUICK_AMOUNTS = [100, 200, 500, 1000, 2000];
 
@@ -28,6 +29,7 @@ export default function BuyAirtime() {
   const saveBeneficiary = useSaveBeneficiary();
   const navigate = useNavigate();
 
+  const [mode, setMode] = useState<"local" | "international">("local");
   const [network, setNetwork] = useState<string>("");   // biller code
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState<string>("");
@@ -194,6 +196,14 @@ export default function BuyAirtime() {
           </div>
         </div>
 
+        {/* Local / International */}
+        <div className="mb-4 grid grid-cols-2 gap-2">
+          {(["local", "international"] as const).map((m) => (
+            <button key={m} type="button" onClick={() => setMode(m)} className={`h-11 rounded-[11px] border text-[13.5px] font-medium transition ${mode === m ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>{m === "local" ? t("airtime.local", "Local") : t("airtime.international", "International")}</button>
+          ))}
+        </div>
+
+        {mode === "international" ? <InternationalAirtime /> : (
         <form onSubmit={submit} className="rounded-2xl border border-hairline bg-paper p-5">
           {error && (
             <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">
@@ -362,6 +372,7 @@ export default function BuyAirtime() {
               : t("airtime.walletHint")}
           </p>
         </form>
+        )}
       </main>
 
       <ConfirmPurchase
