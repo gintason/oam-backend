@@ -1234,7 +1234,8 @@
       "intl4Body": "Immigration sometimes asks for an address before you have data or wifi.",
       "readyTitle": "Ready to find your stay?",
       "readyBody": "Search hotels, apartments and resorts worldwide, then book securely with our partner."
-    }
+    },
+    "busTickets": "Bus Tickets"
   },
   "company": {
     "shell": {
@@ -1526,5 +1527,18 @@
     "save": "Save",
     "cancel": "Cancel",
     "rename": "Rename"
+  },
+  "ecommerce": {
+    "title": "Shop the world",
+    "subtitle": "Shop top international stores through OAM.",
+    "allStores": "All stores",
+    "back": "Back",
+    "soon": "Coming soon",
+    "storeNotFound": "Store not found.",
+    "shopOn": "Shop on {{name}}",
+    "pending": "{{name}} is coming soon.",
+    "popularCategories": "Categories",
+    "disclosure": "You'll be taken to the partner's own website to complete your purchase.",
+    "companyDisclosure": "You're leaving OAM to shop on {{name}}. Your order and payment are handled by {{name}}, not OAM."
   }
 }

@@ -152,7 +152,7 @@ export function IntlAirtime() {
         <ChevronDown size={18} color={colors.muted} />
       </Pressable>
 
-      <Input label=t("airtime.intl.phone") value={phone} onChangeText={(v) => { setPhone(v.replace(/[^\d+]/g, "")); setOperator(null); }} keyboardType="phone-pad" placeholder=t("airtime.intl.phonePlaceholder") autoCapitalize="none" />
+      <Input label={t("airtime.intl.phone")} value={phone} onChangeText={(v) => { setPhone(v.replace(/[^\d+]/g, "")); setOperator(null); }} keyboardType="phone-pad" placeholder={t("airtime.intl.phonePlaceholder")} autoCapitalize="none" />
 
       {country ? (
         operators.isLoading ? <ActivityIndicator color={colors.brand.green} style={{ alignSelf: "flex-start", marginBottom: 14 }} /> : (
@@ -243,7 +243,7 @@ export function IntlAirtime() {
             <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>Choose a country</Text>
             <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
               <Search size={15} color={colors.muted} />
-              <TextInput value={countrySearch} onChangeText={setCountrySearch} autoFocus placeholder=t("airtime.intl.searchCountries") placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+              <TextInput value={countrySearch} onChangeText={setCountrySearch} autoFocus placeholder={t("airtime.intl.searchCountries")} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
             </View>
             <ScrollView keyboardShouldPersistTaps="handled">
               {filteredCountries.map((c) => (
