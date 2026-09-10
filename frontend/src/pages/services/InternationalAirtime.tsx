@@ -6,12 +6,14 @@ import { walletApi } from "../../services/wallet";
 import { naira } from "../../lib/format";
 import { apiErrorMessage } from "../../lib/api";
 import { useDebounced } from "../../hooks/useDebounced";
+import { useTranslation } from "react-i18next";
 import { reloadlyApi, intlAirStore, type Operator, type AirtimeTopup } from "../../services/reloadly";
 
 /** International airtime (Reloadly). Rendered inside BuyAirtime's "International" tab. */
 export default function InternationalAirtime() {
   const qc = useQueryClient();
   const { isVerified } = useAuth();
+  const { t } = useTranslation();
 
   const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
@@ -54,7 +56,7 @@ export default function InternationalAirtime() {
         qc.invalidateQueries({ queryKey: ["wallets"] });
         setTopup(t);
       } catch {
-        setError("Couldn't confirm your top-up. Check your history.");
+        setError(t("airtime.intl.errConfirm"));
       } finally {
         setResuming(false);
       }
@@ -88,16 +90,16 @@ export default function InternationalAirtime() {
     },
     onError: (err) => {
       const st = (err as { response?: { status?: number } })?.response?.status;
-      setError(st === 402 ? "Your wallet balance is too low. Add money or pay by card." : apiErrorMessage(err, "Top-up failed."));
+      setError(st === 402 ? t("airtime.intl.errBalance") : apiErrorMessage(err, t("airtime.intl.errFailed")));
     },
   });
 
   function submit() {
     setError(undefined);
-    if (!country) return setError("Choose the recipient's country.");
-    if (phone.trim().length < 6) return setError("Enter the recipient's phone number.");
-    if (!operator) return setError("Choose a network operator.");
-    if (Number(amount) <= 0) return setError("Choose an amount.");
+    if (!country) return setError(t("airtime.intl.errCountry"));
+    if (phone.trim().length < 6) return setError(t("airtime.intl.errPhone"));
+    if (!operator) return setError(t("airtime.intl.errNetwork"));
+    if (Number(amount) <= 0) return setError(t("airtime.intl.errAmount"));
     buy.mutate();
   }
 
@@ -114,9 +116,9 @@ export default function InternationalAirtime() {
     return (
       <div className="rounded-2xl border border-hairline bg-paper p-6 text-center">
         {ok ? <CheckCircle2 size={44} className="mx-auto text-brand-green" /> : <XCircle size={44} className="mx-auto text-danger" />}
-        <h2 className="mt-2 font-display text-lg font-semibold text-ink">{ok ? "Airtime sent!" : "Top-up failed"}</h2>
-        <p className="mt-1 text-[14px] text-muted">{ok ? `${topup.operator_name} · ${topup.recipient_number}` : (topup.failure_reason || "If you were charged, it has been refunded.")}</p>
-        <button onClick={() => { setTopup(null); setAmount(""); }} className="mt-5 h-11 w-full rounded-[11px] bg-brand-green text-[14px] font-semibold text-white">Done</button>
+        <h2 className="mt-2 font-display text-lg font-semibold text-ink">{ok ? t("airtime.intl.successTitle") : t("airtime.intl.failedTitle")}</h2>
+        <p className="mt-1 text-[14px] text-muted">{ok ? `${topup.operator_name} · ${topup.recipient_number}` : (topup.failure_reason || t("airtime.intl.refunded"))}</p>
+        <button onClick={() => { setTopup(null); setAmount(""); }} className="mt-5 h-11 w-full rounded-[11px] bg-brand-green text-[14px] font-semibold text-white">{t("airtime.intl.done")}</button>
       </div>
     );
   }
@@ -132,13 +134,13 @@ export default function InternationalAirtime() {
       </select>
 
       <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Recipient phone (local format)</label>
-      <input value={phone} onChange={(e) => { setPhone(e.target.value.replace(/[^\d+]/g, "")); setOperator(null); }} placeholder="e.g. 233501234567" className={`${inputCls} mb-4`} />
+      <input value={phone} onChange={(e) => { setPhone(e.target.value.replace(/[^\d+]/g, "")); setOperator(null); }} placeholder=t("airtime.intl.phonePlaceholder") className={`${inputCls} mb-4`} />
 
       {country && (operators.isLoading ? (
         <Loader2 size={20} className="mb-4 animate-spin text-brand-green" />
       ) : (
         <>
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Network</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("airtime.intl.network")}</label>
           <div className="mb-4 flex flex-wrap gap-2">
             {(operators.data ?? []).map((op) => (
               <button key={op.operator_id} onClick={() => { setOperator(op); setAmount(""); }} className={`h-10 rounded-[10px] border px-3.5 text-[13px] font-medium transition ${operator?.operator_id === op.operator_id ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>{op.name}</button>
@@ -150,7 +152,7 @@ export default function InternationalAirtime() {
 
       {operator && (
         <>
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Amount {useLocal ? `(${operator.destination_currency})` : "(USD)"}</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("airtime.intl.amount")} {useLocal ? `(${operator.destination_currency})` : "(USD)"}</label>
           {amounts.length > 0 ? (
             <div className="mb-4 flex flex-wrap gap-2">
               {amounts.slice(0, 12).map((a) => (
@@ -171,13 +173,13 @@ export default function InternationalAirtime() {
           <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay with</label>
           <div className="mb-4 grid grid-cols-2 gap-2">
             {(["wallet", "card"] as const).map((m) => (
-              <button key={m} onClick={() => setPayWith(m)} className={`h-11 rounded-[11px] border text-[13.5px] font-medium transition ${payWith === m ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>{m === "wallet" ? "Wallet" : "Card"}</button>
+              <button key={m} onClick={() => setPayWith(m)} className={`h-11 rounded-[11px] border text-[13.5px] font-medium transition ${payWith === m ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}>{m === "wallet" ? t("airtime.intl.wallet") : t("airtime.intl.card")}</button>
             ))}
           </div>
-          {payWith === "wallet" && <p className="mb-3 text-[12px] text-muted">Wallet balance: {naira(balance)}</p>}
+          {payWith === "wallet" && <p className="mb-3 text-[12px] text-muted">{t("airtime.intl.walletBalance", { balance: naira(balance) })}</p>}
 
           <button onClick={submit} disabled={buy.isPending} className="flex h-11 w-full items-center justify-center rounded-[11px] bg-brand-red text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(227,16,18,0.25)] transition hover:brightness-95 disabled:opacity-60">
-            {buy.isPending ? <Loader2 size={18} className="animate-spin" /> : (quote.data ? `Send ${priceNgn}` : "Send airtime")}
+            {buy.isPending ? <Loader2 size={18} className="animate-spin" /> : (quote.data ? t("airtime.intl.sendAmount", { amount: priceNgn }) : t("airtime.intl.send"))}
           </button>
         </>
       )}

@@ -10,6 +10,7 @@ import { Button, Input, Text } from "@/shared/ui";
 export default function VerifyOtp() {
   const router = useRouter();
   const setSession = useAuthStore((s) => s.setSession);
+  const beginPinSetup = useAuthStore((s) => s.beginPinSetup);
   const { identifier } = useLocalSearchParams<{ identifier: string }>();
   const ident = String(identifier ?? "");
 
@@ -21,7 +22,8 @@ export default function VerifyOtp() {
     mutationFn: () => authApi.verifyOtp(ident, code.trim()),
     onSuccess: async ({ user, tokens }) => {
       await setSession(user, tokens);
-      router.replace("/home");
+      beginPinSetup();
+      router.replace("/create-pin");
     },
     onError: (err) => setError(apiErrorMessage(err, "That code didn't work. Check it and try again.")),
   });

@@ -1,14 +1,14 @@
 import { View, ScrollView, Pressable, ActivityIndicator, Alert, Dimensions } from "react-native";
 import { useRouter } from "expo-router";
+import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
 import {
-  Menu, Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Ticket, Bus, type LucideIcon,
+  Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Sparkles, Menu, type LucideIcon,
 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { useAuthStore } from "@/features/auth";
-import { useDrawer } from "@/features/navigation";
 import { useWallets, useTransactions, pickHeadline, BalanceCard, TransactionRow } from "@/features/wallet";
 
 function greetingKey(): string {
@@ -28,7 +28,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "airtime", lkey: "airtime", label: "Airtime", Icon: Smartphone, tint: "green" },
       { id: "data", lkey: "data", label: "Data", Icon: Wifi, tint: "green" },
       { id: "electricity", lkey: "electricity", label: "Electricity", Icon: Zap, tint: "green" },
-      { id: "cable", lkey: "cable", label: "Cable TV", Icon: Tv, tint: "green" },
+      { id: "cable", lkey: "cable", label: "Cable TV", Icon: Tv, tint: "red" },
     ],
   },
   {
@@ -37,7 +37,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "fund", lkey: "fund", label: "Fund", Icon: Plus, tint: "green" },
       { id: "withdraw", lkey: "withdraw", label: "Withdraw", Icon: ArrowUpRight, tint: "green" },
       { id: "transfer", lkey: "transfer", label: "Transfer", Icon: Send, tint: "green" },
-      { id: "giftcards", lkey: "giftCards", label: "Gift Cards", Icon: Gift, tint: "green" },
+      { id: "giftcards", lkey: "giftCards", label: "Gift Cards", Icon: Gift, tint: "red" },
     ],
   },
   {
@@ -47,7 +47,6 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "hotels", lkey: "hotels", label: "Hotels", Icon: BedDouble, tint: "green" },
       { id: "carhire", lkey: "carHire", label: "Car Hire", Icon: Car, tint: "green" },
       { id: "pickup", lkey: "pickup", label: "Pick Up", Icon: MapPinned, tint: "green" },
-      { id: "bus", lkey: "bus", label: "Bus Tickets", Icon: Bus, tint: "green" },
     ],
   },
   {
@@ -55,8 +54,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
     items: [
       { id: "marketplace", lkey: "marketplace", label: "Marketplace", Icon: Store, tint: "green" },
       { id: "artisans", lkey: "artisans", label: "Artisans", Icon: Wrench, tint: "green" },
-      { id: "ecommerce", lkey: "ecommerce", label: "E-commerce", Icon: ShoppingBag, tint: "green" },
-      { id: "betting", lkey: "betting", label: "Fund Betting", Icon: Ticket, tint: "green" },
+      { id: "ecommerce", lkey: "ecommerce", label: "E-commerce", Icon: ShoppingBag, tint: "red" },
     ],
   },
 ];
@@ -104,9 +102,9 @@ function ServiceTile({ label, Icon, tint, onPress }: Omit<Tile, "id"> & { onPres
 
 export default function Home() {
   const router = useRouter();
+  const { open } = useDrawer();
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
-  const drawer = useDrawer();
 
   const wallets = useWallets();
   const headline = pickHeadline(wallets.data?.wallets);
@@ -122,22 +120,20 @@ export default function Home() {
     if (id === "withdraw") return router.push("/withdraw");
     if (id === "giftcards") return router.push("/giftcards");
     if (id === "flights") return router.push("/flights");
-    if (id === "bus") return router.push("/bus");
     if (id === "hotels") return router.push("/hotels");
     if (id === "carhire") return router.push("/carhire");
     if (id === "pickup") return router.push("/pickup");
     if (id === "marketplace") return router.push("/marketplace");
     if (id === "artisans") return router.push("/artisans");
     if (id === "ecommerce") return router.push("/ecommerce");
-    if (id === "betting") return router.push("/betting");
     Alert.alert("Coming soon", "This service arrives in an upcoming update.");
   }
 
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: H_PADDING, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
-        <Pressable onPress={() => drawer.open()} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 12, backgroundColor: colors.mist, alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
-          <Menu size={22} color={colors.ink} />
+        <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.mist, marginBottom: 10 }}>
+          <Menu size={22} strokeWidth={1.9} color={colors.ink} />
         </Pressable>
         <Text variant="body" color="muted">
           {t(greetingKey())}
@@ -157,7 +153,7 @@ export default function Home() {
               {group.items.map((item) => (
                 <ServiceTile
                   key={item.id}
-                  label={t(`dashboard.services.${item.lkey}`, item.label)}
+                  label={t(`dashboard.services.${item.lkey}`)}
                   Icon={item.Icon}
                   tint={item.tint}
                   onPress={() => onTile(item.id)}
@@ -180,6 +176,14 @@ export default function Home() {
           </Text>
         )}
       </ScrollView>
+
+      <Pressable
+        onPress={() => router.push("/assistant")}
+        style={{ position: "absolute", right: 18, bottom: 22, height: 56, width: 56, borderRadius: 28, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", shadowColor: "#000", shadowOpacity: 0.18, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 6 }}
+        accessibilityLabel="O.A.M Assistant"
+      >
+        <Sparkles size={24} strokeWidth={2} color="#fff" />
+      </Pressable>
     </Screen>
   );
 }

@@ -37,6 +37,7 @@ function TabIcon({ Icon, color, focused }: { Icon: LucideIcon; color: string; fo
 
 export default function AppLayout() {
   const status = useAuthStore((s) => s.status);
+  if (status === "locked") return <Redirect href="/unlock" />;
   if (status !== "authenticated") return <Redirect href="/sign-in" />;
 
   return (
@@ -63,6 +64,13 @@ export default function AppLayout() {
       <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, focused }) => <TabIcon Icon={UserIcon} color={color} focused={focused} /> }} />
 
       {/* Service screens — navigable, hidden from the tab bar, tab bar hidden while open. */}
+      <Tabs.Screen name="create-pin" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="assistant" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="bus" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="boost" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="upgrade" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="betting" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="referral" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="airtime" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="data" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="electricity" options={{ href: null, tabBarStyle: { display: "none" } }} />
@@ -86,11 +94,6 @@ export default function AppLayout() {
       <Tabs.Screen name="artisan-register" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="artisan-verify" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="ecommerce" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="boost" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="upgrade" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="betting" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="bus" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="referral" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="ecommerce-company" options={{ href: null, tabBarStyle: { display: "none" } }} />
     </Tabs>
   );
