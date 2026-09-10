@@ -134,7 +134,7 @@ export default function InternationalAirtime() {
       </select>
 
       <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Recipient phone (local format)</label>
-      <input value={phone} onChange={(e) => { setPhone(e.target.value.replace(/[^\d+]/g, "")); setOperator(null); }} placeholder=t("airtime.intl.phonePlaceholder") className={`${inputCls} mb-4`} />
+      <input value={phone} onChange={(e) => { setPhone(e.target.value.replace(/[^\d+]/g, "")); setOperator(null); }} placeholder={t("airtime.intl.phonePlaceholder")} className={`${inputCls} mb-4`} />
 
       {country && (operators.isLoading ? (
         <Loader2 size={20} className="mb-4 animate-spin text-brand-green" />
