@@ -61,7 +61,10 @@
       "pickup": "Παραλαβή",
       "marketplace": "Αγορά",
       "artisans": "Τεχνίτες",
-      "ecommerce": "Ηλεκτρονικό εμπόριο"
+      "ecommerce": "Ηλεκτρονικό εμπόριο",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Επαληθεύστε τον λογαριασμό σας",

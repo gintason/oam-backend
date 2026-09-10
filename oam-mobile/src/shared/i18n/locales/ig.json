@@ -61,7 +61,10 @@
       "pickup": "Nnata",
       "marketplace": "Ahịa",
       "artisans": "Ndị ǹka",
-      "ecommerce": "Azụmahịa Ọnụ Intanetị"
+      "ecommerce": "Azụmahịa Ọnụ Intanetị",
+      "bus": "Tiketi Bọs",
+      "betting": "Debe Betin",
+      "referral": "Kpọọ ma Rite"
     },
     "verifyBanner": {
       "title": "Kwenye akaụntụ gị",

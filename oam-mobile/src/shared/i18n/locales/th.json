@@ -61,7 +61,10 @@
       "pickup": "รับสินค้า",
       "marketplace": "มาร์เก็ตเพลส",
       "artisans": "ช่างฝีมือ",
-      "ecommerce": "อีคอมเมิร์ซ"
+      "ecommerce": "อีคอมเมิร์ซ",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "ยืนยันบัญชีของคุณ",

@@ -61,7 +61,10 @@
       "pickup": "Вземане",
       "marketplace": "Пазар",
       "artisans": "Майстори",
-      "ecommerce": "Електронна търговия"
+      "ecommerce": "Електронна търговия",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Потвърдете акаунта си",

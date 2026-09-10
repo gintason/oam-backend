@@ -61,7 +61,10 @@
       "pickup": "पिक अप",
       "marketplace": "मार्केटप्लेस",
       "artisans": "कारीगर",
-      "ecommerce": "ई-कॉमर्स"
+      "ecommerce": "ई-कॉमर्स",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "अपना खाता सत्यापित करें",

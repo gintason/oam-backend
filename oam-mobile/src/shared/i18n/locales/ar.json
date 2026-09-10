@@ -61,7 +61,10 @@
       "pickup": "توصيل",
       "marketplace": "السوق",
       "artisans": "الحرفيون",
-      "ecommerce": "التجارة الإلكترونية"
+      "ecommerce": "التجارة الإلكترونية",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "وثّق حسابك",

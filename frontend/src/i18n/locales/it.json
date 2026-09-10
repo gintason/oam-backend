@@ -58,7 +58,10 @@
       "carHire": "Noleggio auto",
       "pickup": "Ritiro",
       "marketplace": "Mercato",
-      "artisans": "Artigiani"
+      "artisans": "Artigiani",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Verifica il tuo account",

@@ -58,7 +58,10 @@
       "carHire": "Autovermietung",
       "pickup": "Abholung",
       "marketplace": "Marktplatz",
-      "artisans": "Handwerker"
+      "artisans": "Handwerker",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Verifiziere dein Konto",

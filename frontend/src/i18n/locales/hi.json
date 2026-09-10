@@ -58,7 +58,10 @@
       "carHire": "कार किराया",
       "pickup": "पिक अप",
       "marketplace": "मार्केटप्लेस",
-      "artisans": "कारीगर"
+      "artisans": "कारीगर",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "अपना खाता सत्यापित करें",

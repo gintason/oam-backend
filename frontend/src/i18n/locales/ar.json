@@ -58,7 +58,10 @@
       "carHire": "تأجير سيارات",
       "pickup": "توصيل",
       "marketplace": "السوق",
-      "artisans": "الحرفيون"
+      "artisans": "الحرفيون",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "وثّق حسابك",

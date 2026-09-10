@@ -61,7 +61,10 @@
       "pickup": "Преузимање",
       "marketplace": "Пијаца",
       "artisans": "Мајстори",
-      "ecommerce": "Е-трговина"
+      "ecommerce": "Е-трговина",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Потврдите налог",

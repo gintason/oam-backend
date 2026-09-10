@@ -58,7 +58,10 @@
       "carHire": "เช่ารถ",
       "pickup": "รับสินค้า",
       "marketplace": "มาร์เก็ตเพลส",
-      "artisans": "ช่างฝีมือ"
+      "artisans": "ช่างฝีมือ",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "ยืนยันบัญชีของคุณ",

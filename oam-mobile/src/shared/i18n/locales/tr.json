@@ -61,7 +61,10 @@
       "pickup": "Teslim alma",
       "marketplace": "Pazar yeri",
       "artisans": "Ustalar",
-      "ecommerce": "E-ticaret"
+      "ecommerce": "E-ticaret",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Hesabınızı doğrulayın",

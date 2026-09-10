@@ -58,7 +58,10 @@
       "carHire": "Коли под наем",
       "pickup": "Вземане",
       "marketplace": "Пазар",
-      "artisans": "Майстори"
+      "artisans": "Майстори",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Потвърдете акаунта си",

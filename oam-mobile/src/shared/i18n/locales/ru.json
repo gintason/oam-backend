@@ -61,7 +61,10 @@
       "pickup": "Доставка",
       "marketplace": "Маркетплейс",
       "artisans": "Мастера",
-      "ecommerce": "Электронная торговля"
+      "ecommerce": "Электронная торговля",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Подтвердите аккаунт",

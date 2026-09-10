@@ -58,7 +58,10 @@
       "carHire": "Wynajem aut",
       "pickup": "Odbiór",
       "marketplace": "Marketplace",
-      "artisans": "Fachowcy"
+      "artisans": "Fachowcy",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Zweryfikuj konto",

@@ -58,7 +58,10 @@
       "carHire": "Аренда авто",
       "pickup": "Доставка",
       "marketplace": "Маркетплейс",
-      "artisans": "Мастера"
+      "artisans": "Мастера",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Подтвердите аккаунт",

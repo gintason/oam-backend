@@ -61,7 +61,10 @@
       "pickup": "Recolha",
       "marketplace": "Mercado",
       "artisans": "Artesãos",
-      "ecommerce": "Comércio eletrônico"
+      "ecommerce": "Comércio eletrônico",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Verifica a tua conta",

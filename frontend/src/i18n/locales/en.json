@@ -58,7 +58,10 @@
       "carHire": "Car Hire",
       "pickup": "Pick Up",
       "marketplace": "Marketplace",
-      "artisans": "Artisans"
+      "artisans": "Artisans",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Verify your account",

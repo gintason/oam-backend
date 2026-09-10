@@ -58,7 +58,10 @@
       "carHire": "Изнајмљивање аута",
       "pickup": "Преузимање",
       "marketplace": "Пијаца",
-      "artisans": "Мајстори"
+      "artisans": "Мајстори",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Потврдите налог",

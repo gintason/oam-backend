@@ -58,7 +58,10 @@
       "carHire": "Hayar mota",
       "pickup": "Ɗauka",
       "marketplace": "Kasuwa",
-      "artisans": "Masana sana'a"
+      "artisans": "Masana sana'a",
+      "bus": "Tikitin Bas",
+      "betting": "Cika Betin",
+      "referral": "Gayyata ka Sami"
     },
     "verifyBanner": {
       "title": "Tabbatar da asusunka",

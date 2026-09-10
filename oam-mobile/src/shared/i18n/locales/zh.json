@@ -61,7 +61,10 @@
       "pickup": "取货",
       "marketplace": "市场",
       "artisans": "工匠",
-      "ecommerce": "电子商务"
+      "ecommerce": "电子商务",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "验证您的账户",

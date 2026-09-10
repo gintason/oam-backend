@@ -58,7 +58,10 @@
       "carHire": "Ενοικίαση αυτοκινήτου",
       "pickup": "Παραλαβή",
       "marketplace": "Αγορά",
-      "artisans": "Τεχνίτες"
+      "artisans": "Τεχνίτες",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Επαληθεύστε τον λογαριασμό σας",

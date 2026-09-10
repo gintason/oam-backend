@@ -58,7 +58,10 @@
       "carHire": "Araç kiralama",
       "pickup": "Teslim alma",
       "marketplace": "Pazar yeri",
-      "artisans": "Ustalar"
+      "artisans": "Ustalar",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Hesabınızı doğrulayın",

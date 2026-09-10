@@ -58,7 +58,10 @@
       "carHire": "Půjčovna aut",
       "pickup": "Vyzvednutí",
       "marketplace": "Tržiště",
-      "artisans": "Řemeslníci"
+      "artisans": "Řemeslníci",
+      "bus": "Bus Tickets",
+      "betting": "Fund Betting",
+      "referral": "Refer & Earn"
     },
     "verifyBanner": {
       "title": "Ověřte svůj účet",
