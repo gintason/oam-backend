@@ -1344,7 +1344,8 @@
       "intl4Body": "Immigration sometimes asks for an address before you have data or wifi.",
       "readyTitle": "Ready to find your stay?",
       "readyBody": "Search hotels, apartments and resorts worldwide, then book securely with our partner."
-    }
+    },
+    "busTickets": "Bus Tickets"
   },
   "company": {
     "shell": {
@@ -1645,16 +1646,17 @@
     "nameThisAccount": "Name this account"
   },
   "ecommerce": {
-    "title": "E-commerce",
-    "subtitle": "Shop the world's biggest stores through OAM.",
-    "soon": "Soon",
+    "title": "Shop the world",
+    "subtitle": "Shop top international stores through OAM.",
     "allStores": "All stores",
-    "shopOn": "Shop on {{name}}",
-    "pending": "Our {{name}} partnership is being finalised — shopping opens here shortly.",
-    "popularCategories": "Popular categories",
-    "disclosure": "These are independent partner stores. You shop and pay on the partner's own website — OAM may earn a small commission at no extra cost to you. Prices, availability and delivery are set by each store.",
-    "companyDisclosure": "You'll complete your purchase securely on {{name}}'s own website. OAM may earn a commission at no extra cost to you. Check the store's delivery and returns terms before you buy.",
+    "back": "Back",
+    "soon": "Coming soon",
     "storeNotFound": "Store not found.",
+    "shopOn": "Shop on {{name}}",
+    "pending": "{{name}} is coming soon.",
+    "popularCategories": "Categories",
+    "disclosure": "You'll be taken to the partner's own website to complete your purchase.",
+    "companyDisclosure": "You're leaving OAM to shop on {{name}}. Your order and payment are handled by {{name}}, not OAM.",
     "partners": {
       "amazon": {
         "tagline": "The everything store",
@@ -1684,8 +1686,7 @@
         "tagline": "Wholesale deals",
         "blurb": "Wholesale and retail across every category, shipped worldwide."
       }
-    },
-    "back": "Back"
+    }
   },
   "home": {
     "greetMorning": "Good morning",
