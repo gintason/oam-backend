@@ -5,7 +5,9 @@
     "retry": "Retry",
     "seeAll": "See all",
     "verify": "Verify",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "cancel": "Cancel",
+    "save": "Save"
   },
   "language": {
     "label": "Language",
@@ -1699,7 +1701,17 @@
   "profile": {
     "title": "Profile",
     "account": "Your account",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "editTitle": "Edit your details",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "email": "Email",
+    "emailNote": "Email can't be changed — it's your login.",
+    "save": "Save changes",
+    "saved": "Saved!",
+    "errSave": "Couldn't save your changes. Try again.",
+    "verified": "Verified"
   },
   "giftcards": {
     "back": "Back",
@@ -1779,5 +1791,47 @@
     "errBooking": "Booking failed.",
     "errConfirm": "Couldn't confirm your booking.",
     "sexLabel": "Sex"
+  },
+  "drawer": {
+    "user": "OAM User",
+    "soon": "This arrives in an upcoming update.",
+    "about": "About OAM",
+    "payBills": "Pay Bills",
+    "marketplace": "Market Place",
+    "betting": "Fund Betting Wallet",
+    "artisans": "Find An Artisan",
+    "referral": "Get Referral Link",
+    "ecommerce": "E-commerce",
+    "signOut": "Sign out",
+    "tagline": "One app, everything"
+  },
+  "referral": {
+    "title": "Refer & Earn",
+    "subtitle": "Share your link, earn on every referral.",
+    "earnWhen": "Earn {{rate}}% when a friend you invited transacts.",
+    "loadError": "Couldn't load your referral dashboard.",
+    "yourLink": "Your referral link",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "share": "Share",
+    "customizeName": "Customise your link name",
+    "customName": "Custom name",
+    "customize": "Customise your link",
+    "saveLink": "Save link",
+    "saved": "Saved",
+    "referrals": "Referrals",
+    "active": "Active",
+    "earned": "Earned",
+    "howTitle": "How it works",
+    "howBody": "Share your link. When someone signs up and completes a transaction where OAM earns {{threshold}} or more, you get {{rate}}% of that profit — straight to your wallet.",
+    "step1": "1. Share your link. Anyone who signs up through it becomes your referral.",
+    "step2": "2. When they make a transaction that earns OAM at least {{threshold}} in profit, you get {{rate}}% of that profit.",
+    "step3": "3. Your commission lands straight in your OAM wallet — withdraw or spend it anytime.",
+    "recent": "Recent earnings",
+    "noneYet": "No earnings yet. Share your link to get started.",
+    "errSave": "Couldn't save that name. Try another.",
+    "shareTitle": "Join me on OAM",
+    "shareText": "Sign up on OAM with my link:",
+    "shareMessage": "Join me on OAM — pay bills, shop and more. Sign up with my link: {{link}}"
   }
 }

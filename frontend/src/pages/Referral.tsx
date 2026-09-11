@@ -5,6 +5,7 @@ import { ArrowLeft, Check, Copy, Gift, Loader2, Share2, Users, Wallet } from "lu
 import AppHeader from "../components/AppHeader";
 import { referralApi } from "../services/referrals";
 import { naira } from "../lib/format";
+import { useTranslation } from "react-i18next";
 
 const ngn = (v: string | number) => naira(Number(v) || 0);
 
@@ -16,6 +17,7 @@ const ngn = (v: string | number) => naira(Number(v) || 0);
  */
 export default function Referral() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const qc = useQueryClient();
   const dash = useQuery({ queryKey: ["referrals", "dashboard"], queryFn: referralApi.dashboard });
 
@@ -50,7 +52,7 @@ export default function Referral() {
   }
   async function share() {
     if (navigator.share) {
-      try { await navigator.share({ title: "Join me on OAM", text: "Sign up on OAM with my link:", url: link }); } catch { /* cancelled */ }
+      try { await navigator.share({ title: t("referral.shareTitle"), text: t("referral.shareText"), url: link }); } catch { /* cancelled */ }
     } else {
       copy();
     }
@@ -61,7 +63,7 @@ export default function Referral() {
       <AppHeader />
       <main className="mx-auto max-w-2xl px-5 py-8 sm:py-10">
         <button onClick={() => navigate("/dashboard")} className="mb-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted transition hover:text-ink">
-          <ArrowLeft size={15} /> Back
+          <ArrowLeft size={15} /> {t("common.back")}
         </button>
 
         <div className="mb-6 flex items-center gap-3">
@@ -69,8 +71,8 @@ export default function Referral() {
             <Gift size={22} strokeWidth={1.75} />
           </span>
           <div>
-            <h1 className="font-display text-xl font-semibold text-ink">Refer & Earn</h1>
-            <p className="text-[13px] text-muted">Earn {rate}% when a friend you invited transacts.</p>
+            <h1 className="font-display text-xl font-semibold text-ink">{t("referral.title")}</h1>
+            <p className="text-[13px] text-muted">{t("referral.earnWhen", { rate })}</p>
           </div>
         </div>
 
@@ -78,29 +80,29 @@ export default function Referral() {
           <div className="flex justify-center py-20"><Loader2 className="animate-spin text-brand-green" /></div>
         ) : dash.isError ? (
           <p className="py-16 text-center text-[14px] text-danger">
-            Couldn't load your referral dashboard.{" "}
-            <button onClick={() => dash.refetch()} className="underline">Retry</button>
+            {t("referral.loadError")} {" "}
+            <button onClick={() => dash.refetch()} className="underline">{t("common.retry")}</button>
           </p>
         ) : (
           <>
             {/* Link card */}
             <div className="rounded-2xl border border-hairline bg-paper p-5">
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Your referral link</label>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("referral.yourLink")}</label>
               <div className="flex items-stretch gap-2">
                 <div className="flex min-w-0 flex-1 items-center rounded-[11px] border border-hairline bg-mist px-3.5">
                   <span className="truncate text-[13.5px] text-ink">{link}</span>
                 </div>
-                <button onClick={copy} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[11px] border border-hairline bg-paper text-ink transition hover:bg-mist" title="Copy">
+                <button onClick={copy} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[11px] border border-hairline bg-paper text-ink transition hover:bg-mist" title={t("referral.copy")}>
                   {copied ? <Check size={17} className="text-brand-green" /> : <Copy size={17} />}
                 </button>
                 <button onClick={share} className="flex h-11 items-center gap-1.5 rounded-[11px] bg-brand-green px-4 text-[13.5px] font-semibold text-white transition hover:brightness-95">
-                  <Share2 size={16} /> Share
+                  <Share2 size={16} /> {t("referral.share")}
                 </button>
               </div>
 
               {/* Slug editor */}
               <div className="mt-4">
-                <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Customise your link name</label>
+                <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("referral.customizeName")}</label>
                 <div className="flex items-center gap-2">
                   <div className="flex flex-1 items-center rounded-[11px] border border-hairline bg-paper px-3">
                     <span className="text-[13px] text-muted">oam-app.com/refer-</span>
@@ -117,7 +119,7 @@ export default function Referral() {
                     disabled={save.isPending || !slug.trim() || slug === dash.data?.custom_slug}
                     className="h-11 rounded-[11px] bg-ink px-4 text-[13.5px] font-semibold text-white transition hover:brightness-110 disabled:opacity-50"
                   >
-                    {save.isPending ? "…" : savedNote ? "Saved" : "Save"}
+                    {save.isPending ? "…" : savedNote ? t("referral.saved") : t("common.save")}
                   </button>
                 </div>
               </div>
@@ -125,24 +127,24 @@ export default function Referral() {
 
             {/* Stats */}
             <div className="mt-4 grid grid-cols-3 gap-3">
-              <Stat icon={<Users size={16} />} label="Referrals" value={String(dash.data?.stats.total_referrals ?? 0)} />
-              <Stat icon={<Check size={16} />} label="Active" value={String(dash.data?.stats.active_referrals ?? 0)} />
-              <Stat icon={<Wallet size={16} />} label="Earned" value={ngn(dash.data?.stats.total_earned ?? 0)} accent />
+              <Stat icon={<Users size={16} />} label={t("referral.referrals")} value={String(dash.data?.stats.total_referrals ?? 0)} />
+              <Stat icon={<Check size={16} />} label={t("referral.active")} value={String(dash.data?.stats.active_referrals ?? 0)} />
+              <Stat icon={<Wallet size={16} />} label={t("referral.earned")} value={ngn(dash.data?.stats.total_earned ?? 0)} accent />
             </div>
 
             {/* How it works */}
             <div className="mt-4 rounded-2xl border border-hairline bg-paper p-5">
-              <h2 className="font-display text-[15px] font-semibold text-ink">How it works</h2>
+              <h2 className="font-display text-[15px] font-semibold text-ink">{t("referral.howTitle")}</h2>
               <ol className="mt-2 space-y-1.5 text-[13.5px] text-muted">
-                <li>1. Share your link. Anyone who signs up through it becomes your referral.</li>
-                <li>2. When they make a transaction that earns OAM at least {threshold} in profit, you get <span className="font-semibold text-ink">{rate}%</span> of that profit.</li>
-                <li>3. Your commission lands straight in your OAM wallet — withdraw or spend it anytime.</li>
+                <li>{t("referral.step1")}</li>
+                <li>{t("referral.step2", { threshold, rate })}</li>
+                <li>{t("referral.step3")}</li>
               </ol>
             </div>
 
             {/* Recent commissions */}
             <div className="mt-4 rounded-2xl border border-hairline bg-paper p-5">
-              <h2 className="mb-3 font-display text-[15px] font-semibold text-ink">Recent earnings</h2>
+              <h2 className="mb-3 font-display text-[15px] font-semibold text-ink">{t("referral.recent")}</h2>
               {dash.data && dash.data.recent_commissions.length > 0 ? (
                 <div className="divide-y divide-hairline">
                   {dash.data.recent_commissions.map((c) => (
@@ -156,7 +158,7 @@ export default function Referral() {
                   ))}
                 </div>
               ) : (
-                <p className="py-6 text-center text-[13.5px] text-muted">No earnings yet. Share your link to get started.</p>
+                <p className="py-6 text-center text-[13.5px] text-muted">{t("referral.noneYet")}</p>
               )}
             </div>
           </>

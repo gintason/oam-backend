@@ -5,7 +5,9 @@
     "retry": "Tún gbìyànjú",
     "seeAll": "Wo gbogbo rẹ̀",
     "verify": "Fọwọ́ sí",
-    "loading": "Ń gbé wọlé…"
+    "loading": "Ń gbé wọlé…",
+    "cancel": "Fagilé",
+    "save": "Fi pamọ́"
   },
   "language": {
     "label": "Èdè"
@@ -1603,5 +1605,47 @@
     "signOut": "Jáde",
     "errSave": "A kò lè fi àwọn àyípadà rẹ pamọ́. Tún gbìyànjú.",
     "verified": "Fọwọ́ sí"
+  },
+  "drawer": {
+    "user": "Òǹlò OAM",
+    "soon": "Yóò dé nínú ìmúdójúìwọ̀n tó ń bọ̀.",
+    "about": "Nípa OAM",
+    "payBills": "San Àwọn Owó",
+    "marketplace": "Ọjà",
+    "betting": "Fi Owó sí Àpò Tẹ́tẹ́",
+    "artisans": "Wá Oníṣẹ́ ọwọ́",
+    "referral": "Gba Ìjápọ̀ Ìtọ́ka",
+    "ecommerce": "Òwò Orí Ayélujára",
+    "signOut": "Jáde",
+    "tagline": "Áàpù kan, ohun gbogbo"
+  },
+  "referral": {
+    "title": "Pè kí o Jèrè",
+    "subtitle": "Pín ìjápọ̀ rẹ, jèrè lórí ìtọ́ka kọ̀ọ̀kan.",
+    "earnWhen": "Jèrè {{rate}}% nígbà tí ọ̀rẹ́ tí o pè bá ṣe ìdúnàdúrà.",
+    "loadError": "A kò lè gbé dáṣíbọ́ọ̀dù ìtọ́ka rẹ wọlé.",
+    "yourLink": "Ìjápọ̀ ìtọ́ka rẹ",
+    "copy": "Ṣàdàkọ",
+    "copied": "A ti ṣàdàkọ!",
+    "share": "Pín",
+    "customizeName": "Ṣe àkànṣe orúkọ ìjápọ̀",
+    "customName": "Orúkọ àkànṣe",
+    "customize": "Ṣe àkànṣe ìjápọ̀ rẹ",
+    "saveLink": "Fi ìjápọ̀ pamọ́",
+    "saved": "A ti fipamọ́",
+    "referrals": "Àwọn ìtọ́ka",
+    "active": "Tí ń ṣiṣẹ́",
+    "earned": "Tí a jẹ",
+    "howTitle": "Bí ó ṣe ń ṣiṣẹ́",
+    "howBody": "Pín ìjápọ̀ rẹ. Nígbà tí ẹnìkan bá forúkọsílẹ̀ tí ó sì parí ìdúnàdúrà tí OAM jẹ {{threshold}} tàbí jù bẹ́ẹ̀ lọ, o gba {{rate}}% nínú èrè náà — tààrà sí àpò owó rẹ.",
+    "step1": "1. Pín ìjápọ̀ rẹ. Ẹnikẹ́ni tí ó bá forúkọsílẹ̀ nípasẹ̀ rẹ̀ di ẹni tí o tọ́ka.",
+    "step2": "2. Nígbà tí ó bá ṣe ìdúnàdúrà tí OAM jẹ ó kéré tán {{threshold}} èrè, o gba {{rate}}% nínú èrè náà.",
+    "step3": "3. Owó iṣẹ́ rẹ ń wọ àpò owó OAM rẹ tààrà — yọ ọ́ tàbí ná an nígbàkigbà.",
+    "recent": "Àwọn èrè àìpẹ́",
+    "noneYet": "Kò sí èrè síbẹ̀. Pín ìjápọ̀ rẹ láti bẹ̀rẹ̀.",
+    "errSave": "A kò lè fi orúkọ yẹn pamọ́. Gbìyànjú òmíràn.",
+    "shareTitle": "Dara pọ̀ mọ́ mi lórí OAM",
+    "shareText": "Forúkọsílẹ̀ lórí OAM pẹ̀lú ìjápọ̀ mi:",
+    "shareMessage": "Dara pọ̀ mọ́ mi lórí OAM — san owó, ra ọjà àti bẹ́ẹ̀ bẹ́ẹ̀ lọ. Forúkọsílẹ̀ pẹ̀lú ìjápọ̀ mi: {{link}}"
   }
 }

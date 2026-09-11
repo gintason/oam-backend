@@ -5,7 +5,9 @@
     "retry": "Reintentar",
     "seeAll": "Ver todo",
     "verify": "Verificar",
-    "loading": "Cargando…"
+    "loading": "Cargando…",
+    "cancel": "Cancelar",
+    "save": "Guardar"
   },
   "language": {
     "label": "Idioma",
@@ -1694,7 +1696,17 @@
   "profile": {
     "title": "Perfil",
     "account": "Tu cuenta",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "editTitle": "Editar tus datos",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "email": "Correo",
+    "emailNote": "El correo no se puede cambiar: es tu inicio de sesión.",
+    "save": "Guardar cambios",
+    "saved": "¡Guardado!",
+    "errSave": "No se pudieron guardar los cambios. Inténtalo de nuevo.",
+    "verified": "Verificado"
   },
   "giftcards": {
     "back": "Atrás",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "Mantente seguro con las tarjetas de regalo",
     "bottomTitle": "Explora miles de códigos digitales",
     "bottomCta": "Abrir el mercado"
+  },
+  "drawer": {
+    "user": "Usuario OAM",
+    "soon": "Llegará en una próxima actualización.",
+    "about": "Acerca de OAM",
+    "payBills": "Pagar facturas",
+    "marketplace": "Mercado",
+    "betting": "Recargar cartera de apuestas",
+    "artisans": "Buscar un artesano",
+    "referral": "Obtener enlace de referido",
+    "ecommerce": "E-commerce",
+    "signOut": "Cerrar sesión",
+    "tagline": "Una app, todo"
+  },
+  "referral": {
+    "title": "Recomienda y gana",
+    "subtitle": "Comparte tu enlace y gana en cada referido.",
+    "earnWhen": "Gana {{rate}}% cuando un amigo invitado hace una transacción.",
+    "loadError": "No se pudo cargar tu panel de referidos.",
+    "yourLink": "Tu enlace de referido",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "share": "Compartir",
+    "customizeName": "Personaliza el nombre del enlace",
+    "customName": "Nombre personalizado",
+    "customize": "Personaliza tu enlace",
+    "saveLink": "Guardar enlace",
+    "saved": "Guardado",
+    "referrals": "Referidos",
+    "active": "Activos",
+    "earned": "Ganado",
+    "howTitle": "Cómo funciona",
+    "howBody": "Comparte tu enlace. Cuando alguien se registra y completa una transacción donde OAM gana {{threshold}} o más, recibes {{rate}}% de esa ganancia — directo a tu cartera.",
+    "step1": "1. Comparte tu enlace. Quien se registre con él se convierte en tu referido.",
+    "step2": "2. Cuando haga una transacción donde OAM gane al menos {{threshold}} de ganancia, recibes {{rate}}% de esa ganancia.",
+    "step3": "3. Tu comisión llega directo a tu cartera OAM — retírala o gástala cuando quieras.",
+    "recent": "Ganancias recientes",
+    "noneYet": "Aún no hay ganancias. Comparte tu enlace para empezar.",
+    "errSave": "No se pudo guardar ese nombre. Prueba otro.",
+    "shareTitle": "Únete a mí en OAM",
+    "shareText": "Regístrate en OAM con mi enlace:",
+    "shareMessage": "Únete a mí en OAM — paga facturas, compra y más. Regístrate con mi enlace: {{link}}"
   }
 }

@@ -5,7 +5,9 @@
     "retry": "Riprova",
     "seeAll": "Vedi tutto",
     "verify": "Verifica",
-    "loading": "Caricamento…"
+    "loading": "Caricamento…",
+    "cancel": "Annulla",
+    "save": "Salva"
   },
   "language": {
     "label": "Lingua"
@@ -1544,5 +1546,47 @@
     "signOut": "Esci",
     "errSave": "Impossibile salvare le modifiche. Riprova.",
     "verified": "Verificato"
+  },
+  "drawer": {
+    "user": "Utente OAM",
+    "soon": "Arriva in un prossimo aggiornamento.",
+    "about": "Informazioni su OAM",
+    "payBills": "Paga bollette",
+    "marketplace": "Marketplace",
+    "betting": "Ricarica portafoglio scommesse",
+    "artisans": "Trova un artigiano",
+    "referral": "Ottieni link di invito",
+    "ecommerce": "E-commerce",
+    "signOut": "Esci",
+    "tagline": "Un'app, tutto"
+  },
+  "referral": {
+    "title": "Invita e guadagna",
+    "subtitle": "Condividi il tuo link e guadagna a ogni invito.",
+    "earnWhen": "Guadagna {{rate}}% quando un amico invitato effettua una transazione.",
+    "loadError": "Impossibile caricare la tua dashboard inviti.",
+    "yourLink": "Il tuo link di invito",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "share": "Condividi",
+    "customizeName": "Personalizza il nome del link",
+    "customName": "Nome personalizzato",
+    "customize": "Personalizza il tuo link",
+    "saveLink": "Salva link",
+    "saved": "Salvato",
+    "referrals": "Inviti",
+    "active": "Attivi",
+    "earned": "Guadagnato",
+    "howTitle": "Come funziona",
+    "howBody": "Condividi il tuo link. Quando qualcuno si iscrive e completa una transazione in cui OAM guadagna {{threshold}} o più, ricevi {{rate}}% di quel profitto — direttamente nel tuo portafoglio.",
+    "step1": "1. Condividi il tuo link. Chi si iscrive tramite esso diventa il tuo invitato.",
+    "step2": "2. Quando effettua una transazione in cui OAM guadagna almeno {{threshold}}, ricevi {{rate}}% di quel profitto.",
+    "step3": "3. La tua commissione arriva dritta nel tuo portafoglio OAM — preleva o spendi quando vuoi.",
+    "recent": "Guadagni recenti",
+    "noneYet": "Ancora nessun guadagno. Condividi il tuo link per iniziare.",
+    "errSave": "Impossibile salvare quel nome. Provane un altro.",
+    "shareTitle": "Unisciti a me su OAM",
+    "shareText": "Iscriviti a OAM con il mio link:",
+    "shareMessage": "Unisciti a me su OAM — bollette, shopping e altro. Iscriviti con il mio link: {{link}}"
   }
 }

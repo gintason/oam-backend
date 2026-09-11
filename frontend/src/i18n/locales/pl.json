@@ -5,7 +5,9 @@
     "retry": "Ponów",
     "seeAll": "Zobacz wszystko",
     "verify": "Zweryfikuj",
-    "loading": "Ładowanie…"
+    "loading": "Ładowanie…",
+    "cancel": "Anuluj",
+    "save": "Zapisz"
   },
   "language": {
     "label": "Język"
@@ -1544,5 +1546,47 @@
     "signOut": "Wyloguj się",
     "errSave": "Nie udało się zapisać zmian. Spróbuj ponownie.",
     "verified": "Zweryfikowano"
+  },
+  "drawer": {
+    "user": "Użytkownik OAM",
+    "soon": "Pojawi się w kolejnej aktualizacji.",
+    "about": "O OAM",
+    "payBills": "Zapłać rachunki",
+    "marketplace": "Marketplace",
+    "betting": "Doładuj portfel zakładów",
+    "artisans": "Znajdź fachowca",
+    "referral": "Uzyskaj link polecający",
+    "ecommerce": "E-commerce",
+    "signOut": "Wyloguj się",
+    "tagline": "Jedna aplikacja, wszystko"
+  },
+  "referral": {
+    "title": "Polecaj i zarabiaj",
+    "subtitle": "Udostępnij link i zarabiaj na każdym poleceniu.",
+    "earnWhen": "Zarabiaj {{rate}}%, gdy zaproszony znajomy dokona transakcji.",
+    "loadError": "Nie udało się załadować panelu poleceń.",
+    "yourLink": "Twój link polecający",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano!",
+    "share": "Udostępnij",
+    "customizeName": "Dostosuj nazwę linku",
+    "customName": "Własna nazwa",
+    "customize": "Dostosuj swój link",
+    "saveLink": "Zapisz link",
+    "saved": "Zapisano",
+    "referrals": "Polecenia",
+    "active": "Aktywne",
+    "earned": "Zarobiono",
+    "howTitle": "Jak to działa",
+    "howBody": "Udostępnij link. Gdy ktoś się zarejestruje i wykona transakcję, na której OAM zarobi {{threshold}} lub więcej, otrzymasz {{rate}}% tego zysku — prosto do portfela.",
+    "step1": "1. Udostępnij link. Każdy, kto się przez niego zarejestruje, staje się Twoim poleconym.",
+    "step2": "2. Gdy wykona transakcję, na której OAM zarobi co najmniej {{threshold}}, otrzymasz {{rate}}% tego zysku.",
+    "step3": "3. Twoja prowizja trafia prosto do portfela OAM — wypłać lub wydaj w dowolnej chwili.",
+    "recent": "Ostatnie zarobki",
+    "noneYet": "Brak zarobków. Udostępnij link, aby zacząć.",
+    "errSave": "Nie udało się zapisać tej nazwy. Spróbuj innej.",
+    "shareTitle": "Dołącz do mnie w OAM",
+    "shareText": "Zarejestruj się w OAM przez mój link:",
+    "shareMessage": "Dołącz do mnie w OAM — rachunki, zakupy i więcej. Zarejestruj się przez mój link: {{link}}"
   }
 }

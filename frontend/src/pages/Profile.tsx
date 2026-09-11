@@ -6,10 +6,12 @@ import AppHeader from "../components/AppHeader";
 import { useAuth } from "../auth/AuthContext";
 import { authApi } from "../auth/authApi";
 import { apiErrorMessage } from "../lib/api";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
   const navigate = useNavigate();
   const { user, logout, refreshUser } = useAuth();
+  const { t } = useTranslation();
 
   const [firstName, setFirstName] = useState(user?.first_name ?? "");
   const [lastName, setLastName] = useState(user?.last_name ?? "");
@@ -23,13 +25,13 @@ export default function Profile() {
     setPhone(user?.phone ?? "");
   }, [user?.first_name, user?.last_name, user?.phone]);
 
-  const fullName = [user?.first_name, user?.last_name].filter(Boolean).join(" ") || "Your account";
+  const fullName = [user?.first_name, user?.last_name].filter(Boolean).join(" ") || t("profile.account");
   const initial = (user?.first_name?.[0] || user?.email?.[0] || "U").toUpperCase();
 
   const save = useMutation({
     mutationFn: () => authApi.updateProfile({ first_name: firstName.trim(), last_name: lastName.trim(), phone: phone.trim() }),
     onSuccess: async () => { await refreshUser(); setError(undefined); setSaved(true); setTimeout(() => setSaved(false), 1800); },
-    onError: (err) => { setSaved(false); setError(apiErrorMessage(err, "Couldn't save your changes. Try again.")); },
+    onError: (err) => { setSaved(false); setError(apiErrorMessage(err, t("profile.errSave"))); },
   });
 
   const dirty =
@@ -48,7 +50,7 @@ export default function Profile() {
     <div className="min-h-screen bg-mist pb-24 md:pb-0">
       <AppHeader />
       <main className="mx-auto max-w-lg px-5 py-8">
-        <h1 className="mb-6 font-display text-2xl font-semibold text-ink">Profile</h1>
+        <h1 className="mb-6 font-display text-2xl font-semibold text-ink">{t("profile.title")}</h1>
 
         {/* Identity */}
         <div className="mb-6 flex items-center gap-4 rounded-2xl border border-hairline bg-paper p-5">
@@ -64,28 +66,28 @@ export default function Profile() {
 
         {/* Edit form */}
         <div className="rounded-2xl border border-hairline bg-paper p-5">
-          <p className="mb-4 text-[12.5px] font-semibold text-ink">Edit your details</p>
+          <p className="mb-4 text-[12.5px] font-semibold text-ink">{t("profile.editTitle")}</p>
           {error && <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">{error}</div>}
 
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">First name</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("profile.firstName")}</label>
           <input value={firstName} onChange={(e) => { setFirstName(e.target.value); setSaved(false); }} placeholder="Jane" className={`${inputCls} mb-4`} />
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Last name</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("profile.lastName")}</label>
           <input value={lastName} onChange={(e) => { setLastName(e.target.value); setSaved(false); }} placeholder="Doe" className={`${inputCls} mb-4`} />
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Phone</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("profile.phone")}</label>
           <input value={phone} onChange={(e) => { setPhone(e.target.value.replace(/[^\d+]/g, "")); setSaved(false); }} placeholder="0803..." className={`${inputCls} mb-4`} />
 
-          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Email</label>
+          <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("profile.email")}</label>
           <div className="mb-1.5 flex h-11 items-center rounded-[11px] border border-hairline bg-mist px-3.5 text-[14px] text-muted">{user?.email || "—"}</div>
-          <p className="mb-5 text-[12px] text-muted">Email can't be changed — it's your login.</p>
+          <p className="mb-5 text-[12px] text-muted">{t("profile.emailNote")}</p>
 
           <button onClick={() => save.mutate()} disabled={save.isPending || (!dirty && !saved)} className="flex h-11 w-full items-center justify-center rounded-[11px] bg-brand-green text-[14px] font-semibold text-white transition hover:brightness-95 disabled:opacity-60">
-            {save.isPending ? <Loader2 size={18} className="animate-spin" /> : saved ? "Saved!" : "Save changes"}
+            {save.isPending ? <Loader2 size={18} className="animate-spin" /> : saved ? t("profile.saved") : t("profile.save")}
           </button>
         </div>
 
         {/* Logout */}
         <button onClick={onLogout} className="mt-6 flex h-11 w-full items-center justify-center gap-2 rounded-[11px] border border-brand-red/25 bg-[linear-gradient(150deg,rgba(11,115,39,0.10),rgba(227,16,18,0.06))] text-[14px] font-medium text-brand-red transition hover:border-brand-red/40">
-          <LogOut size={16} strokeWidth={1.75} /> Sign out
+          <LogOut size={16} strokeWidth={1.75} /> {t("profile.signOut")}
         </button>
       </main>
     </div>

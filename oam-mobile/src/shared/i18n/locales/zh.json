@@ -5,7 +5,9 @@
     "retry": "重试",
     "seeAll": "查看全部",
     "verify": "验证",
-    "loading": "加载中…"
+    "loading": "加载中…",
+    "cancel": "取消",
+    "save": "保存"
   },
   "language": {
     "label": "语言",
@@ -1694,7 +1696,17 @@
   "profile": {
     "title": "个人资料",
     "account": "您的账户",
-    "signOut": "退出登录"
+    "signOut": "退出登录",
+    "editTitle": "编辑您的资料",
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "phone": "电话",
+    "email": "邮箱",
+    "emailNote": "邮箱无法更改——它是您的登录名。",
+    "save": "保存更改",
+    "saved": "已保存！",
+    "errSave": "无法保存更改，请重试。",
+    "verified": "已验证"
   },
   "giftcards": {
     "back": "返回",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "安全使用礼品卡",
     "bottomTitle": "浏览数千种数字码",
     "bottomCta": "打开市场"
+  },
+  "drawer": {
+    "user": "OAM 用户",
+    "soon": "将在后续更新中推出。",
+    "about": "关于 OAM",
+    "payBills": "缴费",
+    "marketplace": "市场",
+    "betting": "充值博彩钱包",
+    "artisans": "寻找工匠",
+    "referral": "获取推荐链接",
+    "ecommerce": "电子商务",
+    "signOut": "退出登录",
+    "tagline": "一个应用，一切搞定"
+  },
+  "referral": {
+    "title": "推荐赚钱",
+    "subtitle": "分享您的链接，每次推荐都能赚钱。",
+    "earnWhen": "受邀好友交易时，您可赚取 {{rate}}%。",
+    "loadError": "无法加载您的推荐面板。",
+    "yourLink": "您的推荐链接",
+    "copy": "复制",
+    "copied": "已复制！",
+    "share": "分享",
+    "customizeName": "自定义链接名称",
+    "customName": "自定义名称",
+    "customize": "自定义您的链接",
+    "saveLink": "保存链接",
+    "saved": "已保存",
+    "referrals": "推荐",
+    "active": "活跃",
+    "earned": "已赚取",
+    "howTitle": "运作方式",
+    "howBody": "分享您的链接。当有人注册并完成一笔让 OAM 赚取 {{threshold}} 或以上的交易时，您可获得该利润的 {{rate}}%——直接进入您的钱包。",
+    "step1": "1. 分享您的链接。任何通过它注册的人都会成为您的推荐。",
+    "step2": "2. 当其交易让 OAM 至少赚取 {{threshold}} 利润时，您可获得该利润的 {{rate}}%。",
+    "step3": "3. 您的佣金直接进入您的 OAM 钱包——随时提现或消费。",
+    "recent": "近期收益",
+    "noneYet": "暂无收益。分享您的链接即可开始。",
+    "errSave": "无法保存该名称。请换一个。",
+    "shareTitle": "来 OAM 加入我",
+    "shareText": "用我的链接注册 OAM：",
+    "shareMessage": "来 OAM 加入我——缴费、购物等。用我的链接注册：{{link}}"
   }
 }

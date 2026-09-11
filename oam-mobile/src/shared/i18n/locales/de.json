@@ -5,7 +5,9 @@
     "retry": "Erneut versuchen",
     "seeAll": "Alle ansehen",
     "verify": "Verifizieren",
-    "loading": "Wird geladen…"
+    "loading": "Wird geladen…",
+    "cancel": "Abbrechen",
+    "save": "Speichern"
   },
   "language": {
     "label": "Sprache",
@@ -1693,8 +1695,18 @@
   },
   "profile": {
     "title": "Profil",
-    "account": "Dein Konto",
-    "signOut": "Abmelden"
+    "account": "Ihr Konto",
+    "signOut": "Abmelden",
+    "editTitle": "Ihre Daten bearbeiten",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "emailNote": "Die E-Mail kann nicht geändert werden — sie ist Ihr Login.",
+    "save": "Änderungen speichern",
+    "saved": "Gespeichert!",
+    "errSave": "Änderungen konnten nicht gespeichert werden. Erneut versuchen.",
+    "verified": "Verifiziert"
   },
   "giftcards": {
     "back": "Zurück",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "Sicher bleiben mit Geschenkkarten",
     "bottomTitle": "Durchsuche Tausende digitale Codes",
     "bottomCta": "Marktplatz öffnen"
+  },
+  "drawer": {
+    "user": "OAM-Nutzer",
+    "soon": "Kommt in einem kommenden Update.",
+    "about": "Über OAM",
+    "payBills": "Rechnungen zahlen",
+    "marketplace": "Marktplatz",
+    "betting": "Wett-Wallet aufladen",
+    "artisans": "Handwerker finden",
+    "referral": "Empfehlungslink erhalten",
+    "ecommerce": "E-Commerce",
+    "signOut": "Abmelden",
+    "tagline": "Eine App, alles"
+  },
+  "referral": {
+    "title": "Empfehlen & verdienen",
+    "subtitle": "Teilen Sie Ihren Link und verdienen Sie bei jeder Empfehlung.",
+    "earnWhen": "Verdienen Sie {{rate}}%, wenn ein eingeladener Freund eine Transaktion tätigt.",
+    "loadError": "Ihr Empfehlungs-Dashboard konnte nicht geladen werden.",
+    "yourLink": "Ihr Empfehlungslink",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "share": "Teilen",
+    "customizeName": "Linknamen anpassen",
+    "customName": "Eigener Name",
+    "customize": "Ihren Link anpassen",
+    "saveLink": "Link speichern",
+    "saved": "Gespeichert",
+    "referrals": "Empfehlungen",
+    "active": "Aktiv",
+    "earned": "Verdient",
+    "howTitle": "So funktioniert's",
+    "howBody": "Teilen Sie Ihren Link. Wenn sich jemand anmeldet und eine Transaktion abschließt, bei der OAM {{threshold}} oder mehr verdient, erhalten Sie {{rate}}% dieses Gewinns — direkt in Ihre Wallet.",
+    "step1": "1. Teilen Sie Ihren Link. Wer sich darüber anmeldet, wird Ihre Empfehlung.",
+    "step2": "2. Wenn er eine Transaktion tätigt, bei der OAM mindestens {{threshold}} Gewinn macht, erhalten Sie {{rate}}% davon.",
+    "step3": "3. Ihre Provision landet direkt in Ihrer OAM-Wallet — jederzeit abheben oder ausgeben.",
+    "recent": "Aktuelle Einnahmen",
+    "noneYet": "Noch keine Einnahmen. Teilen Sie Ihren Link, um zu starten.",
+    "errSave": "Name konnte nicht gespeichert werden. Versuchen Sie einen anderen.",
+    "shareTitle": "Komm zu mir auf OAM",
+    "shareText": "Registriere dich bei OAM mit meinem Link:",
+    "shareMessage": "Komm zu mir auf OAM — Rechnungen, Einkaufen und mehr. Registriere dich mit meinem Link: {{link}}"
   }
 }

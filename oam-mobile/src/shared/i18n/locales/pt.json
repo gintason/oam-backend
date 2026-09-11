@@ -2,10 +2,12 @@
   "common": {
     "back": "Voltar",
     "done": "Concluído",
-    "retry": "Tentar novamente",
+    "retry": "Tentar de novo",
     "seeAll": "Ver tudo",
     "verify": "Verificar",
-    "loading": "A carregar…"
+    "loading": "A carregar…",
+    "cancel": "Cancelar",
+    "save": "Guardar"
   },
   "language": {
     "label": "Idioma",
@@ -1693,8 +1695,18 @@
   },
   "profile": {
     "title": "Perfil",
-    "account": "Sua conta",
-    "signOut": "Sair"
+    "account": "A sua conta",
+    "signOut": "Terminar sessão",
+    "editTitle": "Editar os seus dados",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "phone": "Telefone",
+    "email": "E-mail",
+    "emailNote": "O e-mail não pode ser alterado — é o seu login.",
+    "save": "Guardar alterações",
+    "saved": "Guardado!",
+    "errSave": "Não foi possível guardar as alterações. Tente novamente.",
+    "verified": "Verificado"
   },
   "giftcards": {
     "back": "Voltar",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "Fique seguro com cartões-presente",
     "bottomTitle": "Explore milhares de códigos digitais",
     "bottomCta": "Abrir o mercado"
+  },
+  "drawer": {
+    "user": "Utilizador OAM",
+    "soon": "Chega numa próxima atualização.",
+    "about": "Sobre a OAM",
+    "payBills": "Pagar contas",
+    "marketplace": "Mercado",
+    "betting": "Carregar carteira de apostas",
+    "artisans": "Encontrar um artesão",
+    "referral": "Obter link de indicação",
+    "ecommerce": "E-commerce",
+    "signOut": "Terminar sessão",
+    "tagline": "Uma app, tudo"
+  },
+  "referral": {
+    "title": "Indique e ganhe",
+    "subtitle": "Partilhe o seu link e ganhe em cada indicação.",
+    "earnWhen": "Ganhe {{rate}}% quando um amigo convidado fizer uma transação.",
+    "loadError": "Não foi possível carregar o seu painel de indicações.",
+    "yourLink": "O seu link de indicação",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "share": "Partilhar",
+    "customizeName": "Personalizar o nome do link",
+    "customName": "Nome personalizado",
+    "customize": "Personalizar o seu link",
+    "saveLink": "Guardar link",
+    "saved": "Guardado",
+    "referrals": "Indicações",
+    "active": "Ativos",
+    "earned": "Ganho",
+    "howTitle": "Como funciona",
+    "howBody": "Partilhe o seu link. Quando alguém se regista e completa uma transação onde a OAM ganha {{threshold}} ou mais, recebe {{rate}}% desse lucro — direto para a sua carteira.",
+    "step1": "1. Partilhe o seu link. Quem se registar por ele torna-se a sua indicação.",
+    "step2": "2. Quando fizer uma transação onde a OAM ganhe pelo menos {{threshold}} de lucro, recebe {{rate}}% desse lucro.",
+    "step3": "3. A sua comissão vai direto para a sua carteira OAM — levante ou gaste quando quiser.",
+    "recent": "Ganhos recentes",
+    "noneYet": "Ainda sem ganhos. Partilhe o seu link para começar.",
+    "errSave": "Não foi possível guardar esse nome. Tente outro.",
+    "shareTitle": "Junte-se a mim na OAM",
+    "shareText": "Registe-se na OAM com o meu link:",
+    "shareMessage": "Junte-se a mim na OAM — contas, compras e mais. Registe-se com o meu link: {{link}}"
   }
 }

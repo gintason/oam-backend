@@ -1,11 +1,13 @@
 {
   "common": {
-    "back": "Koma baya",
+    "back": "Baya",
     "done": "An gama",
     "retry": "Sake gwadawa",
     "seeAll": "Duba duka",
     "verify": "Tabbatar",
-    "loading": "Ana lodi…"
+    "loading": "Ana lodi…",
+    "cancel": "Soke",
+    "save": "Ajiye"
   },
   "language": {
     "label": "Harshe"
@@ -1603,5 +1605,47 @@
     "signOut": "Fita",
     "errSave": "An kasa ajiye canje-canjen ka. Sake gwadawa.",
     "verified": "An tabbatar"
+  },
+  "drawer": {
+    "user": "Mai amfani da OAM",
+    "soon": "Zai zo a sabuntawa mai zuwa.",
+    "about": "Game da OAM",
+    "payBills": "Biya Kuɗaɗe",
+    "marketplace": "Kasuwa",
+    "betting": "Cika Walat na Caca",
+    "artisans": "Nemo Ma'aikaci",
+    "referral": "Sami Hanyar Gayyata",
+    "ecommerce": "Kasuwancin Yanar Gizo",
+    "signOut": "Fita",
+    "tagline": "App ɗaya, komai"
+  },
+  "referral": {
+    "title": "Gayyata ka Sami",
+    "subtitle": "Raba hanyar ka, sami riba a kowace gayyata.",
+    "earnWhen": "Sami {{rate}}% idan abokin da ka gayyata ya yi ciniki.",
+    "loadError": "An kasa loda dashboard na gayyata.",
+    "yourLink": "Hanyar gayyatar ka",
+    "copy": "Kwafa",
+    "copied": "An kwafa!",
+    "share": "Raba",
+    "customizeName": "Keɓance sunan hanya",
+    "customName": "Suna na musamman",
+    "customize": "Keɓance hanyar ka",
+    "saveLink": "Ajiye hanya",
+    "saved": "An ajiye",
+    "referrals": "Gayyatoyi",
+    "active": "Masu aiki",
+    "earned": "An samu",
+    "howTitle": "Yadda yake aiki",
+    "howBody": "Raba hanyar ka. Idan wani ya yi rijista ya kammala ciniki inda OAM ya samu {{threshold}} ko fiye, kana samun {{rate}}% na wannan riba — kai tsaye zuwa walat ɗin ka.",
+    "step1": "1. Raba hanyar ka. Duk wanda ya yi rijista ta hanyarta ya zama gayyatarka.",
+    "step2": "2. Idan ya yi ciniki inda OAM ya samu aƙalla {{threshold}} na riba, kana samun {{rate}}% na wannan riba.",
+    "step3": "3. Kwamishan ka na shiga walat ɗin OAM kai tsaye — cire ko kashe a kowane lokaci.",
+    "recent": "Ribar kwanan nan",
+    "noneYet": "Babu riba tukuna. Raba hanyar ka don farawa.",
+    "errSave": "An kasa ajiye wannan suna. Gwada wani.",
+    "shareTitle": "Ka haɗu da ni a OAM",
+    "shareText": "Yi rijista a OAM da hanyata:",
+    "shareMessage": "Ka haɗu da ni a OAM — kuɗaɗe, sayayya da ƙari. Yi rijista da hanyata: {{link}}"
   }
 }

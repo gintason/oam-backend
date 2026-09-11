@@ -2,10 +2,12 @@
   "common": {
     "back": "Geri",
     "done": "Tamam",
-    "retry": "Tekrar dene",
+    "retry": "Yeniden dene",
     "seeAll": "Tümünü gör",
     "verify": "Doğrula",
-    "loading": "Yükleniyor…"
+    "loading": "Yükleniyor…",
+    "cancel": "İptal",
+    "save": "Kaydet"
   },
   "language": {
     "label": "Dil",
@@ -1694,7 +1696,17 @@
   "profile": {
     "title": "Profil",
     "account": "Hesabınız",
-    "signOut": "Çıkış yap"
+    "signOut": "Çıkış yap",
+    "editTitle": "Bilgilerinizi düzenleyin",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "emailNote": "E-posta değiştirilemez — girişinizdir.",
+    "save": "Değişiklikleri kaydet",
+    "saved": "Kaydedildi!",
+    "errSave": "Değişiklikler kaydedilemedi. Tekrar deneyin.",
+    "verified": "Doğrulandı"
   },
   "giftcards": {
     "back": "Geri",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "Hediye kartlarıyla güvende kalın",
     "bottomTitle": "Binlerce dijital koda göz atın",
     "bottomCta": "Pazarı aç"
+  },
+  "drawer": {
+    "user": "OAM Kullanıcısı",
+    "soon": "Yakında bir güncellemede gelecek.",
+    "about": "OAM Hakkında",
+    "payBills": "Fatura Öde",
+    "marketplace": "Pazar Yeri",
+    "betting": "Bahis Cüzdanını Doldur",
+    "artisans": "Usta Bul",
+    "referral": "Davet Linki Al",
+    "ecommerce": "E-ticaret",
+    "signOut": "Çıkış yap",
+    "tagline": "Tek uygulama, her şey"
+  },
+  "referral": {
+    "title": "Davet et, kazan",
+    "subtitle": "Linkini paylaş, her davette kazan.",
+    "earnWhen": "Davet ettiğin arkadaş işlem yaptığında {{rate}}% kazan.",
+    "loadError": "Davet panonuz yüklenemedi.",
+    "yourLink": "Davet linkin",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "share": "Paylaş",
+    "customizeName": "Link adını özelleştir",
+    "customName": "Özel ad",
+    "customize": "Linkini özelleştir",
+    "saveLink": "Linki kaydet",
+    "saved": "Kaydedildi",
+    "referrals": "Davetler",
+    "active": "Aktif",
+    "earned": "Kazanılan",
+    "howTitle": "Nasıl çalışır",
+    "howBody": "Linkini paylaş. Biri kaydolup OAM'ın {{threshold}} veya daha fazla kazandığı bir işlem tamamladığında, o kârın {{rate}}%'ini alırsın — doğrudan cüzdanına.",
+    "step1": "1. Linkini paylaş. Onunla kaydolan herkes senin davetin olur.",
+    "step2": "2. OAM'ın en az {{threshold}} kâr ettiği bir işlem yaptığında, o kârın {{rate}}%'ini alırsın.",
+    "step3": "3. Komisyonun doğrudan OAM cüzdanına gelir — istediğin zaman çek veya harca.",
+    "recent": "Son kazançlar",
+    "noneYet": "Henüz kazanç yok. Başlamak için linkini paylaş.",
+    "errSave": "Bu ad kaydedilemedi. Başka bir tane dene.",
+    "shareTitle": "OAM'da bana katıl",
+    "shareText": "Linkimle OAM'a kaydol:",
+    "shareMessage": "OAM'da bana katıl — fatura, alışveriş ve daha fazlası. Linkimle kaydol: {{link}}"
   }
 }

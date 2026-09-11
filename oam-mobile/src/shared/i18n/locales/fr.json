@@ -5,7 +5,9 @@
     "retry": "Réessayer",
     "seeAll": "Tout voir",
     "verify": "Vérifier",
-    "loading": "Chargement…"
+    "loading": "Chargement…",
+    "cancel": "Annuler",
+    "save": "Enregistrer"
   },
   "language": {
     "label": "Langue",
@@ -1694,7 +1696,17 @@
   "profile": {
     "title": "Profil",
     "account": "Votre compte",
-    "signOut": "Se déconnecter"
+    "signOut": "Se déconnecter",
+    "editTitle": "Modifier vos informations",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "emailNote": "L'e-mail ne peut pas être modifié — c'est votre identifiant.",
+    "save": "Enregistrer",
+    "saved": "Enregistré !",
+    "errSave": "Impossible d'enregistrer les modifications. Réessayez.",
+    "verified": "Vérifié"
   },
   "giftcards": {
     "back": "Retour",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "Sécurité avec les cartes-cadeaux",
     "bottomTitle": "Parcourez des milliers de codes numériques",
     "bottomCta": "Ouvrir la place de marché"
+  },
+  "drawer": {
+    "user": "Utilisateur OAM",
+    "soon": "Disponible dans une prochaine mise à jour.",
+    "about": "À propos d'OAM",
+    "payBills": "Payer les factures",
+    "marketplace": "Place de marché",
+    "betting": "Alimenter le portefeuille de paris",
+    "artisans": "Trouver un artisan",
+    "referral": "Obtenir le lien de parrainage",
+    "ecommerce": "E-commerce",
+    "signOut": "Se déconnecter",
+    "tagline": "Une app, tout"
+  },
+  "referral": {
+    "title": "Parrainez et gagnez",
+    "subtitle": "Partagez votre lien, gagnez à chaque parrainage.",
+    "earnWhen": "Gagnez {{rate}}% quand un ami invité effectue une transaction.",
+    "loadError": "Impossible de charger votre tableau de parrainage.",
+    "yourLink": "Votre lien de parrainage",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "share": "Partager",
+    "customizeName": "Personnaliser le nom du lien",
+    "customName": "Nom personnalisé",
+    "customize": "Personnaliser votre lien",
+    "saveLink": "Enregistrer le lien",
+    "saved": "Enregistré",
+    "referrals": "Parrainages",
+    "active": "Actifs",
+    "earned": "Gagné",
+    "howTitle": "Comment ça marche",
+    "howBody": "Partagez votre lien. Quand quelqu'un s'inscrit et effectue une transaction où OAM gagne {{threshold}} ou plus, vous recevez {{rate}}% de ce profit — directement dans votre portefeuille.",
+    "step1": "1. Partagez votre lien. Toute personne qui s'inscrit via celui-ci devient votre filleul.",
+    "step2": "2. Quand il effectue une transaction où OAM gagne au moins {{threshold}} de profit, vous recevez {{rate}}% de ce profit.",
+    "step3": "3. Votre commission arrive directement dans votre portefeuille OAM — retirez-la ou dépensez-la quand vous voulez.",
+    "recent": "Gains récents",
+    "noneYet": "Aucun gain pour l'instant. Partagez votre lien pour commencer.",
+    "errSave": "Impossible d'enregistrer ce nom. Essayez-en un autre.",
+    "shareTitle": "Rejoignez-moi sur OAM",
+    "shareText": "Inscrivez-vous sur OAM avec mon lien :",
+    "shareMessage": "Rejoignez-moi sur OAM — factures, achats et plus. Inscrivez-vous avec mon lien : {{link}}"
   }
 }

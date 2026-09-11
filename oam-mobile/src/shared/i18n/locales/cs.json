@@ -5,7 +5,9 @@
     "retry": "Zkusit znovu",
     "seeAll": "Zobrazit vše",
     "verify": "Ověřit",
-    "loading": "Načítání…"
+    "loading": "Načítání…",
+    "cancel": "Zrušit",
+    "save": "Uložit"
   },
   "language": {
     "label": "Jazyk",
@@ -1694,7 +1696,17 @@
   "profile": {
     "title": "Profil",
     "account": "Váš účet",
-    "signOut": "Odhlásit se"
+    "signOut": "Odhlásit se",
+    "editTitle": "Upravit údaje",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "emailNote": "E-mail nelze změnit — je to vaše přihlášení.",
+    "save": "Uložit změny",
+    "saved": "Uloženo!",
+    "errSave": "Změny se nepodařilo uložit. Zkuste to znovu.",
+    "verified": "Ověřeno"
   },
   "giftcards": {
     "back": "Zpět",
@@ -1716,5 +1728,47 @@
     "safetyHeading": "Buďte v bezpečí s dárkovými kartami",
     "bottomTitle": "Procházejte tisíce digitálních kódů",
     "bottomCta": "Otevřít tržiště"
+  },
+  "drawer": {
+    "user": "Uživatel OAM",
+    "soon": "Přijde v příští aktualizaci.",
+    "about": "O OAM",
+    "payBills": "Zaplatit účty",
+    "marketplace": "Tržiště",
+    "betting": "Dobít sázkovou peněženku",
+    "artisans": "Najít řemeslníka",
+    "referral": "Získat odkaz na doporučení",
+    "ecommerce": "E-commerce",
+    "signOut": "Odhlásit se",
+    "tagline": "Jedna aplikace, vše"
+  },
+  "referral": {
+    "title": "Doporuč a vydělej",
+    "subtitle": "Sdílej svůj odkaz a vydělávej za každé doporučení.",
+    "earnWhen": "Vydělej {{rate}}%, když pozvaný přítel provede transakci.",
+    "loadError": "Nepodařilo se načíst nástěnku doporučení.",
+    "yourLink": "Tvůj odkaz na doporučení",
+    "copy": "Kopírovat",
+    "copied": "Zkopírováno!",
+    "share": "Sdílet",
+    "customizeName": "Přizpůsobit název odkazu",
+    "customName": "Vlastní název",
+    "customize": "Přizpůsobit odkaz",
+    "saveLink": "Uložit odkaz",
+    "saved": "Uloženo",
+    "referrals": "Doporučení",
+    "active": "Aktivní",
+    "earned": "Vyděláno",
+    "howTitle": "Jak to funguje",
+    "howBody": "Sdílej svůj odkaz. Když se někdo zaregistruje a dokončí transakci, na které OAM vydělá {{threshold}} nebo více, získáš {{rate}}% z tohoto zisku — přímo do peněženky.",
+    "step1": "1. Sdílej svůj odkaz. Kdokoli se přes něj zaregistruje, stane se tvým doporučeným.",
+    "step2": "2. Když provede transakci, na které OAM vydělá alespoň {{threshold}}, získáš {{rate}}% z tohoto zisku.",
+    "step3": "3. Tvoje provize míří přímo do peněženky OAM — vyber nebo utrať kdykoli.",
+    "recent": "Nedávné výdělky",
+    "noneYet": "Zatím žádné výdělky. Sdílej odkaz a začni.",
+    "errSave": "Tento název nelze uložit. Zkus jiný.",
+    "shareTitle": "Přidej se ke mně na OAM",
+    "shareText": "Zaregistruj se na OAM přes můj odkaz:",
+    "shareMessage": "Přidej se ke mně na OAM — účty, nákupy a další. Zaregistruj se přes můj odkaz: {{link}}"
   }
 }

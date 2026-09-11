@@ -1,11 +1,13 @@
 {
   "common": {
-    "back": "Назад",
+    "back": "Nazad",
     "done": "Готово",
-    "retry": "Покушај поново",
+    "retry": "Pokušaj ponovo",
     "seeAll": "Погледај све",
     "verify": "Потврди",
-    "loading": "Учитавање…"
+    "loading": "Учитавање…",
+    "cancel": "Otkaži",
+    "save": "Sačuvaj"
   },
   "language": {
     "label": "Језик"
@@ -1544,5 +1546,47 @@
     "signOut": "Odjava",
     "errSave": "Nije moguće sačuvati izmene. Pokušajte ponovo.",
     "verified": "Verifikovano"
+  },
+  "drawer": {
+    "user": "OAM korisnik",
+    "soon": "Stiže u narednom ažuriranju.",
+    "about": "O OAM",
+    "payBills": "Plati račune",
+    "marketplace": "Pijaca",
+    "betting": "Dopuni kladioničarski novčanik",
+    "artisans": "Pronađi majstora",
+    "referral": "Uzmi link za preporuku",
+    "ecommerce": "E-trgovina",
+    "signOut": "Odjava",
+    "tagline": "Jedna aplikacija, sve"
+  },
+  "referral": {
+    "title": "Preporuči i zaradi",
+    "subtitle": "Podeli svoj link i zaradi na svakoj preporuci.",
+    "earnWhen": "Zaradi {{rate}}% kada pozvani prijatelj obavi transakciju.",
+    "loadError": "Nije moguće učitati tablu za preporuke.",
+    "yourLink": "Tvoj link za preporuku",
+    "copy": "Kopiraj",
+    "copied": "Kopirano!",
+    "share": "Podeli",
+    "customizeName": "Prilagodi naziv linka",
+    "customName": "Prilagođeni naziv",
+    "customize": "Prilagodi svoj link",
+    "saveLink": "Sačuvaj link",
+    "saved": "Sačuvano",
+    "referrals": "Preporuke",
+    "active": "Aktivne",
+    "earned": "Zarađeno",
+    "howTitle": "Kako funkcioniše",
+    "howBody": "Podeli svoj link. Kada se neko registruje i obavi transakciju na kojoj OAM zaradi {{threshold}} ili više, dobijaš {{rate}}% te zarade — direktno u novčanik.",
+    "step1": "1. Podeli svoj link. Svako ko se registruje preko njega postaje tvoja preporuka.",
+    "step2": "2. Kada obavi transakciju na kojoj OAM zaradi bar {{threshold}}, dobijaš {{rate}}% te zarade.",
+    "step3": "3. Tvoja provizija ide pravo u OAM novčanik — podigni ili potroši bilo kada.",
+    "recent": "Nedavne zarade",
+    "noneYet": "Još nema zarade. Podeli svoj link da počneš.",
+    "errSave": "Nije moguće sačuvati taj naziv. Probaj drugi.",
+    "shareTitle": "Pridruži mi se na OAM",
+    "shareText": "Registruj se na OAM preko mog linka:",
+    "shareMessage": "Pridruži mi se na OAM — računi, kupovina i još. Registruj se preko mog linka: {{link}}"
   }
 }

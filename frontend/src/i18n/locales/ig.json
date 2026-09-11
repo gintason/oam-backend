@@ -1,11 +1,13 @@
 {
   "common": {
-    "back": "Laghachi",
+    "back": "Azụ",
     "done": "Emechaala",
     "retry": "Nwaa ọzọ",
     "seeAll": "Hụ ha niile",
     "verify": "Kwenye",
-    "loading": "Na-ebu…"
+    "loading": "Na-ebu…",
+    "cancel": "Kagbuo",
+    "save": "Chekwaa"
   },
   "language": {
     "label": "Asụsụ"
@@ -1603,5 +1605,47 @@
     "signOut": "Pụọ",
     "errSave": "Enweghị ike ịchekwa mgbanwe gị. Nwaa ọzọ.",
     "verified": "Enyochara"
+  },
+  "drawer": {
+    "user": "Onye ọrụ OAM",
+    "soon": "Ọ ga-abịa na mmelite na-abịa.",
+    "about": "Maka OAM",
+    "payBills": "Kwụọ Ụgwọ",
+    "marketplace": "Ahịa",
+    "betting": "Debe Akpa Betin",
+    "artisans": "Chọta Onye Ọrụ Aka",
+    "referral": "Nweta Njikọ Nkwanye",
+    "ecommerce": "Azụmahịa Elektrọnik",
+    "signOut": "Pụọ",
+    "tagline": "Otu ngwa, ihe niile"
+  },
+  "referral": {
+    "title": "Kpọọ ma Rite",
+    "subtitle": "Kesaa njikọ gị, rite na nkwanye ọ bụla.",
+    "earnWhen": "Rite {{rate}}% mgbe enyi ị kpọrọ mere azụmahịa.",
+    "loadError": "Enweghị ike ibudata dashboard nkwanye gị.",
+    "yourLink": "Njikọ nkwanye gị",
+    "copy": "Detuo",
+    "copied": "Edetụọla!",
+    "share": "Kesaa",
+    "customizeName": "Hazie aha njikọ",
+    "customName": "Aha ahaziri",
+    "customize": "Hazie njikọ gị",
+    "saveLink": "Chekwaa njikọ",
+    "saved": "Echekwala",
+    "referrals": "Nkwanye",
+    "active": "Na-arụ ọrụ",
+    "earned": "Eritela",
+    "howTitle": "Otu o si arụ ọrụ",
+    "howBody": "Kesaa njikọ gị. Mgbe mmadụ debanyere aha wee mezuo azụmahịa ebe OAM na-erite {{threshold}} ma ọ bụ karịa, ị na-enweta {{rate}}% nke uru ahụ — kwuru n'akpa ego gị.",
+    "step1": "1. Kesaa njikọ gị. Onye ọ bụla debanyere aha site na ya ghọrọ onye ị kpọrọ.",
+    "step2": "2. Mgbe o mere azụmahịa ebe OAM na-erite ma ọ dịkarịa ala {{threshold}} uru, ị na-enweta {{rate}}% nke uru ahụ.",
+    "step3": "3. Kọmishọn gị na-abanye n'akpa ego OAM gị ozugbo — wepụ ma ọ bụ mefuo ya mgbe ọ bụla.",
+    "recent": "Ego enwetara n'oge na-adịbeghị anya",
+    "noneYet": "Enwebeghị ego. Kesaa njikọ gị ka ịmalite.",
+    "errSave": "Enweghị ike ịchekwa aha ahụ. Nwaa nke ọzọ.",
+    "shareTitle": "Sonyere m na OAM",
+    "shareText": "Debanye aha na OAM site na njikọ m:",
+    "shareMessage": "Sonyere m na OAM — ụgwọ, ịzụ ahịa na ihe ndị ọzọ. Debanye aha site na njikọ m: {{link}}"
   }
 }
