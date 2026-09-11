@@ -1803,7 +1803,8 @@
     "referral": "Get Referral Link",
     "ecommerce": "E-commerce",
     "signOut": "Sign out",
-    "tagline": "One app, everything"
+    "tagline": "One app, everything",
+    "motorsAdmin": "Motors Admin"
   },
   "referral": {
     "title": "Refer & Earn",

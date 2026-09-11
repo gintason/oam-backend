@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, BadgeCheck,
-  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon,
+  Smartphone, Wifi, Zap, Plane, Tv, Send, Car, type LucideIcon,
 } from "lucide-react-native";
 import Svg, { Path } from "react-native-svg";
 import { Text } from "@/shared/ui";
@@ -92,6 +92,7 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
+  const isStaff = Boolean((user as { is_staff?: boolean; is_superuser?: boolean } | null)?.is_staff || (user as { is_superuser?: boolean } | null)?.is_superuser);
 
   const name = [user?.first_name, user?.last_name].filter(Boolean).join(" ") || t("drawer.user", "OAM User");
   const initial = (user?.first_name?.[0] || "O").toUpperCase();
@@ -119,6 +120,10 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },
     { key: "ecommerce", label: t("drawer.ecommerce", "E-commerce"), Icon: ShoppingBag, onPress: () => go("/ecommerce") },
   ];
+
+  if (isStaff) {
+    links.push({ key: "motors", label: t("drawer.motorsAdmin", "Motors Admin"), Icon: Car, onPress: () => go("/motors-admin") });
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: "#062616", overflow: "hidden" }}>

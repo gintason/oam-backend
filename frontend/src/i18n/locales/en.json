@@ -297,7 +297,8 @@
         "contact": "Contact",
         "helpCenter": "Help Center",
         "terms": "Terms",
-        "privacy": "Privacy"
+        "privacy": "Privacy",
+        "refund": "Refund Policy"
       },
       "rights": "© {{year}} OAM. All rights reserved.",
       "developedBy": "Developed by AiTrend"
@@ -1458,6 +1459,31 @@
       "s10P1": "We may update these terms. Material changes will be notified by email or in the app before they take effect.",
       "s10P2": "These terms are governed by the laws of the <1>Federal Republic of Nigeria</1>. Please contact us first — most problems are settled quickly by email. <2>[TO CONFIRM — dispute resolution and jurisdiction wording.]</2>",
       "s10P3": "See also our <1>Privacy Policy</1>."
+    },
+    "refund": {
+      "title": "Refund Policy",
+      "intro": "How refunds work on OAM, and what to do if a transaction goes wrong.",
+      "updated": "11 September 2026",
+      "s1Title": "1. Scope",
+      "s1P1": "This policy covers payments you make on OAM — wallet funding, airtime and data, electricity and cable, transfers, bus tickets, betting top-ups and other services. Purchases completed on a partner's own website or app (for example travel bookings and e-commerce stores) are governed by that partner's refund terms, not this policy.",
+      "s2Title": "2. Successful transactions",
+      "s2P1": "Bills, airtime, data, tokens, top-ups and similar services are delivered instantly and are generally non-refundable once the value has been delivered to the number, meter or account you provided.",
+      "s2P2": "Always double-check the recipient details before you pay. Value delivered to a wrong-but-valid number or meter that you entered cannot be recovered by OAM.",
+      "s3Title": "3. Failed or incomplete transactions",
+      "s3P1": "If your wallet or card is debited but the service is not delivered, the amount is automatically reversed to your OAM wallet, usually within minutes.",
+      "s3P2": "If a reversal has not appeared after 24 hours, contact us with the transaction reference and we will investigate and resolve it.",
+      "s4Title": "4. Wallet funding and withdrawals",
+      "s4P1": "Money added to your OAM wallet is held as your balance and can be used across the app or withdrawn to your own Nigerian bank account.",
+      "s4P2": "If a funding attempt is charged by your bank but does not reflect in your wallet, it is reversed automatically once the payment provider settles; if it does not, contact us and we will reconcile it.",
+      "s5Title": "5. Duplicate or wrong payments",
+      "s5P1": "If you were charged more than once for the same order, or a payment clearly failed on the provider's side, the extra charge is refunded to your wallet after verification.",
+      "s5P2": "Refunds are made to your OAM wallet by default. Where a refund to your bank card or account is required, it follows the payment provider's timelines.",
+      "s6Title": "6. Marketplace, artisans and third parties",
+      "s6P1": "OAM connects buyers and sellers and helps you find artisans, but it is not a party to those deals. Payments you make directly to another user, seller or service provider are between you and them; OAM does not refund such payments, though we will help where we reasonably can.",
+      "s7Title": "7. How to request a refund",
+      "s7P1": "To raise a refund or report a transaction issue, email <1>info@oam-app.com</1> with your registered email or phone, the transaction reference, the date and amount, and a short description. Our team reviews requests and responds as quickly as possible.",
+      "s8Title": "8. Changes to this policy",
+      "s8P1": "We may update this Refund Policy from time to time. The date at the top shows when it was last changed, and continued use of OAM means you accept the current version."
     }
   },
   "withdraw": {
