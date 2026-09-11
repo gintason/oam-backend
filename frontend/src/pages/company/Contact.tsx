@@ -15,7 +15,7 @@ export default function Contact() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
     );
-    window.location.href = `mailto:info@oam-app.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:oamapp26@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -31,10 +31,10 @@ export default function Contact() {
           </span>
           <div>
             <a
-              href="mailto:info@oam-app.com"
+              href="mailto:oamapp26@gmail.com"
               className="text-[16px] font-semibold text-ink underline decoration-brand-green/40 underline-offset-4"
             >
-              info@oam-app.com
+              oamapp26@gmail.com
             </a>
             <p className="mt-1">{t("company.contact.emailBody")}</p>
           </div>

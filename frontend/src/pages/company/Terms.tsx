@@ -1,7 +1,7 @@
 import { useTranslation, Trans } from "react-i18next";
 import PageShell, { Block } from "./PageShell";
 
-const emailLink = <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline" />;
+const emailLink = <a href="mailto:oamapp26@gmail.com" className="font-medium text-brand-green underline" />;
 
 export default function Terms() {
   const { t } = useTranslation();

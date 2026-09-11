@@ -1313,8 +1313,8 @@
       "title": "Help centre",
       "intro": "Answers to the things people ask most — starting with the one that matters when money is involved.",
       "searchPlaceholder": "Search help…",
-      "noMatch": "Nothing matches \"{{query}}\". Email <1>info@oam-app.com</1> and a person will answer.",
-      "stillStuck": "Still stuck? Email <1>info@oam-app.com</1> with your order reference and we'll look it up. See <2>Contact</2> for what to include.",
+      "noMatch": "Nothing matches \"{{query}}\". Email <1>oamapp26@gmail.com</1> and a person will answer.",
+      "stillStuck": "Still stuck? Email <1>oamapp26@gmail.com</1> with your order reference and we'll look it up. See <2>Contact</2> for what to include.",
       "groups": {
         "electricity": {
           "title": "Electricity tokens",
@@ -1369,7 +1369,7 @@
       "intro": "What we collect, why, who else sees it, and what you can ask us to do about it.",
       "updated": "23 July 2026",
       "controlTitle": "Who controls your data",
-      "controlBody": "<1>O.A.M Motors Limited</1> (RC <2>[TO CONFIRM]</2>) is the data controller. For any privacy question or request, email <3>info@oam-app.com</3>.",
+      "controlBody": "<1>O.A.M Motors Limited</1> (RC <2>[TO CONFIRM]</2>) is the data controller. For any privacy question or request, email <3>oamapp26@gmail.com</3>.",
       "collectTitle": "What we collect",
       "collectGive": "You give us:",
       "giveLi1": "Name, email address and phone number when you register",
@@ -1409,7 +1409,7 @@
       "rightsLi3": "delete data we no longer have a lawful reason to keep",
       "rightsLi4": "stop using your data for a particular purpose",
       "rightsLi5": "provide your data in a portable form",
-      "rightsEmail": "Email <1>info@oam-app.com</1>. We'll respond within one month.",
+      "rightsEmail": "Email <1>oamapp26@gmail.com</1>. We'll respond within one month.",
       "rightsKeep": "Some data we must keep even after you ask — completed financial transactions, for instance, where the law requires a record. We'll tell you if that applies.",
       "securityTitle": "Security",
       "securityP1": "Passwords are stored hashed, never in readable form. Payments go through Paystack's secure checkout. Access to customer data inside OAM is limited to the people who need it to run the service.",
@@ -1425,7 +1425,7 @@
       "s1Body": "OAM is operated by <1>O.A.M Motors Limited</1>, a company registered in Nigeria (RC <2>[TO CONFIRM]</2>), registered address <3>[TO CONFIRM]</3>. In these terms \"we\", \"us\" and \"OAM\" mean that company; \"you\" means the account holder.",
       "s2Title": "2. Your account",
       "s2P1": "You must be <1>18 or over</1> and provide accurate details. One person, one account. You are responsible for keeping your password and one-time codes private — we will never ask you for them, and anyone who does is not from OAM.",
-      "s2P2": "Tell us immediately at <1>info@oam-app.com</1> if you believe someone else has access to your account.",
+      "s2P2": "Tell us immediately at <1>oamapp26@gmail.com</1> if you believe someone else has access to your account.",
       "s3Title": "3. Your wallet",
       "s3P1": "Your wallet balance is money we hold for you. It is not a bank deposit, it earns no interest, and it is not covered by deposit insurance.",
       "s3P2": "You can withdraw your balance to a bank account in your own name at any time, subject to the checks below. Card payments credit your wallet first and the wallet then pays for your purchase — so if a delivery fails, the money remains yours as a wallet balance.",
@@ -1481,7 +1481,7 @@
       "s6Title": "6. Marketplace, artisans and third parties",
       "s6P1": "OAM connects buyers and sellers and helps you find artisans, but it is not a party to those deals. Payments you make directly to another user, seller or service provider are between you and them; OAM does not refund such payments, though we will help where we reasonably can.",
       "s7Title": "7. How to request a refund",
-      "s7P1": "To raise a refund or report a transaction issue, email <1>info@oam-app.com</1> with your registered email or phone, the transaction reference, the date and amount, and a short description. Our team reviews requests and responds as quickly as possible.",
+      "s7P1": "To raise a refund or report a transaction issue, email <1>oamapp26@gmail.com</1> with your registered email or phone, the transaction reference, the date and amount, and a short description. Our team reviews requests and responds as quickly as possible.",
       "s8Title": "8. Changes to this policy",
       "s8P1": "We may update this Refund Policy from time to time. The date at the top shows when it was last changed, and continued use of OAM means you accept the current version."
     }

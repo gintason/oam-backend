@@ -105,7 +105,7 @@ export default function Help() {
             <Trans
               i18nKey="company.help.noMatch"
               values={{ query }}
-              components={{ 1: <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline" /> }}
+              components={{ 1: <a href="mailto:oamapp26@gmail.com" className="font-medium text-brand-green underline" /> }}
             />
           </p>
         </Block>
@@ -145,7 +145,7 @@ export default function Help() {
         <Trans
           i18nKey="company.help.stillStuck"
           components={{
-            1: <a href="mailto:info@oam-app.com" className="font-semibold underline" />,
+            1: <a href="mailto:oamapp26@gmail.com" className="font-semibold underline" />,
             2: <Link to="/contact" className="font-semibold underline" />,
           }}
         />

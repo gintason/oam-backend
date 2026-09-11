@@ -72,8 +72,8 @@ export default function PageShell({
 
         <p className="mt-8 text-center text-[12.5px] text-muted">
           {t("company.shell.questions")}{" "}
-          <a href="mailto:info@oam-app.com" className="font-medium text-brand-green underline">
-            info@oam-app.com
+          <a href="mailto:oamapp26@gmail.com" className="font-medium text-brand-green underline">
+            oamapp26@gmail.com
           </a>
         </p>
       </main>
