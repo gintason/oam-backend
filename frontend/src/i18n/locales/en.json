@@ -1276,6 +1276,54 @@
         "travel": {
           "title": "Travel",
           "body": "Compare flights, hotels, car hire and airport pickups worldwide."
+        },
+        "airtimeData": {
+          "title": "Airtime",
+          "body": "Instantly top up any Nigerian network — MTN, Airtel, Glo and 9mobile."
+        },
+        "data": {
+          "title": "Data",
+          "body": "Buy data bundles for every major network, at the plan that suits you."
+        },
+        "electricity": {
+          "title": "Electricity",
+          "body": "Pay prepaid and postpaid meters across Nigeria and get your token instantly."
+        },
+        "cable": {
+          "title": "Cable TV",
+          "body": "Renew DStv, GOtv, StarTimes and other subscriptions without leaving home."
+        },
+        "transfers": {
+          "title": "Transfers",
+          "body": "Send money free to other OAM users, or withdraw to your own bank account."
+        },
+        "artisans": {
+          "title": "Artisans",
+          "body": "Find and hire verified local plumbers, electricians, mechanics, cleaners and more."
+        },
+        "flights": {
+          "title": "Flights",
+          "body": "Compare and book domestic and international flights from hundreds of airlines."
+        },
+        "hotels": {
+          "title": "Hotels",
+          "body": "Search and book hotel stays in over 100 countries with instant confirmation."
+        },
+        "carhire": {
+          "title": "Car Hire",
+          "body": "Rent cars with or without a driver at thousands of locations worldwide."
+        },
+        "ecommerce": {
+          "title": "E-commerce",
+          "body": "Shop top international stores like Amazon, Temu and Alibaba through OAM."
+        },
+        "betting": {
+          "title": "Fund Betting",
+          "body": "Top up your sports betting account instantly across top providers in Nigeria."
+        },
+        "busTickets": {
+          "title": "Bus Tickets",
+          "body": "Search and book intercity bus tickets for travel across Nigeria."
         }
       },
       "moneyTitle": "How we make money",
@@ -1316,7 +1364,8 @@
       "formName": "Your name",
       "formEmail": "Your email",
       "formMessage": "Message",
-      "submit": "Send message"
+      "submit": "Send message",
+      "thanks": "Thanks — your message is ready to send from your email app. We'll reply as soon as we can."
     },
     "help": {
       "title": "Help centre",
@@ -1467,7 +1516,12 @@
       "s10Title": "10. Changes, law and disputes",
       "s10P1": "We may update these terms. Material changes will be notified by email or in the app before they take effect.",
       "s10P2": "These terms are governed by the laws of the <1>Federal Republic of Nigeria</1>. Please contact us first — most problems are settled quickly by email. <2>[TO CONFIRM — dispute resolution and jurisdiction wording.]</2>",
-      "s10P3": "See also our <1>Privacy Policy</1>."
+      "s10P3": "See also our <1>Privacy Policy</1>.",
+      "s7P1": "Flights, hotels, car hire and airport transfers are booked with third-party travel partners. Your booking contract is with that partner and is subject to their terms, fares and cancellation rules — OAM helps you find and reach them, but is not the travel provider.",
+      "s11Title": "11. Governing law",
+      "s11P1": "These terms are governed by the laws of the Federal Republic of Nigeria, and any dispute is subject to the exclusive jurisdiction of the Nigerian courts.",
+      "s12Title": "12. Contact us",
+      "s12P1": "Questions about these terms? Email <1>oamapp26@gmail.com</1> and we'll get back to you."
     },
     "refund": {
       "title": "Refund Policy",
