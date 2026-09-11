@@ -1588,5 +1588,20 @@
     "errBooking": "Ajiya ta gaza.",
     "errConfirm": "An kasa tabbatar da ajiyar ka.",
     "sexLabel": "Jinsi"
+  },
+  "profile": {
+    "title": "Bayanin martaba",
+    "account": "Asusun ka",
+    "editTitle": "Gyara bayananka",
+    "firstName": "Sunan farko",
+    "lastName": "Sunan karshe",
+    "phone": "Waya",
+    "email": "Imel",
+    "emailNote": "Ba za a iya canza imel ba — shine shiga naka.",
+    "save": "Ajiye canje-canje",
+    "saved": "An ajiye!",
+    "signOut": "Fita",
+    "errSave": "An kasa ajiye canje-canjen ka. Sake gwadawa.",
+    "verified": "An tabbatar"
   }
 }

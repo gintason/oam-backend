@@ -1529,5 +1529,20 @@
     "save": "Zapisz",
     "cancel": "Anuluj",
     "rename": "Zmień nazwę"
+  },
+  "profile": {
+    "title": "Profil",
+    "account": "Twoje konto",
+    "editTitle": "Edytuj swoje dane",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "emailNote": "Adresu e-mail nie można zmienić — to Twój login.",
+    "save": "Zapisz zmiany",
+    "saved": "Zapisano!",
+    "signOut": "Wyloguj się",
+    "errSave": "Nie udało się zapisać zmian. Spróbuj ponownie.",
+    "verified": "Zweryfikowano"
   }
 }

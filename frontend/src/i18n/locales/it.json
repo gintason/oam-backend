@@ -1529,5 +1529,20 @@
     "save": "Salva",
     "cancel": "Annulla",
     "rename": "Rinomina"
+  },
+  "profile": {
+    "title": "Profilo",
+    "account": "Il tuo account",
+    "editTitle": "Modifica i tuoi dati",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "phone": "Telefono",
+    "email": "E-mail",
+    "emailNote": "L'e-mail non può essere modificata — è il tuo accesso.",
+    "save": "Salva modifiche",
+    "saved": "Salvato!",
+    "signOut": "Esci",
+    "errSave": "Impossibile salvare le modifiche. Riprova.",
+    "verified": "Verificato"
   }
 }

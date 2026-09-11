@@ -1529,5 +1529,20 @@
     "save": "Enregistrer",
     "cancel": "Annuler",
     "rename": "Renommer"
+  },
+  "profile": {
+    "title": "Profil",
+    "account": "Votre compte",
+    "editTitle": "Modifier vos informations",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "emailNote": "L'e-mail ne peut pas être modifié — c'est votre identifiant.",
+    "save": "Enregistrer",
+    "saved": "Enregistré !",
+    "signOut": "Se déconnecter",
+    "errSave": "Impossible d'enregistrer les modifications. Réessayez.",
+    "verified": "Vérifié"
   }
 }

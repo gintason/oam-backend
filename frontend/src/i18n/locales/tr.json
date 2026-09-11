@@ -1529,5 +1529,20 @@
     "save": "Kaydet",
     "cancel": "İptal",
     "rename": "Yeniden adlandır"
+  },
+  "profile": {
+    "title": "Profil",
+    "account": "Hesabınız",
+    "editTitle": "Bilgilerinizi düzenleyin",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "emailNote": "E-posta değiştirilemez — girişinizdir.",
+    "save": "Değişiklikleri kaydet",
+    "saved": "Kaydedildi!",
+    "signOut": "Çıkış yap",
+    "errSave": "Değişiklikler kaydedilemedi. Tekrar deneyin.",
+    "verified": "Doğrulandı"
   }
 }

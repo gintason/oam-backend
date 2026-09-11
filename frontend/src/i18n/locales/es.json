@@ -1529,5 +1529,20 @@
     "save": "Guardar",
     "cancel": "Cancelar",
     "rename": "Renombrar"
+  },
+  "profile": {
+    "title": "Perfil",
+    "account": "Tu cuenta",
+    "editTitle": "Editar tus datos",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "email": "Correo",
+    "emailNote": "El correo no se puede cambiar: es tu inicio de sesión.",
+    "save": "Guardar cambios",
+    "saved": "¡Guardado!",
+    "signOut": "Cerrar sesión",
+    "errSave": "No se pudieron guardar los cambios. Inténtalo de nuevo.",
+    "verified": "Verificado"
   }
 }

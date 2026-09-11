@@ -1529,5 +1529,20 @@
     "save": "Uložit",
     "cancel": "Zrušit",
     "rename": "Přejmenovat"
+  },
+  "profile": {
+    "title": "Profil",
+    "account": "Váš účet",
+    "editTitle": "Upravit údaje",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "emailNote": "E-mail nelze změnit — je to vaše přihlášení.",
+    "save": "Uložit změny",
+    "saved": "Uloženo!",
+    "signOut": "Odhlásit se",
+    "errSave": "Změny se nepodařilo uložit. Zkuste to znovu.",
+    "verified": "Ověřeno"
   }
 }

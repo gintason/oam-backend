@@ -1529,5 +1529,20 @@
     "save": "Сачувај",
     "cancel": "Откажи",
     "rename": "Преименуј"
+  },
+  "profile": {
+    "title": "Profil",
+    "account": "Vaš nalog",
+    "editTitle": "Izmenite podatke",
+    "firstName": "Ime",
+    "lastName": "Prezime",
+    "phone": "Telefon",
+    "email": "Imejl",
+    "emailNote": "Imejl se ne može promeniti — to je vaša prijava.",
+    "save": "Sačuvaj izmene",
+    "saved": "Sačuvano!",
+    "signOut": "Odjava",
+    "errSave": "Nije moguće sačuvati izmene. Pokušajte ponovo.",
+    "verified": "Verifikovano"
   }
 }

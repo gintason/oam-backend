@@ -1529,5 +1529,20 @@
     "save": "Speichern",
     "cancel": "Abbrechen",
     "rename": "Umbenennen"
+  },
+  "profile": {
+    "title": "Profil",
+    "account": "Ihr Konto",
+    "editTitle": "Ihre Daten bearbeiten",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "emailNote": "Die E-Mail kann nicht geändert werden — sie ist Ihr Login.",
+    "save": "Änderungen speichern",
+    "saved": "Gespeichert!",
+    "signOut": "Abmelden",
+    "errSave": "Änderungen konnten nicht gespeichert werden. Erneut versuchen.",
+    "verified": "Verifiziert"
   }
 }

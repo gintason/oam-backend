@@ -1588,5 +1588,20 @@
     "errBooking": "Ìfìṣọ̀wọ́ kùnà.",
     "errConfirm": "A kò lè jẹ́rìí ìfìṣọ̀wọ́ rẹ.",
     "sexLabel": "Ìbálòpọ̀"
+  },
+  "profile": {
+    "title": "Àpèjúwe",
+    "account": "Àkàǹtì rẹ",
+    "editTitle": "Ṣàtúnṣe àwọn àlàyé rẹ",
+    "firstName": "Orúkọ àkọ́kọ́",
+    "lastName": "Orúkọ ìdílé",
+    "phone": "Fóònù",
+    "email": "Ímeèlì",
+    "emailNote": "A kò lè yí ímeèlì padà — ó ni ìwọlé rẹ.",
+    "save": "Fi àwọn àyípadà pamọ́",
+    "saved": "A ti fipamọ́!",
+    "signOut": "Jáde",
+    "errSave": "A kò lè fi àwọn àyípadà rẹ pamọ́. Tún gbìyànjú.",
+    "verified": "Fọwọ́ sí"
   }
 }

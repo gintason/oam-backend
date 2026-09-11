@@ -1588,5 +1588,20 @@
     "errBooking": "Ndebe dara.",
     "errConfirm": "Enweghị ike ikwenye ndebe gị.",
     "sexLabel": "Okike"
+  },
+  "profile": {
+    "title": "Profaịlụ",
+    "account": "Akaụntụ gị",
+    "editTitle": "Dezie nkọwa gị",
+    "firstName": "Aha mbụ",
+    "lastName": "Aha ikpeazụ",
+    "phone": "Ekwentị",
+    "email": "Email",
+    "emailNote": "Enweghị ike ịgbanwe email — ọ bụ nbanye gị.",
+    "save": "Chekwaa mgbanwe",
+    "saved": "Echekwala!",
+    "signOut": "Pụọ",
+    "errSave": "Enweghị ike ịchekwa mgbanwe gị. Nwaa ọzọ.",
+    "verified": "Enyochara"
   }
 }
