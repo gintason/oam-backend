@@ -1417,7 +1417,16 @@
       "mktP2": "Contact us instead if someone asks you to pay outside OAM, pressures you for money in advance, or behaves in a way that doesn't feel right. We'd rather hear about it early.",
       "responseTitle": "Response times",
       "responseBody": "We aim to reply to every email within <1>one working day</1>. Payment problems are looked at first. If you haven't heard back after two working days, reply to your own email to bump it — it's more reliable than sending a new one.",
-      "scamBody": "<1>We will never ask for your password, card PIN, or a one-time code.</1> Anyone who does — by call, SMS or WhatsApp — is not from OAM, however convincing they sound. Hang up and email us instead."
+      "scamBody": "<1>We will never ask for your password, card PIN, or a one-time code.</1> Anyone who does — by call, SMS or WhatsApp — is not from OAM, however convincing they sound. Hang up and email us instead.",
+      "phoneTitle": "Phone",
+      "phoneBody": "Available during working hours for urgent matters. Email is faster for payment and account issues.",
+      "addressTitle": "Address",
+      "addressBody": "Our registered office. Please email or call ahead before visiting.",
+      "formTitle": "Send us a message",
+      "formName": "Your name",
+      "formEmail": "Your email",
+      "formMessage": "Message",
+      "submit": "Send message"
     },
     "help": {
       "title": "Help centre",
