@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import json
 import uuid
-from decimal import Decimal
+from decimal import Decimal, ROUND_CEILING
 
 from django.conf import settings
 from django.db import transaction
@@ -28,6 +28,30 @@ from .models import ServiceTransaction, WebhookEvent
 
 def _funding_ref() -> str:
     return f"FUND-{uuid.uuid4().hex[:20]}"
+
+
+# Paystack NGN pricing: 1.5% + ₦100, the ₦100 flat waived below ₦2,500, fee capped at ₦2,000.
+# Gross-up so that AFTER Paystack's fee the reserve nets the customer's intended deposit —
+# i.e. the customer bears the fee at checkout and receives 100% of their deposit in-wallet.
+_PS_PCT = Decimal("0.015")
+_PS_FLAT = Decimal("100")
+_PS_CAP = Decimal("2000")
+_PS_FLAT_THRESHOLD = Decimal("2500")
+
+
+def paystack_gross_up(net: Decimal) -> Decimal:
+    """Amount to charge so the settled value equals `net` after Paystack's fee."""
+    net = Decimal(str(net))
+    if net <= 0:
+        return net
+    gross_with_flat = (net + _PS_FLAT) / (Decimal("1") - _PS_PCT)
+    if gross_with_flat >= _PS_FLAT_THRESHOLD:
+        gross = gross_with_flat
+    else:
+        gross = net / (Decimal("1") - _PS_PCT)   # flat waived for small charges
+    if (gross - net) > _PS_CAP:                    # fee is capped
+        gross = net + _PS_CAP
+    return gross.quantize(Decimal("0.01"), rounding=ROUND_CEILING)
 
 
 class FundingService:
@@ -50,6 +74,7 @@ class FundingService:
 
         # Escrow compliance: user wallet funding must settle 100% into the dedicated
         # deposit subaccount, never the main account balance. (Paystack requirement.)
+        charge_amount = amount
         if subaccount is None:
             dep = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "") or ""
             if dep:
@@ -57,10 +82,15 @@ class FundingService:
                 if transaction_charge is None:
                     transaction_charge = 0        # 0 to main -> 100% to the reserve
                 if bearer is None:
-                    bearer = "subaccount"         # Paystack fee comes out of the deposit
+                    bearer = "subaccount"         # subaccount bears the Paystack fee
+                # Pass Paystack's fee to the customer: charge deposit + fee so that,
+                # after the subaccount bears the fee, the reserve nets the full deposit
+                # and the wallet is credited 100% of what the user intended.
+                if currency == "NGN":
+                    charge_amount = paystack_gross_up(amount)
 
         init = gateway.initialize_charge(
-            amount=amount, currency=currency,
+            amount=charge_amount, currency=currency,
             email=user.email or f"{user.id}@no-email.oam",
             reference=reference, metadata={"user_id": str(user.id), "txn": str(txn.id)},
             callback_url=callback_url,
