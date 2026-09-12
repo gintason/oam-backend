@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import {
-  Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, BadgeCheck,
-  Smartphone, Wifi, Zap, Plane, Tv, Send, Car, type LucideIcon,
+  Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, ChevronDown, BadgeCheck,
+  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon,
 } from "lucide-react-native";
 import Svg, { Path } from "react-native-svg";
 import { Text } from "@/shared/ui";
@@ -92,7 +92,15 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
-  const isStaff = Boolean((user as { is_staff?: boolean; is_superuser?: boolean } | null)?.is_staff || (user as { is_superuser?: boolean } | null)?.is_superuser);
+  const [aboutOpen, setAboutOpen] = useState(false);
+
+  const companyPages: { key: string; label: string; route: string }[] = [
+    { key: "c-about", label: t("company.about.title", "About OAM"), route: "/company-about" },
+    { key: "c-contact", label: t("company.contact.title", "Contact"), route: "/company-contact" },
+    { key: "c-terms", label: t("company.terms.title", "Terms of Service"), route: "/company-terms" },
+    { key: "c-privacy", label: t("company.privacy.title", "Privacy Policy"), route: "/company-privacy" },
+    { key: "c-refund", label: t("company.refund.title", "Refund Policy"), route: "/company-refund" },
+  ];
 
   const name = [user?.first_name, user?.last_name].filter(Boolean).join(" ") || t("drawer.user", "OAM User");
   const initial = (user?.first_name?.[0] || "O").toUpperCase();
@@ -111,8 +119,8 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     setTimeout(() => Linking.openURL("https://oam-app.com").catch(() => {}), 170);
   }
 
-  const links: { key: string; label: string; Icon: LucideIcon; onPress: () => void }[] = [
-    { key: "about", label: t("drawer.about", "About OAM"), Icon: Info, onPress: openSite },
+  const links: { key: string; label: string; Icon: LucideIcon; onPress: () => void; expandable?: boolean }[] = [
+    { key: "about", label: t("drawer.about", "About OAM"), Icon: Info, onPress: () => setAboutOpen((v) => !v), expandable: true },
     { key: "bills", label: t("drawer.payBills", "Pay Bills"), Icon: Receipt, onPress: () => go("/airtime") },
     { key: "marketplace", label: t("drawer.marketplace", "Market Place"), Icon: Store, onPress: () => go("/marketplace") },
     { key: "betting", label: t("drawer.betting", "Fund Betting Wallet"), Icon: Ticket, onPress: () => go("/betting") },
@@ -120,10 +128,6 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },
     { key: "ecommerce", label: t("drawer.ecommerce", "E-commerce"), Icon: ShoppingBag, onPress: () => go("/ecommerce") },
   ];
-
-  if (isStaff) {
-    links.push({ key: "motors", label: t("drawer.motorsAdmin", "Motors Admin"), Icon: Car, onPress: () => go("/motors-admin") });
-  }
 
   return (
     <View style={{ flex: 1, backgroundColor: "#062616", overflow: "hidden" }}>
@@ -173,22 +177,42 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
 
         {/* Nav links: [green icon]  Label  › */}
         {links.map((l) => (
-          <Pressable
-            key={l.key}
-            onPress={l.onPress}
-            style={({ pressed }) => ({
-              borderRadius: 14, marginBottom: 6,
-              backgroundColor: pressed ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.06)",
-            })}
-          >
-            <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 11, paddingHorizontal: 12 }}>
-              <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", marginRight: 12 }}>
-                <l.Icon size={18} strokeWidth={2} color="#FFFFFF" />
+          <View key={l.key}>
+            <Pressable
+              onPress={l.onPress}
+              style={({ pressed }) => ({
+                borderRadius: 14, marginBottom: 6,
+                backgroundColor: pressed ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.06)",
+              })}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 11, paddingHorizontal: 12 }}>
+                <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", marginRight: 12 }}>
+                  <l.Icon size={18} strokeWidth={2} color="#FFFFFF" />
+                </View>
+                <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 15, color: "#FFFFFF" }} numberOfLines={1}>{l.label}</Text>
+                {l.expandable
+                  ? <ChevronDown size={18} color="rgba(255,255,255,0.5)" style={{ transform: [{ rotate: aboutOpen ? "180deg" : "0deg" }] }} />
+                  : <ChevronRight size={18} color="rgba(255,255,255,0.5)" />}
               </View>
-              <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 15, color: "#FFFFFF" }} numberOfLines={1}>{l.label}</Text>
-              <ChevronRight size={18} color="rgba(255,255,255,0.5)" />
-            </View>
-          </Pressable>
+            </Pressable>
+
+            {l.key === "about" && aboutOpen ? (
+              <View style={{ marginLeft: 20, marginBottom: 6, borderLeftWidth: 1, borderLeftColor: "rgba(255,255,255,0.14)", paddingLeft: 8 }}>
+                {companyPages.map((cp) => (
+                  <Pressable
+                    key={cp.key}
+                    onPress={() => go(cp.route)}
+                    style={({ pressed }) => ({ borderRadius: 10, backgroundColor: pressed ? "rgba(255,255,255,0.12)" : "transparent" })}
+                  >
+                    <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 10, paddingHorizontal: 12 }}>
+                      <Text style={{ flex: 1, fontFamily: fonts.medium, fontSize: 14, color: "rgba(255,255,255,0.9)" }} numberOfLines={1}>{cp.label}</Text>
+                      <ChevronRight size={15} color="rgba(255,255,255,0.4)" />
+                    </View>
+                  </Pressable>
+                ))}
+              </View>
+            ) : null}
+          </View>
         ))}
 
         <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 8, marginBottom: 6 }} />

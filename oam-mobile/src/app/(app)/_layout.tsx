@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Redirect, Tabs } from "expo-router";
-import { Home as HomeIcon, Wallet as WalletIcon, Store as StoreIcon, User as UserIcon, type LucideIcon } from "lucide-react-native";
+import { Home as HomeIcon, Receipt as OrdersIcon, MessageCircle as MessagesIcon, User as UserIcon, type LucideIcon } from "lucide-react-native";
 import { useAuthStore } from "@/features/auth";
 import { colors, fonts } from "@/shared/theme";
 
@@ -59,11 +59,13 @@ export default function AppLayout() {
       }}
     >
       <Tabs.Screen name="home" options={{ title: "Home", tabBarIcon: ({ color, focused }) => <TabIcon Icon={HomeIcon} color={color} focused={focused} /> }} />
-      <Tabs.Screen name="wallet" options={{ title: "Wallet", tabBarIcon: ({ color, focused }) => <TabIcon Icon={WalletIcon} color={color} focused={focused} /> }} />
-      <Tabs.Screen name="marketplace" options={{ title: "Market", tabBarIcon: ({ color, focused }) => <TabIcon Icon={StoreIcon} color={color} focused={focused} /> }} />
+      <Tabs.Screen name="orders" options={{ title: "Orders", tabBarIcon: ({ color, focused }) => <TabIcon Icon={OrdersIcon} color={color} focused={focused} /> }} />
+      <Tabs.Screen name="messages" options={{ title: "Messages", tabBarIcon: ({ color, focused }) => <TabIcon Icon={MessagesIcon} color={color} focused={focused} /> }} />
       <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, focused }) => <TabIcon Icon={UserIcon} color={color} focused={focused} /> }} />
 
       {/* Service screens — navigable, hidden from the tab bar, tab bar hidden while open. */}
+      <Tabs.Screen name="wallet" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="marketplace" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="create-pin" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="assistant" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="bus" options={{ href: null, tabBarStyle: { display: "none" } }} />
@@ -86,7 +88,6 @@ export default function AppLayout() {
       <Tabs.Screen name="market-browse" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="listing" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="post-listing" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="messages" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="thread" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="artisans" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="artisans-find" options={{ href: null, tabBarStyle: { display: "none" } }} />
@@ -96,6 +97,11 @@ export default function AppLayout() {
       <Tabs.Screen name="ecommerce" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="ecommerce-company" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="motors-admin" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="company-about" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="company-contact" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="company-terms" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="company-privacy" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="company-refund" options={{ href: null, tabBarStyle: { display: "none" } }} />
     </Tabs>
   );
 }

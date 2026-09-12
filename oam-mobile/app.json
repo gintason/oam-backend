@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "O.A.M Mobile ",
+    "name": "O.A.M Mobile",
     "slug": "oam-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "O.A.M Mobile",
+    "scheme": "oammobile",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
@@ -28,9 +28,9 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#FFFFFF",
-          "image": "./assets/images/logo.png",
-          "imageWidth": 200
+          "backgroundColor": "#F4FBF6",
+          "image": "./assets/images/oam-splash-icon.png",
+          "imageWidth": 260
         }
       ],
       "expo-secure-store",

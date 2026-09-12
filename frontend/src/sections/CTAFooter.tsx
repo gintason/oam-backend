@@ -84,7 +84,6 @@ const FOOTER_COLS: { col: string; links: { link: string; to: string }[] }[] = [
       { link: "helpCenter", to: "/help" },
       { link: "terms", to: "/terms" },
       { link: "privacy", to: "/privacy" },
-      { link: "refund", to: "/refund-policy" }, 
     ],
   },
 ];
@@ -139,7 +138,6 @@ const SOCIALS: Social[] = [
   { label: "Facebook",    href: "https://facebook.com/oamplatform", Logo: FacebookLogo },
   { label: "Instagram",   href: "https://instagram.com/oamplatform", Logo: InstagramLogo },
   { label: "TikTok",      href: "https://tiktok.com/@oamplatform", Logo: TikTokLogo },
-  { label: "WhatsApp",    href: `https://wa.me/${WHATSAPP_NUMBER}`, Logo: WhatsAppLogo },
 ];
 
 export function Footer() {

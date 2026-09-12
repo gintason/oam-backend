@@ -1,0 +1,25 @@
+NATIVE SPLASH (design A — light background, light-green service icons splashed)
+
+1) The image is already placed at:
+     oam-mobile/assets/images/oam-native-splash.png
+
+2) In app.json, inside the "expo" object, set the splash:
+
+   "splash": {
+     "image": "./assets/images/oam-native-splash.png",
+     "resizeMode": "cover",
+     "backgroundColor": "#F4FBF6"
+   }
+
+   (Add the same under "ios" and "android" if you keep per-platform blocks.)
+
+   - resizeMode "cover" fills the screen; on very different aspect ratios the
+     edges crop slightly but the centred logo + "O.A.M Mobile" always stay put.
+   - backgroundColor "#F4FBF6" matches the image so any letterboxing blends in.
+
+3) Clean start:  npx expo start -c
+   (For an EAS build the native splash only changes after a rebuild.)
+
+Note: the native splash is a STATIC OS image, so the "O.A.M Mobile" wordmark is
+a single dark colour here. The red -> black -> light-green COLOUR ANIMATION plays
+in the custom in-app splash (AppSplash.tsx) once JS loads.

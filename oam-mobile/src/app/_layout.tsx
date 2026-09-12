@@ -1,7 +1,8 @@
 import "@/shared/i18n";
 import "../../global.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Stack } from "expo-router";
+import { View } from "react-native";
 import { useFonts } from "expo-font";
 import { GeistMono_400Regular } from "@expo-google-fonts/geist-mono";
 import * as SplashScreen from "expo-splash-screen";
@@ -27,6 +28,13 @@ export default function RootLayout() {
   const status = useAuthStore((s) => s.status);
   const hydrate = useAuthStore((s) => s.hydrate);
 
+  // Keep the custom splash up long enough for its wordmark animation to play.
+  const [minTimePassed, setMinTimePassed] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMinTimePassed(true), 2800);
+    return () => clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     hydrate();
   }, [hydrate]);
@@ -49,15 +57,12 @@ export default function RootLayout() {
     if (status === "authenticated") syncPushToken();
   }, [status]);
 
-  const ready = (fontsLoaded || Boolean(fontError)) && status !== "loading";
+  const dataReady = (fontsLoaded || Boolean(fontError)) && status !== "loading";
+  const ready = dataReady && minTimePassed;
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();
   }, [ready]);
-
-  if (!ready) {
-    return <AppSplash onReady={() => SplashScreen.hideAsync().catch(() => {})} />;
-  }
 
   return (
     <AppProviders>
@@ -66,6 +71,11 @@ export default function RootLayout() {
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(app)" />
       </Stack>
+      {!ready && (
+        <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
+          <AppSplash onReady={() => SplashScreen.hideAsync().catch(() => {})} />
+        </View>
+      )}
     </AppProviders>
   );
 }
