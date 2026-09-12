@@ -50,14 +50,14 @@ export const ECOMMERCE_PARTNERS: EcommercePartner[] = [
   },
   {
     slug: "alibaba", name: "Alibaba", logo: resolveLogo("alibaba_logo.png"),
-    link: "https://offer.alibaba.com/cps/bjeo4au9?bm=cps&src=saf",
+    link: "", // TODO: paste the Alibaba affiliate link here once approved
     tagline: "Global wholesale", accent: "#FF6A00",
     blurb: "Source products at wholesale prices directly from verified suppliers.",
     categories: ["Wholesale", "Electronics", "Machinery", "Apparel", "Packaging", "Beauty"],
   },
   {
     slug: "banggood", name: "Banggood", logo: resolveLogo("banggood_logo.png"),
-    link: "https://www.banggood.com/Affiliate-products.html?p=LO171678966137202608&custlinkid=5252905",
+    link: "https://www.banggood.com/index.html?p=LO171678966137202608&custlinkid=5252905",
     tagline: "Gadgets & more", accent: "#E63700",
     blurb: "RC hobbies, electronics, tools and lifestyle products at keen prices.",
     categories: ["Electronics", "RC & Hobbies", "Tools", "Home", "Outdoor", "Automotive"],

@@ -11,18 +11,18 @@ const { height: H } = Dimensions.get("window");
 
 // Dimmed, scattered service icons — the Hero look.
 const ICONS: { Icon: LucideIcon; left: number; top: number; size: number; o: number }[] = [
-  { Icon: Smartphone, left: 26, top: 90, size: 30, o: 0.08 },
-  { Icon: Wifi, left: 232, top: 70, size: 26, o: 0.07 },
-  { Icon: Tv, left: 150, top: 150, size: 32, o: 0.06 },
-  { Icon: Zap, left: 44, top: 210, size: 28, o: 0.08 },
-  { Icon: Plane, left: 244, top: 190, size: 30, o: 0.07 },
-  { Icon: Store, left: 30, top: H - 250, size: 30, o: 0.07 },
-  { Icon: Send, left: 236, top: H - 250, size: 28, o: 0.07 },
-  { Icon: Gift, left: 60, top: H - 170, size: 26, o: 0.07 },
-  { Icon: Wallet, left: 244, top: H - 160, size: 30, o: 0.08 },
-  { Icon: Wrench, left: 140, top: H - 120, size: 26, o: 0.06 },
-  { Icon: Ticket, left: 30, top: H - 110, size: 26, o: 0.06 },
-  { Icon: Bus, left: 176, top: 240, size: 26, o: 0.06 },
+  { Icon: Smartphone, left: 26, top: 90, size: 30, o: 0.208 },
+  { Icon: Wifi, left: 232, top: 70, size: 26, o: 0.182 },
+  { Icon: Tv, left: 150, top: 150, size: 32, o: 0.156 },
+  { Icon: Zap, left: 44, top: 210, size: 28, o: 0.208 },
+  { Icon: Plane, left: 244, top: 190, size: 30, o: 0.182 },
+  { Icon: Store, left: 30, top: H - 250, size: 30, o: 0.182 },
+  { Icon: Send, left: 236, top: H - 250, size: 28, o: 0.182 },
+  { Icon: Gift, left: 60, top: H - 170, size: 26, o: 0.182 },
+  { Icon: Wallet, left: 244, top: H - 160, size: 30, o: 0.208 },
+  { Icon: Wrench, left: 140, top: H - 120, size: 26, o: 0.156 },
+  { Icon: Ticket, left: 30, top: H - 110, size: 26, o: 0.156 },
+  { Icon: Bus, left: 176, top: 240, size: 26, o: 0.156 },
 ];
 
 export function AppSplash({ onReady }: { onReady?: () => void }) {
@@ -49,7 +49,7 @@ export function AppSplash({ onReady }: { onReady?: () => void }) {
 
       {ICONS.map((b, i) => (
         <View key={i} style={{ position: "absolute", left: b.left, top: b.top, opacity: b.o }}>
-          <b.Icon size={b.size} strokeWidth={1.5} color="#FFFFFF" />
+          <b.Icon size={b.size + 6} strokeWidth={1.6} color="#7CE0A0" />
         </View>
       ))}
 
