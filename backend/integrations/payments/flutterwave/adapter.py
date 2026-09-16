@@ -1,15 +1,20 @@
+# integrations/payments/flutterwave/adapter.py
 """
 Flutterwave payment gateway adapter (API v3).
 
-Used for Marketplace and Artisan listing-upgrade payments (Pro/Premium tiers and
-artisan boosts). Amounts are sent in MAJOR units. We initialise with our own
-unique tx_ref (the internal reference) and verify with verify_by_reference, so
-the pipeline is unchanged and never needs Flutterwave's numeric id.
+Used for:
+  * Marketplace and Artisan listing-upgrade payments (Pro/Premium tiers and
+    artisan boosts).
+  * International airtime card top-ups (Reloadly).
+
+Amounts are sent in MAJOR units. We initialise with our own unique tx_ref (the
+internal reference) and verify with verify_by_reference, so the pipeline is
+unchanged and never needs Flutterwave's numeric id.
 
 The payload is kept strict and fully populated — payment_options set to "card",
 a complete customer object, and no null/empty values — because Flutterwave's
-hosted card component throws (card-payment.vue "reading 'switch'") when those are
-missing.
+hosted card component throws (card-payment.vue "reading 'switch'") when those
+are missing.
 """
 from __future__ import annotations
 
@@ -22,7 +27,7 @@ from integrations.base.interfaces import PaymentGateway
 
 
 def _flw_redirect_url(config: dict) -> str:
-    """Where Flutterwave returns the user after payment (config -> settings -> env)."""
+    """Configured default return URL (env -> settings)."""
     import os
 
     val = (config or {}).get("redirect_url", "")
@@ -51,9 +56,12 @@ class FlutterwaveGateway(PaymentGateway):
             "Accept": "application/json",
         }
 
-    def initialize_charge(self, *, amount, currency, email, reference, metadata=None):
-        # Pull customer name/phone out of metadata so they don't get echoed into
-        # `meta`; everything else in metadata stays for webhook routing.
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None,
+                          callback_url=None, subaccount=None,
+                          transaction_charge=None, bearer=None):
+        # `subaccount`, `transaction_charge` and `bearer` are Paystack-only
+        # concepts; they are accepted here so FundingService.initialize can
+        # call every gateway uniformly, and intentionally ignored.
         meta = dict(metadata or {})
         cust_name = str(meta.pop("name", "") or "").strip()
         cust_phone = str(meta.pop("phone", "") or "").strip()
@@ -65,19 +73,21 @@ class FlutterwaveGateway(PaymentGateway):
             customer["phonenumber"] = cust_phone
 
         payload = {
-            "tx_ref": reference,                       # unique per attempt
-            "amount": str(amount),                     # major units, non-null
-            "currency": (currency or "NGN").upper(),   # never null
-            "payment_options": "card",                 # explicit, never null/empty
+            "tx_ref": reference,
+            "amount": str(amount),
+            "currency": (currency or "NGN").upper(),
+            "payment_options": "card",
             "customer": customer,
             "customizations": {
                 "title": "OAM",
-                "description": str(meta.get("description") or "OAM listing upgrade"),
+                "description": str(meta.get("description") or "OAM payment"),
             },
             "meta": meta,
         }
-        redirect = _flw_redirect_url(self.config)
-        if redirect:                                   # only send when non-empty
+        # Caller-supplied callback_url wins over the configured default, so a
+        # per-flow return (e.g. an airtime deep-link bounce page) can be used.
+        redirect = (callback_url or "").strip() or _flw_redirect_url(self.config)
+        if redirect:
             payload["redirect_url"] = redirect
 
         data = self.post("/payments", json=payload)

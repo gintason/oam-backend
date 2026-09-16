@@ -63,7 +63,34 @@ class PaystackWebhookView(APIView):
             WebhookService.mark_processed(event)
         return Response({"status": "ok"}, status=status.HTTP_200_OK)
 
+class FlutterwaveWebhookView(APIView):
+    """
+    POST: Flutterwave calls this.
 
+    Used for the card leg of an international airtime top-up (Reloadly) and
+    any other charge that was initialised on Flutterwave. Authentication is
+    the `verif-hash` header compared to the secret hash configured in the
+    Flutterwave dashboard — never trust the body.
+
+    Return 200 for anything parseable: Flutterwave retries, then disables the
+    endpoint, on errors.
+    """
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        headers = {k.lower(): v for k, v in request.headers.items()}
+        event, should_process = WebhookService.ingest("flutterwave", request.body, headers)
+        if should_process:
+            data = event.raw_payload.get("data", {}) or {}
+            st = str(data.get("status", "")).lower()
+            ref = data.get("tx_ref") or data.get("reference") or ""
+            verified = (TxnStatus.SUCCESS if st == "successful"
+                        else TxnStatus.FAILED if st in ("failed", "cancelled")
+                        else None)
+            FundingService.settle(ref, verified_status=verified, raw=data)
+            WebhookService.mark_processed(event)
+        return Response({"status": "ok"}, status=status.HTTP_200_OK)
 class PricingView(APIView):
     """GET /api/v1/payments/pricing/ -- supported currencies + per-currency listing
     prices, so the web/mobile apps can show local prices and only offer currencies

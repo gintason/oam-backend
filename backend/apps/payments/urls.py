@@ -5,6 +5,7 @@ from .views import (
     FundInitView,
     FundVerifyView,
     PaystackWebhookView,
+    FlutterwaveWebhookView,
     PricingView,
 )
 
@@ -12,6 +13,8 @@ urlpatterns = [
     path("fund/", FundInitView.as_view(), name="fund-init"),
     path("fund/verify/<str:reference>/", FundVerifyView.as_view(), name="fund-verify"),
     path("webhook/paystack/", PaystackWebhookView.as_view(), name="paystack-webhook"),
+    path("webhook/flutterwave/", FlutterwaveWebhookView.as_view(), name="flutterwave-webhook"),
+
     path("pricing/", PricingView.as_view(), name="pricing"),
     path("dev/simulate-success/", DevSimulateSuccessView.as_view(), name="dev-simulate-success"),
 ]

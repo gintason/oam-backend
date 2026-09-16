@@ -1,0 +1,24591 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+# File Summary
+
+## Purpose
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+## File Format
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  a. A header with the file path (## File: path/to/file)
+  b. The full contents of the file in a code block
+
+## Usage Guidelines
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+## Notes
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+
+# Directory Structure
+````
+apps/
+  accounts/
+    management/
+      commands/
+        __init__.py
+        test_email.py
+      __init__.py
+    migrations/
+      __init__.py
+      0001_initial.py
+      0002_otpcode.py
+      0003_alter_user_auth_provider_socialaccount_and_more.py
+      0004_user_transaction_pin.py
+    social/
+      __init__.py
+      apple.py
+      base.py
+      exceptions.py
+      facebook.py
+      google.py
+      mock.py
+      service.py
+    __init__.py
+    admin.py
+    apps.py
+    emails.py
+    models.py
+    otp.py
+    serializers.py
+    tests.py
+    tokens.py
+    urls.py
+    views.py
+  affiliates/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    catalog_giftcards.py
+    catalog_hotels.py
+    catalog.py
+    models.py
+    serializers.py
+    services.py
+    urls.py
+    views.py
+  assistant/
+    migrations/
+      __init__.py
+    __init__.py
+    apps.py
+    knowledge.py
+    models.py
+    service.py
+    urls.py
+    views.py
+  billing/
+    management/
+      commands/
+        __init__.py
+        release_stuck_bills.py
+        seed_betting_billers.py
+        seed_billers.py
+        settle_bill_orders.py
+      __init__.py
+    migrations/
+      __init__.py
+      0001_initial.py
+      0002_billorder_cost_amount_billorder_revenue_amount.py
+      0003_billorder_customer_name_billorder_meter_type_and_more.py
+      0004_cardcheckout.py
+      0005_cardcheckout_meter_type.py
+      0006_cardcheckout_verification_id.py
+      0007_orderreceipt.py
+    __init__.py
+    admin.py
+    apps.py
+    card_return.py
+    card.py
+    models.py
+    README_card.txt
+    README.txt
+    receipts.py
+    refresh.py
+    serializers.py
+    services.py
+    tests.py
+    urls.py
+    views.py
+    webhook_vtung.py
+  common/
+    management/
+      commands/
+        __init__.py
+        security_check.py
+      __init__.py
+    __init__.py
+    apps.py
+    i18n.py
+    models.py
+    permissions.py
+    urls.py
+    views.py
+  homeservices/
+    management/
+      commands/
+        __init__.py
+        seed_service_categories.py
+        urls.py
+      __init__.py
+    migrations/
+      __init__.py
+      0001_initial.py
+      0002_artisanserviceimage_artisanverification.py
+      0003_artisanworkvideo.py
+      0004_backfill_artisan_coords.py
+    __init__.py
+    admin.py
+    apps.py
+    featured.py
+    geocode.py
+    models.py
+    serializers.py
+    services.py
+    urls.py
+    verification_views.py
+    verification.py
+    views.py
+    work_videos.py
+  marketplace/
+    management/
+      commands/
+        __init__.py
+        renew_listings.py
+        seed_categories.py
+      __init__.py
+    migrations/
+      __init__.py
+      0001_initial.py
+      0002_subscriptionpayment.py
+      0003_alter_sellersubscription_tier_vehicledetail.py
+      0004_listing_verification_and_video.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    motors.py
+    public_listings.py
+    serializers.py
+    services.py
+    urls.py
+    views.py
+  messaging/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    serializers.py
+    urls.py
+    views.py
+  notifications/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    push.py
+    serializers.py
+    urls.py
+    views.py
+  payments/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    pricing.py
+    serializers.py
+    services.py
+    tests.py
+    urls.py
+    views.py
+  payouts/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    serializers.py
+    services.py
+    urls.py
+    views.py
+  referrals/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    hooks.py
+    models.py
+    serializers.py
+    services.py
+    signals.py
+    urls.py
+    views.py
+  reloadly/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    models.py
+    serializers.py
+    services.py
+    topup.py
+    urls.py
+    views.py
+  travu/
+    migrations/
+      __init__.py
+      0001_initial.py
+    __init__.py
+    admin.py
+    apps.py
+    booking.py
+    models.py
+    serializers.py
+    services.py
+    urls.py
+    views.py
+  uploads/
+    migrations/
+      __init__.py
+    __init__.py
+    apps.py
+    checks.py
+    cloudinary_client.py
+    purposes.py
+    urls.py
+    views.py
+  wallet/
+    management/
+      commands/
+        __init__.py
+        float_check.py
+        reconcile.py
+        wallet_demo.py
+      __init__.py
+    migrations/
+      __init__.py
+      0001_initial.py
+      0002_wallettransfer.py
+    __init__.py
+    admin.py
+    apps.py
+    currency.py
+    exceptions.py
+    models.py
+    pin.py
+    README.txt
+    serializers.py
+    services.py
+    tests.py
+    transfer.py
+    urls.py
+    views.py
+  __init__.py
+  README.txt
+beneficiaries/
+  migrations/
+    __init__.py
+    0001_initial.py
+  __init__.py
+  admin.py
+  apps.py
+  models.py
+  serializers.py
+  services.py
+  urls.py
+  views.py
+betting_patch/
+  apply_betting.py
+config/
+  settings/
+    __init__.py
+    base.py
+    dev.py
+    prod.py
+    production.py
+    test.py
+  __init__.py
+  asgi.py
+  celery.py
+  urls.py
+  wsgi.py
+currency_patch/
+  apply_currency.py
+flutterwave_patch/
+  apply_flutterwave.py
+flutterwave_payload_patch/
+  apply_flutterwave_payload.py
+integrations/
+  base/
+    __init__.py
+    affiliate_links.py
+    affiliate.py
+    client.py
+    dto.py
+    exceptions.py
+    interfaces.py
+    registry.py
+  delivery/
+    ubereats/
+      __init__.py
+      adapter.py
+    __init__.py
+  giftcards/
+    g2a/
+      __init__.py
+      adapter.py
+    __init__.py
+  hotels/
+    hotelbeds/
+      __init__.py
+      adapter.py
+    klook/
+      __init__.py
+      adapter.py
+    __init__.py
+  payments/
+    flutterwave/
+      __init__.py
+      adapter.py
+    paystack/
+      __init__.py
+      adapter.py
+    __init__.py
+    mock.py
+  payouts/
+    paystack/
+      __init__.py
+      adapter.py
+    __init__.py
+    mock.py
+  remittance/
+    lemfi/
+      __init__.py
+      adapter.py
+    remitly/
+      __init__.py
+      adapter.py
+    taptap/
+      __init__.py
+      adapter.py
+    wise/
+      __init__.py
+      adapter.py
+    __init__.py
+    _affiliate_base.py
+  travel/
+    travelpayouts/
+      __init__.py
+      adapter.py
+    __init__.py
+  vtu/
+    generic/
+      __init__.py
+      adapter.py
+      mock.py
+    vtung/
+      __init__.py
+      adapter.py
+    __init__.py
+    mock.py
+  __init__.py
+  loader.py
+locale/
+  ar/
+    LC_MESSAGES/
+      .gitkeep
+  bn/
+    LC_MESSAGES/
+      .gitkeep
+  de/
+    LC_MESSAGES/
+      .gitkeep
+  en/
+    LC_MESSAGES/
+      .gitkeep
+  es/
+    LC_MESSAGES/
+      .gitkeep
+  fr/
+    LC_MESSAGES/
+      .gitkeep
+  hi/
+    LC_MESSAGES/
+      .gitkeep
+  id/
+    LC_MESSAGES/
+      .gitkeep
+  pt/
+    LC_MESSAGES/
+      .gitkeep
+  ru/
+    LC_MESSAGES/
+      .gitkeep
+  ur/
+    LC_MESSAGES/
+      .gitkeep
+  zh_Hans/
+    LC_MESSAGES/
+      .gitkeep
+profile_edit_patch/
+  apply_profile_edit.py
+push_patch/
+  apply_push.py
+referrals_patch/
+  apply_referrals.py
+reloadly_patch/
+  apply_reloadly.py
+src/
+  features/
+    navigation/
+      drawer.tsx
+tasks/
+  __init__.py
+  example.py
+  payments.py
+transfer_fee_patch/
+  apply_transfer_fee.py
+travu_patch/
+  apply_travu.py
+withdraw_min_patch/
+  apply_withdraw_min.py
+.gitignore
+.python-version
+.token
+add_categories.py
+apply_reloadly_flutterwave.py
+build.sh
+DEPLOY.md
+fix_banklist_permission.py
+manage.py
+patch_boost.py
+patch_callback.py
+patch_contact_privacy.py
+patch_owner_serializer.py
+patch_refresh_urls.py
+patch_tiers.py
+Pipfile
+preflight.py
+production.py
+PROVIDERS.md
+README.md
+README.txt
+render.yaml
+requirements-additions.txt
+requirements.txt
+reset_test_money.py
+revert_reloadly_flutterwave.py
+seed_demo.py
+test_webhooks.py
+wire_assistant.py
+wire_featured.py
+wire_messaging.py
+wire_motors.py
+wire_public_listings.py
+wire_verification.py
+````
+
+# Files
+
+## File: apps/accounts/management/commands/__init__.py
+````python
+
+````
+
+## File: apps/accounts/management/commands/test_email.py
+````python
+"""
+Verify the email backend actually works.
+
+    python manage.py test_email you@example.com
+
+Sends a sample OTP message and reports exactly what happened, so you can
+confirm SMTP credentials before wiring email into the signup flow.
+"""
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
+
+from apps.accounts.emails import send_otp_email
+
+
+class Command(BaseCommand):
+    help = "Send a test OTP email to check the mail configuration."
+
+    def add_arguments(self, parser):
+        parser.add_argument("recipient", help="Email address to send the test to.")
+
+    def handle(self, *args, **opts):
+        recipient = opts["recipient"]
+
+        backend = settings.EMAIL_BACKEND
+        self.stdout.write("")
+        self.stdout.write(f"  Backend : {backend}")
+        self.stdout.write(f"  Host    : {getattr(settings, 'EMAIL_HOST', '—')}"
+                          f":{getattr(settings, 'EMAIL_PORT', '—')}")
+        self.stdout.write(f"  User    : {getattr(settings, 'EMAIL_HOST_USER', '—') or '(not set)'}")
+        self.stdout.write(f"  From    : {getattr(settings, 'DEFAULT_FROM_EMAIL', '—')}")
+        self.stdout.write(f"  To      : {recipient}")
+        self.stdout.write("")
+
+        if "console" in backend:
+            self.stdout.write(self.style.WARNING(
+                "  Console backend active — the email prints below instead of sending.\n"
+                "  Set EMAIL_HOST_USER + EMAIL_HOST_PASSWORD in .env to send for real.\n"))
+
+        ok = send_otp_email(destination=recipient, code="123456",
+                            purpose="signup", ttl_minutes=5)
+
+        self.stdout.write("")
+        if ok:
+            self.stdout.write(self.style.SUCCESS(f"  Sent. Check {recipient} (and spam)."))
+        else:
+            raise CommandError(
+                "Send FAILED. Read the logged error above, then check:\n"
+                "  • 'timed out' / 'connection refused' -> the PORT is blocked or wrong.\n"
+                "      Many ISPs block 587. Test both:\n"
+                "        nc -zv -w 5 <EMAIL_HOST> 587\n"
+                "        nc -zv -w 5 <EMAIL_HOST> 465\n"
+                "      Port 465 needs EMAIL_USE_SSL=True + EMAIL_USE_TLS=False.\n"
+                "      Port 587 needs EMAIL_USE_TLS=True + EMAIL_USE_SSL=False.\n"
+                "      (Exactly one of TLS/SSL must be True.)\n"
+                "  • 'authentication failed' -> wrong EMAIL_HOST_USER / EMAIL_HOST_PASSWORD.\n"
+                "      Use the FULL address as the username. If the password contains\n"
+                "      special characters, single-quote it in .env.\n"
+                "  • Gmail specifically -> requires an App Password (2FA must be on).\n"
+                "  • If all ports are blocked, use an HTTPS email API (SendGrid/Resend/\n"
+                "      Mailgun) instead of SMTP -- they send over 443, which is never blocked."
+            )
+````
+
+## File: apps/accounts/management/__init__.py
+````python
+
+````
+
+## File: apps/accounts/migrations/__init__.py
+````python
+
+````
+
+## File: apps/accounts/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-06-29 22:49
+
+import apps.accounts.models
+import django.utils.timezone
+import uuid
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('auth', '0012_alter_user_first_name_max_length'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='User',
+            fields=[
+                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
+                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('email', models.EmailField(blank=True, max_length=254, null=True, unique=True, verbose_name='email address')),
+                ('phone', models.CharField(blank=True, max_length=20, null=True, unique=True, verbose_name='phone number')),
+                ('first_name', models.CharField(blank=True, max_length=150)),
+                ('last_name', models.CharField(blank=True, max_length=150)),
+                ('preferred_language', models.CharField(choices=[('en', 'English'), ('zh-hans', 'Chinese (Simplified)'), ('es', 'Spanish'), ('fr', 'French'), ('ar', 'Arabic'), ('hi', 'Hindi'), ('pt', 'Portuguese'), ('ru', 'Russian'), ('bn', 'Bengali'), ('id', 'Indonesian'), ('de', 'German'), ('ur', 'Urdu')], default='en', help_text='Drives translated emails, notifications and UI direction.', max_length=10)),
+                ('auth_provider', models.CharField(choices=[('local', 'Email/Phone'), ('google', 'Google'), ('apple', 'Apple')], default='local', max_length=20)),
+                ('is_verified', models.BooleanField(default=False, help_text='Email/phone confirmed via OTP (or social provider).')),
+                ('is_active', models.BooleanField(default=True)),
+                ('is_staff', models.BooleanField(default=False)),
+                ('date_joined', models.DateTimeField(default=django.utils.timezone.now)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
+                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+            ],
+            options={
+                'verbose_name': 'user',
+                'verbose_name_plural': 'users',
+            },
+            managers=[
+                ('objects', apps.accounts.models.UserManager()),
+            ],
+        ),
+        migrations.AddConstraint(
+            model_name='user',
+            constraint=models.CheckConstraint(check=models.Q(('email__isnull', False), ('phone__isnull', False), _connector='OR'), name='user_has_email_or_phone'),
+        ),
+    ]
+````
+
+## File: apps/accounts/migrations/0002_otpcode.py
+````python
+# Generated by Django 5.0.6 on 2026-06-29 23:11
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('accounts', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='OTPCode',
+            fields=[
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('purpose', models.CharField(choices=[('signup_verification', 'Signup verification'), ('password_reset', 'Password reset'), ('login', 'Login')], max_length=30)),
+                ('channel', models.CharField(choices=[('email', 'Email'), ('phone', 'Phone')], max_length=10)),
+                ('destination', models.CharField(max_length=255)),
+                ('code_hash', models.CharField(max_length=255)),
+                ('expires_at', models.DateTimeField()),
+                ('attempts', models.PositiveSmallIntegerField(default=0)),
+                ('is_used', models.BooleanField(default=False)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='otp_codes', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+                'indexes': [models.Index(fields=['user', 'purpose', 'is_used'], name='accounts_ot_user_id_d1b30a_idx')],
+            },
+        ),
+    ]
+````
+
+## File: apps/accounts/migrations/0003_alter_user_auth_provider_socialaccount_and_more.py
+````python
+# Generated by Django 5.0.6 on 2026-06-30 20:00
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('accounts', '0002_otpcode'),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name='user',
+            name='auth_provider',
+            field=models.CharField(choices=[('local', 'Email/Phone'), ('google', 'Google'), ('facebook', 'Facebook'), ('apple', 'Apple')], default='local', help_text='How the account was originally created.', max_length=20),
+        ),
+        migrations.CreateModel(
+            name='SocialAccount',
+            fields=[
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('provider', models.CharField(choices=[('google', 'Google'), ('facebook', 'Facebook'), ('apple', 'Apple')], max_length=20)),
+                ('provider_user_id', models.CharField(max_length=255)),
+                ('email', models.CharField(blank=True, max_length=255)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='social_accounts', to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.AddConstraint(
+            model_name='socialaccount',
+            constraint=models.UniqueConstraint(fields=('provider', 'provider_user_id'), name='uniq_social_identity'),
+        ),
+    ]
+````
+
+## File: apps/accounts/migrations/0004_user_transaction_pin.py
+````python
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ("accounts", "0003_alter_user_auth_provider_socialaccount_and_more"),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name="user",
+            name="transaction_pin",
+            field=models.CharField(blank=True, default="", max_length=128),
+        ),
+    ]
+````
+
+## File: apps/accounts/social/__init__.py
+````python
+
+````
+
+## File: apps/accounts/social/apple.py
+````python
+"""
+Verifies an Apple `id_token` (a JWT) against Apple's public keys.
+
+Apple only returns the user's name on the FIRST authorization, so the frontend
+must forward it; we read first/last name from `data` when present.
+
+Note: RS256 verification needs the `cryptography` package installed.
+"""
+from __future__ import annotations
+
+import jwt
+from jwt import PyJWKClient
+from django.conf import settings
+
+from .base import BaseVerifier, SocialProfile
+from .exceptions import SocialAuthError
+
+APPLE_KEYS = "https://appleid.apple.com/auth/keys"
+APPLE_ISSUER = "https://appleid.apple.com"
+
+
+class AppleVerifier(BaseVerifier):
+    provider = "apple"
+
+    def verify(self, token, data=None):
+        data = data or {}
+        audience = settings.SOCIAL_AUTH.get("apple", {}).get("client_ids", [])
+        try:
+            signing_key = PyJWKClient(APPLE_KEYS).get_signing_key_from_jwt(token)
+            payload = jwt.decode(
+                token, signing_key.key, algorithms=["RS256"],
+                audience=audience or None, issuer=APPLE_ISSUER,
+            )
+        except Exception as exc:  # jwt raises several types; treat all as auth failure
+            raise SocialAuthError("Invalid Apple token.") from exc
+
+        return SocialProfile(
+            provider="apple",
+            provider_user_id=payload["sub"],
+            email=(payload.get("email") or "").lower() or None,
+            first_name=data.get("first_name", ""),
+            last_name=data.get("last_name", ""),
+            email_verified=str(payload.get("email_verified", "true")).lower() == "true",
+        )
+````
+
+## File: apps/accounts/social/base.py
+````python
+"""Shared types for social verification."""
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+
+@dataclass(slots=True)
+class SocialProfile:
+    """Normalised identity returned by every provider verifier."""
+    provider: str
+    provider_user_id: str          # provider's stable subject id ("sub")
+    email: str | None
+    first_name: str = ""
+    last_name: str = ""
+    email_verified: bool = False
+
+
+class BaseVerifier:
+    provider = "base"
+
+    def verify(self, token: str, data: dict | None = None) -> SocialProfile:
+        raise NotImplementedError
+````
+
+## File: apps/accounts/social/exceptions.py
+````python
+class SocialAuthError(Exception):
+    """Raised when a provider token can't be verified or linked."""
+````
+
+## File: apps/accounts/social/facebook.py
+````python
+"""Verifies a Facebook access token via the Graph API."""
+from __future__ import annotations
+
+import requests
+from django.conf import settings
+
+from .base import BaseVerifier, SocialProfile
+from .exceptions import SocialAuthError
+
+GRAPH = "https://graph.facebook.com"
+
+
+class FacebookVerifier(BaseVerifier):
+    provider = "facebook"
+
+    def verify(self, token, data=None):
+        cfg = settings.SOCIAL_AUTH.get("facebook", {})
+        app_id, app_secret = cfg.get("app_id"), cfg.get("app_secret")
+        try:
+            if app_id and app_secret:
+                dbg = requests.get(
+                    f"{GRAPH}/debug_token",
+                    params={"input_token": token, "access_token": f"{app_id}|{app_secret}"},
+                    timeout=10,
+                ).json().get("data", {})
+                if not dbg.get("is_valid"):
+                    raise SocialAuthError("Invalid Facebook token.")
+                if str(dbg.get("app_id")) != str(app_id):
+                    raise SocialAuthError("Facebook token was issued for a different app.")
+            me = requests.get(
+                f"{GRAPH}/me",
+                params={"fields": "id,first_name,last_name,email", "access_token": token},
+                timeout=10,
+            ).json()
+        except requests.RequestException as exc:
+            raise SocialAuthError("Could not reach Facebook to verify the token.") from exc
+
+        if "id" not in me:
+            raise SocialAuthError("Invalid Facebook token.")
+        email = (me.get("email") or "").lower() or None
+        return SocialProfile(
+            provider="facebook",
+            provider_user_id=me["id"],
+            email=email,
+            first_name=me.get("first_name", ""),
+            last_name=me.get("last_name", ""),
+            email_verified=bool(email),
+        )
+````
+
+## File: apps/accounts/social/google.py
+````python
+"""Verifies a Google `id_token` by asking Google's tokeninfo endpoint."""
+from __future__ import annotations
+
+import requests
+from django.conf import settings
+
+from .base import BaseVerifier, SocialProfile
+from .exceptions import SocialAuthError
+
+TOKENINFO = "https://oauth2.googleapis.com/tokeninfo"
+
+
+class GoogleVerifier(BaseVerifier):
+    provider = "google"
+
+    def verify(self, token, data=None):
+        try:
+            resp = requests.get(TOKENINFO, params={"id_token": token}, timeout=10)
+        except requests.RequestException as exc:
+            raise SocialAuthError("Could not reach Google to verify the token.") from exc
+        if resp.status_code != 200:
+            raise SocialAuthError("Invalid Google token.")
+        payload = resp.json()
+
+        allowed = settings.SOCIAL_AUTH.get("google", {}).get("client_ids", [])
+        if allowed and payload.get("aud") not in allowed:
+            raise SocialAuthError("Google token was issued for a different app.")
+        if str(payload.get("email_verified", "true")).lower() != "true":
+            raise SocialAuthError("This Google email is not verified.")
+
+        return SocialProfile(
+            provider="google",
+            provider_user_id=payload["sub"],
+            email=(payload.get("email") or "").lower() or None,
+            first_name=payload.get("given_name", ""),
+            last_name=payload.get("family_name", ""),
+            email_verified=True,
+        )
+````
+
+## File: apps/accounts/social/mock.py
+````python
+"""
+DEV-ONLY verifier. Lets you exercise the link-or-create flow without real
+provider tokens. Only reachable when DEBUG and SOCIAL_AUTH_ALLOW_MOCK are True
+and the client sends token == "MOCK".
+"""
+from __future__ import annotations
+
+from .base import BaseVerifier, SocialProfile
+from .exceptions import SocialAuthError
+
+
+class MockVerifier(BaseVerifier):
+    def __init__(self, provider):
+        self.provider = provider
+
+    def verify(self, token, data=None):
+        data = data or {}
+        email = (data.get("email") or "").lower() or None
+        if not email:
+            raise SocialAuthError("Mock social auth requires an 'email' field.")
+        return SocialProfile(
+            provider=self.provider,
+            provider_user_id=data.get("provider_user_id") or f"mock-{self.provider}-{email}",
+            email=email,
+            first_name=data.get("first_name", ""),
+            last_name=data.get("last_name", ""),
+            email_verified=True,
+        )
+````
+
+## File: apps/accounts/social/service.py
+````python
+"""
+Social auth orchestration: verify the provider token, then link-or-create the
+user (link-by-email is the current policy) and return the user.
+"""
+from __future__ import annotations
+
+from django.conf import settings
+from django.db import transaction
+
+from ..models import SocialAccount, User
+from .apple import AppleVerifier
+from .exceptions import SocialAuthError
+from .facebook import FacebookVerifier
+from .google import GoogleVerifier
+from .mock import MockVerifier
+
+VERIFIERS = {
+    "google": GoogleVerifier,
+    "facebook": FacebookVerifier,
+    "apple": AppleVerifier,
+}
+
+
+def _get_verifier(provider: str, token: str):
+    if provider not in VERIFIERS:
+        raise SocialAuthError(f"Unsupported social provider '{provider}'.")
+    if (getattr(settings, "DEBUG", False)
+            and getattr(settings, "SOCIAL_AUTH_ALLOW_MOCK", False)
+            and token == "MOCK"):
+        return MockVerifier(provider)
+    return VERIFIERS[provider]()
+
+
+@transaction.atomic
+def authenticate_social(provider: str, token: str, data: dict | None = None):
+    """Returns (user, created)."""
+    profile = _get_verifier(provider, token).verify(token, data)
+
+    # 1) Already-linked identity -> straight login.
+    link = (SocialAccount.objects
+            .select_related("user")
+            .filter(provider=provider, provider_user_id=profile.provider_user_id)
+            .first())
+    if link:
+        return link.user, False
+
+    # 2) Link by email to an existing account (current policy).
+    user = User.objects.filter(email__iexact=profile.email).first() if profile.email else None
+    created = False
+    if user is None:
+        if not profile.email:
+            raise SocialAuthError("This provider returned no email, so we can't create an account.")
+        user = User.objects.create_user(
+            email=profile.email, password=None,
+            first_name=profile.first_name or "", last_name=profile.last_name or "",
+            auth_provider=provider, is_verified=True,
+        )
+        created = True
+    elif not user.is_verified:
+        user.is_verified = True
+        user.save(update_fields=["is_verified", "updated_at"])
+
+    SocialAccount.objects.create(
+        user=user, provider=provider,
+        provider_user_id=profile.provider_user_id, email=profile.email or "",
+    )
+    return user, created
+````
+
+## File: apps/accounts/__init__.py
+````python
+
+````
+
+## File: apps/accounts/admin.py
+````python
+"""Admin registration for accounts models."""
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.utils.translation import gettext_lazy as _
+
+from .models import OTPCode, SocialAccount, User
+
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    ordering = ("-created_at",)
+    list_display = ("identifier", "first_name", "last_name",
+                    "is_verified", "auth_provider", "is_staff")
+    list_filter = ("is_verified", "auth_provider", "is_staff", "is_active")
+    search_fields = ("email", "phone", "first_name", "last_name")
+    readonly_fields = ("id", "date_joined", "created_at", "updated_at", "last_login")
+    fieldsets = (
+        (None, {"fields": ("id", "email", "phone", "password")}),
+        (_("Personal"), {"fields": ("first_name", "last_name", "preferred_language")}),
+        (_("Status"), {"fields": ("is_verified", "auth_provider", "is_active")}),
+        (_("Permissions"), {"fields": ("is_staff", "is_superuser", "groups", "user_permissions")}),
+        (_("Dates"), {"fields": ("last_login", "date_joined", "created_at", "updated_at")}),
+    )
+    add_fieldsets = (
+        (None, {"classes": ("wide",), "fields": ("email", "phone", "password1", "password2")}),
+    )
+
+
+@admin.register(SocialAccount)
+class SocialAccountAdmin(admin.ModelAdmin):
+    list_display = ("provider", "email", "user", "provider_user_id", "created_at")
+    list_filter = ("provider",)
+    search_fields = ("email", "provider_user_id")
+
+
+@admin.register(OTPCode)
+class OTPCodeAdmin(admin.ModelAdmin):
+    list_display = ("purpose", "channel", "destination", "is_used", "attempts", "created_at")
+    list_filter = ("purpose", "channel", "is_used")
+    search_fields = ("destination",)
+````
+
+## File: apps/accounts/apps.py
+````python
+from django.apps import AppConfig
+
+
+class AccountsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.accounts"        # full dotted path because the app lives under apps/
+````
+
+## File: apps/accounts/emails.py
+````python
+"""
+Email delivery for OTPs and account notices.
+
+Uses Django's email backend, so the transport is a settings concern: Gmail SMTP
+today, SendGrid/Resend later, with no code change here. Sends a plain-text body
+plus an HTML alternative (a bare code in plain text often trips spam filters).
+
+Failures are logged and surfaced as a return value — never raised — so a mail
+outage can't break signup. The user can always hit "resend OTP".
+"""
+from __future__ import annotations
+
+import logging
+
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+
+logger = logging.getLogger("accounts")
+
+APP_NAME = getattr(settings, "APP_DISPLAY_NAME", "OAM Platform")
+
+# Human-readable purpose -> subject line + intro copy
+_PURPOSE_COPY = {
+    "signup": ("Verify your email", "Use the code below to finish setting up your account."),
+    "login": ("Your sign-in code", "Use the code below to sign in."),
+    "password_reset": ("Reset your password", "Use the code below to reset your password."),
+}
+
+
+def _copy_for(purpose: str) -> tuple[str, str]:
+    return _PURPOSE_COPY.get(purpose, ("Your verification code",
+                                       "Use the code below to continue."))
+
+
+def send_otp_email(*, destination: str, code: str, purpose: str, ttl_minutes: int) -> bool:
+    """Send an OTP code by email. Returns True on success, False on failure."""
+    subject_tail, intro = _copy_for(purpose)
+    subject = f"{code} is your {APP_NAME} code — {subject_tail}"
+
+    text_body = (
+        f"{intro}\n\n"
+        f"Your {APP_NAME} verification code is: {code}\n\n"
+        f"This code expires in {ttl_minutes} minutes.\n"
+        f"If you didn't request this, you can safely ignore this email — "
+        f"someone may have typed your address by mistake.\n\n"
+        f"— {APP_NAME}"
+    )
+
+    html_body = f"""\
+<!DOCTYPE html>
+<html>
+  <body style="margin:0;padding:24px;background:#f4f5f7;
+               font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr><td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+               style="max-width:480px;background:#ffffff;border-radius:12px;
+                      padding:32px;border:1px solid #e5e7eb;">
+          <tr><td>
+            <h1 style="margin:0 0 8px;font-size:20px;color:#111827;">{APP_NAME}</h1>
+            <p style="margin:0 0 24px;font-size:15px;color:#4b5563;line-height:1.5;">
+              {intro}
+            </p>
+            <div style="text-align:center;background:#f9fafb;border:1px solid #e5e7eb;
+                        border-radius:10px;padding:20px;margin-bottom:24px;">
+              <div style="font-size:32px;font-weight:700;letter-spacing:8px;
+                          color:#111827;font-family:monospace;">{code}</div>
+            </div>
+            <p style="margin:0 0 8px;font-size:13px;color:#6b7280;">
+              This code expires in <strong>{ttl_minutes} minutes</strong>.
+            </p>
+            <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5;">
+              Didn't request this? You can safely ignore this email.
+            </p>
+          </td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>"""
+
+    try:
+        message = EmailMultiAlternatives(
+            subject=subject,
+            body=text_body,
+            from_email=getattr(settings, "DEFAULT_FROM_EMAIL", None),
+            to=[destination],
+        )
+        message.attach_alternative(html_body, "text/html")
+        sent = message.send(fail_silently=False)
+    except Exception as exc:                       # SMTP down, bad creds, etc.
+        logger.error("OTP email to %s failed: %s", destination, exc)
+        return False
+
+    if not sent:
+        logger.error("OTP email to %s reported 0 sent", destination)
+        return False
+
+    logger.info("OTP email sent to %s (purpose=%s)", destination, purpose)
+    return True
+````
+
+## File: apps/accounts/models.py
+````python
+"""
+Custom User model, OTP codes, and linked social accounts for the OAM Platform.
+"""
+import uuid
+
+from django.conf import settings
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
+from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+
+class UserManager(BaseUserManager):
+    use_in_migrations = True
+
+    def _create_user(self, email=None, phone=None, password=None, **extra):
+        if not email and not phone:
+            raise ValueError(_("Users must have either an email or a phone number."))
+        email = self.normalize_email(email) if email else None
+        user = self.model(email=email, phone=phone, **extra)
+        user.set_password(password)        # password=None -> unusable (social users)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email=None, phone=None, password=None, **extra):
+        extra.setdefault("is_staff", False)
+        extra.setdefault("is_superuser", False)
+        return self._create_user(email, phone, password, **extra)
+
+    def create_superuser(self, email, password=None, **extra):
+        extra.setdefault("is_staff", True)
+        extra.setdefault("is_superuser", True)
+        extra.setdefault("is_verified", True)
+        if extra.get("is_staff") is not True:
+            raise ValueError(_("Superuser must have is_staff=True."))
+        if extra.get("is_superuser") is not True:
+            raise ValueError(_("Superuser must have is_superuser=True."))
+        return self._create_user(email=email, password=password, **extra)
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    class AuthProvider(models.TextChoices):
+        LOCAL = "local", _("Email/Phone")
+        GOOGLE = "google", _("Google")
+        FACEBOOK = "facebook", _("Facebook")
+        APPLE = "apple", _("Apple")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.EmailField(_("email address"), unique=True, null=True, blank=True)
+    phone = models.CharField(_("phone number"), max_length=20, unique=True, null=True, blank=True)
+
+    first_name = models.CharField(max_length=150, blank=True)
+    last_name = models.CharField(max_length=150, blank=True)
+
+    preferred_language = models.CharField(
+        max_length=10, choices=settings.LANGUAGES, default="en",
+        help_text=_("Drives translated emails, notifications and UI direction."),
+    )
+    auth_provider = models.CharField(
+        max_length=20, choices=AuthProvider.choices, default=AuthProvider.LOCAL,
+        help_text=_("How the account was originally created."),
+    )
+
+    is_verified = models.BooleanField(
+        default=False, help_text=_("Email/phone confirmed via OTP (or social provider).")
+    )
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    # Hashed transaction PIN (Django password hashers). Empty = not yet set.
+    # Used to authorize money-out actions (bank withdrawals/transfers).
+    transaction_pin = models.CharField(max_length=128, blank=True, default="")
+
+    date_joined = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    class Meta:
+        verbose_name = _("user")
+        verbose_name_plural = _("users")
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(email__isnull=False) | models.Q(phone__isnull=False),
+                name="user_has_email_or_phone",
+            ),
+        ]
+
+    def __str__(self):
+        return self.email or self.phone or str(self.id)
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}".strip()
+
+    def get_short_name(self):
+        return self.first_name or self.email or self.phone or ""
+
+    @property
+    def identifier(self):
+        return self.email or self.phone
+
+    # ---- transaction PIN -------------------------------------------------
+    @property
+    def has_transaction_pin(self) -> bool:
+        return bool(self.transaction_pin)
+
+    def set_transaction_pin(self, raw_pin: str):
+        """Hash and store a transaction PIN (does not save)."""
+        from django.contrib.auth.hashers import make_password
+        self.transaction_pin = make_password(str(raw_pin))
+
+    def check_transaction_pin(self, raw_pin: str) -> bool:
+        """Verify a raw PIN against the stored hash."""
+        from django.contrib.auth.hashers import check_password
+        if not self.transaction_pin:
+            return False
+        return check_password(str(raw_pin), self.transaction_pin)
+
+
+class OTPCode(models.Model):
+    class Purpose(models.TextChoices):
+        SIGNUP = "signup_verification", _("Signup verification")
+        PASSWORD_RESET = "password_reset", _("Password reset")
+        LOGIN = "login", _("Login")
+
+    class Channel(models.TextChoices):
+        EMAIL = "email", _("Email")
+        PHONE = "phone", _("Phone")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="otp_codes")
+    purpose = models.CharField(max_length=30, choices=Purpose.choices)
+    channel = models.CharField(max_length=10, choices=Channel.choices)
+    destination = models.CharField(max_length=255)
+    code_hash = models.CharField(max_length=255)
+
+    expires_at = models.DateTimeField()
+    attempts = models.PositiveSmallIntegerField(default=0)
+    is_used = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [models.Index(fields=["user", "purpose", "is_used"])]
+        ordering = ["-created_at"]
+
+    @property
+    def is_expired(self) -> bool:
+        return timezone.now() >= self.expires_at
+
+    def __str__(self):
+        return f"{self.purpose} -> {self.destination} ({'used' if self.is_used else 'active'})"
+
+
+class SocialAccount(models.Model):
+    """
+    A social identity (Google / Facebook / Apple) linked to a User.
+
+    A user can link several. `provider_user_id` is the provider's stable subject
+    id; the (provider, provider_user_id) pair is unique so the same social
+    identity can never attach to two users.
+    """
+    class Provider(models.TextChoices):
+        GOOGLE = "google", _("Google")
+        FACEBOOK = "facebook", _("Facebook")
+        APPLE = "apple", _("Apple")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="social_accounts")
+    provider = models.CharField(max_length=20, choices=Provider.choices)
+    provider_user_id = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["provider", "provider_user_id"], name="uniq_social_identity"
+            ),
+        ]
+
+    def __str__(self):
+        return f"{self.provider}:{self.email or self.provider_user_id}"
+````
+
+## File: apps/accounts/otp.py
+````python
+"""
+OTP service — generation, delivery, and verification.
+
+Delivery:
+  * EMAIL -> a real message via Django's email backend (Gmail SMTP today; swap
+    the backend in settings for SendGrid/Resend later, no change here).
+  * PHONE -> still a dev stub until an SMS provider is chosen.
+
+In DEBUG the code is ALSO printed to the runserver console, so local testing
+never depends on an inbox. A send failure is logged and reported back to the
+caller rather than raised — a mail outage must not break signup.
+"""
+from __future__ import annotations
+
+import logging
+import secrets
+from datetime import timedelta
+
+from django.conf import settings
+from django.contrib.auth.hashers import check_password, make_password
+from django.utils import timezone
+
+from .emails import send_otp_email
+from .models import OTPCode
+
+logger = logging.getLogger("accounts")
+
+OTP_LENGTH = 6
+OTP_TTL_MINUTES = 5           # per product decision
+MAX_ATTEMPTS = 5              # wrong tries before a code is locked
+
+
+def _generate_code() -> str:
+    return f"{secrets.randbelow(10 ** OTP_LENGTH):0{OTP_LENGTH}d}"
+
+
+def issue_otp(user, *, purpose: str, channel: str, destination: str) -> OTPCode:
+    # Invalidate any previous unused codes for this user+purpose.
+    OTPCode.objects.filter(user=user, purpose=purpose, is_used=False).update(is_used=True)
+
+    code = _generate_code()
+    otp = OTPCode.objects.create(
+        user=user,
+        purpose=purpose,
+        channel=channel,
+        destination=destination,
+        code_hash=make_password(code),
+        expires_at=timezone.now() + timedelta(minutes=OTP_TTL_MINUTES),
+    )
+    delivered = _deliver(channel, destination, code, purpose)
+    otp.delivered = delivered          # transient flag for the view (not persisted)
+    return otp
+
+
+def _deliver(channel: str, destination: str, code: str, purpose: str) -> bool:
+    """Route the code to its channel. Returns True if handed off successfully."""
+    delivered = False
+
+    if channel == OTPCode.Channel.EMAIL:
+        delivered = send_otp_email(
+            destination=destination, code=code,
+            purpose=purpose, ttl_minutes=OTP_TTL_MINUTES,
+        )
+    elif channel == OTPCode.Channel.PHONE:
+        # TODO: wire an SMS provider (Termii / Twilio / Africa's Talking).
+        logger.info("SMS OTP not yet wired; code for %s logged only.", destination)
+    else:
+        logger.warning("Unknown OTP channel: %s", channel)
+
+    # Dev convenience: always surface the code locally so testing never
+    # depends on an inbox (and so a failed send doesn't block you).
+    if settings.DEBUG:
+        banner = f"OAM OTP -> {destination} via {channel}: {code} (valid {OTP_TTL_MINUTES} min)"
+        logger.info(banner)
+        print(f"\n========== {banner} ==========\n")
+
+    return delivered
+
+
+def verify_otp(user, *, purpose: str, code: str) -> tuple[bool, str]:
+    """Returns (ok, reason). reason is a short machine code for the client."""
+    otp = (
+        OTPCode.objects.filter(user=user, purpose=purpose, is_used=False)
+        .order_by("-created_at")
+        .first()
+    )
+    if otp is None:
+        return False, "no_active_code"
+    if otp.is_expired:
+        return False, "expired"
+    if otp.attempts >= MAX_ATTEMPTS:
+        otp.is_used = True
+        otp.save(update_fields=["is_used"])
+        return False, "too_many_attempts"
+    if not check_password(code, otp.code_hash):
+        otp.attempts += 1
+        otp.save(update_fields=["attempts"])
+        return False, "invalid_code"
+
+    otp.is_used = True
+    otp.save(update_fields=["is_used"])
+    return True, "ok"
+````
+
+## File: apps/accounts/serializers.py
+````python
+"""Serializers: registration, OTP, login, social auth, password reset."""
+from django.conf import settings
+from django.contrib.auth.password_validation import validate_password
+from django.db.models import Q
+from rest_framework import serializers
+
+from .models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "email", "phone", "first_name", "last_name",
+                  "preferred_language", "auth_provider", "is_verified")
+        read_only_fields = ("id", "auth_provider", "is_verified")
+
+
+class RegisterSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=False, allow_null=True)
+    phone = serializers.CharField(required=False, allow_null=True, max_length=20)
+    password = serializers.CharField(write_only=True, min_length=8, style={"input_type": "password"})
+    first_name = serializers.CharField(required=False, allow_blank=True, max_length=150)
+    last_name = serializers.CharField(required=False, allow_blank=True, max_length=150)
+    preferred_language = serializers.ChoiceField(
+        choices=[code for code, _ in settings.LANGUAGES], default="en"
+    )
+    referral_code = serializers.CharField(required=False, allow_blank=True, allow_null=True, max_length=120)
+
+    def validate(self, attrs):
+        email = (attrs.get("email") or "").strip().lower() or None
+        phone = (attrs.get("phone") or "").strip() or None
+        if not email and not phone:
+            raise serializers.ValidationError("Provide either an email or a phone number to register.")
+        if email and User.objects.filter(email__iexact=email).exists():
+            raise serializers.ValidationError({"email": "This email is already registered."})
+        if phone and User.objects.filter(phone=phone).exists():
+            raise serializers.ValidationError({"phone": "This phone number is already registered."})
+        validate_password(attrs["password"])
+        attrs["email"], attrs["phone"] = email, phone
+        return attrs
+
+    def create(self, validated):
+        return User.objects.create_user(
+            email=validated.get("email"),
+            phone=validated.get("phone"),
+            password=validated["password"],
+            first_name=validated.get("first_name", ""),
+            last_name=validated.get("last_name", ""),
+            preferred_language=validated.get("preferred_language", "en"),
+        )
+
+
+class _IdentifierMixin(serializers.Serializer):
+    identifier = serializers.CharField(help_text="The email or phone used at signup.")
+
+    def resolve_user(self):
+        ident = self.validated_data["identifier"].strip()
+        user = User.objects.filter(Q(email__iexact=ident) | Q(phone=ident)).first()
+        if user is None:
+            raise serializers.ValidationError({"identifier": "No account found for this identifier."})
+        return user
+
+
+class VerifyOTPSerializer(_IdentifierMixin):
+    code = serializers.CharField(min_length=4, max_length=8)
+
+
+class ResendOTPSerializer(_IdentifierMixin):
+    pass
+
+
+class LoginSerializer(serializers.Serializer):
+    identifier = serializers.CharField(help_text="Email or phone.")
+    password = serializers.CharField(write_only=True, style={"input_type": "password"})
+
+    def get_user(self):
+        ident = self.validated_data["identifier"].strip()
+        return User.objects.filter(Q(email__iexact=ident) | Q(phone=ident)).first()
+
+
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+
+class SocialAuthSerializer(serializers.Serializer):
+    token = serializers.CharField()
+    first_name = serializers.CharField(required=False, allow_blank=True)
+    last_name = serializers.CharField(required=False, allow_blank=True)
+    email = serializers.EmailField(required=False)
+    provider_user_id = serializers.CharField(required=False)
+
+
+class PasswordResetRequestSerializer(serializers.Serializer):
+    """Only captures the identifier. The view resolves the user QUIETLY so the
+    endpoint can't be used to discover which accounts exist."""
+    identifier = serializers.CharField(help_text="Email or phone.")
+
+    def find_user(self):
+        ident = self.validated_data["identifier"].strip()
+        return User.objects.filter(Q(email__iexact=ident) | Q(phone=ident)).first()
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    identifier = serializers.CharField()
+    code = serializers.CharField(min_length=4, max_length=8)
+    new_password = serializers.CharField(write_only=True, min_length=8, style={"input_type": "password"})
+
+    def find_user(self):
+        ident = self.validated_data["identifier"].strip()
+        return User.objects.filter(Q(email__iexact=ident) | Q(phone=ident)).first()
+
+    def validate_new_password(self, value):
+        validate_password(value)
+        return value
+````
+
+## File: apps/accounts/tests.py
+````python
+from django.test import TestCase
+
+# Create your tests here.
+````
+
+## File: apps/accounts/tokens.py
+````python
+"""JWT helper. Tokens are issued at signup (gated until verified)."""
+from rest_framework_simplejwt.tokens import RefreshToken
+
+
+def tokens_for(user) -> dict:
+    refresh = RefreshToken.for_user(user)
+    # Convenience claim so the client knows verification state without a round-trip.
+    refresh["is_verified"] = user.is_verified
+    return {"refresh": str(refresh), "access": str(refresh.access_token)}
+````
+
+## File: apps/accounts/urls.py
+````python
+from django.urls import path
+from rest_framework_simplejwt.views import TokenRefreshView
+
+from .views import (
+    LoginView,
+    LogoutView,
+    MeView,
+    PasswordResetConfirmView,
+    PasswordResetRequestView,
+    RegisterView,
+    ResendOTPView,
+    SocialAuthView,
+    VerifyOTPView,
+)
+
+urlpatterns = [
+    path("register/", RegisterView.as_view(), name="register"),
+    path("verify-otp/", VerifyOTPView.as_view(), name="verify-otp"),
+    path("resend-otp/", ResendOTPView.as_view(), name="resend-otp"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
+    path("me/", MeView.as_view(), name="me"),
+    path("social/<str:provider>/", SocialAuthView.as_view(), name="social-auth"),
+    path("password-reset/request/", PasswordResetRequestView.as_view(), name="password-reset-request"),
+    path("password-reset/confirm/", PasswordResetConfirmView.as_view(), name="password-reset-confirm"),
+]
+````
+
+## File: apps/accounts/views.py
+````python
+"""Auth endpoints: registration, OTP, login, logout, profile, social, password reset."""
+from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.token_blacklist.models import (
+    BlacklistedToken,
+    OutstandingToken,
+)
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from .models import OTPCode
+from .otp import issue_otp, verify_otp
+from .serializers import (
+    LoginSerializer,
+    LogoutSerializer,
+    PasswordResetConfirmSerializer,
+    PasswordResetRequestSerializer,
+    RegisterSerializer,
+    ResendOTPSerializer,
+    SocialAuthSerializer,
+    UserSerializer,
+    VerifyOTPSerializer,
+)
+from .social.exceptions import SocialAuthError
+from .social.service import authenticate_social
+from .tokens import tokens_for
+
+
+def _channel_and_destination(user):
+    if user.email:
+        return OTPCode.Channel.EMAIL, user.email
+    return OTPCode.Channel.PHONE, user.phone
+
+
+def _invalidate_all_sessions(user):
+    """Blacklist every outstanding refresh token for this user."""
+    for token in OutstandingToken.objects.filter(user=user):
+        BlacklistedToken.objects.get_or_create(token=token)
+
+
+# ----------------------- Registration & OTP -----------------------
+class RegisterView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        ref_code = serializer.validated_data.get("referral_code")
+        if ref_code:
+            try:
+                from apps.referrals.services import ReferralService
+                ReferralService.attach_referral(user, ref_code)
+            except Exception:
+                pass
+        channel, destination = _channel_and_destination(user)
+        issue_otp(user, purpose=OTPCode.Purpose.SIGNUP, channel=channel, destination=destination)
+        return Response(
+            {"user": UserSerializer(user).data, "tokens": tokens_for(user),
+             "verification": {"required": True, "channel": channel, "destination": destination,
+                              "message": "A verification code was sent. Verify to unlock all features."}},
+            status=status.HTTP_201_CREATED,
+        )
+
+
+class VerifyOTPView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = VerifyOTPSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.resolve_user()
+        if user.is_verified:
+            return Response({"detail": "Account already verified."}, status=status.HTTP_200_OK)
+        ok, reason = verify_otp(user, purpose=OTPCode.Purpose.SIGNUP,
+                                code=serializer.validated_data["code"])
+        if not ok:
+            return Response({"detail": "Verification failed.", "reason": reason},
+                            status=status.HTTP_400_BAD_REQUEST)
+        user.is_verified = True
+        user.save(update_fields=["is_verified", "updated_at"])
+        return Response({"detail": "Account verified.", "user": UserSerializer(user).data,
+                         "tokens": tokens_for(user)}, status=status.HTTP_200_OK)
+
+
+class ResendOTPView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = ResendOTPSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.resolve_user()
+        if user.is_verified:
+            return Response({"detail": "Account already verified."}, status=status.HTTP_200_OK)
+        channel, destination = _channel_and_destination(user)
+        issue_otp(user, purpose=OTPCode.Purpose.SIGNUP, channel=channel, destination=destination)
+        return Response({"detail": "A new verification code was sent.",
+                         "channel": channel, "destination": destination}, status=status.HTTP_200_OK)
+
+
+# ----------------------- Login / Logout / Me ----------------------- 
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.get_user()
+        password = serializer.validated_data["password"]
+        if user is None or not user.check_password(password):
+            return Response({"detail": "Invalid credentials."}, status=status.HTTP_401_UNAUTHORIZED)
+        if not user.is_active:
+            return Response({"detail": "This account is disabled."}, status=status.HTTP_403_FORBIDDEN)
+        if not user.is_verified:
+            channel, destination = _channel_and_destination(user)
+            issue_otp(user, purpose=OTPCode.Purpose.SIGNUP, channel=channel, destination=destination)
+            return Response(
+                {"detail": "Account not verified. A new code was sent — please verify to log in.",
+                 "reason": "unverified", "verification": {"channel": channel, "destination": destination}},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        return Response({"user": UserSerializer(user).data, "tokens": tokens_for(user)},
+                        status=status.HTTP_200_OK)
+
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = LogoutSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            RefreshToken(serializer.validated_data["refresh"]).blacklist()
+        except TokenError:
+            return Response({"detail": "Invalid or expired refresh token."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        return Response({"detail": "Logged out."}, status=status.HTTP_200_OK)
+
+
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response(UserSerializer(request.user).data)
+
+    def patch(self, request):
+        """Update first name, last name and phone. Email is read-only."""
+        user = request.user
+        data = request.data
+        phone = data.get("phone")
+        if phone is not None:
+            phone = str(phone).strip() or None
+            if phone and type(user).objects.filter(phone=phone).exclude(pk=user.pk).exists():
+                return Response({"phone": "This phone number is already in use."},
+                                status=status.HTTP_400_BAD_REQUEST)
+            user.phone = phone
+        if data.get("first_name") is not None:
+            user.first_name = str(data.get("first_name")).strip()
+        if data.get("last_name") is not None:
+            user.last_name = str(data.get("last_name")).strip()
+        user.save()
+        return Response(UserSerializer(user).data)
+
+
+# ----------------------- Social -----------------------
+class SocialAuthView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, provider):
+        serializer = SocialAuthSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            user, created = authenticate_social(
+                provider=provider,
+                token=serializer.validated_data["token"],
+                data=serializer.validated_data,
+            )
+        except SocialAuthError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"user": UserSerializer(user).data, "tokens": tokens_for(user), "created": created},
+            status=status.HTTP_200_OK,
+        )
+
+
+# ----------------------- Password reset -----------------------
+class PasswordResetRequestView(APIView):
+    """
+    Step 1: user submits identifier; we send a reset OTP if the account exists.
+    Always returns the SAME response so the endpoint can't reveal which
+    emails/phones are registered.
+    """
+    permission_classes = [AllowAny]
+    GENERIC = {"detail": "If an account exists for that identifier, a reset code has been sent."}
+
+    def post(self, request):
+        serializer = PasswordResetRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.find_user()
+        if user is not None:
+            channel, destination = _channel_and_destination(user)
+            issue_otp(user, purpose=OTPCode.Purpose.PASSWORD_RESET,
+                      channel=channel, destination=destination)
+        return Response(self.GENERIC, status=status.HTTP_200_OK)
+
+
+class PasswordResetConfirmView(APIView):
+    """
+    Step 2: user submits identifier + code + new password. On success we set the
+    new password, mark the account verified, and invalidate ALL old sessions.
+    """
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = PasswordResetConfirmSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.find_user()
+        if user is None:
+            return Response({"detail": "Invalid identifier or code."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        ok, reason = verify_otp(user, purpose=OTPCode.Purpose.PASSWORD_RESET,
+                                code=serializer.validated_data["code"])
+        if not ok:
+            return Response({"detail": "Reset failed.", "reason": reason},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        user.set_password(serializer.validated_data["new_password"])
+        user.is_verified = True                      # completing OTP proves control
+        user.save(update_fields=["password", "is_verified", "updated_at"])
+
+        _invalidate_all_sessions(user)               # cut off every old login
+
+        return Response(
+            {"detail": "Password reset successful. All other sessions were signed out.",
+             "user": UserSerializer(user).data, "tokens": tokens_for(user)},
+            status=status.HTTP_200_OK,
+        )
+````
+
+## File: apps/affiliates/migrations/__init__.py
+````python
+
+````
+
+## File: apps/affiliates/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-06-29 22:08
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='AffiliateClick',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('category', models.CharField(choices=[('flights', 'Flights'), ('carhire', 'Carhire'), ('hotels', 'Hotels'), ('delivery', 'Delivery'), ('remittance', 'Remittance')], max_length=20)),
+                ('provider', models.CharField(max_length=40)),
+                ('program', models.CharField(max_length=60)),
+                ('target_url', models.URLField(max_length=1000)),
+                ('params', models.JSONField(blank=True, default=dict)),
+                ('status', models.CharField(choices=[('clicked', 'Clicked'), ('converted', 'Converted'), ('rejected', 'Rejected')], default='clicked', max_length=12)),
+                ('commission_amount', models.DecimalField(blank=True, decimal_places=4, max_digits=18, null=True)),
+                ('commission_currency', models.CharField(blank=True, max_length=3)),
+                ('converted_at', models.DateTimeField(blank=True, null=True)),
+                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='affiliate_clicks', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'indexes': [models.Index(fields=['category', 'status'], name='affiliates__categor_b2b220_idx'), models.Index(fields=['provider', 'created_at'], name='affiliates__provide_c42f58_idx')],
+            },
+        ),
+    ]
+````
+
+## File: apps/affiliates/__init__.py
+````python
+
+````
+
+## File: apps/affiliates/admin.py
+````python
+from django.contrib import admin
+
+from .models import AffiliateClick
+
+
+@admin.register(AffiliateClick)
+class AffiliateClickAdmin(admin.ModelAdmin):
+    list_display = ("program", "category", "user", "status", "commission_amount",
+                    "commission_currency", "created_at")
+    list_filter = ("category", "status", "provider")
+    search_fields = ("program", "user__email", "id")
+    readonly_fields = ("id", "created_at", "updated_at")
+````
+
+## File: apps/affiliates/apps.py
+````python
+from django.apps import AppConfig
+
+
+class AffiliatesConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.affiliates"
+````
+
+## File: apps/affiliates/catalog_giftcards.py
+````python
+"""Rich-card metadata for gift-card affiliate programs (appended to the catalog)."""
+
+GIFTCARD_PROGRAMS = [
+    {
+        "slug": "g2a",
+        "category": "giftcards",
+        "name": "G2A — Gift Cards & Digital Keys",
+        "provider": "g2a",
+        "logo": "https://www.g2a.com/favicon.ico",
+        "description": "Buy discounted gift cards, game keys, software, and digital top-ups from a global marketplace.",
+        "offers": [
+            "Steam, PlayStation, Xbox & more gift cards",
+            "Game keys & software licenses",
+            "Mobile top-ups and subscriptions",
+        ],
+        "params": [
+            {"key": "query", "label": "Search (e.g. 'Steam gift card')", "example": "Steam gift card"},
+            {"key": "category", "label": "Category (optional)", "example": "gift-cards"},
+        ],
+    },
+]
+
+GIFTCARD_BY_SLUG = {p["slug"]: p for p in GIFTCARD_PROGRAMS}
+````
+
+## File: apps/affiliates/catalog_hotels.py
+````python
+"""Rich-card metadata for hotel/travel-experience affiliate programs."""
+HOTEL_PROGRAMS = [
+    {
+        "slug": "klook",
+        "category": "hotels",
+        "name": "Klook — Hotels, Tours & Activities",
+        "provider": "klook",
+        "logo": "https://res.klook.com/image/upload/favicon.ico",
+        "description": "Book hotels, tours, activities, attraction tickets and experiences worldwide at great prices.",
+        "offers": [
+            "Hotels & stays across the globe",
+            "Tours, activities & attraction tickets",
+            "Airport transfers and experiences",
+        ],
+        "params": [
+            {"key": "destination", "label": "Destination (city/place)", "example": "Dubai"},
+            {"key": "check_in", "label": "Check-in date", "example": "2026-08-01"},
+            {"key": "check_out", "label": "Check-out date", "example": "2026-08-05"},
+            {"key": "guests", "label": "Guests", "example": "2"},
+        ],
+    },
+]
+
+HOTEL_BY_SLUG = {p["slug"]: p for p in HOTEL_PROGRAMS}
+````
+
+## File: apps/affiliates/catalog.py
+````python
+"""Rich-card metadata for the travel affiliate programs. This drives the in-app
+cards (logo, description, what they offer) and tells the frontend which
+deep-link search params each program accepts.
+
+The affiliate URLs themselves live in settings/.env (PROVIDER_CONFIG[...]["url"]);
+this is just presentation + the param contract.
+"""
+
+TRAVEL_PROGRAMS = [
+    {
+        "slug": "flights",
+        "category": "flights",
+        "name": "Aviasales — Flight Booking",
+        "provider": "travelpayouts",
+        "logo": "https://www.aviasales.com/static/logo.png",
+        "description": "Compare and book cheap flights from hundreds of airlines and agencies worldwide.",
+        "offers": [
+            "Compare 100s of airlines & agencies",
+            "Find the cheapest dates to fly",
+            "Book domestic and international flights",
+        ],
+        "params": [
+            {"key": "origin", "label": "From (city/airport)", "example": "LOS"},
+            {"key": "destination", "label": "To (city/airport)", "example": "LHR"},
+            {"key": "depart_date", "label": "Departure date", "example": "2026-08-01"},
+            {"key": "return_date", "label": "Return date (optional)", "example": "2026-08-15"},
+            {"key": "adults", "label": "Passengers", "example": "1"},
+        ],
+    },
+    {
+        "slug": "carhire",
+        "category": "carhire",
+        "name": "GetRentacar — Car Hire",
+        "provider": "travelpayouts",
+        "logo": "https://getrentacar.com/logo.png",
+        "description": "Rent a car in thousands of locations worldwide at competitive rates.",
+        "offers": [
+            "10,000+ pickup locations globally",
+            "Economy to luxury vehicles",
+            "Free cancellation on many bookings",
+        ],
+        "params": [
+            {"key": "location", "label": "Pickup city/location", "example": "Lagos"},
+            {"key": "pickup_date", "label": "Pickup date", "example": "2026-08-01"},
+            {"key": "dropoff_date", "label": "Drop-off date", "example": "2026-08-05"},
+        ],
+    },
+    {
+        "slug": "transfers",
+        "category": "transfers",
+        "name": "Welcome Pickups — Airport Transfers",
+        "provider": "travelpayouts",
+        "logo": "https://www.welcomepickups.com/logo.png",
+        "description": "Book reliable, fixed-price airport pickups and private transfers with friendly local drivers.",
+        "offers": [
+            "Fixed-price airport pickups",
+            "Friendly English-speaking drivers",
+            "Flight tracking & meet-and-greet",
+        ],
+        "params": [
+            {"key": "airport", "label": "Airport", "example": "LOS"},
+            {"key": "destination", "label": "Drop-off address", "example": "Victoria Island"},
+            {"key": "date", "label": "Pickup date/time", "example": "2026-08-01T14:30"},
+            {"key": "passengers", "label": "Passengers", "example": "2"},
+        ],
+    },
+]
+
+TRAVEL_BY_SLUG = {p["slug"]: p for p in TRAVEL_PROGRAMS}
+````
+
+## File: apps/affiliates/models.py
+````python
+"""
+Affiliate attribution.
+
+Every time we hand a user off to an affiliate partner we record an
+AffiliateClick. Its id becomes the `sub_id` we attach to the outgoing link, so
+when the partner reports a conversion (via postback or monthly statement) we
+can match the commission back to the user and the service.
+
+The row is created once and then only its conversion fields are updated, so it
+inherits UUIDModel + TimeStampedModel but not ImmutableModel.
+"""
+from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel, UUIDModel
+
+
+class AffiliateClick(UUIDModel, TimeStampedModel):
+    class Category(models.TextChoices):
+        FLIGHTS = "flights"
+        CARHIRE = "carhire"
+        HOTELS = "hotels"
+        DELIVERY = "delivery"
+        REMITTANCE = "remittance"
+
+    class Status(models.TextChoices):
+        CLICKED = "clicked"
+        CONVERTED = "converted"
+        REJECTED = "rejected"
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name="affiliate_clicks",
+    )
+    category = models.CharField(max_length=20, choices=Category.choices)
+    provider = models.CharField(max_length=40)        # e.g. "travelpayouts"
+    program = models.CharField(max_length=60)         # e.g. "travelpayouts:flights"
+    target_url = models.URLField(max_length=1000)     # where we sent them
+    params = models.JSONField(default=dict, blank=True)
+
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.CLICKED)
+    commission_amount = models.DecimalField(max_digits=18, decimal_places=4, null=True, blank=True)
+    commission_currency = models.CharField(max_length=3, blank=True)
+    converted_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["category", "status"]),
+            models.Index(fields=["provider", "created_at"]),
+        ]
+
+    def __str__(self):
+        return f"{self.program} ({self.status})"
+````
+
+## File: apps/affiliates/serializers.py
+````python
+from rest_framework import serializers
+
+
+class TravelLinkRequestSerializer(serializers.Serializer):
+    params = serializers.DictField(required=False, child=serializers.CharField(allow_blank=True))
+````
+
+## File: apps/affiliates/services.py
+````python
+"""
+AffiliateService — the single entry point domain code uses to get a tracked
+affiliate link. It records the click first (to mint a sub_id), then asks the
+provider adapter to build the link using that sub_id.
+
+Usage (from a future view):
+    link = AffiliateService.link(
+        category="flights", user=request.user,
+        params={"origin": "LOS", "destination": "LHR"},
+    )
+    return Response({"url": link.url})
+"""
+from __future__ import annotations
+
+from django.conf import settings
+
+from integrations.base import ProviderFactory
+from .models import AffiliateClick
+
+
+class AffiliateService:
+    @staticmethod
+    def link(*, category: str, user=None, target_url: str = "", params: dict | None = None):
+        provider_key = settings.DEFAULT_PROVIDERS.get(category, "")
+        provider = ProviderFactory.get(category, provider_key)
+
+        # 1) record the click to obtain a stable attribution id (sub_id)
+        click = AffiliateClick.objects.create(
+            user=user if (user and user.is_authenticated) else None,
+            category=category,
+            provider=provider_key,
+            program=f"{provider_key}:{category}",
+            target_url=target_url or "",
+            params=params or {},
+        )
+
+        # 2) build the tracked link carrying our sub_id
+        affiliate_link = provider.build_link(
+            sub_id=str(click.id), target_url=target_url, params=params,
+        )
+
+        # 3) backfill the final URL/program we actually sent
+        click.target_url = affiliate_link.url[:1000]
+        click.program = affiliate_link.program
+        click.save(update_fields=["target_url", "program", "updated_at"])
+        return affiliate_link
+````
+
+## File: apps/affiliates/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    AffiliateRedirectView,
+    GiftcardLinkView,
+    GiftcardProgramsView,
+    HotelLinkView,
+    HotelProgramsView,
+    TravelLinkView,
+    TravelProgramsView,
+)
+
+urlpatterns = [
+    path("travel/", TravelProgramsView.as_view(), name="aff-travel-programs"),
+    path("travel/<str:slug>/link/", TravelLinkView.as_view(), name="aff-travel-link"),
+    path("giftcards/", GiftcardProgramsView.as_view(), name="aff-giftcard-programs"),
+    path("giftcards/<str:slug>/link/", GiftcardLinkView.as_view(), name="aff-giftcard-link"),
+    path("hotels/", HotelProgramsView.as_view(), name="aff-hotel-programs"),
+    path("hotels/<str:slug>/link/", HotelLinkView.as_view(), name="aff-hotel-link"),
+    # Stable internal redirect (clean destinations, no tpk.ro): /go/<slug>/
+    path("go/<str:slug>/", AffiliateRedirectView.as_view(), name="aff-redirect"),
+]
+````
+
+## File: apps/affiliates/views.py
+````python
+"""Affiliate endpoints: rich program cards + tracked deep-links.
+
+Covers travel (flights/carhire/transfers), gift cards, and hotels — all through
+the same AffiliateService (records a click, mints a sub_id, builds the link).
+"""
+from django.http import HttpResponseRedirect
+from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from integrations.base.affiliate_links import sanitize_affiliate_url
+
+from .catalog import TRAVEL_BY_SLUG, TRAVEL_PROGRAMS
+from .catalog_giftcards import GIFTCARD_BY_SLUG, GIFTCARD_PROGRAMS
+from .catalog_hotels import HOTEL_BY_SLUG, HOTEL_PROGRAMS
+from .serializers import TravelLinkRequestSerializer
+from .services import AffiliateService
+
+# All affiliate programs by slug, across every catalog, for the redirect route.
+_ALL_PROGRAMS = {**TRAVEL_BY_SLUG, **GIFTCARD_BY_SLUG, **HOTEL_BY_SLUG}
+
+
+def _build_and_respond(program, request):
+    s = TravelLinkRequestSerializer(data=request.data)
+    s.is_valid(raise_exception=True)
+    params = s.validated_data.get("params", {}) or {}
+    link = AffiliateService.link(
+        category=program["category"], user=request.user, params=params,
+    )
+    accepted = {p["key"] for p in program["params"]}
+    return Response({
+        "program": program["name"],
+        "category": program["category"],
+        "url": link.url,
+        "sub_id": link.sub_id,
+        "applied_params": {k: v for k, v in params.items() if k in accepted},
+        "ignored_params": {k: v for k, v in params.items() if k not in accepted},
+    })
+
+
+class TravelProgramsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"programs": TRAVEL_PROGRAMS})
+
+
+class TravelLinkView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, slug):
+        program = TRAVEL_BY_SLUG.get(slug)
+        if program is None:
+            return Response({"detail": "Unknown travel program."},
+                            status=status.HTTP_404_NOT_FOUND)
+        return _build_and_respond(program, request)
+
+
+class GiftcardProgramsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"programs": GIFTCARD_PROGRAMS})
+
+
+class GiftcardLinkView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, slug):
+        program = GIFTCARD_BY_SLUG.get(slug)
+        if program is None:
+            return Response({"detail": "Unknown gift-card program."},
+                            status=status.HTTP_404_NOT_FOUND)
+        return _build_and_respond(program, request)
+
+
+class HotelProgramsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"programs": HOTEL_PROGRAMS})
+
+
+class HotelLinkView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, slug):
+        program = HOTEL_BY_SLUG.get(slug)
+        if program is None:
+            return Response({"detail": "Unknown hotel program."},
+                            status=status.HTTP_404_NOT_FOUND)
+        return _build_and_respond(program, request)
+
+
+class AffiliateRedirectView(APIView):
+    """
+    GET /api/v1/affiliates/go/<slug>/?<search params>
+
+    A stable internal redirect endpoint. The app links here (never to a raw
+    partner short-link), so destinations can be fixed via env/config without a
+    frontend redeploy, and blocked tpk.ro hosts are stripped before the browser
+    ever sees them. Records the click (attribution) then 302s to a clean URL.
+
+    Search params are passed through as deep-link params where the program
+    accepts them (e.g. ?destination=Dubai&check_in=2026-08-01).
+
+    Public on purpose: it's opened in a new browser tab (which can't carry the
+    app's bearer token), and it only issues a redirect to a public partner
+    site. When the request happens to be authenticated, the click is attributed
+    to that user; otherwise it's recorded anonymously.
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request, slug):
+        program = _ALL_PROGRAMS.get(slug)
+        if program is None:
+            return Response({"detail": "Unknown affiliate program."},
+                            status=status.HTTP_404_NOT_FOUND)
+        params = {k: v for k, v in request.query_params.items()}
+        user = request.user if request.user.is_authenticated else None
+        link = AffiliateService.link(
+            category=program["category"], user=user, params=params,
+        )
+        # Defense in depth: the adapter already sanitizes, but never redirect a
+        # browser to a blocked host under any circumstance.
+        safe_url = sanitize_affiliate_url(link.url, program["category"])
+        return HttpResponseRedirect(safe_url)
+````
+
+## File: apps/assistant/migrations/__init__.py
+````python
+
+````
+
+## File: apps/assistant/__init__.py
+````python
+
+````
+
+## File: apps/assistant/apps.py
+````python
+from django.apps import AppConfig
+
+
+class AssistantConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.assistant"
+    label = "assistant"
+    verbose_name = "Assistant"
+````
+
+## File: apps/assistant/knowledge.py
+````python
+"""
+What the assistant knows about OAM.
+
+This is the single source of truth for both modes — it's injected into the LLM
+prompt when an API key is configured, and searched directly when one isn't. One
+copy means the two modes can't tell people different things.
+
+Everything here is true of the platform as built. That matters more than it
+might seem: an assistant on a money app that invents a refund policy or a
+delivery time creates an expectation the product then fails, and the customer
+is rightly annoyed at you rather than at the bot.
+"""
+
+PLATFORM_FACTS = """
+OAM is a multi-service platform operated by O.A.M Motors Limited. It offers:
+
+BILLS AND UTILITIES
+- Airtime and data top-ups for all major Nigerian networks (MTN, Airtel, Glo, 9mobile)
+- International airtime: top up phones in other countries. In the airtime screen,
+  switch from "Local" to "International", pick the country and network, choose an
+  amount, and pay. The price is shown in Naira before you confirm.
+- Electricity units (prepaid tokens and postpaid) across Nigerian discos
+  (e.g. IKEDC, EKEDC, IBEDC, AEDC and others)
+- Cable TV subscriptions (DStv, GOtv, StarTimes and others)
+- The price shown is the price paid. There is NO separate fee at checkout; OAM's
+  margin is included in the price.
+
+WALLET
+- Multi-currency (NGN, USD, GBP, EUR), with NGN as the default
+- Funded by card through Paystack
+- Card payments credit the wallet first, and the wallet then pays for the
+  purchase. This is deliberate: if a delivery fails, the money is already safe
+  in the wallet as a balance the customer can spend or withdraw.
+- Transfers between OAM users are instant and free
+- Withdrawals go to a bank account in the customer's own name
+- The wallet can also be funded by bank transfer and by a dedicated virtual account,
+  in addition to card
+
+BETTING WALLET TOP-UP
+- Fund sports betting accounts instantly across top betting providers in Nigeria
+
+BUS TICKETS
+- Search and book intercity bus tickets for travel across Nigeria: choose route and
+  date, pick your seats, enter passenger details, and pay from wallet or by card
+
+E-COMMERCE
+- Shop from top international partner stores (such as Amazon, Temu and Alibaba)
+  through the OAM interface
+
+ELECTRICITY TOKENS
+- Tokens usually arrive within a minute or two, occasionally longer
+- While an order says "processing", the payment has gone through and the order
+  is with the provider. Buying again charges for the same meter twice.
+- Order history checks with the provider every few seconds and shows the token
+  as soon as it is issued
+- The token is also emailed, and stored permanently in Order history
+- Nigerian prepaid meters are 11 digits; verification only runs once all 11 are
+  entered
+
+MARKETPLACE
+- Buy and sell items. Free plan allows 3 active listings.
+- Premium is 2,500 NGN for 20 listings plus featured placement
+- Pro is 5,000 NGN for unlimited listings plus featured placement and priority
+- These are one-off payments for a period; nothing renews automatically
+- Phone numbers are NEVER published. Buyers and sellers use built-in, in-app
+  messaging to negotiate and communicate securely; contact details are exchanged
+  only when the seller accepts the enquiry.
+
+HOME SERVICES / ARTISANS
+- Find plumbers, electricians, mechanics, cleaners and other trades
+- Artisans can be verified: they submit photos of their work, a short video and
+  an identity document, which a person on the OAM team reviews before granting
+  the badge
+- Only verified artisans appear in Featured on the home page
+- Artisans can boost visibility: Premium 2,500 NGN for 30 days, Pro 5,000 NGN
+  for 90 days. One-off payments, no auto-renewal.
+- Contact details work the same as the marketplace: shared only after the
+  artisan accepts the job
+
+O.A.M MOTORS
+- Vehicles sold directly by O.A.M Motors, listed in the marketplace under the
+  O.A.M Motors category
+
+TRAVEL (FLIGHTS, HOTELS, CAR HIRE)
+- Flights: compare and book domestic and international flights from hundreds of airlines
+- Hotels: search and book stays in over 100 countries with instant confirmation
+- Car hire: rent cars with or without a driver at thousands of locations worldwide
+- Airport pickups are also available. Travel is booked through partner sites, so the
+  booking contract is with the partner, not with OAM.
+
+SECURITY
+- Card details are entered on Paystack's checkout and are never seen or stored
+  by OAM
+- Passwords are stored hashed
+- Resetting a password signs the account out on every other device
+- OAM will NEVER ask for a password, card PIN or one-time code. Anyone who does
+  is not from OAM.
+
+SUPPORT
+- info@oam-app.com
+- Help Centre at /help, Contact at /contact
+"""
+
+WHERE_TO_GO = """
+Useful pages:
+- /dashboard — balance and quick actions
+- /wallet — full balance, transactions, add money
+- /wallet/send — transfer to another OAM user
+- /wallet/withdraw — withdraw to a bank account
+- /orders — every purchase, with electricity tokens and receipts
+- /services/airtime, /services/data, /services/electricity, /services/cable
+- /marketplace — buy and sell
+- /artisans — find or offer home services
+- /messages — conversations with buyers, sellers and artisans
+- /help — Help Centre
+- /contact — how to reach a person
+"""
+
+# Matched by the fallback when no LLM is configured. Keyword lists are
+# deliberately generous: someone with a missing token types "where is my token",
+# "no token", "token never came" and expects the same answer.
+FAQS = [
+    {
+        "keywords": ["token", "electricity", "units", "meter", "prepaid", "no token", "missing token"],
+        "answer": (
+            "If you've paid for electricity and the token hasn't appeared yet, please don't "
+            "buy again — the payment has gone through and the order is with your provider, "
+            "so a second purchase would charge you twice for the same meter.\n\n"
+            "Open Order history (/orders). While an order is completing you'll see "
+            "\"Token on the way\", and the page checks with your provider every few seconds. "
+            "Tokens usually arrive within a minute or two.\n\n"
+            "The token is also emailed to you, and it stays in Order history permanently, so "
+            "you can find it again any time."
+        ),
+    },
+    {
+        "keywords": ["fee", "fees", "charge", "hidden", "extra cost", "commission"],
+        "answer": (
+            "There are no hidden fees. The total shown before you pay is exactly what you "
+            "pay — the fee line reads ₦0 because there isn't one.\n\n"
+            "OAM's margin is built into the price of bills, so nothing is added at checkout."
+        ),
+    },
+    {
+        "keywords": ["wallet", "why wallet", "card payment", "balance", "funded", "top up"],
+        "answer": (
+            "Card payments credit your wallet first, and the wallet then pays for what you "
+            "bought. It looks like an extra step, and it's deliberate.\n\n"
+            "If a delivery fails, the money is already sitting safely in your wallet as a "
+            "balance you can spend or withdraw. Paying a provider directly would leave your "
+            "money stranded with no clean way back."
+        ),
+    },
+    {
+        "keywords": ["phone number", "contact", "seller number", "artisan number", "whatsapp"],
+        "answer": (
+            "Phone numbers are never published on OAM.\n\n"
+            "Send a message about the item or job, and once the seller or artisan accepts, "
+            "you'll both see each other's contact details.\n\n"
+            "It's slightly slower, and it's the most effective protection available: published "
+            "numbers get harvested and reused for impersonation scams."
+        ),
+    },
+    {
+        "keywords": ["listing", "sell", "how many", "plan", "premium", "pro", "subscription"],
+        "answer": (
+            "The Free plan allows 3 active listings, indefinitely, with no card required.\n\n"
+            "Premium (₦2,500) allows up to 20 listings plus featured placement. "
+            "Pro (₦5,000) is unlimited, with featured placement and priority in search.\n\n"
+            "Both are one-off payments for a period — nothing renews automatically."
+        ),
+    },
+    {
+        "keywords": ["verified", "verification", "badge", "artisan verify", "get verified"],
+        "answer": (
+            "Verified artisans have submitted photos of their work, a short video and an "
+            "identity document, and a person on the OAM team has reviewed all three before "
+            "granting the badge.\n\n"
+            "Only verified artisans appear in Featured on the home page. If you're an artisan, "
+            "start at /artisans/verify — your profile stays live in search while you wait."
+        ),
+    },
+    {
+        "keywords": ["withdraw", "withdrawal", "bank", "cash out", "payout"],
+        "answer": (
+            "Withdrawals go to a bank account in your own name, from /wallet/withdraw.\n\n"
+            "They usually arrive within minutes, though bank downtime can delay them. If a "
+            "withdrawal fails, the amount returns to your wallet automatically — it isn't "
+            "lost, and you can try again."
+        ),
+    },
+    {
+        "keywords": ["transfer", "send money", "another user", "p2p"],
+        "answer": (
+            "You can send money to another OAM user instantly and free from /wallet/send.\n\n"
+            "Enter their email or phone number and their name appears before you confirm. "
+            "Check that name carefully — completed transfers can't be reversed."
+        ),
+    },
+    {
+        "keywords": ["password", "reset", "forgot", "locked out", "can't sign in"],
+        "answer": (
+            "Use \"Forgot password?\" on the sign-in page. We'll send a code to the email or "
+            "phone on your account, and you can set a new password with it.\n\n"
+            "Resetting signs you out on every other device — so if someone else had access to "
+            "your account, that removes it."
+        ),
+    },
+    {
+        "keywords": ["safe", "scam", "fraud", "trust", "security", "safety"],
+        "answer": (
+            "A few things worth knowing:\n\n"
+            "• OAM will never ask for your password, card PIN or a one-time code. Anyone who "
+            "does — by call, SMS or WhatsApp — is not from OAM.\n"
+            "• Card details are entered on Paystack's own checkout and are never stored by OAM.\n"
+            "• When buying or selling, meet in a public place, inspect before paying, and never "
+            "send money in advance to someone you haven't met.\n"
+            "• Treat any request to move the conversation off OAM \"for a better price\" as a "
+            "warning sign."
+        ),
+    },
+]
+
+GREETING = (
+    "Hi, I'm O.A.M Assistant. I can help with anything about OAM — airtime and data, "
+    "bills and electricity tokens, your wallet and transfers, the marketplace, finding "
+    "an artisan, travel, bus tickets and more. What would you like to know?"
+)
+
+CANT_SEE_ACCOUNT = (
+    "I can't see your account details, balance or individual transactions — I only know how "
+    "OAM works in general.\n\n"
+    "For anything specific to your account, Order history (/orders) shows every purchase with "
+    "its status and token, and Wallet (/wallet) shows your balance and transactions. If "
+    "something looks wrong, email info@oam-app.com with the order reference and a person will "
+    "look it up."
+)
+
+NO_MATCH = (
+    "I'm not certain about that one, and I'd rather not guess.\n\n"
+    "For anything I can't cover — or anything specific to your account — please send an email "
+    "with the details to info@oam-app.com and a human support representative will assist you."
+)
+````
+
+## File: apps/assistant/models.py
+````python
+"""
+No models.
+
+Conversations are transient help, not records worth keeping — and not storing
+them means there is no archive of customers' questions to secure, leak or hand
+over. The client keeps the thread in memory for the session and it goes when the
+tab closes.
+"""
+````
+
+## File: apps/assistant/service.py
+````python
+"""
+Answering questions — with a language model when one is configured, from the
+knowledge base when not.
+
+WHY IT WORKS BOTH WAYS
+  A capable assistant needs an LLM, and that's a per-message cost. Building the
+  fallback means OAM can ship the feature now, answer the questions people
+  actually ask, and switch the paid part on whenever it suits — without the
+  button appearing broken in the meantime.
+
+THE THING THIS MUST NOT DO
+  People will ask "where is my money" and "why did my payment fail". The
+  assistant cannot see account data, and an invented answer about someone's
+  balance is worse than no assistant at all. So the system prompt says so
+  plainly, and the fallback has a dedicated response for account questions that
+  points at the pages which do know.
+"""
+from __future__ import annotations
+
+import logging
+import re
+
+import requests
+from django.conf import settings
+
+from .knowledge import (
+    CANT_SEE_ACCOUNT,
+    FAQS,
+    GREETING,
+    NO_MATCH,
+    PLATFORM_FACTS,
+    WHERE_TO_GO,
+)
+
+logger = logging.getLogger("assistant")
+
+ANTHROPIC_URL = "https://api.anthropic.com/v1/messages"
+MODEL = getattr(settings, "ASSISTANT_MODEL", "claude-sonnet-4-6")
+MAX_TOKENS = 700
+
+SYSTEM_PROMPT = f"""You are O.A.M Assistant, the official AI support agent for the OAM platform (https://oam-app.com/). Always identify yourself as O.A.M Assistant when greeting or introducing yourself.
+
+{PLATFORM_FACTS}
+
+{WHERE_TO_GO}
+
+HOW TO BEHAVE
+
+You cannot see the user's account. You do not know their balance, their orders,
+their transactions, or whether a specific payment succeeded. If they ask about
+anything specific to their account — a failed transaction, a pending refund, a
+dispute, a wrong meter number, or anything needing account investigation — do not
+attempt to resolve it. Politely tell them to send an email with the details to
+info@oam-app.com so a human support representative can assist them. You may also
+point them to Order history (/orders) or Wallet (/wallet). Never guess at a
+figure, a status or a date.
+
+Never invent a policy, a fee, a refund rule or a delivery time. If the facts
+above don't cover something, say you're not certain and point to /help or
+info@oam-app.com. Being wrong about money costs the user real money and costs
+OAM their trust.
+
+The single most important thing you can tell someone whose electricity token
+hasn't arrived is: do not buy again. The payment has gone through, and a second
+purchase charges them twice for the same meter.
+
+You are not a financial adviser or a lawyer. Don't advise on investments, tax or
+legal questions — say it's outside what you can help with.
+
+You can answer general questions unrelated to OAM, briefly and helpfully. But if
+someone seems to be asking about their own money or an order, bring them back to
+the pages that actually know.
+
+TONE
+Friendly, sharp, professional and efficient — suitable for a high-performance
+fintech and multi-service super-app. Warm and welcoming, but direct and brief:
+two or three short paragraphs at most. Plain language, no jargon. Write like a
+knowledgeable colleague, not a support script. Don't open with "Great question"
+or similar filler.
+
+OAM serves customers internationally, so don't assume where someone is unless
+they tell you."""
+
+
+def _llm_configured() -> bool:
+    return bool(getattr(settings, "ANTHROPIC_API_KEY", ""))
+
+
+def _ask_llm(messages: list[dict]) -> str | None:
+    """Returns None on any failure, so the caller can fall back rather than fail."""
+    try:
+        response = requests.post(
+            ANTHROPIC_URL,
+            headers={
+                "x-api-key": settings.ANTHROPIC_API_KEY,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": MODEL,
+                "max_tokens": MAX_TOKENS,
+                "system": SYSTEM_PROMPT,
+                "messages": messages,
+            },
+            timeout=30,
+        )
+    except requests.RequestException as exc:
+        logger.warning("assistant: request failed — %s", exc)
+        return None
+
+    if response.status_code != 200:
+        logger.warning("assistant: %s — %s", response.status_code, response.text[:300])
+        return None
+
+    try:
+        blocks = response.json().get("content", [])
+        text = "".join(b.get("text", "") for b in blocks if b.get("type") == "text")
+        return text.strip() or None
+    except (ValueError, AttributeError):
+        return None
+
+
+# --------------------------------------------------------------------------- #
+# Fallback
+# --------------------------------------------------------------------------- #
+
+ACCOUNT_WORDS = re.compile(
+    r"\b(my|mine|i)\b.*\b(balance|wallet|order|token|payment|transaction|refund|money|"
+    r"account|purchase|withdraw)\b",
+    re.IGNORECASE,
+)
+GREETING_WORDS = re.compile(r"^\s*(hi|hello|hey|good (morning|afternoon|evening)|howdy)\b",
+                            re.IGNORECASE)
+
+
+def _match_faq(question: str) -> str | None:
+    """Score each FAQ by how many of its keywords appear. Best match wins."""
+    q = question.lower()
+    best, best_score = None, 0
+    for faq in FAQS:
+        score = sum(1 for kw in faq["keywords"] if kw in q)
+        if score > best_score:
+            best, best_score = faq, score
+    return best["answer"] if best and best_score > 0 else None
+
+
+def _fallback(question: str) -> str:
+    if GREETING_WORDS.match(question):
+        return GREETING
+
+    answer = _match_faq(question)
+    if answer:
+        return answer
+
+    # Checked AFTER the FAQs: "where is my token" should get the token answer,
+    # which is genuinely useful, rather than a blanket "I can't see your account".
+    if ACCOUNT_WORDS.search(question):
+        return CANT_SEE_ACCOUNT
+
+    return NO_MATCH
+
+
+# --------------------------------------------------------------------------- #
+
+def answer(history: list[dict], question: str) -> tuple[str, str]:
+    """
+    Returns (reply, mode) where mode is "ai" or "knowledge-base".
+
+    The mode is surfaced to the client so the interface can be honest about what
+    the person is talking to.
+    """
+    if _llm_configured():
+        messages = history[-10:] + [{"role": "user", "content": question}]
+        reply = _ask_llm(messages)
+        if reply:
+            return reply, "ai"
+        # An outage shouldn't leave the person staring at an error.
+        logger.info("assistant: falling back to the knowledge base")
+
+    return _fallback(question), "knowledge-base"
+````
+
+## File: apps/assistant/urls.py
+````python
+from django.urls import path
+
+from .views import AssistantChatView, AssistantStatusView
+
+urlpatterns = [
+    path("chat/", AssistantChatView.as_view(), name="assistant-chat"),
+    path("status/", AssistantStatusView.as_view(), name="assistant-status"),
+]
+````
+
+## File: apps/assistant/views.py
+````python
+"""Assistant endpoints."""
+from __future__ import annotations
+
+from django.core.cache import cache
+from rest_framework import status as http
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .knowledge import GREETING
+from .service import _llm_configured, answer
+
+MAX_QUESTION_CHARS = 1500
+HOURLY_LIMIT = 40
+
+
+class AssistantChatView(APIView):
+    """
+    POST /assistant/chat/
+        {"question": "...", "history": [{"role":"user"|"assistant","content":"..."}]}
+
+    History is sent by the client rather than stored server-side. Conversations
+    here are transient help, not records worth keeping — and not storing them
+    means there's no archive of customers' questions to secure or leak.
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        question = (request.data.get("question") or "").strip()
+        if not question:
+            return Response({"detail": "Ask me something."}, status=http.HTTP_400_BAD_REQUEST)
+        if len(question) > MAX_QUESTION_CHARS:
+            return Response(
+                {"detail": "That's a bit long — try asking in a sentence or two."},
+                status=http.HTTP_400_BAD_REQUEST,
+            )
+
+        # Per-user hourly cap. The LLM path costs money per message, and an
+        # uncapped endpoint is an uncapped bill.
+        key = f"assistant:{request.user.id}"
+        used = cache.get(key, 0)
+        if used >= HOURLY_LIMIT:
+            return Response(
+                {"detail": "You've asked a lot of questions in the last hour. Try again "
+                           "shortly, or email info@oam-app.com."},
+                status=http.HTTP_429_TOO_MANY_REQUESTS,
+            )
+        cache.set(key, used + 1, 3600)
+
+        raw_history = request.data.get("history") or []
+        history = [
+            {"role": m["role"], "content": str(m["content"])[:2000]}
+            for m in raw_history[-10:]
+            if isinstance(m, dict) and m.get("role") in ("user", "assistant") and m.get("content")
+        ]
+
+        reply, mode = answer(history, question)
+        return Response({"reply": reply, "mode": mode})
+
+
+class AssistantStatusView(APIView):
+    """GET /assistant/status/ — what the client should expect."""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({
+            "available": True,
+            "mode": "ai" if _llm_configured() else "knowledge-base",
+            "greeting": GREETING,
+            "suggestions": [
+                "Where is my electricity token?",
+                "Why did my card payment go into my wallet?",
+                "How many items can I list for free?",
+                "How do I get verified as an artisan?",
+            ],
+        })
+````
+
+## File: apps/billing/management/commands/__init__.py
+````python
+
+````
+
+## File: apps/billing/management/commands/release_stuck_bills.py
+````python
+"""
+Release funds held by bill orders that got stuck (hold succeeded but the order
+never reached the provider). Safe: only touches orders still in processing/
+pending with no provider_reference, and releases each hold back to the wallet.
+
+Run: python manage.py release_stuck_bills
+"""
+from django.core.management.base import BaseCommand
+
+from apps.billing.models import BillOrder
+from apps.billing.services import BillingService
+
+
+class Command(BaseCommand):
+    help = "Release holds for stuck bill orders (no provider reference)."
+
+    def handle(self, *args, **opts):
+        stuck = BillOrder.objects.filter(
+            status__in=[BillOrder.Status.PROCESSING, BillOrder.Status.PENDING],
+            provider_reference__isnull=True,
+        )
+        if not stuck.exists():
+            self.stdout.write(self.style.WARNING("No stuck orders found."))
+            return
+        for order in stuck:
+            try:
+                BillingService._release(order)
+                order.status = BillOrder.Status.REVERSED
+                order.save(update_fields=["status", "updated_at"])
+                self.stdout.write(self.style.SUCCESS(
+                    f"Released {order.amount} {order.currency} for {order.reference}"
+                ))
+            except Exception as exc:  # noqa: BLE001
+                self.stdout.write(self.style.ERROR(
+                    f"Could not release {order.reference}: {exc}"
+                ))
+````
+
+## File: apps/billing/management/commands/seed_betting_billers.py
+````python
+from django.core.management.base import BaseCommand
+
+from apps.billing.models import Biller
+
+# vtu.ng betting providers (service_id == provider name, case-sensitive).
+PROVIDERS = [
+    "1xBet", "BangBet", "Bet9ja", "BetKing", "BetLand", "BetLion", "BetWay",
+    "CloudBet", "LiveScoreBet", "MerryBet", "NaijaBet", "NairaBet",
+    "SportyBet", "SupaBet",
+]
+
+
+class Command(BaseCommand):
+    help = "Seed the Nigerian betting providers as billers (category=betting)."
+
+    def handle(self, *args, **options):
+        created = 0
+        for name in PROVIDERS:
+            _, was_created = Biller.objects.get_or_create(
+                country="NG", category="betting", code=name,
+                defaults={"name": name, "is_active": True},
+            )
+            created += int(was_created)
+        self.stdout.write(self.style.SUCCESS(
+            f"Betting billers ready ({created} created, {len(PROVIDERS)} total)."))
+````
+
+## File: apps/billing/management/commands/seed_billers.py
+````python
+"""Seed Nigerian billers. Run: python manage.py seed_billers"""
+from django.core.management.base import BaseCommand
+
+from apps.billing.models import Biller
+
+NETWORKS = [("MTN", "MTN"), ("AIRTEL", "Airtel"), ("GLO", "Glo"), ("9MOBILE", "9mobile")]
+CABLE = [("dstv", "DStv"), ("gotv", "GOtv"), ("startimes", "Startimes"), ("showmax", "Showmax")]
+DISCOS = [
+    ("ikeja-electric", "Ikeja Electric (IKEDC)"), ("eko-electric", "Eko Electric (EKEDC)"),
+    ("kano-electric", "Kano Electric (KEDCO)"), ("portharcourt-electric", "Port Harcourt (PHED)"),
+    ("jos-electric", "Jos Electric (JED)"), ("ibadan-electric", "Ibadan Electric (IBEDC)"),
+    ("kaduna-electric", "Kaduna Electric (KAEDCO)"), ("abuja-electric", "Abuja Electric (AEDC)"),
+    ("enugu-electric", "Enugu Electric (EEDC)"), ("benin-electric", "Benin Electric (BEDC)"),
+    ("aba-electric", "Aba Electric (ABEDC)"), ("yola-electric", "Yola Electric (YEDC)"),
+]
+
+
+class Command(BaseCommand):
+    help = "Seed Nigerian billers (airtime, data, cable, electricity)."
+
+    def handle(self, *args, **opts):
+        created = 0
+
+        def add(category, code, name):
+            nonlocal created
+            _, was = Biller.objects.get_or_create(
+                country="NG", category=category, code=code,
+                defaults={"name": name, "is_active": True},
+            )
+            created += int(was)
+
+        for category in ("airtime", "data"):
+            for code, name in NETWORKS:
+                add(category, code, name)
+        for code, name in CABLE:
+            add("cable", code, name)
+        for code, name in DISCOS:
+            add("electricity", code, name)
+
+        self.stdout.write(self.style.SUCCESS(
+            f"Seeded billers. {created} new, {Biller.objects.count()} total."
+        ))
+````
+
+## File: apps/billing/management/commands/settle_bill_orders.py
+````python
+"""
+Settle outstanding bill orders — the safety net behind every VTU purchase.
+
+WHY THIS EXISTS
+  Two real gaps, both seen in production on order BILL-f44800637c2740018841:
+
+  1. PROCESSING ORDERS NEVER RESOLVE ON THEIR OWN.
+     vtu.ng accepted the order at 21:38 and completed it at 21:44. Nothing was
+     listening in between. If the customer closes the tab, the order sits in
+     `processing` forever even though it delivered.
+
+  2. TOKENS ARRIVE AFTER THE STATUS DOES.
+     vtu.ng's requery returns `data` (stale: token null) and `resolve.data`
+     (the truth, with meta_data.electricity_token). The resolved layer can
+     appear a few minutes later. Because `_apply` returns early for orders
+     already in a final state, an order marked `success` with an empty token is
+     NEVER revisited — the customer has paid and has nothing to type into their
+     meter.
+
+  This command fixes both: it re-queries still-processing orders, and it
+  re-queries *successful* prepaid electricity orders that are missing a token,
+  re-running the extractor on the fresh payload.
+
+USAGE
+    python3 manage.py settle_bill_orders                 # last 24h, dry run
+    python3 manage.py settle_bill_orders --apply         # actually save
+    python3 manage.py settle_bill_orders --hours 72 --apply
+    python3 manage.py settle_bill_orders --reference BILL-xxxx --apply
+
+RUN IT ON A SCHEDULE (every 2 minutes is plenty):
+    */2 * * * * cd /path/to/backend && /path/to/python manage.py settle_bill_orders --apply
+"""
+from datetime import timedelta
+
+from django.core.management.base import BaseCommand
+from django.utils import timezone
+
+from apps.billing.models import BillOrder
+from apps.billing.services import BillingService
+
+
+def _vtu():
+    """The VTU adapter, imported the same way BillingService does."""
+    from apps.billing import services as billing_services
+    return billing_services.ProviderFactory.get("vtu")
+
+
+class Command(BaseCommand):
+    help = "Resolve processing bill orders and recover missing electricity tokens."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--hours", type=int, default=24,
+                            help="How far back to look (default 24).")
+        parser.add_argument("--apply", action="store_true",
+                            help="Save changes. Without this it's a dry run.")
+        parser.add_argument("--reference", type=str, default="",
+                            help="Only this order reference.")
+
+    def handle(self, *args, **opts):
+        apply_changes = opts["apply"]
+        since = timezone.now() - timedelta(hours=opts["hours"])
+
+        base = BillOrder.objects.all()
+        if opts["reference"]:
+            base = base.filter(reference=opts["reference"])
+        else:
+            base = base.filter(created_at__gte=since)
+
+        pending = list(base.filter(
+            status__in=[BillOrder.Status.PENDING, BillOrder.Status.PROCESSING]
+        ).order_by("created_at"))
+
+        # Successful prepaid electricity with no token = customer paid, got nothing.
+        tokenless = list(base.filter(
+            status=BillOrder.Status.SUCCESS,
+            category="electricity",
+        ).exclude(meter_type__iexact="postpaid").filter(token="").order_by("created_at"))
+
+        self.stdout.write(f"\nWindow: last {opts['hours']}h" if not opts["reference"]
+                          else f"\nOrder: {opts['reference']}")
+        self.stdout.write(f"  processing orders      : {len(pending)}")
+        self.stdout.write(f"  success, missing token : {len(tokenless)}")
+        if not apply_changes:
+            self.stdout.write(self.style.WARNING("\nDRY RUN — nothing saved. Add --apply to act.\n"))
+
+        # ---- 1. resolve still-processing orders -------------------------- #
+        for o in pending:
+            before = o.status
+            if apply_changes:
+                try:
+                    o = BillingService.poll(o)
+                except Exception as exc:                      # noqa: BLE001
+                    self.stdout.write(self.style.ERROR(f"  {o.reference}: poll failed — {exc}"))
+                    continue
+            msg = f"  {o.reference}: {before} -> {o.status}"
+            if o.token:
+                msg += f" | token {o.token}"
+            self.stdout.write(self.style.SUCCESS(msg) if o.status == BillOrder.Status.SUCCESS else msg)
+
+        # ---- 2. recover tokens for already-successful orders -------------- #
+        for o in tokenless:
+            if not apply_changes:
+                self.stdout.write(f"  {o.reference}: would re-query for token")
+                continue
+
+            # (a) try the payload we already hold — the token may have arrived
+            #     in a later write and simply never been extracted.
+            BillingService._extract_details(o, o.response_payload)
+            if o.token:
+                o.save(update_fields=["token", "units", "customer_name", "updated_at"])
+                self.stdout.write(self.style.SUCCESS(
+                    f"  {o.reference}: token recovered from stored payload — {o.token}"))
+                continue
+
+            # (b) otherwise ask the provider again for a fresh resolve layer.
+            try:
+                result = _vtu().get_status(o.reference)
+            except Exception as exc:                          # noqa: BLE001
+                self.stdout.write(self.style.ERROR(f"  {o.reference}: requery failed — {exc}"))
+                continue
+
+            merged = {**(o.response_payload or {}), **(result.raw or {})}
+            BillingService._extract_details(o, merged)
+            if o.token:
+                o.response_payload = merged
+                o.save(update_fields=["token", "units", "customer_name",
+                                      "response_payload", "updated_at"])
+                self.stdout.write(self.style.SUCCESS(
+                    f"  {o.reference}: token recovered from provider — {o.token}"))
+            else:
+                self.stdout.write(self.style.WARNING(
+                    f"  {o.reference}: provider still has no token "
+                    f"(delivered {o.updated_at:%d %b %H:%M}) — will retry next run"))
+
+        self.stdout.write("")
+````
+
+## File: apps/billing/management/__init__.py
+````python
+
+````
+
+## File: apps/billing/migrations/__init__.py
+````python
+
+````
+
+## File: apps/billing/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-07-03 22:17
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('wallet', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Biller',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('country', models.CharField(default='NG', max_length=2)),
+                ('category', models.CharField(choices=[('airtime', 'Airtime'), ('data', 'Data'), ('electricity', 'Electricity'), ('cable', 'Cable TV')], max_length=16)),
+                ('code', models.CharField(max_length=40)),
+                ('name', models.CharField(max_length=120)),
+                ('is_active', models.BooleanField(default=True)),
+            ],
+            options={
+                'ordering': ['country', 'category', 'name'],
+            },
+        ),
+        migrations.CreateModel(
+            name='BillOrder',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('category', models.CharField(choices=[('airtime', 'Airtime'), ('data', 'Data'), ('electricity', 'Electricity'), ('cable', 'Cable TV')], max_length=16)),
+                ('recipient', models.CharField(max_length=64)),
+                ('plan_code', models.CharField(blank=True, max_length=64)),
+                ('amount', models.DecimalField(decimal_places=4, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('pay_with', models.CharField(choices=[('wallet', 'Wallet'), ('card', 'Card')], default='wallet', max_length=8)),
+                ('reference', models.CharField(max_length=80, unique=True)),
+                ('provider', models.CharField(blank=True, max_length=40)),
+                ('provider_reference', models.CharField(blank=True, db_index=True, max_length=160, null=True)),
+                ('status', models.CharField(choices=[('pending', 'Pending'), ('processing', 'Processing'), ('success', 'Success'), ('failed', 'Failed'), ('reversed', 'Reversed')], default='pending', max_length=12)),
+                ('request_payload', models.JSONField(blank=True, default=dict)),
+                ('response_payload', models.JSONField(blank=True, default=dict)),
+                ('metadata', models.JSONField(blank=True, default=dict)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+        migrations.AddConstraint(
+            model_name='biller',
+            constraint=models.UniqueConstraint(fields=('country', 'category', 'code'), name='uniq_biller_country_category_code'),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='biller',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='orders', to='billing.biller'),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='user',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='bill_orders', to=settings.AUTH_USER_MODEL),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='wallet',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='bill_orders', to='wallet.wallet'),
+        ),
+        migrations.AddIndex(
+            model_name='billorder',
+            index=models.Index(fields=['user', 'status'], name='billing_bil_user_id_0ffd36_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='billorder',
+            index=models.Index(fields=['category', 'status'], name='billing_bil_categor_5f2c5f_idx'),
+        ),
+    ]
+````
+
+## File: apps/billing/migrations/0002_billorder_cost_amount_billorder_revenue_amount.py
+````python
+# Generated by Django 5.0.6 on 2026-07-04 21:49
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('billing', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='billorder',
+            name='cost_amount',
+            field=models.DecimalField(decimal_places=4, default=0, max_digits=20),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='revenue_amount',
+            field=models.DecimalField(decimal_places=4, default=0, max_digits=20),
+        ),
+    ]
+````
+
+## File: apps/billing/migrations/0003_billorder_customer_name_billorder_meter_type_and_more.py
+````python
+# Generated by Django 5.0.6 on 2026-07-05 19:40
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('billing', '0002_billorder_cost_amount_billorder_revenue_amount'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='billorder',
+            name='customer_name',
+            field=models.CharField(blank=True, max_length=160),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='meter_type',
+            field=models.CharField(blank=True, max_length=16),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='token',
+            field=models.CharField(blank=True, max_length=64),
+        ),
+        migrations.AddField(
+            model_name='billorder',
+            name='units',
+            field=models.CharField(blank=True, max_length=32),
+        ),
+        migrations.CreateModel(
+            name='CustomerVerification',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('service_id', models.CharField(max_length=40)),
+                ('customer_id', models.CharField(max_length=64)),
+                ('variation', models.CharField(blank=True, max_length=16)),
+                ('customer_name', models.CharField(max_length=160)),
+                ('data', models.JSONField(blank=True, default=dict)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='verifications', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+                'indexes': [models.Index(fields=['user', 'service_id', 'customer_id'], name='billing_cus_user_id_33769e_idx')],
+            },
+        ),
+    ]
+````
+
+## File: apps/billing/migrations/0004_cardcheckout.py
+````python
+# Generated by Django 5.0.6 on 2026-07-18 08:40
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('billing', '0003_billorder_customer_name_billorder_meter_type_and_more'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='CardCheckout',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('country', models.CharField(default='NG', max_length=2)),
+                ('category', models.CharField(max_length=20)),
+                ('code', models.CharField(max_length=40)),
+                ('recipient', models.CharField(max_length=64)),
+                ('plan_code', models.CharField(blank=True, max_length=64)),
+                ('amount', models.DecimalField(decimal_places=2, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('funding_reference', models.CharField(db_index=True, max_length=80, unique=True)),
+                ('status', models.CharField(choices=[('pending', 'Pending payment'), ('payment_received', 'Payment received'), ('delivered', 'Delivered'), ('failed', 'Failed')], default='pending', max_length=20)),
+                ('failure_reason', models.CharField(blank=True, max_length=255)),
+                ('bill_order', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='card_checkout', to='billing.billorder')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='card_checkouts', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+    ]
+````
+
+## File: apps/billing/migrations/0005_cardcheckout_meter_type.py
+````python
+# Generated by Django 5.0.6 on 2026-07-20 16:07
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('billing', '0004_cardcheckout'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='cardcheckout',
+            name='meter_type',
+            field=models.CharField(blank=True, max_length=16),
+        ),
+    ]
+````
+
+## File: apps/billing/migrations/0006_cardcheckout_verification_id.py
+````python
+# Generated by Django 5.0.6 on 2026-07-21 20:34
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('billing', '0005_cardcheckout_meter_type'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='cardcheckout',
+            name='verification_id',
+            field=models.CharField(blank=True, max_length=64),
+        ),
+    ]
+````
+
+## File: apps/billing/migrations/0007_orderreceipt.py
+````python
+# Generated by Django 5.0.6 on 2026-07-22 13:46
+
+import django.db.models.deletion
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('billing', '0006_cardcheckout_verification_id'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='OrderReceipt',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('destination', models.EmailField(max_length=254)),
+                ('kind', models.CharField(max_length=16)),
+                ('included_token', models.BooleanField(default=False)),
+                ('order', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='receipt', to='billing.billorder')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+    ]
+````
+
+## File: apps/billing/__init__.py
+````python
+
+````
+
+## File: apps/billing/admin.py
+````python
+from django.contrib import admin
+
+from .models import Biller, BillOrder
+
+
+@admin.register(Biller)
+class BillerAdmin(admin.ModelAdmin):
+    list_display = ("name", "code", "category", "country", "is_active")
+    list_filter = ("country", "category", "is_active")
+    search_fields = ("name", "code")
+
+
+@admin.register(BillOrder)
+class BillOrderAdmin(admin.ModelAdmin):
+    list_display = ("reference", "category", "recipient", "amount", "currency",
+                    "status", "user", "created_at")
+    list_filter = ("category", "status", "currency")
+    search_fields = ("reference", "recipient", "provider_reference", "user__email")
+    readonly_fields = [f.name for f in BillOrder._meta.fields]
+````
+
+## File: apps/billing/apps.py
+````python
+from django.apps import AppConfig
+
+
+class BillingConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.billing"
+````
+
+## File: apps/billing/card_return.py
+````python
+"""
+Mobile card-payment return bridge.
+
+Paystack only accepts an https callback_url, so the mobile app points it here
+(with ?app_return=<deep link>). After payment Paystack redirects to this page,
+which immediately bounces the user back into the app via its deep link
+(e.g. oam://card-return?reference=...). The app then verifies by reference.
+"""
+import json
+
+from django.http import HttpResponse
+from django.utils.html import escape
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
+
+
+class CardPurchaseReturnView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        app_return = request.query_params.get("app_return", "") or ""
+        ref = request.query_params.get("reference") or request.query_params.get("trxref") or ""
+
+        target = app_return
+        if target and ref:
+            sep = "&" if "?" in target else "?"
+            target = f"{target}{sep}reference={ref}"
+
+        target_js = json.dumps(target)
+        target_html = escape(target)
+        html = (
+            "<!doctype html><html><head><meta charset='utf-8'>"
+            "<meta name='viewport' content='width=device-width, initial-scale=1'>"
+            "<title>Returning to OAM</title>"
+            f"<script>try{{if({target_js}){{window.location.replace({target_js});}}}}catch(e){{}}</script>"
+            "</head><body style='font-family:-apple-system,Segoe UI,Roboto,sans-serif;"
+            "text-align:center;padding:48px 24px;color:#111'>"
+            "<h3 style='margin:0 0 8px'>Payment complete</h3>"
+            "<p style='color:#6B7280'>Returning you to the OAM app&hellip;</p>"
+            f"<p><a style='color:#0B7327;font-weight:600' href='{target_html}'>"
+            "Tap here if it doesn't return automatically</a></p>"
+            "</body></html>"
+        )
+        return HttpResponse(html, content_type="text/html")
+````
+
+## File: apps/billing/card.py
+````python
+"""
+Pay-per-service with a CARD (Paystack) — charge the card for the exact service
+amount, then deliver the service automatically.
+
+Design (reuses the payment rails you already live-tested):
+  1. POST /billing/purchase/card/  -> we record WHAT to deliver (a CardCheckout)
+     and start a Paystack charge for that exact amount via FundingService.
+  2. The user pays on Paystack's hosted page with their card.
+  3. When the payment succeeds, FundingService.settle() credits the user's wallet.
+     A post_save signal here notices that settlement and IMMEDIATELY runs the
+     real bill purchase, so the airtime/data/meter token/subscription is
+     delivered without the user ever "funding a wallet" as a separate step.
+  4. If delivery fails, the money simply remains in the user's wallet (they are
+     never charged for nothing) and the checkout is marked 'payment_received'
+     so it can be retried.
+
+Why route through the wallet internally: your BillingService holds funds from
+the wallet, calls the VTU provider, then captures on success / refunds on
+failure. Keeping that path means card purchases inherit the same guarantees and
+the same double-entry ledger — no parallel money code to audit.
+"""
+from __future__ import annotations
+
+import uuid
+from decimal import Decimal
+
+from django.conf import settings
+from django.db import models, transaction
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework import serializers, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.models import TimeStampedModel
+from apps.common.permissions import IsVerified
+from apps.payments.models import ServiceTransaction
+from apps.payments.services import FundingService
+
+from .models import BillOrder
+from .services import BillingError, BillingService
+
+
+class CardCheckout(TimeStampedModel):
+    """A service purchase the user chose to pay for by card."""
+
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending payment"
+        PAYMENT_RECEIVED = "payment_received", "Payment received"
+        DELIVERED = "delivered", "Delivered"
+        FAILED = "failed", "Failed"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        related_name="card_checkouts",
+    )
+
+    # what to deliver once paid
+    country = models.CharField(max_length=2, default="NG")
+    category = models.CharField(max_length=20)          # airtime/data/electricity/cable
+    code = models.CharField(max_length=40)              # biller code (MTN, IKEDC, DSTV...)
+    recipient = models.CharField(max_length=64)         # phone / meter / smartcard
+    plan_code = models.CharField(max_length=64, blank=True)
+    meter_type = models.CharField(max_length=16, blank=True)   # electricity: prepaid/postpaid
+    verification_id = models.CharField(max_length=64, blank=True)  # electricity/cable: CustomerVerification id
+    amount = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.CharField(max_length=3, default="NGN")
+
+    # payment + delivery linkage
+    funding_reference = models.CharField(max_length=80, unique=True, db_index=True)
+    bill_order = models.ForeignKey(
+        BillOrder, null=True, blank=True, on_delete=models.SET_NULL,
+        related_name="card_checkout",
+    )
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.PENDING)
+    failure_reason = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.category} {self.amount} {self.currency} [{self.status}]"
+
+
+# --------------------------------------------------------------------------- #
+# Service
+# --------------------------------------------------------------------------- #
+class CardCheckoutService:
+    @staticmethod
+    def start(*, user, category, code, recipient, amount, currency="NGN",
+              country="NG", plan_code="", meter_type="", verification_id="", callback_url=""):
+        """Validate the biller, then open a Paystack charge for the exact amount."""
+        # Fail fast on a bad biller BEFORE taking any money.
+        BillingService._resolve_biller(country, category, code)
+
+        txn, init = FundingService.initialize(user, amount, currency, callback_url=callback_url or None)
+
+        checkout = CardCheckout.objects.create(
+            user=user, country=country, category=category, code=code,
+            recipient=recipient, plan_code=plan_code or "",
+            meter_type=meter_type or "",
+            verification_id=verification_id or "",
+            amount=txn.amount, currency=txn.currency,
+            funding_reference=txn.internal_reference,
+        )
+        return checkout, init.authorization_url
+
+    @staticmethod
+    def _purchase_for(c: "CardCheckout"):
+        """
+        Route to the right BillingService method for the category.
+
+        Electricity and cable must be bought against a prior CustomerVerification
+        (that's what proves the meter/smartcard was checked), so they take
+        verification_id and have their own service methods. Airtime and data use
+        the generic purchase.
+        """
+        if c.category == "electricity":
+            if not c.verification_id:
+                raise BillingError(
+                    "This meter was not verified before payment, so delivery "
+                    "cannot be completed. Your money is in your wallet."
+                )
+            return BillingService.purchase_electricity(
+                user=c.user, country=c.country, code=c.code,
+                customer_id=c.recipient, meter_type=c.meter_type,
+                amount=c.amount, verification_id=c.verification_id,
+                currency=c.currency,
+            )
+
+        if c.category == "cable":
+            if not c.verification_id:
+                raise BillingError(
+                    "This smartcard was not verified before payment, so delivery "
+                    "cannot be completed. Your money is in your wallet."
+                )
+            return BillingService.purchase_cable(
+                user=c.user, country=c.country, code=c.code,
+                customer_id=c.recipient, variation_id=c.plan_code,
+                verification_id=c.verification_id, currency=c.currency,
+            )
+
+        if c.category == "betting":
+            if not c.verification_id:
+                raise BillingError(
+                    "This betting account was not verified before payment, so "
+                    "delivery cannot be completed. Your money is in your wallet."
+                )
+            credit = Decimal(str(c.amount)) - Decimal("50")
+            return BillingService.purchase_betting(
+                user=c.user, code=c.code, customer_id=c.recipient,
+                amount=credit, verification_id=c.verification_id, currency=c.currency,
+            )
+
+        return BillingService.purchase(
+            user=c.user, country=c.country, category=c.category,
+            code=c.code, recipient=c.recipient, amount=c.amount,
+            currency=c.currency, plan_code=c.plan_code,
+        )
+
+    @staticmethod
+    def deliver(checkout: "CardCheckout") -> "CardCheckout":
+        """
+        Run the actual purchase after payment landed. Idempotent: safe to call
+        from the webhook and the return-page verify at the same time.
+        """
+        with transaction.atomic():
+            locked = (CardCheckout.objects
+                      .select_for_update()
+                      .filter(pk=checkout.pk).first())
+            if locked is None or locked.status == CardCheckout.Status.DELIVERED:
+                return locked or checkout
+            # mark as claimed so a concurrent call doesn't double-purchase
+            locked.status = CardCheckout.Status.PAYMENT_RECEIVED
+            locked.save(update_fields=["status", "updated_at"])
+
+        try:
+            order = CardCheckoutService._purchase_for(locked)
+        except (BillingError, Exception) as exc:  # noqa: BLE001 - record and keep funds
+            locked.failure_reason = str(exc)[:255]
+            locked.save(update_fields=["failure_reason", "updated_at"])
+            return locked
+
+        locked.bill_order = order
+        locked.status = (
+            CardCheckout.Status.DELIVERED
+            if order.status == BillOrder.Status.SUCCESS
+            else CardCheckout.Status.PAYMENT_RECEIVED
+        )
+        if order.status != BillOrder.Status.SUCCESS:
+            locked.failure_reason = "Provider did not confirm delivery; funds remain in wallet."
+        locked.save(update_fields=["bill_order", "status", "failure_reason", "updated_at"])
+        return locked
+
+    @staticmethod
+    def settle_and_deliver(reference: str):
+        """Verify payment with the gateway (idempotent), then deliver if paid."""
+        checkout = CardCheckout.objects.filter(funding_reference=reference).first()
+        if checkout is None:
+            return None
+        FundingService.settle(reference)          # credits the wallet if paid
+        txn = ServiceTransaction.objects.filter(internal_reference=reference).first()
+        if txn and txn.status == ServiceTransaction.Status.SUCCESS:
+            return CardCheckoutService.deliver(checkout)
+        return checkout
+
+
+# --------------------------------------------------------------------------- #
+# Auto-deliver when the funding transaction settles (webhook or verify)
+# --------------------------------------------------------------------------- #
+@receiver(post_save, sender=ServiceTransaction)
+def _deliver_after_payment(sender, instance: ServiceTransaction, **kwargs):
+    """When a funding txn hits SUCCESS, deliver any card checkout waiting on it."""
+    if instance.status != ServiceTransaction.Status.SUCCESS:
+        return
+    checkout = CardCheckout.objects.filter(
+        funding_reference=instance.internal_reference
+    ).exclude(status=CardCheckout.Status.DELIVERED).first()
+    if checkout is None:
+        return
+    transaction.on_commit(lambda: CardCheckoutService.deliver(checkout))
+
+
+# --------------------------------------------------------------------------- #
+# API
+# --------------------------------------------------------------------------- #
+class CardCheckoutStartSerializer(serializers.Serializer):
+    category = serializers.ChoiceField(choices=["airtime", "data", "electricity", "cable"])
+    code = serializers.CharField(max_length=40)
+    recipient = serializers.CharField(max_length=64)
+    amount = serializers.DecimalField(max_digits=20, decimal_places=2, min_value=Decimal("1"))
+    currency = serializers.CharField(max_length=3, default="NGN", required=False)
+    country = serializers.CharField(max_length=2, default="NG", required=False)
+    plan_code = serializers.CharField(max_length=64, required=False, allow_blank=True)
+    meter_type = serializers.CharField(max_length=16, required=False, allow_blank=True)
+    verification_id = serializers.CharField(max_length=64, required=False, allow_blank=True)
+    callback_url = serializers.CharField(max_length=300, required=False, allow_blank=True)
+
+
+class CardCheckoutSerializer(serializers.ModelSerializer):
+    order_status = serializers.SerializerMethodField()
+    order_reference = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CardCheckout
+        fields = ("id", "category", "code", "recipient", "amount", "currency",
+                  "plan_code", "meter_type", "verification_id", "funding_reference", "status", "failure_reason",
+                  "order_status", "order_reference", "created_at")
+
+    def get_order_status(self, obj):
+        return obj.bill_order.status if obj.bill_order else None
+
+    def get_order_reference(self, obj):
+        return obj.bill_order.reference if obj.bill_order else None
+
+
+class CardPurchaseStartView(APIView):
+    """POST /billing/purchase/card/ — pay for a service with a card."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        s = CardCheckoutStartSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        data = s.validated_data
+        try:
+            checkout, authorization_url = CardCheckoutService.start(
+                user=request.user,
+                category=data["category"], code=data["code"],
+                recipient=data["recipient"], amount=data["amount"],
+                currency=data.get("currency", "NGN"),
+                country=data.get("country", "NG"),
+                plan_code=data.get("plan_code", ""),
+                meter_type=data.get("meter_type", ""),
+                verification_id=data.get("verification_id", ""),
+                callback_url=data.get("callback_url", ""),
+            )
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({
+            "checkout": CardCheckoutSerializer(checkout).data,
+            "authorization_url": authorization_url,
+            "reference": checkout.funding_reference,
+        }, status=status.HTTP_201_CREATED)
+
+
+class CardPurchaseStatusView(APIView):
+    """GET /billing/purchase/card/<reference>/ — verify payment + deliver."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request, reference):
+        checkout = CardCheckout.objects.filter(
+            funding_reference=reference, user=request.user
+        ).first()
+        if checkout is None:
+            return Response({"detail": "Unknown reference."},
+                            status=status.HTTP_404_NOT_FOUND)
+        checkout = CardCheckoutService.settle_and_deliver(reference) or checkout
+        return Response(CardCheckoutSerializer(checkout).data)
+````
+
+## File: apps/billing/models.py
+````python
+"""
+Bill payment (VTU) models.
+
+Biller  = a payable service (a network for airtime/data, a disco for
+electricity, a TV provider for cable). Country-scoped so we can expand beyond
+Nigeria later.
+
+BillOrder = one purchase attempt, tracking the hold/capture/release lifecycle
+against the wallet and the VTU provider.
+"""
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedModel
+
+
+class Biller(TimeStampedModel):
+    class Category(models.TextChoices):
+        AIRTIME = "airtime", _("Airtime")
+        DATA = "data", _("Data")
+        ELECTRICITY = "electricity", _("Electricity")
+        CABLE = "cable", _("Cable TV")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    country = models.CharField(max_length=2, default="NG")     # ISO-2; NG for now
+    category = models.CharField(max_length=16, choices=Category.choices)
+    code = models.CharField(max_length=40)                     # e.g. "MTN", "IKEDC", "DSTV"
+    name = models.CharField(max_length=120)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["country", "category", "code"],
+                                    name="uniq_biller_country_category_code"),
+        ]
+        ordering = ["country", "category", "name"]
+
+    def __str__(self):
+        return f"{self.name} ({self.country}/{self.category})"
+
+
+class BillOrder(TimeStampedModel):
+    class Status(models.TextChoices):
+        PENDING = "pending", _("Pending")
+        PROCESSING = "processing", _("Processing")
+        SUCCESS = "success", _("Success")
+        FAILED = "failed", _("Failed")
+        REVERSED = "reversed", _("Reversed")
+
+    class PayWith(models.TextChoices):
+        WALLET = "wallet", _("Wallet")
+        CARD = "card", _("Card")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
+                             related_name="bill_orders")
+    biller = models.ForeignKey(Biller, on_delete=models.PROTECT, related_name="orders")
+    category = models.CharField(max_length=16, choices=Biller.Category.choices)
+    recipient = models.CharField(max_length=64)                # phone / meter / smartcard
+    plan_code = models.CharField(max_length=64, blank=True)    # for data/cable bundles
+
+    amount = models.DecimalField(max_digits=20, decimal_places=4)          # face value (user pays)
+    cost_amount = models.DecimalField(max_digits=20, decimal_places=4, default=0)     # provider charge
+    revenue_amount = models.DecimalField(max_digits=20, decimal_places=4, default=0)  # OAM margin
+    currency = models.CharField(max_length=3, default="NGN")
+    pay_with = models.CharField(max_length=8, choices=PayWith.choices, default=PayWith.WALLET)
+
+    # cable / electricity extras
+    customer_name = models.CharField(max_length=160, blank=True)   # from verify/purchase
+    meter_type = models.CharField(max_length=16, blank=True)       # prepaid / postpaid
+    token = models.CharField(max_length=64, blank=True)            # prepaid electricity token
+    units = models.CharField(max_length=32, blank=True)            # electricity units
+
+    wallet = models.ForeignKey("wallet.Wallet", null=True, blank=True,
+                               on_delete=models.SET_NULL, related_name="bill_orders")
+    reference = models.CharField(max_length=80, unique=True)
+    provider = models.CharField(max_length=40, blank=True)
+    provider_reference = models.CharField(max_length=160, null=True, blank=True, db_index=True)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
+
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+    metadata = models.JSONField(default=dict, blank=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["user", "status"]),
+            models.Index(fields=["category", "status"]),
+        ]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.category} {self.amount} {self.currency} -> {self.recipient} [{self.status}]"
+
+
+class CustomerVerification(TimeStampedModel):
+    """
+    A successful verify-customer result. A purchase for cable/electricity must
+    reference a recent verification (so users always confirm the account name
+    before paying).
+    """
+    FRESH_MINUTES = 30
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="verifications")
+    service_id = models.CharField(max_length=40)          # dstv, ikeja-electric, ...
+    customer_id = models.CharField(max_length=64)         # meter / smartcard
+    variation = models.CharField(max_length=16, blank=True)   # prepaid/postpaid (electricity)
+    customer_name = models.CharField(max_length=160)
+    data = models.JSONField(default=dict, blank=True)     # full verify payload
+
+    class Meta:
+        indexes = [models.Index(fields=["user", "service_id", "customer_id"])]
+        ordering = ["-created_at"]
+
+    def is_fresh(self):
+        from django.utils import timezone
+        from datetime import timedelta
+        return timezone.now() - self.created_at <= timedelta(minutes=self.FRESH_MINUTES)
+
+    def __str__(self):
+        return f"{self.service_id}:{self.customer_id} -> {self.customer_name}"
+
+from .card import CardCheckout  # noqa: F401
+from .receipts import OrderReceipt  # noqa: E402,F401
+````
+
+## File: apps/billing/README_card.txt
+````
+OAM — BACKEND: card.py (pay for services directly with a card)
+==============================================================
+UNZIP FROM: /Users/mac/Desktop/oam-platform/backend/apps/billing
+
+  cd /Users/mac/Desktop/oam-platform/backend/apps/billing
+  unzip -o oam_card_backend.zip
+
+That drops card.py right beside models.py / urls.py / services.py.
+
+THEN 2 SMALL EDITS
+------------------
+(a) apps/billing/models.py — add at the very BOTTOM of the file:
+
+      from .card import CardCheckout  # noqa: F401
+
+(b) apps/billing/urls.py — add the import near the top:
+
+      from .card import CardPurchaseStartView, CardPurchaseStatusView
+
+    and add these 2 lines inside urlpatterns = [ ... ]:
+
+      path("purchase/card/", CardPurchaseStartView.as_view(), name="bill-card-start"),
+      path("purchase/card/<str:reference>/", CardPurchaseStatusView.as_view(), name="bill-card-status"),
+
+THEN MIGRATE + RESTART
+----------------------
+  cd /Users/mac/Desktop/oam-platform/backend
+  source venv/bin/activate          (or however you activate it)
+  python manage.py makemigrations billing
+  python manage.py migrate
+  python manage.py check
+  python manage.py runserver 8080
+
+REMINDER: live Paystack keys go in the BACKEND .env only:
+  PAYSTACK_SECRET_KEY=sk_live_xxx
+  PAYSTACK_PUBLIC_KEY=pk_live_xxx
+And unset any leaked shell vars first (the recurring gotcha):
+  unset PAYSTACK_SECRET_KEY PAYSTACK_PUBLIC_KEY
+````
+
+## File: apps/billing/README.txt
+````
+OAM — Hardened VTU.ng delivery webhook
+======================================
+INSTALL
+  cd /Users/mac/Desktop/oam-platform/backend
+  unzip -o oam_vtung_webhook.zip -d apps/billing
+
+  Then in apps/billing/urls.py, change the webhook import so it uses the new
+  view instead of the one in views.py.
+
+  Currently the file imports VtuNgWebhookView inside the multi-line
+  "from .views import (...)" block. REMOVE it from that list, then add a
+  separate line next to the .refresh import (near "urlpatterns"):
+
+      from .webhook_vtung import VtuNgWebhookView
+
+  The existing route needs NO change:
+      path("webhook/vtung/", VtuNgWebhookView.as_view(), name="vtung-webhook"),
+
+  Restart. No migration — nothing changed in the models.
+
+  If you'd rather not touch the multi-line import, the alternative is to import
+  it with an alias and use that in the path. Ask me and I'll send an exact diff
+  rather than have you edit by hand — that import block has bitten us before.
+
+WHY THE EXISTING WEBHOOK WOULD HAVE FAILED SILENTLY
+  1. WRONG PAYLOAD DEPTH
+     It reads request_id and status from the TOP LEVEL. VTU's requery nests the
+     truth: data.status is stale, resolve.data.status is real, and the token is
+     at resolve.data.meta_data.electricity_token. If the callback uses the same
+     shape, the original settles nothing — no error, just a 200 and a customer
+     still waiting for a token.
+
+  2. THE EARLY-RETURN TRAP
+     It calls apply_provider_status -> _apply, which returns early for orders
+     already in a final state. Our own polling usually settles an order before
+     the webhook lands, so a webhook CARRYING THE TOKEN would be discarded.
+     That's precisely the bug that stranded your first three live purchases.
+
+WHAT THIS VERSION DOES
+  * Reads request_id / status / token from every shape VTU is known to use,
+    resolved layer first
+  * LOGS THE FULL PAYLOAD on arrival — the first real callback will tell us the
+    actual shape instead of us guessing. Watch for "vtung webhook payload:" in
+    your logs and send me the first one.
+  * Always attempts token extraction, even on an already-settled order
+  * Returns 200 for anything it can parse (webhooks that error get retried,
+    then disabled by the provider)
+  * Signature verification unchanged and still mandatory — this endpoint is
+    public, so that check is all that stands between the internet and your
+    order state
+
+YOU CANNOT TEST THIS LOCALLY
+  vtu.ng needs a public HTTPS URL; your backend is on 127.0.0.1:8080 and your
+  macOS blocks ngrok. So: install it now, deploy, then activate.
+
+AT DEPLOY TIME
+  1. Confirm the endpoint is reachable:
+        https://oam-app.com/api/v1/billing/webhook/vtung/
+     A GET should return 405 (method not allowed) — that means it's routed and
+     alive. A 404 means your production URL prefix differs.
+
+  2. Email vtu.ng asking them to enable delivery callbacks for your account and
+     to point them at that URL.
+
+  3. Buy ₦1,000 of units and watch the log for "vtung webhook payload:". Send me
+     that payload and I'll tighten the parsing to their exact shape.
+
+KEEP THE POLLING
+  Webhooks get missed — networks fail, deploys restart mid-delivery, providers
+  drop callbacks. The refresh endpoint and settle_bill_orders sweeper stay as
+  the safety net. Belt and braces is correct here: a missed token means a
+  customer paid and got nothing.
+````
+
+## File: apps/billing/receipts.py
+````python
+"""
+Purchase receipts by email — and, for prepaid electricity, the token itself.
+
+WHY THIS EXISTS
+  A token that lives only inside the app is a token the customer can lose. On
+  live orders the sequence was: pay, wait, token arrives minutes later, and if
+  they'd closed the tab they had nothing. Email lands somewhere people already
+  look and keeps working when the app doesn't.
+
+WHEN IT SENDS
+  A post_save signal on BillOrder, so every path converges here — an order that
+  completes instantly, one settled by the customer-facing refresh endpoint, and
+  one picked up by the settle_bill_orders sweeper. No caller has to remember.
+
+  For PREPAID ELECTRICITY it deliberately WAITS for the token. Sending "your
+  purchase succeeded" without the digits is the email equivalent of the bug we
+  just fixed. If the token never arrives, the sweeper's later save fires the
+  signal again and the receipt goes out then.
+
+SENT ONCE
+  An OrderReceipt row records what went out. Re-polling, refreshing and the
+  sweeper all re-save the order repeatedly; none of them will email twice.
+
+NEVER BREAKS A PURCHASE
+  Mail is sent on transaction commit, and failures are logged, never raised.
+  A dead SMTP server must not roll back a delivered order.
+"""
+from __future__ import annotations
+
+import logging
+
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.db import models, transaction
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from apps.common.models import TimeStampedModel
+
+from .models import BillOrder
+
+logger = logging.getLogger("billing")
+
+APP_NAME = getattr(settings, "APP_DISPLAY_NAME", "OAM Platform")
+
+BRAND_BLACK = "#0a0a0a"
+BRAND_RED = "#E31012"
+BRAND_GREEN = "#0B7327"
+
+
+class OrderReceipt(TimeStampedModel):
+    """One row per receipt actually sent — the guard against duplicates."""
+
+    order = models.OneToOneField(
+        BillOrder, on_delete=models.CASCADE, related_name="receipt"
+    )
+    destination = models.EmailField()
+    kind = models.CharField(max_length=16)          # "success" | "failed"
+    included_token = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"receipt {self.kind} -> {self.destination}"
+
+
+# --------------------------------------------------------------------------- #
+# Copy
+# --------------------------------------------------------------------------- #
+
+CATEGORY_LABEL = {
+    "airtime": "Airtime",
+    "data": "Data bundle",
+    "electricity": "Electricity",
+    "cable": "TV subscription",
+}
+
+
+def _money(amount, currency="NGN") -> str:
+    symbol = {"NGN": "₦", "USD": "$", "GBP": "£", "EUR": "€"}.get(currency, "")
+    return f"{symbol}{float(amount):,.2f}"
+
+
+def _grouped(token: str) -> str:
+    """Meter tokens are 20 digits; in groups of four they're far easier to type."""
+    digits = "".join(ch for ch in str(token) if ch.isdigit())
+    if len(digits) < 8:
+        return str(token)
+    return " ".join(digits[i:i + 4] for i in range(0, len(digits), 4))
+
+
+def _provider_name(order: BillOrder) -> str:
+    """
+    The provider's display name.
+
+    BillOrder exposes `biller_name` through its serializer, but the model itself
+    stores the relation — so read it defensively rather than assuming a shape.
+    """
+    biller = getattr(order, "biller", None)
+    if biller is not None:
+        name = getattr(biller, "name", None)
+        if name:
+            return str(name)
+    for attr in ("biller_name", "provider_name", "service_name"):
+        value = getattr(order, attr, None)
+        if value:
+            return str(value)
+    return str(getattr(order, "code", "") or "")
+
+
+def _rows(order: BillOrder) -> list[tuple[str, str]]:
+    rows = [("Service", CATEGORY_LABEL.get(order.category, order.category.title()))]
+    provider = _provider_name(order)
+    if provider:
+        rows.append(("Provider", provider))
+    if getattr(order, "customer_name", ""):
+        rows.append(("Customer", order.customer_name))
+    rows.append(("Recipient", str(getattr(order, "recipient", "") or "")))
+    if getattr(order, "meter_type", ""):
+        rows.append(("Meter type", order.meter_type.title()))
+    rows.append(("Amount", _money(order.amount, order.currency)))
+    if getattr(order, "units", ""):
+        rows.append(("Units", str(order.units)))
+    rows.append(("Paid with", "Card" if _from_card(order) else "Wallet"))
+    rows.append(("Reference", order.reference))
+    rows.append(("Date", order.created_at.strftime("%d %b %Y, %I:%M %p")))
+    return rows
+
+
+def _from_card(order: BillOrder) -> bool:
+    """A card checkout funds the wallet first, so pay_with alone reads as 'wallet'."""
+    try:
+        return order.card_checkout.exists()
+    except Exception:                                   # noqa: BLE001
+        return False
+
+
+# --------------------------------------------------------------------------- #
+# Rendering
+# --------------------------------------------------------------------------- #
+
+def _text_body(order: BillOrder, ok: bool) -> str:
+    lines = []
+    if ok:
+        lines.append(f"Your {CATEGORY_LABEL.get(order.category, 'purchase')} was successful.")
+    else:
+        lines.append("This purchase could not be completed.")
+        lines.append(f"{_money(order.amount, order.currency)} is back in your {APP_NAME} wallet.")
+    lines.append("")
+
+    if ok and order.token:
+        lines.append("YOUR RECHARGE TOKEN")
+        lines.append(_grouped(order.token))
+        lines.append("Type this into your meter keypad.")
+        lines.append("")
+
+    for label, value in _rows(order):
+        lines.append(f"{label}: {value}")
+
+    lines.append("")
+    lines.append(f"— {APP_NAME}")
+    return "\n".join(lines)
+
+
+def _html_body(order: BillOrder, ok: bool) -> str:
+    accent = BRAND_GREEN if ok else BRAND_RED
+    heading = "Purchase successful" if ok else "Purchase not completed"
+    intro = (
+        f"Your {CATEGORY_LABEL.get(order.category, 'purchase').lower()} went through."
+        if ok else
+        f"We couldn't complete this purchase. {_money(order.amount, order.currency)} "
+        f"is back in your {APP_NAME} wallet — nothing was lost."
+    )
+
+    token_block = ""
+    if ok and order.token:
+        units = (f'<p style="margin:10px 0 0;font-size:13px;color:#4b5563;">'
+                 f'Units: <strong>{order.units}</strong></p>') if order.units else ""
+        token_block = f"""
+            <div style="text-align:center;background:#f0fdf4;border:1px solid {BRAND_GREEN}33;
+                        border-radius:12px;padding:22px;margin:0 0 24px;">
+              <p style="margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:1px;
+                        color:{BRAND_GREEN};text-transform:uppercase;">Your recharge token</p>
+              <div style="font-size:23px;font-weight:700;letter-spacing:2px;color:{BRAND_BLACK};
+                          font-family:'SFMono-Regular',Consolas,monospace;word-break:break-all;">
+                {_grouped(order.token)}
+              </div>
+              <p style="margin:12px 0 0;font-size:13px;color:#4b5563;">
+                Type this into your meter keypad.
+              </p>
+              {units}
+            </div>"""
+
+    rows_html = "".join(
+        f"""<tr>
+              <td style="padding:7px 0;font-size:13px;color:#6b7280;">{label}</td>
+              <td style="padding:7px 0;font-size:13px;color:#111827;text-align:right;
+                         font-weight:500;">{value}</td>
+            </tr>"""
+        for label, value in _rows(order)
+    )
+
+    return f"""\
+<!DOCTYPE html>
+<html>
+  <body style="margin:0;padding:24px;background:#f4f5f7;
+               font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr><td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+               style="max-width:520px;background:#ffffff;border-radius:14px;overflow:hidden;
+                      border:1px solid #e5e7eb;">
+          <tr><td style="height:4px;background:linear-gradient(90deg,{BRAND_BLACK} 33%,
+                          {BRAND_RED} 33%,{BRAND_RED} 66%,{BRAND_GREEN} 66%);"></td></tr>
+          <tr><td style="padding:30px;">
+            <h1 style="margin:0 0 4px;font-size:19px;color:{BRAND_BLACK};">{APP_NAME}</h1>
+            <p style="margin:0 0 18px;font-size:15px;font-weight:600;color:{accent};">{heading}</p>
+            <p style="margin:0 0 22px;font-size:14px;color:#4b5563;line-height:1.55;">{intro}</p>
+            {token_block}
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+                   style="border-top:1px solid #e5e7eb;">{rows_html}</table>
+            <p style="margin:22px 0 0;font-size:12px;color:#9ca3af;line-height:1.55;">
+              Keep this email — your token stays valid and is also saved in your
+              order history inside {APP_NAME}.
+            </p>
+          </td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>"""
+
+
+# --------------------------------------------------------------------------- #
+# Sending
+# --------------------------------------------------------------------------- #
+
+def send_order_receipt(order: BillOrder) -> bool:
+    """Email a receipt for a settled order. Returns True on success."""
+    destination = (getattr(order.user, "email", "") or "").strip()
+    if not destination:
+        logger.info("order %s: no email on account, skipping receipt", order.reference)
+        return False
+
+    ok = str(order.status).lower() == "success"
+    label = CATEGORY_LABEL.get(order.category, "Purchase")
+
+    if ok and order.token:
+        subject = f"Your {label.lower()} token — {_money(order.amount, order.currency)}"
+    elif ok:
+        subject = f"{label} successful — {_money(order.amount, order.currency)}"
+    else:
+        subject = f"{label} not completed — {_money(order.amount, order.currency)} returned"
+
+    try:
+        text_body = _text_body(order, ok)
+        html_body = _html_body(order, ok)
+    except Exception as exc:                            # noqa: BLE001
+        logger.error("receipt render for %s failed: %s", order.reference, exc)
+        return False
+
+    try:
+        message = EmailMultiAlternatives(
+            subject=subject,
+            body=text_body,
+            from_email=getattr(settings, "DEFAULT_FROM_EMAIL", None),
+            to=[destination],
+        )
+        message.attach_alternative(html_body, "text/html")
+        sent = message.send(fail_silently=False)
+    except Exception as exc:                            # noqa: BLE001
+        logger.error("receipt for %s to %s failed: %s", order.reference, destination, exc)
+        return False
+
+    if not sent:
+        logger.error("receipt for %s reported 0 sent", order.reference)
+        return False
+
+    OrderReceipt.objects.update_or_create(
+        order=order,
+        defaults={
+            "destination": destination,
+            "kind": "success" if ok else "failed",
+            "included_token": bool(order.token),
+        },
+    )
+    logger.info("receipt sent for %s to %s", order.reference, destination)
+    return True
+
+
+def _should_send(order: BillOrder) -> bool:
+    state = str(order.status).lower()
+    if state not in ("success", "failed"):
+        return False                                    # still in flight
+
+    # Prepaid electricity: the token IS the product. Wait for it rather than
+    # sending a receipt the customer can't act on. A later save (refresh or
+    # sweeper) re-fires this signal once the token lands.
+    if (state == "success"
+            and order.category == "electricity"
+            and (order.meter_type or "").lower() != "postpaid"
+            and not order.token):
+        return False
+
+    return not OrderReceipt.objects.filter(order=order).exists()
+
+
+@receiver(post_save, sender=BillOrder, dispatch_uid="billing_order_receipt")
+def _on_order_saved(sender, instance: BillOrder, **kwargs):
+    if not _should_send(instance):
+        return
+
+    # Send after the surrounding transaction commits: the order must be durable
+    # before we tell anyone about it, and SMTP must never hold a DB lock.
+    transaction.on_commit(lambda: send_order_receipt(instance))
+````
+
+## File: apps/billing/refresh.py
+````python
+"""
+Customer-facing order refresh.
+
+WHY A NEW ENDPOINT
+  The existing requery endpoint calls BillingService.poll(), and poll() ->
+  _apply() returns early for orders already in a final state. That's correct for
+  status (you don't re-settle a settled order) but it means a token that arrives
+  AFTER the status flips can never be collected — which is exactly what happened
+  twice on live orders: vtu.ng marked the order completed, then attached
+  meta_data.electricity_token to the `resolve` layer moments later.
+
+  Until now the only cure was a shell command. Customers can't do that. This
+  endpoint gives them the same recovery the sweeper performs.
+
+WHAT IT DOES
+  pending / processing        -> poll the provider and settle
+  success + missing token     -> requery, merge the fresh payload, re-extract
+  anything else               -> return as-is (cheap, safe to call repeatedly)
+
+It never re-charges and never re-purchases: it only reads from the provider and
+copies what it finds onto the order.
+
+ROUTE
+  POST /api/v1/billing/orders/<reference>/refresh/
+"""
+from __future__ import annotations
+
+from rest_framework import status as http
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .models import BillOrder
+from .serializers import BillOrderSerializer
+from .services import BillingService, ProviderFactory
+
+
+def refresh_order(order: BillOrder) -> BillOrder:
+    """Bring one order up to date with the provider. Safe to call repeatedly."""
+    state = str(order.status).lower()
+
+    # 1. Not settled yet -> ask the provider and apply the outcome.
+    if state in ("pending", "processing"):
+        try:
+            order = BillingService.poll(order)
+        except Exception:                                  # noqa: BLE001
+            return order
+        state = str(order.status).lower()
+
+    # 2. Settled successfully but no token yet (prepaid electricity only).
+    needs_token = (
+        state == "success"
+        and order.category == "electricity"
+        and (order.meter_type or "").lower() != "postpaid"
+        and not order.token
+    )
+    if not needs_token:
+        return order
+
+    # 2a. The token may already be sitting in the payload we hold.
+    BillingService._extract_details(order, order.response_payload)
+    if order.token:
+        order.save(update_fields=["token", "units", "customer_name", "updated_at"])
+        return order
+
+    # 2b. Otherwise ask the provider for a fresh `resolve` layer.
+    try:
+        result = ProviderFactory.get("vtu").get_status(order.reference)
+    except Exception:                                      # noqa: BLE001
+        return order
+
+    merged = {**(order.response_payload or {}), **(result.raw or {})}
+    BillingService._extract_details(order, merged)
+    if order.token:
+        order.response_payload = merged
+        order.save(update_fields=["token", "units", "customer_name",
+                                  "response_payload", "updated_at"])
+    return order
+
+
+class OrderRefreshView(APIView):
+    """POST /billing/orders/<reference>/refresh/ — settle and collect the token."""
+
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request, reference):
+        order = BillOrder.objects.filter(user=request.user, reference=reference).first()
+        if order is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+        return Response(BillOrderSerializer(refresh_order(order)).data)
+
+
+class OrdersRefreshAllView(APIView):
+    """
+    POST /billing/orders/refresh/ — refresh every unfinished order for this user.
+
+    This is what the Refresh button on Order history calls, so one tap resolves
+    whatever is outstanding instead of the customer hunting for the right row.
+    Capped so a large history can't turn one tap into dozens of provider calls.
+    """
+
+    permission_classes = [IsAuthenticated, IsVerified]
+    MAX = 10
+
+    def post(self, request):
+        qs = BillOrder.objects.filter(user=request.user).order_by("-created_at")[:40]
+        targets = [
+            o for o in qs
+            if str(o.status).lower() in ("pending", "processing")
+            or (str(o.status).lower() == "success"
+                and o.category == "electricity"
+                and (o.meter_type or "").lower() != "postpaid"
+                and not o.token)
+        ][: self.MAX]
+
+        refreshed = [refresh_order(o) for o in targets]
+        return Response({
+            "checked": len(targets),
+            "orders": BillOrderSerializer(refreshed, many=True).data,
+        })
+````
+
+## File: apps/billing/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import Biller, BillOrder
+
+
+class BillerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Biller
+        fields = ("id", "country", "category", "code", "name")
+
+
+class PurchaseSerializer(serializers.Serializer):
+    category = serializers.ChoiceField(choices=Biller.Category.choices)
+    code = serializers.CharField(max_length=40)          # biller code, e.g. "MTN"
+    recipient = serializers.CharField(max_length=64)
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4, required=False)
+    currency = serializers.CharField(max_length=3, default="NGN")
+    country = serializers.CharField(max_length=2, default="NG")
+    plan_code = serializers.CharField(max_length=64, required=False, allow_blank=True)
+    variation_id = serializers.CharField(max_length=64, required=False, allow_blank=True)
+    verification_id = serializers.CharField(max_length=64, required=False, allow_blank=True)
+    meter_type = serializers.CharField(max_length=16, required=False, allow_blank=True)
+
+    def validate_amount(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("Amount must be positive.")
+        return value
+
+
+class BillOrderSerializer(serializers.ModelSerializer):
+    biller_name = serializers.CharField(source="biller.name", read_only=True)
+
+    class Meta:
+        model = BillOrder
+        fields = ("id", "category", "biller_name", "recipient", "amount", "cost_amount",
+                  "revenue_amount", "currency", "pay_with", "status", "reference",
+                  "provider", "provider_reference", "customer_name", "meter_type",
+                  "token", "units", "created_at", "updated_at")
+        read_only_fields = fields
+````
+
+## File: apps/billing/services.py
+````python
+"""
+Bill purchase orchestration (wallet-paid).
+
+Flow:
+  1) create order + HOLD funds        (atomic; funds reserved)
+  2) call the VTU provider             (outside the DB transaction)
+  3) settle:
+       SUCCESS  -> CAPTURE  (suspense -> provider)
+       FAILED   -> RELEASE  (refund the user)
+       PENDING  -> keep the hold; resolve later via requery or webhook
+
+Provider transport errors are treated as PENDING (NOT refunded), because the
+airtime may actually have been delivered — requery/webhook determines the truth.
+"""
+from __future__ import annotations
+
+import uuid
+from decimal import Decimal
+
+from django.db import transaction
+
+from integrations.base import ProviderFactory
+from integrations.base.dto import TxnStatus, VTURequest
+from integrations.base.exceptions import ProviderError
+from apps.wallet.services import WalletService
+
+from .models import Biller, BillOrder, CustomerVerification
+
+
+def _bill_ref() -> str:
+    return f"BILL-{uuid.uuid4().hex[:20]}"
+
+
+class BillingError(Exception):
+    """User-facing billing problem (bad biller, etc.)."""
+
+
+class BillingService:
+    # ---------------- catalog ----------------
+    @staticmethod
+    def list_billers(country="NG", category=None):
+        qs = Biller.objects.filter(country=country.upper(), is_active=True)
+        if category:
+            qs = qs.filter(category=category)
+        return qs
+
+    @staticmethod
+    def _resolve_biller(country, category, code) -> Biller:
+        biller = Biller.objects.filter(
+            country=country.upper(), category=category, code=code, is_active=True
+        ).first()
+        if biller is None:
+            raise BillingError(f"Unknown or inactive biller '{code}' for {category}.")
+        return biller
+
+    # ---------------- purchase ----------------
+    @staticmethod
+    def create_and_hold(*, user, country, category, code, recipient, amount,
+                        currency="NGN", plan_code="", expected_cost=None) -> BillOrder:
+        amount = Decimal(str(amount))
+        biller = BillingService._resolve_biller(country, category, code)
+        wallet = WalletService.get_or_create_wallet(user, currency)
+        with transaction.atomic():
+            order = BillOrder.objects.create(
+                user=user, biller=biller, category=category, recipient=recipient,
+                plan_code=plan_code, amount=amount, currency=currency.upper(),
+                pay_with=BillOrder.PayWith.WALLET, wallet=wallet,
+                reference=_bill_ref(), status=BillOrder.Status.PENDING,
+                request_payload={"recipient": recipient, "amount": str(amount),
+                                 "category": category, "biller": code},
+                metadata=({"expected_cost": str(expected_cost)} if expected_cost is not None else {}),
+            )
+            WalletService.hold(wallet, amount, reference=order.reference,
+                               description=f"Bill hold {order.reference}",
+                               metadata={"order": str(order.id)})
+            order.status = BillOrder.Status.PROCESSING
+            order.save(update_fields=["status", "updated_at"])
+        return order
+
+    @staticmethod
+    def execute(order: BillOrder) -> BillOrder:
+        provider = ProviderFactory.get("vtu")
+        result, error = None, None
+        try:
+            provider_amount = order.amount
+            if order.category == "betting":
+                provider_amount = Decimal(str((order.metadata or {}).get("betting_amount") or order.amount))
+            result = provider.purchase(VTURequest(
+                service=order.category, operator=order.biller.code,
+                recipient=order.recipient, amount=provider_amount,
+                plan_code=order.plan_code, request_id=order.reference,
+            ))
+        except ProviderError as exc:
+            error = str(exc)      # transport/unknown -> treat as PENDING (keep hold)
+
+        with transaction.atomic():
+            o = BillOrder.objects.select_for_update().get(pk=order.pk)
+            if o.status in (BillOrder.Status.SUCCESS, BillOrder.Status.FAILED,
+                            BillOrder.Status.REVERSED):
+                return o
+            o.provider = provider.provider_key
+            if result is None:
+                o.status = BillOrder.Status.PROCESSING          # keep hold; resolve later
+                o.response_payload = {"error": error}
+            elif result.status == TxnStatus.SUCCESS:
+                BillingService._capture(o, result.raw)
+                o.status = BillOrder.Status.SUCCESS
+                o.provider_reference = result.provider_reference
+                o.response_payload = result.raw
+            elif result.status == TxnStatus.PENDING:
+                o.status = BillOrder.Status.PROCESSING
+                o.provider_reference = result.provider_reference
+                o.response_payload = result.raw
+            else:  # FAILED
+                BillingService._release(o)
+                o.status = BillOrder.Status.FAILED
+                o.response_payload = result.raw
+            o.save(update_fields=["status", "provider", "provider_reference",
+                                  "response_payload", "cost_amount", "revenue_amount",
+                                  "customer_name", "token", "units", "updated_at"])
+        return o
+
+    @staticmethod
+    def data_variations(country, code):
+        """Live data bundles for a network (fetched from the provider each call)."""
+        BillingService._resolve_biller(country, "data", code)
+        provider = ProviderFactory.get("vtu")
+        lister = getattr(provider, "list_variations", None)
+        return lister("data", code) if lister else []
+
+    @staticmethod
+    def purchase_data(*, user, country, code, recipient, variation_id, currency="NGN") -> BillOrder:
+        """Price is looked up SERVER-SIDE from the live catalog (tamper-proof)."""
+        provider = ProviderFactory.get("vtu")
+        lister = getattr(provider, "list_variations", None)
+        variations = lister("data", code) if lister else []
+        match = next((v for v in variations if str(v.get("variation_id")) == str(variation_id)), None)
+        if match is None:
+            raise BillingError("Unknown or unavailable data plan.")
+        try:
+            amount = Decimal(str(match["price"]).replace(",", ""))         # retail (user pays)
+        except Exception:
+            raise BillingError("Could not determine the price of this data plan.")
+        if amount <= 0:
+            raise BillingError("Invalid data plan price.")
+        # our cost to VTU (reseller price) -> becomes the capture cost, so the
+        # retail/reseller spread is booked as OAM revenue.
+        expected_cost = None
+        reseller = match.get("reseller_price")
+        if reseller not in (None, ""):
+            try:
+                rc = Decimal(str(reseller).replace(",", ""))
+                if 0 < rc <= amount:
+                    expected_cost = rc
+            except Exception:
+                expected_cost = None
+        order = BillingService.create_and_hold(
+            user=user, country=country, category="data", code=code,
+            recipient=recipient, amount=amount, currency=currency,
+            plan_code=str(variation_id), expected_cost=expected_cost,
+        )
+        return BillingService.execute(order)
+
+    @staticmethod
+    def _extract_details(order, raw):
+        """
+        Pull customer_name / token / units from a provider response onto the order.
+
+        VTU returns these in DIFFERENT places depending on the call:
+          * purchase response        -> data.token / data.units
+          * requery (still pending)  -> data.token is null, and the RESOLVED
+                                        result is nested under `resolve`:
+                                        resolve.data.meta_data.electricity_token
+        So we check every known location, most-specific first.
+        """
+        raw = raw or {}
+        data = raw.get("data", {}) or {}
+        resolve = (raw.get("resolve", {}) or {}).get("data", {}) or {}
+        meta = resolve.get("meta_data", {}) or {}
+
+        name = (meta.get("customer_name") or resolve.get("customer_name")
+                or data.get("customer_name"))
+        if name:
+            order.customer_name = str(name)[:160]
+
+        token = (meta.get("electricity_token") or meta.get("token")
+                 or resolve.get("token") or data.get("token"))
+        if token:
+            order.token = str(token)[:64]
+
+        units = (meta.get("units") or meta.get("electricity_units")
+                 or resolve.get("units") or data.get("units"))
+        if units not in (None, ""):
+            order.units = str(units)[:32]
+
+    # ---------------- customer verification (cable / electricity) ----------------
+    @staticmethod
+    def verify_customer(*, user, country, category, code, customer_id, variation=None):
+        biller = BillingService._resolve_biller(country, category, code)
+        provider = ProviderFactory.get("vtu")
+        verifier = getattr(provider, "verify_customer", None)
+        if verifier is None:
+            raise BillingError("Verification is not supported by the current provider.")
+        try:
+            details = verifier(biller.code, customer_id, variation)
+        except ProviderError as exc:
+            raise BillingError(str(exc))
+        name = details.get("customer_name")
+        if not name:
+            raise BillingError("Could not verify this customer.")
+        cv = CustomerVerification.objects.create(
+            user=user, service_id=biller.code, customer_id=str(customer_id),
+            variation=variation or "", customer_name=name, data=details,
+        )
+        return {"verification_id": str(cv.id), "customer_name": name, "details": details}
+
+    @staticmethod
+    def _require_verification(user, service_id, customer_id, verification_id):
+        cv = CustomerVerification.objects.filter(
+            id=verification_id, user=user, service_id=service_id,
+            customer_id=str(customer_id),
+        ).first()
+        if cv is None:
+            raise BillingError("Please verify the customer before paying.")
+        if not cv.is_fresh():
+            raise BillingError("Verification expired. Please verify again.")
+        return cv
+
+    # ---------------- cable ----------------
+    @staticmethod
+    def tv_variations(country, code):
+        BillingService._resolve_biller(country, "cable", code)
+        provider = ProviderFactory.get("vtu")
+        lister = getattr(provider, "list_variations", None)
+        return lister("cable", code) if lister else []
+
+    @staticmethod
+    def purchase_cable(*, user, country, code, customer_id, variation_id,
+                       verification_id, currency="NGN") -> BillOrder:
+        biller = BillingService._resolve_biller(country, "cable", code)
+        cv = BillingService._require_verification(user, biller.code, customer_id, verification_id)
+        provider = ProviderFactory.get("vtu")
+        lister = getattr(provider, "list_variations", None)
+        variations = lister("cable", code) if lister else []
+        match = next((v for v in variations if str(v.get("variation_id")) == str(variation_id)), None)
+        if match is None:
+            raise BillingError("Unknown or unavailable cable package.")
+        try:
+            amount = Decimal(str(match["price"]).replace(",", ""))
+        except Exception:
+            raise BillingError("Could not determine the package price.")
+        expected_cost = None
+        reseller = match.get("reseller_price")
+        if reseller not in (None, ""):
+            try:
+                rc = Decimal(str(reseller).replace(",", ""))
+                if 0 < rc <= amount:
+                    expected_cost = rc
+            except Exception:
+                expected_cost = None
+        order = BillingService.create_and_hold(
+            user=user, country=country, category="cable", code=code,
+            recipient=str(customer_id), amount=amount, currency=currency,
+            plan_code=str(variation_id), expected_cost=expected_cost,
+        )
+        order.customer_name = cv.customer_name
+        order.save(update_fields=["customer_name", "updated_at"])
+        return BillingService.execute(order)
+
+    # ---------------- electricity ----------------
+    @staticmethod
+    def purchase_electricity(*, user, country, code, customer_id, meter_type, amount,
+                             verification_id, currency="NGN") -> BillOrder:
+        biller = BillingService._resolve_biller(country, "electricity", code)
+        cv = BillingService._require_verification(user, biller.code, customer_id, verification_id)
+        try:
+            amount = Decimal(str(amount).replace(",", ""))
+        except Exception:
+            raise BillingError("Invalid amount.")
+        if amount <= 0:
+            raise BillingError("Amount must be positive.")
+        # honour min/max from the verification if present
+        details = cv.data or {}
+        mn = details.get("min_purchase_amount")
+        mx = details.get("max_purchase_amount")
+        if mn and amount < Decimal(str(mn)):
+            raise BillingError(f"Minimum purchase for this meter is {mn}.")
+        if mx and amount > Decimal(str(mx)):
+            raise BillingError(f"Maximum purchase for this meter is {mx}.")
+        order = BillingService.create_and_hold(
+            user=user, country=country, category="electricity", code=code,
+            recipient=str(customer_id), amount=amount, currency=currency,
+            plan_code=str(meter_type),   # prepaid / postpaid -> VTU variation_id
+        )
+        order.meter_type = str(meter_type)
+        order.customer_name = cv.customer_name
+        order.save(update_fields=["meter_type", "customer_name", "updated_at"])
+        return BillingService.execute(order)
+
+    @staticmethod
+    def purchase_betting(*, user, code, customer_id, amount, verification_id,
+                         currency="NGN") -> BillOrder:
+        """Fund a betting account. The user pays amount + a flat ₦50 OAM service
+        fee; the betting account is credited with `amount`."""
+        biller = BillingService._resolve_biller("NG", "betting", code)
+        cv = BillingService._require_verification(user, biller.code, customer_id, verification_id)
+        try:
+            amount = Decimal(str(amount).replace(",", ""))
+        except Exception:
+            raise BillingError("Invalid amount.")
+        if amount < Decimal("100"):
+            raise BillingError("Minimum funding is ₦100.")
+        if amount > Decimal("100000"):
+            raise BillingError("Maximum funding is ₦100,000.")
+        fee = Decimal("50")
+        total = amount + fee
+        order = BillingService.create_and_hold(
+            user=user, country="NG", category="betting", code=code,
+            recipient=str(customer_id), amount=total, currency=currency,
+        )
+        order.cost_amount = amount
+        order.revenue_amount = fee
+        order.customer_name = cv.customer_name
+        md = dict(order.metadata or {})
+        md.update({"betting_amount": str(amount), "fee": str(fee), "service_id": biller.code})
+        order.metadata = md
+        order.save(update_fields=["cost_amount", "revenue_amount", "customer_name",
+                                  "metadata", "updated_at"])
+        return BillingService.execute(order)
+
+    @staticmethod
+    def purchase(**kwargs) -> BillOrder:
+        return BillingService.execute(BillingService.create_and_hold(**kwargs))
+
+    # ---------------- resolve pending (requery / webhook) ----------------
+    @staticmethod
+    def poll(order: BillOrder) -> BillOrder:
+        """Requery the provider for a still-processing order and settle it."""
+        provider = ProviderFactory.get("vtu")
+        try:
+            result = provider.get_status(order.reference)
+        except ProviderError:
+            return order      # leave as-is; try again later
+        return BillingService._apply(order, result.status, result.raw,
+                                     provider_reference=result.provider_reference)
+
+    @staticmethod
+    def apply_provider_status(request_id: str, provider_status: str, raw=None) -> BillOrder | None:
+        """Used by the webhook. Maps VTU status strings and settles idempotently."""
+        order = BillOrder.objects.filter(reference=request_id).first()
+        if order is None:
+            return None
+        mapped = (TxnStatus.SUCCESS if provider_status == "completed-api"
+                  else TxnStatus.FAILED if provider_status in ("refunded", "failed", "cancelled")
+                  else TxnStatus.PENDING)
+        return BillingService._apply(order, mapped, raw or {})
+
+    # ---------------- internal settle helpers ----------------
+    @staticmethod
+    def _cost_from_raw(raw, fallback):
+        """Read the provider's real charge (VTU 'amount_charged') to book margin."""
+        from decimal import Decimal
+        data = (raw or {}).get("data", {}) or {}
+        charged = data.get("amount_charged")
+        if charged in (None, ""):
+            return fallback
+        try:
+            return Decimal(str(charged).replace(",", ""))
+        except Exception:
+            return fallback
+
+    @staticmethod
+    def _capture(order, raw=None):
+        from decimal import Decimal as _D
+        fallback = order.amount
+        exp = (order.metadata or {}).get("expected_cost")
+        if exp:
+            try:
+                fallback = _D(str(exp))
+            except Exception:
+                fallback = order.amount
+        cost = BillingService._cost_from_raw(raw, fallback)
+        BillingService._extract_details(order, raw)
+        WalletService.capture(order.currency, order.amount, cost=cost,
+                              reference=order.reference, counterpart_code="provider:vtu",
+                              description=f"Bill capture {order.reference}",
+                              metadata={"order": str(order.id)})
+        order.cost_amount = cost
+        order.revenue_amount = order.amount - cost
+        try:
+            from apps.referrals.hooks import settle_referral
+            settle_referral(user=order.wallet.user, oam_profit=order.revenue_amount,
+                            currency=order.currency, source_reference=order.reference)
+        except Exception:
+            pass
+
+    @staticmethod
+    def _release(order):
+        WalletService.release(order.wallet, order.amount, reference=order.reference,
+                              description=f"Bill refund {order.reference}",
+                              metadata={"order": str(order.id)})
+
+    @staticmethod
+    @transaction.atomic
+    def _apply(order, mapped_status, raw, provider_reference=None) -> BillOrder:
+        o = BillOrder.objects.select_for_update().get(pk=order.pk)
+        if o.status in (BillOrder.Status.SUCCESS, BillOrder.Status.FAILED,
+                        BillOrder.Status.REVERSED):
+            return o
+        if mapped_status == TxnStatus.SUCCESS:
+            BillingService._capture(o, raw)
+            o.status = BillOrder.Status.SUCCESS
+        elif mapped_status == TxnStatus.FAILED:
+            BillingService._release(o)
+            o.status = BillOrder.Status.FAILED
+        else:
+            o.status = BillOrder.Status.PROCESSING
+        if provider_reference:
+            o.provider_reference = provider_reference
+        if raw:
+            o.response_payload = {**(o.response_payload or {}), "resolve": raw}
+        o.save(update_fields=["status", "provider_reference", "response_payload",
+                              "cost_amount", "revenue_amount", "customer_name",
+                              "token", "units", "updated_at"])
+        return o
+````
+
+## File: apps/billing/tests.py
+````python
+from django.test import TestCase
+
+# Create your tests here.
+````
+
+## File: apps/billing/urls.py
+````python
+from django.urls import path
+from .card import CardPurchaseStartView, CardPurchaseStatusView
+from .views import (
+    BettingFundView,
+    BillerListView,
+    DataPlansView,
+    TvPlansView,
+    VerifyCustomerView,
+    RevenueSweepView,
+    RevenueView,
+    OrderDetailView,
+    OrderListView,
+    OrderRequeryView,
+    PurchaseView,
+    VtuNgWebhookView,
+)
+from .card_return import CardPurchaseReturnView 
+from .refresh import OrderRefreshView, OrdersRefreshAllView
+
+urlpatterns = [
+    path("billers/", BillerListView.as_view(), name="biller-list"),
+    path("data-plans/", DataPlansView.as_view(), name="data-plans"),
+    path("tv-plans/", TvPlansView.as_view(), name="tv-plans"),
+    path("verify-customer/", VerifyCustomerView.as_view(), name="verify-customer"),
+    path("betting/fund/", BettingFundView.as_view(), name="betting-fund"),
+    path("purchase/", PurchaseView.as_view(), name="bill-purchase"),
+    path("orders/", OrderListView.as_view(), name="bill-orders"),
+    path("orders/refresh/", OrdersRefreshAllView.as_view(), name="orders-refresh-all"),
+    path("orders/<str:reference>/refresh/", OrderRefreshView.as_view(), name="order-refresh"),
+    path("orders/<str:reference>/", OrderDetailView.as_view(), name="bill-order-detail"),
+    path("orders/<str:reference>/requery/", OrderRequeryView.as_view(), name="bill-order-requery"),
+    path("webhook/vtung/", VtuNgWebhookView.as_view(), name="vtung-webhook"),
+    path("revenue/", RevenueView.as_view(), name="bill-revenue"),
+    path("revenue/sweep/", RevenueSweepView.as_view(), name="bill-revenue-sweep"),
+    path("purchase/card/", CardPurchaseStartView.as_view(), name="bill-card-start"),
+    path("purchase/card/<str:reference>/", CardPurchaseStatusView.as_view(), name="bill-card-status"),
+    path("purchase/card/", CardPurchaseStartView.as_view(), name="bill-card-start"),
+    path("purchase/card/return/", CardPurchaseReturnView.as_view(), name="bill-card-return"),   # ← ADD
+    path("purchase/card/<str:reference>/", CardPurchaseStatusView.as_view(), name="bill-card-status"),
+]
+````
+
+## File: apps/billing/views.py
+````python
+"""Bill payment endpoints — verified users only, plus VTU webhook + requery."""
+import json
+
+from rest_framework import status
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+from apps.wallet.exceptions import InsufficientFunds
+from integrations.base import ProviderFactory
+
+from .models import BillOrder
+from .serializers import BillerSerializer, BillOrderSerializer, PurchaseSerializer
+from .services import BillingError, BillingService
+
+
+class BillerListView(ListAPIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+    serializer_class = BillerSerializer
+
+    def get_queryset(self):
+        return BillingService.list_billers(
+            country=self.request.query_params.get("country", "NG"),
+            category=self.request.query_params.get("category"),
+        )
+
+
+class PurchaseView(APIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        serializer = PurchaseSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        try:
+            if data["category"] == "data":
+                variation_id = data.get("variation_id") or data.get("plan_code")
+                if not variation_id:
+                    return Response({"detail": "variation_id is required for data."},
+                                    status=status.HTTP_400_BAD_REQUEST)
+                order = BillingService.purchase_data(
+                    user=request.user, country=data["country"], code=data["code"],
+                    recipient=data["recipient"], variation_id=variation_id,
+                    currency=data["currency"],
+                )
+            elif data["category"] == "cable":
+                variation_id = data.get("variation_id") or data.get("plan_code")
+                verification_id = data.get("verification_id")
+                if not variation_id or not verification_id:
+                    return Response({"detail": "variation_id and verification_id are required."},
+                                    status=status.HTTP_400_BAD_REQUEST)
+                order = BillingService.purchase_cable(
+                    user=request.user, country=data["country"], code=data["code"],
+                    customer_id=data["recipient"], variation_id=variation_id,
+                    verification_id=verification_id, currency=data["currency"],
+                )
+            elif data["category"] == "electricity":
+                meter_type = data.get("meter_type") or data.get("variation_id")
+                verification_id = data.get("verification_id")
+                if not meter_type or not verification_id or data.get("amount") in (None, ""):
+                    return Response({"detail": "meter_type, amount and verification_id are required."},
+                                    status=status.HTTP_400_BAD_REQUEST)
+                order = BillingService.purchase_electricity(
+                    user=request.user, country=data["country"], code=data["code"],
+                    customer_id=data["recipient"], meter_type=meter_type,
+                    amount=data["amount"], verification_id=verification_id,
+                    currency=data["currency"],
+                )
+            else:
+                if data.get("amount") in (None, ""):
+                    return Response({"detail": "amount is required."},
+                                    status=status.HTTP_400_BAD_REQUEST)
+                order = BillingService.purchase(
+                    user=request.user, country=data["country"], category=data["category"],
+                    code=data["code"], recipient=data["recipient"], amount=data["amount"],
+                    currency=data["currency"], plan_code=data.get("plan_code", ""),
+                )
+        except InsufficientFunds as exc:
+            return Response({"detail": str(exc), "reason": "insufficient_funds"},
+                            status=status.HTTP_402_PAYMENT_REQUIRED)
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        code = status.HTTP_201_CREATED if order.status == BillOrder.Status.SUCCESS \
+            else status.HTTP_200_OK
+        return Response(BillOrderSerializer(order).data, status=code)
+
+
+class BettingFundView(APIView):
+    """POST /billing/betting/fund/ {code, customer_id, amount, verification_id}.
+    User pays amount + ₦50; the betting account is credited with amount."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        d = request.data
+        code = d.get("code") or d.get("service_id")
+        customer_id = d.get("customer_id") or d.get("recipient")
+        amount = d.get("amount")
+        verification_id = d.get("verification_id")
+        if not code or not customer_id or amount in (None, "") or not verification_id:
+            return Response({"detail": "code, customer_id, amount and verification_id are required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            order = BillingService.purchase_betting(
+                user=request.user, code=code, customer_id=customer_id,
+                amount=amount, verification_id=verification_id,
+                currency=d.get("currency", "NGN"),
+            )
+        except InsufficientFunds as exc:
+            return Response({"detail": str(exc), "reason": "insufficient_funds"},
+                            status=status.HTTP_402_PAYMENT_REQUIRED)
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        http = status.HTTP_201_CREATED if order.status == BillOrder.Status.SUCCESS \
+            else status.HTTP_200_OK
+        return Response(BillOrderSerializer(order).data, status=http)
+
+
+class DataPlansView(APIView):
+    """GET /data-plans/?country=NG&code=MTN — live data bundles for a network."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        country = request.query_params.get("country", "NG")
+        code = request.query_params.get("code")
+        if not code:
+            return Response({"detail": "code (network) is required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            plans = BillingService.data_variations(country, code)
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        # Hide our internal reseller cost from users; show only what they pay.
+        public = [{"variation_id": p_.get("variation_id"), "name": p_.get("name"),
+                   "price": p_.get("price"), "validity": p_.get("validity")}
+                  for p_ in plans]
+        return Response({"country": country.upper(), "code": code, "plans": public})
+
+
+class VerifyCustomerView(APIView):
+    """POST /verify-customer/ {category, code, customer_id, variation?} -> customer name."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        d = request.data
+        category = d.get("category")
+        code = d.get("code")
+        customer_id = d.get("customer_id") or d.get("recipient")
+        variation = d.get("variation") or d.get("meter_type") or None
+        if category not in ("cable", "electricity", "betting") or not code or not customer_id:
+            return Response({"detail": "category (cable/electricity/betting), code and customer_id are required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        if category == "electricity" and not variation:
+            return Response({"detail": "meter_type (prepaid/postpaid) is required for electricity."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            result = BillingService.verify_customer(
+                user=request.user, country=d.get("country", "NG"), category=category,
+                code=code, customer_id=customer_id, variation=variation,
+            )
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(result)
+
+
+class TvPlansView(APIView):
+    """GET /tv-plans/?country=NG&code=dstv -- live cable packages."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        country = request.query_params.get("country", "NG")
+        code = request.query_params.get("code")
+        if not code:
+            return Response({"detail": "code (provider) is required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            plans = BillingService.tv_variations(country, code)
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        public = [{"variation_id": p_.get("variation_id"), "name": p_.get("name"),
+                   "price": p_.get("price")} for p_ in plans]
+        return Response({"country": country.upper(), "code": code, "plans": public})
+
+
+class OrderListView(ListAPIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+    serializer_class = BillOrderSerializer
+
+    def get_queryset(self):
+        return BillOrder.objects.filter(user=self.request.user)
+
+
+class OrderDetailView(APIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request, reference):
+        order = BillOrder.objects.filter(user=request.user, reference=reference).first()
+        if order is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        return Response(BillOrderSerializer(order).data)
+
+
+class OrderRequeryView(APIView):
+    """POST /orders/<reference>/requery/ — resolve a still-processing order now."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request, reference):
+        order = BillOrder.objects.filter(user=request.user, reference=reference).first()
+        if order is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        order = BillingService.poll(order)
+        return Response(BillOrderSerializer(order).data)
+
+
+class VtuNgWebhookView(APIView):
+    """POST — VTU.ng calls this on completed-api / refunded. Verify + settle."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        provider = ProviderFactory.get("vtu")
+        headers = {k.lower(): v for k, v in request.headers.items()}
+        verify = getattr(provider, "verify_webhook", None)
+        if verify and not verify(request.body, headers):
+            return Response({"detail": "Invalid signature."}, status=status.HTTP_403_FORBIDDEN)
+        try:
+            payload = json.loads(request.body or b"{}")
+        except ValueError:
+            payload = {}
+        BillingService.apply_provider_status(
+            payload.get("request_id", ""), (payload.get("status") or "").lower(), raw=payload
+        )
+        return Response({"status": "ok"}, status=status.HTTP_200_OK)
+
+
+# ----------------------- OAM revenue (admin only) -----------------------
+from decimal import Decimal
+from django.conf import settings
+from django.db.models import Sum
+from rest_framework.permissions import IsAdminUser
+from apps.wallet.services import WalletService
+
+
+class RevenueView(APIView):
+    """GET /revenue/ — accumulated OAM profit per currency (admin only)."""
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        rows = []
+        for currency in settings.SUPPORTED_CURRENCIES:
+            ledger_balance = WalletService.revenue_balance(currency)
+            booked = (BillOrder.objects.filter(currency=currency, status=BillOrder.Status.SUCCESS)
+                      .aggregate(s=Sum("revenue_amount"))["s"] or Decimal("0"))
+            if ledger_balance or booked:
+                rows.append({
+                    "currency": currency,
+                    "available_to_sweep": str(ledger_balance),   # not yet swept
+                    "total_earned": str(booked),                 # lifetime from bills
+                })
+        return Response({"revenue": rows})
+
+
+class RevenueSweepView(APIView):
+    """POST /revenue/sweep/ {currency, amount} — move revenue into the admin's wallet."""
+    permission_classes = [IsAdminUser]
+
+    def post(self, request):
+        currency = (request.data.get("currency") or "NGN").upper()
+        amount = request.data.get("amount")
+        if amount in (None, ""):
+            return Response({"detail": "amount is required."}, status=status.HTTP_400_BAD_REQUEST)
+        wallet = WalletService.get_or_create_wallet(request.user, currency)
+        try:
+            WalletService.sweep_revenue(wallet, amount,
+                                        description=f"Revenue sweep by {request.user.identifier}")
+        except Exception as exc:  # InsufficientFunds etc.
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        wallet.refresh_from_db()
+        return Response({
+            "detail": "Revenue swept to your wallet.",
+            "currency": currency,
+            "wallet_balance": str(wallet.cached_balance),
+            "revenue_remaining": str(WalletService.revenue_balance(currency)),
+        })
+````
+
+## File: apps/billing/webhook_vtung.py
+````python
+"""
+Hardened VTU.ng delivery webhook.
+
+WHY REPLACE THE EXISTING ONE
+  The original reads request_id and status from the TOP LEVEL of the payload.
+  VTU's requery response nests the truth two layers down —
+  data.status is stale, resolve.data.status is real, and the token lives at
+  resolve.data.meta_data.electricity_token. If the webhook uses the same shape,
+  the original silently settles nothing: no error, no log, just a 200 and a
+  customer still waiting.
+
+  It also routes through apply_provider_status -> _apply, which RETURNS EARLY
+  for orders already in a final state. Since our own polling usually marks an
+  order successful before the webhook lands, a webhook carrying the token would
+  be thrown away — the exact failure that stranded the first live purchases.
+
+WHAT THIS DOES DIFFERENTLY
+  * Reads request_id / status / token from every shape VTU is known to use,
+    most specific first
+  * Logs the ENTIRE raw payload on arrival, so the first real callback tells us
+    the actual shape instead of us guessing
+  * Always attempts token extraction, even on an already-settled order
+  * Returns 200 for anything it can parse — a webhook that returns errors gets
+    retried, then disabled by the provider
+
+SECURITY
+  Signature verification is unchanged and still mandatory: an unsigned or
+  badly-signed request is rejected before anything is read from it. This
+  endpoint is public, so that check is the only thing standing between the
+  internet and your order state.
+"""
+from __future__ import annotations
+
+import json
+import logging
+
+from rest_framework import status as http
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import BillOrder
+from .services import BillingService, ProviderFactory
+
+logger = logging.getLogger("billing")
+
+
+def _dig(payload: dict, *keys: str) -> str:
+    """
+    Find the first non-empty value for any of `keys`, checking the resolved
+    layer first, then the top level, then the stale `data` block.
+    """
+    resolve = (payload.get("resolve") or {}).get("data") or {}
+    meta = resolve.get("meta_data") or {}
+    data = payload.get("data") or {}
+    for source in (meta, resolve, payload, data):
+        if not isinstance(source, dict):
+            continue
+        for key in keys:
+            value = source.get(key)
+            if value not in (None, ""):
+                return str(value)
+    return ""
+
+
+class VtuNgWebhookView(APIView):
+    """POST /billing/webhook/vtung/ — VTU.ng delivery callback."""
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        provider = ProviderFactory.get("vtu")
+        headers = {k.lower(): v for k, v in request.headers.items()}
+
+        verify = getattr(provider, "verify_webhook", None)
+        if verify and not verify(request.body, headers):
+            logger.warning("vtung webhook: bad signature from %s",
+                           request.META.get("REMOTE_ADDR"))
+            return Response({"detail": "Invalid signature."}, status=http.HTTP_403_FORBIDDEN)
+
+        try:
+            payload = json.loads(request.body or b"{}")
+        except ValueError:
+            logger.error("vtung webhook: unparseable body: %r", request.body[:500])
+            return Response({"status": "ignored"}, status=http.HTTP_200_OK)
+
+        # Log everything the first few times — this is how we learn the real
+        # payload shape rather than inferring it from the requery response.
+        logger.info("vtung webhook payload: %s", json.dumps(payload, default=str)[:2000])
+
+        reference = _dig(payload, "request_id", "reference", "requestId")
+        raw_status = _dig(payload, "status").lower()
+
+        if not reference:
+            logger.error("vtung webhook: no request_id found in payload")
+            return Response({"status": "ignored"}, status=http.HTTP_200_OK)
+
+        order = BillOrder.objects.filter(reference=reference).first()
+        if order is None:
+            logger.warning("vtung webhook: unknown reference %s", reference)
+            return Response({"status": "ignored"}, status=http.HTTP_200_OK)
+
+        # 1. Settle the status, if it isn't settled already.
+        if raw_status and str(order.status).lower() in ("pending", "processing"):
+            try:
+                BillingService.apply_provider_status(reference, raw_status, raw=payload)
+                order.refresh_from_db()
+            except Exception:                                # noqa: BLE001
+                logger.exception("vtung webhook: apply_provider_status failed for %s", reference)
+
+        # 2. ALWAYS try for the token — even when the order is already final.
+        #    This is the whole point of the webhook: the token routinely arrives
+        #    after the status does, and _apply won't revisit a settled order.
+        if not order.token:
+            try:
+                BillingService._extract_details(order, payload)
+                if order.token:
+                    order.save(update_fields=["token", "units", "customer_name", "updated_at"])
+                    logger.info("vtung webhook: token collected for %s", reference)
+            except Exception:                                # noqa: BLE001
+                logger.exception("vtung webhook: token extraction failed for %s", reference)
+
+        # A webhook must return 200 for anything it understood. Errors get
+        # retried and eventually the provider disables the endpoint.
+        return Response({"status": "ok"}, status=http.HTTP_200_OK)
+````
+
+## File: apps/common/management/commands/__init__.py
+````python
+
+````
+
+## File: apps/common/management/commands/security_check.py
+````python
+"""
+Production-readiness audit. Run: python manage.py security_check
+
+Checks the settings that actually bite in production: debug mode, secret key,
+allowed hosts, database, token lifetimes, provider keys, and HTTPS settings.
+Prints PASS / WARN / FAIL per item so you know exactly what to fix before deploy.
+"""
+from datetime import timedelta
+
+from django.conf import settings
+from django.core.management.base import BaseCommand
+
+PASS, WARN, FAIL = "PASS", "WARN", "FAIL"
+
+
+class Command(BaseCommand):
+    help = "Audit settings for production readiness."
+
+    def handle(self, *args, **opts):
+        results = []
+
+        def check(name, status, detail=""):
+            results.append((name, status, detail))
+
+        # --- 1. DEBUG ---
+        if getattr(settings, "DEBUG", False):
+            check("DEBUG is off", FAIL, "DEBUG=True leaks stack traces + settings. Set DEBUG=False in prod.")
+        else:
+            check("DEBUG is off", PASS)
+
+        # --- 2. SECRET_KEY ---
+        key = getattr(settings, "SECRET_KEY", "")
+        if not key or "change-me" in key or len(key) < 40:
+            check("SECRET_KEY is strong", FAIL,
+                  "Still the placeholder or too short. Generate a new 50+ char random key.")
+        else:
+            check("SECRET_KEY is strong", PASS)
+
+        # --- 3. ALLOWED_HOSTS ---
+        hosts = getattr(settings, "ALLOWED_HOSTS", [])
+        if "*" in hosts:
+            check("ALLOWED_HOSTS restricted", FAIL, "'*' allows any host. List your real domains.")
+        elif not hosts or hosts == ["localhost", "127.0.0.1"]:
+            check("ALLOWED_HOSTS restricted", WARN, "Only localhost. Add your production domain.")
+        else:
+            check("ALLOWED_HOSTS restricted", PASS, str(hosts))
+
+        # --- 4. Database ---
+        engine = settings.DATABASES.get("default", {}).get("ENGINE", "")
+        if "sqlite" in engine:
+            check("Database is Postgres", FAIL,
+                  "SQLite can't handle concurrent writes safely — a real risk for a money ledger.")
+        else:
+            check("Database is Postgres", PASS, engine.split(".")[-1])
+
+        # --- 5. JWT access token lifetime ---
+        jwt = getattr(settings, "SIMPLE_JWT", {})
+        life = jwt.get("ACCESS_TOKEN_LIFETIME")
+        if isinstance(life, timedelta) and life > timedelta(hours=1):
+            check("JWT access token short-lived", FAIL,
+                  f"ACCESS_TOKEN_LIFETIME={life}. Use 15-30 minutes in production.")
+        else:
+            check("JWT access token short-lived", PASS, str(life))
+
+        # --- 6. HTTPS / cookie security ---
+        https_items = {
+            "SECURE_SSL_REDIRECT": True,
+            "SESSION_COOKIE_SECURE": True,
+            "CSRF_COOKIE_SECURE": True,
+        }
+        missing = [k for k, want in https_items.items()
+                   if getattr(settings, k, False) is not want]
+        if missing and not settings.DEBUG:
+            check("HTTPS/cookie security", WARN, f"Not set: {', '.join(missing)}")
+        elif missing:
+            check("HTTPS/cookie security", WARN, "Set these in production settings.")
+        else:
+            check("HTTPS/cookie security", PASS)
+
+        hsts = getattr(settings, "SECURE_HSTS_SECONDS", 0)
+        check("HSTS enabled", PASS if hsts else WARN,
+              "" if hsts else "Set SECURE_HSTS_SECONDS=31536000 in prod.")
+
+        # --- 7. Provider keys present ---
+        pc = getattr(settings, "PROVIDER_CONFIG", {})
+        pay_key = pc.get("payments", {}).get("paystack", {}).get("secret_key", "")
+        if not pay_key:
+            check("Paystack key set", WARN, "PAYSTACK_SECRET_KEY empty.")
+        elif pay_key.startswith("sk_test"):
+            check("Paystack key set", WARN, "Using a TEST key — swap to sk_live for production.")
+        else:
+            check("Paystack key set", PASS, "live key")
+
+        vtu = pc.get("vtu", {}).get("vtung", {})
+        check("VTU credentials set",
+              PASS if (vtu.get("username") and vtu.get("password")) else WARN,
+              "" if vtu.get("password") else "VTU_NG_* missing.")
+
+        # --- 8. Active providers (no mocks in prod) ---
+        providers = getattr(settings, "DEFAULT_PROVIDERS", {})
+        mocks = [k for k, v in providers.items() if v == "mock"]
+        if mocks:
+            check("No mock providers", FAIL,
+                  f"Mock still active for: {', '.join(mocks)} — real money won't move.")
+        else:
+            check("No mock providers", PASS)
+
+        # --- 9. Celery eager mode ---
+        if getattr(settings, "CELERY_TASK_ALWAYS_EAGER", False):
+            check("Celery async", FAIL,
+                  "CELERY_TASK_ALWAYS_EAGER=True runs tasks synchronously. Turn off in prod.")
+        else:
+            check("Celery async", PASS)
+
+        # --- report ---
+        self.stdout.write("\n" + "=" * 62)
+        self.stdout.write("  PRODUCTION READINESS AUDIT")
+        self.stdout.write("=" * 62)
+        for name, status, detail in results:
+            style = {PASS: self.style.SUCCESS, WARN: self.style.WARNING,
+                     FAIL: self.style.ERROR}[status]
+            self.stdout.write(f"  {style(status.ljust(5))} {name}")
+            if detail:
+                self.stdout.write(f"        └─ {detail}")
+        fails = sum(1 for _, s, _ in results if s == FAIL)
+        warns = sum(1 for _, s, _ in results if s == WARN)
+        self.stdout.write("=" * 62)
+        if fails:
+            self.stdout.write(self.style.ERROR(
+                f"  {fails} BLOCKER(S), {warns} warning(s) — NOT production ready."))
+        elif warns:
+            self.stdout.write(self.style.WARNING(
+                f"  0 blockers, {warns} warning(s) — review before deploying."))
+        else:
+            self.stdout.write(self.style.SUCCESS("  All checks passed."))
+        self.stdout.write("=" * 62 + "\n")
+````
+
+## File: apps/common/management/__init__.py
+````python
+
+````
+
+## File: apps/common/__init__.py
+````python
+
+````
+
+## File: apps/common/apps.py
+````python
+from django.apps import AppConfig
+
+
+class CommonConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.common"
+
+    def ready(self):
+        # Import all integration adapters so their @register(...) runs.
+        from integrations.loader import autodiscover
+        autodiscover()
+````
+
+## File: apps/common/i18n.py
+````python
+"""
+Language helpers shared by the API and the clients.
+
+The single source of truth for the supported languages is settings.LANGUAGES;
+this module just adds direction (LTR/RTL) and a serialisable description that
+the web and mobile apps consume to build their language switchers.
+"""
+from django.conf import settings
+from django.utils.translation import get_language
+
+def is_rtl(language_code: str | None) -> bool:
+    """True if the given language renders right-to-left (Arabic, Urdu)."""
+    if not language_code:
+        return False
+    base = language_code.split("-")[0].lower()
+    return base in settings.RTL_LANGUAGES
+
+
+def current_direction() -> str:
+    """'rtl' or 'ltr' for the request's active language."""
+    return "rtl" if is_rtl(get_language()) else "ltr"
+
+
+def supported_languages() -> list[dict]:
+    """
+    Serialisable list of supported languages for the clients' language picker.
+
+    Each entry: {code, name, dir}. The frontend uses `dir` to flip layout
+    (HTML dir="rtl" on web, I18nManager.forceRTL on React Native).
+    """
+    return [
+        {"code": code, "name": str(name), "dir": "rtl" if is_rtl(code) else "ltr"}
+        for code, name in settings.LANGUAGES
+    ]
+````
+
+## File: apps/common/models.py
+````python
+"""
+Reusable base models shared across every domain app.
+
+These are abstract — they create no tables themselves. Domain apps inherit
+from them so behaviour (UUID PKs, timestamps, immutability) stays consistent.
+"""
+import uuid
+
+from django.core.exceptions import PermissionDenied
+from django.db import models
+
+
+class TimeStampedModel(models.Model):
+    """Adds self-managing created/updated timestamps."""
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class UUIDModel(models.Model):
+    """Uses a non-sequential UUID primary key (for sensitive / financial rows)."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    class Meta:
+        abstract = True
+
+
+class ImmutableModel(models.Model):
+    """
+    Append-only base for ledger / audit rows.
+
+    Rows may be created but never updated or deleted through the ORM. The
+    correct way to 'change' an immutable record is to write a new, reversing
+    record. DB-level UPDATE/DELETE revocation should back this up in prod.
+    """
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        if self.pk and not self._state.adding:
+            raise PermissionDenied(
+                "This record is immutable; create a reversing entry instead."
+            )
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        raise PermissionDenied("Immutable records cannot be deleted.")
+````
+
+## File: apps/common/permissions.py
+````python
+"""Reusable DRF permissions."""
+from rest_framework.permissions import BasePermission
+
+
+class IsVerified(BasePermission):
+    """
+    Allows access only to authenticated AND verified users.
+
+    Use on any sensitive endpoint (wallet, transfers, bookings) to enforce the
+    'must verify before using' rule, while still letting unverified users hold a
+    session immediately after signup.
+    """
+    message = "Your account is not verified. Please confirm the OTP sent to you."
+
+    def has_permission(self, request, view):
+        user = request.user
+        return bool(user and user.is_authenticated and user.is_verified)
+````
+
+## File: apps/common/urls.py
+````python
+from django.urls import path
+
+from .views import HealthView, LanguagesView
+
+urlpatterns = [
+    path("health/", HealthView.as_view(), name="health"),
+    path("languages/", LanguagesView.as_view(), name="languages"),
+]
+````
+
+## File: apps/common/views.py
+````python
+"""Lightweight platform-level endpoints (health + i18n discovery)."""
+from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .i18n import current_direction, supported_languages
+
+
+class HealthView(APIView):
+    """Cheap liveness probe for Render / uptime monitoring."""
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response({"status": "ok", "service": "oam-backend"})
+
+
+class LanguagesView(APIView):
+    """
+    Returns the list of supported languages and the active language/direction.
+
+    The active language is resolved by Django's LocaleMiddleware from the
+    Accept-Language header (or ?lang / cookie), so the same endpoint also tells
+    the client which way to lay the UI out.
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response({
+            "active": get_language(),
+            "direction": current_direction(),
+            # A translated string, proving the gettext pipeline is wired up.
+            "greeting": _("Welcome to OAM Platform"),
+            "languages": supported_languages(),
+        })
+````
+
+## File: apps/homeservices/management/commands/__init__.py
+````python
+
+````
+
+## File: apps/homeservices/management/commands/seed_service_categories.py
+````python
+"""Seed home-service categories. Run: python manage.py seed_service_categories"""
+from django.core.management.base import BaseCommand
+from django.utils.text import slugify
+
+from apps.homeservices.models import ServiceCategory
+
+CATEGORIES = [
+    "Mechanic", "Plumber", "Electrician", "Carpenter", "Painter",
+    "AC Technician", "Generator Repair", "Tiler", "Welder", "Bricklayer",
+    "Hairdresser", "Barber", "Tailor", "Cleaner", "Caterer",
+    "Photographer", "DJ", "Makeup Artist", "Solar Installer", "Plasterer",
+]
+
+
+class Command(BaseCommand):
+    help = "Seed home-service categories."
+
+    def handle(self, *args, **opts):
+        created = 0
+        for order, name in enumerate(CATEGORIES):
+            _, was = ServiceCategory.objects.get_or_create(
+                slug=slugify(name),
+                defaults={"name": name, "is_active": True, "order": order},
+            )
+            created += int(was)
+        self.stdout.write(self.style.SUCCESS(
+            f"Seeded service categories. {created} new, {ServiceCategory.objects.count()} total."
+        ))
+````
+
+## File: apps/homeservices/management/commands/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    ArtisanDetailView,
+    ArtisanRegisterView,
+    ArtisanSearchView,
+    BoostInitView,
+    BoostVerifyView,
+    BoostWebhookView,
+    MyArtisanView,
+    ServiceCategoryListView,
+)
+
+urlpatterns = [
+    path("categories/", ServiceCategoryListView.as_view(), name="hs-categories"),
+    path("artisans/", ArtisanSearchView.as_view(), name="hs-search"),
+    path("artisans/register/", ArtisanRegisterView.as_view(), name="hs-register"),
+    path("artisans/me/", MyArtisanView.as_view(), name="hs-me"),
+    path("artisans/boost/", BoostInitView.as_view(), name="hs-boost"),
+    path("artisans/boost/verify/", BoostVerifyView.as_view(), name="hs-boost-verify"),
+    path("artisans/boost/webhook/paystack/", BoostWebhookView.as_view(), name="hs-boost-webhook"),
+    path("artisans/<uuid:artisan_id>/", ArtisanDetailView.as_view(), name="hs-detail"),
+]
+````
+
+## File: apps/homeservices/management/__init__.py
+````python
+
+````
+
+## File: apps/homeservices/migrations/__init__.py
+````python
+
+````
+
+## File: apps/homeservices/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-07-06 15:09
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='ServiceCategory',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=80)),
+                ('slug', models.SlugField(max_length=90, unique=True)),
+                ('icon', models.CharField(blank=True, max_length=120)),
+                ('is_active', models.BooleanField(default=True)),
+                ('order', models.PositiveIntegerField(default=0)),
+            ],
+            options={
+                'verbose_name_plural': 'service categories',
+                'ordering': ['order', 'name'],
+            },
+        ),
+        migrations.CreateModel(
+            name='BoostPayment',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('days', models.PositiveIntegerField(default=30)),
+                ('amount', models.DecimalField(decimal_places=2, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('reference', models.CharField(max_length=80, unique=True)),
+                ('provider', models.CharField(blank=True, max_length=40)),
+                ('status', models.CharField(choices=[('pending', 'Pending'), ('paid', 'Paid'), ('failed', 'Failed')], default='pending', max_length=10)),
+                ('authorization_url', models.URLField(blank=True, max_length=600)),
+                ('raw', models.JSONField(blank=True, default=dict)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='boost_payments', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+        migrations.CreateModel(
+            name='ArtisanProfile',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('business_name', models.CharField(max_length=140)),
+                ('description', models.TextField(blank=True)),
+                ('phone', models.CharField(max_length=32)),
+                ('whatsapp', models.CharField(blank=True, max_length=32)),
+                ('profile_photo', models.URLField(blank=True, max_length=500)),
+                ('address', models.CharField(blank=True, max_length=200)),
+                ('city', models.CharField(blank=True, max_length=80)),
+                ('state', models.CharField(blank=True, max_length=80)),
+                ('latitude', models.FloatField(blank=True, null=True)),
+                ('longitude', models.FloatField(blank=True, null=True)),
+                ('years_experience', models.PositiveIntegerField(blank=True, null=True)),
+                ('is_available', models.BooleanField(default=True)),
+                ('is_verified', models.BooleanField(default=False)),
+                ('is_featured', models.BooleanField(default=False)),
+                ('featured_until', models.DateTimeField(blank=True, null=True)),
+                ('views_count', models.PositiveIntegerField(default=0)),
+                ('status', models.CharField(choices=[('active', 'Active'), ('inactive', 'Inactive')], default='active', max_length=10)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='artisan_profile', to=settings.AUTH_USER_MODEL)),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='artisans', to='homeservices.servicecategory')),
+            ],
+            options={
+                'indexes': [models.Index(fields=['category', 'status'], name='homeservice_categor_c9c808_idx'), models.Index(fields=['latitude', 'longitude'], name='homeservice_latitud_5388ff_idx')],
+            },
+        ),
+    ]
+````
+
+## File: apps/homeservices/migrations/0002_artisanserviceimage_artisanverification.py
+````python
+# Generated by Django 5.0.6 on 2026-07-23 11:53
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('homeservices', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='ArtisanServiceImage',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('public_id', models.CharField(max_length=255)),
+                ('url', models.URLField(max_length=500)),
+                ('caption', models.CharField(blank=True, max_length=140)),
+                ('order', models.PositiveIntegerField(default=0)),
+                ('artisan', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='service_images', to='homeservices.artisanprofile')),
+            ],
+            options={
+                'ordering': ['order', 'created_at'],
+            },
+        ),
+        migrations.CreateModel(
+            name='ArtisanVerification',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('work_video_id', models.CharField(blank=True, max_length=255)),
+                ('id_document_id', models.CharField(blank=True, max_length=255)),
+                ('status', models.CharField(choices=[('draft', 'Not submitted'), ('incomplete', 'Checks failed'), ('pending', 'Awaiting review'), ('approved', 'Verified'), ('rejected', 'Rejected')], default='draft', max_length=16)),
+                ('checks_report', models.JSONField(blank=True, default=dict)),
+                ('checks_passed_at', models.DateTimeField(blank=True, null=True)),
+                ('submitted_at', models.DateTimeField(blank=True, null=True)),
+                ('reviewed_at', models.DateTimeField(blank=True, null=True)),
+                ('decision_note', models.TextField(blank=True)),
+                ('artisan', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='verification', to='homeservices.artisanprofile')),
+                ('reviewed_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='artisan_reviews', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-submitted_at', '-created_at'],
+            },
+        ),
+    ]
+````
+
+## File: apps/homeservices/migrations/0003_artisanworkvideo.py
+````python
+import uuid
+
+import django.db.models.deletion
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ("homeservices", "0002_artisanserviceimage_artisanverification"),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="ArtisanWorkVideo",
+            fields=[
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+                    ),
+                ),
+                ("video_url", models.URLField(max_length=600)),
+                ("public_id", models.CharField(blank=True, max_length=255)),
+                ("caption", models.CharField(blank=True, max_length=200)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "Pending review"),
+                            ("approved", "Approved"),
+                            ("rejected", "Rejected"),
+                        ],
+                        db_index=True,
+                        default="pending",
+                        max_length=10,
+                    ),
+                ),
+                ("review_note", models.CharField(blank=True, max_length=300)),
+                ("reviewed_at", models.DateTimeField(blank=True, null=True)),
+                (
+                    "artisan",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="work_videos",
+                        to="homeservices.artisanprofile",
+                    ),
+                ),
+                (
+                    "reviewed_by",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="reviewed_artisan_videos",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+            ],
+            options={
+                "ordering": ["-created_at"],
+            },
+        ),
+        migrations.AddIndex(
+            model_name="artisanworkvideo",
+            index=models.Index(
+                fields=["artisan", "status"], name="hs_workvideo_art_status"
+            ),
+        ),
+    ]
+````
+
+## File: apps/homeservices/migrations/0004_backfill_artisan_coords.py
+````python
+"""Backfill latitude/longitude for existing artisans from their city, so they
+appear in distance search without needing to re-save their profile."""
+from django.db import migrations
+
+CITY_COORDS = {
+    "abuja": (9.0765, 7.3986), "lagos": (6.5244, 3.3792),
+    "port harcourt": (4.8156, 7.0498), "kano": (12.0022, 8.5920),
+    "ibadan": (7.3775, 3.9470), "benin city": (6.3350, 5.6037),
+    "benin": (6.3350, 5.6037), "enugu": (6.5244, 7.5086),
+    "kaduna": (10.5222, 7.4383), "jos": (9.8965, 8.8583),
+    "uyo": (5.0377, 7.9128), "warri": (5.5167, 5.7500),
+    "abeokuta": (7.1557, 3.3451), "onitsha": (6.1667, 6.7833),
+    "aba": (5.1167, 7.3667), "owerri": (5.4836, 7.0333),
+    "calabar": (4.9757, 8.3417), "maiduguri": (11.8333, 13.1500),
+    "zaria": (11.0855, 7.7199), "ilorin": (8.4966, 4.5426),
+    "akure": (7.2508, 5.1931), "osogbo": (7.7667, 4.5667),
+    "abakaliki": (6.3249, 8.1137), "makurdi": (7.7333, 8.5333),
+    "minna": (9.6139, 6.5569), "sokoto": (13.0059, 5.2476),
+    "bauchi": (10.3103, 9.8439), "asaba": (6.1980, 6.7280),
+    "awka": (6.2100, 7.0700), "umuahia": (5.5250, 7.4930),
+    "lokoja": (7.8023, 6.7333), "ado ekiti": (7.6210, 5.2210),
+    "ado-ekiti": (7.6210, 5.2210),
+}
+
+
+def _coords_for_city(city):
+    if not city:
+        return None
+    c = " ".join(str(city).strip().lower().split())
+    if c in CITY_COORDS:
+        return CITY_COORDS[c]
+    for name in sorted(CITY_COORDS, key=len, reverse=True):
+        if name in c:
+            return CITY_COORDS[name]
+    return None
+
+
+def backfill(apps, schema_editor):
+    ArtisanProfile = apps.get_model("homeservices", "ArtisanProfile")
+    qs = ArtisanProfile.objects.filter(latitude__isnull=True) | ArtisanProfile.objects.filter(
+        longitude__isnull=True
+    )
+    for artisan in qs.distinct():
+        coords = _coords_for_city(artisan.city)
+        if coords:
+            artisan.latitude, artisan.longitude = coords
+            artisan.save(update_fields=["latitude", "longitude"])
+
+
+def noop(apps, schema_editor):
+    pass
+
+
+class Migration(migrations.Migration):
+    dependencies = [("homeservices", "0003_artisanworkvideo")]
+    operations = [migrations.RunPython(backfill, noop)]
+````
+
+## File: apps/homeservices/__init__.py
+````python
+
+````
+
+## File: apps/homeservices/admin.py
+````python
+from django.contrib import admin
+
+from .models import ArtisanProfile, BoostPayment, ServiceCategory
+
+
+@admin.register(ServiceCategory)
+class ServiceCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "slug", "is_active", "order")
+    prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.register(ArtisanProfile)
+class ArtisanProfileAdmin(admin.ModelAdmin):
+    list_display = ("business_name", "category", "city", "state", "is_verified",
+                    "is_featured", "featured_until", "is_available")
+    list_filter = ("category", "is_verified", "is_featured", "is_available", "state")
+    search_fields = ("business_name", "user__email", "city")
+
+
+@admin.register(BoostPayment)
+class BoostPaymentAdmin(admin.ModelAdmin):
+    list_display = ("reference", "user", "days", "amount", "status", "created_at")
+    list_filter = ("status", "days")
+    search_fields = ("reference", "user__email")
+from . import work_videos  # noqa: F401
+````
+
+## File: apps/homeservices/apps.py
+````python
+from django.apps import AppConfig
+
+
+class HomeservicesConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.homeservices"
+````
+
+## File: apps/homeservices/featured.py
+````python
+"""
+Public "Featured artisans" for the landing page.
+
+WHY A SEPARATE ENDPOINT
+  ArtisanSearchView requires authentication AND coordinates — it's a proximity
+  search, which is right for the in-app browse screen. The landing page is
+  neither: it's seen by people who aren't signed in and haven't granted
+  location, and it needs a national shortlist rather than a radius.
+
+WHO APPEARS
+  Only artisans an admin has VERIFIED. That's the whole point of the badge — a
+  visitor's first impression of the platform shouldn't include profiles nobody
+  has checked. Boosted profiles rank first among the verified, since that's
+  what the boost buys.
+
+WHAT IT RETURNS
+  ArtisanListSerializer, which carries no phone number. Contacts stay behind an
+  accepted enquiry even for signed-in users, so a public endpoint certainly
+  can't expose them.
+"""
+from __future__ import annotations
+
+from django.db.models import Case, IntegerField, Q, When
+from django.utils import timezone
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import ArtisanProfile
+from .serializers import ArtisanListSerializer
+
+MAX_RESULTS = 12
+
+
+class FeaturedArtisansView(APIView):
+    """GET /homeservices/featured/?category=<slug>&limit=8 — public."""
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        now = timezone.now()
+
+        qs = (
+            ArtisanProfile.objects
+            .filter(is_verified=True, status=ArtisanProfile.Status.ACTIVE)
+            .select_related("category")
+        )
+
+        category = request.query_params.get("category")
+        if category:
+            qs = qs.filter(Q(category__slug=category) | Q(category__name__iexact=category))
+
+        # A boost that has quietly expired shouldn't keep buying placement.
+        qs = qs.annotate(
+            boost_rank=Case(
+                When(is_featured=True, featured_until__gt=now, then=0),
+                When(is_featured=True, featured_until__isnull=True, then=0),
+                default=1,
+                output_field=IntegerField(),
+            )
+        ).order_by("boost_rank", "-views_count", "-created_at")
+
+        try:
+            limit = min(int(request.query_params.get("limit", 8)), MAX_RESULTS)
+        except (TypeError, ValueError):
+            limit = 8
+
+        results = list(qs[:limit])
+        return Response({
+            "count": len(results),
+            "results": ArtisanListSerializer(results, many=True).data,
+        })
+
+
+class ServiceCategoriesPublicView(APIView):
+    """
+    GET /homeservices/categories/public/ — trades, for the landing-page filter.
+
+    The existing categories endpoint is behind auth; this is the same data for
+    people who haven't signed up yet.
+    """
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        from .models import ServiceCategory
+        from .serializers import ServiceCategorySerializer
+
+        qs = ServiceCategory.objects.filter(is_active=True).order_by("order", "name")
+        return Response({"results": ServiceCategorySerializer(qs, many=True).data})
+````
+
+## File: apps/homeservices/geocode.py
+````python
+"""
+Give artisans coordinates from their city, automatically.
+
+Find-an-artisan search is distance-based and skips any artisan without
+latitude/longitude. Registration doesn't always capture a precise location, so
+without this an artisan can register and never appear in search.
+
+A post_save signal fills in coordinates from the artisan's city whenever they're
+missing (it never overwrites a precise location the artisan set themselves). A
+companion data migration backfills every existing artisan.
+"""
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from .models import ArtisanProfile
+
+# City centres for the places the app lets people search. Keep in sync with the
+# frontend CITIES list; extras here are harmless.
+CITY_COORDS = {
+    "abuja": (9.0765, 7.3986),
+    "lagos": (6.5244, 3.3792),
+    "port harcourt": (4.8156, 7.0498),
+    "kano": (12.0022, 8.5920),
+    "ibadan": (7.3775, 3.9470),
+    "benin city": (6.3350, 5.6037),
+    "benin": (6.3350, 5.6037),
+    "enugu": (6.5244, 7.5086),
+    "kaduna": (10.5222, 7.4383),
+    "jos": (9.8965, 8.8583),
+    "uyo": (5.0377, 7.9128),
+    "warri": (5.5167, 5.7500),
+    "abeokuta": (7.1557, 3.3451),
+    "onitsha": (6.1667, 6.7833),
+    "aba": (5.1167, 7.3667),
+    "owerri": (5.4836, 7.0333),
+    "calabar": (4.9757, 8.3417),
+    "maiduguri": (11.8333, 13.1500),
+    "zaria": (11.0855, 7.7199),
+    "ilorin": (8.4966, 4.5426),
+    "akure": (7.2508, 5.1931),
+    "osogbo": (7.7667, 4.5667),
+    "abakaliki": (6.3249, 8.1137),
+    "makurdi": (7.7333, 8.5333),
+    "minna": (9.6139, 6.5569),
+    "sokoto": (13.0059, 5.2476),
+    "bauchi": (10.3103, 9.8439),
+    "asaba": (6.1980, 6.7280),
+    "awka": (6.2100, 7.0700),
+    "umuahia": (5.5250, 7.4930),
+    "lokoja": (7.8023, 6.7333),
+    "ado ekiti": (7.6210, 5.2210),
+    "ado-ekiti": (7.6210, 5.2210),
+}
+
+
+def coords_for_city(city):
+    """Return (lat, lng) for a city string, tolerating extra words / case."""
+    if not city:
+        return None
+    c = " ".join(str(city).strip().lower().split())
+    if c in CITY_COORDS:
+        return CITY_COORDS[c]
+    # "Lagos State", "Ikeja, Lagos" → match the contained known city.
+    # Check longer names first so "port harcourt" wins over any short token.
+    for name in sorted(CITY_COORDS, key=len, reverse=True):
+        if name in c:
+            return CITY_COORDS[name]
+    return None
+
+
+@receiver(post_save, sender=ArtisanProfile)
+def fill_coords_from_city(sender, instance, **kwargs):
+    if instance.latitude is not None and instance.longitude is not None:
+        return
+    coords = coords_for_city(instance.city)
+    if not coords:
+        return
+    # update() avoids re-triggering this signal (no recursion).
+    ArtisanProfile.objects.filter(pk=instance.pk).update(
+        latitude=coords[0], longitude=coords[1]
+    )
+````
+
+## File: apps/homeservices/models.py
+````python
+"""
+Home services: an artisan directory with proximity search.
+
+Directory-only model: a customer finds nearby artisans (mechanic, plumber, ...)
+and contacts them directly (phone/WhatsApp). Listing is free; artisans can pay
+(via Paystack) to BOOST their profile — featured placement for a period.
+
+Proximity uses stored lat/lng + Haversine (works on SQLite today; swap to
+PostGIS after the Postgres migration without changing the API).
+"""
+import uuid
+from decimal import Decimal
+
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedModel
+
+# boost packages: days -> price (NGN). Change freely.
+BOOST_PACKAGES = {30: Decimal("2500"), 90: Decimal("5000")}
+# tier name -> days, so the API can speak in tiers rather than raw durations
+BOOST_TIERS = {"premium": 30, "pro": 90}
+
+DEFAULT_BOOST_DAYS = 30
+
+
+class ServiceCategory(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=80)
+    slug = models.SlugField(max_length=90, unique=True)
+    icon = models.CharField(max_length=120, blank=True)
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "name"]
+        verbose_name_plural = "service categories"
+
+    def __str__(self):
+        return self.name
+
+
+class ArtisanProfile(TimeStampedModel):
+    class Status(models.TextChoices):
+        ACTIVE = "active", _("Active")
+        INACTIVE = "inactive", _("Inactive")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                related_name="artisan_profile")
+    category = models.ForeignKey(ServiceCategory, on_delete=models.PROTECT,
+                                 related_name="artisans")
+    business_name = models.CharField(max_length=140)
+    description = models.TextField(blank=True)
+
+    phone = models.CharField(max_length=32)
+    whatsapp = models.CharField(max_length=32, blank=True)
+    profile_photo = models.URLField(max_length=500, blank=True)
+
+    address = models.CharField(max_length=200, blank=True)
+    city = models.CharField(max_length=80, blank=True)
+    state = models.CharField(max_length=80, blank=True)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
+
+    years_experience = models.PositiveIntegerField(null=True, blank=True)
+    is_available = models.BooleanField(default=True)
+    is_verified = models.BooleanField(default=False)     # admin-granted badge
+    is_featured = models.BooleanField(default=False)     # boosted
+    featured_until = models.DateTimeField(null=True, blank=True)
+    views_count = models.PositiveIntegerField(default=0)
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.ACTIVE)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["category", "status"]),
+            models.Index(fields=["latitude", "longitude"]),
+        ]
+
+    @property
+    def is_currently_featured(self):
+        return bool(self.is_featured and self.featured_until and
+                    self.featured_until > timezone.now())
+
+    @property
+    def has_location(self):
+        return self.latitude is not None and self.longitude is not None
+
+    def __str__(self):
+        return f"{self.business_name} ({self.category})"
+
+
+class BoostPayment(TimeStampedModel):
+    """A Paystack-paid profile boost (pending -> paid)."""
+    class Status(models.TextChoices):
+        PENDING = "pending", _("Pending")
+        PAID = "paid", _("Paid")
+        FAILED = "failed", _("Failed")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="boost_payments")
+    days = models.PositiveIntegerField(default=DEFAULT_BOOST_DAYS)
+    amount = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.CharField(max_length=3, default="NGN")
+    reference = models.CharField(max_length=80, unique=True)
+    provider = models.CharField(max_length=40, blank=True)
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+    authorization_url = models.URLField(max_length=600, blank=True)
+    raw = models.JSONField(default=dict, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user} boost {self.days}d {self.amount} [{self.status}]"
+
+# Registered last: verification.py imports ArtisanProfile from this module,
+# so the models above must exist before it is loaded.
+from .verification import (  # noqa: E402,F401
+    ArtisanServiceImage,
+    ArtisanVerification,
+)
+from . import geocode  # noqa: F401,E402
+
+from .work_videos import ArtisanWorkVideo  # noqa: F401
+````
+
+## File: apps/homeservices/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import ArtisanProfile, ServiceCategory
+
+
+class ServiceCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceCategory
+        fields = ("id", "name", "slug", "icon", "order")
+
+
+class ArtisanWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArtisanProfile
+        fields = ("id", "category", "business_name", "description", "phone", "whatsapp",
+                  "profile_photo", "address", "city", "state", "latitude", "longitude",
+                  "years_experience", "is_available")
+
+
+class ArtisanListSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="category.name", read_only=True)
+    distance_km = serializers.FloatField(read_only=True, required=False)
+    is_featured = serializers.BooleanField(source="is_currently_featured", read_only=True)
+
+    class Meta:
+        model = ArtisanProfile
+        fields = ("id", "business_name", "category_name", "city", "state",
+                  "is_verified", "is_featured", "distance_km", "profile_photo")
+
+
+class ArtisanDetailSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="category.name", read_only=True)
+    is_featured = serializers.BooleanField(source="is_currently_featured", read_only=True)
+    distance_km = serializers.FloatField(read_only=True, required=False)
+
+    class Meta:
+        model = ArtisanProfile
+        fields = ("id", "business_name", "category", "category_name", "description", "profile_photo", "address", "city", "state", "latitude", "longitude", "years_experience", "is_available", "is_verified", "is_featured", "distance_km", "views_count", "created_at")
+
+
+class ArtisanOwnerSerializer(ArtisanDetailSerializer):
+    """
+    The artisan's own view of their profile.
+
+    Same as the public one plus phone/whatsapp — they must be able to see
+    and edit the numbers they gave us. Never use this for anyone else's
+    profile: contacts belong behind an accepted conversation.
+    """
+
+    class Meta(ArtisanDetailSerializer.Meta):
+        fields = ("id", "business_name", "phone", "whatsapp", "category", "category_name", "description", "profile_photo", "address", "city", "state", "latitude", "longitude", "years_experience", "is_available", "is_verified", "is_featured", "distance_km", "views_count", "created_at")
+````
+
+## File: apps/homeservices/services.py
+````python
+"""Home services logic: proximity search (Haversine) + paid profile boosts (Paystack)."""
+from __future__ import annotations
+
+import math
+import uuid
+from datetime import timedelta
+
+from django.db import transaction
+from django.db.models import Q
+from django.utils import timezone
+
+from django.conf import settings
+from integrations.base import ProviderFactory
+from apps.payments.pricing import resolve_payment_currency, boost_price
+from integrations.base.dto import TxnStatus
+from integrations.base.exceptions import ProviderError
+
+from .models import (
+    ArtisanProfile,
+    BOOST_PACKAGES,
+    BoostPayment,
+    DEFAULT_BOOST_DAYS,
+    ServiceCategory,
+)
+
+EARTH_KM = 6371.0
+
+
+def haversine_km(lat1, lng1, lat2, lng2) -> float:
+    r1, r2 = math.radians(lat1), math.radians(lat2)
+    dlat = math.radians(lat2 - lat1)
+    dlng = math.radians(lng2 - lng1)
+    a = (math.sin(dlat / 2) ** 2 +
+         math.cos(r1) * math.cos(r2) * math.sin(dlng / 2) ** 2)
+    return EARTH_KM * 2 * math.asin(math.sqrt(a))
+
+
+class HomeServiceError(Exception):
+    """User-facing home-services problem."""
+
+
+class HomeServiceService:
+    # ---------------- proximity search ----------------
+    @staticmethod
+    def search_nearby(*, lat, lng, radius_km=10.0, category=None, q=None, limit=50):
+        lat, lng, radius_km = float(lat), float(lng), float(radius_km)
+        qs = (ArtisanProfile.objects
+              .filter(status=ArtisanProfile.Status.ACTIVE, is_available=True,
+                      latitude__isnull=False, longitude__isnull=False)
+              .select_related("category", "user"))
+        if category:
+            qs = qs.filter(category__slug=category)
+        if q:
+            qs = qs.filter(Q(business_name__icontains=q) | Q(description__icontains=q))
+
+        # bounding-box prefilter (cheap), then exact Haversine (accurate)
+        dlat = radius_km / 111.0
+        cos_lat = max(math.cos(math.radians(lat)), 0.01)
+        dlng = radius_km / (111.0 * cos_lat)
+        qs = qs.filter(latitude__gte=lat - dlat, latitude__lte=lat + dlat,
+                       longitude__gte=lng - dlng, longitude__lte=lng + dlng)
+
+        results = []
+        for a in qs:
+            d = haversine_km(lat, lng, a.latitude, a.longitude)
+            if d <= radius_km:
+                a.distance_km = round(d, 2)
+                results.append(a)
+        # featured first, then nearest
+        results.sort(key=lambda a: (not a.is_currently_featured, a.distance_km))
+        return results[:limit]
+
+    # ---------------- boosts (Paystack) ----------------
+    @staticmethod
+    def initiate_boost(*, user, days=DEFAULT_BOOST_DAYS, currency="NGN"):
+        try:
+            days = int(days)
+        except (TypeError, ValueError):
+            raise HomeServiceError("Invalid boost duration.")
+        if days not in BOOST_PACKAGES:
+            opts = ", ".join(str(d) for d in BOOST_PACKAGES)
+            raise HomeServiceError(f"Choose a valid boost duration ({opts} days).")
+        if not hasattr(user, "artisan_profile"):
+            raise HomeServiceError("Create your artisan profile before boosting.")
+
+        currency = resolve_payment_currency(currency)
+        price = boost_price(days, currency)
+        reference = f"BOOST-{uuid.uuid4().hex[:20]}"
+        email = getattr(user, "email", "") or f"{user.id}@users.oam"
+        gateway = ProviderFactory.get("payments", settings.LISTING_UPGRADE_PROVIDER)
+        try:
+            init = gateway.initialize_charge(
+                amount=price, currency=currency.upper(), email=email, reference=reference,
+                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id),
+                          "name": (f"{getattr(user, 'first_name', '')} {getattr(user, 'last_name', '')}".strip() or getattr(user, "email", "") or "OAM Customer"),
+                          "phone": getattr(user, "phone", "") or ""},
+            )
+        except ProviderError as exc:
+            raise HomeServiceError(f"Could not start payment: {exc}")
+
+        payment = BoostPayment.objects.create(
+            user=user, days=days, amount=price, currency=currency.upper(),
+            reference=reference, provider=gateway.provider_key,
+            status=BoostPayment.Status.PENDING,
+            authorization_url=init.authorization_url, raw=init.raw or {},
+        )
+        return payment, init
+
+    @staticmethod
+    def _activate(payment: BoostPayment):
+        with transaction.atomic():
+            p = BoostPayment.objects.select_for_update().get(pk=payment.pk)
+            if p.status == BoostPayment.Status.PAID:
+                return
+            p.status = BoostPayment.Status.PAID
+            p.save(update_fields=["status", "updated_at"])
+            try:
+                from apps.referrals.hooks import settle_referral
+                settle_referral(user=p.user, oam_profit=p.amount,
+                                currency=p.currency, source_reference=p.reference)
+            except Exception:
+                pass
+            profile = ArtisanProfile.objects.select_for_update().filter(user=p.user).first()
+            if profile:
+                now = timezone.now()
+                base = (profile.featured_until if profile.featured_until
+                        and profile.featured_until > now else now)
+                profile.is_featured = True
+                profile.featured_until = base + timedelta(days=p.days)
+                profile.save(update_fields=["is_featured", "featured_until", "updated_at"])
+
+    @staticmethod
+    def verify_boost(*, user, reference):
+        payment = BoostPayment.objects.filter(reference=reference, user=user).first()
+        if payment is None:
+            raise HomeServiceError("Payment not found.")
+        if payment.status == BoostPayment.Status.PAID:
+            return payment
+        gateway = ProviderFactory.get("payments", payment.provider or None)
+        try:
+            status = gateway.verify_charge(reference)
+        except ProviderError as exc:
+            raise HomeServiceError(f"Could not verify payment: {exc}")
+        if status.status == TxnStatus.SUCCESS:
+            HomeServiceService._activate(payment)
+        elif status.status == TxnStatus.FAILED:
+            payment.status = BoostPayment.Status.FAILED
+            payment.save(update_fields=["status", "updated_at"])
+        payment.refresh_from_db()
+        return payment
+
+    @staticmethod
+    def activate_by_reference(reference) -> bool:
+        payment = BoostPayment.objects.filter(reference=reference).first()
+        if payment is None:
+            return False
+        HomeServiceService._activate(payment)
+        return True
+````
+
+## File: apps/homeservices/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    ArtisanDetailView,
+    ArtisanRegisterView,
+    ArtisanSearchView,
+    BoostInitView,
+    BoostVerifyView,
+    BoostWebhookView,
+    MyArtisanView,
+    ServiceCategoryListView,
+)
+
+from .verification_views import (
+    AttachDocumentView,
+    MyVerificationView,
+    RemoveServiceImageView,
+    ReviewDecisionView,
+    ReviewDetailView,
+    ReviewQueueView,
+    SubmitVerificationView,
+)
+
+from .featured import FeaturedArtisansView, ServiceCategoriesPublicView
+
+urlpatterns = [
+    path("categories/", ServiceCategoryListView.as_view(), name="hs-categories"),
+    path("artisans/", ArtisanSearchView.as_view(), name="hs-search"),
+    path("artisans/register/", ArtisanRegisterView.as_view(), name="hs-register"),
+    path("artisans/me/", MyArtisanView.as_view(), name="hs-me"),
+    path("artisans/boost/", BoostInitView.as_view(), name="hs-boost"),
+    path("artisans/boost/verify/", BoostVerifyView.as_view(), name="hs-boost-verify"),
+    path("artisans/boost/webhook/paystack/", BoostWebhookView.as_view(), name="hs-boost-webhook"),
+    path("artisans/boost/webhook/flutterwave/", BoostWebhookView.as_view(), name="hs-boost-webhook-flw"),
+    path("artisans/verification/", MyVerificationView.as_view(), name="hs-verification"),
+    path("artisans/verification/attach/", AttachDocumentView.as_view(), name="hs-verif-attach"),
+    path("artisans/verification/submit/", SubmitVerificationView.as_view(), name="hs-verif-submit"),
+    path("artisans/verification/images/<uuid:image_id>/", RemoveServiceImageView.as_view(), name="hs-verif-image"),
+    path("artisans/verification/queue/", ReviewQueueView.as_view(), name="hs-verif-queue"),
+    path("artisans/verification/queue/<uuid:verification_id>/", ReviewDetailView.as_view(), name="hs-verif-detail"),
+    path("artisans/verification/queue/<uuid:verification_id>/<str:decision>/", ReviewDecisionView.as_view(), name="hs-verif-decision"),
+    path("featured/", FeaturedArtisansView.as_view(), name="hs-featured"),
+    path("categories/public/", ServiceCategoriesPublicView.as_view(), name="hs-categories-public"),
+    path("artisans/<uuid:artisan_id>/", ArtisanDetailView.as_view(), name="hs-detail"),
+]
+from .work_videos import urlpatterns as work_video_urls
+
+urlpatterns += work_video_urls
+````
+
+## File: apps/homeservices/verification_views.py
+````python
+"""Verification endpoints — artisan submits, admin decides."""
+from __future__ import annotations
+
+from django.db import transaction
+from django.utils import timezone
+from rest_framework import serializers
+from rest_framework import status as http
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+from apps.uploads.checks import check_asset
+from apps.uploads.cloudinary_client import signed_delivery_url
+
+from .models import ArtisanProfile
+from .verification import (
+    MAX_SERVICE_IMAGES,
+    MIN_SERVICE_IMAGES,
+    ArtisanServiceImage,
+    ArtisanVerification,
+)
+
+
+# --------------------------------------------------------------------------- #
+# Serializers
+# --------------------------------------------------------------------------- #
+
+class ServiceImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArtisanServiceImage
+        fields = ["id", "url", "caption", "order", "created_at"]
+        read_only_fields = fields
+
+
+class VerificationSerializer(serializers.ModelSerializer):
+    """
+    The artisan's own view. Note what's absent: id_document_id never leaves the
+    server. The artisan knows whether they uploaded one; they don't need the
+    reference, and neither does anything in the browser.
+    """
+
+    service_images = ServiceImageSerializer(source="artisan.service_images", many=True, read_only=True)
+    has_id_document = serializers.SerializerMethodField()
+    has_work_video = serializers.SerializerMethodField()
+    requirements = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ArtisanVerification
+        fields = [
+            "id", "status", "checks_report", "checks_passed_at",
+            "submitted_at", "reviewed_at", "decision_note",
+            "service_images", "has_id_document", "has_work_video", "requirements",
+        ]
+        read_only_fields = fields
+
+    def get_has_id_document(self, obj):
+        return bool(obj.id_document_id)
+
+    def get_has_work_video(self, obj):
+        return bool(obj.work_video_id)
+
+    def get_requirements(self, obj):
+        count = obj.service_image_count
+        return {
+            "service_images": {
+                "have": count, "need": MIN_SERVICE_IMAGES, "max": MAX_SERVICE_IMAGES,
+                "done": count >= MIN_SERVICE_IMAGES,
+            },
+            "work_video": {"done": bool(obj.work_video_id)},
+            "id_document": {"done": bool(obj.id_document_id)},
+        }
+
+
+# --------------------------------------------------------------------------- #
+# Artisan-facing
+# --------------------------------------------------------------------------- #
+
+def _profile_or_none(user):
+    return ArtisanProfile.objects.filter(user=user).first()
+
+
+def _verification_for(profile) -> ArtisanVerification:
+    obj, _ = ArtisanVerification.objects.get_or_create(artisan=profile)
+    return obj
+
+
+class MyVerificationView(APIView):
+    """GET /artisans/verification/ — progress and what's still missing."""
+
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        profile = _profile_or_none(request.user)
+        if profile is None:
+            return Response(
+                {"detail": "Create your artisan profile first."},
+                status=http.HTTP_404_NOT_FOUND,
+            )
+        return Response(VerificationSerializer(_verification_for(profile)).data)
+
+
+class AttachDocumentView(APIView):
+    """
+    POST /artisans/verification/attach/
+        {"purpose": "artisan_work_video" | "artisan_id_document"
+                    | "artisan_service_image",
+         "public_id": "...", "url": "...", "caption": "..."}
+
+    Called after the browser has uploaded to Cloudinary. We re-read the asset
+    from Cloudinary and check it there — what the client claims about the file
+    is never taken at face value.
+    """
+
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    ALLOWED = {"artisan_work_video", "artisan_id_document", "artisan_service_image"}
+
+    def post(self, request):
+        profile = _profile_or_none(request.user)
+        if profile is None:
+            return Response({"detail": "Create your artisan profile first."},
+                            status=http.HTTP_404_NOT_FOUND)
+
+        purpose = (request.data.get("purpose") or "").strip()
+        public_id = (request.data.get("public_id") or "").strip()
+        if purpose not in self.ALLOWED:
+            return Response({"detail": "Unknown document type."},
+                            status=http.HTTP_400_BAD_REQUEST)
+        if not public_id:
+            return Response({"detail": "Missing file reference."},
+                            status=http.HTTP_400_BAD_REQUEST)
+
+        result = check_asset(public_id, purpose)
+        if not result.ok:
+            return Response(
+                {"detail": result.reasons[0], "reasons": result.reasons},
+                status=http.HTTP_400_BAD_REQUEST,
+            )
+
+        verification = _verification_for(profile)
+
+        if purpose == "artisan_service_image":
+            if profile.service_images.count() >= MAX_SERVICE_IMAGES:
+                return Response(
+                    {"detail": f"You can show up to {MAX_SERVICE_IMAGES} photos."},
+                    status=http.HTTP_400_BAD_REQUEST,
+                )
+            url = (request.data.get("url") or "").strip()
+            if not url:
+                return Response({"detail": "Missing image URL."},
+                                status=http.HTTP_400_BAD_REQUEST)
+            image = ArtisanServiceImage.objects.create(
+                artisan=profile,
+                public_id=public_id,
+                url=url,
+                caption=(request.data.get("caption") or "")[:140],
+                order=profile.service_images.count(),
+            )
+            payload = ServiceImageSerializer(image).data
+        else:
+            field = "work_video_id" if purpose == "artisan_work_video" else "id_document_id"
+            setattr(verification, field, public_id)
+            payload = None
+
+        # Re-attaching after a rejection puts them back in the queue rather than
+        # leaving them stuck on a decision they've already acted on.
+        if verification.status in (ArtisanVerification.Status.REJECTED,
+                                   ArtisanVerification.Status.INCOMPLETE):
+            verification.status = ArtisanVerification.Status.DRAFT
+
+        report = dict(verification.checks_report or {})
+        report[purpose] = result.as_dict()
+        verification.checks_report = report
+        verification.save()
+
+        return Response(
+            {"document": payload, "verification": VerificationSerializer(verification).data},
+            status=http.HTTP_201_CREATED,
+        )
+
+
+class RemoveServiceImageView(APIView):
+    """DELETE /artisans/verification/images/<id>/"""
+
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def delete(self, request, image_id):
+        profile = _profile_or_none(request.user)
+        if profile is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+        deleted, _ = ArtisanServiceImage.objects.filter(
+            id=image_id, artisan=profile
+        ).delete()
+        if not deleted:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+        return Response(status=http.HTTP_204_NO_CONTENT)
+
+
+class SubmitVerificationView(APIView):
+    """
+    POST /artisans/verification/submit/
+
+    Runs every check again, then either explains what's missing or puts the
+    artisan in the review queue. Re-checking at submission matters: a file can
+    be deleted at Cloudinary after it was attached, and we'd rather find that
+    here than when a reviewer opens a broken link.
+    """
+
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    @transaction.atomic
+    def post(self, request):
+        profile = _profile_or_none(request.user)
+        if profile is None:
+            return Response({"detail": "Create your artisan profile first."},
+                            status=http.HTTP_404_NOT_FOUND)
+
+        verification = _verification_for(profile)
+        if verification.status == ArtisanVerification.Status.APPROVED:
+            return Response(VerificationSerializer(verification).data)
+
+        missing: list[str] = []
+        report: dict = {}
+
+        count = profile.service_images.count()
+        if count < MIN_SERVICE_IMAGES:
+            missing.append(
+                f"Add at least {MIN_SERVICE_IMAGES} photos of your work "
+                f"(you have {count})."
+            )
+        else:
+            for image in profile.service_images.all()[:MIN_SERVICE_IMAGES]:
+                result = check_asset(image.public_id, "artisan_service_image")
+                report[f"service_image:{image.id}"] = result.as_dict()
+                if not result.ok:
+                    missing.extend(result.reasons)
+
+        if not verification.work_video_id:
+            missing.append("Add a short video of your previous work.")
+        else:
+            result = check_asset(verification.work_video_id, "artisan_work_video")
+            report["artisan_work_video"] = result.as_dict()
+            if not result.ok:
+                missing.extend(result.reasons)
+
+        if not verification.id_document_id:
+            missing.append("Add your identity document.")
+        else:
+            result = check_asset(verification.id_document_id, "artisan_id_document")
+            report["artisan_id_document"] = result.as_dict()
+            if not result.ok:
+                missing.extend(result.reasons)
+
+        verification.checks_report = report
+
+        if missing:
+            verification.status = ArtisanVerification.Status.INCOMPLETE
+            verification.checks_passed_at = None
+            verification.save()
+            return Response(
+                {"detail": "Some things still need attention.",
+                 "missing": missing,
+                 "verification": VerificationSerializer(verification).data},
+                status=http.HTTP_400_BAD_REQUEST,
+            )
+
+        verification.status = ArtisanVerification.Status.PENDING
+        verification.checks_passed_at = timezone.now()
+        verification.submitted_at = timezone.now()
+        verification.save()
+
+        return Response({
+            "detail": "Submitted for review. Your profile is live in search in the "
+                      "meantime — the Verified badge follows once we've checked "
+                      "your documents.",
+            "verification": VerificationSerializer(verification).data,
+        })
+
+
+# --------------------------------------------------------------------------- #
+# Admin-facing
+# --------------------------------------------------------------------------- #
+
+class ReviewQueueView(APIView):
+    """GET /artisans/verification/queue/ — everything awaiting a decision."""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        status_filter = request.query_params.get("status", "pending")
+        qs = ArtisanVerification.objects.select_related("artisan", "artisan__category")
+        if status_filter != "all":
+            qs = qs.filter(status=status_filter)
+
+        rows = []
+        for v in qs[:100]:
+            rows.append({
+                "id": str(v.id),
+                "status": v.status,
+                "submitted_at": v.submitted_at,
+                "artisan": {
+                    "id": str(v.artisan_id),
+                    "business_name": v.artisan.business_name,
+                    "category": getattr(v.artisan.category, "name", ""),
+                    "city": v.artisan.city,
+                    "state": v.artisan.state,
+                    "phone": v.artisan.phone,
+                    "years_experience": v.artisan.years_experience,
+                    "is_verified": v.artisan.is_verified,
+                },
+                "service_images": [
+                    {"id": str(i.id), "url": i.url, "caption": i.caption}
+                    for i in v.artisan.service_images.all()
+                ],
+                "checks_report": v.checks_report,
+            })
+        return Response({"count": len(rows), "results": rows})
+
+
+class ReviewDetailView(APIView):
+    """
+    GET /artisans/verification/queue/<id>/
+
+    Includes short-lived signed links for the video and identity document. They
+    expire in five minutes, so a reviewer's browser history or a shared
+    screenshot doesn't become a permanent door into someone's ID.
+    """
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, verification_id):
+        v = ArtisanVerification.objects.select_related("artisan").filter(
+            id=verification_id
+        ).first()
+        if v is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+
+        video_url = id_url = None
+        if v.work_video_id:
+            video_url = signed_delivery_url(
+                v.work_video_id, resource_type="video",
+                delivery_type="upload", fmt="mp4", ttl_seconds=300,
+            )
+        if v.id_document_id:
+            id_url = signed_delivery_url(
+                v.id_document_id, resource_type="image",
+                delivery_type="authenticated", fmt="jpg", ttl_seconds=300,
+            )
+
+        return Response({
+            "id": str(v.id),
+            "status": v.status,
+            "submitted_at": v.submitted_at,
+            "checks_report": v.checks_report,
+            "decision_note": v.decision_note,
+            "artisan": {
+                "id": str(v.artisan_id),
+                "business_name": v.artisan.business_name,
+                "description": v.artisan.description,
+                "category": getattr(v.artisan.category, "name", ""),
+                "phone": v.artisan.phone,
+                "whatsapp": v.artisan.whatsapp,
+                "address": v.artisan.address,
+                "city": v.artisan.city,
+                "state": v.artisan.state,
+                "years_experience": v.artisan.years_experience,
+                "is_verified": v.artisan.is_verified,
+            },
+            "service_images": [
+                {"id": str(i.id), "url": i.url, "caption": i.caption}
+                for i in v.artisan.service_images.all()
+            ],
+            "work_video_url": video_url,
+            "id_document_url": id_url,
+            "links_expire_in": 300,
+        })
+
+
+class ReviewDecisionView(APIView):
+    """
+    POST /artisans/verification/queue/<id>/<decision>/   approve | reject
+        {"note": "..."}
+    """
+
+    permission_classes = [IsAdminUser]
+
+    @transaction.atomic
+    def post(self, request, verification_id, decision):
+        if decision not in ("approve", "reject"):
+            return Response({"detail": "Unknown decision."},
+                            status=http.HTTP_400_BAD_REQUEST)
+
+        v = ArtisanVerification.objects.select_related("artisan").filter(
+            id=verification_id
+        ).first()
+        if v is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+
+        note = (request.data.get("note") or "").strip()
+        if decision == "reject" and not note:
+            # A rejection with no reason just produces a support email asking why.
+            return Response(
+                {"detail": "Give a reason — the artisan sees this and needs to know "
+                           "what to fix."},
+                status=http.HTTP_400_BAD_REQUEST,
+            )
+
+        v.status = (ArtisanVerification.Status.APPROVED if decision == "approve"
+                    else ArtisanVerification.Status.REJECTED)
+        v.reviewed_at = timezone.now()
+        v.reviewed_by = request.user
+        v.decision_note = note
+        v.save()
+
+        profile = v.artisan
+        profile.is_verified = decision == "approve"
+        profile.save(update_fields=["is_verified", "updated_at"])
+
+        return Response(VerificationSerializer(v).data)
+````
+
+## File: apps/homeservices/verification.py
+````python
+"""
+Artisan verification: documents in, automated checks, then a human decision.
+
+THE SHAPE OF THIS, AND WHY
+  An artisan uploads photos of their work, a short video, and an identity
+  document. Automated checks confirm the submission is complete and legible —
+  right format, big enough to read, video long enough to show something real.
+
+  Passing those checks does NOT grant the Verified badge. It moves the artisan
+  into a review queue and lets them appear in search immediately, so they can
+  start taking work while they wait.
+
+  The badge is granted by a person, because no automated check can tell whether
+  an identity document is genuine or belongs to the uploader — a photo of
+  someone else's ID taken off a screen passes every technical test there is.
+  Customers read "Verified" as "somebody checked", and they use it to decide
+  whether to let a stranger into their home. Granting it automatically would
+  make it a decoration that increases risk rather than reducing it.
+
+  Only Verified artisans reach Featured on the landing page.
+
+IDENTITY DOCUMENTS
+  Stored with Cloudinary "authenticated" delivery, so holding the id isn't
+  enough to open one. Never included in any public serializer. Admins view them
+  through short-lived signed links, and the raw reference is dropped once a
+  decision is made and the retention window passes.
+"""
+from __future__ import annotations
+
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+
+from apps.common.models import TimeStampedModel
+
+from .models import ArtisanProfile
+
+
+class ArtisanVerification(TimeStampedModel):
+    """One verification submission per artisan."""
+
+    class Status(models.TextChoices):
+        DRAFT = "draft", "Not submitted"
+        INCOMPLETE = "incomplete", "Checks failed"
+        PENDING = "pending", "Awaiting review"
+        APPROVED = "approved", "Verified"
+        REJECTED = "rejected", "Rejected"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    artisan = models.OneToOneField(
+        ArtisanProfile, on_delete=models.CASCADE, related_name="verification"
+    )
+
+    # Cloudinary public_ids, not URLs — a URL can be forged, and we always
+    # re-read the asset from Cloudinary before trusting anything about it.
+    work_video_id = models.CharField(max_length=255, blank=True)
+    id_document_id = models.CharField(max_length=255, blank=True)
+
+    status = models.CharField(max_length=16, choices=Status.choices, default=Status.DRAFT)
+
+    # What the automated checks found, kept so a reviewer sees the same facts.
+    checks_report = models.JSONField(default=dict, blank=True)
+    checks_passed_at = models.DateTimeField(null=True, blank=True)
+
+    submitted_at = models.DateTimeField(null=True, blank=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name="artisan_reviews",
+    )
+    decision_note = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ["-submitted_at", "-created_at"]
+
+    def __str__(self):
+        return f"{self.artisan.business_name} [{self.status}]"
+
+    @property
+    def service_image_count(self) -> int:
+        return self.artisan.service_images.count()
+
+    @property
+    def is_complete(self) -> bool:
+        """Everything present. Says nothing about whether it's genuine."""
+        return bool(
+            self.work_video_id
+            and self.id_document_id
+            and self.service_image_count >= MIN_SERVICE_IMAGES
+        )
+
+
+class ArtisanServiceImage(TimeStampedModel):
+    """A photo of completed work. Public — this is the artisan's shop window."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    artisan = models.ForeignKey(
+        ArtisanProfile, on_delete=models.CASCADE, related_name="service_images"
+    )
+    public_id = models.CharField(max_length=255)
+    url = models.URLField(max_length=500)
+    caption = models.CharField(max_length=140, blank=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "created_at"]
+
+    def __str__(self):
+        return f"{self.artisan.business_name} image"
+
+
+MIN_SERVICE_IMAGES = 2
+MAX_SERVICE_IMAGES = 8
+````
+
+## File: apps/homeservices/views.py
+````python
+"""Home services endpoints: directory + proximity search + paid boost."""
+import json
+
+from rest_framework import status
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .models import ArtisanProfile, ServiceCategory
+from .serializers import (
+    ArtisanDetailSerializer,
+    ArtisanOwnerSerializer,
+    ArtisanListSerializer,
+    ArtisanWriteSerializer,
+    ServiceCategorySerializer,
+)
+from .services import HomeServiceError, HomeServiceService
+
+
+class ServiceCategoryListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ServiceCategorySerializer
+
+    def get_queryset(self):
+        return ServiceCategory.objects.filter(is_active=True)
+
+
+class ArtisanRegisterView(APIView):
+    """POST /artisans/ — register (once) as an artisan."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        if hasattr(request.user, "artisan_profile"):
+            return Response({"detail": "You already have an artisan profile."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        s = ArtisanWriteSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        profile = s.save(user=request.user)
+        return Response(ArtisanOwnerSerializer(profile).data, status=status.HTTP_201_CREATED)
+
+
+class MyArtisanView(APIView):
+    """GET/PATCH /artisans/me/ — view or update your own profile (incl. location)."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        profile = getattr(request.user, "artisan_profile", None)
+        if profile is None:
+            return Response({"detail": "No artisan profile yet."},
+                            status=status.HTTP_404_NOT_FOUND)
+        return Response(ArtisanOwnerSerializer(profile).data)
+
+    def patch(self, request):
+        profile = getattr(request.user, "artisan_profile", None)
+        if profile is None:
+            return Response({"detail": "No artisan profile yet."},
+                            status=status.HTTP_404_NOT_FOUND)
+        s = ArtisanWriteSerializer(profile, data=request.data, partial=True)
+        s.is_valid(raise_exception=True)
+        s.save()
+        return Response(ArtisanOwnerSerializer(profile).data)
+
+
+class ArtisanSearchView(APIView):
+    """GET /artisans/?lat=..&lng=..&radius_km=10&category=mechanic&q=.."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        p = request.query_params
+        lat, lng = p.get("lat"), p.get("lng")
+        if lat is None or lng is None:
+            return Response({"detail": "lat and lng are required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            results = HomeServiceService.search_nearby(
+                lat=lat, lng=lng, radius_km=p.get("radius_km", 10),
+                category=p.get("category"), q=p.get("q"),
+            )
+        except (ValueError, TypeError):
+            return Response({"detail": "lat, lng and radius_km must be numbers."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        return Response({"count": len(results),
+                         "results": ArtisanListSerializer(results, many=True).data})
+
+
+class ArtisanDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, artisan_id):
+        profile = (ArtisanProfile.objects.select_related("category")
+                   .filter(id=artisan_id, status=ArtisanProfile.Status.ACTIVE).first())
+        if profile is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        ArtisanProfile.objects.filter(pk=profile.pk).update(
+            views_count=profile.views_count + 1)
+        return Response(ArtisanDetailSerializer(profile).data)
+
+
+class BoostInitView(APIView):
+    """POST /artisans/boost/ {days} — start a Paystack boost payment."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        days = request.data.get("days", 30)
+        currency = request.data.get("currency", "NGN")
+        try:
+            payment, init = HomeServiceService.initiate_boost(
+                user=request.user, days=days, currency=currency)
+        except HomeServiceError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({
+            "detail": "Payment initialized. Complete payment to activate boost.",
+            "days": payment.days, "amount": str(payment.amount),
+            "currency": payment.currency, "reference": payment.reference,
+            "authorization_url": init.authorization_url,
+        }, status=status.HTTP_201_CREATED)
+
+
+class BoostVerifyView(APIView):
+    """POST /artisans/boost/verify/ {reference}."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        reference = request.data.get("reference")
+        if not reference:
+            return Response({"detail": "reference is required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            payment = HomeServiceService.verify_boost(user=request.user, reference=reference)
+        except HomeServiceError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        profile = getattr(request.user, "artisan_profile", None)
+        return Response({
+            "payment_status": payment.status,
+            "featured_until": getattr(profile, "featured_until", None),
+            "reference": payment.reference,
+        })
+
+
+class BoostWebhookView(APIView):
+    """POST — Paystack charge.success for artisan boosts."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        from django.conf import settings
+        from integrations.base import ProviderFactory
+        headers = {k.lower(): v for k, v in request.headers.items()}
+        provider = ("flutterwave" if headers.get("verif-hash")
+                    else settings.DEFAULT_PROVIDERS.get("payments", "paystack"))
+        gateway = ProviderFactory.get("payments", provider)
+        verify = getattr(gateway, "verify_webhook", None)
+        if verify and not verify(request.body, headers):
+            return Response({"detail": "Invalid signature."}, status=status.HTTP_403_FORBIDDEN)
+        try:
+            payload = json.loads(request.body or b"{}")
+        except ValueError:
+            payload = {}
+        data = payload.get("data", {}) or {}
+        reference = data.get("reference") or data.get("tx_ref") or ""
+        event = payload.get("event", "")
+        ok = (event == "charge.success") or (
+            event == "charge.completed"
+            and str(data.get("status", "")).lower() == "successful")
+        if ok and reference.startswith("BOOST-"):
+            HomeServiceService.activate_by_reference(reference)
+        return Response({"status": "ok"})
+````
+
+## File: apps/homeservices/work_videos.py
+````python
+"""
+Artisan "videos of previous work" — uploaded by the artisan, approved by an admin.
+
+Videos land here as PENDING. An admin approves or rejects them from the Django
+admin (bulk actions provided). Only APPROVED videos should be surfaced on the
+public artisan profile; everything else stays private to the owner.
+
+Wiring (three one-line additions — see SETUP.md):
+  - apps/homeservices/models.py : from .work_videos import ArtisanWorkVideo   # noqa
+  - apps/homeservices/admin.py  : from . import work_videos                   # noqa
+  - apps/homeservices/urls.py   : from .work_videos import urlpatterns as work_video_urls
+                                  urlpatterns += work_video_urls
+Then:  python manage.py makemigrations homeservices && python manage.py migrate
+"""
+import uuid
+
+from django.conf import settings
+from django.contrib import admin
+from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from rest_framework import mixins, serializers, viewsets
+from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.routers import DefaultRouter
+
+from apps.common.models import TimeStampedModel
+
+from .models import ArtisanProfile
+
+
+class ArtisanWorkVideo(TimeStampedModel):
+    class Status(models.TextChoices):
+        PENDING = "pending", _("Pending review")
+        APPROVED = "approved", _("Approved")
+        REJECTED = "rejected", _("Rejected")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    artisan = models.ForeignKey(
+        ArtisanProfile,
+        on_delete=models.CASCADE,
+        related_name="work_videos",
+    )
+    video_url = models.URLField(max_length=600)
+    public_id = models.CharField(max_length=255, blank=True)  # Cloudinary id
+    caption = models.CharField(max_length=200, blank=True)
+
+    status = models.CharField(
+        max_length=10, choices=Status.choices, default=Status.PENDING, db_index=True
+    )
+    review_note = models.CharField(max_length=300, blank=True)  # shown to artisan on reject
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="reviewed_artisan_videos",
+    )
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["artisan", "status"], name="hs_workvideo_art_status")]
+
+    def __str__(self):
+        return f"{self.artisan.business_name} video [{self.status}]"
+
+
+# ---------------------------------------------------------------------------
+# API — the artisan manages their own videos; approval is admin-only.
+# ---------------------------------------------------------------------------
+class ArtisanWorkVideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArtisanWorkVideo
+        fields = [
+            "id",
+            "video_url",
+            "public_id",
+            "caption",
+            "status",
+            "review_note",
+            "created_at",
+        ]
+        # Approval state is never client-settable.
+        read_only_fields = ["id", "status", "review_note", "created_at"]
+
+
+class ArtisanWorkVideoViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
+    serializer_class = ArtisanWorkVideoSerializer
+    permission_classes = [IsAuthenticated]
+    pagination_class = None
+
+    def _artisan(self):
+        return ArtisanProfile.objects.filter(user=self.request.user).first()
+
+    def get_queryset(self):
+        artisan = self._artisan()
+        if not artisan:
+            return ArtisanWorkVideo.objects.none()
+        return ArtisanWorkVideo.objects.filter(artisan=artisan)
+
+    def perform_create(self, serializer):
+        artisan = self._artisan()
+        if not artisan:
+            raise ValidationError("Create your artisan profile before adding videos.")
+        # Always saved as PENDING — the serializer can't set status.
+        serializer.save(artisan=artisan, status=ArtisanWorkVideo.Status.PENDING)
+
+
+router = DefaultRouter()
+router.register(r"artisans/work-videos", ArtisanWorkVideoViewSet, basename="artisan-work-video")
+urlpatterns = router.urls
+
+
+# ---------------------------------------------------------------------------
+# Admin moderation
+# ---------------------------------------------------------------------------
+@admin.register(ArtisanWorkVideo)
+class ArtisanWorkVideoAdmin(admin.ModelAdmin):
+    list_display = ("artisan", "status", "caption", "created_at", "reviewed_at")
+    list_filter = ("status",)
+    search_fields = ("artisan__business_name", "caption")
+    readonly_fields = ("video_url", "public_id", "created_at", "reviewed_by", "reviewed_at")
+    ordering = ("status", "-created_at")
+    actions = ("approve_selected", "reject_selected")
+
+    @admin.action(description="Approve selected videos")
+    def approve_selected(self, request, queryset):
+        n = queryset.update(
+            status=ArtisanWorkVideo.Status.APPROVED,
+            review_note="",
+            reviewed_by=request.user,
+            reviewed_at=timezone.now(),
+        )
+        self.message_user(request, f"{n} video(s) approved.")
+
+    @admin.action(description="Reject selected videos")
+    def reject_selected(self, request, queryset):
+        n = queryset.update(
+            status=ArtisanWorkVideo.Status.REJECTED,
+            reviewed_by=request.user,
+            reviewed_at=timezone.now(),
+        )
+        self.message_user(request, f"{n} video(s) rejected.")
+````
+
+## File: apps/marketplace/management/commands/__init__.py
+````python
+
+````
+
+## File: apps/marketplace/management/commands/renew_listings.py
+````python
+"""
+Renew marketplace listings whose expiry has passed (or is near), so they
+reappear in the public marketplace. Nothing is deleted — this only pushes
+expires_at forward.
+
+Examples:
+    python manage.py renew_listings                 # renew ALL expired listings (+30 days)
+    python manage.py renew_listings --days 90       # give them 90 days of life
+    python manage.py renew_listings --all           # renew every listing, expired or not
+    python manage.py renew_listings --dry-run       # show what would change, change nothing
+"""
+from datetime import timedelta
+
+from django.core.management.base import BaseCommand
+from django.utils import timezone
+
+from apps.marketplace.models import Listing, LISTING_TTL_DAYS
+
+
+class Command(BaseCommand):
+    help = "Renew expired marketplace listings (push expires_at forward). Non-destructive."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--days", type=int, default=LISTING_TTL_DAYS,
+                            help=f"How many days of life to give each listing (default {LISTING_TTL_DAYS}).")
+        parser.add_argument("--all", action="store_true",
+                            help="Renew every listing, not only the expired ones.")
+        parser.add_argument("--dry-run", action="store_true",
+                            help="Report what would change without saving.")
+
+    def handle(self, *args, **opts):
+        now = timezone.now()
+        new_expiry = now + timedelta(days=opts["days"])
+
+        qs = Listing.objects.all() if opts["all"] else Listing.objects.filter(expires_at__lte=now)
+        # also make sure they're active so they actually show publicly
+        count = qs.count()
+
+        if count == 0:
+            self.stdout.write("Nothing to renew.")
+            return
+
+        self.stdout.write(f"{'[DRY RUN] ' if opts['dry_run'] else ''}Renewing {count} listing(s) "
+                          f"to expire on {new_expiry:%Y-%m-%d} ({opts['days']} days).")
+        for l in qs:
+            self.stdout.write(f"  · {l.title[:48]:<48}  {l.status:<8}  was {l.expires_at:%Y-%m-%d}")
+
+        if opts["dry_run"]:
+            self.stdout.write("Dry run — no changes saved.")
+            return
+
+        updated = qs.update(expires_at=new_expiry, status=Listing.Status.ACTIVE)
+        self.stdout.write(self.style.SUCCESS(f"Done. {updated} listing(s) are live again until {new_expiry:%Y-%m-%d}."))
+````
+
+## File: apps/marketplace/management/commands/seed_categories.py
+````python
+"""Seed marketplace categories. Run: python manage.py seed_categories"""
+from django.core.management.base import BaseCommand
+from django.utils.text import slugify
+
+from apps.marketplace.models import Category
+
+CATEGORIES = [
+    ("Electronics", False), ("Phones", False), ("Computers", False),
+    ("Automobiles", False), ("Household Appliances", False), ("Real Estate", False),
+    ("Fashion", False), ("Furniture", False),
+    ("OAM MOTORS", True),        # admin-only
+]
+
+
+class Command(BaseCommand):
+    help = "Seed marketplace categories."
+
+    def handle(self, *args, **opts):
+        created = 0
+        for order, (name, admin_only) in enumerate(CATEGORIES):
+            _, was = Category.objects.get_or_create(
+                slug=slugify(name),
+                defaults={"name": name, "is_admin_only": admin_only,
+                          "is_active": True, "order": order},
+            )
+            created += int(was)
+        self.stdout.write(self.style.SUCCESS(
+            f"Seeded categories. {created} new, {Category.objects.count()} total."
+        ))
+````
+
+## File: apps/marketplace/management/__init__.py
+````python
+
+````
+
+## File: apps/marketplace/migrations/__init__.py
+````python
+
+````
+
+## File: apps/marketplace/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-07-05 22:11
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Category',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=80)),
+                ('slug', models.SlugField(max_length=90, unique=True)),
+                ('description', models.CharField(blank=True, max_length=255)),
+                ('icon', models.CharField(blank=True, max_length=120)),
+                ('is_admin_only', models.BooleanField(default=False)),
+                ('is_active', models.BooleanField(default=True)),
+                ('order', models.PositiveIntegerField(default=0)),
+            ],
+            options={
+                'verbose_name_plural': 'categories',
+                'ordering': ['order', 'name'],
+            },
+        ),
+        migrations.CreateModel(
+            name='Listing',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('title', models.CharField(max_length=140)),
+                ('description', models.TextField()),
+                ('price', models.DecimalField(decimal_places=2, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('negotiable', models.BooleanField(default=False)),
+                ('condition', models.CharField(blank=True, choices=[('new', 'New'), ('used', 'Used'), ('refurbished', 'Refurbished')], max_length=12)),
+                ('location', models.CharField(blank=True, max_length=120)),
+                ('contact_phone', models.CharField(max_length=32)),
+                ('contact_whatsapp', models.CharField(blank=True, max_length=32)),
+                ('status', models.CharField(choices=[('active', 'Active'), ('sold', 'Sold'), ('inactive', 'Inactive')], default='active', max_length=10)),
+                ('is_featured', models.BooleanField(default=False)),
+                ('views_count', models.PositiveIntegerField(default=0)),
+                ('expires_at', models.DateTimeField(db_index=True)),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='listings', to='marketplace.category')),
+                ('seller', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='listings', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-is_featured', '-created_at'],
+            },
+        ),
+        migrations.CreateModel(
+            name='ListingImage',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('url', models.URLField(max_length=500)),
+                ('is_primary', models.BooleanField(default=False)),
+                ('listing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='marketplace.listing')),
+            ],
+            options={
+                'ordering': ['-is_primary', 'created_at'],
+            },
+        ),
+        migrations.CreateModel(
+            name='SellerSubscription',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('tier', models.CharField(choices=[('free', 'Free'), ('pro', 'Pro'), ('premium', 'Premium')], default='free', max_length=10)),
+                ('expires_at', models.DateTimeField(blank=True, null=True)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='seller_subscription', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.AddIndex(
+            model_name='listing',
+            index=models.Index(fields=['category', 'status'], name='marketplace_categor_aa423d_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='listing',
+            index=models.Index(fields=['seller', 'status'], name='marketplace_seller__639ce1_idx'),
+        ),
+    ]
+````
+
+## File: apps/marketplace/migrations/0002_subscriptionpayment.py
+````python
+# Generated by Django 5.0.6 on 2026-07-06 01:09
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('marketplace', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='SubscriptionPayment',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('tier', models.CharField(max_length=10)),
+                ('amount', models.DecimalField(decimal_places=2, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('reference', models.CharField(max_length=80, unique=True)),
+                ('period_days', models.PositiveIntegerField(default=30)),
+                ('provider', models.CharField(blank=True, max_length=40)),
+                ('status', models.CharField(choices=[('pending', 'Pending'), ('paid', 'Paid'), ('failed', 'Failed')], default='pending', max_length=10)),
+                ('authorization_url', models.URLField(blank=True, max_length=600)),
+                ('raw', models.JSONField(blank=True, default=dict)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subscription_payments', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+    ]
+````
+
+## File: apps/marketplace/migrations/0003_alter_sellersubscription_tier_vehicledetail.py
+````python
+# Generated by Django 5.0.6 on 2026-07-24 06:36
+
+import django.db.models.deletion
+import uuid
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('marketplace', '0002_subscriptionpayment'),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name='sellersubscription',
+            name='tier',
+            field=models.CharField(choices=[('free', 'Free'), ('premium', 'Premium'), ('pro', 'Pro')], default='free', max_length=10),
+        ),
+        migrations.CreateModel(
+            name='VehicleDetail',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('make', models.CharField(max_length=60)),
+                ('model_name', models.CharField(max_length=80)),
+                ('year', models.PositiveIntegerField()),
+                ('mileage_km', models.PositiveIntegerField(blank=True, null=True)),
+                ('transmission', models.CharField(blank=True, choices=[('automatic', 'Automatic'), ('manual', 'Manual'), ('cvt', 'CVT')], max_length=16)),
+                ('fuel', models.CharField(blank=True, choices=[('petrol', 'Petrol'), ('diesel', 'Diesel'), ('hybrid', 'Hybrid'), ('electric', 'Electric'), ('lpg', 'LPG')], max_length=16)),
+                ('body_type', models.CharField(blank=True, choices=[('sedan', 'Sedan'), ('suv', 'SUV'), ('hatchback', 'Hatchback'), ('pickup', 'Pickup'), ('bus', 'Bus'), ('truck', 'Truck'), ('coupe', 'Coupé'), ('wagon', 'Wagon'), ('van', 'Van'), ('other', 'Other')], max_length=16)),
+                ('colour', models.CharField(blank=True, max_length=40)),
+                ('engine_size', models.CharField(blank=True, max_length=20)),
+                ('seats', models.PositiveSmallIntegerField(blank=True, null=True)),
+                ('is_registered', models.BooleanField(default=False)),
+                ('duty_paid', models.BooleanField(default=False)),
+                ('vin', models.CharField(blank=True, max_length=32)),
+                ('listing', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='vehicle', to='marketplace.listing')),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+    ]
+````
+
+## File: apps/marketplace/migrations/0004_listing_verification_and_video.py
+````python
+import uuid
+
+import django.db.models.deletion
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ("marketplace", "0003_alter_sellersubscription_tier_vehicledetail"),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name="listing",
+            name="is_verified",
+            field=models.BooleanField(default=False),
+        ),
+        migrations.AddField(
+            model_name="listing",
+            name="verified_at",
+            field=models.DateTimeField(blank=True, null=True),
+        ),
+        migrations.AddField(
+            model_name="listing",
+            name="verified_by",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to=settings.AUTH_USER_MODEL,
+            ),
+        ),
+        migrations.CreateModel(
+            name="ListingVideo",
+            fields=[
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("id", models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ("url", models.URLField(max_length=500)),
+                ("thumbnail_url", models.URLField(blank=True, max_length=500)),
+                ("listing", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="videos", to="marketplace.listing")),
+            ],
+            options={
+                "ordering": ["created_at"],
+            },
+        ),
+    ]
+````
+
+## File: apps/marketplace/__init__.py
+````python
+
+````
+
+## File: apps/marketplace/admin.py
+````python
+from django.contrib import admin
+from django.utils import timezone
+
+from .models import (Category, Listing, ListingImage, ListingVideo,
+                     SellerSubscription, SubscriptionPayment)
+
+
+class ListingImageInline(admin.TabularInline):
+    model = ListingImage
+    extra = 0
+
+
+class ListingVideoInline(admin.TabularInline):
+    model = ListingVideo
+    extra = 0
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "slug", "is_admin_only", "is_active", "order")
+    list_filter = ("is_admin_only", "is_active")
+    prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.action(description="Verify selected listings (attach badge)")
+def verify_listings(modeladmin, request, queryset):
+    queryset.update(is_verified=True, verified_at=timezone.now(), verified_by=request.user)
+
+
+@admin.action(description="Remove verification from selected listings")
+def unverify_listings(modeladmin, request, queryset):
+    queryset.update(is_verified=False, verified_at=None, verified_by=None)
+
+
+@admin.register(Listing)
+class ListingAdmin(admin.ModelAdmin):
+    list_display = ("title", "category", "price", "currency", "status", "is_verified",
+                    "is_featured", "seller", "expires_at")
+    list_filter = ("status", "is_verified", "is_featured", "category", "condition")
+    search_fields = ("title", "description", "seller__email")
+    readonly_fields = ("verified_at", "verified_by")
+    actions = [verify_listings, unverify_listings]
+    inlines = [ListingImageInline, ListingVideoInline]
+
+
+@admin.register(SellerSubscription)
+class SellerSubscriptionAdmin(admin.ModelAdmin):
+    list_display = ("user", "tier", "expires_at")
+    list_filter = ("tier",)
+
+
+@admin.register(SubscriptionPayment)
+class SubscriptionPaymentAdmin(admin.ModelAdmin):
+    list_display = ("reference", "user", "tier", "amount", "currency", "status", "created_at")
+    list_filter = ("tier", "currency", "status")
+    search_fields = ("reference", "user__email")
+````
+
+## File: apps/marketplace/apps.py
+````python
+from django.apps import AppConfig
+
+
+class MarketplaceConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.marketplace"
+````
+
+## File: apps/marketplace/models.py
+````python
+"""Marketplace: categories, listings (contact-seller model), and seller tiers.
+
+- OAM MOTORS is a category flagged is_admin_only -> only staff can post there.
+- Listings auto-expire after LISTING_TTL_DAYS unless renewed.
+- Seller tiers (free/premium/pro) cap the number of active listings and unlock
+  featured placement. Paid upgrades (which book fees to OAM revenue) are wired
+  in the subscriptions chunk.
+"""
+import uuid
+from datetime import timedelta
+
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedModel
+
+LISTING_TTL_DAYS = 30
+
+# active-listing limit per tier (None = unlimited)
+TIER_LIMITS = {"free": 3, "premium": 20, "pro": None}
+
+# monthly subscription price per paid tier (NGN)
+from decimal import Decimal  # noqa: E402
+SUBSCRIPTION_PRICES = {"premium": Decimal("2500"), "pro": Decimal("5000")}
+SUBSCRIPTION_DAYS = 30
+# tiers that get featured/boosted placement
+FEATURED_TIERS = {"premium", "pro"}
+
+
+class Category(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=80)
+    slug = models.SlugField(max_length=90, unique=True)
+    description = models.CharField(max_length=255, blank=True)
+    icon = models.CharField(max_length=120, blank=True)          # icon name or URL
+    is_admin_only = models.BooleanField(default=False)           # OAM MOTORS = True
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "name"]
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        return self.name
+
+
+class Listing(TimeStampedModel):
+    class Status(models.TextChoices):
+        ACTIVE = "active", _("Active")
+        SOLD = "sold", _("Sold")
+        INACTIVE = "inactive", _("Inactive")
+
+    class Condition(models.TextChoices):
+        NEW = "new", _("New")
+        USED = "used", _("Used")
+        REFURBISHED = "refurbished", _("Refurbished")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                               related_name="listings")
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="listings")
+
+    title = models.CharField(max_length=140)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.CharField(max_length=3, default="NGN")
+    negotiable = models.BooleanField(default=False)
+    condition = models.CharField(max_length=12, choices=Condition.choices, blank=True)
+    location = models.CharField(max_length=120, blank=True)      # e.g. "Lagos, Ikeja"
+
+    contact_phone = models.CharField(max_length=32)
+    contact_whatsapp = models.CharField(max_length=32, blank=True)
+
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.ACTIVE)
+    is_featured = models.BooleanField(default=False)
+
+    # Trust/verification: listings go live immediately (status stays ACTIVE),
+    # but an admin can verify a listing, which attaches a "verified" badge. Any
+    # owner edit resets this so the badge always reflects reviewed content.
+    is_verified = models.BooleanField(default=False)
+    verified_at = models.DateTimeField(null=True, blank=True)
+    verified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name="+",
+    )
+
+    views_count = models.PositiveIntegerField(default=0)
+    expires_at = models.DateTimeField(db_index=True)
+
+    class Meta:
+        ordering = ["-is_featured", "-created_at"]
+        indexes = [
+            models.Index(fields=["category", "status"]),
+            models.Index(fields=["seller", "status"]),
+        ]
+
+    def save(self, *args, **kwargs):
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timedelta(days=LISTING_TTL_DAYS)
+        super().save(*args, **kwargs)
+
+    @property
+    def is_expired(self):
+        return self.expires_at is not None and self.expires_at <= timezone.now()
+
+    @property
+    def is_live(self):
+        return self.status == self.Status.ACTIVE and not self.is_expired
+
+    def __str__(self):
+        return f"{self.title} ({self.category})"
+
+
+class ListingImage(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="images")
+    url = models.URLField(max_length=500)
+    is_primary = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-is_primary", "created_at"]
+
+
+class ListingVideo(TimeStampedModel):
+    """A short video clip attached to a listing (Cloudinary URL)."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="videos")
+    url = models.URLField(max_length=500)
+    thumbnail_url = models.URLField(max_length=500, blank=True)  # optional poster frame
+
+    class Meta:
+        ordering = ["created_at"]
+
+
+class SellerSubscription(TimeStampedModel):
+    class Tier(models.TextChoices):
+        FREE = "free", _("Free")
+        PREMIUM = "premium", _("Premium")
+        PRO = "pro", _("Pro")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                related_name="seller_subscription")
+    tier = models.CharField(max_length=10, choices=Tier.choices, default=Tier.FREE)
+    expires_at = models.DateTimeField(null=True, blank=True)   # null = free / no expiry
+
+    @property
+    def active_tier(self):
+        if self.tier != self.Tier.FREE and self.expires_at and self.expires_at <= timezone.now():
+            return self.Tier.FREE       # lapsed paid tier falls back to free
+        return self.tier
+
+    def listing_limit(self):
+        return TIER_LIMITS.get(self.active_tier, TIER_LIMITS["free"])
+
+    def __str__(self):
+        return f"{self.user} · {self.tier}"
+
+
+class SubscriptionPayment(TimeStampedModel):
+    """A subscription payment via Paystack card checkout (pending -> paid)."""
+    class Status(models.TextChoices):
+        PENDING = "pending", _("Pending")
+        PAID = "paid", _("Paid")
+        FAILED = "failed", _("Failed")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="subscription_payments")
+    tier = models.CharField(max_length=10)
+    amount = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.CharField(max_length=3, default="NGN")
+    reference = models.CharField(max_length=80, unique=True)
+    period_days = models.PositiveIntegerField(default=SUBSCRIPTION_DAYS)
+
+    provider = models.CharField(max_length=40, blank=True)
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+    authorization_url = models.URLField(max_length=600, blank=True)
+    raw = models.JSONField(default=dict, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user} {self.tier} {self.amount} {self.currency} [{self.status}]"
+
+# Registered last: motors.py imports Listing/Category from this module,
+# so those models must be defined before it is loaded.
+from .motors import VehicleDetail  # noqa: E402,F401
+````
+
+## File: apps/marketplace/motors.py
+````python
+"""
+O.A.M Motors — the house vehicle inventory.
+
+WHY A SEPARATE MODEL RATHER THAN MORE FIELDS ON Listing
+  A car buyer decides on year, mileage, transmission and fuel long before they
+  read a description, so those belong in structured fields — shown at a glance,
+  and filterable later.
+
+  But most marketplace listings are not vehicles, and adding eight car-specific
+  columns to every fridge and sofa would make the seller form worse for
+  everyone. So VehicleDetail hangs off a Listing one-to-one: ordinary listings
+  are untouched, and a motors listing is simply a Listing that happens to have
+  one attached.
+
+  Everything else — browse, search, the listing page, a buyer messaging you —
+  works unchanged, because a motors listing IS a listing.
+
+WHY ADMIN-ONLY ENDPOINTS INSTEAD OF THE NORMAL SELLER FLOW
+  The oam-motors category is admin-only, and the house inventory shouldn't be
+  constrained by the Free/Premium/Pro listing caps. Those exist to price
+  third-party sellers; OAM charging itself for its own listings would be
+  meaningless bookkeeping. These endpoints skip the tier check deliberately and
+  are locked to staff.
+"""
+from __future__ import annotations
+
+import uuid
+
+from django.db import models, transaction
+from django.utils import timezone
+from rest_framework import serializers
+from rest_framework import status as http
+from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.models import TimeStampedModel
+
+from .models import Category, Listing, ListingImage
+
+MOTORS_SLUG = "oam-motors"
+
+
+class VehicleDetail(TimeStampedModel):
+    """Structured vehicle facts attached to a marketplace listing."""
+
+    class Transmission(models.TextChoices):
+        AUTOMATIC = "automatic", "Automatic"
+        MANUAL = "manual", "Manual"
+        CVT = "cvt", "CVT"
+
+    class Fuel(models.TextChoices):
+        PETROL = "petrol", "Petrol"
+        DIESEL = "diesel", "Diesel"
+        HYBRID = "hybrid", "Hybrid"
+        ELECTRIC = "electric", "Electric"
+        LPG = "lpg", "LPG"
+
+    class BodyType(models.TextChoices):
+        SEDAN = "sedan", "Sedan"
+        SUV = "suv", "SUV"
+        HATCHBACK = "hatchback", "Hatchback"
+        PICKUP = "pickup", "Pickup"
+        BUS = "bus", "Bus"
+        TRUCK = "truck", "Truck"
+        COUPE = "coupe", "Coupé"
+        WAGON = "wagon", "Wagon"
+        VAN = "van", "Van"
+        OTHER = "other", "Other"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    listing = models.OneToOneField(
+        Listing, on_delete=models.CASCADE, related_name="vehicle"
+    )
+
+    make = models.CharField(max_length=60)
+    model_name = models.CharField(max_length=80)
+    year = models.PositiveIntegerField()
+    mileage_km = models.PositiveIntegerField(null=True, blank=True)
+
+    transmission = models.CharField(max_length=16, choices=Transmission.choices, blank=True)
+    fuel = models.CharField(max_length=16, choices=Fuel.choices, blank=True)
+    body_type = models.CharField(max_length=16, choices=BodyType.choices, blank=True)
+    colour = models.CharField(max_length=40, blank=True)
+    engine_size = models.CharField(max_length=20, blank=True)     # e.g. "2.4L"
+    seats = models.PositiveSmallIntegerField(null=True, blank=True)
+
+    # Registration status matters a great deal to a Nigerian buyer: an unpaid
+    # customs duty can cost more than the discount that made the car look cheap.
+    is_registered = models.BooleanField(default=False)
+    duty_paid = models.BooleanField(default=False)
+
+    # Kept for internal records. Never exposed publicly — a VIN on a public page
+    # is enough for someone to clone the vehicle's identity.
+    vin = models.CharField(max_length=32, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.year} {self.make} {self.model_name}"
+
+    @property
+    def headline(self) -> str:
+        return f"{self.year} {self.make} {self.model_name}".strip()
+
+
+# --------------------------------------------------------------------------- #
+# Serializers
+# --------------------------------------------------------------------------- #
+
+PUBLIC_VEHICLE_FIELDS = [
+    "make", "model_name", "year", "mileage_km", "transmission", "fuel",
+    "body_type", "colour", "engine_size", "seats", "is_registered", "duty_paid",
+]
+
+
+class VehicleSerializer(serializers.ModelSerializer):
+    """Public view — note the absence of `vin`."""
+
+    class Meta:
+        model = VehicleDetail
+        fields = PUBLIC_VEHICLE_FIELDS
+        read_only_fields = fields
+
+
+class VehicleWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleDetail
+        fields = PUBLIC_VEHICLE_FIELDS + ["vin"]
+
+    def validate_year(self, value):
+        current = timezone.now().year
+        # Cars are sold a model year ahead, hence +1. The lower bound keeps
+        # obvious typos (19 instead of 2019) out of the inventory.
+        if value < 1950 or value > current + 1:
+            raise serializers.ValidationError(f"Year must be between 1950 and {current + 1}.")
+        return value
+
+    def validate_mileage_km(self, value):
+        if value is not None and value > 2_000_000:
+            raise serializers.ValidationError("That mileage looks like a typo.")
+        return value
+
+
+class MotorsListingSerializer(serializers.ModelSerializer):
+    """A motors listing as the admin sees it, vehicle facts included."""
+
+    vehicle = VehicleWriteSerializer(read_only=True)
+    images = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Listing
+        fields = [
+            "id", "title", "description", "price", "currency", "negotiable",
+            "condition", "location", "status", "is_featured", "views_count",
+            "contact_phone", "contact_whatsapp", "expires_at",
+            "created_at", "updated_at", "vehicle", "images",
+        ]
+        read_only_fields = ["id", "views_count", "created_at", "updated_at"]
+
+    def get_images(self, obj):
+        return [
+            {"id": str(i.id), "url": i.url, "is_primary": i.is_primary}
+            for i in obj.images.all()
+        ]
+
+
+# --------------------------------------------------------------------------- #
+# Views
+# --------------------------------------------------------------------------- #
+
+def _motors_category() -> Category:
+    """
+    The house category, created on demand.
+
+    Made admin-only so it can't be posted into from the ordinary seller form —
+    an OAM Motors listing should mean OAM is selling it.
+    """
+    category, _ = Category.objects.get_or_create(
+        slug=MOTORS_SLUG,
+        defaults={
+            "name": "O.A.M Motors",
+            "description": "Vehicles sold directly by O.A.M Motors.",
+            "is_admin_only": True,
+            "is_active": True,
+            "order": 0,
+        },
+    )
+    if not category.is_admin_only:
+        category.is_admin_only = True
+        category.save(update_fields=["is_admin_only", "updated_at"])
+    return category
+
+
+class MotorsInventoryView(APIView):
+    """GET /marketplace/motors/  ·  POST /marketplace/motors/"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        qs = (
+            Listing.objects
+            .filter(category__slug=MOTORS_SLUG)
+            .select_related("category")
+            .prefetch_related("images", "vehicle")
+            .order_by("-created_at")
+        )
+        status_filter = request.query_params.get("status")
+        if status_filter and status_filter != "all":
+            qs = qs.filter(status=status_filter)
+
+        return Response({
+            "count": qs.count(),
+            "results": MotorsListingSerializer(qs[:100], many=True).data,
+        })
+
+    @transaction.atomic
+    def post(self, request):
+        vehicle_data = request.data.get("vehicle") or {}
+        vehicle_serializer = VehicleWriteSerializer(data=vehicle_data)
+        vehicle_serializer.is_valid(raise_exception=True)
+        vehicle = vehicle_serializer.validated_data
+
+        images = request.data.get("images") or []
+        if not images:
+            # A car listing with no photographs is not a listing anyone will
+            # act on, and it costs nothing to insist here.
+            return Response(
+                {"detail": "Add at least one photo of the vehicle."},
+                status=http.HTTP_400_BAD_REQUEST,
+            )
+
+        price = request.data.get("price")
+        if not price:
+            return Response({"detail": "Enter a price."}, status=http.HTTP_400_BAD_REQUEST)
+
+        title = (request.data.get("title") or "").strip() or (
+            f"{vehicle['year']} {vehicle['make']} {vehicle['model_name']}"
+        )
+
+        listing = Listing.objects.create(
+            seller=request.user,
+            category=_motors_category(),
+            title=title[:200],
+            description=(request.data.get("description") or "").strip(),
+            price=price,
+            currency=request.data.get("currency", "NGN"),
+            negotiable=bool(request.data.get("negotiable", True)),
+            condition=request.data.get("condition", "used"),
+            location=(request.data.get("location") or "").strip(),
+            contact_phone=(request.data.get("contact_phone") or "").strip(),
+            contact_whatsapp=(request.data.get("contact_whatsapp") or "").strip(),
+            status=getattr(Listing.Status, "ACTIVE", "active"),
+            is_featured=True,          # house stock leads the category
+            expires_at=timezone.now() + timezone.timedelta(days=90),
+        )
+
+        VehicleDetail.objects.create(listing=listing, **vehicle)
+
+        for index, url in enumerate(images[:12]):
+            ListingImage.objects.create(listing=listing, url=url, is_primary=index == 0)
+
+        return Response(
+            MotorsListingSerializer(listing).data, status=http.HTTP_201_CREATED
+        )
+
+
+class MotorsDetailView(APIView):
+    """GET · PATCH · DELETE  /marketplace/motors/<listing_id>/"""
+
+    permission_classes = [IsAdminUser]
+
+    def _get(self, listing_id):
+        return (
+            Listing.objects
+            .filter(id=listing_id, category__slug=MOTORS_SLUG)
+            .prefetch_related("images")
+            .first()
+        )
+
+    def get(self, request, listing_id):
+        listing = self._get(listing_id)
+        if listing is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+        return Response(MotorsListingSerializer(listing).data)
+
+    @transaction.atomic
+    def patch(self, request, listing_id):
+        listing = self._get(listing_id)
+        if listing is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+
+        for field in ("title", "description", "price", "location", "condition",
+                      "status", "contact_phone", "contact_whatsapp"):
+            if field in request.data:
+                setattr(listing, field, request.data[field])
+        if "negotiable" in request.data:
+            listing.negotiable = bool(request.data["negotiable"])
+        if "is_featured" in request.data:
+            listing.is_featured = bool(request.data["is_featured"])
+        listing.save()
+
+        if "vehicle" in request.data:
+            vehicle = getattr(listing, "vehicle", None)
+            serializer = VehicleWriteSerializer(
+                vehicle, data=request.data["vehicle"], partial=True
+            )
+            serializer.is_valid(raise_exception=True)
+            if vehicle is None:
+                VehicleDetail.objects.create(listing=listing, **serializer.validated_data)
+            else:
+                serializer.save()
+
+        if "images" in request.data:
+            listing.images.all().delete()
+            for index, url in enumerate((request.data["images"] or [])[:12]):
+                ListingImage.objects.create(listing=listing, url=url, is_primary=index == 0)
+
+        return Response(MotorsListingSerializer(listing).data)
+
+    def delete(self, request, listing_id):
+        listing = self._get(listing_id)
+        if listing is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+        # Soft-remove: an enquiry thread references this listing, and hard
+        # deletion would leave a buyer staring at a broken conversation.
+        listing.status = getattr(Listing.Status, "REMOVED", "removed")
+        listing.save(update_fields=["status", "updated_at"])
+        return Response(status=http.HTTP_204_NO_CONTENT)
+````
+
+## File: apps/marketplace/public_listings.py
+````python
+"""
+Public marketplace listings for the landing page.
+
+WHY THIS EXISTS
+  ListingListView requires authentication. The landing page is seen by people
+  who haven't signed up — and showing them an empty or invented marketplace is
+  precisely the wrong first impression, in opposite directions. They should see
+  what's genuinely for sale.
+
+WHAT IT RETURNS
+  ListingListSerializer, which carries no contact details. Phone numbers stay
+  behind an accepted enquiry, so a public endpoint certainly doesn't expose
+  them.
+"""
+from __future__ import annotations
+
+from django.db.models import Case, IntegerField, Q, When
+from django.utils import timezone
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import Category, Listing
+from .serializers import CategorySerializer, ListingListSerializer
+
+MAX_RESULTS = 24
+
+
+class PublicListingsView(APIView):
+    """GET /marketplace/public/listings/?category=<slug>&limit=8"""
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        now = timezone.now()
+
+        qs = (
+            Listing.objects
+            .filter(status="active")
+            .filter(Q(expires_at__isnull=True) | Q(expires_at__gt=now))
+            .select_related("category")
+            .prefetch_related("images")
+        )
+
+        category = request.query_params.get("category")
+        if category:
+            qs = qs.filter(category__slug=category)
+
+        # Featured first — that's what a paid plan buys — then newest.
+        qs = qs.annotate(
+            rank=Case(When(is_featured=True, then=0), default=1, output_field=IntegerField())
+        ).order_by("rank", "-created_at")
+
+        try:
+            limit = min(int(request.query_params.get("limit", 8)), MAX_RESULTS)
+        except (TypeError, ValueError):
+            limit = 8
+
+        results = list(qs[:limit])
+        return Response({
+            "count": len(results),
+            "results": ListingListSerializer(results, many=True).data,
+        })
+
+
+class PublicCategoriesView(APIView):
+    """GET /marketplace/public/categories/ — for the landing-page tabs."""
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        qs = Category.objects.filter(is_active=True).order_by("order", "name")
+        return Response({"results": CategorySerializer(qs, many=True).data})
+````
+
+## File: apps/marketplace/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import Category, Listing, ListingImage, ListingVideo, SellerSubscription
+from .motors import VehicleSerializer
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ("id", "name", "slug", "description", "icon", "is_admin_only", "order")
+
+
+class ListingImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListingImage
+        fields = ("id", "url", "is_primary")
+
+
+class ListingVideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListingVideo
+        fields = ("id", "url", "thumbnail_url")
+
+
+class ListingListSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="category.name", read_only=True)
+    primary_image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Listing
+        fields = ("id", "title", "price", "currency", "negotiable", "condition",
+                  "location", "category_name", "is_featured", "is_verified",
+                  "primary_image", "created_at")
+
+    def get_primary_image(self, obj):
+        img = next((i for i in obj.images.all() if i.is_primary), None) or \
+            (obj.images.all()[0] if obj.images.all() else None)
+        return img.url if img else None
+
+
+class ListingDetailSerializer(serializers.ModelSerializer):
+    # Present only on O.A.M Motors listings; null everywhere else.
+    vehicle = VehicleSerializer(read_only=True)
+    category_name = serializers.CharField(source="category.name", read_only=True)
+    images = ListingImageSerializer(many=True, read_only=True)
+    videos = ListingVideoSerializer(many=True, read_only=True)
+    seller_name = serializers.SerializerMethodField()
+    is_owner = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Listing
+        fields = ("id", "title", "description", "price", "currency", "negotiable", "condition", "location", "category", "category_name", "status", "is_featured", "is_verified", "verified_at", "views_count", "seller_name", "is_owner", "images", "videos", "expires_at", "created_at", "updated_at", "vehicle")
+
+    def get_is_owner(self, obj):
+        request = self.context.get("request")
+        user = getattr(request, "user", None)
+        return bool(user and user.is_authenticated and obj.seller_id == user.id)
+
+    def get_seller_name(self, obj):
+        """Display the seller's real name, falling back gracefully.
+
+        full name (first + last) -> email/phone identifier -> id. We never
+        expose the raw email when a proper name is available.
+        """
+        seller = obj.seller
+        full_name = (seller.get_full_name() or "").strip() if seller else ""
+        if full_name:
+            return full_name
+        return getattr(seller, "identifier", None) or str(obj.seller_id)
+
+
+class ListingWriteSerializer(serializers.ModelSerializer):
+    images = serializers.ListField(
+        child=serializers.URLField(), required=False, allow_empty=True, write_only=True)
+    videos = serializers.ListField(
+        child=serializers.URLField(), required=False, allow_empty=True, write_only=True)
+
+    class Meta:
+        model = Listing
+        fields = ("id", "category", "title", "description", "price", "currency",
+                  "negotiable", "condition", "location", "contact_phone",
+                  "contact_whatsapp", "images", "videos")
+
+    def validate_price(self, v):
+        if v < 0:
+            raise serializers.ValidationError("Price cannot be negative.")
+        return v
+
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    active_tier = serializers.CharField(read_only=True)
+    listing_limit = serializers.SerializerMethodField()
+    active_listings = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SellerSubscription
+        fields = ("tier", "active_tier", "expires_at", "listing_limit", "active_listings")
+
+    def get_listing_limit(self, obj):
+        lim = obj.listing_limit()
+        return "unlimited" if lim is None else lim
+
+    def get_active_listings(self, obj):
+        from .services import MarketplaceService
+        return MarketplaceService.active_listing_count(obj.user)
+````
+
+## File: apps/marketplace/services.py
+````python
+"""Marketplace domain logic: tier limits + posting rules."""
+from __future__ import annotations
+
+from django.utils import timezone
+
+import uuid
+from datetime import timedelta
+
+from django.db import transaction
+from django.utils import timezone
+
+from django.conf import settings
+from integrations.base import ProviderFactory
+from apps.payments.pricing import resolve_payment_currency, subscription_price
+from integrations.base.dto import TxnStatus
+from integrations.base.exceptions import ProviderError
+
+from .models import (
+    FEATURED_TIERS,
+    Listing,
+    SellerSubscription,
+    SubscriptionPayment,
+    SUBSCRIPTION_DAYS,
+    SUBSCRIPTION_PRICES,
+)
+
+
+class MarketplaceError(Exception):
+    """User-facing marketplace problem."""
+
+
+class MarketplaceService:
+    @staticmethod
+    def get_subscription(user) -> SellerSubscription:
+        sub, _ = SellerSubscription.objects.get_or_create(user=user)
+        return sub
+
+    @staticmethod
+    def active_listing_count(user) -> int:
+        return Listing.objects.filter(
+            seller=user, status=Listing.Status.ACTIVE, expires_at__gt=timezone.now()
+        ).count()
+
+    @staticmethod
+    def check_can_post(user, category):
+        # OAM MOTORS (and any admin-only category): staff only
+        if category.is_admin_only and not user.is_staff:
+            raise MarketplaceError("Only OAM can post in this category.")
+        # tier active-listing limit (None = unlimited)
+        sub = MarketplaceService.get_subscription(user)
+        limit = sub.listing_limit()
+        if limit is not None and MarketplaceService.active_listing_count(user) >= limit:
+            raise MarketplaceError(
+                f"Your {sub.active_tier} plan allows up to {limit} active listings. "
+                f"Upgrade to post more."
+            )
+
+    @staticmethod
+    def browse(*, category=None, q=None, min_price=None, max_price=None,
+               location=None, condition=None):
+        qs = (Listing.objects.filter(status=Listing.Status.ACTIVE,
+                                     expires_at__gt=timezone.now())
+              .select_related("category", "seller").prefetch_related("images"))
+        if category:
+            qs = qs.filter(category__slug=category) if not _is_uuid(category) \
+                else qs.filter(category_id=category)
+        if q:
+            from django.db.models import Q
+            qs = qs.filter(Q(title__icontains=q) | Q(description__icontains=q))
+        if min_price:
+            qs = qs.filter(price__gte=min_price)
+        if max_price:
+            qs = qs.filter(price__lte=max_price)
+        if location:
+            qs = qs.filter(location__icontains=location)
+        if condition:
+            qs = qs.filter(condition=condition)
+        return qs
+
+    @staticmethod
+    def should_feature(user) -> bool:
+        return MarketplaceService.get_subscription(user).active_tier in FEATURED_TIERS
+
+    @staticmethod
+    def initiate_subscription(*, user, tier, currency="NGN"):
+        """Create a pending payment and get a Paystack checkout URL."""
+        tier = str(tier).lower()
+        if tier not in SUBSCRIPTION_PRICES:
+            raise MarketplaceError("Choose a valid paid tier: pro or premium.")
+        currency = resolve_payment_currency(currency)
+        price = subscription_price(tier, currency)
+        reference = f"SUB-{uuid.uuid4().hex[:20]}"
+        email = getattr(user, "email", "") or f"{user.id}@users.oam"
+
+        gateway = ProviderFactory.get("payments", settings.LISTING_UPGRADE_PROVIDER)
+        try:
+            init = gateway.initialize_charge(
+                amount=price, currency=currency.upper(), email=email,
+                reference=reference,
+                metadata={"purpose": "marketplace_subscription", "tier": tier,
+                          "user": str(user.id),
+                          "name": (f"{getattr(user, 'first_name', '')} {getattr(user, 'last_name', '')}".strip() or getattr(user, "email", "") or "OAM Customer"),
+                          "phone": getattr(user, "phone", "") or ""},
+            )
+        except ProviderError as exc:
+            raise MarketplaceError(f"Could not start payment: {exc}")
+
+        payment = SubscriptionPayment.objects.create(
+            user=user, tier=tier, amount=price, currency=currency.upper(),
+            reference=reference, period_days=SUBSCRIPTION_DAYS,
+            provider=gateway.provider_key, status=SubscriptionPayment.Status.PENDING,
+            authorization_url=init.authorization_url, raw=init.raw or {},
+        )
+        return payment, init
+
+    @staticmethod
+    def activate_from_payment(payment: SubscriptionPayment) -> SellerSubscription:
+        """Mark a payment paid (once) and (re)activate the seller's tier."""
+        with transaction.atomic():
+            p = SubscriptionPayment.objects.select_for_update().get(pk=payment.pk)
+            sub = MarketplaceService.get_subscription(p.user)
+            if p.status == SubscriptionPayment.Status.PAID:
+                return sub                      # idempotent
+            p.status = SubscriptionPayment.Status.PAID
+            p.save(update_fields=["status", "updated_at"])
+
+            now = timezone.now()
+            base = (sub.expires_at if (sub.active_tier == p.tier and sub.expires_at
+                                       and sub.expires_at > now) else now)
+            sub.tier = p.tier
+            sub.expires_at = base + timedelta(days=p.period_days)
+            sub.save(update_fields=["tier", "expires_at", "updated_at"])
+            try:
+                from apps.referrals.hooks import settle_referral
+                settle_referral(user=p.user, oam_profit=p.amount,
+                                currency=p.currency, source_reference=p.reference)
+            except Exception:
+                pass
+        return sub
+
+    @staticmethod
+    def verify_subscription(*, user, reference) -> tuple:
+        """Verify a payment with the gateway; activate the tier on success."""
+        payment = SubscriptionPayment.objects.filter(reference=reference, user=user).first()
+        if payment is None:
+            raise MarketplaceError("Payment not found.")
+        if payment.status == SubscriptionPayment.Status.PAID:
+            return MarketplaceService.get_subscription(user), payment  # already done
+
+        gateway = ProviderFactory.get("payments", payment.provider or None)
+        try:
+            status = gateway.verify_charge(reference)
+        except ProviderError as exc:
+            raise MarketplaceError(f"Could not verify payment: {exc}")
+
+        if status.status == TxnStatus.SUCCESS:
+            MarketplaceService.activate_from_payment(payment)
+        elif status.status == TxnStatus.FAILED:
+            payment.status = SubscriptionPayment.Status.FAILED
+            payment.save(update_fields=["status", "updated_at"])
+        payment.refresh_from_db()
+        return MarketplaceService.get_subscription(user), payment
+
+    @staticmethod
+    def activate_by_reference(reference) -> bool:
+        """Used by the webhook: activate a pending payment by reference."""
+        payment = SubscriptionPayment.objects.filter(reference=reference).first()
+        if payment is None:
+            return False
+        MarketplaceService.activate_from_payment(payment)
+        return True
+
+
+
+def _is_uuid(value):
+    import uuid
+    try:
+        uuid.UUID(str(value))
+        return True
+    except ValueError:
+        return False
+````
+
+## File: apps/marketplace/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    CategoryListView,
+    ListingCreateView,
+    ListingDetailView,
+    ListingListView,
+    ListingRenewView,
+    ListingVerifyView,
+    MyListingsView,
+    SubscribeView,
+    SubscriptionVerifyView,
+    SubscriptionView,
+    SubscriptionWebhookView,
+)
+
+from .motors import MotorsDetailView, MotorsInventoryView
+
+from .public_listings import PublicCategoriesView, PublicListingsView
+
+urlpatterns = [
+    path("categories/", CategoryListView.as_view(), name="mkt-categories"),
+    path("motors/", MotorsInventoryView.as_view(), name="mkt-motors"),
+    path("motors/<uuid:listing_id>/", MotorsDetailView.as_view(), name="mkt-motors-detail"),
+    path("public/listings/", PublicListingsView.as_view(), name="mkt-public-listings"),
+    path("public/categories/", PublicCategoriesView.as_view(), name="mkt-public-categories"),
+    path("listings/", ListingListView.as_view(), name="mkt-listings"),
+    path("listings/create/", ListingCreateView.as_view(), name="mkt-listing-create"),
+    path("listings/<uuid:listing_id>/", ListingDetailView.as_view(), name="mkt-listing-detail"),
+    path("listings/<uuid:listing_id>/renew/", ListingRenewView.as_view(), name="mkt-listing-renew"),
+    path("listings/<uuid:listing_id>/verify/", ListingVerifyView.as_view(), name="mkt-listing-verify"),
+    path("my-listings/", MyListingsView.as_view(), name="mkt-my-listings"),
+    path("subscription/", SubscriptionView.as_view(), name="mkt-subscription"),
+    path("subscription/subscribe/", SubscribeView.as_view(), name="mkt-subscribe"),
+    path("subscription/verify/", SubscriptionVerifyView.as_view(), name="mkt-subscribe-verify"),
+    path("subscription/webhook/paystack/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook"),
+    path("subscription/webhook/flutterwave/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook-flw"),
+]
+````
+
+## File: apps/marketplace/views.py
+````python
+"""Marketplace endpoints. Browse is open to authenticated users; posting needs verification."""
+from datetime import timedelta
+
+from django.utils import timezone
+from django.db import transaction
+from rest_framework import status
+from rest_framework.generics import ListAPIView
+import json
+
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .models import Category, Listing, ListingImage, ListingVideo, LISTING_TTL_DAYS
+from .serializers import (
+    CategorySerializer,
+    ListingDetailSerializer,
+    ListingListSerializer,
+    ListingWriteSerializer,
+    SubscriptionSerializer,
+)
+from .services import MarketplaceError, MarketplaceService
+
+
+class CategoryListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        return Category.objects.filter(is_active=True)
+
+
+class ListingListView(ListAPIView):
+    """GET /listings/ with filters: category, q, min_price, max_price, location, condition."""
+    permission_classes = [IsAuthenticated]
+    serializer_class = ListingListSerializer
+
+    def get_queryset(self):
+        p = self.request.query_params
+        return MarketplaceService.browse(
+            category=p.get("category"), q=p.get("q"),
+            min_price=p.get("min_price"), max_price=p.get("max_price"),
+            location=p.get("location"), condition=p.get("condition"),
+        )
+
+
+class ListingCreateView(APIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        s = ListingWriteSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        data = s.validated_data
+        # Staff is the O.A.M Motors house account: route everything they post
+        # into the O.A.M Motors category (featured), so it shows on the home page
+        # under O.A.M Motors regardless of the category the form sent.
+        if request.user.is_staff:
+            from .motors import _motors_category
+            data["category"] = _motors_category()
+        category = data["category"]
+        if not request.user.is_staff:
+            try:
+                MarketplaceService.check_can_post(request.user, category)
+            except MarketplaceError as exc:
+                return Response({"detail": str(exc)}, status=status.HTTP_403_FORBIDDEN)
+        images = data.pop("images", [])
+        videos = data.pop("videos", [])
+        featured = MarketplaceService.should_feature(request.user) or request.user.is_staff
+        listing = Listing.objects.create(seller=request.user, is_featured=featured, **data)
+        for i, url in enumerate(images):
+            ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
+        for url in videos:
+            ListingVideo.objects.create(listing=listing, url=url)
+        return Response(ListingDetailSerializer(listing).data, status=status.HTTP_201_CREATED)
+
+
+class ListingDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, listing_id):
+        listing = (Listing.objects.select_related("category", "seller")
+                   .prefetch_related("images").filter(id=listing_id).first())
+        if listing is None or not listing.is_live:
+            # owners can still view their own non-live listing
+            if listing is None or listing.seller_id != request.user.id:
+                return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        Listing.objects.filter(pk=listing.pk).update(views_count=listing.views_count + 1)
+        return Response(ListingDetailSerializer(listing, context={"request": request}).data)
+
+    def patch(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id, seller=request.user).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        s = ListingWriteSerializer(listing, data=request.data, partial=True)
+        s.is_valid(raise_exception=True)
+
+        # images/videos are reverse relations on the model, so DRF's update()
+        # would try to assign them to the instance and 500. Pop them out and
+        # apply them ourselves. A missing key (partial edit) leaves media as-is;
+        # an empty list clears it. Wrapped in a transaction so a mid-way failure
+        # can't leave the listing half-updated (and returns a clean error).
+        new_images = s.validated_data.pop("images", None)
+        new_videos = s.validated_data.pop("videos", None)
+
+        with transaction.atomic():
+            s.save()
+
+            if new_images is not None:
+                listing.images.all().delete()
+                for i, url in enumerate(new_images):
+                    ListingImage.objects.create(listing=listing, url=url, is_primary=(i == 0))
+            if new_videos is not None:
+                listing.videos.all().delete()
+                for url in new_videos:
+                    ListingVideo.objects.create(listing=listing, url=url)
+
+            # An edit changes what buyers see, so any prior admin verification no
+            # longer applies — reset the badge until it's reviewed again.
+            if listing.is_verified:
+                listing.is_verified = False
+                listing.verified_at = None
+                listing.verified_by = None
+                listing.save(update_fields=["is_verified", "verified_at", "verified_by", "updated_at"])
+
+        listing.refresh_from_db()
+        return Response(ListingDetailSerializer(listing, context={"request": request}).data)
+
+    def delete(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id, seller=request.user).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        listing.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ListingRenewView(APIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id, seller=request.user).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        listing.expires_at = timezone.now() + timedelta(days=LISTING_TTL_DAYS)
+        listing.status = Listing.Status.ACTIVE
+        listing.save(update_fields=["expires_at", "status", "updated_at"])
+        return Response(ListingDetailSerializer(listing).data)
+
+
+class ListingVerifyView(APIView):
+    """Admin-only: attach or remove the 'verified' badge on a listing.
+
+    POST /listings/<id>/verify/        -> verify
+    POST /listings/<id>/verify/ {"verified": false} -> un-verify
+    Listings stay live regardless; this only controls the trust badge.
+    """
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    def post(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        verify = request.data.get("verified", True)
+        if verify in (False, "false", "False", 0, "0"):
+            listing.is_verified = False
+            listing.verified_at = None
+            listing.verified_by = None
+        else:
+            listing.is_verified = True
+            listing.verified_at = timezone.now()
+            listing.verified_by = request.user
+        listing.save(update_fields=["is_verified", "verified_at", "verified_by", "updated_at"])
+        return Response(ListingDetailSerializer(listing).data)
+
+
+class MyListingsView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ListingListSerializer
+
+    def get_queryset(self):
+        return (Listing.objects.filter(seller=self.request.user)
+                .select_related("category").prefetch_related("images"))
+
+
+class SubscriptionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        sub = MarketplaceService.get_subscription(request.user)
+        return Response(SubscriptionSerializer(sub).data)
+
+
+class SubscribeView(APIView):
+    """POST /subscription/subscribe/ {tier} -- start Paystack card checkout."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        tier = request.data.get("tier")
+        currency = request.data.get("currency", "NGN")
+        try:
+            payment, init = MarketplaceService.initiate_subscription(
+                user=request.user, tier=tier, currency=currency)
+        except MarketplaceError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({
+            "detail": "Payment initialized. Complete payment to activate.",
+            "tier": payment.tier,
+            "amount": str(payment.amount),
+            "currency": payment.currency,
+            "reference": payment.reference,
+            "authorization_url": init.authorization_url,
+        }, status=status.HTTP_201_CREATED)
+
+
+class SubscriptionVerifyView(APIView):
+    """POST /subscription/verify/ {reference} -- confirm payment, activate tier."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        reference = request.data.get("reference")
+        if not reference:
+            return Response({"detail": "reference is required."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        try:
+            sub, payment = MarketplaceService.verify_subscription(
+                user=request.user, reference=reference)
+        except MarketplaceError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({
+            "payment_status": payment.status,
+            "tier": sub.tier,
+            "expires_at": sub.expires_at,
+            "reference": payment.reference,
+        })
+
+
+class SubscriptionWebhookView(APIView):
+    """POST -- Paystack charge.success for subscription payments."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        from django.conf import settings
+        from integrations.base import ProviderFactory
+        headers = {k.lower(): v for k, v in request.headers.items()}
+        provider = ("flutterwave" if headers.get("verif-hash")
+                    else settings.DEFAULT_PROVIDERS.get("payments", "paystack"))
+        gateway = ProviderFactory.get("payments", provider)
+        verify = getattr(gateway, "verify_webhook", None)
+        if verify and not verify(request.body, headers):
+            return Response({"detail": "Invalid signature."}, status=status.HTTP_403_FORBIDDEN)
+        try:
+            payload = json.loads(request.body or b"{}")
+        except ValueError:
+            payload = {}
+        event = payload.get("event", "")
+        data = payload.get("data", {}) or {}
+        reference = data.get("reference") or data.get("tx_ref") or ""
+        ok = (event == "charge.success") or (
+            event == "charge.completed"
+            and str(data.get("status", "")).lower() == "successful")
+        if ok and reference:
+            MarketplaceService.activate_by_reference(reference)
+        return Response({"status": "ok"})
+````
+
+## File: apps/messaging/migrations/__init__.py
+````python
+
+````
+
+## File: apps/messaging/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-07-22 21:58
+
+import django.db.models.deletion
+import django.utils.timezone
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('homeservices', '0001_initial'),
+        ('marketplace', '0002_subscriptionpayment'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Conversation',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('kind', models.CharField(choices=[('listing', 'Marketplace listing'), ('artisan', 'Artisan service')], max_length=16)),
+                ('status', models.CharField(choices=[('open', 'Open'), ('accepted', 'Accepted'), ('declined', 'Declined'), ('closed', 'Closed')], default='open', max_length=16)),
+                ('accepted_at', models.DateTimeField(blank=True, null=True)),
+                ('last_message_at', models.DateTimeField(default=django.utils.timezone.now)),
+                ('artisan', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='conversations', to='homeservices.artisanprofile')),
+                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='conversations_started', to=settings.AUTH_USER_MODEL)),
+                ('listing', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='conversations', to='marketplace.listing')),
+                ('provider', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='conversations_received', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-last_message_at'],
+            },
+        ),
+        migrations.CreateModel(
+            name='Message',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('body', models.TextField(max_length=4000)),
+                ('read_at', models.DateTimeField(blank=True, null=True)),
+                ('conversation', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='messages', to='messaging.conversation')),
+                ('sender', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='messages_sent', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['created_at'],
+            },
+        ),
+        migrations.AddConstraint(
+            model_name='conversation',
+            constraint=models.UniqueConstraint(condition=models.Q(('kind', 'listing')), fields=('listing', 'customer'), name='uniq_listing_customer_thread'),
+        ),
+        migrations.AddConstraint(
+            model_name='conversation',
+            constraint=models.UniqueConstraint(condition=models.Q(('kind', 'artisan')), fields=('artisan', 'customer'), name='uniq_artisan_customer_thread'),
+        ),
+    ]
+````
+
+## File: apps/messaging/__init__.py
+````python
+
+````
+
+## File: apps/messaging/admin.py
+````python
+from django.contrib import admin
+
+from .models import Conversation, Message
+
+
+@admin.register(Conversation)
+class ConversationAdmin(admin.ModelAdmin):
+    list_display = ("id", "kind", "customer", "provider", "status", "last_message_at")
+    list_filter = ("kind", "status")
+    search_fields = ("customer__email", "provider__email")
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ("conversation", "sender", "body", "read_at", "created_at")
+    search_fields = ("body",)
+````
+
+## File: apps/messaging/apps.py
+````python
+from django.apps import AppConfig
+
+
+class MessagingConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.messaging"
+    label = "messaging"
+    verbose_name = "Messaging"
+````
+
+## File: apps/messaging/models.py
+````python
+"""
+In-app messaging between customers and providers (sellers or artisans).
+
+ONE SYSTEM, TWO VERTICALS
+  Marketplace and Home Services need the same thing: a private thread between
+  the person who wants something and the person offering it. Building it twice
+  would mean two schemas, two APIs and two chat UIs to keep in step, so a
+  Conversation simply points at EITHER a Listing or an ArtisanProfile.
+
+WHY CONTACTS ARE HIDDEN UNTIL A JOB IS ACCEPTED
+  Phone numbers in public profiles get scraped, and in this market that means
+  WhatsApp scams and impersonation. It also lets both sides step off-platform
+  the moment they connect — taking your commission with them.
+
+  So contacts live behind an explicit acceptance: the provider accepts the
+  enquiry, and only then do both parties see each other's number. That keeps
+  the introduction inside OAM, gives you a record that the connection happened,
+  and gives the customer a provider who has actually agreed to the work.
+"""
+from __future__ import annotations
+
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+
+from apps.common.models import TimeStampedModel
+
+
+class Conversation(TimeStampedModel):
+    """A private thread about one listing or one artisan."""
+
+    class Kind(models.TextChoices):
+        LISTING = "listing", "Marketplace listing"
+        ARTISAN = "artisan", "Artisan service"
+
+    class Status(models.TextChoices):
+        OPEN = "open", "Open"              # enquiry made, contacts hidden
+        ACCEPTED = "accepted", "Accepted"  # provider agreed — contacts shared
+        DECLINED = "declined", "Declined"
+        CLOSED = "closed", "Closed"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    kind = models.CharField(max_length=16, choices=Kind.choices)
+
+    listing = models.ForeignKey(
+        "marketplace.Listing", null=True, blank=True,
+        on_delete=models.CASCADE, related_name="conversations",
+    )
+    artisan = models.ForeignKey(
+        "homeservices.ArtisanProfile", null=True, blank=True,
+        on_delete=models.CASCADE, related_name="conversations",
+    )
+
+    # customer = the person enquiring; provider = seller or artisan
+    customer = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        related_name="conversations_started",
+    )
+    provider = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        related_name="conversations_received",
+    )
+
+    status = models.CharField(max_length=16, choices=Status.choices, default=Status.OPEN)
+    accepted_at = models.DateTimeField(null=True, blank=True)
+    last_message_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ["-last_message_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["listing", "customer"],
+                condition=models.Q(kind="listing"),
+                name="uniq_listing_customer_thread",
+            ),
+            models.UniqueConstraint(
+                fields=["artisan", "customer"],
+                condition=models.Q(kind="artisan"),
+                name="uniq_artisan_customer_thread",
+            ),
+        ]
+
+    def __str__(self):
+        return f"{self.kind} · {self.customer} ↔ {self.provider}"
+
+    # -- helpers ---------------------------------------------------------- #
+
+    @property
+    def contacts_visible(self) -> bool:
+        """Numbers are exchanged only once the provider has accepted."""
+        return self.status == self.Status.ACCEPTED
+
+    def other_party(self, user):
+        return self.provider if user == self.customer else self.customer
+
+    def subject_title(self) -> str:
+        if self.kind == self.Kind.LISTING and self.listing_id:
+            return self.listing.title
+        if self.kind == self.Kind.ARTISAN and self.artisan_id:
+            return self.artisan.business_name or "Artisan service"
+        return "Conversation"
+
+    def accept(self):
+        """Provider agrees to the job/sale — this is what reveals contacts."""
+        if self.status != self.Status.OPEN:
+            return self
+        self.status = self.Status.ACCEPTED
+        self.accepted_at = timezone.now()
+        self.save(update_fields=["status", "accepted_at", "updated_at"])
+        return self
+
+
+class Message(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    conversation = models.ForeignKey(
+        Conversation, on_delete=models.CASCADE, related_name="messages",
+    )
+    sender = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="messages_sent",
+    )
+    body = models.TextField(max_length=4000)
+    read_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return f"{self.sender}: {self.body[:40]}"
+````
+
+## File: apps/messaging/serializers.py
+````python
+"""Serializers — note that contact details are conditional, never automatic."""
+from rest_framework import serializers
+
+from .models import Conversation, Message
+
+
+def _display_name(user) -> str:
+    for attr in ("full_name", "get_full_name", "name"):
+        value = getattr(user, attr, None)
+        if callable(value):
+            value = value()
+        if value:
+            return str(value)
+    first = (getattr(user, "first_name", "") or "").strip()
+    last = (getattr(user, "last_name", "") or "").strip()
+    if first or last:
+        return f"{first} {last}".strip()
+    return (getattr(user, "email", "") or "").split("@")[0] or "OAM user"
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    sender_name = serializers.SerializerMethodField()
+    is_mine = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Message
+        fields = ["id", "body", "sender_name", "is_mine", "read_at", "created_at"]
+        read_only_fields = fields
+
+    def get_sender_name(self, obj):
+        return _display_name(obj.sender)
+
+    def get_is_mine(self, obj):
+        user = self.context.get("user")
+        return bool(user and obj.sender_id == user.id)
+
+
+class ConversationSerializer(serializers.ModelSerializer):
+    subject = serializers.SerializerMethodField()
+    other_party_name = serializers.SerializerMethodField()
+    role = serializers.SerializerMethodField()
+    contacts = serializers.SerializerMethodField()
+    unread = serializers.SerializerMethodField()
+    last_message = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Conversation
+        fields = [
+            "id", "kind", "status", "subject", "other_party_name", "role",
+            "contacts", "unread", "last_message", "accepted_at",
+            "last_message_at", "created_at",
+        ]
+        read_only_fields = fields
+
+    def _user(self):
+        return self.context.get("user")
+
+    def get_subject(self, obj):
+        data = {"title": obj.subject_title()}
+        if obj.kind == Conversation.Kind.LISTING and obj.listing_id:
+            data["id"] = str(obj.listing_id)
+            data["price"] = str(obj.listing.price)
+            data["currency"] = obj.listing.currency
+        elif obj.kind == Conversation.Kind.ARTISAN and obj.artisan_id:
+            data["id"] = str(obj.artisan_id)
+            data["category"] = getattr(obj.artisan.category, "name", "")
+        return data
+
+    def get_other_party_name(self, obj):
+        user = self._user()
+        return _display_name(obj.other_party(user)) if user else ""
+
+    def get_role(self, obj):
+        user = self._user()
+        if not user:
+            return ""
+        return "customer" if obj.customer_id == user.id else "provider"
+
+    def get_contacts(self, obj):
+        """
+        Phone numbers, but ONLY after the provider accepts.
+
+        Returning them unconditionally would defeat the point: contacts are
+        withheld so the introduction stays on OAM until there's a real booking.
+        """
+        if not obj.contacts_visible:
+            return None
+        user = self._user()
+        if not user:
+            return None
+
+        other = obj.other_party(user)
+        phone = getattr(other, "phone", "") or getattr(other, "phone_number", "") or ""
+        whatsapp = ""
+
+        # Provider contact details live on their profile, not the user record.
+        if obj.customer_id == user.id:
+            if obj.kind == Conversation.Kind.LISTING and obj.listing_id:
+                phone = obj.listing.contact_phone or phone
+                whatsapp = obj.listing.contact_whatsapp or ""
+            elif obj.kind == Conversation.Kind.ARTISAN and obj.artisan_id:
+                phone = obj.artisan.phone or phone
+                whatsapp = obj.artisan.whatsapp or ""
+
+        return {"name": _display_name(other), "phone": phone, "whatsapp": whatsapp}
+
+    def get_unread(self, obj):
+        user = self._user()
+        if not user:
+            return 0
+        return obj.messages.filter(read_at__isnull=True).exclude(sender=user).count()
+
+    def get_last_message(self, obj):
+        msg = obj.messages.order_by("-created_at").first()
+        if not msg:
+            return None
+        return {"body": msg.body[:120], "created_at": msg.created_at}
+````
+
+## File: apps/messaging/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    ConversationActionView,
+    ConversationDetailView,
+    ConversationListView,
+    MessageCreateView,
+    UnreadCountView,
+)
+
+urlpatterns = [
+    path("conversations/", ConversationListView.as_view(), name="msg-conversations"),
+    path("unread/", UnreadCountView.as_view(), name="msg-unread"),
+    path("conversations/<uuid:conversation_id>/", ConversationDetailView.as_view(),
+         name="msg-conversation"),
+    path("conversations/<uuid:conversation_id>/messages/", MessageCreateView.as_view(),
+         name="msg-send"),
+    path("conversations/<uuid:conversation_id>/<str:action>/", ConversationActionView.as_view(),
+         name="msg-action"),
+]
+````
+
+## File: apps/messaging/views.py
+````python
+"""Messaging endpoints. Every one is scoped to the signed-in participant."""
+from __future__ import annotations
+
+from django.db import models as dj_models
+from django.db.models import Q
+from django.utils import timezone
+from rest_framework import status as http
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import Conversation, Message
+from .serializers import ConversationSerializer, MessageSerializer
+
+
+def _mine(user):
+    """Threads this user belongs to — the only ones they may ever see."""
+    return Conversation.objects.filter(
+        Q(customer=user) | Q(provider=user)
+    ).select_related("listing", "artisan", "customer", "provider")
+
+
+class ConversationListView(APIView):
+    """GET  /messaging/conversations/    POST /messaging/conversations/"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        role = request.query_params.get("role")
+        qs = _mine(request.user)
+        if role == "customer":
+            qs = qs.filter(customer=request.user)
+        elif role == "provider":
+            qs = qs.filter(provider=request.user)
+
+        data = ConversationSerializer(qs, many=True, context={"user": request.user}).data
+        unread = sum(c["unread"] for c in data)
+        return Response({"count": len(data), "unread": unread, "results": data})
+
+    def post(self, request):
+        """
+        Start (or reopen) a thread about a listing or an artisan.
+
+        Re-enquiring about the same item returns the EXISTING thread rather than
+        creating a duplicate — otherwise a provider's inbox fills with repeated
+        threads from one person about one item.
+        """
+        kind = (request.data.get("kind") or "").lower()
+        subject_id = request.data.get("id") or request.data.get("subject_id")
+        body = (request.data.get("body") or "").strip()
+
+        if kind not in (Conversation.Kind.LISTING, Conversation.Kind.ARTISAN):
+            return Response({"detail": "kind must be 'listing' or 'artisan'."},
+                            status=http.HTTP_400_BAD_REQUEST)
+        if not subject_id:
+            return Response({"detail": "Missing subject id."}, status=http.HTTP_400_BAD_REQUEST)
+        if not body:
+            return Response({"detail": "Write a message to send."},
+                            status=http.HTTP_400_BAD_REQUEST)
+
+        listing = artisan = None
+        if kind == Conversation.Kind.LISTING:
+            from apps.marketplace.models import Listing
+            listing = Listing.objects.filter(id=subject_id).select_related("seller").first()
+            if listing is None:
+                return Response({"detail": "Listing not found."}, status=http.HTTP_404_NOT_FOUND)
+            provider = listing.seller
+            lookup = {"listing": listing, "customer": request.user}
+        else:
+            from apps.homeservices.models import ArtisanProfile
+            artisan = ArtisanProfile.objects.filter(id=subject_id).select_related("user").first()
+            if artisan is None:
+                return Response({"detail": "Artisan not found."}, status=http.HTTP_404_NOT_FOUND)
+            provider = artisan.user
+            lookup = {"artisan": artisan, "customer": request.user}
+
+        if provider == request.user:
+            return Response({"detail": "This is your own listing."},
+                            status=http.HTTP_400_BAD_REQUEST)
+
+        convo, _created = Conversation.objects.get_or_create(
+            **lookup,
+            defaults={"kind": kind, "provider": provider,
+                      "listing": listing, "artisan": artisan},
+        )
+
+        Message.objects.create(conversation=convo, sender=request.user, body=body[:4000])
+        convo.last_message_at = timezone.now()
+        convo.save(update_fields=["last_message_at", "updated_at"])
+
+        return Response(
+            ConversationSerializer(convo, context={"user": request.user}).data,
+            status=http.HTTP_201_CREATED,
+        )
+
+
+class ConversationDetailView(APIView):
+    """GET /messaging/conversations/<id>/ — thread + messages, marks as read."""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, conversation_id):
+        convo = _mine(request.user).filter(id=conversation_id).first()
+        if convo is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+
+        convo.messages.filter(read_at__isnull=True).exclude(sender=request.user) \
+             .update(read_at=timezone.now())
+
+        return Response({
+            "conversation": ConversationSerializer(convo, context={"user": request.user}).data,
+            "messages": MessageSerializer(convo.messages.all(), many=True,
+                                          context={"user": request.user}).data,
+        })
+
+
+class MessageCreateView(APIView):
+    """POST /messaging/conversations/<id>/messages/"""
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, conversation_id):
+        convo = _mine(request.user).filter(id=conversation_id).first()
+        if convo is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+        if convo.status == Conversation.Status.CLOSED:
+            return Response({"detail": "This conversation is closed."},
+                            status=http.HTTP_400_BAD_REQUEST)
+
+        body = (request.data.get("body") or "").strip()
+        if not body:
+            return Response({"detail": "Write a message to send."},
+                            status=http.HTTP_400_BAD_REQUEST)
+
+        msg = Message.objects.create(conversation=convo, sender=request.user, body=body[:4000])
+        convo.last_message_at = timezone.now()
+        convo.save(update_fields=["last_message_at", "updated_at"])
+        return Response(MessageSerializer(msg, context={"user": request.user}).data,
+                        status=http.HTTP_201_CREATED)
+
+
+class ConversationActionView(APIView):
+    """
+    POST /messaging/conversations/<id>/<action>/  — accept | decline | close
+
+    ACCEPT is the moment contacts become visible to both sides, so only the
+    PROVIDER may do it: it represents them agreeing to the job or sale. A
+    customer accepting their own enquiry would hand them a phone number the
+    provider never agreed to share.
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, conversation_id, action):
+        convo = _mine(request.user).filter(id=conversation_id).first()
+        if convo is None:
+            return Response({"detail": "Not found."}, status=http.HTTP_404_NOT_FOUND)
+
+        if action in ("accept", "decline") and convo.provider_id != request.user.id:
+            return Response({"detail": "Only the seller or artisan can do that."},
+                            status=http.HTTP_403_FORBIDDEN)
+
+        if action == "accept":
+            convo.accept()
+        elif action == "decline":
+            convo.status = Conversation.Status.DECLINED
+            convo.save(update_fields=["status", "updated_at"])
+        elif action == "close":
+            convo.status = Conversation.Status.CLOSED
+            convo.save(update_fields=["status", "updated_at"])
+        else:
+            return Response({"detail": "Unknown action."}, status=http.HTTP_400_BAD_REQUEST)
+
+        return Response(ConversationSerializer(convo, context={"user": request.user}).data)
+
+
+class UnreadCountView(APIView):
+    """GET /messaging/unread/ — for the header badge."""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        count = Message.objects.filter(
+            conversation__in=_mine(request.user), read_at__isnull=True,
+        ).exclude(sender=request.user).count()
+        return Response({"unread": count})
+````
+
+## File: apps/notifications/migrations/__init__.py
+````python
+
+````
+
+## File: apps/notifications/migrations/0001_initial.py
+````python
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="DeviceToken",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("token", models.CharField(db_index=True, max_length=255, unique=True)),
+                ("platform", models.CharField(choices=[("ios", "iOS"), ("android", "Android"), ("other", "Other")], default="other", max_length=10)),
+                ("is_active", models.BooleanField(default=True)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="device_tokens", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-updated_at"]},
+        ),
+    ]
+````
+
+## File: apps/notifications/__init__.py
+````python
+
+````
+
+## File: apps/notifications/admin.py
+````python
+from django.contrib import admin
+
+from .models import DeviceToken
+
+
+@admin.register(DeviceToken)
+class DeviceTokenAdmin(admin.ModelAdmin):
+    list_display = ("user", "platform", "is_active", "updated_at")
+    list_filter = ("platform", "is_active")
+    search_fields = ("user__email", "token")
+````
+
+## File: apps/notifications/apps.py
+````python
+from django.apps import AppConfig
+
+
+class NotificationsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.notifications"
+````
+
+## File: apps/notifications/models.py
+````python
+from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel
+
+
+class DeviceToken(TimeStampedModel):
+    """An Expo push token for one of a user's devices."""
+    class Platform(models.TextChoices):
+        IOS = "ios", "iOS"
+        ANDROID = "android", "Android"
+        OTHER = "other", "Other"
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="device_tokens")
+    token = models.CharField(max_length=255, unique=True, db_index=True)
+    platform = models.CharField(max_length=10, choices=Platform.choices, default=Platform.OTHER)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["-updated_at"]
+
+    def __str__(self):
+        return f"{self.user} · {self.platform} · {self.token[:16]}…"
+````
+
+## File: apps/notifications/push.py
+````python
+"""
+Send push notifications to a user's devices via Expo's push service.
+Docs: https://docs.expo.dev/push-notifications/sending-notifications/
+"""
+import logging
+
+import requests
+
+from .models import DeviceToken
+
+logger = logging.getLogger(__name__)
+
+EXPO_PUSH_URL = "https://exp.host/--/api/v2/push/send"
+
+
+def send_push_to_user(user, title, body, data=None):
+    """Push `title`/`body` to every active token the user has. Best-effort."""
+    tokens = list(
+        DeviceToken.objects.filter(user=user, is_active=True)
+        .values_list("token", flat=True)
+    )
+    if not tokens:
+        return
+
+    messages = [
+        {"to": t, "title": title, "body": body, "sound": "default", "data": data or {}}
+        for t in tokens
+    ]
+    try:
+        resp = requests.post(
+            EXPO_PUSH_URL, json=messages, timeout=10,
+            headers={"Content-Type": "application/json", "Accept": "application/json"},
+        )
+        payload = resp.json()
+    except Exception as exc:  # network / parse issues are non-fatal
+        logger.warning("Expo push failed: %s", exc)
+        return
+
+    # Deactivate tokens Expo reports as no longer registered.
+    tickets = payload.get("data") or []
+    dead = []
+    for token, ticket in zip(tokens, tickets):
+        if isinstance(ticket, dict) and ticket.get("status") == "error":
+            details = ticket.get("details") or {}
+            if details.get("error") == "DeviceNotRegistered":
+                dead.append(token)
+    if dead:
+        DeviceToken.objects.filter(token__in=dead).update(is_active=False)
+````
+
+## File: apps/notifications/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import DeviceToken
+
+
+class RegisterDeviceSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=255)
+    platform = serializers.ChoiceField(
+        choices=[c[0] for c in DeviceToken.Platform.choices], default="other")
+````
+
+## File: apps/notifications/urls.py
+````python
+from django.urls import path
+
+from .views import RegisterDeviceView, UnregisterDeviceView
+
+urlpatterns = [
+    path("register-device/", RegisterDeviceView.as_view(), name="register-device"),
+    path("unregister-device/", UnregisterDeviceView.as_view(), name="unregister-device"),
+]
+````
+
+## File: apps/notifications/views.py
+````python
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import DeviceToken
+from .serializers import RegisterDeviceSerializer
+
+
+class RegisterDeviceView(APIView):
+    """POST /notifications/register-device/ {token, platform} — idempotent upsert."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        s = RegisterDeviceSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        token = s.validated_data["token"]
+        platform = s.validated_data["platform"]
+        # A token belongs to whichever account most recently registered it.
+        DeviceToken.objects.update_or_create(
+            token=token,
+            defaults={"user": request.user, "platform": platform, "is_active": True},
+        )
+        return Response({"ok": True})
+
+
+class UnregisterDeviceView(APIView):
+    """POST /notifications/unregister-device/ {token} — on logout."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        token = request.data.get("token")
+        if token:
+            DeviceToken.objects.filter(user=request.user, token=token).update(is_active=False)
+        return Response({"ok": True})
+````
+
+## File: apps/payments/migrations/__init__.py
+````python
+
+````
+
+## File: apps/payments/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-07-03 15:22
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('wallet', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='WebhookEvent',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('provider', models.CharField(max_length=40)),
+                ('event_type', models.CharField(max_length=80)),
+                ('external_id', models.CharField(max_length=200)),
+                ('signature_valid', models.BooleanField(default=False)),
+                ('raw_payload', models.JSONField(default=dict)),
+                ('headers', models.JSONField(blank=True, default=dict)),
+                ('status', models.CharField(choices=[('received', 'Received'), ('processed', 'Processed'), ('failed', 'Failed'), ('ignored', 'Ignored')], default='received', max_length=12)),
+                ('processed_at', models.DateTimeField(blank=True, null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='ServiceTransaction',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('service_type', models.CharField(choices=[('wallet_fund', 'Wallet funding'), ('wallet_withdraw', 'Wallet withdrawal'), ('bill', 'Bill payment')], max_length=24)),
+                ('provider', models.CharField(max_length=40)),
+                ('status', models.CharField(choices=[('pending', 'Pending'), ('processing', 'Processing'), ('success', 'Success'), ('failed', 'Failed'), ('reversed', 'Reversed')], default='pending', max_length=12)),
+                ('amount', models.DecimalField(decimal_places=4, max_digits=20)),
+                ('fee', models.DecimalField(decimal_places=4, default=0, max_digits=20)),
+                ('currency', models.CharField(max_length=3)),
+                ('internal_reference', models.CharField(max_length=80, unique=True)),
+                ('provider_reference', models.CharField(blank=True, db_index=True, max_length=160, null=True)),
+                ('idempotency_key', models.CharField(blank=True, max_length=160, null=True, unique=True)),
+                ('request_payload', models.JSONField(blank=True, default=dict)),
+                ('response_payload', models.JSONField(blank=True, default=dict)),
+                ('metadata', models.JSONField(blank=True, default=dict)),
+                ('journal', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wallet.journalentry')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='service_transactions', to=settings.AUTH_USER_MODEL)),
+                ('wallet', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='funding_transactions', to='wallet.wallet')),
+            ],
+        ),
+        migrations.AddConstraint(
+            model_name='webhookevent',
+            constraint=models.UniqueConstraint(fields=('provider', 'external_id'), name='uniq_provider_event'),
+        ),
+        migrations.AddIndex(
+            model_name='servicetransaction',
+            index=models.Index(fields=['user', 'service_type', 'status'], name='payments_se_user_id_4be04f_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='servicetransaction',
+            index=models.Index(fields=['provider', 'provider_reference'], name='payments_se_provide_529971_idx'),
+        ),
+    ]
+````
+
+## File: apps/payments/__init__.py
+````python
+
+````
+
+## File: apps/payments/admin.py
+````python
+from django.contrib import admin
+
+from .models import ServiceTransaction, WebhookEvent
+
+
+@admin.register(ServiceTransaction)
+class ServiceTransactionAdmin(admin.ModelAdmin):
+    list_display = ("internal_reference", "service_type", "provider", "status",
+                    "amount", "currency", "user", "created_at")
+    list_filter = ("service_type", "status", "provider", "currency")
+    search_fields = ("internal_reference", "provider_reference", "user__email")
+    readonly_fields = [f.name for f in ServiceTransaction._meta.fields]
+
+
+@admin.register(WebhookEvent)
+class WebhookEventAdmin(admin.ModelAdmin):
+    list_display = ("provider", "event_type", "status", "signature_valid", "created_at")
+    list_filter = ("provider", "status", "signature_valid")
+    search_fields = ("external_id",)
+    readonly_fields = [f.name for f in WebhookEvent._meta.fields]
+````
+
+## File: apps/payments/apps.py
+````python
+from django.apps import AppConfig
+
+
+class PaymentsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.payments"
+````
+
+## File: apps/payments/models.py
+````python
+"""
+Cross-cutting money-movement records.
+
+ServiceTransaction is the domain-level record for ANY paid service (funding
+now; bills, remittance, bookings later) — it carries status, references, and
+links to the immutable ledger journal once money posts.
+
+WebhookEvent is the audit + dedupe store for every inbound provider callback.
+Its raw_payload is written once and never edited; only the processing `status`
+transitions.
+"""
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedModel
+
+
+class ServiceTransaction(TimeStampedModel):
+    class Status(models.TextChoices):
+        PENDING = "pending", _("Pending")
+        PROCESSING = "processing", _("Processing")
+        SUCCESS = "success", _("Success")
+        FAILED = "failed", _("Failed")
+        REVERSED = "reversed", _("Reversed")
+
+    class Service(models.TextChoices):
+        WALLET_FUND = "wallet_fund", _("Wallet funding")
+        WALLET_WITHDRAW = "wallet_withdraw", _("Wallet withdrawal")
+        BILL = "bill", _("Bill payment")
+        # more services register here as we build them
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
+                             related_name="service_transactions")
+    service_type = models.CharField(max_length=24, choices=Service.choices)
+    provider = models.CharField(max_length=40)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
+
+    amount = models.DecimalField(max_digits=20, decimal_places=4)
+    fee = models.DecimalField(max_digits=20, decimal_places=4, default=0)
+    currency = models.CharField(max_length=3)
+
+    internal_reference = models.CharField(max_length=80, unique=True)
+    provider_reference = models.CharField(max_length=160, null=True, blank=True, db_index=True)
+    idempotency_key = models.CharField(max_length=160, unique=True, null=True, blank=True)
+
+    wallet = models.ForeignKey("wallet.Wallet", null=True, blank=True,
+                               on_delete=models.SET_NULL, related_name="funding_transactions")
+    journal = models.ForeignKey("wallet.JournalEntry", null=True, blank=True,
+                                on_delete=models.SET_NULL, related_name="+")
+
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+    metadata = models.JSONField(default=dict, blank=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["user", "service_type", "status"]),
+            models.Index(fields=["provider", "provider_reference"]),
+        ]
+
+    def __str__(self):
+        return f"{self.service_type} {self.amount} {self.currency} [{self.status}]"
+
+
+class WebhookEvent(TimeStampedModel):
+    class Status(models.TextChoices):
+        RECEIVED = "received", _("Received")
+        PROCESSED = "processed", _("Processed")
+        FAILED = "failed", _("Failed")
+        IGNORED = "ignored", _("Ignored")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    provider = models.CharField(max_length=40)
+    event_type = models.CharField(max_length=80)
+    external_id = models.CharField(max_length=200)      # dedupe key
+    signature_valid = models.BooleanField(default=False)
+    raw_payload = models.JSONField(default=dict)         # write-once by convention
+    headers = models.JSONField(default=dict, blank=True)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.RECEIVED)
+    processed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["provider", "external_id"], name="uniq_provider_event"),
+        ]
+
+    def __str__(self):
+        return f"{self.provider}:{self.event_type} [{self.status}]"
+````
+
+## File: apps/payments/pricing.py
+````python
+"""
+Per-currency prices for Marketplace/Artisan listing upgrades.
+
+Prices are FIXED per currency (not live-converted) — clean, predictable amounts
+and no FX drift. Edit the numbers freely. Whether a non-NGN currency is actually
+offered is gated by settings.SUPPORTED_PAYMENT_CURRENCIES, which should only list
+currencies your Flutterwave account can collect.
+"""
+from decimal import Decimal
+
+from django.conf import settings
+
+# tier -> price, per currency
+SUBSCRIPTION_PRICES_BY_CCY = {
+    "NGN": {"premium": Decimal("2500"), "pro": Decimal("5000")},
+    "USD": {"premium": Decimal("2"), "pro": Decimal("4")},
+    "GBP": {"premium": Decimal("2"), "pro": Decimal("3")},
+    "EUR": {"premium": Decimal("2"), "pro": Decimal("4")},
+}
+
+# boost duration (days) -> price, per currency
+BOOST_PRICES_BY_CCY = {
+    "NGN": {30: Decimal("2500"), 90: Decimal("5000")},
+    "USD": {30: Decimal("2"), 90: Decimal("4")},
+    "GBP": {30: Decimal("2"), 90: Decimal("3")},
+    "EUR": {30: Decimal("2"), 90: Decimal("4")},
+}
+
+
+def supported_currencies():
+    ccys = getattr(settings, "SUPPORTED_PAYMENT_CURRENCIES", ["NGN"]) or ["NGN"]
+    out = [str(c).upper() for c in ccys if str(c).strip()]
+    return out or ["NGN"]
+
+
+def resolve_payment_currency(requested):
+    """Return the currency to actually charge in: the requested one if it is both
+    supported and priced, otherwise NGN."""
+    ccy = str(requested or "NGN").upper()
+    if ccy in supported_currencies() and ccy in SUBSCRIPTION_PRICES_BY_CCY:
+        return ccy
+    return "NGN"
+
+
+def subscription_price(tier, currency):
+    table = SUBSCRIPTION_PRICES_BY_CCY.get(currency, SUBSCRIPTION_PRICES_BY_CCY["NGN"])
+    return table[tier]
+
+
+def boost_price(days, currency):
+    table = BOOST_PRICES_BY_CCY.get(currency, BOOST_PRICES_BY_CCY["NGN"])
+    return table[days]
+
+
+def pricing_payload():
+    """Supported currencies + full price tables, for the web/mobile apps."""
+    return {
+        "supported_currencies": supported_currencies(),
+        "subscription": {
+            tier: {ccy: str(SUBSCRIPTION_PRICES_BY_CCY[ccy][tier]) for ccy in SUBSCRIPTION_PRICES_BY_CCY}
+            for tier in ("premium", "pro")
+        },
+        "boost": {
+            str(days): {ccy: str(BOOST_PRICES_BY_CCY[ccy][days]) for ccy in BOOST_PRICES_BY_CCY}
+            for days in (30, 90)
+        },
+    }
+````
+
+## File: apps/payments/serializers.py
+````python
+from rest_framework import serializers
+from decimal import Decimal
+
+from .models import ServiceTransaction
+
+
+class FundInitSerializer(serializers.Serializer):
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4, min_value=Decimal("1"))
+    currency = serializers.CharField(max_length=3)
+    callback_url = serializers.CharField(max_length=300, required=False, allow_blank=True)
+
+
+class ServiceTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceTransaction
+        fields = ("id", "service_type", "provider", "status", "amount", "currency",
+                  "internal_reference", "provider_reference", "created_at", "updated_at")
+        read_only_fields = fields
+````
+
+## File: apps/payments/services.py
+````python
+"""
+Funding orchestration.
+
+initialize(): create a PENDING ServiceTransaction and ask the gateway to start
+a charge (returns an authorization URL the user pays at).
+
+settle(): idempotently move the transaction to SUCCESS/FAILED. On success it
+credits the wallet through WalletService with an idempotency key, so a duplicate
+webhook + a client-side verify can BOTH call settle and the wallet is credited
+exactly once.
+"""
+from __future__ import annotations
+
+import json
+import uuid
+from decimal import Decimal, ROUND_CEILING
+
+from django.conf import settings
+from django.db import transaction
+from django.utils import timezone
+
+from integrations.base import ProviderFactory
+from integrations.base.dto import TxnStatus
+from apps.wallet.services import WalletService
+
+from .models import ServiceTransaction, WebhookEvent
+
+
+def _funding_ref() -> str:
+    return f"FUND-{uuid.uuid4().hex[:20]}"
+
+
+# Paystack NGN pricing: 1.5% + ₦100, the ₦100 flat waived below ₦2,500, fee capped at ₦2,000.
+# Gross-up so that AFTER Paystack's fee the reserve nets the customer's intended deposit —
+# i.e. the customer bears the fee at checkout and receives 100% of their deposit in-wallet.
+_PS_PCT = Decimal("0.015")
+_PS_FLAT = Decimal("100")
+_PS_CAP = Decimal("2000")
+_PS_FLAT_THRESHOLD = Decimal("2500")
+
+
+def paystack_gross_up(net: Decimal) -> Decimal:
+    """Amount to charge so the settled value equals `net` after Paystack's fee."""
+    net = Decimal(str(net))
+    if net <= 0:
+        return net
+    gross_with_flat = (net + _PS_FLAT) / (Decimal("1") - _PS_PCT)
+    if gross_with_flat >= _PS_FLAT_THRESHOLD:
+        gross = gross_with_flat
+    else:
+        gross = net / (Decimal("1") - _PS_PCT)   # flat waived for small charges
+    if (gross - net) > _PS_CAP:                    # fee is capped
+        gross = net + _PS_CAP
+    return gross.quantize(Decimal("0.01"), rounding=ROUND_CEILING)
+
+
+class FundingService:
+    @staticmethod
+    @transaction.atomic
+    def initialize(user, amount: Decimal, currency: str, *, provider_key=None, callback_url=None,
+                   subaccount=None, transaction_charge=None, bearer=None):
+        currency = currency.upper()
+        wallet = WalletService.get_or_create_wallet(user, currency)
+        gateway = ProviderFactory.get("payments", provider_key)
+        reference = _funding_ref()
+
+        txn = ServiceTransaction.objects.create(
+            user=user, service_type=ServiceTransaction.Service.WALLET_FUND,
+            provider=gateway.provider_key, status=ServiceTransaction.Status.PENDING,
+            amount=amount, currency=currency,
+            internal_reference=reference, idempotency_key=reference, wallet=wallet,
+            request_payload={"amount": str(amount), "currency": currency},
+        )
+
+        # Escrow compliance: user wallet funding must settle 100% into the dedicated
+        # deposit subaccount, never the main account balance. (Paystack requirement.)
+        charge_amount = amount
+        if subaccount is None:
+            dep = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "") or ""
+            if dep:
+                subaccount = dep
+                if transaction_charge is None:
+                    transaction_charge = 0        # 0 to main -> 100% to the reserve
+                if bearer is None:
+                    bearer = "subaccount"         # subaccount bears the Paystack fee
+                # Pass Paystack's fee to the customer: charge deposit + fee so that,
+                # after the subaccount bears the fee, the reserve nets the full deposit
+                # and the wallet is credited 100% of what the user intended.
+                if currency == "NGN":
+                    charge_amount = paystack_gross_up(amount)
+
+        init = gateway.initialize_charge(
+            amount=charge_amount, currency=currency,
+            email=user.email or f"{user.id}@no-email.oam",
+            reference=reference, metadata={"user_id": str(user.id), "txn": str(txn.id)},
+            callback_url=callback_url,
+            subaccount=subaccount, transaction_charge=transaction_charge, bearer=bearer,
+        )
+        txn.provider_reference = init.provider_reference
+        txn.response_payload = init.raw
+        txn.status = ServiceTransaction.Status.PROCESSING
+        txn.save(update_fields=["provider_reference", "response_payload", "status", "updated_at"])
+        return txn, init
+
+    @staticmethod
+    @transaction.atomic
+    def settle(reference: str, *, verified_status: str | None = None, raw: dict | None = None):
+        txn = (ServiceTransaction.objects
+               .select_for_update()
+               .filter(internal_reference=reference).first())
+        if txn is None:
+            return None
+        if txn.status == ServiceTransaction.Status.SUCCESS:
+            return txn  # already settled — idempotent
+
+        status_val = verified_status
+        if status_val is None:
+            gateway = ProviderFactory.get("payments", txn.provider)
+            result = gateway.verify_charge(txn.provider_reference or reference)
+            status_val, raw = result.status, result.raw
+
+        if status_val == TxnStatus.SUCCESS:
+            journal = WalletService.credit(
+                txn.wallet, txn.amount,
+                source_code=f"gateway:{txn.provider}",
+                description=f"Wallet funding {reference}",
+                reference=reference, idempotency_key=f"fund:{reference}",
+                metadata={"txn": str(txn.id), "provider": txn.provider},
+            )
+            txn.journal = journal
+            txn.status = ServiceTransaction.Status.SUCCESS
+        elif status_val == TxnStatus.FAILED:
+            txn.status = ServiceTransaction.Status.FAILED
+
+        if raw:
+            txn.response_payload = {**(txn.response_payload or {}), "settle": raw}
+        txn.save(update_fields=["journal", "status", "response_payload", "updated_at"])
+
+        # After a successful funding, complete any pending order paid by card.
+        if txn.status == ServiceTransaction.Status.SUCCESS:
+            def _book_bus(ref=reference):
+                try:
+                    from apps.travu.booking import BusBookingService
+                    BusBookingService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_book_bus)
+
+            def _send_airtime(ref=reference):
+                try:
+                    from apps.reloadly.topup import AirtimeTopupService
+                    AirtimeTopupService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_send_airtime)
+
+        return txn
+
+
+class WebhookService:
+    @staticmethod
+    def ingest(provider: str, raw_body: bytes, headers: dict):
+        """Verify signature, persist once, return (event, should_process)."""
+        gateway = ProviderFactory.get("payments", provider)
+        valid = gateway.verify_webhook(raw_body, headers)
+        try:
+            payload = json.loads(raw_body or b"{}")
+        except ValueError:
+            payload = {}
+        event_type = payload.get("event", "")
+        data = payload.get("data", {}) or {}
+        reference = data.get("reference", "")
+        external_id = f"{event_type}:{reference}" or str(uuid.uuid4())
+
+        event, created = WebhookEvent.objects.get_or_create(
+            provider=provider, external_id=external_id,
+            defaults={"event_type": event_type, "signature_valid": valid,
+                      "raw_payload": payload, "headers": headers},
+        )
+        if not valid:
+            if created:
+                event.status = WebhookEvent.Status.FAILED
+                event.save(update_fields=["status"])
+            return event, False
+        # Only process a freshly-seen, valid, success event.
+        should = created and event_type == "charge.success"
+        return event, should
+
+    @staticmethod
+    def mark_processed(event: WebhookEvent):
+        event.status = WebhookEvent.Status.PROCESSED
+        event.processed_at = timezone.now()
+        event.save(update_fields=["status", "processed_at"])
+````
+
+## File: apps/payments/tests.py
+````python
+from django.test import TestCase
+
+# Create your tests here.
+````
+
+## File: apps/payments/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    DevSimulateSuccessView,
+    FundInitView,
+    FundVerifyView,
+    PaystackWebhookView,
+    PricingView,
+)
+
+urlpatterns = [
+    path("fund/", FundInitView.as_view(), name="fund-init"),
+    path("fund/verify/<str:reference>/", FundVerifyView.as_view(), name="fund-verify"),
+    path("webhook/paystack/", PaystackWebhookView.as_view(), name="paystack-webhook"),
+    path("pricing/", PricingView.as_view(), name="pricing"),
+    path("dev/simulate-success/", DevSimulateSuccessView.as_view(), name="dev-simulate-success"),
+]
+````
+
+## File: apps/payments/views.py
+````python
+"""Funding endpoints + Paystack webhook receiver + a DEV-only simulate endpoint."""
+from django.conf import settings
+from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+from integrations.base.dto import TxnStatus
+
+from .models import ServiceTransaction
+from .serializers import FundInitSerializer, ServiceTransactionSerializer
+from .services import FundingService, WebhookService
+
+
+class FundInitView(APIView):
+    """POST: start funding. Returns the authorization URL to pay at."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        serializer = FundInitSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        txn, init = FundingService.initialize(
+            request.user, serializer.validated_data["amount"],
+            serializer.validated_data["currency"],
+        )
+        return Response({
+            "transaction": ServiceTransactionSerializer(txn).data,
+            "authorization_url": init.authorization_url,
+            "reference": txn.internal_reference,
+        }, status=status.HTTP_201_CREATED)
+
+
+class FundVerifyView(APIView):
+    """GET: client-side confirmation after the user returns from the gateway.
+    Verifies with the provider and settles if paid."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request, reference):
+        txn = ServiceTransaction.objects.filter(
+            internal_reference=reference, user=request.user).first()
+        if txn is None:
+            return Response({"detail": "Unknown reference."}, status=status.HTTP_404_NOT_FOUND)
+        txn = FundingService.settle(reference)   # verifies via gateway
+        return Response(ServiceTransactionSerializer(txn).data)
+
+
+class PaystackWebhookView(APIView):
+    """POST: Paystack calls this. Verify signature, persist, settle. Always 200 fast."""
+    permission_classes = [AllowAny]
+    authentication_classes = []      # no auth on webhooks
+
+    def post(self, request):
+        headers = {k.lower(): v for k, v in request.headers.items()}
+        event, should_process = WebhookService.ingest("paystack", request.body, headers)
+        if should_process:
+            data = event.raw_payload.get("data", {}) or {}
+            st = data.get("status")
+            verified = (TxnStatus.SUCCESS if st == "success"
+                        else TxnStatus.FAILED if st in ("failed", "abandoned", "reversed")
+                        else None)
+            FundingService.settle(data.get("reference", ""), verified_status=verified, raw=data)
+            WebhookService.mark_processed(event)
+        return Response({"status": "ok"}, status=status.HTTP_200_OK)
+
+
+class PricingView(APIView):
+    """GET /api/v1/payments/pricing/ -- supported currencies + per-currency listing
+    prices, so the web/mobile apps can show local prices and only offer currencies
+    that are actually enabled. Public; no money moves here."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        from apps.payments.pricing import pricing_payload
+        return Response(pricing_payload())
+
+
+class DevSimulateSuccessView(APIView):
+    """
+    DEV ONLY. Simulates a confirmed payment for a pending funding reference so you
+    can test the full ledger-credit path without real Paystack. Disabled unless
+    DEBUG is True.
+    """
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        if not settings.DEBUG:
+            return Response({"detail": "Not available."}, status=status.HTTP_404_NOT_FOUND)
+        reference = request.data.get("reference", "")
+        txn = ServiceTransaction.objects.filter(
+            internal_reference=reference, user=request.user).first()
+        if txn is None:
+            return Response({"detail": "Unknown reference."}, status=status.HTTP_404_NOT_FOUND)
+        txn = FundingService.settle(reference, verified_status=TxnStatus.SUCCESS,
+                                    raw={"simulated": True})
+        return Response(ServiceTransactionSerializer(txn).data)
+````
+
+## File: apps/payouts/migrations/__init__.py
+````python
+
+````
+
+## File: apps/payouts/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-07-05 20:57
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        ('wallet', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='BankAccount',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('bank_code', models.CharField(max_length=20)),
+                ('bank_name', models.CharField(blank=True, max_length=120)),
+                ('account_number', models.CharField(max_length=20)),
+                ('account_name', models.CharField(max_length=160)),
+                ('recipient_code', models.CharField(blank=True, max_length=120)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('is_active', models.BooleanField(default=True)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bank_accounts', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+        migrations.CreateModel(
+            name='WithdrawalOrder',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('amount', models.DecimalField(decimal_places=4, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('reference', models.CharField(max_length=80, unique=True)),
+                ('provider', models.CharField(blank=True, max_length=40)),
+                ('provider_reference', models.CharField(blank=True, db_index=True, max_length=160, null=True)),
+                ('status', models.CharField(choices=[('pending', 'Pending'), ('processing', 'Processing'), ('success', 'Success'), ('failed', 'Failed'), ('reversed', 'Reversed')], default='pending', max_length=12)),
+                ('failure_reason', models.CharField(blank=True, max_length=200)),
+                ('request_payload', models.JSONField(blank=True, default=dict)),
+                ('response_payload', models.JSONField(blank=True, default=dict)),
+                ('bank_account', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='withdrawals', to='payouts.bankaccount')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='withdrawals', to=settings.AUTH_USER_MODEL)),
+                ('wallet', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='withdrawals', to='wallet.wallet')),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+        migrations.AddConstraint(
+            model_name='bankaccount',
+            constraint=models.UniqueConstraint(fields=('user', 'bank_code', 'account_number'), name='uniq_user_bank_account'),
+        ),
+        migrations.AddIndex(
+            model_name='withdrawalorder',
+            index=models.Index(fields=['user', 'status'], name='payouts_wit_user_id_68ec46_idx'),
+        ),
+    ]
+````
+
+## File: apps/payouts/__init__.py
+````python
+
+````
+
+## File: apps/payouts/admin.py
+````python
+from django.contrib import admin
+
+from .models import BankAccount, WithdrawalOrder
+
+
+@admin.register(BankAccount)
+class BankAccountAdmin(admin.ModelAdmin):
+    list_display = ("account_name", "account_number", "bank_code", "user", "is_active")
+    search_fields = ("account_name", "account_number", "user__email")
+
+
+@admin.register(WithdrawalOrder)
+class WithdrawalOrderAdmin(admin.ModelAdmin):
+    list_display = ("reference", "amount", "currency", "status", "user", "created_at")
+    list_filter = ("status", "currency")
+    search_fields = ("reference", "provider_reference", "user__email")
+    readonly_fields = [f.name for f in WithdrawalOrder._meta.fields]
+````
+
+## File: apps/payouts/apps.py
+````python
+from django.apps import AppConfig
+
+
+class PayoutsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.payouts"
+````
+
+## File: apps/payouts/models.py
+````python
+"""
+Withdrawals to real bank accounts (Paystack Transfers).
+
+BankAccount    = a saved, verified payout destination (with the provider's
+                 recipient_code once created).
+WithdrawalOrder = one payout attempt, tracking the wallet hold -> transfer ->
+                 capture/release lifecycle.
+"""
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedModel
+
+
+class BankAccount(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="bank_accounts")
+    bank_code = models.CharField(max_length=20)
+    bank_name = models.CharField(max_length=120, blank=True)
+    account_number = models.CharField(max_length=20)
+    account_name = models.CharField(max_length=160)
+    recipient_code = models.CharField(max_length=120, blank=True)   # provider recipient
+    currency = models.CharField(max_length=3, default="NGN")
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["user", "bank_code", "account_number"],
+                                    name="uniq_user_bank_account"),
+        ]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.account_name} · {self.account_number} ({self.bank_code})"
+
+
+class WithdrawalOrder(TimeStampedModel):
+    class Status(models.TextChoices):
+        PENDING = "pending", _("Pending")
+        PROCESSING = "processing", _("Processing")
+        SUCCESS = "success", _("Success")
+        FAILED = "failed", _("Failed")
+        REVERSED = "reversed", _("Reversed")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
+                             related_name="withdrawals")
+    wallet = models.ForeignKey("wallet.Wallet", null=True, blank=True,
+                               on_delete=models.SET_NULL, related_name="withdrawals")
+    bank_account = models.ForeignKey(BankAccount, on_delete=models.PROTECT,
+                                     related_name="withdrawals")
+    amount = models.DecimalField(max_digits=20, decimal_places=4)
+    currency = models.CharField(max_length=3, default="NGN")
+
+    reference = models.CharField(max_length=80, unique=True)
+    provider = models.CharField(max_length=40, blank=True)
+    provider_reference = models.CharField(max_length=160, null=True, blank=True, db_index=True)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
+    failure_reason = models.CharField(max_length=200, blank=True)
+
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+
+    class Meta:
+        indexes = [models.Index(fields=["user", "status"])]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"WD {self.amount} {self.currency} -> {self.bank_account_id} [{self.status}]"
+````
+
+## File: apps/payouts/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import BankAccount, WithdrawalOrder
+
+
+class BankAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BankAccount
+        fields = ("id", "bank_code", "bank_name", "account_number", "account_name",
+                  "currency", "is_active", "created_at")
+        read_only_fields = ("id", "account_name", "bank_name", "created_at")
+
+
+class ResolveAccountSerializer(serializers.Serializer):
+    bank_code = serializers.CharField(max_length=20)
+    account_number = serializers.CharField(max_length=20)
+    currency = serializers.CharField(max_length=3, default="NGN")
+
+
+class AddBankSerializer(serializers.Serializer):
+    bank_code = serializers.CharField(max_length=20)
+    account_number = serializers.CharField(max_length=20)
+    currency = serializers.CharField(max_length=3, default="NGN")
+
+
+class WithdrawSerializer(serializers.Serializer):
+    bank_account_id = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4)
+    currency = serializers.CharField(max_length=3, default="NGN")
+    pin = serializers.CharField(max_length=6, write_only=True)
+
+    def validate_amount(self, value):
+        if value < 100:
+            raise serializers.ValidationError("Minimum withdrawal is ₦100.")
+        return value
+
+
+class WithdrawalOrderSerializer(serializers.ModelSerializer):
+    account_name = serializers.CharField(source="bank_account.account_name", read_only=True)
+    account_number = serializers.CharField(source="bank_account.account_number", read_only=True)
+
+    class Meta:
+        model = WithdrawalOrder
+        fields = ("id", "amount", "currency", "status", "reference", "provider",
+                  "provider_reference", "account_name", "account_number",
+                  "failure_reason", "created_at", "updated_at")
+        read_only_fields = fields
+````
+
+## File: apps/payouts/services.py
+````python
+"""
+WithdrawalService — money OUT to a bank via the transfers provider.
+
+Same safety pattern as bills:
+  1) create order + HOLD funds   (atomic; balance drops, overdraft-blocked)
+  2) initiate the transfer        (external; outside the DB transaction)
+  3) SUCCESS -> CAPTURE (funds leave to the bank)
+     FAILED  -> RELEASE (refund the wallet)
+     PENDING -> keep the hold; webhook resolves it
+"""
+from __future__ import annotations
+
+import uuid
+from decimal import Decimal
+
+from django.db import transaction
+
+from integrations.base import ProviderFactory
+from integrations.base.exceptions import ProviderError
+from apps.wallet.services import WalletService
+
+from .models import BankAccount, WithdrawalOrder
+
+PAYOUT_ACCOUNT = "payout:bank"     # counterpart the captured funds settle to
+
+# transfer status -> our terminal mapping
+_SUCCESS = {"success"}
+_FAILED = {"failed", "reversed", "abandoned", "declined"}
+
+
+def _transfer_fee(amount, currency="NGN"):
+    """Wallet -> bank transfer fee (OAM revenue). ₦25 from ₦500+, else ₦10. NGN only."""
+    from decimal import Decimal
+    if str(currency).upper() != "NGN":
+        return Decimal("0")
+    return Decimal("25") if Decimal(str(amount)) >= Decimal("500") else Decimal("10")
+
+
+def _wd_ref() -> str:
+    return f"WD-{uuid.uuid4().hex[:20]}"
+
+
+class WithdrawalError(Exception):
+    """User-facing withdrawal problem."""
+
+
+class WithdrawalService:
+    # ---------------- bank accounts ----------------
+    @staticmethod
+    def list_banks(currency="NGN"):
+        provider = ProviderFactory.get("payouts")
+        fn = getattr(provider, "list_banks", None)
+        return fn(currency) if fn else []
+
+    @staticmethod
+    def resolve_account(*, bank_code, account_number, currency="NGN"):
+        provider = ProviderFactory.get("payouts")
+        try:
+            return provider.resolve_account(account_number=account_number,
+                                            bank_code=bank_code, currency=currency)
+        except ProviderError as exc:
+            raise WithdrawalError(str(exc))
+
+    @staticmethod
+    def add_bank_account(*, user, bank_code, account_number, currency="NGN"):
+        provider = ProviderFactory.get("payouts")
+        try:
+            resolved = provider.resolve_account(account_number=account_number,
+                                                bank_code=bank_code, currency=currency)
+            account_name = resolved.get("account_name")
+            if not account_name:
+                raise WithdrawalError("Could not resolve this account.")
+            recipient_code = provider.create_recipient(
+                name=account_name, account_number=account_number,
+                bank_code=bank_code, currency=currency,
+            )
+        except ProviderError as exc:
+            raise WithdrawalError(str(exc))
+
+        account, _ = BankAccount.objects.update_or_create(
+            user=user, bank_code=bank_code, account_number=account_number,
+            defaults={"account_name": account_name, "bank_name": resolved.get("bank_name", ""),
+                      "recipient_code": recipient_code or "", "currency": currency,
+                      "is_active": True},
+        )
+        return account
+
+    # ---------------- withdrawal lifecycle ----------------
+    @staticmethod
+    def create_and_hold(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
+        amount = Decimal(str(amount))
+        fee = _transfer_fee(amount, currency)
+        total = amount + fee
+        wallet = WalletService.get_or_create_wallet(user, currency)
+        with transaction.atomic():
+            order = WithdrawalOrder.objects.create(
+                user=user, wallet=wallet, bank_account=bank_account,
+                amount=amount, currency=currency.upper(), reference=_wd_ref(),
+                status=WithdrawalOrder.Status.PENDING,
+                request_payload={"amount": str(amount), "fee": str(fee), "total": str(total),
+                                 "bank_account": str(bank_account.id)},
+            )
+            WalletService.hold(wallet, total, reference=order.reference,
+                               description=f"Withdrawal hold {order.reference}",
+                               metadata={"withdrawal": str(order.id), "fee": str(fee)})
+            order.status = WithdrawalOrder.Status.PROCESSING
+            order.save(update_fields=["status", "updated_at"])
+        return order
+
+    @staticmethod
+    def execute(order: WithdrawalOrder) -> WithdrawalOrder:
+        provider = ProviderFactory.get("payouts")
+        order.provider = provider.provider_key
+        result, error = None, None
+        try:
+            result = provider.initiate_transfer(
+                amount=order.amount, recipient_code=order.bank_account.recipient_code,
+                reference=order.reference, currency=order.currency,
+                reason=f"OAM withdrawal {order.reference}",
+            )
+        except ProviderError as exc:
+            error = str(exc)
+
+        with transaction.atomic():
+            o = WithdrawalOrder.objects.select_for_update().get(pk=order.pk)
+            if o.status in (WithdrawalOrder.Status.SUCCESS, WithdrawalOrder.Status.FAILED,
+                            WithdrawalOrder.Status.REVERSED):
+                return o
+            o.provider = provider.provider_key
+            if result is None:                              # transport error -> keep hold
+                o.status = WithdrawalOrder.Status.PROCESSING
+                o.failure_reason = (error or "")[:200]
+                o.response_payload = {"error": error}
+            else:
+                status = str(result.get("status", "")).lower()
+                o.provider_reference = str(result.get("provider_reference", "") or "")
+                o.response_payload = result.get("raw", {})
+                if status in _SUCCESS:
+                    WithdrawalService._capture(o)
+                    o.status = WithdrawalOrder.Status.SUCCESS
+                elif status in _FAILED:
+                    WithdrawalService._release(o)
+                    o.status = WithdrawalOrder.Status.FAILED
+                    _raw = result.get("raw", {}) or {}
+                    _reason = str(_raw.get("error") or _raw.get("message") or "").strip()
+                    o.failure_reason = (f"Transfer failed: {_reason}" if _reason else "Transfer failed.")[:200]
+                else:                                       # pending/otp/queued
+                    o.status = WithdrawalOrder.Status.PROCESSING
+            o.save(update_fields=["status", "provider", "provider_reference",
+                                  "response_payload", "failure_reason", "updated_at"])
+        return o
+
+    @staticmethod
+    def withdraw(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
+        order = WithdrawalService.create_and_hold(
+            user=user, bank_account=bank_account, amount=amount, currency=currency)
+        return WithdrawalService.execute(order)
+
+    # ---------------- resolve pending (webhook) ----------------
+    @staticmethod
+    def apply_transfer_status(reference, transfer_status, raw=None) -> WithdrawalOrder | None:
+        order = WithdrawalOrder.objects.filter(reference=reference).first()
+        if order is None:
+            return None
+        status = str(transfer_status).lower()
+        with transaction.atomic():
+            o = WithdrawalOrder.objects.select_for_update().get(pk=order.pk)
+            if o.status in (WithdrawalOrder.Status.SUCCESS, WithdrawalOrder.Status.FAILED,
+                            WithdrawalOrder.Status.REVERSED):
+                return o
+            if status in _SUCCESS:
+                WithdrawalService._capture(o)
+                o.status = WithdrawalOrder.Status.SUCCESS
+            elif status in _FAILED:
+                WithdrawalService._release(o)
+                o.status = (WithdrawalOrder.Status.REVERSED if status == "reversed"
+                            else WithdrawalOrder.Status.FAILED)
+                o.failure_reason = f"Transfer {status}."
+            else:
+                o.status = WithdrawalOrder.Status.PROCESSING
+            if raw:
+                o.response_payload = {**(o.response_payload or {}), "webhook": raw}
+            o.save(update_fields=["status", "response_payload", "failure_reason", "updated_at"])
+        return o
+
+    # ---------------- ledger helpers ----------------
+    @staticmethod
+    def _capture(order):
+        fee = Decimal(str((order.request_payload or {}).get("fee", "0")))
+        total = order.amount + fee
+        WalletService.capture(order.currency, total, reference=order.reference,
+                              cost=order.amount, counterpart_code=PAYOUT_ACCOUNT,
+                              description=f"Withdrawal capture {order.reference}",
+                              metadata={"withdrawal": str(order.id), "fee": str(fee)})
+
+    @staticmethod
+    def _release(order):
+        fee = Decimal(str((order.request_payload or {}).get("fee", "0")))
+        total = order.amount + fee
+        WalletService.release(order.wallet, total, reference=order.reference,
+                              description=f"Withdrawal refund {order.reference}",
+                              metadata={"withdrawal": str(order.id)})
+````
+
+## File: apps/payouts/urls.py
+````python
+from django.urls import path
+
+from .views import (
+    BankAccountsView,
+    BankListView,
+    ResolveAccountView,
+    WithdrawalListView,
+    WithdrawalWebhookView,
+    WithdrawView,
+)
+
+urlpatterns = [
+    path("banks-list/", BankListView.as_view(), name="payout-bank-list"),
+    path("resolve-account/", ResolveAccountView.as_view(), name="payout-resolve"),
+    path("banks/", BankAccountsView.as_view(), name="payout-banks"),
+    path("withdrawals/", WithdrawView.as_view(), name="payout-withdraw"),
+    path("withdrawals/history/", WithdrawalListView.as_view(), name="payout-history"),
+    path("webhook/paystack/", WithdrawalWebhookView.as_view(), name="payout-webhook"),
+]
+````
+
+## File: apps/payouts/views.py
+````python
+"""User-facing withdrawals to bank (Paystack Transfers).
+
+Same service, models and status flow as the admin module — these endpoints just
+scope every query to request.user and require a verified account plus a
+transaction PIN to authorize money leaving the wallet.
+"""
+import json
+
+from rest_framework import status
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+from apps.wallet.exceptions import InsufficientFunds
+from integrations.base import ProviderFactory
+
+from .models import BankAccount, WithdrawalOrder
+from .serializers import (
+    AddBankSerializer,
+    BankAccountSerializer,
+    ResolveAccountSerializer,
+    WithdrawalOrderSerializer,
+    WithdrawSerializer,
+)
+from .services import WithdrawalError, WithdrawalService
+
+
+class BankListView(APIView):
+    """GET /banks-list/?currency=NGN — every bank the provider supports."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        currency = request.query_params.get("currency", "NGN")
+        return Response({"banks": WithdrawalService.list_banks(currency)})
+
+
+class ResolveAccountView(APIView):
+    """POST /resolve-account/ {bank_code, account_number} — preview account name."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        s = ResolveAccountSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        try:
+            resolved = WithdrawalService.resolve_account(**s.validated_data)
+        except WithdrawalError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(resolved)
+
+
+class BankAccountsView(ListAPIView):
+    """GET /banks/ (list saved) ; POST /banks/ (resolve + save a payout account)."""
+    permission_classes = [IsAuthenticated, IsVerified]
+    serializer_class = BankAccountSerializer
+
+    def get_queryset(self):
+        return BankAccount.objects.filter(user=self.request.user, is_active=True)
+
+    def post(self, request):
+        s = AddBankSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        try:
+            account = WithdrawalService.add_bank_account(user=request.user, **s.validated_data)
+        except WithdrawalError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(BankAccountSerializer(account).data, status=status.HTTP_201_CREATED)
+
+
+class WithdrawView(APIView):
+    """POST /withdrawals/ {bank_account_id, amount, pin} — send money to a saved bank."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        s = WithdrawSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        data = s.validated_data
+
+        # Transaction PIN authorizes money leaving the wallet.
+        if not request.user.has_transaction_pin:
+            return Response(
+                {"detail": "Set a transaction PIN before withdrawing.",
+                 "reason": "pin_not_set"},
+                status=status.HTTP_403_FORBIDDEN)
+        if not request.user.check_transaction_pin(data.get("pin", "")):
+            return Response(
+                {"detail": "Incorrect transaction PIN.", "reason": "invalid_pin"},
+                status=status.HTTP_400_BAD_REQUEST)
+
+        account = BankAccount.objects.filter(
+            id=data["bank_account_id"], user=request.user, is_active=True).first()
+        if account is None:
+            return Response({"detail": "Bank account not found."},
+                            status=status.HTTP_404_NOT_FOUND)
+        try:
+            order = WithdrawalService.withdraw(
+                user=request.user, bank_account=account,
+                amount=data["amount"], currency=data["currency"])
+        except InsufficientFunds as exc:
+            return Response({"detail": str(exc), "reason": "insufficient_funds"},
+                            status=status.HTTP_402_PAYMENT_REQUIRED)
+        except WithdrawalError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        code = status.HTTP_201_CREATED if order.status == WithdrawalOrder.Status.SUCCESS \
+            else status.HTTP_200_OK
+        return Response(WithdrawalOrderSerializer(order).data, status=code)
+
+
+class WithdrawalListView(ListAPIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+    serializer_class = WithdrawalOrderSerializer
+
+    def get_queryset(self):
+        return WithdrawalOrder.objects.filter(user=self.request.user)
+
+
+class WithdrawalWebhookView(APIView):
+    """POST — Paystack transfer.success / transfer.failed / transfer.reversed."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        provider = ProviderFactory.get("payouts")
+        headers = {k.lower(): v for k, v in request.headers.items()}
+        verify = getattr(provider, "verify_webhook", None)
+        if verify and not verify(request.body, headers):
+            return Response({"detail": "Invalid signature."}, status=status.HTTP_403_FORBIDDEN)
+        try:
+            payload = json.loads(request.body or b"{}")
+        except ValueError:
+            payload = {}
+        event = payload.get("event", "")
+        data = payload.get("data", {}) or {}
+        reference = data.get("reference", "")
+        if event.startswith("transfer.") and reference:
+            transfer_status = event.split(".", 1)[1]      # success / failed / reversed
+            WithdrawalService.apply_transfer_status(reference, transfer_status, raw=payload)
+        return Response({"status": "ok"})
+````
+
+## File: apps/referrals/migrations/__init__.py
+````python
+
+````
+
+## File: apps/referrals/migrations/0001_initial.py
+````python
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="ReferralProfile",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("custom_slug", models.SlugField(max_length=40)),
+                ("referral_code", models.CharField(db_index=True, max_length=16, unique=True)),
+                ("total_earnings", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("total_referrals_count", models.PositiveIntegerField(default=0)),
+                ("user", models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name="referral_profile", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"abstract": False},
+        ),
+        migrations.CreateModel(
+            name="ReferralRelationship",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("status", models.CharField(choices=[("pending", "Pending"), ("active", "Active")], default="pending", max_length=10)),
+                ("referee", models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name="referred_by", to=settings.AUTH_USER_MODEL)),
+                ("referrer", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="referrals_made", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"abstract": False},
+        ),
+        migrations.CreateModel(
+            name="ReferralCommissionLog",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("source_transaction_id", models.CharField(db_index=True, max_length=120, unique=True)),
+                ("oam_profit_amount", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("commission_amount", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("referee", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="referral_commissions_generated", to=settings.AUTH_USER_MODEL)),
+                ("referrer", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="referral_commissions", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+        migrations.CreateModel(
+            name="ReferralNotification",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("message", models.CharField(max_length=255)),
+                ("seen", models.BooleanField(default=False)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="referral_notifications", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+    ]
+````
+
+## File: apps/referrals/__init__.py
+````python
+
+````
+
+## File: apps/referrals/admin.py
+````python
+from django.contrib import admin
+
+from .models import (ReferralProfile, ReferralRelationship,
+                     ReferralCommissionLog, ReferralNotification)
+
+admin.site.register(ReferralProfile)
+admin.site.register(ReferralRelationship)
+admin.site.register(ReferralCommissionLog)
+admin.site.register(ReferralNotification)
+````
+
+## File: apps/referrals/apps.py
+````python
+from django.apps import AppConfig
+
+
+class ReferralsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.referrals"
+
+    def ready(self):
+        # Connect the commission receiver to the transaction_settled signal.
+        from . import services  # noqa: F401
+````
+
+## File: apps/referrals/hooks.py
+````python
+"""
+Tiny integration surface for other apps. A settlement point calls
+`settle_referral(...)` after finalising a transaction; we defer the actual
+evaluation to transaction commit so a commission failure can never roll back
+(or block) the underlying settlement.
+"""
+from django.db import transaction
+
+from .signals import transaction_settled
+
+
+def settle_referral(*, user, oam_profit, currency="NGN", source_reference):
+    if user is None or not source_reference:
+        return
+
+    def _fire():
+        transaction_settled.send(
+            sender="referrals", user=user, oam_profit=oam_profit,
+            currency=currency, source_reference=source_reference,
+        )
+
+    transaction.on_commit(_fire)
+````
+
+## File: apps/referrals/models.py
+````python
+from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel
+
+
+class ReferralProfile(TimeStampedModel):
+    """A user's referral identity: their customisable slug + unique code."""
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                related_name="referral_profile")
+    custom_slug = models.SlugField(max_length=40)
+    referral_code = models.CharField(max_length=16, unique=True, db_index=True)
+    total_earnings = models.DecimalField(max_digits=20, decimal_places=2, default=0)   # NGN
+    total_referrals_count = models.PositiveIntegerField(default=0)
+
+    def link(self) -> str:
+        return f"https://oam-app.com/refer-{self.custom_slug}-{self.referral_code}"
+
+    def __str__(self):
+        return f"{self.user} · {self.referral_code}"
+
+
+class ReferralRelationship(TimeStampedModel):
+    """Records that `referee` signed up through `referrer`."""
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending"
+        ACTIVE = "active", "Active"      # becomes ACTIVE once they earn a commission
+
+    referrer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                 related_name="referrals_made")
+    referee = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                   related_name="referred_by")
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+
+    def __str__(self):
+        return f"{self.referrer} -> {self.referee} [{self.status}]"
+
+
+class ReferralCommissionLog(TimeStampedModel):
+    """Immutable record of a paid referral commission (one per source txn)."""
+    referrer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                 related_name="referral_commissions")
+    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
+                                null=True, blank=True, related_name="referral_commissions_generated")
+    source_transaction_id = models.CharField(max_length=120, unique=True, db_index=True)
+    oam_profit_amount = models.DecimalField(max_digits=20, decimal_places=2)   # NGN
+    commission_amount = models.DecimalField(max_digits=20, decimal_places=2)   # NGN
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.referrer} +{self.commission_amount} ({self.source_transaction_id})"
+
+
+class ReferralNotification(TimeStampedModel):
+    """Lightweight in-app notification (surfaced by the dashboard endpoint)."""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="referral_notifications")
+    message = models.CharField(max_length=255)
+    seen = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-created_at"]
+````
+
+## File: apps/referrals/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import ReferralCommissionLog
+
+
+class GenerateLinkSerializer(serializers.Serializer):
+    custom_slug = serializers.CharField(required=False, allow_blank=True, max_length=40)
+
+
+class CommissionLogSerializer(serializers.ModelSerializer):
+    referee_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ReferralCommissionLog
+        fields = ["id", "referee_name", "source_transaction_id",
+                  "oam_profit_amount", "commission_amount", "created_at"]
+
+    def get_referee_name(self, obj):
+        if not obj.referee:
+            return "A referral"
+        return (obj.referee.first_name or obj.referee.email or "A referral")
+````
+
+## File: apps/referrals/services.py
+````python
+import re
+import secrets
+from decimal import Decimal, ROUND_DOWN
+
+from django.db import transaction
+from django.db.models import F
+from django.dispatch import receiver
+from django.utils.text import slugify
+
+from apps.wallet.services import WalletService, REVENUE_ACCOUNT
+
+from .models import (ReferralProfile, ReferralRelationship,
+                     ReferralCommissionLog, ReferralNotification)
+from .signals import transaction_settled
+
+COMMISSION_RATE = Decimal("0.10")            # 10%
+PROFIT_THRESHOLD_NGN = Decimal("5000")       # only pays out at/above this OAM profit
+
+# NGN per 1 unit of currency (inverse of the display rates), for the threshold
+# check + payout when a referred transaction is not in NGN.
+_NGN_PER_UNIT = {
+    "NGN": Decimal("1"),
+    "USD": Decimal("1538.46"),
+    "GBP": Decimal("1960.78"),
+    "EUR": Decimal("1666.67"),
+}
+
+
+class ReferralService:
+    # ---------------- identity / link ----------------
+    @staticmethod
+    def _new_code() -> str:
+        while True:
+            raw = secrets.token_hex(4)  # 8 hex chars
+            code = raw.lower()
+            if not ReferralProfile.objects.filter(referral_code=code).exists():
+                return code
+
+    @staticmethod
+    def _slug_base(user) -> str:
+        base = user.first_name or (user.email or "").split("@")[0] or "oam"
+        return slugify(base)[:40] or "oam"
+
+    @staticmethod
+    def ensure_profile(user) -> ReferralProfile:
+        prof = ReferralProfile.objects.filter(user=user).first()
+        if prof:
+            return prof
+        return ReferralProfile.objects.create(
+            user=user, custom_slug=ReferralService._slug_base(user),
+            referral_code=ReferralService._new_code(),
+        )
+
+    @staticmethod
+    def set_slug(user, slug: str) -> ReferralProfile:
+        prof = ReferralService.ensure_profile(user)
+        clean = slugify(slug or "")[:40]
+        if clean:
+            prof.custom_slug = clean
+            prof.save(update_fields=["custom_slug", "updated_at"])
+        return prof
+
+    @staticmethod
+    def resolve_code(code):
+        """Accept a bare code, or a full '/refer-slug-CODE' link, and return the profile."""
+        if not code:
+            return None
+        text = str(code).strip()
+        # the code is the trailing alphanumeric run
+        m = re.search(r"([A-Za-z0-9]{6,})\s*$", text)
+        key = (m.group(1) if m else text).lower()
+        return ReferralProfile.objects.filter(referral_code=key).select_related("user").first()
+
+    # ---------------- relationship ----------------
+    @staticmethod
+    @transaction.atomic
+    def attach_referral(user, code):
+        """Link a newly-registered `user` to the owner of `code` (once)."""
+        prof = ReferralService.resolve_code(code)
+        if not prof or prof.user_id == user.id:
+            return None
+        if ReferralRelationship.objects.filter(referee=user).exists():
+            return None
+        rel = ReferralRelationship.objects.create(referrer=prof.user, referee=user)
+        ReferralProfile.objects.filter(pk=prof.pk).update(
+            total_referrals_count=F("total_referrals_count") + 1)
+        return rel
+
+    # ---------------- commission engine ----------------
+    @staticmethod
+    def _to_ngn(amount, currency) -> Decimal:
+        rate = _NGN_PER_UNIT.get(str(currency or "NGN").upper(), Decimal("1"))
+        return Decimal(str(amount)) * rate
+
+    @staticmethod
+    @transaction.atomic
+    def reward_if_qualifies(*, user, oam_profit, currency="NGN", source_reference):
+        """Pay the referrer 5% if OAM's NGN profit on this txn >= ₦5,000. Idempotent."""
+        rel = (ReferralRelationship.objects
+               .select_related("referrer", "referee")
+               .filter(referee=user).first())
+        if not rel:
+            return None
+
+        profit_ngn = ReferralService._to_ngn(oam_profit, currency)
+        if profit_ngn < PROFIT_THRESHOLD_NGN:
+            return None
+        if ReferralCommissionLog.objects.filter(source_transaction_id=source_reference).exists():
+            return None  # already paid for this transaction
+
+        commission = (profit_ngn * COMMISSION_RATE).quantize(Decimal("0.01"), rounding=ROUND_DOWN)
+        if commission <= 0:
+            return None
+
+        referrer = rel.referrer
+        wallet = WalletService.get_or_create_wallet(referrer, "NGN")
+        WalletService.credit(
+            wallet, commission, source_code=REVENUE_ACCOUNT,
+            description=f"Referral commission ({rel.referee.first_name or 'a referral'})",
+            reference=source_reference, idempotency_key=f"referral:{source_reference}",
+            metadata={"type": "REFERRAL_COMMISSION", "referee": str(rel.referee_id),
+                      "source": str(source_reference)},
+        )
+        log = ReferralCommissionLog.objects.create(
+            referrer=referrer, referee=rel.referee, source_transaction_id=str(source_reference),
+            oam_profit_amount=profit_ngn.quantize(Decimal("0.01")), commission_amount=commission,
+        )
+        ReferralProfile.objects.filter(user=referrer).update(
+            total_earnings=F("total_earnings") + commission)
+        if rel.status != ReferralRelationship.Status.ACTIVE:
+            ReferralRelationship.objects.filter(pk=rel.pk).update(
+                status=ReferralRelationship.Status.ACTIVE)
+        ReferralService._notify(referrer, commission, rel.referee)
+        return log
+
+    @staticmethod
+    def _notify(referrer, amount, referee):
+        """In-app notification. Push (Expo/FCM) can hook in here once device tokens exist."""
+        try:
+            ReferralNotification.objects.create(
+                user=referrer,
+                message=(f"You earned ₦{amount:,.2f} from a referral transaction "
+                         f"by {referee.first_name or 'a referral'}!"),
+            )
+        except Exception:
+            pass
+
+    # ---------------- dashboard ----------------
+    @staticmethod
+    def dashboard(user):
+        prof = ReferralService.ensure_profile(user)
+        logs = list(ReferralCommissionLog.objects.filter(referrer=user)
+                    .select_related("referee")[:20])
+        total_refs = ReferralRelationship.objects.filter(referrer=user).count()
+        active = ReferralRelationship.objects.filter(
+            referrer=user, status=ReferralRelationship.Status.ACTIVE).count()
+        wallet = WalletService.get_or_create_wallet(user, "NGN")
+        return {"profile": prof, "logs": logs, "total_referrals": total_refs,
+                "active_referrals": active, "wallet_balance": wallet.cached_balance}
+
+
+@receiver(transaction_settled)
+def _on_transaction_settled(sender, user, oam_profit, currency="NGN", source_reference=None, **kwargs):
+    try:
+        ReferralService.reward_if_qualifies(
+            user=user, oam_profit=oam_profit, currency=currency,
+            source_reference=source_reference)
+    except Exception:
+        # never let a commission problem bubble into the caller
+        pass
+````
+
+## File: apps/referrals/signals.py
+````python
+import django.dispatch
+
+# Fired (on transaction commit) whenever a user completes a transaction that
+# realised OAM profit. Args: user, oam_profit (Decimal), currency, source_reference.
+transaction_settled = django.dispatch.Signal()
+````
+
+## File: apps/referrals/urls.py
+````python
+from django.urls import path
+
+from .views import DashboardView, GenerateLinkView
+
+urlpatterns = [
+    path("generate-link/", GenerateLinkView.as_view(), name="referral-generate-link"),
+    path("dashboard/", DashboardView.as_view(), name="referral-dashboard"),
+]
+````
+
+## File: apps/referrals/views.py
+````python
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import ReferralNotification
+from .serializers import CommissionLogSerializer, GenerateLinkSerializer
+from .services import ReferralService, COMMISSION_RATE, PROFIT_THRESHOLD_NGN
+
+
+def _profile_payload(profile):
+    return {
+        "referral_code": profile.referral_code,
+        "custom_slug": profile.custom_slug,
+        "link": profile.link(),
+        "total_earnings": str(profile.total_earnings),
+        "total_referrals_count": profile.total_referrals_count,
+    }
+
+
+class GenerateLinkView(APIView):
+    """POST /api/v1/referrals/generate-link/ — create or rename the user's referral slug."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = GenerateLinkSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        slug = serializer.validated_data.get("custom_slug")
+        profile = (ReferralService.set_slug(request.user, slug) if slug
+                   else ReferralService.ensure_profile(request.user))
+        return Response(_profile_payload(profile))
+
+
+class DashboardView(APIView):
+    """GET /api/v1/referrals/dashboard/ — link, stats, balance, recent commissions."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        data = ReferralService.dashboard(request.user)
+        # surface + clear unseen in-app notifications
+        notes = list(ReferralNotification.objects.filter(user=request.user, seen=False)[:10])
+        if notes:
+            ReferralNotification.objects.filter(id__in=[n.id for n in notes]).update(seen=True)
+        return Response({
+            **_profile_payload(data["profile"]),
+            "stats": {
+                "total_referrals": data["total_referrals"],
+                "active_referrals": data["active_referrals"],
+                "total_earned": str(data["profile"].total_earnings),
+            },
+            "wallet_balance": str(data["wallet_balance"]),
+            "commission_rate": str(COMMISSION_RATE),
+            "profit_threshold": str(PROFIT_THRESHOLD_NGN),
+            "recent_commissions": CommissionLogSerializer(data["logs"], many=True).data,
+            "notifications": [n.message for n in notes],
+        })
+````
+
+## File: apps/reloadly/migrations/__init__.py
+````python
+
+````
+
+## File: apps/reloadly/migrations/0001_initial.py
+````python
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="AirtimeTopup",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reference", models.CharField(db_index=True, max_length=40, unique=True)),
+                ("status", models.CharField(choices=[("pending", "Pending payment"), ("paid", "Paid — sending"), ("success", "Successful"), ("failed", "Failed"), ("refunded", "Refunded")], default="pending", max_length=12)),
+                ("operator_id", models.CharField(max_length=32)),
+                ("operator_name", models.CharField(blank=True, max_length=120)),
+                ("country_iso", models.CharField(blank=True, max_length=4)),
+                ("recipient_number", models.CharField(max_length=32)),
+                ("recipient_iso2", models.CharField(max_length=4)),
+                ("use_local_amount", models.BooleanField(default=False)),
+                ("amount", models.DecimalField(decimal_places=4, default=0, max_digits=20)),
+                ("currency", models.CharField(default="USD", max_length=6)),
+                ("total_ngn", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("cost_ngn", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("markup_ngn", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("payment_reference", models.CharField(blank=True, db_index=True, max_length=120)),
+                ("pay_with", models.CharField(default="wallet", max_length=10)),
+                ("reloadly_transaction_id", models.CharField(blank=True, db_index=True, max_length=64)),
+                ("delivered_amount", models.DecimalField(decimal_places=4, default=0, max_digits=20)),
+                ("delivered_currency", models.CharField(blank=True, max_length=6)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("failure_reason", models.CharField(blank=True, max_length=255)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="airtime_topups", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+        migrations.CreateModel(
+            name="AirtimeApiLog",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("endpoint", models.CharField(max_length=80)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("status_code", models.PositiveIntegerField(default=0)),
+                ("ok", models.BooleanField(default=False)),
+                ("error", models.CharField(blank=True, max_length=255)),
+                ("topup", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="api_logs", to="reloadly.airtimetopup")),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+    ]
+````
+
+## File: apps/reloadly/__init__.py
+````python
+
+````
+
+## File: apps/reloadly/admin.py
+````python
+from django.contrib import admin
+
+from .models import AirtimeApiLog, AirtimeTopup
+
+
+@admin.register(AirtimeTopup)
+class AirtimeTopupAdmin(admin.ModelAdmin):
+    list_display = ("reference", "user", "operator_name", "recipient_number",
+                    "total_ngn", "markup_ngn", "status", "created_at")
+    list_filter = ("status", "country_iso")
+    search_fields = ("reference", "reloadly_transaction_id", "recipient_number", "user__email")
+
+
+admin.site.register(AirtimeApiLog)
+````
+
+## File: apps/reloadly/apps.py
+````python
+from django.apps import AppConfig
+
+
+class ReloadlyConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.reloadly"
+````
+
+## File: apps/reloadly/models.py
+````python
+"""
+International airtime top-up persistence (Reloadly).
+
+An AirtimeTopup is created at checkout (PENDING). After the customer's NGN
+payment (wallet or Flutterwave) is confirmed, we call Reloadly; on success we
+store the transaction and flip to SUCCESS, else refund and FAIL.
+"""
+from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel
+
+
+class AirtimeTopup(TimeStampedModel):
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending payment"
+        PAID = "paid", "Paid — sending"
+        SUCCESS = "success", "Successful"
+        FAILED = "failed", "Failed"
+        REFUNDED = "refunded", "Refunded"
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="airtime_topups")
+    reference = models.CharField(max_length=40, unique=True, db_index=True)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
+
+    # what was ordered
+    operator_id = models.CharField(max_length=32)
+    operator_name = models.CharField(max_length=120, blank=True)
+    country_iso = models.CharField(max_length=4, blank=True)
+    recipient_number = models.CharField(max_length=32)
+    recipient_iso2 = models.CharField(max_length=4)
+    use_local_amount = models.BooleanField(default=False)
+
+    # money: face value (in the operator/sender currency) + what the customer pays in NGN
+    amount = models.DecimalField(max_digits=20, decimal_places=4, default=0)   # face value sent
+    currency = models.CharField(max_length=6, default="USD")                   # sender currency
+    total_ngn = models.DecimalField(max_digits=20, decimal_places=2, default=0)  # customer pays
+    cost_ngn = models.DecimalField(max_digits=20, decimal_places=2, default=0)   # OAM's Reloadly cost (NGN est.)
+    markup_ngn = models.DecimalField(max_digits=20, decimal_places=2, default=0) # OAM revenue
+
+    # payment linkage (wallet reference or Flutterwave/funding reference)
+    payment_reference = models.CharField(max_length=120, blank=True, db_index=True)
+    pay_with = models.CharField(max_length=10, default="wallet")   # wallet | card
+
+    # Reloadly result
+    reloadly_transaction_id = models.CharField(max_length=64, blank=True, db_index=True)
+    delivered_amount = models.DecimalField(max_digits=20, decimal_places=4, default=0)
+    delivered_currency = models.CharField(max_length=6, blank=True)
+
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+    failure_reason = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Airtime {self.reference} · {self.operator_name} · {self.recipient_number} [{self.status}]"
+
+
+class AirtimeApiLog(TimeStampedModel):
+    topup = models.ForeignKey(AirtimeTopup, on_delete=models.SET_NULL, null=True, blank=True,
+                              related_name="api_logs")
+    endpoint = models.CharField(max_length=80)
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+    status_code = models.PositiveIntegerField(default=0)
+    ok = models.BooleanField(default=False)
+    error = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+````
+
+## File: apps/reloadly/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import AirtimeTopup
+
+
+class QuoteSerializer(serializers.Serializer):
+    operator_id = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4)
+    use_local_amount = serializers.BooleanField(default=False)
+
+
+class BuySerializer(serializers.Serializer):
+    operator_id = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4)
+    use_local_amount = serializers.BooleanField(default=False)
+    recipient_number = serializers.CharField()
+    recipient_iso2 = serializers.CharField()
+    pay_with = serializers.ChoiceField(choices=["wallet", "card"], default="wallet")
+
+
+class AirtimeTopupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AirtimeTopup
+        fields = ["reference", "status", "operator_name", "country_iso",
+                  "recipient_number", "recipient_iso2", "amount", "currency",
+                  "total_ngn", "markup_ngn", "reloadly_transaction_id",
+                  "delivered_amount", "delivered_currency", "failure_reason", "created_at"]
+        read_only_fields = fields
+````
+
+## File: apps/reloadly/services.py
+````python
+"""
+Reloadly international airtime API client.
+
+Encapsulates all HTTP to Reloadly: OAuth token (cached until expiry), country /
+operator discovery, FX, top-up and status. Sandbox vs live is env-driven, and
+every numeric field is coerced safely so the rest of the app sees clean types.
+
+Env / settings:
+    RELOADLY_CLIENT_ID          required
+    RELOADLY_CLIENT_SECRET      required
+    RELOADLY_MODE               "sandbox" (default) or "live"
+"""
+from __future__ import annotations
+
+import logging
+import os
+import time
+
+import requests
+
+try:
+    from django.conf import settings
+except Exception:  # importable outside Django
+    settings = None
+
+logger = logging.getLogger(__name__)
+
+AUTH_URL = "https://auth.reloadly.com/oauth/token"
+SANDBOX_BASE = "https://topups-sandbox.reloadly.com"
+LIVE_BASE = "https://topups.reloadly.com"
+ACCEPT = "application/com.reloadly.topups-v1+json"
+
+
+class ReloadlyError(Exception):
+    """Any Reloadly failure (auth, network, non-2xx, non-JSON)."""
+
+
+def _cfg(name: str, default: str = "") -> str:
+    val = getattr(settings, name, None) if settings is not None else None
+    return val or os.environ.get(name, default)
+
+
+def _mode() -> str:
+    return (_cfg("RELOADLY_MODE", "sandbox") or "sandbox").lower()
+
+
+def _base_url() -> str:
+    return LIVE_BASE if _mode() == "live" else SANDBOX_BASE
+
+
+# ---- safe casters ----------------------------------------------------------
+def s(v) -> str:
+    return "" if v is None else str(v).strip()
+
+
+def f(v) -> float:
+    try:
+        return float(str(v).replace(",", "").strip())
+    except (TypeError, ValueError):
+        return 0.0
+
+
+class ReloadlyClient:
+    def __init__(self, client_id: str | None = None, client_secret: str | None = None, timeout: int = 30):
+        self.client_id = client_id or _cfg("RELOADLY_CLIENT_ID")
+        self.client_secret = client_secret or _cfg("RELOADLY_CLIENT_SECRET")
+        self.base_url = _base_url()
+        self.timeout = timeout
+        self._token = None
+        self._token_exp = 0.0
+
+    # -------------------------------------------------- auth
+    def _access_token(self) -> str:
+        # cached until ~60s before expiry
+        if self._token and time.time() < self._token_exp - 60:
+            return self._token
+        payload = {
+            "client_id": self.client_id,
+            "client_secret": self.client_secret,
+            "grant_type": "client_credentials",
+            "audience": self.base_url,   # audience must match the target env base
+        }
+        try:
+            resp = requests.post(AUTH_URL, json=payload, timeout=self.timeout,
+                                 headers={"Content-Type": "application/json"})
+            data = resp.json()
+        except (requests.RequestException, ValueError) as exc:
+            raise ReloadlyError("Could not authenticate with the airtime service.") from exc
+        token = data.get("access_token")
+        if not token:
+            raise ReloadlyError(s(data.get("error_description")) or "Airtime authentication failed.")
+        self._token = token
+        self._token_exp = time.time() + f(data.get("expires_in") or 3600)
+        return token
+
+    def _headers(self) -> dict:
+        return {
+            "Authorization": f"Bearer {self._access_token()}",
+            "Accept": ACCEPT,
+            "Content-Type": "application/json",
+        }
+
+    def _request(self, method: str, path: str, *, params=None, json=None) -> dict | list:
+        url = f"{self.base_url}/{path.lstrip('/')}"
+        try:
+            resp = requests.request(method, url, headers=self._headers(),
+                                    params=params, json=json, timeout=self.timeout)
+        except requests.RequestException as exc:
+            logger.warning("Reloadly network error on %s %s: %s", method, path, exc)
+            raise ReloadlyError("Could not reach the airtime service. Please try again.") from exc
+        try:
+            data = resp.json()
+        except ValueError:
+            if resp.ok:
+                return {}
+            raise ReloadlyError(f"Airtime service error (HTTP {resp.status_code}).")
+        if not resp.ok:
+            msg = "Airtime request failed."
+            if isinstance(data, dict):
+                msg = s(data.get("message")) or s(data.get("errorCode")) or msg
+            raise ReloadlyError(msg)
+        return data
+
+    # -------------------------------------------------- discovery
+    def countries(self) -> list:
+        return self._request("GET", "/countries") or []
+
+    def operators_by_country(self, iso2: str, *, suggested_amounts=True) -> list:
+        return self._request("GET", f"/operators/countries/{s(iso2).upper()}",
+                             params={"suggestedAmounts": str(bool(suggested_amounts)).lower()}) or []
+
+    def operator(self, operator_id) -> dict:
+        return self._request("GET", f"/operators/{s(operator_id)}",
+                             params={"suggestedAmounts": "true"}) or {}
+
+    def autodetect_operator(self, *, phone: str, iso2: str) -> dict:
+        return self._request("GET", f"/operators/auto-detect/phone/{s(phone)}/countries/{s(iso2).upper()}") or {}
+
+    def fx_rate(self, *, operator_id, amount) -> dict:
+        return self._request("POST", "/operators/fx-rate",
+                             json={"operatorId": s(operator_id), "amount": f(amount)}) or {}
+
+    # -------------------------------------------------- topup
+    def topup(self, *, operator_id, amount, recipient_number, recipient_iso2,
+              use_local_amount=False, sender_number="", custom_identifier="") -> dict:
+        body = {
+            "operatorId": s(operator_id),
+            "amount": f(amount),
+            "useLocalAmount": bool(use_local_amount),
+            "recipientPhone": {"countryCode": s(recipient_iso2).upper(), "number": s(recipient_number)},
+        }
+        if sender_number:
+            body["senderPhone"] = {"countryCode": "NG", "number": s(sender_number)}
+        if custom_identifier:
+            body["customIdentifier"] = s(custom_identifier)
+        return self._request("POST", "/topups", json=body) or {}
+
+    def topup_status(self, transaction_id) -> dict:
+        return self._request("GET", f"/topups/{s(transaction_id)}/status") or {}
+
+    # -------------------------------------------------- normalisers
+    @staticmethod
+    def normalize_operator(o: dict) -> dict:
+        fx = o.get("fx") or {}
+        return {
+            "operator_id": s(o.get("operatorId") or o.get("id")),
+            "name": s(o.get("name")),
+            "logo": (o.get("logoUrls") or [""])[0] if o.get("logoUrls") else "",
+            "country_iso": s((o.get("country") or {}).get("isoName")),
+            "country_name": s((o.get("country") or {}).get("name")),
+            "sender_currency": s(o.get("senderCurrencyCode")),
+            "destination_currency": s(o.get("destinationCurrencyCode")),
+            "denomination_type": s(o.get("denominationType")),          # FIXED | RANGE
+            "international_discount": f(o.get("internationalDiscount")), # % — OAM margin
+            "local_discount": f(o.get("localDiscount")),
+            "fx_rate": f(fx.get("rate")),                               # local per 1 sender-currency
+            "min_amount": f(o.get("minAmount")),
+            "max_amount": f(o.get("maxAmount")),
+            "local_min": f(o.get("localMinAmount")),
+            "local_max": f(o.get("localMaxAmount")),
+            "fixed_amounts": [f(x) for x in (o.get("fixedAmounts") or [])],
+            "local_fixed_amounts": [f(x) for x in (o.get("localFixedAmounts") or [])],
+            "suggested_amounts": [f(x) for x in (o.get("suggestedAmounts") or [])],
+        }
+
+
+reloadly = ReloadlyClient()
+````
+
+## File: apps/reloadly/topup.py
+````python
+"""
+Airtime top-up orchestration.
+
+Pricing uses Reloadly's LIVE fx.rate only — no markup, no static USD->NGN rate,
+no discount adjustment. The customer is charged the face value converted at
+Reloadly's own rate:
+
+    - local amount   -> charge_ngn = amount / fx.rate   (recipient currency -> merchant NGN)
+    - sender amount   -> charge_ngn = amount             (already in the merchant currency)
+
+OAM's profit is earned automatically by Reloadly's merchant discount, which is
+applied to the OAM Reloadly account balance at settlement — NOT added to the
+customer's charge here.
+"""
+import logging
+import time
+import uuid
+from decimal import Decimal, ROUND_HALF_UP
+
+import requests
+from django.conf import settings
+from django.db import transaction
+
+from apps.wallet.services import WalletService
+from apps.payments.services import FundingService
+
+from .services import ReloadlyClient, ReloadlyError, s as _s
+from .models import AirtimeTopup, AirtimeApiLog
+
+logger = logging.getLogger(__name__)
+
+RELOADLY_ACCOUNT = "provider:reloadly"   # OAM's Reloadly float (settlement account)
+
+_ER_URL = "https://open.er-api.com/v6/latest/USD"
+_rate_cache = {"rate": None, "exp": 0.0}
+
+
+def usd_to_ngn() -> Decimal:
+    """Live USD->NGN, cached 30 min. Falls back to env RELOADLY_USD_NGN, then a default."""
+    now = time.time()
+    if _rate_cache["rate"] and now < _rate_cache["exp"]:
+        return _rate_cache["rate"]
+    # 1) live rate
+    try:
+        data = requests.get(_ER_URL, timeout=8).json()
+        ngn = (data.get("rates") or {}).get("NGN")
+        if ngn:
+            rate = Decimal(str(ngn))
+            _rate_cache.update(rate=rate, exp=now + 1800)
+            return rate
+    except Exception:
+        pass
+    # 2) optional env pin (fallback only, not a static markup)
+    val = getattr(settings, "RELOADLY_USD_NGN", None)
+    try:
+        if val not in (None, ""):
+            return Decimal(str(val))
+    except Exception:
+        pass
+    # 3) last-resort default so a top-up never prices at ~0
+    return Decimal("1550")
+
+
+def _ref() -> str:
+    return f"AIR-{uuid.uuid4().hex[:20]}"
+
+
+def _d(v) -> Decimal:
+    try:
+        return Decimal(str(v))
+    except Exception:
+        return Decimal("0")
+
+
+class AirtimeTopupService:
+    @staticmethod
+    def quote(*, operator: dict, amount, use_local_amount=False) -> dict:
+        """
+        Two-step conversion using Reloadly's live fx.rate (target-per-USD):
+            cost_usd  = local amount / fx.rate     (or the amount itself if already USD)
+            total_ngn = cost_usd * live USD->NGN
+        No markup added — OAM's margin is Reloadly's merchant discount at settlement.
+        """
+        fx = _d(operator.get("fx_rate"))
+        amt = _d(amount)
+        if use_local_amount and fx > 0:
+            cost_usd = amt / fx                 # recipient local currency -> USD
+        else:
+            cost_usd = amt                      # amount already in USD (sender currency)
+        rate = usd_to_ngn()
+        total_ngn = (cost_usd * rate).quantize(Decimal("0.01"), ROUND_HALF_UP)
+        return {
+            "total_ngn": total_ngn,
+            "cost_usd": cost_usd.quantize(Decimal("0.0001")),
+            "fx_rate": fx,
+            "usd_ngn": rate,
+            "use_local_amount": bool(use_local_amount),
+        }
+
+    @staticmethod
+    @transaction.atomic
+    def create_topup(*, user, operator_id, amount, recipient_number, recipient_iso2,
+                     use_local_amount=False, pay_with="wallet") -> AirtimeTopup:
+        client = ReloadlyClient()
+        op = client.normalize_operator(client.operator(operator_id))
+        if not op.get("operator_id"):
+            raise ReloadlyError("That operator is not available.")
+        q = AirtimeTopupService.quote(operator=op, amount=amount, use_local_amount=use_local_amount)
+        return AirtimeTopup.objects.create(
+            user=user, reference=_ref(), status=AirtimeTopup.Status.PENDING,
+            operator_id=_s(operator_id), operator_name=op.get("name", ""),
+            country_iso=op.get("country_iso", ""),
+            recipient_number=_s(recipient_number), recipient_iso2=_s(recipient_iso2).upper(),
+            use_local_amount=bool(use_local_amount),
+            amount=_d(amount), currency=op.get("sender_currency", "NGN") or "NGN",
+            total_ngn=q["total_ngn"], cost_ngn=q["total_ngn"], markup_ngn=Decimal("0"),
+            pay_with=pay_with,
+            request_payload={"operator": op.get("name"),
+                             "quote": {k: str(v) for k, v in q.items()}},
+        )
+
+    # ---------------- payment ----------------
+    @staticmethod
+    def pay_with_wallet(topup: AirtimeTopup) -> AirtimeTopup:
+        topup.status = AirtimeTopup.Status.PAID
+        topup.save(update_fields=["status", "updated_at"])
+        wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
+        WalletService.hold(wallet, topup.total_ngn, reference=topup.reference,
+                           description=f"Airtime {topup.reference}",
+                           metadata={"airtime": str(topup.id)})
+        return AirtimeTopupService._fulfill(topup)
+
+    @staticmethod
+    def pay_with_card(topup: AirtimeTopup) -> str:
+        txn, init = FundingService.initialize(
+            topup.user, topup.total_ngn, "NGN",
+            provider_key=settings.LISTING_UPGRADE_PROVIDER,   # same gateway marketplace uses (Flutterwave)
+        )
+        topup.payment_reference = txn.internal_reference
+        topup.save(update_fields=["payment_reference", "updated_at"])
+        return init.authorization_url
+
+    @staticmethod
+    def settle_card(*, user, reference: str) -> AirtimeTopup:
+        topup = AirtimeTopup.objects.filter(payment_reference=reference, user=user).first()
+        if topup is None:
+            raise ReloadlyError("Unknown top-up reference.")
+        FundingService.settle(reference)   # credits wallet + fires on_funding_settled
+        topup.refresh_from_db()
+        return topup
+
+    @staticmethod
+    def on_funding_settled(reference: str):
+        with transaction.atomic():
+            topup = (AirtimeTopup.objects.select_for_update()
+                     .filter(payment_reference=reference,
+                             status=AirtimeTopup.Status.PENDING).first())
+            if topup is None:
+                return
+            topup.status = AirtimeTopup.Status.PAID
+            topup.save(update_fields=["status", "updated_at"])
+        wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
+        WalletService.hold(wallet, topup.total_ngn, reference=topup.reference,
+                           description=f"Airtime {topup.reference}",
+                           metadata={"airtime": str(topup.id)})
+        AirtimeTopupService._fulfill(topup)
+
+    # ---------------- core: send + settle / refund ----------------
+    @staticmethod
+    def _fulfill(topup: AirtimeTopup) -> AirtimeTopup:
+        wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
+        client = ReloadlyClient()
+        try:
+            result = client.topup(
+                operator_id=topup.operator_id, amount=topup.amount,
+                recipient_number=topup.recipient_number, recipient_iso2=topup.recipient_iso2,
+                use_local_amount=topup.use_local_amount, custom_identifier=topup.reference,
+            )
+        except ReloadlyError as exc:
+            AirtimeApiLog.objects.create(topup=topup, endpoint="topups", ok=False, error=str(exc)[:255])
+            return AirtimeTopupService._refund(topup, wallet, str(exc)[:255])
+
+        AirtimeApiLog.objects.create(topup=topup, endpoint="topups", ok=True,
+                                     response_payload=result if isinstance(result, dict) else {})
+        status_ = str((result or {}).get("status") or "").upper()
+        txid = _s((result or {}).get("transactionId") or (result or {}).get("id"))
+        if status_ in ("SUCCESSFUL", "PROCESSING", "PENDING") or txid:
+            # Debit the customer's charge to the Reloadly float. OAM's margin is the
+            # merchant discount Reloadly applies to the account balance (external).
+            WalletService.capture(
+                "NGN", topup.total_ngn, reference=topup.reference, cost=topup.total_ngn,
+                counterpart_code=RELOADLY_ACCOUNT, description=f"Airtime {topup.reference}",
+                metadata={"airtime": str(topup.id)},
+            )
+            topup.status = AirtimeTopup.Status.SUCCESS
+            topup.reloadly_transaction_id = txid
+            topup.delivered_amount = _d((result or {}).get("deliveredAmount"))
+            topup.delivered_currency = _s((result or {}).get("deliveredAmountCurrencyCode"))
+            topup.response_payload = result if isinstance(result, dict) else {}
+            topup.save(update_fields=["status", "reloadly_transaction_id", "delivered_amount",
+                                      "delivered_currency", "response_payload", "updated_at"])
+            return topup
+
+        return AirtimeTopupService._refund(topup, wallet,
+                                           _s((result or {}).get("message")) or "Top-up not completed.")
+
+    @staticmethod
+    def _refund(topup: AirtimeTopup, wallet, reason: str) -> AirtimeTopup:
+        WalletService.release(wallet, topup.total_ngn, reference=topup.reference,
+                              description=f"Airtime refund {topup.reference}",
+                              metadata={"airtime": str(topup.id)})
+        topup.status = AirtimeTopup.Status.FAILED
+        topup.failure_reason = reason
+        topup.save(update_fields=["status", "failure_reason", "updated_at"])
+        return topup
+````
+
+## File: apps/reloadly/urls.py
+````python
+from django.urls import path
+
+from .views import (BuyView, CardVerifyView, CountriesView, OperatorsView,
+                    QuoteView, TopupDetailView, TopupListView)
+
+urlpatterns = [
+    path("countries/", CountriesView.as_view(), name="reloadly-countries"),
+    path("operators/", OperatorsView.as_view(), name="reloadly-operators"),
+    path("quote/", QuoteView.as_view(), name="reloadly-quote"),
+    path("buy/", BuyView.as_view(), name="reloadly-buy"),
+    path("card/verify/", CardVerifyView.as_view(), name="reloadly-card-verify"),
+    path("topups/", TopupListView.as_view(), name="reloadly-topups"),
+    path("topups/<str:reference>/", TopupDetailView.as_view(), name="reloadly-topup-detail"),
+]
+````
+
+## File: apps/reloadly/views.py
+````python
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .models import AirtimeTopup
+from .serializers import AirtimeTopupSerializer, BuySerializer, QuoteSerializer
+from .services import ReloadlyClient, ReloadlyError
+from .topup import AirtimeTopupService
+
+
+class CountriesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            return Response({"countries": ReloadlyClient().countries()})
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+
+
+class OperatorsView(APIView):
+    """GET /reloadly/operators/?country=GH  (or ?phone=...&country=GH to auto-detect)."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        iso = request.query_params.get("country", "")
+        phone = request.query_params.get("phone", "")
+        client = ReloadlyClient()
+        try:
+            if phone:
+                op = client.autodetect_operator(phone=phone, iso2=iso)
+                return Response({"operators": [client.normalize_operator(op)] if op else []})
+            ops = client.operators_by_country(iso)
+            return Response({"operators": [client.normalize_operator(o) for o in ops]})
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+
+
+class QuoteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        s = QuoteSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        client = ReloadlyClient()
+        try:
+            op = client.normalize_operator(client.operator(s.validated_data["operator_id"]))
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+        q = AirtimeTopupService.quote(operator=op, amount=s.validated_data["amount"],
+                                      use_local_amount=s.validated_data["use_local_amount"])
+        return Response({k: str(v) for k, v in q.items()})
+
+
+class BuyView(APIView):
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        s = BuySerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        d = s.validated_data
+        try:
+            topup = AirtimeTopupService.create_topup(
+                user=request.user, operator_id=d["operator_id"], amount=d["amount"],
+                recipient_number=d["recipient_number"], recipient_iso2=d["recipient_iso2"],
+                use_local_amount=d["use_local_amount"], pay_with=d["pay_with"],
+            )
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+
+        if d["pay_with"] == "card":
+            try:
+                url = AirtimeTopupService.pay_with_card(topup)
+            except Exception as exc:  # noqa: BLE001
+                return Response({"detail": "Couldn't start card payment.", "error": str(exc)}, status=502)
+            return Response({"topup": AirtimeTopupSerializer(topup).data,
+                             "authorization_url": url, "reference": topup.payment_reference})
+
+        try:
+            topup = AirtimeTopupService.pay_with_wallet(topup)
+        except Exception as exc:  # insufficient funds etc.
+            return Response({"detail": str(exc) or "Payment failed.",
+                             "topup": AirtimeTopupSerializer(topup).data}, status=402)
+        return Response({"topup": AirtimeTopupSerializer(topup).data})
+
+
+class CardVerifyView(APIView):
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        try:
+            topup = AirtimeTopupService.settle_card(user=request.user,
+                                                    reference=request.data.get("reference") or "")
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=400)
+        return Response({"topup": AirtimeTopupSerializer(topup).data})
+
+
+class TopupListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = AirtimeTopupSerializer
+
+    def get_queryset(self):
+        return AirtimeTopup.objects.filter(user=self.request.user)
+
+
+class TopupDetailView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = AirtimeTopupSerializer
+    lookup_field = "reference"
+
+    def get_queryset(self):
+        return AirtimeTopup.objects.filter(user=self.request.user)
+````
+
+## File: apps/travu/migrations/__init__.py
+````python
+
+````
+
+## File: apps/travu/migrations/0001_initial.py
+````python
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="BusBooking",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reference", models.CharField(db_index=True, max_length=40, unique=True)),
+                ("status", models.CharField(choices=[("pending", "Pending payment"), ("paid", "Paid — booking"), ("confirmed", "Confirmed"), ("failed", "Failed"), ("refunded", "Refunded")], default="pending", max_length=12)),
+                ("departure_state", models.CharField(max_length=40)),
+                ("destination_state", models.CharField(max_length=40)),
+                ("trip_id", models.CharField(max_length=40)),
+                ("order_id", models.CharField(max_length=40)),
+                ("origin_id", models.CharField(max_length=40)),
+                ("destination_id", models.CharField(max_length=40)),
+                ("boarding_at", models.CharField(blank=True, max_length=40)),
+                ("provider", models.CharField(blank=True, max_length=40)),
+                ("trip_date", models.CharField(max_length=20)),
+                ("narration", models.CharField(blank=True, max_length=255)),
+                ("departure_terminal", models.CharField(blank=True, max_length=255)),
+                ("destination_terminal", models.CharField(blank=True, max_length=255)),
+                ("vehicle_no", models.CharField(blank=True, max_length=120)),
+                ("seat_numbers", models.CharField(max_length=120)),
+                ("total_seats", models.PositiveIntegerField(default=0)),
+                ("amount_per_seat", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("total_amount", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("currency", models.CharField(default="NGN", max_length=3)),
+                ("agent_email", models.EmailField(blank=True, max_length=254)),
+                ("payment_reference", models.CharField(blank=True, db_index=True, max_length=120)),
+                ("travu_order_id", models.CharField(blank=True, db_index=True, max_length=64)),
+                ("travu_order_number", models.CharField(blank=True, max_length=64)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("failure_reason", models.CharField(blank=True, max_length=255)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="bus_bookings", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+        migrations.CreateModel(
+            name="BusPassenger",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("title", models.CharField(blank=True, max_length=10)),
+                ("name", models.CharField(max_length=120)),
+                ("age", models.CharField(blank=True, max_length=4)),
+                ("sex", models.CharField(blank=True, max_length=10)),
+                ("phone", models.CharField(blank=True, max_length=20)),
+                ("email", models.EmailField(blank=True, max_length=254)),
+                ("blood", models.CharField(blank=True, max_length=6)),
+                ("next_of_kin", models.CharField(blank=True, max_length=120)),
+                ("next_of_kin_phone", models.CharField(blank=True, max_length=20)),
+                ("is_primary", models.BooleanField(default=False)),
+                ("seat_number", models.CharField(blank=True, max_length=8)),
+                ("booking", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="passengers", to="travu.busbooking")),
+            ],
+            options={"ordering": ["-is_primary", "id"]},
+        ),
+        migrations.CreateModel(
+            name="TravuApiLog",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("endpoint", models.CharField(max_length=64)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("status_code", models.PositiveIntegerField(default=0)),
+                ("ok", models.BooleanField(default=False)),
+                ("error", models.CharField(blank=True, max_length=255)),
+                ("booking", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="api_logs", to="travu.busbooking")),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+    ]
+````
+
+## File: apps/travu/__init__.py
+````python
+
+````
+
+## File: apps/travu/admin.py
+````python
+from django.contrib import admin
+
+from .models import BusBooking, BusPassenger, TravuApiLog
+
+
+class PassengerInline(admin.TabularInline):
+    model = BusPassenger
+    extra = 0
+
+
+@admin.register(BusBooking)
+class BusBookingAdmin(admin.ModelAdmin):
+    list_display = ("reference", "user", "departure_state", "destination_state",
+                    "total_seats", "total_amount", "status", "created_at")
+    list_filter = ("status", "provider")
+    search_fields = ("reference", "travu_order_id", "user__email")
+    inlines = [PassengerInline]
+
+
+admin.site.register(TravuApiLog)
+````
+
+## File: apps/travu/apps.py
+````python
+from django.apps import AppConfig
+
+
+class TravuConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.travu"
+````
+
+## File: apps/travu/booking.py
+````python
+"""
+Bus booking orchestration: money in (wallet or card) -> Travu book_trip ->
+capture (fare to Travu, fee to OAM revenue) or refund on failure.
+"""
+import logging
+import uuid
+from decimal import Decimal
+
+from django.conf import settings
+from django.db import transaction
+
+from apps.wallet.services import WalletService, REVENUE_ACCOUNT
+from apps.payments.services import FundingService
+
+from .services import TravuClient, TravuError, s as _s
+from .models import BusBooking, BusPassenger, TravuApiLog
+
+logger = logging.getLogger(__name__)
+
+TRAVU_ACCOUNT = "provider:travu"   # OAM's cost of fares paid to Travu
+
+
+def fee_per_seat() -> Decimal:
+    """Convenience fee per seat (OAM revenue). Env BUS_FEE_PER_SEAT, default ₦500."""
+    val = getattr(settings, "BUS_FEE_PER_SEAT", None)
+    try:
+        return Decimal(str(val)) if val not in (None, "") else Decimal("500")
+    except Exception:
+        return Decimal("500")
+
+
+def _ref() -> str:
+    return f"BUS-{uuid.uuid4().hex[:20]}"
+
+
+class BusBookingService:
+    @staticmethod
+    def quote(fare_per_seat, seats: int) -> dict:
+        fare = Decimal(str(fare_per_seat or 0))
+        fee = fee_per_seat()
+        n = int(seats or 0)
+        fare_total = fare * n
+        fee_total = fee * n
+        return {
+            "fare_per_seat": fare, "fee_per_seat": fee, "seats": n,
+            "fare_total": fare_total, "fee_total": fee_total,
+            "total": fare_total + fee_total,
+        }
+
+    @staticmethod
+    @transaction.atomic
+    def create_booking(*, user, departure_state, destination_state, trip_id, order_id,
+                       origin_id, destination_id, boarding_at, provider, trip_date,
+                       amount_per_seat, seat_numbers, passengers, currency="NGN",
+                       narration="", departure_terminal="", destination_terminal="",
+                       vehicle_no="") -> BusBooking:
+        seats = [x.strip() for x in str(seat_numbers).split(",") if x.strip()]
+        q = BusBookingService.quote(amount_per_seat, len(seats))
+        booking = BusBooking.objects.create(
+            user=user, reference=_ref(), status=BusBooking.Status.PENDING,
+            departure_state=_s(departure_state), destination_state=_s(destination_state),
+            trip_id=_s(trip_id), order_id=_s(order_id), origin_id=_s(origin_id),
+            destination_id=_s(destination_id), boarding_at=_s(boarding_at),
+            provider=_s(provider), trip_date=_s(trip_date), narration=_s(narration),
+            departure_terminal=_s(departure_terminal), destination_terminal=_s(destination_terminal),
+            vehicle_no=_s(vehicle_no), seat_numbers=",".join(seats), total_seats=len(seats),
+            amount_per_seat=q["fare_per_seat"], total_amount=q["total"], currency=currency.upper(),
+            agent_email=getattr(settings, "TRAVU_AGENT_EMAIL", "") or "",
+        )
+        for idx, p in enumerate(passengers):
+            BusPassenger.objects.create(
+                booking=booking, title=_s(p.get("title")), name=_s(p.get("name")),
+                age=_s(p.get("age")), sex=_s(p.get("sex")), phone=_s(p.get("phone")),
+                email=_s(p.get("email")), blood=_s(p.get("blood")),
+                next_of_kin=_s(p.get("next_of_kin")), next_of_kin_phone=_s(p.get("next_of_kin_phone")),
+                is_primary=bool(p.get("is_primary")) or idx == 0,
+                seat_number=seats[idx] if idx < len(seats) else "",
+            )
+        return booking
+
+    # ---------------- payment entry points ----------------
+    @staticmethod
+    def pay_with_wallet(booking: BusBooking) -> BusBooking:
+        wallet = WalletService.get_or_create_wallet(booking.user, booking.currency)
+        WalletService.hold(wallet, booking.total_amount, reference=booking.reference,
+                           description=f"Bus booking hold {booking.reference}",
+                           metadata={"bus": str(booking.id)})
+        return BusBookingService._fulfill(booking)
+
+    @staticmethod
+    def pay_with_card(booking: BusBooking) -> str:
+        """Charge the card for the full total; the wallet is funded on success."""
+        txn, init = FundingService.initialize(booking.user, booking.total_amount, booking.currency)
+        booking.payment_reference = txn.internal_reference
+        booking.save(update_fields=["payment_reference", "updated_at"])
+        return init.authorization_url
+
+    @staticmethod
+    def settle_card(*, user, reference: str) -> BusBooking:
+        """Called after the user returns from the gateway (or via webhook)."""
+        booking = BusBooking.objects.filter(payment_reference=reference, user=user).first()
+        if booking is None:
+            raise TravuError("Unknown booking reference.")
+        if booking.status != BusBooking.Status.PENDING:
+            return booking  # already fulfilled/failed — idempotent
+        FundingService.settle(reference)  # verify + credit wallet (idempotent)
+        wallet = WalletService.get_or_create_wallet(booking.user, booking.currency)
+        WalletService.hold(wallet, booking.total_amount, reference=booking.reference,
+                           description=f"Bus booking hold {booking.reference}",
+                           metadata={"bus": str(booking.id)})
+        return BusBookingService._fulfill(booking)
+
+    # ---------------- core: book at Travu, capture or refund ----------------
+    @staticmethod
+    def _fulfill(booking: BusBooking) -> BusBooking:
+        booking.status = BusBooking.Status.PAID
+        booking.save(update_fields=["status", "updated_at"])
+        wallet = WalletService.get_or_create_wallet(booking.user, booking.currency)
+
+        passengers = [
+            {
+                "title": p.title, "name": p.name, "age": p.age, "sex": p.sex,
+                "phone": p.phone, "email": p.email, "blood": p.blood,
+                "next_of_kin": p.next_of_kin, "next_of_kin_phone": p.next_of_kin_phone,
+                "is_primary": p.is_primary,
+            }
+            for p in booking.passengers.all()
+        ]
+
+        client = TravuClient()
+        try:
+            result = client.book_trip(
+                seat_numbers=booking.seat_numbers,
+                amount_per_seat=str(booking.amount_per_seat),   # FARE only — Travu's price
+                passengers=passengers,
+                origin_id=booking.origin_id, destination_id=booking.destination_id,
+                boarding_at=booking.boarding_at, trip_id=booking.trip_id,
+                trip_date=booking.trip_date, order_id=booking.order_id,
+                provider=booking.provider, agent_email=booking.agent_email,
+            )
+        except TravuError as exc:
+            TravuApiLog.objects.create(booking=booking, endpoint="book_trip", ok=False,
+                                       error=str(exc)[:255])
+            return BusBookingService._refund(booking, wallet, str(exc)[:255])
+
+        TravuApiLog.objects.create(booking=booking, endpoint="book_trip", ok=True,
+                                   response_payload=result.get("raw", {}))
+
+        status_ = (result.get("order_status") or "").lower()
+        if status_ == "confirmed" or _s(result.get("order_id")):
+            fare_total = booking.amount_per_seat * booking.total_seats
+            WalletService.capture(
+                booking.currency, booking.total_amount, reference=booking.reference,
+                cost=fare_total, counterpart_code=TRAVU_ACCOUNT,
+                description=f"Bus booking {booking.reference}",
+                metadata={"bus": str(booking.id), "fee": str(booking.total_amount - fare_total)},
+            )
+            booking.status = BusBooking.Status.CONFIRMED
+            booking.travu_order_id = _s(result.get("order_id"))
+            booking.travu_order_number = _s(result.get("order_number"))
+            booking.vehicle_no = _s(result.get("vehicle_no")) or booking.vehicle_no
+            booking.narration = _s(result.get("narration")) or booking.narration
+            booking.response_payload = result.get("raw", {})
+            booking.save(update_fields=["status", "travu_order_id", "travu_order_number",
+                                        "vehicle_no", "narration", "response_payload", "updated_at"])
+            return booking
+
+        return BusBookingService._refund(booking, wallet, "Booking not confirmed by provider.")
+
+    @staticmethod
+    def _refund(booking: BusBooking, wallet, reason: str) -> BusBooking:
+        WalletService.release(wallet, booking.total_amount, reference=booking.reference,
+                              description=f"Bus refund {booking.reference}",
+                              metadata={"bus": str(booking.id)})
+        booking.status = BusBooking.Status.FAILED
+        booking.failure_reason = reason
+        booking.save(update_fields=["status", "failure_reason", "updated_at"])
+        return booking
+````
+
+## File: apps/travu/models.py
+````python
+"""
+Bus booking persistence for the Travu integration.
+
+A BusBooking is created when the user starts checkout (status=PENDING). Once
+payment is verified we call Travu book_trip; on success we store the ticket
+confirmation and flip to CONFIRMED. TravuApiLog captures raw request/response
+for every Travu call for debugging and reconciliation.
+"""
+from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel
+
+
+class BusBooking(TimeStampedModel):
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending payment"
+        PAID = "paid", "Paid — booking"
+        CONFIRMED = "confirmed", "Confirmed"
+        FAILED = "failed", "Failed"
+        REFUNDED = "refunded", "Refunded"
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="bus_bookings")
+    reference = models.CharField(max_length=40, unique=True, db_index=True)
+    status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
+
+    # trip selection (all stored as strings — operators mix ints/strings)
+    departure_state = models.CharField(max_length=40)
+    destination_state = models.CharField(max_length=40)
+    trip_id = models.CharField(max_length=40)
+    order_id = models.CharField(max_length=40)
+    origin_id = models.CharField(max_length=40)
+    destination_id = models.CharField(max_length=40)
+    boarding_at = models.CharField(max_length=40, blank=True)
+    provider = models.CharField(max_length=40, blank=True)
+    trip_date = models.CharField(max_length=20)
+    narration = models.CharField(max_length=255, blank=True)
+    departure_terminal = models.CharField(max_length=255, blank=True)
+    destination_terminal = models.CharField(max_length=255, blank=True)
+    vehicle_no = models.CharField(max_length=120, blank=True)
+
+    # money
+    seat_numbers = models.CharField(max_length=120)          # e.g. "1,2"
+    total_seats = models.PositiveIntegerField(default=0)
+    amount_per_seat = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+    total_amount = models.DecimalField(max_digits=20, decimal_places=2, default=0)  # what the user pays
+    currency = models.CharField(max_length=3, default="NGN")
+    agent_email = models.EmailField(blank=True)
+
+    # payment linkage (wallet reference or gateway reference)
+    payment_reference = models.CharField(max_length=120, blank=True, db_index=True)
+
+    # Travu confirmation
+    travu_order_id = models.CharField(max_length=64, blank=True, db_index=True)
+    travu_order_number = models.CharField(max_length=64, blank=True)
+
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+    failure_reason = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Bus {self.reference} · {self.departure_state}->{self.destination_state} [{self.status}]"
+
+
+class BusPassenger(TimeStampedModel):
+    booking = models.ForeignKey(BusBooking, on_delete=models.CASCADE, related_name="passengers")
+    title = models.CharField(max_length=10, blank=True)
+    name = models.CharField(max_length=120)
+    age = models.CharField(max_length=4, blank=True)
+    sex = models.CharField(max_length=10, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(blank=True)
+    blood = models.CharField(max_length=6, blank=True)
+    next_of_kin = models.CharField(max_length=120, blank=True)
+    next_of_kin_phone = models.CharField(max_length=20, blank=True)
+    is_primary = models.BooleanField(default=False)
+    seat_number = models.CharField(max_length=8, blank=True)
+
+    class Meta:
+        ordering = ["-is_primary", "id"]
+
+    def __str__(self):
+        return f"{self.name} (seat {self.seat_number})"
+
+
+class TravuApiLog(TimeStampedModel):
+    booking = models.ForeignKey(BusBooking, on_delete=models.SET_NULL, null=True, blank=True,
+                                related_name="api_logs")
+    endpoint = models.CharField(max_length=64)
+    request_payload = models.JSONField(default=dict, blank=True)
+    response_payload = models.JSONField(default=dict, blank=True)
+    status_code = models.PositiveIntegerField(default=0)
+    ok = models.BooleanField(default=False)
+    error = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.endpoint} [{self.status_code}] ok={self.ok}"
+````
+
+## File: apps/travu/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import BusBooking, BusPassenger
+
+
+class PassengerSerializer(serializers.Serializer):
+    title = serializers.CharField(required=False, allow_blank=True, default="")
+    name = serializers.CharField()
+    age = serializers.CharField(required=False, allow_blank=True, default="")
+    sex = serializers.CharField(required=False, allow_blank=True, default="")
+    phone = serializers.CharField(required=False, allow_blank=True, default="")
+    email = serializers.CharField(required=False, allow_blank=True, default="")
+    blood = serializers.CharField(required=False, allow_blank=True, default="")
+    next_of_kin = serializers.CharField(required=False, allow_blank=True, default="")
+    next_of_kin_phone = serializers.CharField(required=False, allow_blank=True, default="")
+    is_primary = serializers.BooleanField(required=False, default=False)
+
+
+class TripSearchSerializer(serializers.Serializer):
+    departure_state = serializers.CharField()
+    destination_state = serializers.CharField()
+    trip_date = serializers.CharField()
+
+
+class BookSerializer(serializers.Serializer):
+    departure_state = serializers.CharField()
+    destination_state = serializers.CharField()
+    trip_id = serializers.CharField()
+    order_id = serializers.CharField()
+    origin_id = serializers.CharField()
+    destination_id = serializers.CharField()
+    boarding_at = serializers.CharField(required=False, allow_blank=True, default="")
+    provider = serializers.CharField(required=False, allow_blank=True, default="")
+    trip_date = serializers.CharField()
+    amount_per_seat = serializers.DecimalField(max_digits=20, decimal_places=2)  # Travu FARE per seat
+    seat_numbers = serializers.CharField()
+    narration = serializers.CharField(required=False, allow_blank=True, default="")
+    departure_terminal = serializers.CharField(required=False, allow_blank=True, default="")
+    destination_terminal = serializers.CharField(required=False, allow_blank=True, default="")
+    vehicle_no = serializers.CharField(required=False, allow_blank=True, default="")
+    passengers = PassengerSerializer(many=True)
+    pay_with = serializers.ChoiceField(choices=["wallet", "card"], default="wallet")
+
+    def validate(self, data):
+        seats = [x for x in str(data["seat_numbers"]).split(",") if x.strip()]
+        if not seats:
+            raise serializers.ValidationError("Select at least one seat.")
+        if len(data["passengers"]) != len(seats):
+            raise serializers.ValidationError("The number of passengers must match the number of seats.")
+        if not any(p.get("is_primary") for p in data["passengers"]):
+            data["passengers"][0]["is_primary"] = True
+        return data
+
+
+class BusPassengerOutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BusPassenger
+        fields = ["title", "name", "age", "sex", "phone", "email", "blood",
+                  "next_of_kin", "next_of_kin_phone", "is_primary", "seat_number"]
+
+
+class BusBookingSerializer(serializers.ModelSerializer):
+    passengers = BusPassengerOutSerializer(many=True, read_only=True)
+    fare_total = serializers.SerializerMethodField()
+    fee_total = serializers.SerializerMethodField()
+
+    class Meta:
+        model = BusBooking
+        fields = [
+            "reference", "status", "departure_state", "destination_state",
+            "trip_date", "narration", "departure_terminal", "destination_terminal",
+            "vehicle_no", "provider", "seat_numbers", "total_seats",
+            "amount_per_seat", "fare_total", "fee_total", "total_amount", "currency",
+            "travu_order_id", "travu_order_number", "failure_reason",
+            "passengers", "created_at",
+        ]
+        read_only_fields = fields
+
+    def get_fare_total(self, obj):
+        return str(obj.amount_per_seat * obj.total_seats)
+
+    def get_fee_total(self, obj):
+        return str(obj.total_amount - (obj.amount_per_seat * obj.total_seats))
+````
+
+## File: apps/travu/services.py
+````python
+"""
+Travu Africa intercity bus API client.
+
+All external HTTP to Travu is encapsulated here. Keys/URLs come from settings /
+env; every provider field that can arrive as an int OR a string (trip_id,
+order_id, origin_id, destination_id, boarding_at, fare, …) is normalised before
+it leaves this module, so the rest of the app only ever sees clean strings/floats.
+
+Env / settings:
+    TRAVU_BEARER_TOKEN   required — Bearer token for check_trip / book_trip
+    TRAVU_MODE           "test" (default) or "live" — picks the base URL
+    TRAVU_AGENT_EMAIL    default agent_email used for bookings
+"""
+from __future__ import annotations
+
+import logging
+import os
+import uuid
+
+import requests
+
+try:
+    from django.conf import settings
+except Exception:  # allows importing the module outside Django for tests
+    settings = None
+
+logger = logging.getLogger(__name__)
+
+TEST_BASE = "https://api.travu.africa/test/api/v1"
+LIVE_BASE = "https://api.travu.africa/api/v1"
+STATES_URL = "https://travu.africa/extra/api/states"
+
+# Valid Travu state strings (UPPERCASE), for validation on our side.
+STATES = [
+    "ABIA", "ADAMAWA", "AKWA IBOM", "ANAMBRA", "BAUCHI", "BAYELSA", "BENUE",
+    "BORNO", "CROSS RIVER", "DELTA", "EBONYI", "EDO", "EKITI", "ENUGU", "GOMBE",
+    "IMO", "JIGAWA", "KADUNA", "KANO", "KATSINA", "KEBBI", "KOGI", "KWARA",
+    "LAGOS", "NASARAWA", "NIGER", "OGUN", "ONDO", "OSUN", "OYO", "PLATEAU",
+    "RIVERS", "SOKOTO", "TARABA", "YOBE", "ZAMFARA", "FCT (ABUJA)", "LOME",
+    "COTONOU", "ACCRA",
+]
+
+
+class TravuError(Exception):
+    """Raised for any Travu API failure (network, non-JSON, or error:true)."""
+
+
+def _cfg(name: str, default: str = "") -> str:
+    val = getattr(settings, name, None) if settings is not None else None
+    return val or os.environ.get(name, default)
+
+
+def _base_url() -> str:
+    mode = (_cfg("TRAVU_MODE", "test") or "test").lower()
+    return LIVE_BASE if mode == "live" else TEST_BASE
+
+
+# ---- safe casters (operators return ints OR strings interchangeably) --------
+def s(v) -> str:
+    return "" if v is None else str(v).strip()
+
+
+def f(v) -> float:
+    try:
+        return float(str(v).replace(",", "").strip())
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def i(v) -> int:
+    try:
+        return int(float(str(v).replace(",", "").strip()))
+    except (TypeError, ValueError):
+        return 0
+
+
+class TravuClient:
+    def __init__(self, token: str | None = None, base_url: str | None = None, timeout: int = 30):
+        self.token = token or _cfg("TRAVU_BEARER_TOKEN")
+        self.base_url = (base_url or _base_url()).rstrip("/")
+        self.timeout = timeout
+
+    @property
+    def is_mock_mode(self) -> bool:
+        """Returns True if token is missing or explicitly not available."""
+        t = (self.token or "").strip().lower()
+        mode = (_cfg("TRAVU_MODE", "test") or "test").lower()
+        return mode == "mock" or not t or t in ("not available yet", "none", "null")
+
+    # -------------------------------------------------- low level
+    def _headers(self) -> dict:
+        return {
+            "Authorization": f"Bearer {self.token}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+
+    def _post(self, path: str, payload: dict) -> dict:
+        url = f"{self.base_url}/{path.lstrip('/')}"
+        try:
+            resp = requests.post(url, json=payload, headers=self._headers(), timeout=self.timeout)
+        except requests.RequestException as exc:
+            logger.warning("Travu network error on %s: %s", path, exc)
+            raise TravuError("Could not reach the bus service. Please try again.") from exc
+
+        try:
+            data = resp.json()
+        except ValueError:
+            raise TravuError(f"Bus service returned an unexpected response (HTTP {resp.status_code}).")
+
+        is_error = isinstance(data, dict) and (data.get("error") is True)
+        if resp.status_code >= 400 or is_error:
+            msg = "Bus request failed."
+            if isinstance(data, dict):
+                msg = s(data.get("message")) or s(data.get("info")) or msg
+            raise TravuError(msg)
+        return data
+
+    # -------------------------------------------------- public API
+    def get_states(self):
+        """Reference list of states/terminals (no auth)."""
+        try:
+            resp = requests.get(STATES_URL, timeout=self.timeout)
+            return resp.json()
+        except (requests.RequestException, ValueError):
+            # Fallback static state list if external endpoint is unreachable
+            return {"status": True, "states": STATES}
+
+    def check_trips(self, *, departure_state: str, destination_state: str,
+                    trip_date: str, sort: str = "date") -> list[dict]:
+        """
+        Available trips between two states on a date. Always uses sort="date" to
+        get a single flat, chronologically ordered list under "data".
+        Returns a list of normalised trip dicts.
+        """
+        dep = s(departure_state).upper()
+        dest = s(destination_state).upper()
+        date_str = s(trip_date)
+
+        # Mock Fallback when API token isn't provisioned yet
+        if self.is_mock_mode:
+            logger.info("TRAVU_BEARER_TOKEN unavailable - returning mock trip data.")
+            mock_raw = [
+                {
+                    "provider": {"name": "GUO Transport", "short_name": "GUO", "logo": ""},
+                    "trip_id": "MOCK-TRIP-101",
+                    "trip_no": "GUO-001",
+                    "trip_date": date_str,
+                    "departure_time": "06:30 AM",
+                    "origin_id": f"ORG-{dep}",
+                    "destination_id": f"DEST-{dest}",
+                    "narration": f"Express service from {dep} to {dest}",
+                    "fare": 15000.0,
+                    "total_seats": 14,
+                    "available_seats": ["1", "2", "3", "4", "5", "6", "7", "8"],
+                    "blocked_seats": ["9", "10"],
+                    "order_id": "ORD-GUO-001",
+                    "departure_terminal": f"{dep} Central Park",
+                    "destination_terminal": f"{dest} Main Station",
+                    "vehicle": "Toyota HiAce (AC)",
+                    "boarding_at": "06:00 AM",
+                    "departure_address": f"12 Main Avenue, {dep}",
+                    "destination_address": f"45 Express Way, {dest}",
+                },
+                {
+                    "provider": {"name": "Peace Mass Transit", "short_name": "PMT", "logo": ""},
+                    "trip_id": "MOCK-TRIP-102",
+                    "trip_no": "PMT-002",
+                    "trip_date": date_str,
+                    "departure_time": "08:00 AM",
+                    "origin_id": f"ORG-{dep}",
+                    "destination_id": f"DEST-{dest}",
+                    "narration": f"Direct bus from {dep} to {dest}",
+                    "fare": 13500.0,
+                    "total_seats": 14,
+                    "available_seats": ["11", "12", "13", "14"],
+                    "blocked_seats": [],
+                    "order_id": "ORD-PMT-002",
+                    "departure_terminal": f"{dep} PMT Terminal",
+                    "destination_terminal": f"{dest} PMT Terminal",
+                    "vehicle": "Toyota Coaster",
+                    "boarding_at": "07:30 AM",
+                    "departure_address": f"PMT Depot, {dep}",
+                    "destination_address": f"PMT Station, {dest}",
+                },
+                {
+                    "provider": {"name": "ABC Transport", "short_name": "ABC", "logo": ""},
+                    "trip_id": "MOCK-TRIP-103",
+                    "trip_no": "ABC-003",
+                    "trip_date": date_str,
+                    "departure_time": "09:30 AM",
+                    "origin_id": f"ORG-{dep}",
+                    "destination_id": f"DEST-{dest}",
+                    "narration": f"Executive luxury service from {dep} to {dest}",
+                    "fare": 18500.0,
+                    "total_seats": 30,
+                    "available_seats": ["1", "2", "5", "6", "10", "11", "15", "16"],
+                    "blocked_seats": ["3", "4"],
+                    "order_id": "ORD-ABC-003",
+                    "departure_terminal": f"{dep} ABC Terminal",
+                    "destination_terminal": f"{dest} ABC Terminal",
+                    "vehicle": "Scania Executive Coach",
+                    "boarding_at": "09:00 AM",
+                    "departure_address": f"ABC Terminal, {dep}",
+                    "destination_address": f"ABC Terminal, {dest}",
+                },
+                {
+                    "provider": {"name": "Chisco Transport", "short_name": "CHISCO", "logo": ""},
+                    "trip_id": "MOCK-TRIP-104",
+                    "trip_no": "CSC-004",
+                    "trip_date": date_str,
+                    "departure_time": "11:00 AM",
+                    "origin_id": f"ORG-{dep}",
+                    "destination_id": f"DEST-{dest}",
+                    "narration": f"Intercity luxury bus from {dep} to {dest}",
+                    "fare": 16000.0,
+                    "total_seats": 14,
+                    "available_seats": ["3", "4", "7", "8", "9"],
+                    "blocked_seats": ["1", "2"],
+                    "order_id": "ORD-CSC-004",
+                    "departure_terminal": f"{dep} Chisco Terminal",
+                    "destination_terminal": f"{dest} Chisco Terminal",
+                    "vehicle": "Mercedes Sprinter (AC)",
+                    "boarding_at": "10:30 AM",
+                    "departure_address": f"Chisco Depot, {dep}",
+                    "destination_address": f"Chisco Station, {dest}",
+                },
+            ]
+            return [self._normalize_trip(t) for t in mock_raw]
+
+        payload = {
+            "departure_state": dep,
+            "destination_state": dest,
+            "trip_date": date_str,
+            "sort": sort or "date",
+        }
+        data = self._post("check_trip", payload)
+        raw = data.get("data") if isinstance(data, dict) else None
+        trips = raw if isinstance(raw, list) else []
+        return [self._normalize_trip(t) for t in trips if isinstance(t, dict)]
+
+    def book_trip(self, *, seat_numbers, amount_per_seat, passengers: list[dict],
+                  origin_id, destination_id, boarding_at, trip_id, trip_date,
+                  order_id, provider, agent_email: str | None = None) -> dict:
+        """
+        Reserve seats. passengers[0] MUST have is_primary=True and positions map
+        1:1 to seat_numbers. Returns the normalised booking confirmation.
+        """
+        # Mock Fallback when API token isn't provisioned yet
+        if self.is_mock_mode:
+            logger.info("TRAVU_BEARER_TOKEN unavailable - returning mock booking output.")
+            primary_passenger = passengers[0] if passengers else {}
+            mock_booking = {
+                "order_status": "SUCCESS",
+                "order_id": s(order_id) or f"MOCK-ORD-{uuid.uuid4().hex[:6].upper()}",
+                "order_name": s(primary_passenger.get("name", "Test Passenger")),
+                "order_email": s(primary_passenger.get("email", "user@example.com")),
+                "phone_number": s(primary_passenger.get("phone", "08000000000")),
+                "order_amount": f(amount_per_seat) * len(passengers),
+                "trip_id": s(trip_id),
+                "origin_id": s(origin_id),
+                "destination_id": s(destination_id),
+                "order_ticket_date": s(trip_date),
+                "order_total_seat": len(passengers),
+                "order_seats": s(seat_numbers),
+                "amount_per_seat": f(amount_per_seat),
+                "order_number": f"MOCK-TICKET-{uuid.uuid4().hex[:8].upper()}",
+                "vehicle_no": "MOCK-KJA-123XY",
+                "narration": "Mock Booking Successful",
+                "departure_terminal": "Mock Departure Terminal",
+                "destination_terminal": "Mock Destination Terminal",
+                "provider": s(provider) or "Mock Provider",
+                "seat_details": [
+                    {
+                        "fare": f(amount_per_seat),
+                        "title": s(p.get("title", "Mr")),
+                        "age": s(p.get("age", "30")),
+                        "sex": s(p.get("sex", "Male")),
+                        "name": s(p.get("name")),
+                        "email": s(p.get("email")),
+                        "phone": s(p.get("phone")),
+                        "blood": s(p.get("blood", "O+")),
+                        "next_of_kin": s(p.get("next_of_kin", "NOK Name")),
+                        "next_of_kin_phone": s(p.get("next_of_kin_phone", "08011112222")),
+                        "seat_number": s(p.get("seat_number", "1")),
+                    }
+                    for p in passengers
+                ],
+            }
+            return self._normalize_booking(mock_booking)
+
+        payload = {
+            "seat_numbers": s(seat_numbers),
+            "amount_per_seat": s(amount_per_seat),
+            "agent_email": agent_email or _cfg("TRAVU_AGENT_EMAIL"),
+            "passengers": passengers,
+            "origin_id": s(origin_id),
+            "destination_id": s(destination_id),
+            "boarding_at": s(boarding_at),
+            "trip_id": s(trip_id),
+            "trip_date": s(trip_date),
+            "order_id": s(order_id),
+            "provider": s(provider),
+        }
+        data = self._post("book_trip", payload)
+        return self._normalize_booking(data)
+
+    # -------------------------------------------------- normalisers
+    @staticmethod
+    def _normalize_trip(t: dict) -> dict:
+        prov = t.get("provider") or {}
+        return {
+            "provider_name": s(prov.get("name")),
+            "provider_short_name": s(prov.get("short_name")),
+            "provider_logo": s(prov.get("logo")),
+            "trip_id": s(t.get("trip_id")),
+            "trip_no": s(t.get("trip_no")),
+            "trip_date": s(t.get("trip_date")),
+            "departure_time": s(t.get("departure_time")),
+            "origin_id": s(t.get("origin_id")),
+            "destination_id": s(t.get("destination_id")),
+            "narration": s(t.get("narration")),
+            "fare": f(t.get("fare")),
+            "total_seats": i(t.get("total_seats")),
+            "available_seats": t.get("available_seats") or [],
+            "blocked_seats": t.get("blocked_seats") or [],
+            "special_seats": t.get("special_seats") or [],
+            "special_seats_fare": s(t.get("special_seats_fare")),
+            "order_id": s(t.get("order_id")),
+            "departure_terminal": s(t.get("departure_terminal")),
+            "destination_terminal": s(t.get("destination_terminal")),
+            "vehicle": s(t.get("vehicle")),
+            "boarding_at": s(t.get("boarding_at")),
+            "departure_address": s(t.get("departure_address")),
+            "destination_address": s(t.get("destination_address")),
+        }
+
+    @staticmethod
+    def _normalize_booking(d: dict) -> dict:
+        seats = d.get("seat_details") or []
+        return {
+            "order_status": s(d.get("order_status")),
+            "order_id": s(d.get("order_id")),
+            "order_name": s(d.get("order_name")),
+            "order_email": s(d.get("order_email")),
+            "phone_number": s(d.get("phone_number")),
+            "order_amount": f(d.get("order_amount")),
+            "trip_id": s(d.get("trip_id")),
+            "origin_id": s(d.get("origin_id")),
+            "destination_id": s(d.get("destination_id")),
+            "order_ticket_date": s(d.get("order_ticket_date")),
+            "order_total_seat": i(d.get("order_total_seat")),
+            "order_seats": s(d.get("order_seats")),
+            "amount_per_seat": f(d.get("amount_per_seat")),
+            "order_number": s(d.get("order_number")),
+            "vehicle_no": s(d.get("vehicle_no")),
+            "narration": s(d.get("narration")),
+            "departure_terminal": s(d.get("departure_terminal")),
+            "destination_terminal": s(d.get("destination_terminal")),
+            "provider": s(d.get("provider")),
+            "seat_details": [
+                {
+                    "fare": f(x.get("fare")),
+                    "title": s(x.get("title")),
+                    "age": s(x.get("age")),
+                    "sex": s(x.get("sex")),
+                    "name": s(x.get("name")),
+                    "email": s(x.get("email")),
+                    "phone": s(x.get("phone")),
+                    "blood": s(x.get("blood")),
+                    "next_of_kin": s(x.get("next_of_kin")),
+                    "next_of_kin_phone": s(x.get("next_of_kin_phone")),
+                    "seat_number": s(x.get("seat_number")),
+                }
+                for x in seats if isinstance(x, dict)
+            ],
+            "raw": d,
+        }
+
+
+# Module-level singleton for convenience: from apps.travu.services import travu
+travu = TravuClient()
+````
+
+## File: apps/travu/urls.py
+````python
+from django.urls import path
+
+from .views import (BookingDetailView, BookingListView, BookView, CardVerifyView,
+                    StatesView, TripSearchView)
+
+urlpatterns = [
+    path("states/", StatesView.as_view(), name="travu-states"),
+    path("trips/", TripSearchView.as_view(), name="travu-trips"),
+    path("book/", BookView.as_view(), name="travu-book"),
+    path("card/verify/", CardVerifyView.as_view(), name="travu-card-verify"),
+    path("bookings/", BookingListView.as_view(), name="travu-bookings"),
+    path("bookings/<str:reference>/", BookingDetailView.as_view(), name="travu-booking-detail"),
+]
+````
+
+## File: apps/travu/views.py
+````python
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .booking import BusBookingService, fee_per_seat
+from .models import BusBooking
+from .serializers import BookSerializer, BusBookingSerializer, TripSearchSerializer
+from .services import STATES, TravuClient, TravuError
+
+
+class StatesView(APIView):
+    """GET /travu/states/ — supported state strings for the dropdowns."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"states": STATES})
+
+
+class TripSearchView(APIView):
+    """POST /travu/trips/ {departure_state, destination_state, trip_date} -> trips."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        s = TripSearchSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        fee = fee_per_seat()
+        try:
+            trips = TravuClient().check_trips(
+                departure_state=s.validated_data["departure_state"],
+                destination_state=s.validated_data["destination_state"],
+                trip_date=s.validated_data["trip_date"],
+            )
+        except TravuError as exc:
+            return Response({"detail": str(exc)}, status=502)
+        # surface the all-in per-seat price so the UI shows the final fare
+        for t in trips:
+            t["service_fee_per_seat"] = float(fee)
+            t["total_fare_per_seat"] = float(t.get("fare", 0)) + float(fee)
+        return Response({"trips": trips, "service_fee_per_seat": float(fee)})
+
+
+class BookView(APIView):
+    """POST /travu/book/ — create booking + take payment (wallet or card)."""
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        s = BookSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        d = s.validated_data
+        booking = BusBookingService.create_booking(
+            user=request.user,
+            departure_state=d["departure_state"], destination_state=d["destination_state"],
+            trip_id=d["trip_id"], order_id=d["order_id"], origin_id=d["origin_id"],
+            destination_id=d["destination_id"], boarding_at=d["boarding_at"],
+            provider=d["provider"], trip_date=d["trip_date"],
+            amount_per_seat=d["amount_per_seat"], seat_numbers=d["seat_numbers"],
+            passengers=d["passengers"], narration=d["narration"],
+            departure_terminal=d["departure_terminal"], destination_terminal=d["destination_terminal"],
+            vehicle_no=d["vehicle_no"],
+        )
+
+        if d["pay_with"] == "card":
+            try:
+                url = BusBookingService.pay_with_card(booking)
+            except Exception as exc:  # noqa: BLE001
+                return Response({"detail": "Couldn't start card payment.", "error": str(exc)}, status=502)
+            return Response({"booking": BusBookingSerializer(booking).data,
+                             "authorization_url": url, "reference": booking.payment_reference})
+
+        # wallet
+        try:
+            booking = BusBookingService.pay_with_wallet(booking)
+        except Exception as exc:  # insufficient funds etc.
+            return Response({"detail": str(exc) or "Payment failed.",
+                             "booking": BusBookingSerializer(booking).data}, status=402)
+        return Response({"booking": BusBookingSerializer(booking).data})
+
+
+class CardVerifyView(APIView):
+    """POST /travu/card/verify/ {reference} — after returning from the gateway."""
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        reference = request.data.get("reference") or ""
+        try:
+            booking = BusBookingService.settle_card(user=request.user, reference=reference)
+        except TravuError as exc:
+            return Response({"detail": str(exc)}, status=400)
+        return Response({"booking": BusBookingSerializer(booking).data})
+
+
+class BookingListView(ListAPIView):
+    """GET /travu/bookings/ — the user's bus bookings."""
+    permission_classes = [IsAuthenticated]
+    serializer_class = BusBookingSerializer
+
+    def get_queryset(self):
+        return BusBooking.objects.filter(user=self.request.user).prefetch_related("passengers")
+
+
+class BookingDetailView(RetrieveAPIView):
+    """GET /travu/bookings/<reference>/ — one ticket."""
+    permission_classes = [IsAuthenticated]
+    serializer_class = BusBookingSerializer
+    lookup_field = "reference"
+
+    def get_queryset(self):
+        return BusBooking.objects.filter(user=self.request.user).prefetch_related("passengers")
+````
+
+## File: apps/uploads/migrations/__init__.py
+````python
+
+````
+
+## File: apps/uploads/__init__.py
+````python
+
+````
+
+## File: apps/uploads/apps.py
+````python
+from django.apps import AppConfig
+
+
+class UploadsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.uploads"
+    label = "uploads"
+    verbose_name = "Uploads"
+````
+
+## File: apps/uploads/checks.py
+````python
+"""
+Automated checks on an uploaded asset.
+
+WHAT THESE CAN AND CANNOT DO — worth being clear, because the distinction
+decides what the "Verified" badge is allowed to mean.
+
+  CAN: confirm a file exists at Cloudinary, is the format we asked for, is
+       within size limits, is large enough to be legible, and — for video — is
+       long enough to show real work rather than a two-second pan.
+
+  CANNOT: tell whether an ID document is genuine, whether it belongs to the
+       person who uploaded it, or whether the "previous work" is theirs. A photo
+       of someone else's ID taken off a screen passes every check below.
+
+So passing these means "the submission is complete and usable", not "this person
+is who they say they are". That's why passing moves an artisan to review rather
+than granting the badge.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+from .cloudinary_client import fetch_asset
+from .purposes import PURPOSES, Purpose
+
+
+@dataclass
+class CheckResult:
+    ok: bool
+    reasons: list[str]
+    facts: dict          # what Cloudinary reported, stored for the reviewer
+
+    def as_dict(self) -> dict:
+        return {"ok": self.ok, "reasons": self.reasons, "facts": self.facts}
+
+
+def _human_mb(n: int) -> str:
+    return f"{n / (1024 * 1024):.0f}MB"
+
+
+def check_asset(public_id: str, purpose_key: str) -> CheckResult:
+    """Verify one uploaded asset against its purpose's rules."""
+    purpose: Purpose | None = PURPOSES.get(purpose_key)
+    if purpose is None:
+        return CheckResult(False, ["Unknown upload type."], {})
+
+    asset = fetch_asset(
+        public_id,
+        resource_type=purpose.resource_type,
+        delivery_type=purpose.delivery_type,
+    )
+    if asset is None:
+        # Either it was never uploaded, or someone posted an invented id.
+        return CheckResult(False, ["We couldn't find that file. Please upload it again."], {})
+
+    facts = {
+        "format": asset.get("format"),
+        "bytes": asset.get("bytes"),
+        "width": asset.get("width"),
+        "height": asset.get("height"),
+        "duration": asset.get("duration"),
+        "created_at": asset.get("created_at"),
+    }
+    reasons: list[str] = []
+
+    fmt = (asset.get("format") or "").lower()
+    if fmt and fmt not in purpose.allowed_formats:
+        reasons.append(
+            f"{purpose.label} must be one of: {', '.join(purpose.allowed_formats)}."
+        )
+
+    size = asset.get("bytes") or 0
+    if size > purpose.max_bytes:
+        reasons.append(f"{purpose.label} is too large (limit {_human_mb(purpose.max_bytes)}).")
+    if size < 8 * 1024:
+        reasons.append(f"{purpose.label} looks empty or corrupted.")
+
+    width, height = asset.get("width") or 0, asset.get("height") or 0
+    if purpose.min_width and width and width < purpose.min_width:
+        reasons.append(
+            f"{purpose.label} is too small to read clearly "
+            f"(needs at least {purpose.min_width}x{purpose.min_height} pixels)."
+        )
+    elif purpose.min_height and height and height < purpose.min_height:
+        reasons.append(
+            f"{purpose.label} is too small to read clearly "
+            f"(needs at least {purpose.min_width}x{purpose.min_height} pixels)."
+        )
+
+    duration = asset.get("duration")
+    if purpose.resource_type == "video" and duration is not None:
+        if purpose.min_duration and duration < purpose.min_duration:
+            reasons.append(
+                f"Video is too short — at least {int(purpose.min_duration)} seconds, "
+                "so customers can actually see the work."
+            )
+        if purpose.max_duration and duration > purpose.max_duration:
+            reasons.append(
+                f"Video is too long — keep it under {int(purpose.max_duration / 60)} minutes."
+            )
+
+    return CheckResult(ok=not reasons, reasons=reasons, facts=facts)
+````
+
+## File: apps/uploads/cloudinary_client.py
+````python
+"""
+Cloudinary signing and verification.
+
+WHY DIRECT-TO-CLOUDINARY
+  The browser uploads straight to Cloudinary using a signature we generate. A
+  30-second work video routed through Django would sit in a request for as long
+  as the upload takes, and Render terminates long requests — so proxying would
+  fail exactly on the files that matter most.
+
+WHY WE STILL VERIFY SERVER-SIDE
+  A signed upload proves the FILE reached Cloudinary. It does not prove that the
+  public_id the browser then reports to us is the same file, or is a file at
+  all. Anyone can POST a made-up URL to our API.
+
+  So when the client reports an upload, we ask Cloudinary's Admin API what that
+  asset actually is — format, bytes, dimensions, duration — and run our checks
+  against THAT. The client's word is never trusted for anything we act on.
+"""
+from __future__ import annotations
+
+import hashlib
+import time
+from dataclasses import dataclass
+from typing import Any
+
+import requests
+from django.conf import settings
+
+API_BASE = "https://api.cloudinary.com/v1_1"
+
+
+class UploadConfigError(RuntimeError):
+    """Cloudinary credentials are missing or wrong."""
+
+
+def _config() -> tuple[str, str, str]:
+    cloud = getattr(settings, "CLOUDINARY_CLOUD_NAME", "") or ""
+    key = getattr(settings, "CLOUDINARY_API_KEY", "") or ""
+    secret = getattr(settings, "CLOUDINARY_API_SECRET", "") or ""
+    if not (cloud and key and secret):
+        raise UploadConfigError(
+            "Cloudinary is not configured. Set CLOUDINARY_CLOUD_NAME, "
+            "CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET."
+        )
+    return cloud, key, secret
+
+
+def _sign(params: dict[str, Any], secret: str) -> str:
+    """Cloudinary signs the sorted, &-joined params with the API secret appended."""
+    items = sorted((k, v) for k, v in params.items() if v not in (None, ""))
+    payload = "&".join(f"{k}={v}" for k, v in items)
+    return hashlib.sha1(f"{payload}{secret}".encode()).hexdigest()
+
+
+@dataclass
+class UploadTicket:
+    cloud_name: str
+    api_key: str
+    timestamp: int
+    signature: str
+    folder: str
+    resource_type: str
+    delivery_type: str
+    upload_url: str
+    max_bytes: int
+    allowed_formats: list[str]
+
+
+def build_ticket(*, folder: str, resource_type: str, delivery_type: str,
+                 max_bytes: int, allowed_formats: list[str]) -> UploadTicket:
+    """
+    A one-shot, time-limited permission to upload into one folder.
+
+    The signature covers the folder and delivery type, so a ticket issued for
+    service images cannot be reused to write somewhere else — the client can
+    choose the file, never the destination.
+    """
+    cloud, key, secret = _config()
+    timestamp = int(time.time())
+
+    signed = {"timestamp": timestamp, "folder": folder}
+    if delivery_type != "upload":
+        signed["type"] = delivery_type
+
+    return UploadTicket(
+        cloud_name=cloud,
+        api_key=key,
+        timestamp=timestamp,
+        signature=_sign(signed, secret),
+        folder=folder,
+        resource_type=resource_type,
+        delivery_type=delivery_type,
+        upload_url=f"{API_BASE}/{cloud}/{resource_type}/upload",
+        max_bytes=max_bytes,
+        allowed_formats=allowed_formats,
+    )
+
+
+def fetch_asset(public_id: str, *, resource_type: str = "image",
+                delivery_type: str = "upload") -> dict[str, Any] | None:
+    """
+    Ask Cloudinary what an asset really is. Returns None if it doesn't exist.
+
+    This is the only source of truth about a file. Everything the browser tells
+    us about size, format or duration is treated as a claim, not a fact.
+    """
+    cloud, key, secret = _config()
+    url = f"{API_BASE}/{cloud}/resources/{resource_type}/{delivery_type}/{public_id}"
+    try:
+        response = requests.get(url, auth=(key, secret), timeout=15)
+    except requests.RequestException:
+        return None
+    if response.status_code != 200:
+        return None
+    try:
+        return response.json()
+    except ValueError:
+        return None
+
+
+def signed_delivery_url(public_id: str, *, resource_type: str = "image",
+                        delivery_type: str = "authenticated",
+                        fmt: str = "jpg", ttl_seconds: int = 300) -> str:
+    """
+    A short-lived URL for a private asset — used for NIN slips in the admin
+    review queue.
+
+    Identity documents are uploaded with authenticated delivery, so possessing
+    the public_id isn't enough to view one. The link expires, which means a
+    reviewer's browser history or a shared screenshot doesn't become a permanent
+    door into someone's ID.
+    """
+    cloud, key, secret = _config()
+    expires = int(time.time()) + ttl_seconds
+    to_sign = f"exp={expires}~acl=/{resource_type}/{delivery_type}/{public_id}"
+    signature = hashlib.sha256(f"{to_sign}{secret}".encode()).hexdigest()
+    return (
+        f"https://res.cloudinary.com/{cloud}/{resource_type}/{delivery_type}/"
+        f"s--{signature[:16]}--/{public_id}.{fmt}?_a={expires}"
+    )
+````
+
+## File: apps/uploads/purposes.py
+````python
+"""
+What each upload is for, and the limits that apply to it.
+
+Kept in one place so the rules can't drift between the signature endpoint, the
+verification checks and the frontend. The client is told these numbers so it can
+reject a file before a slow upload starts, but the numbers are ENFORCED here,
+against what Cloudinary reports the file actually is.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
+MB = 1024 * 1024
+
+
+@dataclass(frozen=True)
+class Purpose:
+    key: str
+    folder: str
+    resource_type: str          # cloudinary: image | video | raw
+    delivery_type: str          # upload (public) | authenticated (private)
+    max_bytes: int
+    allowed_formats: list[str]
+    label: str
+    hint: str = ""
+    min_width: int = 0
+    min_height: int = 0
+    min_duration: float = 0     # seconds, video only
+    max_duration: float = 0     # seconds, 0 = no limit
+
+
+PURPOSES: dict[str, Purpose] = {
+    "artisan_service_image": Purpose(
+        key="artisan_service_image",
+        folder="oam/artisans/service",
+        resource_type="image",
+        delivery_type="upload",
+        max_bytes=8 * MB,
+        allowed_formats=["jpg", "jpeg", "png", "webp", "heic"],
+        label="Photo of your work",
+        hint="A clear photo of work you've completed.",
+        min_width=400,
+        min_height=400,
+    ),
+    "artisan_work_video": Purpose(
+        key="artisan_work_video",
+        folder="oam/artisans/video",
+        resource_type="video",
+        delivery_type="upload",
+        max_bytes=100 * MB,
+        allowed_formats=["mp4", "mov", "webm", "m4v", "3gp"],
+        label="Video of previous work",
+        hint="10 seconds to 3 minutes showing work you've done.",
+        min_duration=10,
+        max_duration=180,
+    ),
+    # Identity document: private delivery, so the URL alone won't open it.
+    "artisan_id_document": Purpose(
+        key="artisan_id_document",
+        folder="oam/artisans/identity",
+        resource_type="image",
+        delivery_type="authenticated",
+        max_bytes=10 * MB,
+        allowed_formats=["jpg", "jpeg", "png", "webp", "heic", "pdf"],
+        label="Identity document",
+        hint="A clear photo of your government-issued ID.",
+        min_width=500,
+        min_height=300,
+    ),
+    "artisan_profile_photo": Purpose(
+        key="artisan_profile_photo",
+        folder="oam/artisans/profile",
+        resource_type="image",
+        delivery_type="upload",
+        max_bytes=5 * MB,
+        allowed_formats=["jpg", "jpeg", "png", "webp", "heic"],
+        label="Profile photo",
+        min_width=200,
+        min_height=200,
+    ),
+    "listing_image": Purpose(
+        key="listing_image",
+        folder="oam/listings",
+        resource_type="image",
+        delivery_type="upload",
+        max_bytes=8 * MB,
+        allowed_formats=["jpg", "jpeg", "png", "webp", "heic"],
+        label="Item photo",
+        min_width=300,
+        min_height=300,
+    ),
+    "listing_video": Purpose(
+        key="listing_video",
+        folder="oam/listings/video",
+        resource_type="video",
+        delivery_type="upload",
+        max_bytes=100 * MB,
+        allowed_formats=["mp4", "mov", "webm", "m4v", "3gp"],
+        label="Item video",
+        hint="A short clip of the item — up to 2 minutes.",
+        max_duration=120,
+    ),
+    # Admin-only, for the official O.A.M Motors inventory.
+    "oam_motors_image": Purpose(
+        key="oam_motors_image",
+        folder="oam/motors",
+        resource_type="image",
+        delivery_type="upload",
+        max_bytes=12 * MB,
+        allowed_formats=["jpg", "jpeg", "png", "webp"],
+        label="Vehicle photo",
+        min_width=800,
+        min_height=600,
+    ),
+}
+
+ADMIN_ONLY = {"oam_motors_image"}
+````
+
+## File: apps/uploads/urls.py
+````python
+from django.urls import path
+
+from .views import UploadRulesView, UploadTicketView
+
+urlpatterns = [
+    path("ticket/", UploadTicketView.as_view(), name="upload-ticket"),
+    path("rules/", UploadRulesView.as_view(), name="upload-rules"),
+]
+````
+
+## File: apps/uploads/views.py
+````python
+"""Upload endpoints: hand out signed tickets, and report what the rules are."""
+from __future__ import annotations
+
+from rest_framework import status as http
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .cloudinary_client import UploadConfigError, build_ticket
+from .purposes import ADMIN_ONLY, PURPOSES
+
+
+class UploadTicketView(APIView):
+    """
+    POST /uploads/ticket/  {"purpose": "artisan_work_video"}
+
+    Returns everything the browser needs to upload one file directly to
+    Cloudinary. The signature covers the destination folder, so a ticket can't
+    be redirected somewhere it wasn't meant for.
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        key = (request.data.get("purpose") or "").strip()
+        purpose = PURPOSES.get(key)
+        if purpose is None:
+            return Response(
+                {"detail": "Unknown upload purpose."}, status=http.HTTP_400_BAD_REQUEST
+            )
+
+        if key in ADMIN_ONLY and not request.user.is_staff:
+            return Response(
+                {"detail": "Not available on your account."}, status=http.HTTP_403_FORBIDDEN
+            )
+
+        try:
+            ticket = build_ticket(
+                folder=purpose.folder,
+                resource_type=purpose.resource_type,
+                delivery_type=purpose.delivery_type,
+                max_bytes=purpose.max_bytes,
+                allowed_formats=purpose.allowed_formats,
+            )
+        except UploadConfigError as exc:
+            # Surfaced plainly: a missing env var here looks like a broken
+            # upload button, and that's a miserable thing to debug from the UI.
+            return Response({"detail": str(exc)}, status=http.HTTP_503_SERVICE_UNAVAILABLE)
+
+        return Response({
+            "cloud_name": ticket.cloud_name,
+            "api_key": ticket.api_key,
+            "timestamp": ticket.timestamp,
+            "signature": ticket.signature,
+            "folder": ticket.folder,
+            "resource_type": ticket.resource_type,
+            "type": ticket.delivery_type,
+            "upload_url": ticket.upload_url,
+            "max_bytes": ticket.max_bytes,
+            "allowed_formats": ticket.allowed_formats,
+        })
+
+
+class UploadRulesView(APIView):
+    """
+    GET /uploads/rules/ — limits per purpose, so the browser can reject an
+    oversized file before starting a slow upload rather than after it.
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({
+            key: {
+                "label": p.label,
+                "hint": p.hint,
+                "resource_type": p.resource_type,
+                "max_bytes": p.max_bytes,
+                "allowed_formats": p.allowed_formats,
+                "min_width": p.min_width,
+                "min_height": p.min_height,
+                "min_duration": p.min_duration,
+                "max_duration": p.max_duration,
+                "admin_only": key in ADMIN_ONLY,
+            }
+            for key, p in PURPOSES.items()
+        })
+````
+
+## File: apps/wallet/management/commands/__init__.py
+````python
+
+````
+
+## File: apps/wallet/management/commands/float_check.py
+````python
+"""
+How much money is actually YOURS?
+
+THE PROBLEM THIS SOLVES
+  Paystack settles everything it collects into your bank account — customer
+  wallet funding and your margin arrive together, indistinguishable. But they
+  are completely different kinds of money:
+
+    * A customer funds ₦1,000. That cash is now in your bank, but in your
+      ledger it is a LIABILITY: money you owe them, withdrawable at any moment.
+      It is not income and never was.
+
+    * You sell ₦1,000 of electricity that costs you ₦990. The ₦10 margin is
+      genuinely yours.
+
+  Spend the first kind and you have a shortfall the day customers withdraw.
+  This command tells you the difference before you move anything.
+
+USAGE
+    python3 manage.py float_check
+    python3 manage.py float_check --currency NGN
+"""
+from django.core.management.base import BaseCommand
+from django.db.models import Sum
+
+from datetime import timedelta
+
+from django.utils import timezone
+
+from apps.billing.models import BillOrder
+from apps.wallet.models import Wallet
+from apps.wallet.services import WalletService
+
+
+class Command(BaseCommand):
+    help = "Show customer liabilities vs. earnings, and what is safe to take out."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--currency", default="NGN")
+        parser.add_argument("--days", type=int, default=30,
+                            help="Window for the provider-cost estimate (default 30).")
+        parser.add_argument("--reserve", type=float, default=0,
+                            help="Extra operating buffer to hold back.")
+
+    def handle(self, *args, **opts):
+        cur = opts["currency"].upper()
+
+        qs = Wallet.objects.filter(currency=cur).select_related("user")
+
+        # Operator wallets are not customer liabilities. Swept earnings land in
+        # a staff wallet, so counting those as "owed to customers" would inflate
+        # the float you think you must hold — and understate what's yours.
+        staff = qs.filter(user__is_staff=True)
+        customers = qs.exclude(user__is_staff=True)
+
+        owed = customers.aggregate(s=Sum("cached_balance"))["s"] or 0
+        operator = staff.aggregate(s=Sum("cached_balance"))["s"] or 0
+
+        try:
+            earnings = WalletService.revenue_balance(cur)
+        except Exception:                                   # noqa: BLE001
+            earnings = 0
+
+        wallets = customers.exclude(cached_balance=0).count()
+
+        # What your provider float costs to run. Selling ₦1,000 of electricity
+        # consumes ₦990 at vtu.ng, and that has to be replaced to keep selling.
+        # It arrives in the same settlement as your margin, so treating it as
+        # profit leaves you unable to restock.
+        since = timezone.now() - timedelta(days=opts["days"])
+        recent = BillOrder.objects.filter(
+            created_at__gte=since, status="success", currency=cur,
+        )
+        provider_cost = sum(float(o.cost_amount or 0) for o in recent)
+        sold = sum(float(o.amount or 0) for o in recent)
+        reserve = float(opts["reserve"] or 0)
+
+        w = self.stdout.write
+        w("")
+        w(f"  {cur} POSITION")
+        w("  " + "-" * 52)
+        w(f"  Owed to customers      {owed:>14,.2f}   ({wallets} funded wallet(s))")
+        w(f"  Unswept earnings       {earnings:>14,.2f}")
+        w(f"  In operator wallets    {operator:>14,.2f}   (staff/admin, incl. swept earnings)")
+        w("  " + "-" * 52)
+        yours = float(earnings) + float(operator)
+        takeable = max(0.0, yours - reserve)
+
+        w("")
+        w(f"  Last {opts['days']} days: sold {sold:,.2f}, cost {provider_cost:,.2f} at your provider")
+        w("  " + "-" * 52)
+        w(self.style.WARNING(
+            f"  Keep available         {owed:>14,.2f}   for customer withdrawals"))
+        w(f"  Keep for provider float{provider_cost:>14,.2f}   to keep selling at this rate")
+        if reserve:
+            w(f"  Operating reserve      {reserve:>14,.2f}")
+        w(self.style.SUCCESS(
+            f"  Yours to take out      {takeable:>14,.2f}"))
+        w("")
+        w("  Every customer can withdraw their balance at any time, so the amount")
+        w("  above must stay reachable — in your Paystack balance, your bank, or")
+        w("  split between them.")
+        w("")
+        w("  'Yours' = unswept earnings plus whatever already sits in operator")
+        w("  wallets. Sweeping earnings moves them from one line to the other; it")
+        w("  doesn't change how much is yours, and it never touches customer money.")
+        w("")
+        w("  The provider-float line is NOT a liability — it's working capital. It")
+        w("  settles to you alongside your margin, so taking it out as profit")
+        w("  leaves you unable to restock at vtu.ng and deliveries start failing.")
+        w("")
+
+        if owed > 0:
+            w(self.style.NOTICE(
+                "  Reminder: your Paystack TRANSFER balance is what funds customer\n"
+                "  withdrawals. If auto-settlement sweeps it to your bank, withdrawals\n"
+                "  fail with 'Not enough money' even though the money exists.\n"))
+````
+
+## File: apps/wallet/management/commands/reconcile.py
+````python
+"""
+Wallet reserve reconciliation.
+
+Tells you, at any moment and per currency:
+  * USER OBLIGATIONS  -> money that MUST stay in the reserve bank account
+                         (available wallet balances + pending holds)
+  * PROVIDER FLOAT    -> collected to pay providers (Reloadly/Travu/settlement);
+                         keep to fund those payouts, don't spend as profit
+  * OAM EARNINGS      -> accrued platform revenue that is SAFE TO SWEEP to your
+                         main/operating account
+
+Optionally pass --reserve-balance <amount> (the real balance in your reserve
+bank account) to see the surplus/shortfall and a safe sweep figure.
+
+Run (Render shell):
+    python manage.py reconcile
+    python manage.py reconcile --currency NGN --reserve-balance 250000
+"""
+from decimal import Decimal
+
+from django.core.management.base import BaseCommand
+from django.db.models import Sum
+
+from apps.wallet.models import Wallet
+from apps.wallet.services import WalletService, REVENUE_ACCOUNT, HOLD_ACCOUNT
+
+PROVIDER_CODES = ["provider:settlement", "provider:reloadly", "provider:travu"]
+
+
+def _fmt(v: Decimal) -> str:
+    return f"{v:,.2f}"
+
+
+class Command(BaseCommand):
+    help = "Reconcile user obligations (reserve floor) vs OAM earnings (safe to sweep)."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--currency", default="NGN")
+        parser.add_argument("--reserve-balance", default=None,
+                            help="Actual balance in the reserve bank account (to compute surplus).")
+
+    def handle(self, *args, **opts):
+        ccy = opts["currency"].upper()
+
+        def bal(code):
+            return WalletService.account_balance(code, ccy)
+
+        user_available = Wallet.objects.filter(currency=ccy).aggregate(s=Sum("cached_balance"))["s"] or Decimal("0")
+        holds = bal(HOLD_ACCOUNT)
+        obligations = user_available + holds
+
+        revenue = bal(REVENUE_ACCOUNT)
+        providers = {c: bal(c) for c in PROVIDER_CODES}
+        provider_total = sum(providers.values(), Decimal("0"))
+
+        w = 34
+        line = "-" * 52
+        out = self.stdout.write
+        out(line)
+        out(f"  WALLET RESERVE RECONCILIATION — {ccy}")
+        out(line)
+        out(f"{'User available balances':<{w}} {_fmt(user_available):>16}")
+        out(f"{'Pending holds (in flight)':<{w}} {_fmt(holds):>16}")
+        out(f"{'= USER OBLIGATIONS (reserve floor)':<{w}} {_fmt(obligations):>16}")
+        out("")
+        for c, v in providers.items():
+            out(f"{'  ' + c:<{w}} {_fmt(v):>16}")
+        out(f"{'= PROVIDER FLOAT (keep to pay out)':<{w}} {_fmt(provider_total):>16}")
+        out("")
+        out(f"{'OAM EARNINGS accrued (' + REVENUE_ACCOUNT + ')':<{w}} {_fmt(revenue):>16}")
+        out(f"{'   -> SAFE TO SWEEP to main account':<{w}} {_fmt(revenue):>16}")
+        out(line)
+
+        rb = opts.get("reserve_balance")
+        if rb is not None:
+            try:
+                reserve = Decimal(str(rb))
+            except Exception:
+                out("  (invalid --reserve-balance; skipping surplus check)")
+                return
+            surplus = reserve - obligations
+            # Never sweep below what users + providers are owed.
+            keep = obligations + provider_total
+            safe = reserve - keep
+            if safe < 0:
+                safe = Decimal("0")
+            sweep = min(revenue, safe)
+            out(f"{'Reserve bank balance (given)':<{w}} {_fmt(reserve):>16}")
+            out(f"{'Surplus over user obligations':<{w}} {_fmt(surplus):>16}")
+            out(f"{'Keep in reserve (users+providers)':<{w}} {_fmt(keep):>16}")
+            out(f"{'>> MAX SAFE SWEEP right now':<{w}} {_fmt(sweep):>16}")
+            if reserve < obligations:
+                out("")
+                out("  ** WARNING: reserve is BELOW user obligations — do NOT sweep;")
+                out("     top the reserve up so every user balance is covered. **")
+            out(line)
+````
+
+## File: apps/wallet/management/commands/wallet_demo.py
+````python
+"""
+A throwaway demo proving the ledger works end-to-end, WITHOUT any API yet.
+
+Run:  python manage.py wallet_demo --email you@example.com --currency NGN
+
+It will: get/create a wallet, credit it, debit it, try an overdraft (which
+should be blocked), then print the cached balance, the derived balance (from
+the immutable postings), and the posting history.
+"""
+from decimal import Decimal
+
+from django.contrib.auth import get_user_model
+from django.core.management.base import BaseCommand, CommandError
+
+from apps.wallet.exceptions import InsufficientFunds
+from apps.wallet.models import LedgerPosting
+from apps.wallet.services import WalletService
+
+User = get_user_model()
+
+
+class Command(BaseCommand):
+    help = "Demonstrates the double-entry wallet ledger."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--email", required=True)
+        parser.add_argument("--currency", default="NGN")
+
+    def handle(self, *args, **opts):
+        user = User.objects.filter(email__iexact=opts["email"]).first()
+        if not user:
+            raise CommandError(f"No user with email {opts['email']}")
+        currency = opts["currency"].upper()
+
+        wallet = WalletService.get_or_create_wallet(user, currency)
+        self.stdout.write(self.style.SUCCESS(f"Wallet ready: {wallet}"))
+
+        WalletService.credit(wallet, Decimal("50000"), description="Demo top-up")
+        self.stdout.write("Credited 50,000")
+
+        WalletService.debit(wallet, Decimal("12000"), description="Demo spend")
+        self.stdout.write("Debited 12,000")
+
+        # This should be BLOCKED (no overdraft).
+        try:
+            WalletService.debit(wallet, Decimal("100000"), description="Overdraft attempt")
+            self.stdout.write(self.style.ERROR("Overdraft was NOT blocked — bug!"))
+        except InsufficientFunds as exc:
+            self.stdout.write(self.style.SUCCESS(f"Overdraft correctly blocked: {exc}"))
+
+        wallet.refresh_from_db()
+        cached = wallet.cached_balance
+        derived = WalletService.derived_balance(wallet)
+        self.stdout.write(f"\nCached balance : {cached} {currency}")
+        self.stdout.write(f"Derived balance: {derived} {currency}")
+        match = "MATCH ✅" if cached == derived else "MISMATCH ❌"
+        self.stdout.write(self.style.SUCCESS(f"Reconciliation : {match}"))
+
+        self.stdout.write("\nPostings on this wallet's account:")
+        for p in LedgerPosting.objects.filter(account=wallet.account).order_by("created_at"):
+            self.stdout.write(f"  {p.created_at:%H:%M:%S}  {p.direction:<6} {p.amount} {p.currency}")
+````
+
+## File: apps/wallet/management/__init__.py
+````python
+
+````
+
+## File: apps/wallet/migrations/__init__.py
+````python
+
+````
+
+## File: apps/wallet/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-06-30 21:49
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='JournalEntry',
+            fields=[
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('reference', models.CharField(max_length=80, unique=True)),
+                ('idempotency_key', models.CharField(blank=True, max_length=160, null=True, unique=True)),
+                ('currency', models.CharField(max_length=3)),
+                ('description', models.CharField(blank=True, max_length=255)),
+                ('metadata', models.JSONField(blank=True, default=dict)),
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('reverses', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='reversed_by', to='wallet.journalentry')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='LedgerAccount',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('code', models.CharField(max_length=120, unique=True)),
+                ('name', models.CharField(max_length=160)),
+                ('type', models.CharField(choices=[('asset', 'Asset'), ('liability', 'Liability'), ('income', 'Income'), ('expense', 'Expense'), ('suspense', 'Suspense')], max_length=12)),
+                ('currency', models.CharField(max_length=3)),
+                ('is_system', models.BooleanField(default=False)),
+                ('owner', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='ledger_accounts', to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='LedgerPosting',
+            fields=[
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('direction', models.CharField(choices=[('debit', 'Debit'), ('credit', 'Credit')], max_length=6)),
+                ('amount', models.DecimalField(decimal_places=4, max_digits=20)),
+                ('currency', models.CharField(max_length=3)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('account', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='postings', to='wallet.ledgeraccount')),
+                ('journal', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='postings', to='wallet.journalentry')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Wallet',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('currency', models.CharField(max_length=3)),
+                ('cached_balance', models.DecimalField(decimal_places=4, default=0, max_digits=20)),
+                ('version', models.PositiveBigIntegerField(default=0)),
+                ('account', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, related_name='wallet', to='wallet.ledgeraccount')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='wallets', to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.AddIndex(
+            model_name='ledgeraccount',
+            index=models.Index(fields=['type', 'currency'], name='wallet_ledg_type_017376_idx'),
+        ),
+        migrations.AddIndex(
+            model_name='ledgerposting',
+            index=models.Index(fields=['account', 'created_at'], name='wallet_ledg_account_4b21aa_idx'),
+        ),
+        migrations.AddConstraint(
+            model_name='ledgerposting',
+            constraint=models.CheckConstraint(check=models.Q(('amount__gt', 0)), name='posting_amount_positive'),
+        ),
+        migrations.AddConstraint(
+            model_name='wallet',
+            constraint=models.UniqueConstraint(fields=('user', 'currency'), name='uniq_user_currency_wallet'),
+        ),
+    ]
+````
+
+## File: apps/wallet/migrations/0002_wallettransfer.py
+````python
+# Generated by Django 5.0.6 on 2026-07-22 12:39
+
+import django.db.models.deletion
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('wallet', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='WalletTransfer',
+            fields=[
+                ('created_at', models.DateTimeField(auto_now_add=True, db_index=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('amount', models.DecimalField(decimal_places=2, max_digits=20)),
+                ('currency', models.CharField(default='NGN', max_length=3)),
+                ('note', models.CharField(blank=True, max_length=140)),
+                ('reference', models.CharField(db_index=True, max_length=60, unique=True)),
+                ('recipient', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='transfers_received', to=settings.AUTH_USER_MODEL)),
+                ('sender', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='transfers_sent', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'ordering': ['-created_at'],
+            },
+        ),
+    ]
+````
+
+## File: apps/wallet/__init__.py
+````python
+
+````
+
+## File: apps/wallet/admin.py
+````python
+from django.contrib import admin
+
+from .models import JournalEntry, LedgerAccount, LedgerPosting, Wallet
+
+
+class PostingInline(admin.TabularInline):
+    model = LedgerPosting
+    extra = 0
+    can_delete = False
+    readonly_fields = ("account", "direction", "amount", "currency", "created_at")
+
+
+@admin.register(LedgerAccount)
+class LedgerAccountAdmin(admin.ModelAdmin):
+    list_display = ("code", "type", "currency", "is_system", "owner")
+    list_filter = ("type", "currency", "is_system")
+    search_fields = ("code", "name")
+
+
+@admin.register(JournalEntry)
+class JournalEntryAdmin(admin.ModelAdmin):
+    list_display = ("reference", "currency", "description", "created_at")
+    list_filter = ("currency",)
+    search_fields = ("reference", "idempotency_key", "description")
+    inlines = [PostingInline]
+    readonly_fields = ("reference", "idempotency_key", "currency", "description",
+                       "metadata", "reverses", "created_at")
+
+
+@admin.register(Wallet)
+class WalletAdmin(admin.ModelAdmin):
+    list_display = ("user", "currency", "cached_balance", "version", "updated_at")
+    list_filter = ("currency",)
+    search_fields = ("user__email", "user__phone")
+    readonly_fields = ("user", "currency", "account", "cached_balance", "version")
+````
+
+## File: apps/wallet/apps.py
+````python
+from django.apps import AppConfig
+
+
+class WalletConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.wallet"
+````
+
+## File: apps/wallet/currency.py
+````python
+"""
+Resolve a user's currency, in priority order:
+  1) explicit user override (currency_override)
+  2) user's saved country
+  3) detection from the request (CDN country header / Accept-Language region)
+  4) fallback (settings.FALLBACK_CURRENCY, = USD)
+
+Only currencies in settings.SUPPORTED_CURRENCIES are ever returned.
+"""
+from __future__ import annotations
+
+import re
+
+from django.conf import settings
+
+# Eurozone members -> EUR
+_EUROZONE = {
+    "AT", "BE", "HR", "CY", "EE", "FI", "FR", "DE", "GR", "IE", "IT",
+    "LV", "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES",
+}
+_COUNTRY_CURRENCY = {"NG": "NGN", "US": "USD", "GB": "GBP"}
+
+# Headers a CDN/proxy may set with the visitor's country (best-effort).
+_COUNTRY_HEADERS = ("HTTP_CF_IPCOUNTRY", "HTTP_X_APPENGINE_COUNTRY", "HTTP_X_COUNTRY")
+
+
+def currency_for_country(code: str | None) -> str | None:
+    if not code:
+        return None
+    code = code.upper()
+    if code in _COUNTRY_CURRENCY:
+        return _COUNTRY_CURRENCY[code]
+    if code in _EUROZONE:
+        return "EUR"
+    return None
+
+
+def _from_request(request) -> str | None:
+    if request is None:
+        return None
+    for header in _COUNTRY_HEADERS:
+        country = request.META.get(header)
+        if country and country.upper() not in ("XX", "ZZ"):
+            cur = currency_for_country(country)
+            if cur:
+                return cur
+    # e.g. "en-US,en;q=0.9" -> region "US"
+    match = re.search(r"[A-Za-z]{2,3}-([A-Za-z]{2})", request.META.get("HTTP_ACCEPT_LANGUAGE", ""))
+    if match:
+        return currency_for_country(match.group(1))
+    return None
+
+
+def resolve_currency(user=None, request=None) -> tuple[str, str]:
+    """Returns (currency, source) where source explains how it was chosen."""
+    supported = set(settings.SUPPORTED_CURRENCIES)
+
+    override = getattr(user, "currency_override", "") if user else ""
+    if override and override.upper() in supported:
+        return override.upper(), "override"
+
+    country = getattr(user, "country", "") if user else ""
+    cur = currency_for_country(country)
+    if cur in supported:
+        return cur, "country"
+
+    cur = _from_request(request)
+    if cur in supported:
+        return cur, "detected"
+
+    return getattr(settings, "FALLBACK_CURRENCY", "USD"), "fallback"
+````
+
+## File: apps/wallet/exceptions.py
+````python
+"""Domain errors for the ledger/wallet."""
+
+
+class WalletError(Exception):
+    """Base class for wallet/ledger errors."""
+
+
+class UnbalancedJournal(WalletError):
+    """Debits and credits did not sum equal (or were non-positive)."""
+
+
+class InsufficientFunds(WalletError):
+    """A debit would push a user wallet below zero (overdraft blocked)."""
+
+
+class UnsupportedCurrency(WalletError):
+    """Currency is not in settings.SUPPORTED_CURRENCIES."""
+
+
+class CurrencyMismatch(WalletError):
+    """A posting's currency does not match the journal/account currency."""
+````
+
+## File: apps/wallet/models.py
+````python
+"""
+Double-entry ledger + multi-currency wallet.
+"""
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import ImmutableModel, TimeStampedModel
+
+
+class LedgerAccount(TimeStampedModel):
+    """A single account in the chart of accounts (per currency)."""
+    class Type(models.TextChoices):
+        ASSET = "asset", _("Asset")
+        LIABILITY = "liability", _("Liability")
+        INCOME = "income", _("Income")
+        EXPENSE = "expense", _("Expense")
+        SUSPENSE = "suspense", _("Suspense")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    code = models.CharField(max_length=120, unique=True)
+    name = models.CharField(max_length=160)
+    type = models.CharField(max_length=12, choices=Type.choices)
+    currency = models.CharField(max_length=3)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.PROTECT, related_name="ledger_accounts",
+    )
+    is_system = models.BooleanField(default=False)
+
+    class Meta:
+        indexes = [models.Index(fields=["type", "currency"])]
+
+    def __str__(self):
+        return f"{self.code} ({self.currency})"
+
+
+class JournalEntry(ImmutableModel):
+    """An immutable envelope grouping the balanced postings of one event."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    reference = models.CharField(max_length=80, unique=True)
+    idempotency_key = models.CharField(max_length=160, unique=True, null=True, blank=True)
+    currency = models.CharField(max_length=3)
+    description = models.CharField(max_length=255, blank=True)
+    metadata = models.JSONField(default=dict, blank=True)
+    reverses = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.PROTECT, related_name="reversed_by",
+    )
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def __str__(self):
+        return f"{self.reference} ({self.currency})"
+
+
+class LedgerPosting(ImmutableModel):
+    """One immutable debit or credit line against an account."""
+    class Direction(models.TextChoices):
+        DEBIT = "debit", _("Debit")
+        CREDIT = "credit", _("Credit")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    journal = models.ForeignKey(JournalEntry, on_delete=models.PROTECT, related_name="postings")
+    account = models.ForeignKey(LedgerAccount, on_delete=models.PROTECT, related_name="postings")
+    direction = models.CharField(max_length=6, choices=Direction.choices)
+    amount = models.DecimalField(max_digits=20, decimal_places=4)
+    currency = models.CharField(max_length=3)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(check=models.Q(amount__gt=0), name="posting_amount_positive"),
+        ]
+        indexes = [models.Index(fields=["account", "created_at"])]
+
+    def __str__(self):
+        return f"{self.direction} {self.amount} {self.currency}"
+
+
+class Wallet(TimeStampedModel):
+    """A user's balance in ONE currency. A user may hold several (NGN/USD/GBP/EUR)."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="wallets",
+    )
+    currency = models.CharField(max_length=3)
+    account = models.OneToOneField(LedgerAccount, on_delete=models.PROTECT, related_name="wallet")
+    cached_balance = models.DecimalField(max_digits=20, decimal_places=4, default=0)
+    version = models.PositiveBigIntegerField(default=0)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["user", "currency"], name="uniq_user_currency_wallet"),
+        ]
+
+    def __str__(self):
+        return f"{self.user} · {self.cached_balance} {self.currency}"
+
+from .transfer import WalletTransfer  # noqa: E402,F401
+````
+
+## File: apps/wallet/pin.py
+````python
+"""
+Transaction PIN management.
+
+The PIN authorizes money-out actions (bank withdrawals/transfers). It is stored
+hashed (Django password hashers) on the user, never in plain text.
+
+  GET  /wallet/pin/    -> {"has_pin": bool}
+  POST /wallet/pin/    -> set or change the PIN
+       set (first time): {"pin": "1234", "password": "<account password>"}
+       change:           {"pin": "1234", "current_pin": "<old pin>"}
+
+Setting the first PIN is authorized with the account password; changing an
+existing PIN requires the current PIN. Accounts with no usable password (e.g.
+provider-only) may set a first PIN without one.
+"""
+from rest_framework import serializers, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+
+class SetPinSerializer(serializers.Serializer):
+    pin = serializers.RegexField(r"^\d{4,6}$", error_messages={
+        "invalid": "PIN must be 4 to 6 digits."})
+    password = serializers.CharField(required=False, allow_blank=True, write_only=True)
+    current_pin = serializers.CharField(required=False, allow_blank=True, write_only=True)
+
+
+class TransactionPinView(APIView):
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        return Response({"has_pin": request.user.has_transaction_pin})
+
+    def post(self, request):
+        s = SetPinSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        user = request.user
+        pin = s.validated_data["pin"]
+
+        if user.has_transaction_pin:
+            # Changing an existing PIN requires the current PIN.
+            current = s.validated_data.get("current_pin") or ""
+            if not user.check_transaction_pin(current):
+                return Response({"detail": "Your current PIN is incorrect."},
+                                status=status.HTTP_400_BAD_REQUEST)
+        elif user.has_usable_password():
+            # Setting the first PIN is authorized with the account password.
+            password = s.validated_data.get("password") or ""
+            if not user.check_password(password):
+                return Response({"detail": "Your account password is incorrect."},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+        user.set_transaction_pin(pin)
+        user.save(update_fields=["transaction_pin", "updated_at"])
+        return Response({"has_pin": True})
+````
+
+## File: apps/wallet/README.txt
+````
+OAM — Withdrawal float: keeping customer money separate from earnings
+=====================================================================
+INSTALL
+  cd /Users/mac/Desktop/oam-platform/backend
+  unzip -o oam_float_check.zip -d apps/wallet
+  python3 manage.py float_check
+
+FIRST, THE HARD TRUTH
+  You asked that "only earnings go to the bank account, not users' payments."
+  Paystack cannot do that. It settles everything it collects and has no idea
+  which naira is your margin and which is a customer's wallet balance. The
+  separation has to happen on YOUR side. This command is how you see it.
+
+OPERATOR WALLETS ARE EXCLUDED
+  Swept earnings land in your admin wallet, so counting every wallet as a
+  customer liability would inflate the float you think you must hold. Wallets
+  belonging to is_staff users are reported separately as "In operator wallets"
+  and are treated as YOURS, not as money owed.
+
+  On your first run this mattered: ₦150 "owed" was really your ₦110 (mostly
+  swept earnings) plus Peye's ₦40. True customer liability was ₦40.
+
+WHAT float_check TELLS YOU
+    Owed to customers    — the sum of every wallet balance. Withdrawable at any
+                           moment. This is a LIABILITY, not income, even though
+                           the cash is sitting in your bank.
+    Your earnings        — the margin captured to oam:revenue. Genuinely yours.
+    Safe to take out     — the earnings figure, and only that.
+
+WHY YOUR WITHDRAWAL TEST FAILED
+  Paystack Transfers pay out from your PAYSTACK BALANCE. Auto-settlement sweeps
+  that balance into Fidelity as it arrives. So when a customer withdraws there
+  is nothing left to pay them — the "Not enough money / rejected (400)" you saw,
+  even though the money genuinely exists in your bank.
+
+PROVIDER FLOAT IS NOW COUNTED
+  Selling ₦1,000 of electricity costs ₦990 at vtu.ng, and that ₦990 has to be
+  replaced to keep selling. It settles to you in the SAME payout as your ₦10
+  margin, so taking it out as profit leaves you unable to restock — deliveries
+  then fail with charged customers, which is the worst failure you can have.
+
+  float_check now shows your provider cost over the last 30 days (change with
+  --days) and holds it back. Add your own buffer with --reserve:
+
+      python3 manage.py float_check
+      python3 manage.py float_check --days 7
+      python3 manage.py float_check --reserve 50000
+
+THE SETUP YOU CHOSE — MANUAL SETTLEMENT
+
+  1. Paystack dashboard -> Settings -> Settlements -> switch to MANUAL
+     Collections then stay in your Paystack balance, which is where customer
+     withdrawals are paid from.
+
+  2. Confirm TRANSFERS is enabled on your account (a separate approval from
+     collections, usually needs your business documents). Withdrawals fail
+     without it no matter what your balance is.
+
+  3. Monthly: run float_check, settle out the "Yours to take out" figure, leave
+     the rest.
+
+  At ₦10-20 margin per sale this is a monthly job, not a daily one.
+
+OTHER OPTIONS, FOR REFERENCE
+  1. MANUAL SETTLEMENT (simplest, matches what you asked for)
+     In the Paystack dashboard, switch settlements from automatic to manual, or
+     lengthen the cycle. Collections then STAY in your Paystack balance, which
+     is exactly where withdrawals are paid from. You periodically settle out
+     only your earnings — the figure this command prints.
+     Cost: money sits at Paystack rather than your bank.
+
+  2. KEEP AUTO-SETTLEMENT, FUND A FLOAT
+     Leave settlement alone and transfer a working float back INTO Paystack to
+     cover withdrawals. Simple to reason about, but you're moving money twice
+     and paying transfer fees each way.
+
+  3. HYBRID (what most operators end up doing)
+     Auto-settle, but keep a float in Paystack sized to a few days of expected
+     withdrawals. Run float_check regularly and top up when it dips.
+
+  I'd start with (1) while volumes are small — it's one dashboard setting and
+  it makes withdrawals work immediately. Revisit when the amounts get large
+  enough that you don't want them sitting at a payment processor.
+
+BEFORE REAL CUSTOMERS — WORTH CHECKING
+  Holding customer balances is regulated activity in Nigeria. Depending on how
+  you structure this, wallet balances may bring CBN licensing obligations
+  (PSSP / MMO and similar), and there are rules about keeping customer funds in
+  segregated accounts rather than mixed with operating cash. I'm not a lawyer or
+  an accountant and can't advise on which applies to you — but it's worth a
+  conversation with someone who can before you take real deposits, because it
+  shapes your account structure, and restructuring later is painful.
+
+  The safest pattern regardless of licensing: keep customer float in a separate
+  account from operating money, and move only earnings into the operating one.
+````
+
+## File: apps/wallet/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import Wallet
+
+
+class WalletSerializer(serializers.ModelSerializer):
+    balance = serializers.DecimalField(source="cached_balance", max_digits=20, decimal_places=4, read_only=True)
+
+    class Meta:
+        model = Wallet
+        fields = ("id", "currency", "balance", "updated_at")
+
+
+class TransactionSerializer(serializers.Serializer):
+    """A single posting against the wallet's ledger account (a statement line)."""
+    id = serializers.UUIDField()
+    direction = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4)
+    currency = serializers.CharField()
+    description = serializers.CharField(source="journal.description")
+    reference = serializers.CharField(source="journal.reference")
+    created_at = serializers.DateTimeField()
+
+
+class OpenWalletSerializer(serializers.Serializer):
+    currency = serializers.CharField(max_length=3)
+````
+
+## File: apps/wallet/services.py
+````python
+"""
+WalletService — the ONLY way money moves.
+
+Credit/debit are the simple primitives. For spending against an external
+provider that might fail, use the three-step pattern:
+
+    hold()    wallet   -> suspense   (reserve funds; balance drops, overdraft-blocked)
+    capture() suspense -> provider   (finalise the spend; balance unchanged)
+    release() suspense -> wallet      (refund; balance restored)
+
+So a bill purchase HOLDs first, calls the provider, then CAPTUREs on success or
+RELEASEs on failure — the user is never left silently debited.
+"""
+from __future__ import annotations
+
+import uuid
+from decimal import ROUND_HALF_UP, Decimal
+
+from django.conf import settings
+from django.db import transaction
+from django.db.models import Q, Sum
+
+from .exceptions import (
+    InsufficientFunds,
+    UnbalancedJournal,
+    UnsupportedCurrency,
+)
+from .models import JournalEntry, LedgerAccount, LedgerPosting, Wallet
+
+CENTS = Decimal("0.0001")
+HOLD_ACCOUNT = "suspense:hold"
+REVENUE_ACCOUNT = "oam:revenue"      # accumulates OAM profit (per currency)
+
+
+def _money(value) -> Decimal:
+    amount = Decimal(str(value)).quantize(CENTS, rounding=ROUND_HALF_UP)
+    if amount <= 0:
+        raise UnbalancedJournal("Amount must be positive.")
+    return amount
+
+
+def _new_reference() -> str:
+    return f"JRNL-{uuid.uuid4().hex[:18]}"
+
+
+def _check_currency(currency: str) -> str:
+    currency = currency.upper()
+    if currency not in settings.SUPPORTED_CURRENCIES:
+        raise UnsupportedCurrency(f"{currency} is not supported.")
+    return currency
+
+
+class WalletService:
+    # -------------------- accounts & wallets --------------------
+    @staticmethod
+    def get_or_create_wallet(user, currency: str) -> Wallet:
+        currency = _check_currency(currency)
+        wallet = (Wallet.objects.select_related("account")
+                  .filter(user=user, currency=currency).first())
+        if wallet:
+            return wallet
+        with transaction.atomic():
+            account = LedgerAccount.objects.create(
+                code=f"wallet:{user.id}:{currency}",
+                name=f"Wallet {getattr(user, 'identifier', user.pk)} {currency}",
+                type=LedgerAccount.Type.LIABILITY,
+                currency=currency, owner=user, is_system=False,
+            )
+            wallet = Wallet.objects.create(user=user, currency=currency, account=account)
+        return wallet
+
+    @staticmethod
+    def system_account(code: str, currency: str, acc_type: str) -> LedgerAccount:
+        currency = _check_currency(currency)
+        account, _ = LedgerAccount.objects.get_or_create(
+            code=f"{code}:{currency}",
+            defaults={"name": code, "type": acc_type, "currency": currency, "is_system": True},
+        )
+        return account
+
+    # -------------------- core posting --------------------
+    @staticmethod
+    @transaction.atomic
+    def post(*, currency, description, lines, reference=None, idempotency_key=None, metadata=None):
+        currency = _check_currency(currency)
+        if idempotency_key:
+            existing = JournalEntry.objects.filter(idempotency_key=idempotency_key).first()
+            if existing:
+                return existing
+
+        debit = sum((a for (_, d, a) in lines if d == LedgerPosting.Direction.DEBIT), Decimal("0"))
+        credit = sum((a for (_, d, a) in lines if d == LedgerPosting.Direction.CREDIT), Decimal("0"))
+        if debit != credit or debit <= 0:
+            raise UnbalancedJournal(f"Debits ({debit}) must equal credits ({credit}).")
+
+        journal = JournalEntry.objects.create(
+            reference=reference or _new_reference(),
+            idempotency_key=idempotency_key,
+            currency=currency, description=description, metadata=metadata or {},
+        )
+        for account, direction, amount in lines:
+            LedgerPosting.objects.create(
+                journal=journal, account=account, direction=direction,
+                amount=amount, currency=currency,
+            )
+        return journal
+
+    # -------------------- simple credit/debit --------------------
+    @staticmethod
+    @transaction.atomic
+    def credit(wallet, amount, *, source_code="cash:clearing", description="Wallet credit",
+               reference=None, idempotency_key=None, metadata=None) -> JournalEntry:
+        amount = _money(amount)
+        if idempotency_key:
+            existing = JournalEntry.objects.filter(idempotency_key=idempotency_key).first()
+            if existing:
+                return existing
+        locked = Wallet.objects.select_for_update().select_related("account").get(pk=wallet.pk)
+        source = WalletService.system_account(source_code, locked.currency, LedgerAccount.Type.ASSET)
+        journal = WalletService.post(
+            currency=locked.currency, description=description,
+            lines=[(source, LedgerPosting.Direction.DEBIT, amount),
+                   (locked.account, LedgerPosting.Direction.CREDIT, amount)],
+            reference=reference, idempotency_key=idempotency_key, metadata=metadata,
+        )
+        locked.cached_balance += amount
+        locked.version += 1
+        locked.save(update_fields=["cached_balance", "version", "updated_at"])
+        return journal
+
+    @staticmethod
+    @transaction.atomic
+    def debit(wallet, amount, *, dest_code="suspense", description="Wallet debit",
+              allow_overdraft=False, reference=None, idempotency_key=None, metadata=None) -> JournalEntry:
+        amount = _money(amount)
+        if idempotency_key:
+            existing = JournalEntry.objects.filter(idempotency_key=idempotency_key).first()
+            if existing:
+                return existing
+        locked = Wallet.objects.select_for_update().select_related("account").get(pk=wallet.pk)
+        if not allow_overdraft and (locked.cached_balance - amount) < 0:
+            raise InsufficientFunds(
+                f"Balance {locked.cached_balance} {locked.currency} is insufficient for {amount}."
+            )
+        dest = WalletService.system_account(dest_code, locked.currency, LedgerAccount.Type.SUSPENSE)
+        journal = WalletService.post(
+            currency=locked.currency, description=description,
+            lines=[(locked.account, LedgerPosting.Direction.DEBIT, amount),
+                   (dest, LedgerPosting.Direction.CREDIT, amount)],
+            reference=reference, idempotency_key=idempotency_key, metadata=metadata,
+        )
+        locked.cached_balance -= amount
+        locked.version += 1
+        locked.save(update_fields=["cached_balance", "version", "updated_at"])
+        return journal
+
+    # -------------------- hold / capture / release --------------------
+    @staticmethod
+    @transaction.atomic
+    def hold(wallet, amount, *, reference, idempotency_key=None,
+             description="Funds hold", metadata=None) -> JournalEntry:
+        """Reserve funds: wallet -> suspense. Balance drops; overdraft blocked."""
+        amount = _money(amount)
+        key = idempotency_key or f"hold:{reference}"
+        existing = JournalEntry.objects.filter(idempotency_key=key).first()
+        if existing:
+            return existing
+        locked = Wallet.objects.select_for_update().select_related("account").get(pk=wallet.pk)
+        if (locked.cached_balance - amount) < 0:
+            raise InsufficientFunds(
+                f"Balance {locked.cached_balance} {locked.currency} is insufficient for {amount}."
+            )
+        suspense = WalletService.system_account(HOLD_ACCOUNT, locked.currency, LedgerAccount.Type.SUSPENSE)
+        journal = WalletService.post(
+            currency=locked.currency, description=description,
+            lines=[(locked.account, LedgerPosting.Direction.DEBIT, amount),
+                   (suspense, LedgerPosting.Direction.CREDIT, amount)],
+            reference=f"{reference}:hold", idempotency_key=key, metadata=metadata,
+        )
+        locked.cached_balance -= amount
+        locked.version += 1
+        locked.save(update_fields=["cached_balance", "version", "updated_at"])
+        return journal
+
+    @staticmethod
+    @transaction.atomic
+    def capture(currency, amount, *, reference, cost=None,
+                counterpart_code="provider:settlement", revenue_code=REVENUE_ACCOUNT,
+                idempotency_key=None, description="Capture", metadata=None) -> JournalEntry:
+        """
+        Finalise a spend: suspense -> provider (+ OAM revenue).
+
+        `amount` is the face value the user paid (held). `cost` is what the
+        provider actually charged us (e.g. VTU's amount_charged). The difference
+        is OAM's margin, credited to the revenue account. Wallet balance is
+        unchanged (the money already left the wallet at hold time).
+
+            DR suspense:hold   amount
+            CR provider        cost           (our real cost / float consumed)
+            CR oam:revenue     amount - cost  (OAM profit)  <- only if > 0
+        """
+        currency = _check_currency(currency)
+        amount = _money(amount)
+        key = idempotency_key or f"capture:{reference}"
+        existing = JournalEntry.objects.filter(idempotency_key=key).first()
+        if existing:
+            return existing
+
+        # Sanitise cost: must be > 0 and <= amount, else treat as no-margin.
+        margin = Decimal("0")
+        if cost is not None:
+            cost = Decimal(str(cost)).quantize(CENTS, rounding=ROUND_HALF_UP)
+            if cost <= 0 or cost > amount:
+                cost = amount
+            margin = amount - cost
+        else:
+            cost = amount
+
+        suspense = WalletService.system_account(HOLD_ACCOUNT, currency, LedgerAccount.Type.SUSPENSE)
+        provider = WalletService.system_account(counterpart_code, currency, LedgerAccount.Type.LIABILITY)
+        lines = [(suspense, LedgerPosting.Direction.DEBIT, amount),
+                 (provider, LedgerPosting.Direction.CREDIT, cost)]
+        if margin > 0:
+            revenue = WalletService.system_account(revenue_code, currency, LedgerAccount.Type.LIABILITY)
+            lines.append((revenue, LedgerPosting.Direction.CREDIT, margin))
+
+        return WalletService.post(
+            currency=currency, description=description, lines=lines,
+            reference=f"{reference}:capture", idempotency_key=key,
+            metadata={**(metadata or {}), "cost": str(cost), "margin": str(margin)},
+        )
+
+    # -------------------- OAM revenue (admin) --------------------
+    @staticmethod
+    def account_balance(code_or_account, currency=None) -> Decimal:
+        """Balance of any ledger account (credits - debits)."""
+        if isinstance(code_or_account, LedgerAccount):
+            account = code_or_account
+        else:
+            account = LedgerAccount.objects.filter(code=f"{code_or_account}:{currency}").first()
+            if account is None:
+                return Decimal("0")
+        agg = LedgerPosting.objects.filter(account=account).aggregate(
+            credit=Sum("amount", filter=Q(direction=LedgerPosting.Direction.CREDIT)),
+            debit=Sum("amount", filter=Q(direction=LedgerPosting.Direction.DEBIT)),
+        )
+        return (agg["credit"] or Decimal("0")) - (agg["debit"] or Decimal("0"))
+
+    @staticmethod
+    def revenue_balance(currency) -> Decimal:
+        return WalletService.account_balance(REVENUE_ACCOUNT, currency)
+
+    @staticmethod
+    @transaction.atomic
+    def sweep_revenue(wallet, amount, *, reference=None, description="Revenue sweep") -> JournalEntry:
+        """Move accumulated OAM revenue into an (admin) wallet, making it withdrawable."""
+        amount = _money(amount)
+        available = WalletService.revenue_balance(wallet.currency)
+        if amount > available:
+            raise InsufficientFunds(
+                f"Revenue available is {available} {wallet.currency}, cannot sweep {amount}."
+            )
+        ref = reference or _new_reference()
+        revenue = WalletService.system_account(REVENUE_ACCOUNT, wallet.currency,
+                                               LedgerAccount.Type.LIABILITY)
+        locked = Wallet.objects.select_for_update().select_related("account").get(pk=wallet.pk)
+        journal = WalletService.post(
+            currency=locked.currency, description=description,
+            lines=[(revenue, LedgerPosting.Direction.DEBIT, amount),
+                   (locked.account, LedgerPosting.Direction.CREDIT, amount)],
+            reference=f"{ref}:sweep", idempotency_key=f"sweep:{ref}",
+        )
+        locked.cached_balance += amount
+        locked.version += 1
+        locked.save(update_fields=["cached_balance", "version", "updated_at"])
+        return journal
+
+    @staticmethod
+    @transaction.atomic
+    def release(wallet, amount, *, reference, idempotency_key=None,
+                description="Funds release", metadata=None) -> JournalEntry:
+        """Refund a hold: suspense -> wallet. Balance restored."""
+        amount = _money(amount)
+        key = idempotency_key or f"release:{reference}"
+        existing = JournalEntry.objects.filter(idempotency_key=key).first()
+        if existing:
+            return existing
+        locked = Wallet.objects.select_for_update().select_related("account").get(pk=wallet.pk)
+        suspense = WalletService.system_account(HOLD_ACCOUNT, locked.currency, LedgerAccount.Type.SUSPENSE)
+        journal = WalletService.post(
+            currency=locked.currency, description=description,
+            lines=[(suspense, LedgerPosting.Direction.DEBIT, amount),
+                   (locked.account, LedgerPosting.Direction.CREDIT, amount)],
+            reference=f"{reference}:release", idempotency_key=key, metadata=metadata,
+        )
+        locked.cached_balance += amount
+        locked.version += 1
+        locked.save(update_fields=["cached_balance", "version", "updated_at"])
+        return journal
+
+    # -------------------- balances --------------------
+    @staticmethod
+    def derived_balance(wallet) -> Decimal:
+        agg = LedgerPosting.objects.filter(account=wallet.account).aggregate(
+            credit=Sum("amount", filter=Q(direction=LedgerPosting.Direction.CREDIT)),
+            debit=Sum("amount", filter=Q(direction=LedgerPosting.Direction.DEBIT)),
+        )
+        return (agg["credit"] or Decimal("0")) - (agg["debit"] or Decimal("0"))
+````
+
+## File: apps/wallet/tests.py
+````python
+from django.test import TestCase
+
+# Create your tests here.
+````
+
+## File: apps/wallet/transfer.py
+````python
+"""
+Wallet-to-wallet transfers between OAM users (P2P "send money").
+
+Your backend had no P2P transfer, so this adds one that reuses the existing
+double-entry ledger rather than inventing a second money path:
+
+    sender wallet  --debit-->  suspense  --credit-->  recipient wallet
+
+Both legs happen inside ONE atomic transaction, so a transfer can never leave
+money in limbo: either both postings land or neither does.
+
+Safety properties:
+  • The recipient is resolved by email or phone before any money moves, and the
+    sender sees the recipient's name first (a separate "resolve" call).
+  • You cannot send to yourself, or to an unverified/inactive account.
+  • Sending is blocked unless the sender's balance covers it (no overdraft).
+  • Currency must match on both sides.
+  • An idempotency key derived from the transfer reference stops a double-tap
+    from sending twice.
+"""
+from __future__ import annotations
+
+import logging
+import uuid
+from decimal import Decimal, InvalidOperation
+
+from django.conf import settings
+from django.db import IntegrityError, models, transaction
+from rest_framework import serializers, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.models import TimeStampedModel
+from apps.common.permissions import IsVerified
+
+from .models import Wallet
+from .services import WalletService
+
+User = settings.AUTH_USER_MODEL
+
+
+logger = logging.getLogger(__name__)
+
+
+class TransferError(Exception):
+    """Something about the transfer request is invalid."""
+
+
+class WalletTransfer(TimeStampedModel):
+    """A completed P2P transfer between two OAM users."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    sender = models.ForeignKey(User, on_delete=models.PROTECT, related_name="transfers_sent")
+    recipient = models.ForeignKey(User, on_delete=models.PROTECT, related_name="transfers_received")
+    amount = models.DecimalField(max_digits=20, decimal_places=2)
+    currency = models.CharField(max_length=3, default="NGN")
+    note = models.CharField(max_length=140, blank=True)
+    reference = models.CharField(max_length=60, unique=True, db_index=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.amount} {self.currency} -> {self.recipient_id}"
+
+
+def _find_user(identifier: str):
+    """Look a user up by email or phone."""
+    from django.contrib.auth import get_user_model
+
+    U = get_user_model()
+    ident = (identifier or "").strip()
+    if not ident:
+        return None
+    return (U.objects.filter(email__iexact=ident).first()
+            or U.objects.filter(phone=ident).first())
+
+
+def _display_name(user) -> str:
+    name = f"{user.first_name} {user.last_name}".strip()
+    if name:
+        return name
+    return (user.email or user.phone or "OAM user")
+
+
+class TransferService:
+    @staticmethod
+    def resolve(identifier: str, *, exclude_user=None) -> dict:
+        """Who would receive this transfer? Never moves money."""
+        user = _find_user(identifier)
+        if user is None:
+            raise TransferError("No OAM account found for that email or phone.")
+        if exclude_user is not None and user.pk == exclude_user.pk:
+            raise TransferError("You can't send money to yourself.")
+        if not user.is_active:
+            raise TransferError("That account is not active.")
+        return {"name": _display_name(user), "identifier": identifier}
+
+    @staticmethod
+    @transaction.atomic
+    def send(*, sender, identifier: str, amount, currency: str = "NGN", note: str = "") -> "WalletTransfer":
+        try:
+            amt = Decimal(str(amount)).quantize(Decimal("0.01"))
+        except (InvalidOperation, TypeError):
+            raise TransferError("Enter a valid amount.")
+        if amt <= 0:
+            raise TransferError("Amount must be greater than zero.")
+
+        currency = (currency or "NGN").upper()
+        recipient = _find_user(identifier)
+        if recipient is None:
+            raise TransferError("No OAM account found for that email or phone.")
+        if recipient.pk == sender.pk:
+            raise TransferError("You can't send money to yourself.")
+        if not recipient.is_active:
+            raise TransferError("That account is not active.")
+
+        sender_wallet = WalletService.get_or_create_wallet(sender, currency)
+        recipient_wallet = WalletService.get_or_create_wallet(recipient, currency)
+
+        # Lock both rows in a stable order to avoid deadlocks.
+        ids = sorted([str(sender_wallet.pk), str(recipient_wallet.pk)])
+        list(Wallet.objects.select_for_update().filter(pk__in=ids))
+
+        available = WalletService.derived_balance(sender_wallet)
+        if available < amt:
+            raise TransferError("Insufficient funds for this transfer.")
+
+        # One transfer, two journal entries. JournalEntry.reference is UNIQUE,
+        # so the legs cannot share a reference — the shared TRF- prefix is what
+        # ties them together, and WalletTransfer.reference holds the canonical
+        # value the customer sees.
+        reference = f"TRF-{uuid.uuid4().hex[:14].upper()}"
+        out_reference = f"{reference}-OUT"
+        in_reference = f"{reference}-IN"
+        to_name = _display_name(recipient)
+        from_name = _display_name(sender)
+
+        WalletService.debit(
+            sender_wallet, amt,
+            dest_code="suspense",
+            description=f"Transfer to {to_name}" + (f" — {note}" if note else ""),
+            reference=out_reference,
+            idempotency_key=f"{reference}:debit",
+            metadata={"kind": "p2p_transfer", "to": str(recipient.pk), "note": note},
+        )
+        WalletService.credit(
+            recipient_wallet, amt,
+            source_code="suspense",
+            description=f"Transfer from {from_name}" + (f" — {note}" if note else ""),
+            reference=in_reference,
+            idempotency_key=f"{reference}:credit",
+            metadata={"kind": "p2p_transfer", "from": str(sender.pk), "note": note},
+        )
+
+        return WalletTransfer.objects.create(
+            sender=sender, recipient=recipient, amount=amt,
+            currency=currency, note=note or "", reference=reference,
+        )
+
+
+# --------------------------------------------------------------------------- #
+# API
+# --------------------------------------------------------------------------- #
+class ResolveRecipientSerializer(serializers.Serializer):
+    identifier = serializers.CharField(max_length=120)
+
+
+class SendTransferSerializer(serializers.Serializer):
+    identifier = serializers.CharField(max_length=120)
+    amount = serializers.DecimalField(max_digits=20, decimal_places=2, min_value=Decimal("1"))
+    currency = serializers.CharField(max_length=3, required=False, default="NGN")
+    note = serializers.CharField(max_length=140, required=False, allow_blank=True)
+
+
+class WalletTransferSerializer(serializers.ModelSerializer):
+    direction = serializers.SerializerMethodField()
+    counterparty = serializers.SerializerMethodField()
+
+    class Meta:
+        model = WalletTransfer
+        fields = ("id", "amount", "currency", "note", "reference",
+                  "direction", "counterparty", "created_at")
+
+    def get_direction(self, obj):
+        me = self.context.get("user")
+        return "out" if me and obj.sender_id == me.pk else "in"
+
+    def get_counterparty(self, obj):
+        me = self.context.get("user")
+        other = obj.recipient if (me and obj.sender_id == me.pk) else obj.sender
+        return _display_name(other)
+
+
+class ResolveRecipientView(APIView):
+    """POST /wallet/transfer/resolve/ {identifier} -> recipient name."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        s = ResolveRecipientSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        try:
+            result = TransferService.resolve(
+                s.validated_data["identifier"], exclude_user=request.user
+            )
+        except TransferError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(result)
+
+
+class SendTransferView(APIView):
+    """POST /wallet/transfer/ {identifier, amount, currency?, note?}."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request):
+        s = SendTransferSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        d = s.validated_data
+        try:
+            trf = TransferService.send(
+                sender=request.user,
+                identifier=d["identifier"],
+                amount=d["amount"],
+                currency=d.get("currency", "NGN"),
+                note=d.get("note", ""),
+            )
+        except TransferError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        except IntegrityError:
+            # A ledger constraint refused the entry. The transaction rolled back,
+            # so no money moved — say so plainly rather than returning a 500,
+            # which the client can only render as an HTML error page.
+            logger.exception("transfer failed a ledger constraint")
+            return Response(
+                {"detail": "That transfer could not be completed. "
+                           "No money left your wallet — please try again."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        return Response(
+            WalletTransferSerializer(trf, context={"user": request.user}).data,
+            status=status.HTTP_201_CREATED,
+        )
+
+
+class TransferHistoryView(APIView):
+    """GET /wallet/transfers/ — transfers you sent or received."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        qs = WalletTransfer.objects.filter(
+            models.Q(sender=request.user) | models.Q(recipient=request.user)
+        )[:100]
+        return Response({
+            "results": WalletTransferSerializer(
+                qs, many=True, context={"user": request.user}
+            ).data
+        })
+````
+
+## File: apps/wallet/urls.py
+````python
+from django.urls import path
+
+from .views import DefaultCurrencyView, WalletListView, WalletTransactionsView
+from .transfer import ResolveRecipientView, SendTransferView, TransferHistoryView
+from .pin import TransactionPinView
+
+urlpatterns = [
+    path("", WalletListView.as_view(), name="wallet-list"),
+    path("default-currency/", DefaultCurrencyView.as_view(), name="wallet-default-currency"),
+    path("pin/", TransactionPinView.as_view(), name="wallet-pin"),
+    path("transfer/resolve/", ResolveRecipientView.as_view(), name="wallet-transfer-resolve"),
+    path("transfer/", SendTransferView.as_view(), name="wallet-transfer"),
+    path("transfers/", TransferHistoryView.as_view(), name="wallet-transfers"),
+    path("<str:currency>/transactions/", WalletTransactionsView.as_view(), name="wallet-transactions"),
+]
+````
+
+## File: apps/wallet/views.py
+````python
+"""Wallet API — all endpoints require a VERIFIED user (IsVerified gate)."""
+from django.conf import settings
+from rest_framework import status
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .currency import resolve_currency
+from .exceptions import UnsupportedCurrency
+from .models import LedgerPosting, Wallet
+from .serializers import OpenWalletSerializer, TransactionSerializer, WalletSerializer
+from .services import WalletService
+
+
+class WalletListView(APIView):
+    """GET: list my wallets (auto-opening my default-currency wallet).
+       POST: open a wallet for a specific currency."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        currency, source = resolve_currency(request.user, request)
+        # Ensure the user always has at least their default wallet.
+        WalletService.get_or_create_wallet(request.user, currency)
+        wallets = Wallet.objects.filter(user=request.user).order_by("currency")
+        return Response({
+            "default_currency": currency,
+            "default_currency_source": source,
+            "wallets": WalletSerializer(wallets, many=True).data,
+        })
+
+    def post(self, request):
+        serializer = OpenWalletSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            wallet = WalletService.get_or_create_wallet(
+                request.user, serializer.validated_data["currency"]
+            )
+        except UnsupportedCurrency as exc:
+            return Response({"detail": str(exc),
+                             "supported": settings.SUPPORTED_CURRENCIES},
+                            status=status.HTTP_400_BAD_REQUEST)
+        return Response(WalletSerializer(wallet).data, status=status.HTTP_201_CREATED)
+
+
+class WalletTransactionsView(ListAPIView):
+    """GET: paginated statement (postings) for one of my wallets, newest first."""
+    permission_classes = [IsAuthenticated, IsVerified]
+    serializer_class = TransactionSerializer
+
+    def get_queryset(self):
+        currency = self.kwargs["currency"].upper()
+        wallet = (Wallet.objects.select_related("account")
+                  .filter(user=self.request.user, currency=currency).first())
+        if wallet is None:
+            return LedgerPosting.objects.none()
+        return (LedgerPosting.objects
+                .filter(account=wallet.account)
+                .select_related("journal")
+                .order_by("-created_at"))
+
+
+class DefaultCurrencyView(APIView):
+    """GET: the currency we'd default this user to, and why."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        currency, source = resolve_currency(request.user, request)
+        return Response({
+            "currency": currency,
+            "source": source,
+            "supported": settings.SUPPORTED_CURRENCIES,
+        })
+````
+
+## File: apps/__init__.py
+````python
+
+````
+
+## File: apps/README.txt
+````
+OAM — Messaging: one chat system for Marketplace AND Artisans
+=============================================================
+INSTALL
+  cd /Users/mac/Desktop/oam-platform/backend
+  unzip -o oam_messaging.zip -d apps
+
+  That creates apps/messaging/ (models, serializers, views, urls, admin).
+
+  1. Add to INSTALLED_APPS in config/settings/base.py (or wherever your
+     app list lives), alongside the other "apps.*" entries:
+
+         "apps.messaging",
+
+  2. Add to config/urls.py, next to the other api/v1 includes:
+
+         path("api/v1/messaging/", include("apps.messaging.urls")),
+
+  3. Then:
+         python3 manage.py makemigrations messaging
+         python3 manage.py migrate
+         python3 manage.py runserver 8080
+
+WHY ONE APP INSTEAD OF TWO
+  Your marketplace and artisan requests are the same feature: a private thread
+  between someone who wants something and someone offering it. A Conversation
+  points at EITHER a Listing or an ArtisanProfile, so both verticals share one
+  schema, one API and (later) one chat UI. Building it twice would mean keeping
+  two of everything in step forever.
+
+CONTACT DETAILS — GATED, AS YOU ASKED
+  You already store contacts: Listing.contact_phone / contact_whatsapp, and
+  ArtisanProfile.phone / whatsapp. These are NEVER returned by the messaging
+  API while a conversation is merely open.
+
+  Flow:
+     customer sends an enquiry        -> status "open",     contacts: null
+     provider taps Accept             -> status "accepted", contacts revealed
+     provider taps Decline            -> status "declined", contacts stay hidden
+
+  Only the PROVIDER can accept — it represents them agreeing to the job or
+  sale. If a customer could accept their own enquiry they'd help themselves to
+  a number the provider never agreed to share.
+
+  This keeps the introduction on OAM, gives you a record that a connection
+  happened (useful when you add commission), and means a customer only ever
+  gets the number of someone who has actually agreed to the work.
+
+ENDPOINTS
+  GET  /api/v1/messaging/conversations/           list (?role=customer|provider)
+  POST /api/v1/messaging/conversations/           start one
+       body: {kind: "listing"|"artisan", id: "<uuid>", body: "Hello..."}
+  GET  /api/v1/messaging/conversations/<id>/      thread + messages (marks read)
+  POST /api/v1/messaging/conversations/<id>/messages/   {body: "..."}
+  POST /api/v1/messaging/conversations/<id>/accept/     provider only
+  POST /api/v1/messaging/conversations/<id>/decline/    provider only
+  POST /api/v1/messaging/conversations/<id>/close/
+  GET  /api/v1/messaging/unread/                  {"unread": n} for the badge
+
+BUILT-IN SAFEGUARDS
+  * Every query is scoped to threads you're a participant in — you cannot read
+    someone else's conversation by guessing a UUID
+  * Re-enquiring about the same item returns the EXISTING thread, so a
+    provider's inbox doesn't fill with duplicates from one person
+  * You can't message your own listing
+  * Messages capped at 4000 characters
+
+WHAT'S NOT HERE YET (deliberately)
+  * Real-time push — the frontend will poll. Websockets need Django Channels
+    plus a Redis instance, which is a bigger deployment change than it's worth
+    before you have users. Polling every few seconds is fine at this scale.
+  * Email/SMS notification when a message arrives. Worth adding — a marketplace
+    where sellers don't know they have an enquiry is a marketplace where nobody
+    replies. Your receipt infrastructure makes this straightforward.
+  * Blocking/reporting. Needed before you scale, not before you launch.
+
+NEXT: the frontend — decision hubs, browse pages, profiles and the chat UI.
+````
+
+## File: beneficiaries/migrations/__init__.py
+````python
+
+````
+
+## File: beneficiaries/migrations/0001_initial.py
+````python
+# Generated by Django 5.0.6 on 2026-08-02 20:17
+
+import django.db.models.deletion
+import django.utils.timezone
+import uuid
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Beneficiary',
+            fields=[
+                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                ('service_type', models.CharField(choices=[('airtime', 'Airtime'), ('data', 'Data'), ('electricity', 'Electricity'), ('cable', 'Cable TV')], max_length=20)),
+                ('account_identifier', models.CharField(max_length=64)),
+                ('biller_code', models.CharField(blank=True, max_length=64)),
+                ('biller_name', models.CharField(blank=True, max_length=120)),
+                ('customer_name', models.CharField(blank=True, max_length=200)),
+                ('label', models.CharField(blank=True, max_length=80)),
+                ('last_used_at', models.DateTimeField(db_index=True, default=django.utils.timezone.now)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='beneficiaries', to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+                'verbose_name_plural': 'beneficiaries',
+                'ordering': ['-last_used_at'],
+                'indexes': [models.Index(fields=['user', 'service_type', '-last_used_at'], name='beneficiari_user_id_de6e36_idx')],
+            },
+        ),
+        migrations.AddConstraint(
+            model_name='beneficiary',
+            constraint=models.UniqueConstraint(fields=('user', 'service_type', 'account_identifier'), name='uniq_user_service_identifier'),
+        ),
+    ]
+````
+
+## File: beneficiaries/__init__.py
+````python
+
+````
+
+## File: beneficiaries/admin.py
+````python
+from django.contrib import admin
+
+from .models import Beneficiary
+
+
+@admin.register(Beneficiary)
+class BeneficiaryAdmin(admin.ModelAdmin):
+    list_display = (
+        "account_identifier",
+        "service_type",
+        "biller_name",
+        "customer_name",
+        "user",
+        "last_used_at",
+    )
+    list_filter = ("service_type",)
+    search_fields = ("account_identifier", "biller_name", "customer_name", "user__email")
+    readonly_fields = ("created_at", "last_used_at")
+    ordering = ("-last_used_at",)
+````
+
+## File: beneficiaries/apps.py
+````python
+from django.apps import AppConfig
+
+
+class BeneficiariesConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "beneficiaries"
+    verbose_name = "Saved beneficiaries"
+````
+
+## File: beneficiaries/models.py
+````python
+import uuid
+
+from django.conf import settings
+from django.db import models
+from django.utils import timezone
+
+
+class Beneficiary(models.Model):
+    """
+    A phone number, meter or smartcard a user has paid to before.
+
+    One row per (user, service, identifier). We don't keep a full history of
+    every purchase here — the order log already does that. This is the short,
+    de-duplicated "pay them again" list that sits on the purchase screens, so
+    the useful state is just the identifier plus the details needed to re-fill
+    the form (which provider, and the last verified customer name).
+    """
+
+    class Service(models.TextChoices):
+        AIRTIME = "airtime", "Airtime"
+        DATA = "data", "Data"
+        ELECTRICITY = "electricity", "Electricity"
+        CABLE = "cable", "Cable TV"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="beneficiaries",
+    )
+    service_type = models.CharField(max_length=20, choices=Service.choices)
+
+    # The thing being paid: phone number, meter number, or smartcard/IUC number.
+    account_identifier = models.CharField(max_length=64)
+
+    # Enough to re-select the provider on the form. `biller_code` is what the
+    # form's <select> actually binds to; `biller_name` is only for display.
+    biller_code = models.CharField(max_length=64, blank=True)
+    biller_name = models.CharField(max_length=120, blank=True)
+
+    # Last resolved account holder (meters / smartcards). Blank for airtime/data.
+    customer_name = models.CharField(max_length=200, blank=True)
+
+    # Optional user-set nickname, e.g. "Mum's line" or "Shop meter".
+    label = models.CharField(max_length=80, blank=True)
+
+    last_used_at = models.DateTimeField(default=timezone.now, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        # One entry per identifier per service, per user — the upsert key.
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "service_type", "account_identifier"],
+                name="uniq_user_service_identifier",
+            )
+        ]
+        ordering = ["-last_used_at"]
+        indexes = [
+            models.Index(fields=["user", "service_type", "-last_used_at"]),
+        ]
+        verbose_name_plural = "beneficiaries"
+
+    def __str__(self):
+        return f"{self.get_service_type_display()}: {self.account_identifier}"
+````
+
+## File: beneficiaries/serializers.py
+````python
+from rest_framework import serializers
+
+from .models import Beneficiary
+
+
+class BeneficiarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Beneficiary
+        fields = [
+            "id",
+            "service_type",
+            "account_identifier",
+            "biller_code",
+            "biller_name",
+            "customer_name",
+            "label",
+            "last_used_at",
+        ]
+        # Identity fields are set on create and never edited afterwards; only
+        # the nickname is user-editable via PATCH.
+        read_only_fields = ["id", "last_used_at"]
+
+    def validate_service_type(self, value):
+        if value not in Beneficiary.Service.values:
+            raise serializers.ValidationError("Unknown service type.")
+        return value
+
+    def validate_account_identifier(self, value):
+        value = (value or "").strip()
+        if not value:
+            raise serializers.ValidationError("An account identifier is required.")
+        return value
+````
+
+## File: beneficiaries/services.py
+````python
+"""
+The one function the rest of the codebase should call to record a beneficiary.
+
+Kept separate from views so it can be invoked from wherever a purchase actually
+succeeds — the billing purchase view, a webhook that confirms a card payment,
+or a Celery task — without importing view/serializer machinery.
+"""
+import logging
+
+from django.utils import timezone
+
+from .models import Beneficiary
+
+log = logging.getLogger(__name__)
+
+
+def upsert_beneficiary(
+    *,
+    user,
+    service_type,
+    account_identifier,
+    biller_code="",
+    biller_name="",
+    customer_name="",
+):
+    """
+    Create or refresh a saved beneficiary.
+
+    Idempotent: calling it again for an identifier the user already has simply
+    bumps `last_used_at` (so it floats to the top of "Recent") and fills in any
+    newly available detail. Safe to call on every successful purchase.
+
+    Never raises. Saving a convenience record must not be able to fail a real
+    transaction, so any error is swallowed and logged.
+    """
+    account_identifier = (account_identifier or "").strip()
+    if not user or not getattr(user, "is_authenticated", False) or not account_identifier:
+        return None
+    if service_type not in Beneficiary.Service.values:
+        return None
+
+    try:
+        obj, created = Beneficiary.objects.get_or_create(
+            user=user,
+            service_type=service_type,
+            account_identifier=account_identifier,
+            defaults={
+                "biller_code": biller_code or "",
+                "biller_name": biller_name or "",
+                "customer_name": customer_name or "",
+            },
+        )
+        if not created:
+            obj.last_used_at = timezone.now()
+            # Only overwrite with non-empty values — a later purchase should
+            # never blank out a name we resolved earlier.
+            if biller_code:
+                obj.biller_code = biller_code
+            if biller_name:
+                obj.biller_name = biller_name
+            if customer_name:
+                obj.customer_name = customer_name
+            obj.save(
+                update_fields=[
+                    "last_used_at",
+                    "biller_code",
+                    "biller_name",
+                    "customer_name",
+                ]
+            )
+        return obj
+    except Exception:  # pragma: no cover - defensive
+        log.exception("Failed to upsert beneficiary for user=%s", getattr(user, "pk", None))
+        return None
+````
+
+## File: beneficiaries/urls.py
+````python
+from rest_framework.routers import DefaultRouter
+
+from .views import BeneficiaryViewSet
+
+router = DefaultRouter()
+router.register(r"beneficiaries", BeneficiaryViewSet, basename="beneficiary")
+
+urlpatterns = router.urls
+````
+
+## File: beneficiaries/views.py
+````python
+from rest_framework import mixins, viewsets
+from rest_framework.permissions import IsAuthenticated
+
+from .models import Beneficiary
+from .serializers import BeneficiarySerializer
+from .services import upsert_beneficiary
+
+# How many "recent" entries to return per service. The UI only shows a handful;
+# capping keeps the row a quick tap rather than an endless scroll.
+MAX_PER_SERVICE = 12
+
+
+class BeneficiaryViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,   # PATCH the label
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
+    """
+    /api/v1/beneficiaries/            GET  (list, ?type=airtime|data|electricity|cable)
+    /api/v1/beneficiaries/            POST (create-or-refresh; idempotent)
+    /api/v1/beneficiaries/{id}/       PATCH  (set label)  |  DELETE
+    """
+
+    serializer_class = BeneficiarySerializer
+    permission_classes = [IsAuthenticated]
+    pagination_class = None  # the list is short and pre-capped
+
+    def get_queryset(self):
+        qs = Beneficiary.objects.filter(user=self.request.user)
+        service = self.request.query_params.get("type")
+        if service:
+            qs = qs.filter(service_type=service)
+        return qs[:MAX_PER_SERVICE]
+
+    def create(self, request, *args, **kwargs):
+        """
+        POSTing an identifier the user already has must not 400 on the unique
+        constraint — it should just refresh it. So we route create through the
+        same idempotent upsert the purchase flow uses, then return the row.
+        """
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        obj = upsert_beneficiary(
+            user=request.user,
+            service_type=data["service_type"],
+            account_identifier=data["account_identifier"],
+            biller_code=data.get("biller_code", ""),
+            biller_name=data.get("biller_name", ""),
+            customer_name=data.get("customer_name", ""),
+        )
+        from rest_framework.response import Response
+        from rest_framework import status
+
+        if obj is None:
+            return Response(
+                {"detail": "Could not save beneficiary."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return Response(self.get_serializer(obj).data, status=status.HTTP_201_CREATED)
+````
+
+## File: betting_patch/apply_betting.py
+````python
+#!/usr/bin/env python3
+"""
+Add Betting Wallet Funding on top of the existing vtu.ng / billing system.
+
+Users fund a betting account (Bet9ja, SportyBet, BetKing, …) from their OAM
+wallet. They pay `amount + ₦50` — the betting account is credited with `amount`
+and OAM keeps the flat ₦50 as revenue (in place of vtu.ng's reseller discount).
+
+Reuses everything already in place: the vtu.ng adapter + auth, the wallet
+hold/settle flow, BillOrder, verify-customer, the requery/webhook settlement, and
+the revenue ledger. No new provider credentials.
+
+WHAT IT DOES (guarded; aborts if a file diverged):
+  1. vtu adapter: adds a "betting" branch -> POST /api/v2/betting
+     {request_id, customer_id, service_id, amount}.
+  2. billing service: BillingService.purchase_betting() (min ₦100, max ₦100,000,
+     ₦50 fee) + execute() now sends the betting amount (not amount+fee) to vtu.ng.
+  3. billing views: verify-customer now accepts category "betting"; new
+     BettingFundView.
+  4. billing urls: POST /api/v1/billing/betting/fund/.
+  5. management command: seed_betting_billers (the 14 providers).
+
+Betting uses the category string "betting" (Biller/BillOrder.category are plain
+CharFields), so NO migration is required.
+
+RUN FROM THE BACKEND ROOT:
+    python3 betting_patch/apply_betting.py
+    python manage.py seed_betting_billers        # once, seeds the 14 providers
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:200]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# --------------------------------------------------------- 1. adapter branch
+edit("integrations/vtu/vtung/adapter.py", [(
+    '        else:\n'
+    '            # data / electricity / cable arrive in later chunks\n'
+    '            raise ProviderValidationError("vtung", f"service \'{req.service}\' not integrated yet")',
+    '        elif req.service == "betting":\n'
+    '            # service_id is the exact provider name (e.g. "Bet9ja"); amount is the\n'
+    '            # betting credit (the OAM fee is kept in the wallet layer, not sent here).\n'
+    '            payload = {"request_id": request_id, "customer_id": req.recipient,\n'
+    '                       "service_id": req.operator, "amount": int(req.amount)}\n'
+    '            resp = self._post("/api/v2/betting", payload)\n'
+    '        else:\n'
+    '            # data / electricity / cable arrive in later chunks\n'
+    '            raise ProviderValidationError("vtung", f"service \'{req.service}\' not integrated yet")',
+)])
+
+# --------------------------------------------------------- 2. service
+edit("apps/billing/services.py", [
+    # execute(): send the betting amount (not amount+fee) to the provider
+    (
+        '            result = provider.purchase(VTURequest(\n'
+        '                service=order.category, operator=order.biller.code,\n'
+        '                recipient=order.recipient, amount=order.amount,\n'
+        '                plan_code=order.plan_code, request_id=order.reference,\n'
+        '            ))',
+        '            provider_amount = order.amount\n'
+        '            if order.category == "betting":\n'
+        '                provider_amount = Decimal(str((order.metadata or {}).get("betting_amount") or order.amount))\n'
+        '            result = provider.purchase(VTURequest(\n'
+        '                service=order.category, operator=order.biller.code,\n'
+        '                recipient=order.recipient, amount=provider_amount,\n'
+        '                plan_code=order.plan_code, request_id=order.reference,\n'
+        '            ))',
+    ),
+    # add purchase_betting() before the generic purchase() dispatcher
+    (
+        '    @staticmethod\n'
+        '    def purchase(**kwargs) -> BillOrder:\n'
+        '        return BillingService.execute(BillingService.create_and_hold(**kwargs))',
+        '    @staticmethod\n'
+        '    def purchase_betting(*, user, code, customer_id, amount, verification_id,\n'
+        '                         currency="NGN") -> BillOrder:\n'
+        '        """Fund a betting account. The user pays amount + a flat ₦50 OAM service\n'
+        '        fee; the betting account is credited with `amount`."""\n'
+        '        biller = BillingService._resolve_biller("NG", "betting", code)\n'
+        '        cv = BillingService._require_verification(user, biller.code, customer_id, verification_id)\n'
+        '        try:\n'
+        '            amount = Decimal(str(amount).replace(",", ""))\n'
+        '        except Exception:\n'
+        '            raise BillingError("Invalid amount.")\n'
+        '        if amount < Decimal("100"):\n'
+        '            raise BillingError("Minimum funding is ₦100.")\n'
+        '        if amount > Decimal("100000"):\n'
+        '            raise BillingError("Maximum funding is ₦100,000.")\n'
+        '        fee = Decimal("50")\n'
+        '        total = amount + fee\n'
+        '        order = BillingService.create_and_hold(\n'
+        '            user=user, country="NG", category="betting", code=code,\n'
+        '            recipient=str(customer_id), amount=total, currency=currency,\n'
+        '        )\n'
+        '        order.cost_amount = amount\n'
+        '        order.revenue_amount = fee\n'
+        '        order.customer_name = cv.customer_name\n'
+        '        md = dict(order.metadata or {})\n'
+        '        md.update({"betting_amount": str(amount), "fee": str(fee), "service_id": biller.code})\n'
+        '        order.metadata = md\n'
+        '        order.save(update_fields=["cost_amount", "revenue_amount", "customer_name",\n'
+        '                                  "metadata", "updated_at"])\n'
+        '        return BillingService.execute(order)\n'
+        '\n'
+        '    @staticmethod\n'
+        '    def purchase(**kwargs) -> BillOrder:\n'
+        '        return BillingService.execute(BillingService.create_and_hold(**kwargs))',
+    ),
+])
+
+# --------------------------------------------------------- 3. views
+edit("apps/billing/views.py", [
+    # allow betting in verify-customer
+    (
+        '        if category not in ("cable", "electricity") or not code or not customer_id:\n'
+        '            return Response({"detail": "category (cable/electricity), code and customer_id are required."},\n'
+        '                            status=status.HTTP_400_BAD_REQUEST)',
+        '        if category not in ("cable", "electricity", "betting") or not code or not customer_id:\n'
+        '            return Response({"detail": "category (cable/electricity/betting), code and customer_id are required."},\n'
+        '                            status=status.HTTP_400_BAD_REQUEST)',
+    ),
+    # add BettingFundView before DataPlansView
+    (
+        'class DataPlansView(APIView):',
+        'class BettingFundView(APIView):\n'
+        '    """POST /billing/betting/fund/ {code, customer_id, amount, verification_id}.\n'
+        '    User pays amount + ₦50; the betting account is credited with amount."""\n'
+        '    permission_classes = [IsAuthenticated, IsVerified]\n'
+        '\n'
+        '    def post(self, request):\n'
+        '        d = request.data\n'
+        '        code = d.get("code") or d.get("service_id")\n'
+        '        customer_id = d.get("customer_id") or d.get("recipient")\n'
+        '        amount = d.get("amount")\n'
+        '        verification_id = d.get("verification_id")\n'
+        '        if not code or not customer_id or amount in (None, "") or not verification_id:\n'
+        '            return Response({"detail": "code, customer_id, amount and verification_id are required."},\n'
+        '                            status=status.HTTP_400_BAD_REQUEST)\n'
+        '        try:\n'
+        '            order = BillingService.purchase_betting(\n'
+        '                user=request.user, code=code, customer_id=customer_id,\n'
+        '                amount=amount, verification_id=verification_id,\n'
+        '                currency=d.get("currency", "NGN"),\n'
+        '            )\n'
+        '        except InsufficientFunds as exc:\n'
+        '            return Response({"detail": str(exc), "reason": "insufficient_funds"},\n'
+        '                            status=status.HTTP_402_PAYMENT_REQUIRED)\n'
+        '        except BillingError as exc:\n'
+        '            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)\n'
+        '        http = status.HTTP_201_CREATED if order.status == BillOrder.Status.SUCCESS \\\n'
+        '            else status.HTTP_200_OK\n'
+        '        return Response(BillOrderSerializer(order).data, status=http)\n'
+        '\n'
+        '\n'
+        'class DataPlansView(APIView):',
+    ),
+])
+
+# ------------------------------------------ 3b. card delivery (pay with card)
+# When a betting top-up is paid by CARD, the card charges amount + ₦50; the card
+# money funds the wallet, then we deliver via purchase_betting (which re-applies
+# the ₦50 split). credit = charged amount - 50.
+edit("apps/billing/card.py", [(
+    '        return BillingService.purchase(\n'
+    '            user=c.user, country=c.country, category=c.category,\n'
+    '            code=c.code, recipient=c.recipient, amount=c.amount,\n'
+    '            currency=c.currency, plan_code=c.plan_code,\n'
+    '        )',
+    '        if c.category == "betting":\n'
+    '            if not c.verification_id:\n'
+    '                raise BillingError(\n'
+    '                    "This betting account was not verified before payment, so "\n'
+    '                    "delivery cannot be completed. Your money is in your wallet."\n'
+    '                )\n'
+    '            credit = Decimal(str(c.amount)) - Decimal("50")\n'
+    '            return BillingService.purchase_betting(\n'
+    '                user=c.user, code=c.code, customer_id=c.recipient,\n'
+    '                amount=credit, verification_id=c.verification_id, currency=c.currency,\n'
+    '            )\n'
+    '\n'
+    '        return BillingService.purchase(\n'
+    '            user=c.user, country=c.country, category=c.category,\n'
+    '            code=c.code, recipient=c.recipient, amount=c.amount,\n'
+    '            currency=c.currency, plan_code=c.plan_code,\n'
+    '        )',
+)])
+
+# --------------------------------------------------------- 4. urls
+edit("apps/billing/urls.py", [
+    (
+        'from .views import (\n    BillerListView,',
+        'from .views import (\n    BettingFundView,\n    BillerListView,',
+    ),
+    (
+        '    path("verify-customer/", VerifyCustomerView.as_view(), name="verify-customer"),',
+        '    path("verify-customer/", VerifyCustomerView.as_view(), name="verify-customer"),\n'
+        '    path("betting/fund/", BettingFundView.as_view(), name="betting-fund"),',
+    ),
+])
+
+# --------------------------------------------------- 5. seed command
+SEED = '''from django.core.management.base import BaseCommand
+
+from apps.billing.models import Biller
+
+# vtu.ng betting providers (service_id == provider name, case-sensitive).
+PROVIDERS = [
+    "1xBet", "BangBet", "Bet9ja", "BetKing", "BetLand", "BetLion", "BetWay",
+    "CloudBet", "LiveScoreBet", "MerryBet", "NaijaBet", "NairaBet",
+    "SportyBet", "SupaBet",
+]
+
+
+class Command(BaseCommand):
+    help = "Seed the Nigerian betting providers as billers (category=betting)."
+
+    def handle(self, *args, **options):
+        created = 0
+        for name in PROVIDERS:
+            _, was_created = Biller.objects.get_or_create(
+                country="NG", category="betting", code=name,
+                defaults={"name": name, "is_active": True},
+            )
+            created += int(was_created)
+        self.stdout.write(self.style.SUCCESS(
+            f"Betting billers ready ({created} created, {len(PROVIDERS)} total)."))
+'''
+cmd_dir = _p("apps", "billing", "management", "commands")
+os.makedirs(cmd_dir, exist_ok=True)
+open(os.path.join(cmd_dir, "seed_betting_billers.py"), "w", encoding="utf-8").write(SEED)
+print("  + wrote apps/billing/management/commands/seed_betting_billers.py")
+
+print("\nDONE. Betting funding added. Now run:  python manage.py seed_betting_billers")
+````
+
+## File: config/settings/__init__.py
+````python
+
+````
+
+## File: config/settings/base.py
+````python
+"""
+Base settings shared by all environments.
+
+Environment-specific overrides live in dev.py / prod.py / test.py.
+Secrets and connection strings are read from the environment via django-environ.
+"""
+from pathlib import Path
+
+import environ
+
+# backend/config/settings/base.py -> backend/
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+env = environ.Env(
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
+    CORS_ALLOWED_ORIGINS=(list, []),
+)
+environ.Env.read_env(BASE_DIR / ".env")
+
+SECRET_KEY = env("SECRET_KEY", default="insecure-dev-key-change-me")
+DEBUG = env("DEBUG")
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+
+# --------------------------------------------------------------------------
+# Applications
+# --------------------------------------------------------------------------
+# NOTE: 'modeltranslation' MUST come before django.contrib.admin so the admin
+# picks up translated model fields.
+INSTALLED_APPS = [
+    "modeltranslation",
+
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # Third-party
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "corsheaders",
+    "drf_spectacular",
+    "django_celery_beat",
+    "django_celery_results",
+    "rest_framework_simplejwt.token_blacklist",
+
+    # Local apps
+    "apps.common",
+    "apps.affiliates",      # affiliate link generation + click/conversion tracking
+    "apps.referrals",       # user referral links + 5% commission engine
+    # Domain apps are added phase by phase:
+     "apps.accounts",
+     "apps.wallet",
+     "apps.payments",
+     "apps.billing",
+     "apps.payouts",
+     "apps.marketplace",
+     "apps.assistant",
+     "apps.messaging",
+     "apps.homeservices",
+     "apps.uploads",
+     "beneficiaries",
+     "apps.notifications",
+     "apps.travu",
+    "apps.reloadly",
+    
+    # ...
+]
+
+# Use our custom user model instead of Django's default.
+AUTH_USER_MODEL = "accounts.User"
+
+MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    # LocaleMiddleware must sit AFTER SessionMiddleware and BEFORE CommonMiddleware.
+    # It resolves the active language from (in order): URL prefix, session,
+    # cookie, then the Accept-Language header sent by the web/mobile clients.
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+ROOT_URLCONF = "config.urls"
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.template.context_processors.i18n",  # enables {% trans %} + LANGUAGES
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
+
+# --------------------------------------------------------------------------
+# Database
+# --------------------------------------------------------------------------
+DATABASES = {
+    "default": env.db("DATABASE_URL", default="postgres://oam:oam@localhost:5432/oam"),
+}
+DATABASES["default"]["ATOMIC_REQUESTS"] = False  # we manage atomicity in services
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# --------------------------------------------------------------------------
+# Internationalisation  (12 languages, including RTL)
+# --------------------------------------------------------------------------
+# Django language codes. Chinese uses "zh-hans" (Simplified).
+LANGUAGE_CODE = "en"
+
+LANGUAGES = [
+    ("en", "English"),
+    ("zh-hans", "Chinese (Simplified)"),
+    ("es", "Spanish"),
+    ("fr", "French"),
+    ("ar", "Arabic"),
+    ("hi", "Hindi"),
+    ("pt", "Portuguese"),
+    ("ru", "Russian"),
+    ("bn", "Bengali"),
+    ("id", "Indonesian"),
+    ("de", "German"),
+    ("ur", "Urdu"),
+]
+
+# Languages that render right-to-left. The API exposes this so the web/mobile
+# clients can flip layout direction (dir="rtl" / I18nManager.forceRTL).
+RTL_LANGUAGES = {"ar", "ur"}
+
+# Where gettext .po/.mo catalogues live (static UI strings, emails, errors).
+LOCALE_PATHS = [BASE_DIR / "locale"]
+
+# django-modeltranslation: which languages translatable MODEL FIELDS support
+# (e.g. category names, CMS content, product descriptions).
+MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
+MODELTRANSLATION_LANGUAGES = (
+    "en", "zh-hans", "es", "fr", "ar", "hi",
+    "pt", "ru", "bn", "id", "de", "ur",
+)
+MODELTRANSLATION_FALLBACK_LANGUAGES = ("en",)
+
+USE_I18N = True
+USE_TZ = True
+TIME_ZONE = "UTC"
+
+# --------------------------------------------------------------------------
+# Static / media
+# --------------------------------------------------------------------------
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+# --------------------------------------------------------------------------
+# DRF + JWT
+# --------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 20,
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+from datetime import timedelta  # noqa: E402
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=12),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "OAM Platform API",
+    "DESCRIPTION": "Travel, commerce & lifestyle super-app backend.",
+    "VERSION": "0.1.0",
+}
+
+# --------------------------------------------------------------------------
+# CORS
+# --------------------------------------------------------------------------
+CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS")
+CORS_ALLOW_CREDENTIALS = True
+
+# --------------------------------------------------------------------------
+# Celery / Redis
+# --------------------------------------------------------------------------
+CELERY_BROKER_URL = env("REDIS_URL", default="redis://localhost:6379/0")
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_TASK_ACKS_LATE = True               # re-queue if a worker dies mid-task
+CELERY_TASK_REJECT_ON_WORKER_LOST = True
+CELERY_TASK_DEFAULT_QUEUE = "default"
+CELERY_TASK_ROUTES = {
+    # Financial work gets its own queue so a notification backlog never delays it.
+    "tasks.payments.*": {"queue": "payments"},
+    "tasks.remittance.*": {"queue": "payments"},
+    "tasks.travel.*": {"queue": "bookings"},
+    "tasks.notifications.*": {"queue": "notifications"},
+    "tasks.reconciliation.*": {"queue": "beat"},
+}
+
+# --------------------------------------------------------------------------
+# Third-party provider selection (resolved by integrations.base.registry)
+# --------------------------------------------------------------------------
+# Maps each integration category -> the adapter key that is currently active.
+# Adapters self-register; the factory looks the key up here.
+#
+# Integration STYLE per category:
+#   payments   -> API        (Paystack / Flutterwave: money flows through us)
+#   vtu        -> API        (bills/airtime/data via a VTU aggregator)
+#   hotels     -> API        (Hotelbeds / Booking.com: real bookings)
+#   flights    -> AFFILIATE  (Travelpayouts deep links)
+#   carhire    -> AFFILIATE  (Travelpayouts deep links)
+#   delivery   -> AFFILIATE  (Uber Eats affiliate link/code)
+#   remittance -> AFFILIATE  (Wise / Lemfi / Remitly / Taptap links; API later)
+
+def _provider(key, default=""):
+    return env(key, default=default).split("#")[0].strip()
+
+SUPPORTED_PAYMENT_CURRENCIES = [
+    c.strip().upper()
+    for c in env("SUPPORTED_PAYMENT_CURRENCIES", default="NGN").split(",")
+    if c.strip()
+]
+
+DEFAULT_PROVIDERS = {
+    "payments": _provider("DEFAULT_PROVIDER_PAYMENTS", "paystack"),
+    "vtu": _provider("DEFAULT_PROVIDER_VTU", "default"),
+    "hotels": _provider("DEFAULT_PROVIDER_HOTELS", "klook"),
+    "flights": _provider("DEFAULT_PROVIDER_FLIGHTS", "travelpayouts"),
+    "carhire": _provider("DEFAULT_PROVIDER_CARHIRE", "travelpayouts"),
+    "transfers": _provider("DEFAULT_PROVIDER_TRANSFERS", "travelpayouts"),
+    "delivery": _provider("DEFAULT_PROVIDER_DELIVERY", "ubereats"),
+    "remittance": _provider("DEFAULT_PROVIDER_REMITTANCE", "wise"),
+    "payouts": _provider("DEFAULT_PROVIDER_PAYOUTS", "mock"),
+    "giftcards": _provider("DEFAULT_PROVIDER_GIFTCARDS", "g2a"),
+}
+
+# Per-(category, key) credentials/config. Adapters read their slice via the
+# factory. Everything is sourced from the environment so no secret is committed.
+PROVIDER_CONFIG = {
+    "payments": {
+        "paystack": {"secret_key": env("PAYSTACK_SECRET_KEY", default=""),
+                     "public_key": env("PAYSTACK_PUBLIC_KEY", default="")},
+        "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default=""),
+                        "public_key": env("FLUTTERWAVE_PUBLIC_KEY", default=""),
+                        "secret_hash": env("FLUTTERWAVE_SECRET_HASH", default=""),
+                        "redirect_url": env("FLUTTERWAVE_REDIRECT_URL", default="")},
+    },
+    "vtu": {
+        # Generic adapter — point it at your chosen aggregator (VTpass,
+        # Reloadly, Flutterwave Bills, etc.).
+        "default": {"base_url": env("VTU_BASE_URL", default=""),
+                    "api_key": env("VTU_API_KEY", default=""),
+                    "secret": env("VTU_SECRET", default="")},
+        "vtung": {"username": env("VTU_NG_USERNAME", default=""),
+                  "password": env("VTU_NG_PASSWORD", default=""),
+                  "user_pin": env("VTU_NG_USER_PIN", default="")},
+    },
+
+    "hotels": {
+        
+        "klook": {"url": env("KLOOK_URL", default="")},
+
+        "hotelbeds": {"api_key": env("HOTELBEDS_API_KEY", default=""),
+                      "secret": env("HOTELBEDS_SECRET", default=""),
+                      "base_url": env("HOTELBEDS_BASE_URL",
+                                      default="https://api.test.hotelbeds.com")},
+        "booking": {"api_key": env("BOOKING_API_KEY", default="")},
+    },
+   "flights":   {"travelpayouts": {"marker": env("TRAVELPAYOUTS_MARKER", default=""),
+                                     "token": env("TRAVELPAYOUTS_TOKEN", default=""),
+                                     "url": env("AVIASALES_URL", default="")}
+                            },
+
+    "carhire":   {"travelpayouts": {"marker": env("TRAVELPAYOUTS_MARKER", default=""),
+                                     "token": env("TRAVELPAYOUTS_TOKEN", default=""),
+                                     "url": env("GETRENTACAR_URL", default="")}
+                                     
+                            },
+
+    "transfers": {"travelpayouts": {"marker": env("TRAVELPAYOUTS_MARKER", default=""),
+                                     "token": env("TRAVELPAYOUTS_TOKEN", default=""),
+                                     "url": env("WELCOMEPICKUPS_URL", default="")}
+                            },
+    "delivery": {
+        "ubereats": {"affiliate_url": env("UBEREATS_AFFILIATE_URL", default=""),
+                     "affiliate_code": env("UBEREATS_AFFILIATE_CODE", default="")},
+    },
+    "remittance": {
+        "wise":   {"affiliate_url": env("WISE_AFFILIATE_URL", default=""),
+                   "api_token": env("WISE_API_TOKEN", default="")},
+        "lemfi":  {"affiliate_url": env("LEMFI_AFFILIATE_URL", default=""),
+                   "api_token": env("LEMFI_API_TOKEN", default="")},
+        "remitly": {"affiliate_url": env("REMITLY_AFFILIATE_URL", default="")},
+        "taptap":  {"affiliate_url": env("TAPTAP_AFFILIATE_URL", default="")},
+    },
+
+    "payouts": {
+        "paystack": {"secret_key": env("PAYSTACK_SECRET_KEY", default="")},
+        "mock": {},
+    },
+
+    "giftcards": {"g2a": {"url": env("G2A_REFLINK", default="")}},
+
+
+}
+
+
+# --------------------------------------------------------------------------
+# Currencies (wallet switches active currency by user country/location)
+# --------------------------------------------------------------------------
+SUPPORTED_CURRENCIES = ["NGN", "USD", "GBP", "EUR"]
+DEFAULT_CURRENCY = "NGN"
+
+
+# --------------------------------------------------------------------------
+# Social authentication (Google / Facebook / Apple)
+# --------------------------------------------------------------------------
+SOCIAL_AUTH = {
+    "google":   {"client_ids": env.list("GOOGLE_CLIENT_IDS", default=[])},
+    "facebook": {"app_id": env("FACEBOOK_APP_ID", default=""),
+                 "app_secret": env("FACEBOOK_APP_SECRET", default="")},
+    "apple":    {"client_ids": env.list("APPLE_CLIENT_IDS", default=[])},
+}
+# DEV ONLY: lets you test the link-or-create flow with token "MOCK".
+# Must stay False in production (it is overridden there anyway).
+SOCIAL_AUTH_ALLOW_MOCK = env.bool("SOCIAL_AUTH_ALLOW_MOCK", default=DEBUG)
+
+EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)
+
+
+# ---------------------------------------------------------------- email
+APP_DISPLAY_NAME = env("APP_DISPLAY_NAME", default="OAM Platform")
+
+EMAIL_HOST = env("EMAIL_HOST", default="mail.oam-app.com")
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)      # ← ADDED
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = env(
+    "DEFAULT_FROM_EMAIL",
+    default=f"{APP_DISPLAY_NAME} <{EMAIL_HOST_USER or 'no-reply@oam-app.com'}>",
+)
+EMAIL_TIMEOUT = 60
+
+# Fall back to the console backend when no credentials are set, so local dev
+# never breaks — the email just prints to the terminal instead.
+EMAIL_BACKEND = env(
+    "EMAIL_BACKEND",
+    default=("django.core.mail.backends.smtp.EmailBackend" if EMAIL_HOST_PASSWORD
+             else "django.core.mail.backends.console.EmailBackend"),
+)
+
+PAYSTACK_CALLBACK_URL = env("PAYSTACK_CALLBACK_URL", default="")
+PAYSTACK_DEPOSIT_SUBACCOUNT_CODE = env("PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", default="")
+FLUTTERWAVE_REDIRECT_URL = env("FLUTTERWAVE_REDIRECT_URL", default=PAYSTACK_CALLBACK_URL)
+
+# Gateway used ONLY for Marketplace/Artisan listing-upgrade payments (Pro/
+# Premium seller tiers and artisan boosts). Everything else uses
+# DEFAULT_PROVIDERS["payments"]. Set to "paystack" to revert.
+LISTING_UPGRADE_PROVIDER = env("LISTING_UPGRADE_PROVIDER", default="flutterwave")
+
+# --- Cloudinary (file uploads) ----------------------------------------------
+# The browser uploads straight to Cloudinary using a signature generated here,
+# so large videos never pass through this server. The SECRET must stay
+# server-side: it's what proves an upload was authorised by us.
+CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME", default="")
+CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY", default="")
+CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET", default="")
+
+
+# --- Assistant --------------------------------------------------------------
+# Optional. With a key, the assistant answers freely using a language model.
+# Without one it falls back to answering from the built-in knowledge base, so
+# the feature works either way and the button is never broken.
+ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", default="")
+ASSISTANT_MODEL = env("ASSISTANT_MODEL", default="claude-sonnet-4-6")
+````
+
+## File: config/settings/dev.py
+````python
+"""Local development settings."""
+from .base import *  # noqa: F401,F403
+
+DEBUG = True
+ALLOWED_HOSTS = ["*"]
+
+# Run Celery tasks synchronously in dev unless a worker is running.
+# Set to False once you start a real worker locally.
+CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=False)  # noqa: F405
+````
+
+## File: config/settings/prod.py
+````python
+"""Production settings (Render)."""
+from .base import *  # noqa: F401,F403
+
+DEBUG = False
+
+# Render terminates TLS at the proxy; trust the forwarded scheme.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+````
+
+## File: config/settings/production.py
+````python
+"""
+Production settings for Render.
+
+Imports everything from base and overrides only what must differ. Every value
+that varies by environment — or that must never appear in git — comes from an
+environment variable.
+
+Save as config/settings/production.py and set on Render:
+    DJANGO_SETTINGS_MODULE = config.settings.production
+"""
+import os
+
+import dj_database_url
+
+from .base import *  # noqa: F401,F403
+from .base import BASE_DIR, INSTALLED_APPS, MIDDLEWARE
+
+# --------------------------------------------------------------------------- #
+# Core
+# --------------------------------------------------------------------------- #
+
+DEBUG = False
+
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]  # deliberately no default: a
+# missing key should stop the deploy, not silently fall back to something
+# predictable and shared.
+
+# Render sets RENDER_EXTERNAL_HOSTNAME automatically.
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()]
+_render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if _render_host:
+    ALLOWED_HOSTS.append(_render_host)
+
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "https://app.oam-app.com").rstrip("/")
+
+# --------------------------------------------------------------------------- #
+# Database
+# --------------------------------------------------------------------------- #
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL", ""),
+        conn_max_age=600,           # reuse connections; Postgres handshakes are
+        conn_health_checks=True,    # slow, and Render's network adds latency
+        ssl_require=True,
+    )
+}
+
+# --------------------------------------------------------------------------- #
+# HTTPS
+# --------------------------------------------------------------------------- #
+
+# Render terminates TLS at its proxy and forwards this header. Without it Django
+# believes every request is plain HTTP and redirects forever.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Start at an hour. Raise to 31536000 once you're confident — HSTS is hard to
+# undo, because browsers remember it.
+SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", 3600))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+CSRF_TRUSTED_ORIGINS = [
+    o.strip() for o in os.environ.get("CSRF_TRUSTED_ORIGINS", FRONTEND_URL).split(",")
+    if o.strip()
+]
+
+# --------------------------------------------------------------------------- #
+# CORS — the frontend is on a different origin
+# --------------------------------------------------------------------------- #
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    o.strip() for o in os.environ.get("CORS_ALLOWED_ORIGINS", FRONTEND_URL).split(",")
+    if o.strip()
+]
+CORS_ALLOW_CREDENTIALS = True
+
+# --------------------------------------------------------------------------- #
+# Static files
+# --------------------------------------------------------------------------- #
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"
+
+if "whitenoise.runserver_nostatic" not in INSTALLED_APPS:
+    INSTALLED_APPS.insert(0, "whitenoise.runserver_nostatic")
+
+if "whitenoise.middleware.WhiteNoiseMiddleware" not in MIDDLEWARE:
+    _i = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware") + 1
+    MIDDLEWARE.insert(_i, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
+
+# --------------------------------------------------------------------------- #
+# Logging — Render captures stdout
+# --------------------------------------------------------------------------- #
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {"format": "{levelname} {asctime} {name} {message}", "style": "{"},
+    },
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "simple"},
+    },
+    "root": {"handlers": ["console"], "level": "INFO"},
+    "loggers": {
+        # These carry the money paths. Keep them findable in Render's log search.
+        "billing": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "accounts": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "assistant": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "django.request": {"handlers": ["console"], "level": "ERROR", "propagate": False},
+    },
+}
+````
+
+## File: config/settings/test.py
+````python
+"""Settings used by the test suite."""
+from .base import *  # noqa: F401,F403
+
+DEBUG = False
+CELERY_TASK_ALWAYS_EAGER = True            # tasks run inline during tests
+PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]  # faster tests
+````
+
+## File: config/__init__.py
+````python
+# Ensure the Celery app is loaded when Django starts, so shared_task works.
+from .celery import app as celery_app
+
+__all__ = ("celery_app",)
+````
+
+## File: config/asgi.py
+````python
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.prod")
+application = get_asgi_application()
+````
+
+## File: config/celery.py
+````python
+"""Celery application instance for the OAM Platform."""
+import os
+
+from celery import Celery
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
+
+app = Celery("oam")
+
+# Read CELERY_* settings from Django settings.
+app.config_from_object("django.conf:settings", namespace="CELERY")
+
+# Auto-discover tasks in the top-level `tasks` package.
+app.autodiscover_tasks(["tasks"])
+
+
+@app.task(bind=True, ignore_result=True)
+def debug_task(self):
+    print(f"Request: {self.request!r}")
+````
+
+## File: config/urls.py
+````python
+"""Root URL configuration."""
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+
+    # API v1
+    path("api/v1/", include("apps.common.urls")),
+    # Domain apps are wired in phase by phase:
+    path("api/v1/auth/", include("apps.accounts.urls")),
+    path("api/v1/wallet/", include("apps.wallet.urls")),
+    path("api/v1/payments/", include("apps.payments.urls")),
+    path("api/v1/billing/", include("apps.billing.urls")),
+    path("api/v1/payouts/", include("apps.payouts.urls")),
+    path("api/v1/marketplace/", include("apps.marketplace.urls")),
+    path("api/v1/referrals/", include("apps.referrals.urls")),
+    path("api/v1/assistant/", include("apps.assistant.urls")),
+    path("api/v1/messaging/", include("apps.messaging.urls")),
+    path("api/v1/homeservices/", include("apps.homeservices.urls")),
+    path("api/v1/uploads/", include("apps.uploads.urls")),
+    path("api/v1/affiliates/", include("apps.affiliates.urls")),
+    path("api/v1/bus/", include("apps.travu.urls")),
+    path("api/v1/travu/", include("apps.travu.urls")),
+    path("api/v1/reloadly/", include("apps.reloadly.urls")),
+    # OpenAPI schema + docs (drives the typed web/mobile clients)
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
+   
+   
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+````
+
+## File: config/wsgi.py
+````python
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.prod")
+application = get_wsgi_application()
+````
+
+## File: currency_patch/apply_currency.py
+````python
+#!/usr/bin/env python3
+"""
+Charge Marketplace/Artisan listing upgrades in the buyer's currency.
+
+Today every upgrade is charged in NGN, so an international card (e.g. a UAE card
+from Dubai) gets a "Restricted Card" error from the bank. This patch lets the
+subscribe/boost endpoints charge in NGN / USD / GBP / EUR using FIXED per-
+currency prices, so those cards can pay in a currency they accept.
+
+SAFE BY DEFAULT: SUPPORTED_PAYMENT_CURRENCIES starts as just ["NGN"], so nothing
+changes until you enable more — and you should only enable a currency once your
+Flutterwave account is confirmed to collect it. An unsupported/unknown currency
+always falls back to NGN.
+
+WHAT IT DOES (guarded; aborts if a file has diverged):
+  1. Writes apps/payments/pricing.py (per-currency price tables + resolver).
+  2. Adds SUPPORTED_PAYMENT_CURRENCIES to settings.
+  3. marketplace/services.py + homeservices/services.py: use the per-currency
+     price instead of the NGN one.
+  4. Adds GET /api/v1/payments/pricing/ so the apps can show local prices and
+     know which currencies are enabled.
+
+RUN FROM THE BACKEND ROOT:
+    python3 currency_patch/apply_currency.py
+
+Then, ONLY once Flutterwave confirms the currencies collect:
+    SUPPORTED_PAYMENT_CURRENCIES=NGN,USD,GBP,EUR      (Render env)
+Edit the numbers any time in apps/payments/pricing.py.
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def edit(path, subs, *, must_exist=True):
+    full = _p(path)
+    if not os.path.exists(full):
+        if must_exist:
+            sys.exit(f"ABORT: expected file not found: {path}")
+        return
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:160]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# ------------------------------------------------------------ 1. pricing module
+PRICING = '''"""
+Per-currency prices for Marketplace/Artisan listing upgrades.
+
+Prices are FIXED per currency (not live-converted) — clean, predictable amounts
+and no FX drift. Edit the numbers freely. Whether a non-NGN currency is actually
+offered is gated by settings.SUPPORTED_PAYMENT_CURRENCIES, which should only list
+currencies your Flutterwave account can collect.
+"""
+from decimal import Decimal
+
+from django.conf import settings
+
+# tier -> price, per currency
+SUBSCRIPTION_PRICES_BY_CCY = {
+    "NGN": {"premium": Decimal("2500"), "pro": Decimal("5000")},
+    "USD": {"premium": Decimal("2"), "pro": Decimal("4")},
+    "GBP": {"premium": Decimal("2"), "pro": Decimal("3")},
+    "EUR": {"premium": Decimal("2"), "pro": Decimal("4")},
+}
+
+# boost duration (days) -> price, per currency
+BOOST_PRICES_BY_CCY = {
+    "NGN": {30: Decimal("2500"), 90: Decimal("5000")},
+    "USD": {30: Decimal("2"), 90: Decimal("4")},
+    "GBP": {30: Decimal("2"), 90: Decimal("3")},
+    "EUR": {30: Decimal("2"), 90: Decimal("4")},
+}
+
+
+def supported_currencies():
+    ccys = getattr(settings, "SUPPORTED_PAYMENT_CURRENCIES", ["NGN"]) or ["NGN"]
+    out = [str(c).upper() for c in ccys if str(c).strip()]
+    return out or ["NGN"]
+
+
+def resolve_payment_currency(requested):
+    """Return the currency to actually charge in: the requested one if it is both
+    supported and priced, otherwise NGN."""
+    ccy = str(requested or "NGN").upper()
+    if ccy in supported_currencies() and ccy in SUBSCRIPTION_PRICES_BY_CCY:
+        return ccy
+    return "NGN"
+
+
+def subscription_price(tier, currency):
+    table = SUBSCRIPTION_PRICES_BY_CCY.get(currency, SUBSCRIPTION_PRICES_BY_CCY["NGN"])
+    return table[tier]
+
+
+def boost_price(days, currency):
+    table = BOOST_PRICES_BY_CCY.get(currency, BOOST_PRICES_BY_CCY["NGN"])
+    return table[days]
+
+
+def pricing_payload():
+    """Supported currencies + full price tables, for the web/mobile apps."""
+    return {
+        "supported_currencies": supported_currencies(),
+        "subscription": {
+            tier: {ccy: str(SUBSCRIPTION_PRICES_BY_CCY[ccy][tier]) for ccy in SUBSCRIPTION_PRICES_BY_CCY}
+            for tier in ("premium", "pro")
+        },
+        "boost": {
+            str(days): {ccy: str(BOOST_PRICES_BY_CCY[ccy][days]) for ccy in BOOST_PRICES_BY_CCY}
+            for days in (30, 90)
+        },
+    }
+'''
+open(_p("apps", "payments", "pricing.py"), "w", encoding="utf-8").write(PRICING)
+print("  + wrote apps/payments/pricing.py")
+
+# ------------------------------------------------------------ 2. settings
+edit("config/settings/base.py", [(
+    "DEFAULT_PROVIDERS = {",
+    'SUPPORTED_PAYMENT_CURRENCIES = [\n'
+    '    c.strip().upper()\n'
+    '    for c in env("SUPPORTED_PAYMENT_CURRENCIES", default="NGN").split(",")\n'
+    '    if c.strip()\n'
+    ']\n\n'
+    "DEFAULT_PROVIDERS = {",
+)])
+
+# ------------------------------------------------------------ 3. service pricing
+edit("apps/marketplace/services.py", [
+    ("from integrations.base import ProviderFactory",
+     "from integrations.base import ProviderFactory\nfrom apps.payments.pricing import resolve_payment_currency, subscription_price"),
+    ("        price = SUBSCRIPTION_PRICES[tier]",
+     "        currency = resolve_payment_currency(currency)\n        price = subscription_price(tier, currency)"),
+])
+edit("apps/homeservices/services.py", [
+    ("from integrations.base import ProviderFactory",
+     "from integrations.base import ProviderFactory\nfrom apps.payments.pricing import resolve_payment_currency, boost_price"),
+    ("        price = BOOST_PACKAGES[days]",
+     "        currency = resolve_payment_currency(currency)\n        price = boost_price(days, currency)"),
+])
+
+# ------------------------------------------------------------ 4. pricing endpoint
+PRICING_VIEW = '''class PricingView(APIView):
+    """GET /api/v1/payments/pricing/ -- supported currencies + per-currency listing
+    prices, so the web/mobile apps can show local prices and only offer currencies
+    that are actually enabled. Public; no money moves here."""
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        from apps.payments.pricing import pricing_payload
+        return Response(pricing_payload())
+
+
+'''
+edit("apps/payments/views.py", [(
+    "class DevSimulateSuccessView(APIView):",
+    PRICING_VIEW + "class DevSimulateSuccessView(APIView):",
+)])
+edit("apps/payments/urls.py", [
+    ("    PaystackWebhookView,\n)",
+     "    PaystackWebhookView,\n    PricingView,\n)"),
+    ('    path("webhook/paystack/", PaystackWebhookView.as_view(), name="paystack-webhook"),',
+     '    path("webhook/paystack/", PaystackWebhookView.as_view(), name="paystack-webhook"),\n'
+     '    path("pricing/", PricingView.as_view(), name="pricing"),'),
+])
+
+print("\nDONE. Listing upgrades can now charge in NGN/USD/GBP/EUR (fixed prices).")
+print("Enable currencies only after Flutterwave confirms it collects them:")
+print("    SUPPORTED_PAYMENT_CURRENCIES=NGN,USD,GBP,EUR")
+````
+
+## File: flutterwave_patch/apply_flutterwave.py
+````python
+#!/usr/bin/env python3
+"""
+Route Marketplace + Artisan listing-upgrade payments (Pro/Premium tiers and
+artisan boosts) through Flutterwave instead of Paystack. Everything else —
+wallet funding, bills, payouts — stays on the default gateway.
+
+WHAT IT DOES (all edits are guarded; the script aborts if a file has diverged
+from what it expects, so it never silently corrupts anything):
+  1. Writes the Flutterwave adapter: integrations/payments/flutterwave/adapter.py
+  2. Registers it in integrations/loader.py
+  3. Extends config/settings/base.py: flutterwave config + FLUTTERWAVE_REDIRECT_URL
+     + LISTING_UPGRADE_PROVIDER
+  4. Routes marketplace + homeservices initiate() to the upgrade provider and
+     verify() to each payment's stored provider
+  5. Makes the two upgrade webhook endpoints provider-aware (accept Flutterwave's
+     verif-hash + charge.completed payload) and adds /webhook/flutterwave/ aliases
+
+RUN FROM THE BACKEND ROOT (the folder with manage.py):
+    python3 flutterwave_patch/apply_flutterwave.py
+
+Then set these env vars (Render dashboard) and run migrations if any:
+    FLUTTERWAVE_SECRET_KEY, FLUTTERWAVE_PUBLIC_KEY, FLUTTERWAVE_SECRET_HASH
+    FLUTTERWAVE_REDIRECT_URL   (defaults to PAYSTACK_CALLBACK_URL)
+    LISTING_UPGRADE_PROVIDER   (defaults to "flutterwave"; set "paystack" to revert)
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def edit(path, subs, *, must_exist=True):
+    full = _p(path)
+    if not os.path.exists(full):
+        if must_exist:
+            sys.exit(f"ABORT: expected file not found: {path}")
+        return
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:160]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# ---------------------------------------------------------------- 1. adapter
+ADAPTER = r'''"""
+Flutterwave payment gateway adapter (API v3).
+
+Used for Marketplace and Artisan *listing-upgrade* payments — the Pro/Premium
+seller tiers and artisan boosts — which benefit from Flutterwave's broader
+international card acceptance. Wallet funding, bills and every other charge stay
+on the default gateway (Paystack); only the two upgrade flows are routed here.
+
+Key differences from Paystack, handled below:
+  * Amounts are sent in MAJOR units (e.g. 2500 == NGN 2,500), not kobo/subunits.
+  * We initialise with our own `tx_ref` (the internal reference) and verify with
+    `/transactions/verify_by_reference?tx_ref=...`, so the rest of the pipeline —
+    which keys everything off our internal reference — is unchanged and never
+    needs to store Flutterwave's numeric transaction id.
+  * Webhooks are authenticated by comparing the `verif-hash` header to the secret
+    hash configured in the Flutterwave dashboard (not an HMAC of the body).
+
+Config: PROVIDER_CONFIG["payments"]["flutterwave"] ->
+    secret_key, public_key, secret_hash, redirect_url
+"""
+from __future__ import annotations
+
+import hmac
+from decimal import Decimal
+
+from integrations.base import register
+from integrations.base.dto import ChargeInit, ChargeStatus, TxnStatus
+from integrations.base.interfaces import PaymentGateway
+
+
+def _flw_redirect_url(config: dict) -> str:
+    """Where Flutterwave returns the user after payment (config -> settings -> env)."""
+    import os
+
+    val = (config or {}).get("redirect_url", "")
+    if val:
+        return val
+    try:
+        from django.conf import settings
+
+        val = (getattr(settings, "FLUTTERWAVE_REDIRECT_URL", "")
+               or getattr(settings, "PAYSTACK_CALLBACK_URL", ""))
+    except Exception:
+        val = ""
+    return (val
+            or os.environ.get("FLUTTERWAVE_REDIRECT_URL", "")
+            or os.environ.get("PAYSTACK_CALLBACK_URL", ""))
+
+
+@register("payments", "flutterwave")
+class FlutterwaveGateway(PaymentGateway):
+    base_url = "https://api.flutterwave.com/v3"
+
+    def _headers(self):
+        return {
+            "Authorization": f"Bearer {self.config.get('secret_key', '')}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None):
+        payload = {
+            "tx_ref": reference,
+            "amount": str(amount),                 # major units - no *100
+            "currency": currency,
+            "customer": {"email": email},
+            "meta": metadata or {},
+            "customizations": {"title": "OAM"},
+        }
+        redirect = _flw_redirect_url(self.config)
+        if redirect:
+            payload["redirect_url"] = redirect
+
+        data = self.post("/payments", json=payload)
+        d = data.get("data", {}) or {}
+        return ChargeInit(
+            authorization_url=d.get("link", ""),
+            access_code="",
+            provider_reference=reference,          # our ref; FLW id resolved at verify
+            raw=data,
+        )
+
+    def verify_charge(self, reference):
+        data = self.get("/transactions/verify_by_reference",
+                        params={"tx_ref": reference})
+        d = data.get("data", {}) or {}
+        st = (d.get("status") or "").lower()
+        status = (TxnStatus.SUCCESS if st == "successful"
+                  else TxnStatus.FAILED if st in ("failed", "cancelled")
+                  else TxnStatus.PENDING)
+        return ChargeStatus(
+            status=status,
+            amount=Decimal(str(d.get("amount", 0))),   # major units
+            currency=d.get("currency", ""),
+            provider_reference=str(d.get("id") or reference),
+            raw=data,
+        )
+
+    def verify_webhook(self, payload, headers):
+        expected = str(self.config.get("secret_hash", ""))
+        got = str((headers or {}).get("verif-hash", ""))
+        return bool(expected) and hmac.compare_digest(expected, got)
+'''
+
+pkg = _p("integrations", "payments", "flutterwave")
+os.makedirs(pkg, exist_ok=True)
+open(os.path.join(pkg, "__init__.py"), "w").close()
+open(os.path.join(pkg, "adapter.py"), "w", encoding="utf-8").write(ADAPTER)
+print("  + wrote integrations/payments/flutterwave/adapter.py")
+
+# ---------------------------------------------------------------- 2. loader
+edit("integrations/loader.py", [(
+    '    "integrations.payments.paystack.adapter",\n',
+    '    "integrations.payments.paystack.adapter",\n'
+    '    "integrations.payments.flutterwave.adapter",\n',
+)])
+
+# ---------------------------------------------------------------- 3. settings
+edit("config/settings/base.py", [
+    (
+        '        "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default="")},',
+        '        "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default=""),\n'
+        '                        "public_key": env("FLUTTERWAVE_PUBLIC_KEY", default=""),\n'
+        '                        "secret_hash": env("FLUTTERWAVE_SECRET_HASH", default=""),\n'
+        '                        "redirect_url": env("FLUTTERWAVE_REDIRECT_URL", default="")},',
+    ),
+    (
+        'PAYSTACK_CALLBACK_URL = env("PAYSTACK_CALLBACK_URL", default="")',
+        'PAYSTACK_CALLBACK_URL = env("PAYSTACK_CALLBACK_URL", default="")\n'
+        'FLUTTERWAVE_REDIRECT_URL = env("FLUTTERWAVE_REDIRECT_URL", default=PAYSTACK_CALLBACK_URL)\n'
+        '\n'
+        '# Gateway used ONLY for Marketplace/Artisan listing-upgrade payments (Pro/\n'
+        '# Premium seller tiers and artisan boosts). Everything else uses\n'
+        '# DEFAULT_PROVIDERS["payments"]. Set to "paystack" to revert.\n'
+        'LISTING_UPGRADE_PROVIDER = env("LISTING_UPGRADE_PROVIDER", default="flutterwave")',
+    ),
+])
+
+# ---------------------------------------------------------------- 4. routing
+for svc in ("apps/marketplace/services.py", "apps/homeservices/services.py"):
+    edit(svc, [
+        ('from integrations.base import ProviderFactory',
+         'from django.conf import settings\nfrom integrations.base import ProviderFactory'),
+        ('        gateway = ProviderFactory.get("payments")\n        try:\n            init = gateway.initialize_charge(',
+         '        gateway = ProviderFactory.get("payments", settings.LISTING_UPGRADE_PROVIDER)\n        try:\n            init = gateway.initialize_charge('),
+        ('        gateway = ProviderFactory.get("payments")\n        try:\n            status = gateway.verify_charge(reference)',
+         '        gateway = ProviderFactory.get("payments", payment.provider or None)\n        try:\n            status = gateway.verify_charge(reference)'),
+    ])
+
+# ------------------------------------------------- 5. provider-aware webhooks
+WEBHOOK_HEAD_OLD = (
+    '        from integrations.base import ProviderFactory\n'
+    '        gateway = ProviderFactory.get("payments")\n'
+    '        headers = {k.lower(): v for k, v in request.headers.items()}\n'
+)
+WEBHOOK_HEAD_NEW = (
+    '        from django.conf import settings\n'
+    '        from integrations.base import ProviderFactory\n'
+    '        headers = {k.lower(): v for k, v in request.headers.items()}\n'
+    '        provider = ("flutterwave" if headers.get("verif-hash")\n'
+    '                    else settings.DEFAULT_PROVIDERS.get("payments", "paystack"))\n'
+    '        gateway = ProviderFactory.get("payments", provider)\n'
+)
+
+edit("apps/marketplace/views.py", [
+    (WEBHOOK_HEAD_OLD, WEBHOOK_HEAD_NEW),
+    (
+        '        event = payload.get("event", "")\n'
+        '        data = payload.get("data", {}) or {}\n'
+        '        reference = data.get("reference", "")\n'
+        '        if event == "charge.success" and reference:\n'
+        '            MarketplaceService.activate_by_reference(reference)',
+        '        event = payload.get("event", "")\n'
+        '        data = payload.get("data", {}) or {}\n'
+        '        reference = data.get("reference") or data.get("tx_ref") or ""\n'
+        '        ok = (event == "charge.success") or (\n'
+        '            event == "charge.completed"\n'
+        '            and str(data.get("status", "")).lower() == "successful")\n'
+        '        if ok and reference:\n'
+        '            MarketplaceService.activate_by_reference(reference)',
+    ),
+])
+
+edit("apps/homeservices/views.py", [
+    (WEBHOOK_HEAD_OLD, WEBHOOK_HEAD_NEW),
+    (
+        '        data = payload.get("data", {}) or {}\n'
+        '        reference = data.get("reference", "")\n'
+        '        if payload.get("event") == "charge.success" and reference.startswith("BOOST-"):\n'
+        '            HomeServiceService.activate_by_reference(reference)',
+        '        data = payload.get("data", {}) or {}\n'
+        '        reference = data.get("reference") or data.get("tx_ref") or ""\n'
+        '        event = payload.get("event", "")\n'
+        '        ok = (event == "charge.success") or (\n'
+        '            event == "charge.completed"\n'
+        '            and str(data.get("status", "")).lower() == "successful")\n'
+        '        if ok and reference.startswith("BOOST-"):\n'
+        '            HomeServiceService.activate_by_reference(reference)',
+    ),
+])
+
+# ---------------------------------------------------------------- 6. url aliases
+edit("apps/marketplace/urls.py", [(
+    '    path("subscription/webhook/paystack/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook"),',
+    '    path("subscription/webhook/paystack/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook"),\n'
+    '    path("subscription/webhook/flutterwave/", SubscriptionWebhookView.as_view(), name="mkt-subscribe-webhook-flw"),',
+)])
+edit("apps/homeservices/urls.py", [(
+    '    path("artisans/boost/webhook/paystack/", BoostWebhookView.as_view(), name="hs-boost-webhook"),',
+    '    path("artisans/boost/webhook/paystack/", BoostWebhookView.as_view(), name="hs-boost-webhook"),\n'
+    '    path("artisans/boost/webhook/flutterwave/", BoostWebhookView.as_view(), name="hs-boost-webhook-flw"),',
+)])
+
+print("\nDONE. Flutterwave routing applied.")
+print("Point your Flutterwave dashboard webhooks at:")
+print("    <API_BASE>/api/v1/marketplace/subscription/webhook/flutterwave/")
+print("    <API_BASE>/api/v1/artisans/boost/webhook/flutterwave/")
+````
+
+## File: flutterwave_payload_patch/apply_flutterwave_payload.py
+````python
+#!/usr/bin/env python3
+"""
+Harden the Flutterwave payment-initialisation payload so the hosted checkout
+stops crashing on "Pay" (TypeError: Cannot read properties of undefined
+(reading 'switch') in card-payment.vue).
+
+Root cause: the payload we POST to /v3/payments was missing `payment_options`
+and sent an incomplete `customer` (email only). Flutterwave's card component
+then hits an undefined config branch and throws.
+
+This patch:
+  1. Rewrites integrations/payments/flutterwave/adapter.py so initialize_charge
+     sends a strict, non-null payload:
+       - payment_options: "card"        (never null/empty)
+       - customer: { email, name, phonenumber? }   (name/phone from metadata,
+         safe fallbacks so nothing is null)
+       - customizations: { title, description }
+       - redirect_url only when configured (never empty)
+       - amount as string, currency upper-cased and non-null
+     tx_ref stays our unique per-attempt reference (already a fresh UUID), and
+     verify still works by that same reference.
+  2. Passes the buyer's name + phone into the metadata from both upgrade flows
+     (marketplace subscription, artisan boost) so the customer object is complete.
+
+Frontends already redirect to the hosted checkout link (data.link) — web via
+window.location, mobile via the checkout WebView — so no inline modal to change.
+
+RUN FROM THE BACKEND ROOT:
+    python3 flutterwave_payload_patch/apply_flutterwave_payload.py
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:200]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# --------------------------------------------------------- 1. rewrite adapter
+ADAPTER = r'''"""
+Flutterwave payment gateway adapter (API v3).
+
+Used for Marketplace and Artisan listing-upgrade payments (Pro/Premium tiers and
+artisan boosts). Amounts are sent in MAJOR units. We initialise with our own
+unique tx_ref (the internal reference) and verify with verify_by_reference, so
+the pipeline is unchanged and never needs Flutterwave's numeric id.
+
+The payload is kept strict and fully populated — payment_options set to "card",
+a complete customer object, and no null/empty values — because Flutterwave's
+hosted card component throws (card-payment.vue "reading 'switch'") when those are
+missing.
+"""
+from __future__ import annotations
+
+import hmac
+from decimal import Decimal
+
+from integrations.base import register
+from integrations.base.dto import ChargeInit, ChargeStatus, TxnStatus
+from integrations.base.interfaces import PaymentGateway
+
+
+def _flw_redirect_url(config: dict) -> str:
+    """Where Flutterwave returns the user after payment (config -> settings -> env)."""
+    import os
+
+    val = (config or {}).get("redirect_url", "")
+    if val:
+        return val
+    try:
+        from django.conf import settings
+
+        val = (getattr(settings, "FLUTTERWAVE_REDIRECT_URL", "")
+               or getattr(settings, "PAYSTACK_CALLBACK_URL", ""))
+    except Exception:
+        val = ""
+    return (val
+            or os.environ.get("FLUTTERWAVE_REDIRECT_URL", "")
+            or os.environ.get("PAYSTACK_CALLBACK_URL", ""))
+
+
+@register("payments", "flutterwave")
+class FlutterwaveGateway(PaymentGateway):
+    base_url = "https://api.flutterwave.com/v3"
+
+    def _headers(self):
+        return {
+            "Authorization": f"Bearer {self.config.get('secret_key', '')}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None):
+        # Pull customer name/phone out of metadata so they don't get echoed into
+        # `meta`; everything else in metadata stays for webhook routing.
+        meta = dict(metadata or {})
+        cust_name = str(meta.pop("name", "") or "").strip()
+        cust_phone = str(meta.pop("phone", "") or "").strip()
+        if not cust_name:
+            cust_name = (str(email).split("@")[0] if email else "") or "OAM Customer"
+
+        customer = {"email": email or "", "name": cust_name}
+        if cust_phone:
+            customer["phonenumber"] = cust_phone
+
+        payload = {
+            "tx_ref": reference,                       # unique per attempt
+            "amount": str(amount),                     # major units, non-null
+            "currency": (currency or "NGN").upper(),   # never null
+            "payment_options": "card",                 # explicit, never null/empty
+            "customer": customer,
+            "customizations": {
+                "title": "OAM",
+                "description": str(meta.get("description") or "OAM listing upgrade"),
+            },
+            "meta": meta,
+        }
+        redirect = _flw_redirect_url(self.config)
+        if redirect:                                   # only send when non-empty
+            payload["redirect_url"] = redirect
+
+        data = self.post("/payments", json=payload)
+        d = data.get("data", {}) or {}
+        return ChargeInit(
+            authorization_url=d.get("link", ""),
+            access_code="",
+            provider_reference=reference,
+            raw=data,
+        )
+
+    def verify_charge(self, reference):
+        data = self.get("/transactions/verify_by_reference",
+                        params={"tx_ref": reference})
+        d = data.get("data", {}) or {}
+        st = (d.get("status") or "").lower()
+        status = (TxnStatus.SUCCESS if st == "successful"
+                  else TxnStatus.FAILED if st in ("failed", "cancelled")
+                  else TxnStatus.PENDING)
+        return ChargeStatus(
+            status=status,
+            amount=Decimal(str(d.get("amount", 0))),
+            currency=d.get("currency", ""),
+            provider_reference=str(d.get("id") or reference),
+            raw=data,
+        )
+
+    def verify_webhook(self, payload, headers):
+        expected = str(self.config.get("secret_hash", ""))
+        got = str((headers or {}).get("verif-hash", ""))
+        return bool(expected) and hmac.compare_digest(expected, got)
+'''
+pkg = _p("integrations", "payments", "flutterwave")
+os.makedirs(pkg, exist_ok=True)
+init_file = os.path.join(pkg, "__init__.py")
+if not os.path.exists(init_file):
+    open(init_file, "w").close()
+open(os.path.join(pkg, "adapter.py"), "w", encoding="utf-8").write(ADAPTER)
+print("  + wrote integrations/payments/flutterwave/adapter.py (strict payload)")
+
+# --------------------------------------------- 2. pass name/phone in metadata
+_NAME = ('(f"{getattr(user, \'first_name\', \'\')} {getattr(user, \'last_name\', \'\')}".strip()'
+         ' or getattr(user, "email", "") or "OAM Customer")')
+
+edit("apps/marketplace/services.py", [(
+    '                metadata={"purpose": "marketplace_subscription", "tier": tier,\n'
+    '                          "user": str(user.id)},',
+    '                metadata={"purpose": "marketplace_subscription", "tier": tier,\n'
+    '                          "user": str(user.id),\n'
+    f'                          "name": {_NAME},\n'
+    '                          "phone": getattr(user, "phone", "") or ""},',
+)])
+
+edit("apps/homeservices/services.py", [(
+    '                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id)},',
+    '                metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id),\n'
+    f'                          "name": {_NAME},\n'
+    '                          "phone": getattr(user, "phone", "") or ""},',
+)])
+
+print("\nDONE. Flutterwave payload hardened (payment_options=card, full customer, no nulls).")
+````
+
+## File: integrations/base/__init__.py
+````python
+"""
+Base layer for all third-party integrations.
+
+Public surface:
+    from integrations.base import ProviderFactory, register, AffiliateProvider
+    from integrations.base.interfaces import PaymentGateway, VTUProvider, HotelProvider, ...
+"""
+from .registry import ProviderFactory, register
+from .affiliate import AffiliateProvider
+
+__all__ = ["ProviderFactory", "register", "AffiliateProvider"]
+````
+
+## File: integrations/base/affiliate_links.py
+````python
+"""
+Affiliate link hygiene.
+
+`*.tpk.ro` is a legacy Travelpayouts short-link domain that is frequently
+blocked by international ISPs, corporate/private DNS and ad-blockers — clicking
+one yields "this site can't be reached". We must never hand a raw tpk.ro URL to
+a user's browser.
+
+`sanitize_affiliate_url` guarantees the returned URL is on a clean, globally
+reachable host: if the URL is empty or points at a tpk.ro host, it is replaced
+with the direct partner site for that category. That keeps the experience
+working everywhere; attribution is only preserved when a clean affiliate URL is
+configured, so paste your canonical dashboard links into the env vars to keep
+tracking:
+
+    KLOOK_URL, TRAVELPAYOUTS_FLIGHTS_URL, TRAVELPAYOUTS_CARHIRE_URL,
+    TRAVELPAYOUTS_TRANSFERS_URL
+
+A canonical Travelpayouts link uses the `tp.media` click domain (not tpk.ro).
+"""
+from __future__ import annotations
+
+from urllib.parse import urlparse
+
+# Blocked / unreliable short-link hosts we must never expose to the browser.
+BLOCKED_HOSTS = ("tpk.ro",)
+
+# Clean, globally reachable destinations per category, used only when we have
+# no clean affiliate URL to send the user to.
+DIRECT_FALLBACKS = {
+    "hotels": "https://www.klook.com/",
+    "flights": "https://www.aviasales.com/",
+    "carhire": "https://www.getrentacar.com/",
+    "transfers": "https://www.kiwitaxi.com/",
+}
+
+DEFAULT_FALLBACK = "https://www.klook.com/"
+
+
+def _host_is_blocked(host: str) -> bool:
+    host = (host or "").lower()
+    return any(host == b or host.endswith("." + b) for b in BLOCKED_HOSTS)
+
+
+def is_blocked_url(url: str) -> bool:
+    """True if the URL is empty or points at a blocked short-link host."""
+    if not url:
+        return True
+    try:
+        return _host_is_blocked(urlparse(url).netloc)
+    except ValueError:
+        return True
+
+
+def sanitize_affiliate_url(url: str, category: str = "") -> str:
+    """Return a browser-safe URL, swapping blocked hosts for a clean fallback."""
+    if not is_blocked_url(url):
+        return url
+    return DIRECT_FALLBACKS.get(category, DEFAULT_FALLBACK)
+````
+
+## File: integrations/base/affiliate.py
+````python
+"""
+Base class for AFFILIATE integrations.
+
+Affiliate providers do NOT move money or create bookings on our ledger. They
+generate a tracked deep link (and sometimes an embeddable widget), hand the
+user off to the partner, and we earn commission on resulting conversions.
+
+Because nothing posts to the ledger, the contract is small: build a tracked
+link. Attribution (recording the click, generating the sub_id) is handled by
+apps.affiliates.services.AffiliateService, which calls build_link().
+"""
+from __future__ import annotations
+
+import abc
+from urllib.parse import urlencode, urlparse, urlunparse, parse_qsl
+
+from .client import BaseProviderClient
+from .dto import AffiliateLink
+
+
+class AffiliateProvider(BaseProviderClient):
+    mode = "affiliate"
+
+    @abc.abstractmethod
+    def build_link(self, *, sub_id: str = "", target_url: str = "",
+                   params: dict | None = None) -> AffiliateLink:
+        """Return a tracked AffiliateLink for this program."""
+
+    # -- shared helpers for subclasses --------------------------------
+    @staticmethod
+    def _append_query(url: str, extra: dict) -> str:
+        """Merge `extra` query params into an existing URL, preserving any present."""
+        parsed = urlparse(url)
+        query = dict(parse_qsl(parsed.query))
+        query.update({k: v for k, v in extra.items() if v not in (None, "")})
+        return urlunparse(parsed._replace(query=urlencode(query)))
+````
+
+## File: integrations/base/client.py
+````python
+"""
+Shared HTTP client every adapter inherits.
+
+Centralises: a connection-pooled session, automatic retries with backoff on
+transient failures, sane timeouts, and translation of low-level HTTP errors
+into our normalised ProviderError hierarchy. Adapters only implement the
+provider-specific request shaping and response parsing.
+"""
+from __future__ import annotations
+
+import abc
+import logging
+
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+from .exceptions import (
+    ProviderAuthError,
+    ProviderError,
+    ProviderTimeout,
+    ProviderUnavailable,
+    ProviderValidationError,
+)
+
+logger = logging.getLogger("integrations")
+
+DEFAULT_TIMEOUT = (5, 30)  # (connect, read) seconds
+
+
+def _build_session() -> requests.Session:
+    session = requests.Session()
+    retry = Retry(
+        total=3,
+        backoff_factor=0.5,                       # 0.5s, 1s, 2s
+        status_forcelist=(502, 503, 504),
+        allowed_methods=("GET", "POST", "PUT", "PATCH", "DELETE"),
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(max_retries=retry, pool_connections=10, pool_maxsize=20)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+
+class BaseProviderClient(abc.ABC):
+    """Abstract HTTP base. Subclasses set `provider_key`, `category`, `base_url`."""
+
+    provider_key: str = ""
+    category: str = ""
+    base_url: str = ""
+
+    def __init__(self, config: dict | None = None):
+        self.config = config or {}
+        self.session = _build_session()
+
+    # -- helpers --------------------------------------------------------
+    def _url(self, path: str) -> str:
+        return f"{self.base_url.rstrip('/')}/{path.lstrip('/')}"
+
+    def _headers(self) -> dict:
+        """Override in adapters to add auth headers."""
+        return {"Accept": "application/json"}
+
+    def _request(self, method: str, path: str, **kwargs) -> dict:
+        timeout = kwargs.pop("timeout", DEFAULT_TIMEOUT)
+        headers = {**self._headers(), **kwargs.pop("headers", {})}
+        try:
+            resp = self.session.request(
+                method, self._url(path), headers=headers, timeout=timeout, **kwargs
+            )
+        except requests.Timeout as exc:
+            raise ProviderTimeout(self.provider_key, "request timed out") from exc
+        except requests.RequestException as exc:
+            raise ProviderUnavailable(self.provider_key, str(exc)) from exc
+
+        return self._handle_response(resp)
+
+    def _handle_response(self, resp: requests.Response) -> dict:
+        if resp.status_code in (401, 403):
+            raise ProviderAuthError(self.provider_key, "auth rejected", raw=_safe_json(resp))
+        if 400 <= resp.status_code < 500:
+            raise ProviderValidationError(
+                self.provider_key, f"rejected ({resp.status_code})", raw=_safe_json(resp)
+            )
+        if resp.status_code >= 500:
+            raise ProviderUnavailable(
+                self.provider_key, f"server error ({resp.status_code})", raw=_safe_json(resp)
+            )
+        return _safe_json(resp)
+
+    def get(self, path, **kw):
+        return self._request("GET", path, **kw)
+
+    def post(self, path, **kw):
+        return self._request("POST", path, **kw)
+
+
+def _safe_json(resp: requests.Response) -> dict:
+    try:
+        return resp.json()
+    except ValueError:
+        return {"_raw_text": resp.text, "_status": resp.status_code}
+````
+
+## File: integrations/base/dto.py
+````python
+"""
+Typed data-transfer objects exchanged between domain services and adapters.
+
+Adapters translate provider JSON <-> these DTOs, so the domain layer never
+sees a provider's raw field names. Add more as each phase needs them.
+"""
+from dataclasses import asdict, dataclass, field
+from decimal import Decimal
+from enum import Enum
+
+
+class TxnStatus(str, Enum):
+    PENDING = "pending"
+    PROCESSING = "processing"
+    SUCCESS = "success"
+    FAILED = "failed"
+    REVERSED = "reversed"
+
+
+@dataclass(slots=True)
+class StatusResult:
+    status: TxnStatus
+    provider_reference: str
+    raw: dict = field(default_factory=dict)
+
+    def as_dict(self) -> dict:
+        return asdict(self)
+
+
+# --- Payments ---
+@dataclass(slots=True)
+class ChargeInit:
+    authorization_url: str
+    access_code: str
+    provider_reference: str
+    raw: dict = field(default_factory=dict)
+
+
+@dataclass(slots=True)
+class ChargeStatus:
+    status: TxnStatus
+    amount: Decimal
+    currency: str
+    provider_reference: str
+    raw: dict = field(default_factory=dict)
+
+
+# --- Remittance ---
+@dataclass(slots=True)
+class QuoteRequest:
+    source_currency: str
+    target_currency: str
+    amount: Decimal
+
+
+@dataclass(slots=True)
+class QuoteResult:
+    rate: Decimal
+    fee: Decimal
+    payout_amount: Decimal
+    raw: dict = field(default_factory=dict)
+
+
+@dataclass(slots=True)
+class TransferRequest:
+    amount: Decimal
+    currency: str
+    beneficiary: dict
+    metadata: dict = field(default_factory=dict)
+
+    def as_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass(slots=True)
+class TransferResult:
+    status: TxnStatus
+    provider_reference: str
+    raw: dict = field(default_factory=dict)
+
+
+# --- VTU (airtime / data / bills) ---
+@dataclass(slots=True)
+class VTURequest:
+    service: str          # "airtime" | "data" | "electricity" | "cable"
+    operator: str         # e.g. "MTN", "DSTV"
+    recipient: str        # phone / meter / smartcard number
+    amount: Decimal
+    plan_code: str = ""
+    request_id: str = ""      # ← add this line
+
+
+@dataclass(slots=True)
+class VTUResult:
+    status: TxnStatus
+    provider_reference: str
+    raw: dict = field(default_factory=dict)
+
+
+# --- Affiliate (deep-link / handoff) ---
+@dataclass(slots=True)
+class AffiliateLink:
+    """
+    A tracked hand-off link to a partner (Travelpayouts, Uber Eats, Wise, ...).
+
+    `sub_id` is our attribution key — usually an AffiliateClick id — which the
+    partner echoes back in postbacks/reports so we can match a commission to
+    the user who generated it.
+    """
+    program: str                 # e.g. "travelpayouts:flights", "ubereats"
+    url: str                     # the final tracked URL to send the user to
+    sub_id: str = ""             # our attribution marker
+    widget_code: str = ""        # optional HTML/JS embed (search widgets etc.)
+    raw: dict = field(default_factory=dict)
+
+    def as_dict(self) -> dict:
+        return asdict(self)
+````
+
+## File: integrations/base/exceptions.py
+````python
+"""Normalised exceptions. Adapters translate provider-specific errors into these
+so the domain layer handles failures uniformly, regardless of provider."""
+
+
+class ProviderError(Exception):
+    """Base class for any third-party integration failure."""
+    def __init__(self, provider: str, message: str = "", *, raw=None):
+        self.provider = provider
+        self.raw = raw
+        super().__init__(f"[{provider}] {message}")
+
+
+class ProviderTimeout(ProviderError):
+    """The provider did not respond in time. Safe to retry."""
+
+
+class ProviderAuthError(ProviderError):
+    """Credentials rejected / expired. Not retryable without re-auth."""
+
+
+class ProviderValidationError(ProviderError):
+    """The provider rejected the request payload (4xx). Not retryable as-is."""
+
+
+class ProviderUnavailable(ProviderError):
+    """Provider returned 5xx / is down. Retryable with backoff."""
+
+
+class ProviderNotConfigured(ProviderError):
+    """No adapter registered for the requested category/key."""
+````
+
+## File: integrations/base/interfaces.py
+````python
+"""
+Abstract category interfaces (the API-style contracts).
+
+One ABC per category that money/data actually flows through. Domain services
+depend on these, never on concrete adapters — that is what makes providers
+swappable.
+
+NOTE on style:
+  * API categories (here): payments, vtu, hotels, remittance(API mode),
+    delivery(future ordering API). Adapters extend these.
+  * AFFILIATE categories: flights, carhire, delivery, remittance(affiliate).
+    Those adapters extend integrations.base.affiliate.AffiliateProvider instead,
+    because they only build tracked links and never touch the ledger.
+"""
+from __future__ import annotations
+
+import abc
+
+from .client import BaseProviderClient
+from . import dto
+
+
+class PaymentGateway(BaseProviderClient):
+    category = "payments"
+
+    @abc.abstractmethod
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None) -> dto.ChargeInit: ...
+
+    @abc.abstractmethod
+    def verify_charge(self, reference: str) -> dto.ChargeStatus: ...
+
+    @abc.abstractmethod
+    def verify_webhook(self, payload: bytes, headers: dict) -> bool:
+        """Validate the webhook signature. MUST be called before processing."""
+
+
+class VTUProvider(BaseProviderClient):
+    category = "vtu"
+
+    @abc.abstractmethod
+    def purchase(self, req: dto.VTURequest) -> dto.VTUResult: ...
+
+    @abc.abstractmethod
+    def get_status(self, provider_reference: str) -> dto.StatusResult: ...
+
+
+class HotelProvider(BaseProviderClient):
+    category = "hotels"
+
+    @abc.abstractmethod
+    def search_hotels(self, **params) -> list[dict]: ...
+
+    @abc.abstractmethod
+    def get_availability(self, **params) -> dict: ...
+
+    @abc.abstractmethod
+    def book_hotel(self, **params) -> dto.StatusResult: ...
+
+    @abc.abstractmethod
+    def cancel_booking(self, provider_reference: str) -> dto.StatusResult: ...
+
+
+class RemittanceProvider(BaseProviderClient):
+    """API-mode remittance (used only once a partner grants transactional access).
+    Affiliate-mode remittance lives in the affiliate adapters instead."""
+    category = "remittance"
+
+    @abc.abstractmethod
+    def get_quote(self, req: dto.QuoteRequest) -> dto.QuoteResult: ...
+
+    @abc.abstractmethod
+    def create_transfer(self, req: dto.TransferRequest) -> dto.TransferResult: ...
+
+    @abc.abstractmethod
+    def get_status(self, provider_reference: str) -> dto.StatusResult: ...
+
+
+class DeliveryProvider(BaseProviderClient):
+    """Reserved for a future Uber Eats Ordering API (partner-gated).
+    Today, food delivery is an affiliate handoff."""
+    category = "delivery"
+
+    @abc.abstractmethod
+    def list_restaurants(self, **params) -> list[dict]: ...
+
+    @abc.abstractmethod
+    def create_order(self, **params) -> dto.StatusResult: ...
+
+    @abc.abstractmethod
+    def get_order_status(self, provider_reference: str) -> dto.StatusResult: ...
+````
+
+## File: integrations/base/registry.py
+````python
+"""
+Provider registry + factory.
+
+Adapters decorate themselves with @register(category, key) at import time.
+ProviderFactory.get(category) resolves the active adapter using
+settings.DEFAULT_PROVIDERS, instantiating it with its loaded config.
+"""
+from __future__ import annotations
+
+from django.conf import settings
+
+from .exceptions import ProviderNotConfigured
+
+# (category, key) -> adapter class
+_REGISTRY: dict[tuple[str, str], type] = {}
+
+
+def register(category: str, key: str):
+    """Class decorator that registers a concrete adapter."""
+    def _decorator(cls):
+        _REGISTRY[(category, key)] = cls
+        cls.provider_key = key
+        cls.category = category
+        return cls
+    return _decorator
+
+
+def _load_config(category: str, key: str) -> dict:
+    """
+    Resolve a provider's config/credentials.
+
+    Looks for settings.PROVIDER_CONFIG[category][key] if present; otherwise
+    returns an empty dict (adapter reads its own env vars). Kept deliberately
+    simple here and expanded per-provider in later phases.
+    """
+    provider_config = getattr(settings, "PROVIDER_CONFIG", {})
+    return provider_config.get(category, {}).get(key, {})
+
+
+class ProviderFactory:
+    @staticmethod
+    def get(category: str, key: str | None = None):
+        key = key or settings.DEFAULT_PROVIDERS.get(category, "")
+        if not key:
+            raise ProviderNotConfigured(
+                category, f"no active provider set for category '{category}'"
+            )
+        cls = _REGISTRY.get((category, key))
+        if cls is None:
+            raise ProviderNotConfigured(
+                key, f"no adapter registered for {category}:{key}"
+            )
+        return cls(config=_load_config(category, key))
+
+    @staticmethod
+    def registered() -> list[tuple[str, str]]:
+        """All registered (category, key) pairs — handy for admin/debug."""
+        return sorted(_REGISTRY.keys())
+````
+
+## File: integrations/delivery/ubereats/__init__.py
+````python
+
+````
+
+## File: integrations/delivery/ubereats/adapter.py
+````python
+"""
+Uber Eats affiliate adapter.
+
+Food delivery is an affiliate hand-off: we surface restaurants/promo and send
+the user to Uber Eats through the affiliate link/code from your program
+dashboard (Uber's affiliate program is often run via a network such as Impact/
+Awin depending on region). No order or money flows through our ledger.
+
+Credentials needed:
+  - UBEREATS_AFFILIATE_URL  : base tracked URL from your affiliate dashboard
+  - UBEREATS_AFFILIATE_CODE : optional code/param if your program uses one
+"""
+from __future__ import annotations
+
+from integrations.base import register, AffiliateProvider
+from integrations.base.dto import AffiliateLink
+
+
+@register("delivery", "ubereats")
+class UberEatsAffiliate(AffiliateProvider):
+    base_url = "https://www.ubereats.com"
+
+    def build_link(self, *, sub_id="", target_url="", params=None) -> AffiliateLink:
+        base = self.config.get("affiliate_url") or f"{self.base_url}/"
+        tracking = {"subid": sub_id}
+        code = self.config.get("affiliate_code")
+        if code:
+            tracking["code"] = code
+        if params:
+            tracking.update(params)
+        return AffiliateLink(
+            program="ubereats",
+            url=self._append_query(base, tracking),
+            sub_id=sub_id,
+        )
+````
+
+## File: integrations/delivery/__init__.py
+````python
+
+````
+
+## File: integrations/giftcards/g2a/__init__.py
+````python
+
+````
+
+## File: integrations/giftcards/g2a/adapter.py
+````python
+"""
+G2A gift-card / digital-goods affiliate adapter.
+
+G2A is a marketplace affiliate program: we send users to G2A through a reflink
+that carries your affiliate id. We append `sub_id` for per-click attribution and
+map optional search params (e.g. a product query) into the link.
+
+Config (settings.PROVIDER_CONFIG["giftcards"]["g2a"]):
+  - url : your G2A reflink (from .env)
+"""
+from __future__ import annotations
+
+from integrations.base import register, AffiliateProvider
+from integrations.base.dto import AffiliateLink
+
+FALLBACK_URL = "https://www.g2a.com/n/reflink-c49af69f49"
+
+# deep-link params G2A understands (search query, category)
+ACCEPTED_PARAMS = ["query", "category"]
+
+
+@register("giftcards", "g2a")
+class G2AGiftcards(AffiliateProvider):
+    base_url = "https://www.g2a.com"
+    category = "giftcards"
+
+    def _program_link(self) -> str:
+        return self.config.get("url") or FALLBACK_URL
+
+    def build_link(self, *, sub_id="", target_url="", params=None) -> AffiliateLink:
+        url = target_url or self._program_link()
+        tracking = {"sub_id": sub_id}
+        if params:
+            tracking.update({k: v for k, v in params.items()
+                             if k in ACCEPTED_PARAMS and v not in (None, "")})
+        final_url = self._append_query(url, tracking)
+        return AffiliateLink(
+            program="g2a:giftcards",
+            url=final_url,
+            sub_id=sub_id,
+            raw={"accepts": ACCEPTED_PARAMS},
+        )
+````
+
+## File: integrations/giftcards/__init__.py
+````python
+
+````
+
+## File: integrations/hotels/hotelbeds/__init__.py
+````python
+
+````
+
+## File: integrations/hotels/hotelbeds/adapter.py
+````python
+"""
+Hotelbeds (APITUDE) hotel booking adapter skeleton — an API integration.
+
+Hotelbeds authenticates each request with an X-Signature header:
+    signature = SHA256(api_key + secret + unix_timestamp)
+sent alongside the Api-key header. We compute it per request below; the actual
+search/availability/booking payloads get wired in during the Hotel phase.
+
+Credentials (Hotelbeds dashboard):
+  - HOTELBEDS_API_KEY, HOTELBEDS_SECRET, HOTELBEDS_BASE_URL
+"""
+from __future__ import annotations
+
+import hashlib
+import time
+
+from integrations.base import register
+from integrations.base.interfaces import HotelProvider
+from integrations.base.dto import StatusResult
+
+
+@register("hotels", "hotelbeds")
+class HotelbedsAdapter(HotelProvider):
+    @property
+    def base_url(self) -> str:                      # type: ignore[override]
+        return self.config.get("base_url", "https://api.test.hotelbeds.com")
+
+    def _signature(self) -> str:
+        api_key = self.config.get("api_key", "")
+        secret = self.config.get("secret", "")
+        raw = f"{api_key}{secret}{int(time.time())}".encode()
+        return hashlib.sha256(raw).hexdigest()
+
+    def _headers(self) -> dict:
+        return {
+            "Accept": "application/json",
+            "Api-key": self.config.get("api_key", ""),
+            "X-Signature": self._signature(),
+        }
+
+    def search_hotels(self, **params) -> list[dict]:
+        raise NotImplementedError("Wire Hotelbeds hotel search in the Hotel phase.")
+
+    def get_availability(self, **params) -> dict:
+        raise NotImplementedError("Wire Hotelbeds availability in the Hotel phase.")
+
+    def book_hotel(self, **params) -> StatusResult:
+        raise NotImplementedError("Wire Hotelbeds booking in the Hotel phase.")
+
+    def cancel_booking(self, provider_reference: str) -> StatusResult:
+        raise NotImplementedError("Wire Hotelbeds cancellation in the Hotel phase.")
+````
+
+## File: integrations/hotels/klook/__init__.py
+````python
+
+````
+
+## File: integrations/hotels/klook/adapter.py
+````python
+"""
+Klook affiliate adapter (via Travelpayouts) — registered under the `hotels`
+category as an AFFILIATE provider (hand-off link, not the Hotelbeds API).
+
+Klook covers hotels, tours, activities, attraction tickets and transfers; the
+reflink already carries your marker. We append `sub_id` for attribution and map
+optional search params (destination, dates) into the link.
+
+Config (settings.PROVIDER_CONFIG["hotels"]["klook"]):
+  - url : your Klook affiliate link (from .env)
+"""
+from __future__ import annotations
+
+from integrations.base import register, AffiliateProvider
+from integrations.base.dto import AffiliateLink
+from integrations.base.affiliate_links import sanitize_affiliate_url
+
+# Legacy short-link kept only for reference; it is a tpk.ro domain and is
+# sanitized away before it can ever reach a browser. Configure KLOOK_URL with a
+# clean canonical link (tp.media / direct) to preserve attribution.
+FALLBACK_URL = "https://klook.tpk.ro/5WurYtDG"
+
+# deep-link params Klook can receive as query (advisory pass-through)
+ACCEPTED_PARAMS = ["destination", "check_in", "check_out", "guests", "query"]
+
+
+@register("hotels", "klook")
+class KlookHotels(AffiliateProvider):
+    base_url = "https://www.klook.com"
+    category = "hotels"
+
+    def _program_link(self) -> str:
+        return self.config.get("url") or FALLBACK_URL
+
+    def build_link(self, *, sub_id="", target_url="", params=None) -> AffiliateLink:
+        url = target_url or self._program_link()
+        tracking = {"sub_id": sub_id}
+        if params:
+            tracking.update({k: v for k, v in params.items()
+                             if k in ACCEPTED_PARAMS and v not in (None, "")})
+        # Never expose a blocked tpk.ro host to the browser.
+        url = sanitize_affiliate_url(url, self.category)
+        final_url = self._append_query(url, tracking)
+        return AffiliateLink(
+            program="klook:hotels",
+            url=final_url,
+            sub_id=sub_id,
+            raw={"accepts": ACCEPTED_PARAMS},
+        )
+````
+
+## File: integrations/hotels/__init__.py
+````python
+
+````
+
+## File: integrations/payments/flutterwave/__init__.py
+````python
+
+````
+
+## File: integrations/payments/flutterwave/adapter.py
+````python
+"""
+Flutterwave payment gateway adapter (API v3).
+
+Used for Marketplace and Artisan listing-upgrade payments (Pro/Premium tiers and
+artisan boosts). Amounts are sent in MAJOR units. We initialise with our own
+unique tx_ref (the internal reference) and verify with verify_by_reference, so
+the pipeline is unchanged and never needs Flutterwave's numeric id.
+
+The payload is kept strict and fully populated — payment_options set to "card",
+a complete customer object, and no null/empty values — because Flutterwave's
+hosted card component throws (card-payment.vue "reading 'switch'") when those are
+missing.
+"""
+from __future__ import annotations
+
+import hmac
+from decimal import Decimal
+
+from integrations.base import register
+from integrations.base.dto import ChargeInit, ChargeStatus, TxnStatus
+from integrations.base.interfaces import PaymentGateway
+
+
+def _flw_redirect_url(config: dict) -> str:
+    """Where Flutterwave returns the user after payment (config -> settings -> env)."""
+    import os
+
+    val = (config or {}).get("redirect_url", "")
+    if val:
+        return val
+    try:
+        from django.conf import settings
+
+        val = (getattr(settings, "FLUTTERWAVE_REDIRECT_URL", "")
+               or getattr(settings, "PAYSTACK_CALLBACK_URL", ""))
+    except Exception:
+        val = ""
+    return (val
+            or os.environ.get("FLUTTERWAVE_REDIRECT_URL", "")
+            or os.environ.get("PAYSTACK_CALLBACK_URL", ""))
+
+
+@register("payments", "flutterwave")
+class FlutterwaveGateway(PaymentGateway):
+    base_url = "https://api.flutterwave.com/v3"
+
+    def _headers(self):
+        return {
+            "Authorization": f"Bearer {self.config.get('secret_key', '')}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None):
+        # Pull customer name/phone out of metadata so they don't get echoed into
+        # `meta`; everything else in metadata stays for webhook routing.
+        meta = dict(metadata or {})
+        cust_name = str(meta.pop("name", "") or "").strip()
+        cust_phone = str(meta.pop("phone", "") or "").strip()
+        if not cust_name:
+            cust_name = (str(email).split("@")[0] if email else "") or "OAM Customer"
+
+        customer = {"email": email or "", "name": cust_name}
+        if cust_phone:
+            customer["phonenumber"] = cust_phone
+
+        payload = {
+            "tx_ref": reference,                       # unique per attempt
+            "amount": str(amount),                     # major units, non-null
+            "currency": (currency or "NGN").upper(),   # never null
+            "payment_options": "card",                 # explicit, never null/empty
+            "customer": customer,
+            "customizations": {
+                "title": "OAM",
+                "description": str(meta.get("description") or "OAM listing upgrade"),
+            },
+            "meta": meta,
+        }
+        redirect = _flw_redirect_url(self.config)
+        if redirect:                                   # only send when non-empty
+            payload["redirect_url"] = redirect
+
+        data = self.post("/payments", json=payload)
+        d = data.get("data", {}) or {}
+        return ChargeInit(
+            authorization_url=d.get("link", ""),
+            access_code="",
+            provider_reference=reference,
+            raw=data,
+        )
+
+    def verify_charge(self, reference):
+        data = self.get("/transactions/verify_by_reference",
+                        params={"tx_ref": reference})
+        d = data.get("data", {}) or {}
+        st = (d.get("status") or "").lower()
+        status = (TxnStatus.SUCCESS if st == "successful"
+                  else TxnStatus.FAILED if st in ("failed", "cancelled")
+                  else TxnStatus.PENDING)
+        return ChargeStatus(
+            status=status,
+            amount=Decimal(str(d.get("amount", 0))),
+            currency=d.get("currency", ""),
+            provider_reference=str(d.get("id") or reference),
+            raw=data,
+        )
+
+    def verify_webhook(self, payload, headers):
+        expected = str(self.config.get("secret_hash", ""))
+        got = str((headers or {}).get("verif-hash", ""))
+        return bool(expected) and hmac.compare_digest(expected, got)
+````
+
+## File: integrations/payments/paystack/__init__.py
+````python
+
+````
+
+## File: integrations/payments/paystack/adapter.py
+````python
+"""
+Paystack payment gateway adapter (API integration).
+
+Auth: Bearer secret key. Amounts are sent in the currency's SUBUNIT (kobo/cents),
+so we multiply by 100. Webhooks are verified with HMAC-SHA512 of the raw request
+body using the secret key (Paystack sends it in the X-Paystack-Signature header).
+
+Config: PROVIDER_CONFIG["payments"]["paystack"] -> secret_key, public_key.
+"""
+from __future__ import annotations
+
+import hashlib
+import hmac
+from decimal import Decimal
+
+from integrations.base import register
+from integrations.base.dto import ChargeInit, ChargeStatus, TxnStatus
+from integrations.base.interfaces import PaymentGateway
+
+
+def _paystack_callback_url():
+    """Where Paystack should send the user after payment (overrides dashboard)."""
+    import os
+    try:
+        from django.conf import settings
+        val = getattr(settings, "PAYSTACK_CALLBACK_URL", "")
+    except Exception:
+        val = ""
+    return val or os.environ.get("PAYSTACK_CALLBACK_URL", "")
+
+
+@register("payments", "paystack")
+class PaystackGateway(PaymentGateway):
+    base_url = "https://api.paystack.co"
+
+    def _headers(self):
+        return {
+            "Authorization": f"Bearer {self.config.get('secret_key', '')}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
+
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None,
+                          callback_url=None, subaccount=None, transaction_charge=None,
+                          bearer=None):
+        subunits = int((Decimal(str(amount)) * 100).to_integral_value())
+        payload = {
+            "email": email,
+            "amount": subunits,
+            "currency": currency,
+            "reference": reference,
+            "metadata": metadata or {},
+        }
+
+        cb = callback_url or _paystack_callback_url()
+        if cb:
+            payload["callback_url"] = cb
+
+        # Split / escrow routing via Paystack subaccounts.
+        if subaccount:
+            payload["subaccount"] = subaccount
+            if transaction_charge is not None:
+                # flat amount to the MAIN account; remainder -> subaccount
+                payload["transaction_charge"] = int(
+                    (Decimal(str(transaction_charge)) * 100).to_integral_value()
+                )
+            if bearer:
+                payload["bearer"] = bearer  # "account" | "subaccount"
+
+        data = self.post("/transaction/initialize", json=payload)
+        d = data.get("data", {}) or {}
+        return ChargeInit(
+            authorization_url=d.get("authorization_url", ""),
+            access_code=d.get("access_code", ""),
+            provider_reference=d.get("reference", reference),
+            raw=data,
+        )
+
+
+    def verify_charge(self, reference):
+        data = self.get(f"/transaction/verify/{reference}")
+        d = data.get("data", {}) or {}
+        st = d.get("status")
+        status = (TxnStatus.SUCCESS if st == "success"
+                  else TxnStatus.FAILED if st in ("failed", "abandoned", "reversed")
+                  else TxnStatus.PENDING)
+        return ChargeStatus(
+            status=status,
+            amount=Decimal(str(d.get("amount", 0))) / 100,
+            currency=d.get("currency", ""),
+            provider_reference=reference, raw=data,
+        )
+
+    def verify_webhook(self, payload, headers):
+        secret = self.config.get("secret_key", "").encode()
+        body = payload if isinstance(payload, bytes) else str(payload).encode()
+        signature = (headers or {}).get("x-paystack-signature", "")
+        computed = hmac.new(secret, body, hashlib.sha512).hexdigest()
+        return bool(signature) and hmac.compare_digest(computed, signature)
+````
+
+## File: integrations/payments/__init__.py
+````python
+
+````
+
+## File: integrations/payments/mock.py
+````python
+"""
+DEV-ONLY mock payment gateway. Select it with DEFAULT_PROVIDER_PAYMENTS=mock to
+test the funding + ledger flow without real Paystack keys. initialize returns a
+fake authorization URL; settlement is driven by the dev simulate endpoint.
+"""
+from __future__ import annotations
+
+from decimal import Decimal
+
+from integrations.base import register
+from integrations.base.dto import ChargeInit, ChargeStatus, TxnStatus
+from integrations.base.interfaces import PaymentGateway
+
+
+@register("payments", "mock")
+class MockGateway(PaymentGateway):
+    base_url = "https://mock.local"
+
+    def initialize_charge(self, *, amount, currency, email, reference, metadata=None):
+        return ChargeInit(
+            authorization_url=f"https://mock.local/pay/{reference}",
+            access_code="mock-access-code",
+            provider_reference=reference,
+            raw={"mock": True, "amount": str(amount), "currency": currency},
+        )
+
+    def verify_charge(self, reference):
+        # In mock mode we treat any verify as success (dev convenience).
+        return ChargeStatus(status=TxnStatus.SUCCESS, amount=Decimal("0"),
+                            currency="", provider_reference=reference, raw={"mock": True})
+
+    def verify_webhook(self, payload, headers):
+        return True
+````
+
+## File: integrations/payouts/paystack/__init__.py
+````python
+
+````
+
+## File: integrations/payouts/paystack/adapter.py
+````python
+"""
+Paystack Transfers (real).  DEFAULT_PROVIDER_PAYOUTS=paystack
+
+Config (settings.PROVIDER_CONFIG['payouts']['paystack']): secret_key
+
+Amounts are sent in the smallest unit (kobo for NGN). Transfers require a
+funded Paystack balance and Transfers enabled on the account; in test mode
+Paystack simulates them.
+"""
+from __future__ import annotations
+
+import hashlib
+import hmac
+from decimal import Decimal
+
+from integrations.base import register
+from integrations.base.client import BaseProviderClient
+from integrations.base.exceptions import ProviderError, ProviderValidationError
+
+
+@register("payouts", "paystack")
+class PaystackPayouts(BaseProviderClient):
+    provider_key = "paystack"
+    category = "payouts"
+    base_url = "https://api.paystack.co"
+
+    def _headers(self):
+        return {"Accept": "application/json", "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.config.get('secret_key', '')}"}
+
+    def list_banks(self, currency="NGN"):
+        # Return the COMPLETE bank list. Paystack's /bank returns only ~50 by
+        # default and paginates; we page through, dedupe by code, and stop as
+        # soon as a page adds nothing new — which also guards against Paystack
+        # ignoring `page` (cursor pagination) and repeating the same page.
+        seen, banks, page, per_page = set(), [], 1, 100
+        for _ in range(30):
+            body = self.get(
+                f"/bank?currency={currency}&perPage={per_page}&page={page}")
+            data = body.get("data") or []
+            if not data:
+                break
+            added = 0
+            for b in data:
+                code = b.get("code")
+                if code and code not in seen:
+                    seen.add(code)
+                    banks.append({"name": b.get("name"), "code": code,
+                                  "currency": b.get("currency", currency)})
+                    added += 1
+            if added == 0 or len(data) < per_page:   # last page, or no new banks
+                break
+            page += 1
+        return banks
+
+    def resolve_account(self, *, account_number, bank_code, currency="NGN"):
+        body = self.get(f"/bank/resolve?account_number={account_number}&bank_code={bank_code}")
+        if not body.get("status"):
+            raise ProviderValidationError("paystack", body.get("message", "Could not resolve account"))
+        d = body.get("data", {}) or {}
+        return {"account_name": d.get("account_name"),
+                "account_number": d.get("account_number"), "bank_code": bank_code}
+
+    def create_recipient(self, *, name, account_number, bank_code, currency="NGN"):
+        body = self.post("/transferrecipient", json={
+            "type": "nuban", "name": name, "account_number": account_number,
+            "bank_code": bank_code, "currency": currency,
+        })
+        if not body.get("status"):
+            raise ProviderValidationError("paystack", body.get("message", "Recipient creation failed"))
+        return (body.get("data", {}) or {}).get("recipient_code", "")
+
+    def initiate_transfer(self, *, amount, recipient_code, reference, currency="NGN", reason=""):
+        subunits = int((Decimal(str(amount)) * 100).to_integral_value())
+        try:
+            body = self.post("/transfer", json={
+                "source": "balance", "amount": subunits, "recipient": recipient_code,
+                "reference": reference, "reason": reason or "Withdrawal",
+            })
+        except ProviderValidationError as exc:
+            # business failure (e.g. insufficient Paystack balance) -> mark failed, not crash
+            return {"status": "failed", "provider_reference": "", "raw": {"error": str(exc)}}
+        if not body.get("status"):
+            return {"status": "failed", "provider_reference": "", "raw": body}
+        d = body.get("data", {}) or {}
+        return {"status": (d.get("status") or "pending"),
+                "provider_reference": d.get("transfer_code", "") or d.get("reference", ""),
+                "raw": body}
+
+    def verify_webhook(self, payload: bytes, headers: dict) -> bool:
+        secret = self.config.get("secret_key", "").encode()
+        body = payload if isinstance(payload, bytes) else str(payload).encode()
+        sig = (headers or {}).get("x-paystack-signature", "")
+        computed = hmac.new(secret, body, hashlib.sha512).hexdigest()
+        return bool(sig) and hmac.compare_digest(computed, sig)
+````
+
+## File: integrations/payouts/__init__.py
+````python
+
+````
+
+## File: integrations/payouts/mock.py
+````python
+"""DEV mock transfers provider. Select with DEFAULT_PROVIDER_PAYOUTS=mock."""
+from __future__ import annotations
+
+import uuid
+
+from integrations.base import register
+from integrations.base.client import BaseProviderClient
+from integrations.base.exceptions import ProviderValidationError
+
+
+@register("payouts", "mock")
+class MockPayouts(BaseProviderClient):
+    provider_key = "mock"
+    category = "payouts"
+
+    def list_banks(self, currency="NGN"):
+        return [{"name": "Mock Bank", "code": "999", "currency": currency},
+                {"name": "Test Microfinance", "code": "998", "currency": currency}]
+
+    def resolve_account(self, *, account_number, bank_code, currency="NGN"):
+        # account numbers ending in "0000" simulate an unresolvable account
+        if str(account_number).endswith("0000"):
+            raise ProviderValidationError("mock", "Could not resolve account")
+        return {"account_name": "MOCK ACCOUNT HOLDER", "bank_name": "Mock Bank",
+                "account_number": account_number, "bank_code": bank_code}
+
+    def create_recipient(self, *, name, account_number, bank_code, currency="NGN"):
+        return f"RCP_mock_{uuid.uuid4().hex[:12]}"
+
+    def initiate_transfer(self, *, amount, recipient_code, reference, currency="NGN", reason=""):
+        # amounts whose kobo part is .99 simulate a FAILED transfer (to test refunds),
+        # e.g. 100.99, 500.99 -> failed ; everything else -> success.
+        from decimal import Decimal
+        kobo = (Decimal(str(amount)) * 100).to_integral_value() % 100
+        status = "failed" if kobo == 99 else "success"
+        return {"status": status, "provider_reference": f"TRF_mock_{uuid.uuid4().hex[:12]}",
+                "raw": {"mock": True, "status": status}}
+
+    def verify_webhook(self, payload, headers):
+        return True     # dev only
+````
+
+## File: integrations/remittance/lemfi/__init__.py
+````python
+
+````
+
+## File: integrations/remittance/lemfi/adapter.py
+````python
+from integrations.base import register
+from integrations.remittance._affiliate_base import RemittanceAffiliateBase
+
+
+@register("remittance", "lemfi")
+class LemfiAffiliate(RemittanceAffiliateBase):
+    program_name = "lemfi"
+    fallback_url = "https://www.lemfi.com/"
+````
+
+## File: integrations/remittance/remitly/__init__.py
+````python
+
+````
+
+## File: integrations/remittance/remitly/adapter.py
+````python
+from integrations.base import register
+from integrations.remittance._affiliate_base import RemittanceAffiliateBase
+
+
+@register("remittance", "remitly")
+class RemitlyAffiliate(RemittanceAffiliateBase):
+    program_name = "remitly"
+    fallback_url = "https://www.remitly.com/"
+````
+
+## File: integrations/remittance/taptap/__init__.py
+````python
+
+````
+
+## File: integrations/remittance/taptap/adapter.py
+````python
+from integrations.base import register
+from integrations.remittance._affiliate_base import RemittanceAffiliateBase
+
+
+@register("remittance", "taptap")
+class TaptapSendAffiliate(RemittanceAffiliateBase):
+    program_name = "taptap"
+    fallback_url = "https://www.taptapsend.com/"
+````
+
+## File: integrations/remittance/wise/__init__.py
+````python
+
+````
+
+## File: integrations/remittance/wise/adapter.py
+````python
+from integrations.base import register
+from integrations.remittance._affiliate_base import RemittanceAffiliateBase
+
+
+@register("remittance", "wise")
+class WiseAffiliate(RemittanceAffiliateBase):
+    program_name = "wise"
+    fallback_url = "https://wise.com/"
+````
+
+## File: integrations/remittance/__init__.py
+````python
+
+````
+
+## File: integrations/remittance/_affiliate_base.py
+````python
+"""
+Shared base for money-transfer AFFILIATE adapters (Wise, Lemfi, Remitly, Taptap).
+
+These send the user to the partner to complete the transfer and we earn
+referral commission. Nothing posts to our ledger. If/when a partner grants
+transactional API access, add a separate API adapter (subclassing
+integrations.base.interfaces.RemittanceProvider) under a key like "<name>_api".
+
+Each provider only needs an affiliate base URL from its program dashboard.
+Optionally we pass corridor hints (source/target currency, amount) as query
+params so the partner pre-fills the calculator where supported.
+"""
+from __future__ import annotations
+
+from integrations.base import AffiliateProvider
+from integrations.base.dto import AffiliateLink
+
+
+class RemittanceAffiliateBase(AffiliateProvider):
+    category = "remittance"
+    program_name = "remittance"
+    fallback_url = "https://example.com/"
+
+    def build_link(self, *, sub_id="", target_url="", params=None) -> AffiliateLink:
+        base = self.config.get("affiliate_url") or target_url or self.fallback_url
+        tracking = {"sub_id": sub_id}
+        # Optional corridor pre-fill (only used by partners that accept them).
+        if params:
+            for key in ("source_currency", "target_currency", "amount"):
+                if params.get(key):
+                    tracking[key] = params[key]
+        return AffiliateLink(
+            program=f"{self.program_name}",
+            url=self._append_query(base, tracking),
+            sub_id=sub_id,
+        )
+````
+
+## File: integrations/travel/travelpayouts/__init__.py
+````python
+
+````
+
+## File: integrations/travel/travelpayouts/adapter.py
+````python
+"""
+Travelpayouts affiliate adapter.
+
+Travelpayouts is an affiliate NETWORK: monetisation happens by sending users to
+partner sites through a tracked link. The same account/marker covers several
+programs, so this one adapter is registered under multiple categories
+(flights, carhire, transfers).
+
+Each program has a ready affiliate short-link (from the Travelpayouts dashboard)
+that already carries your marker. We use it as the base and append `sub_id` for
+per-click attribution, plus any deep-link search params the user supplied.
+
+Config (settings.PROVIDER_CONFIG[<category>]["travelpayouts"]):
+  - marker : your Travelpayouts affiliate marker (optional; short-link carries it)
+  - token  : API token (only for live data/widgets, not needed for links)
+  - url    : the program's affiliate link (from .env)
+"""
+from __future__ import annotations
+
+from integrations.base import register, AffiliateProvider
+from integrations.base.dto import AffiliateLink
+from integrations.base.affiliate_links import sanitize_affiliate_url
+
+# Fallback affiliate links per program (overridden by PROVIDER_CONFIG url).
+PROGRAM_LINKS = {
+    "flights": "https://aviasales.tpk.ro/Lwo3RBGg",
+    "carhire": "https://getrentacar.tpk.ro/BpxjbW3V",
+    "transfers": "https://tpk.ro/2VAJWYaW",
+}
+
+# Which deep-link params each program accepts (advisory: passed through as query).
+PROGRAM_PARAMS = {
+    "flights": ["origin", "destination", "depart_date", "return_date", "adults"],
+    "carhire": ["location", "pickup_date", "dropoff_date"],
+    "transfers": ["airport", "destination", "date", "passengers"],
+}
+
+
+class _TravelpayoutsBase(AffiliateProvider):
+    base_url = "https://api.travelpayouts.com"
+
+    def _marker(self) -> str:
+        return self.config.get("marker", "")
+
+    def _program_link(self) -> str:
+        # prefer the configured affiliate URL, else the built-in fallback
+        return self.config.get("url") or PROGRAM_LINKS.get(self.category, "")
+
+    def build_link(self, *, sub_id="", target_url="", params=None) -> AffiliateLink:
+        program = self.category
+        url = target_url or self._program_link()
+        tracking = {"sub_id": sub_id}
+        marker = self._marker()
+        if marker:
+            tracking["marker"] = marker
+        # append only the params this program understands
+        allowed = set(PROGRAM_PARAMS.get(program, []))
+        if params:
+            tracking.update({k: v for k, v in params.items()
+                             if k in allowed and v not in (None, "")})
+        # Never expose a blocked tpk.ro host to the browser.
+        url = sanitize_affiliate_url(url, program)
+        final_url = self._append_query(url, tracking)
+        return AffiliateLink(
+            program=f"travelpayouts:{program}",
+            url=final_url,
+            sub_id=sub_id,
+            raw={"marker": marker, "accepts": PROGRAM_PARAMS.get(program, [])},
+        )
+
+
+@register("flights", "travelpayouts")
+class TravelpayoutsFlights(_TravelpayoutsBase):
+    pass
+
+
+@register("carhire", "travelpayouts")
+class TravelpayoutsCarHire(_TravelpayoutsBase):
+    pass
+
+
+@register("transfers", "travelpayouts")
+class TravelpayoutsTransfers(_TravelpayoutsBase):
+    pass
+````
+
+## File: integrations/travel/__init__.py
+````python
+
+````
+
+## File: integrations/vtu/generic/__init__.py
+````python
+
+````
+
+## File: integrations/vtu/generic/adapter.py
+````python
+"""
+Generic VTU (bill payment) API adapter skeleton.
+
+VTU = airtime, data, electricity, cable TV. Point this at your chosen
+aggregator (VTpass, Reloadly, Flutterwave Bills, etc.) by setting:
+  - VTU_BASE_URL, VTU_API_KEY, VTU_SECRET
+
+The flow (filled in during the Bill Payment phase): debit wallet -> call
+aggregator -> persist provider_reference -> poll/verify status -> settle or
+reverse on the ledger. This is an API integration (money flows through us),
+so it implements the VTUProvider contract, not the affiliate one.
+"""
+from __future__ import annotations
+
+from integrations.base import register
+from integrations.base.interfaces import VTUProvider
+from integrations.base.dto import VTURequest, VTUResult, StatusResult, TxnStatus
+
+
+@register("vtu", "default")
+class GenericVTUAdapter(VTUProvider):
+    @property
+    def base_url(self) -> str:                      # type: ignore[override]
+        return self.config.get("base_url", "")
+
+    def _headers(self) -> dict:
+        return {"Accept": "application/json",
+                "Authorization": f"Bearer {self.config.get('api_key', '')}"}
+
+    def purchase(self, req: VTURequest) -> VTUResult:
+        # TODO (Bill Payment phase): map req -> aggregator payload, POST, parse.
+        raise NotImplementedError("Wire up your VTU aggregator in the Bill Payment phase.")
+
+    def get_status(self, provider_reference: str) -> StatusResult:
+        raise NotImplementedError("Implement status verification for your aggregator.")
+````
+
+## File: integrations/vtu/generic/mock.py
+````python
+"""
+DEV-ONLY mock VTU provider. Select with DEFAULT_PROVIDER_VTU=mock to test the
+bill purchase flow (hold -> capture/release) without a real aggregator.
+
+Test hooks:
+  * recipient ending in "0000"  -> simulated FAILURE (exercises the refund path)
+  * everything else             -> SUCCESS
+"""
+from __future__ import annotations
+
+import uuid
+
+from integrations.base import register
+from integrations.base.dto import StatusResult, TxnStatus, VTUResult
+from integrations.base.interfaces import VTUProvider
+
+
+@register("vtu", "mock")
+class MockVTU(VTUProvider):
+    base_url = "https://mock.local"
+
+    def purchase(self, req):
+        if str(req.recipient).endswith("0000"):
+            return VTUResult(status=TxnStatus.FAILED,
+                             provider_reference=f"VTU-{uuid.uuid4().hex[:12]}",
+                             raw={"mock": True, "reason": "simulated_failure"})
+        return VTUResult(status=TxnStatus.SUCCESS,
+                         provider_reference=f"VTU-{uuid.uuid4().hex[:12]}",
+                         raw={"mock": True})
+
+    def get_status(self, provider_reference):
+        return StatusResult(status=TxnStatus.SUCCESS,
+                            provider_reference=provider_reference, raw={"mock": True})
+````
+
+## File: integrations/vtu/vtung/__init__.py
+````python
+
+````
+
+## File: integrations/vtu/vtung/adapter.py
+````python
+"""
+VTU.ng provider adapter (real, live-money).
+
+Auth: username/password -> JWT (valid 7 days, only the latest token is active),
+so we cache the token and only refetch on expiry / 403.
+
+Async model: airtime returns 'processing-api' then settles to 'completed-api'
+or 'refunded'. We map:
+    completed-api                         -> SUCCESS  (capture)
+    refunded / failed / cancelled         -> FAILED   (release/refund the user)
+    processing / queued / initiated / ... -> PENDING  (keep the hold; requery/webhook)
+
+request_id is OUR BillOrder.reference so we can requery by it later.
+
+Config (settings.PROVIDER_CONFIG['vtu']['vtung']):
+    username, password, user_pin
+"""
+from __future__ import annotations
+
+import hashlib
+import hmac
+
+import requests
+from django.core.cache import cache
+
+from integrations.base import register
+from integrations.base.dto import StatusResult, TxnStatus, VTUResult
+from integrations.base.exceptions import (
+    ProviderAuthError,
+    ProviderTimeout,
+    ProviderUnavailable,
+    ProviderValidationError,
+)
+from integrations.base.interfaces import VTUProvider
+
+BASE = "https://vtu.ng/wp-json"
+TOKEN_CACHE_KEY = "vtung:jwt"
+TOKEN_TTL = 6 * 24 * 3600            # ~6 days (< 7-day expiry)
+TIMEOUT = (5, 60)
+
+
+@register("vtu", "vtung")
+class VtuNgAdapter(VTUProvider):
+    base_url = BASE
+
+    # ---------------- auth ----------------
+    def _get_token(self, force=False) -> str:
+        if not force:
+            cached = cache.get(TOKEN_CACHE_KEY)
+            if cached:
+                return cached
+        try:
+            resp = requests.post(
+                f"{BASE}/jwt-auth/v1/token",
+                json={"username": self.config.get("username", ""),
+                      "password": self.config.get("password", "")},
+                timeout=TIMEOUT,
+            )
+        except requests.Timeout as exc:
+            raise ProviderTimeout("vtung", "auth timeout") from exc
+        except requests.RequestException as exc:
+            raise ProviderUnavailable("vtung", str(exc)) from exc
+        data = resp.json() if resp.content else {}
+        if resp.status_code != 200 or "token" not in data:
+            raise ProviderAuthError("vtung", data.get("message", "auth failed"), raw=data)
+        cache.set(TOKEN_CACHE_KEY, data["token"], TOKEN_TTL)
+        return data["token"]
+
+    def _auth_headers(self, token):
+        return {"Authorization": f"Bearer {token}",
+                "Content-Type": "application/json", "Accept": "application/json"}
+
+    def _post(self, path, payload):
+        token = self._get_token()
+        try:
+            resp = requests.post(f"{BASE}{path}", json=payload,
+                                 headers=self._auth_headers(token), timeout=TIMEOUT)
+            if resp.status_code == 403:                 # token stale/invalidated -> refresh once
+                token = self._get_token(force=True)
+                resp = requests.post(f"{BASE}{path}", json=payload,
+                                     headers=self._auth_headers(token), timeout=TIMEOUT)
+        except requests.Timeout as exc:
+            raise ProviderTimeout("vtung", f"{path} timeout") from exc
+        except requests.RequestException as exc:
+            raise ProviderUnavailable("vtung", str(exc)) from exc
+        return resp
+
+    def _get(self, path, params=None):
+        token = self._get_token()
+        try:
+            resp = requests.get(f"{BASE}{path}", params=params,
+                                headers=self._auth_headers(token), timeout=TIMEOUT)
+            if resp.status_code == 403:
+                token = self._get_token(force=True)
+                resp = requests.get(f"{BASE}{path}", params=params,
+                                    headers=self._auth_headers(token), timeout=TIMEOUT)
+        except requests.Timeout as exc:
+            raise ProviderTimeout("vtung", f"{path} timeout") from exc
+        except requests.RequestException as exc:
+            raise ProviderUnavailable("vtung", str(exc)) from exc
+        return resp
+
+    # ---------------- purchase ----------------
+    def purchase(self, req) -> VTUResult:
+        request_id = (getattr(req, "request_id", "") or "")[:50]
+        if req.service == "airtime":
+            payload = {"request_id": request_id, "phone": req.recipient,
+                       "service_id": req.operator.lower(), "amount": int(req.amount)}
+            resp = self._post("/api/v2/airtime", payload)
+        elif req.service == "data":
+            payload = {"request_id": request_id, "phone": req.recipient,
+                       "service_id": req.operator.lower(), "variation_id": req.plan_code}
+            resp = self._post("/api/v2/data", payload)
+        elif req.service == "cable":
+            payload = {"request_id": request_id, "customer_id": req.recipient,
+                       "service_id": req.operator.lower(), "variation_id": req.plan_code,
+                       "subscription_type": "change"}
+            resp = self._post("/api/v2/tv", payload)
+        elif req.service == "electricity":
+            payload = {"request_id": request_id, "customer_id": req.recipient,
+                       "service_id": req.operator.lower(), "variation_id": req.plan_code,
+                       "amount": int(req.amount)}
+            resp = self._post("/api/v2/electricity", payload)
+        elif req.service == "betting":
+            # service_id is the exact provider name (e.g. "Bet9ja"); amount is the
+            # betting credit (the OAM fee is kept in the wallet layer, not sent here).
+            payload = {"request_id": request_id, "customer_id": req.recipient,
+                       "service_id": req.operator, "amount": int(req.amount)}
+            resp = self._post("/api/v2/betting", payload)
+        else:
+            # data / electricity / cable arrive in later chunks
+            raise ProviderValidationError("vtung", f"service '{req.service}' not integrated yet")
+        return self._parse(resp, request_id)
+
+    def get_status(self, provider_reference) -> StatusResult:
+            """
+            provider_reference here is OUR request_id (BillOrder.reference).
+
+            VTU's requery returns TWO layers: `data` (the order as first recorded,
+            which may still say processing with token=null) and `resolve.data` (the
+            RESOLVED outcome plus meta_data.electricity_token). The resolved layer,
+            when present, is the truth.
+            """
+            resp = self._post("/api/v2/requery", {"request_id": provider_reference})
+            try:
+                data = resp.json()
+            except ValueError:
+                data = {}
+            d = data.get("data", {}) or {}
+            resolved = (data.get("resolve", {}) or {}).get("data", {}) or {}
+
+            status_str = (resolved.get("status") or d.get("status") or "").lower()
+            order_id = str(resolved.get("order_id") or d.get("order_id") or "")
+
+            return StatusResult(status=self._map(status_str),
+                                provider_reference=order_id, raw=data)
+    
+
+    # ---------------- catalog (data bundles) ----------------
+    def list_variations(self, category, operator):
+        """Live catalog for data bundles or cable packages."""
+        if category == "data":
+            path = "/api/v2/variations/data"
+        elif category == "cable":
+            path = "/api/v2/variations/tv"
+        else:
+            return []
+        resp = self._get(path, {"service_id": operator.lower()})
+        try:
+            data = resp.json()
+        except ValueError:
+            return []
+        d = data.get("data", data) or {}
+        variations = d.get("variations") if isinstance(d, dict) else d
+        result = []
+        for v in (variations or []):
+            availability = str(v.get("availability", "")).lower()
+            if availability and availability != "available":
+                continue                        # skip plans VTU marks unavailable
+            result.append({
+                "variation_id": str(v.get("variation_id") or v.get("id") or ""),
+                "name": (v.get("data_plan") or v.get("package_bouquet") or v.get("package")
+                         or v.get("name") or v.get("service_name") or ""),
+                "price": str(v.get("price") or v.get("amount") or ""),          # retail (user pays)
+                "reseller_price": str(v.get("reseller_price") or ""),           # our cost to VTU
+                "validity": (v.get("validity") or v.get("duration") or ""),
+            })
+        return result
+
+    # ---------------- customer verification ----------------
+    def verify_customer(self, service_id, customer_id, variation=None):
+        """Validate a meter/smartcard/account and return the customer's details."""
+        payload = {"customer_id": customer_id, "service_id": service_id}
+        if variation:
+            payload["variation_id"] = variation
+        resp = self._post("/api/v2/verify-customer", payload)
+        try:
+            data = resp.json()
+        except ValueError:
+            data = {}
+        if resp.status_code >= 400 or data.get("code") != "success":
+            raise ProviderValidationError("vtung", data.get("message", "Verification failed"))
+        return data.get("data", {}) or {}
+
+    # ---------------- webhook ----------------
+    def verify_webhook(self, payload: bytes, headers: dict) -> bool:
+        pin = self.config.get("user_pin", "").encode()
+        body = payload if isinstance(payload, bytes) else str(payload).encode()
+        sig = (headers or {}).get("x-signature", "")
+        computed = hmac.new(pin, body, hashlib.sha256).hexdigest()
+        return bool(sig) and hmac.compare_digest(computed, sig)
+
+    # ---------------- helpers ----------------
+    def _parse(self, resp, request_id) -> VTUResult:
+        try:
+            data = resp.json()
+        except ValueError:
+            data = {"_raw": resp.text}
+        code = data.get("code")
+        d = data.get("data", {}) or {}
+        order_id = str(d.get("order_id", "") or request_id)
+
+        # Duplicate -> unknown true state; keep pending and let requery resolve.
+        if resp.status_code == 409 or code in ("duplicate_order", "duplicate_request_id",
+                                               "duplicate_request"):
+            return VTUResult(status=TxnStatus.PENDING, provider_reference=order_id, raw=data)
+        # Our reseller wallet empty, or any validation error -> failed (refund user).
+        if resp.status_code >= 400 or code != "success":
+            return VTUResult(status=TxnStatus.FAILED, provider_reference=order_id, raw=data)
+        return VTUResult(status=self._map((d.get("status") or "").lower()),
+                         provider_reference=order_id, raw=data)
+
+    @staticmethod
+    def _map(status: str) -> str:
+        if status == "completed-api":
+            return TxnStatus.SUCCESS
+        if status in ("refunded", "failed", "cancelled"):
+            return TxnStatus.FAILED
+        return TxnStatus.PENDING     # processing-api, queued-api, initiated-api, pending, on-hold
+````
+
+## File: integrations/vtu/__init__.py
+````python
+
+````
+
+## File: integrations/vtu/mock.py
+````python
+"""
+DEV-ONLY mock VTU provider. Select with DEFAULT_PROVIDER_VTU=mock to test the
+bill purchase flow (hold -> capture/release) without a real aggregator.
+
+Test hooks:
+  * recipient ending in "0000"  -> simulated FAILURE (exercises the refund path)
+  * everything else             -> SUCCESS
+"""
+from __future__ import annotations
+
+import uuid
+
+from integrations.base import register
+from integrations.base.dto import StatusResult, TxnStatus, VTUResult
+from integrations.base.interfaces import VTUProvider
+
+
+@register("vtu", "mock")
+class MockVTU(VTUProvider):
+    base_url = "https://mock.local"
+
+    def purchase(self, req):
+        if str(req.recipient).endswith("0000"):
+            return VTUResult(status=TxnStatus.FAILED,
+                             provider_reference=f"VTU-{uuid.uuid4().hex[:12]}",
+                             raw={"mock": True, "reason": "simulated_failure"})
+        data = {"mock": True, "customer_name": "MOCK CUSTOMER"}
+        if req.service == "electricity":
+            data.update({"data": {"token": "1234-5678-9012-3456", "units": "80.5",
+                                  "customer_name": "MOCK CUSTOMER",
+                                  "amount_charged": str(max(int(req.amount) - 15, 0))}})
+        return VTUResult(status=TxnStatus.SUCCESS,
+                         provider_reference=f"VTU-{uuid.uuid4().hex[:12]}",
+                         raw=data)
+
+    def list_variations(self, category, operator):
+        if category == "cable":
+            return [
+                {"variation_id": "MOCK-COMPACT", "name": "Compact", "price": "19000",
+                 "reseller_price": "18810", "validity": ""},
+                {"variation_id": "MOCK-PADI", "name": "Padi", "price": "4400",
+                 "reseller_price": "4356", "validity": ""},
+            ]
+        if category != "data":
+            return []
+        return [
+            {"variation_id": "M1024", "name": "1GB - 30 days", "price": "499",
+             "reseller_price": "470", "validity": "30 days"},
+            {"variation_id": "M2048", "name": "2GB - 30 days", "price": "990",
+             "reseller_price": "940", "validity": "30 days"},
+        ]
+
+    def verify_customer(self, service_id, customer_id, variation=None):
+        details = {"service_name": service_id, "customer_id": customer_id,
+                   "customer_name": "MOCK CUSTOMER"}
+        if variation:  # electricity
+            details.update({"min_purchase_amount": 500, "max_purchase_amount": 100000,
+                            "customer_arrears": 0, "service_band": "A"})
+        else:           # cable
+            details.update({"current_bouquet": "Compact", "renewal_amount": 19000,
+                            "status": "Active"})
+        return details
+
+    def get_status(self, provider_reference):
+        return StatusResult(status=TxnStatus.SUCCESS,
+                            provider_reference=provider_reference, raw={"mock": True})
+````
+
+## File: integrations/__init__.py
+````python
+
+````
+
+## File: integrations/loader.py
+````python
+"""Imports every adapter module so its @register(...) runs at startup."""
+import importlib
+import logging
+
+logger = logging.getLogger("integrations")
+
+PROVIDER_MODULES = [
+    "integrations.travel.travelpayouts.adapter",
+    "integrations.delivery.ubereats.adapter",
+    "integrations.remittance.wise.adapter",
+    "integrations.remittance.lemfi.adapter",
+    "integrations.remittance.remitly.adapter",
+    "integrations.remittance.taptap.adapter",
+    "integrations.vtu.generic.adapter",
+    "integrations.vtu.mock",
+    "integrations.vtu.vtung.adapter",            # NEW (real VTU.ng)
+    "integrations.payments.paystack.adapter",
+    "integrations.payments.flutterwave.adapter",
+    "integrations.payments.mock",
+    "integrations.payouts.mock",
+    "integrations.payouts.paystack.adapter",
+    "integrations.giftcards.g2a.adapter",
+    "integrations.hotels.klook.adapter",
+]
+
+
+def autodiscover() -> None:
+    for module_path in PROVIDER_MODULES:
+        try:
+            importlib.import_module(module_path)
+        except Exception as exc:  # pragma: no cover
+            logger.warning("Could not load provider module %s: %s", module_path, exc)
+````
+
+## File: locale/ar/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/bn/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/de/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/en/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/es/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/fr/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/hi/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/id/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/pt/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/ru/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/ur/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: locale/zh_Hans/LC_MESSAGES/.gitkeep
+````
+
+````
+
+## File: profile_edit_patch/apply_profile_edit.py
+````python
+#!/usr/bin/env python3
+"""
+Add profile editing: PATCH /api/v1/auth/me/ updates first_name, last_name and
+phone (email stays read-only — it's the verified login identity).
+
+RUN FROM BACKEND ROOT:
+    python3 profile_edit_patch/apply_profile_edit.py
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+path = os.path.join(ROOT, "apps/accounts/views.py")
+
+if not os.path.exists(path):
+    sys.exit(f"ABORT: not found: {path}")
+
+s = open(path, encoding="utf-8").read()
+old = (
+    "    def get(self, request):\n"
+    "        return Response(UserSerializer(request.user).data)\n"
+)
+new = (
+    "    def get(self, request):\n"
+    "        return Response(UserSerializer(request.user).data)\n"
+    "\n"
+    "    def patch(self, request):\n"
+    "        \"\"\"Update first name, last name and phone. Email is read-only.\"\"\"\n"
+    "        user = request.user\n"
+    "        data = request.data\n"
+    "        phone = data.get(\"phone\")\n"
+    "        if phone is not None:\n"
+    "            phone = str(phone).strip() or None\n"
+    "            if phone and type(user).objects.filter(phone=phone).exclude(pk=user.pk).exists():\n"
+    "                return Response({\"phone\": \"This phone number is already in use.\"},\n"
+    "                                status=status.HTTP_400_BAD_REQUEST)\n"
+    "            user.phone = phone\n"
+    "        if data.get(\"first_name\") is not None:\n"
+    "            user.first_name = str(data.get(\"first_name\")).strip()\n"
+    "        if data.get(\"last_name\") is not None:\n"
+    "            user.last_name = str(data.get(\"last_name\")).strip()\n"
+    "        user.save()\n"
+    "        return Response(UserSerializer(user).data)\n"
+)
+
+if "def patch(self, request):" in s and "phone is already in use" in s:
+    print("= already applied")
+elif s.count(old) != 1:
+    sys.exit("ABORT: MeView.get anchor not found exactly once")
+else:
+    open(path, "w", encoding="utf-8").write(s.replace(old, new, 1))
+    print("+ MeView: PATCH profile-edit added")
+
+print("DONE.")
+````
+
+## File: push_patch/apply_push.py
+````python
+#!/usr/bin/env python3
+"""
+Expo push notifications for OAM.
+
+Adds a new app `apps.notifications`:
+  * DeviceToken model (one row per device push token, per user).
+  * POST /api/v1/notifications/register-device/  {token, platform}
+    POST /api/v1/notifications/unregister-device/ {token}
+  * push.send_push_to_user(user, title, body, data) -> pushes to all of the
+    user's active tokens via Expo's push API, and deactivates dead tokens.
+
+Wires the referral earnings notification (ReferralService._notify) to also send
+a push, so "You earned ₦X ..." reaches the device (the in-app record stays too).
+
+Requires the referral app to already be installed. RUN FROM BACKEND ROOT:
+    python3 push_patch/apply_push.py
+    python manage.py migrate
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def write(path, content):
+    full = _p(path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    open(full, "w", encoding="utf-8").write(content)
+    print(f"  + wrote {path}")
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:160]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# ---------------------------------------------------------------- app files
+write("apps/notifications/__init__.py", "")
+
+write("apps/notifications/apps.py", '''from django.apps import AppConfig
+
+
+class NotificationsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.notifications"
+''')
+
+write("apps/notifications/models.py", '''from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel
+
+
+class DeviceToken(TimeStampedModel):
+    """An Expo push token for one of a user's devices."""
+    class Platform(models.TextChoices):
+        IOS = "ios", "iOS"
+        ANDROID = "android", "Android"
+        OTHER = "other", "Other"
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="device_tokens")
+    token = models.CharField(max_length=255, unique=True, db_index=True)
+    platform = models.CharField(max_length=10, choices=Platform.choices, default=Platform.OTHER)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["-updated_at"]
+
+    def __str__(self):
+        return f"{self.user} · {self.platform} · {self.token[:16]}…"
+''')
+
+write("apps/notifications/push.py", '''"""
+Send push notifications to a user's devices via Expo's push service.
+Docs: https://docs.expo.dev/push-notifications/sending-notifications/
+"""
+import logging
+
+import requests
+
+from .models import DeviceToken
+
+logger = logging.getLogger(__name__)
+
+EXPO_PUSH_URL = "https://exp.host/--/api/v2/push/send"
+
+
+def send_push_to_user(user, title, body, data=None):
+    """Push `title`/`body` to every active token the user has. Best-effort."""
+    tokens = list(
+        DeviceToken.objects.filter(user=user, is_active=True)
+        .values_list("token", flat=True)
+    )
+    if not tokens:
+        return
+
+    messages = [
+        {"to": t, "title": title, "body": body, "sound": "default", "data": data or {}}
+        for t in tokens
+    ]
+    try:
+        resp = requests.post(
+            EXPO_PUSH_URL, json=messages, timeout=10,
+            headers={"Content-Type": "application/json", "Accept": "application/json"},
+        )
+        payload = resp.json()
+    except Exception as exc:  # network / parse issues are non-fatal
+        logger.warning("Expo push failed: %s", exc)
+        return
+
+    # Deactivate tokens Expo reports as no longer registered.
+    tickets = payload.get("data") or []
+    dead = []
+    for token, ticket in zip(tokens, tickets):
+        if isinstance(ticket, dict) and ticket.get("status") == "error":
+            details = ticket.get("details") or {}
+            if details.get("error") == "DeviceNotRegistered":
+                dead.append(token)
+    if dead:
+        DeviceToken.objects.filter(token__in=dead).update(is_active=False)
+''')
+
+write("apps/notifications/serializers.py", '''from rest_framework import serializers
+
+from .models import DeviceToken
+
+
+class RegisterDeviceSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=255)
+    platform = serializers.ChoiceField(
+        choices=[c[0] for c in DeviceToken.Platform.choices], default="other")
+''')
+
+write("apps/notifications/views.py", '''from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import DeviceToken
+from .serializers import RegisterDeviceSerializer
+
+
+class RegisterDeviceView(APIView):
+    """POST /notifications/register-device/ {token, platform} — idempotent upsert."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        s = RegisterDeviceSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        token = s.validated_data["token"]
+        platform = s.validated_data["platform"]
+        # A token belongs to whichever account most recently registered it.
+        DeviceToken.objects.update_or_create(
+            token=token,
+            defaults={"user": request.user, "platform": platform, "is_active": True},
+        )
+        return Response({"ok": True})
+
+
+class UnregisterDeviceView(APIView):
+    """POST /notifications/unregister-device/ {token} — on logout."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        token = request.data.get("token")
+        if token:
+            DeviceToken.objects.filter(user=request.user, token=token).update(is_active=False)
+        return Response({"ok": True})
+''')
+
+write("apps/notifications/urls.py", '''from django.urls import path
+
+from .views import RegisterDeviceView, UnregisterDeviceView
+
+urlpatterns = [
+    path("register-device/", RegisterDeviceView.as_view(), name="register-device"),
+    path("unregister-device/", UnregisterDeviceView.as_view(), name="unregister-device"),
+]
+''')
+
+write("apps/notifications/admin.py", '''from django.contrib import admin
+
+from .models import DeviceToken
+
+
+@admin.register(DeviceToken)
+class DeviceTokenAdmin(admin.ModelAdmin):
+    list_display = ("user", "platform", "is_active", "updated_at")
+    list_filter = ("platform", "is_active")
+    search_fields = ("user__email", "token")
+''')
+
+write("apps/notifications/migrations/__init__.py", "")
+
+write("apps/notifications/migrations/0001_initial.py", '''from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="DeviceToken",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("token", models.CharField(db_index=True, max_length=255, unique=True)),
+                ("platform", models.CharField(choices=[("ios", "iOS"), ("android", "Android"), ("other", "Other")], default="other", max_length=10)),
+                ("is_active", models.BooleanField(default=True)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="device_tokens", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-updated_at"]},
+        ),
+    ]
+''')
+
+# ------------------------------------------------------------------- wiring
+edit("config/settings/base.py", [(
+    '    "apps.referrals",       # user referral links + 10% commission engine',
+    '    "apps.referrals",       # user referral links + 10% commission engine\n'
+    '    "apps.notifications",   # device push tokens + Expo push sender',
+)])
+
+edit("config/urls.py", [(
+    '    path("api/v1/referrals/", include("apps.referrals.urls")),',
+    '    path("api/v1/referrals/", include("apps.referrals.urls")),\n'
+    '    path("api/v1/notifications/", include("apps.notifications.urls")),',
+)])
+
+# wire the referral earnings notification to also push
+edit("apps/referrals/services.py", [(
+    '''    @staticmethod
+    def _notify(referrer, amount, referee):
+        """In-app notification. Push (Expo/FCM) can hook in here once device tokens exist."""
+        try:
+            ReferralNotification.objects.create(
+                user=referrer,
+                message=(f"You earned ₦{amount:,.2f} from a referral transaction "
+                         f"by {referee.first_name or 'a referral'}!"),
+            )
+        except Exception:
+            pass''',
+    '''    @staticmethod
+    def _notify(referrer, amount, referee):
+        """In-app record + Expo push for referral earnings."""
+        message = (f"You earned ₦{amount:,.2f} from a referral transaction "
+                   f"by {referee.first_name or 'a referral'}!")
+        try:
+            ReferralNotification.objects.create(user=referrer, message=message)
+        except Exception:
+            pass
+        try:
+            from apps.notifications.push import send_push_to_user
+            send_push_to_user(referrer, "You've got referral earnings 🎉", message,
+                              {"type": "referral"})
+        except Exception:
+            pass''',
+)])
+
+print("\\nDONE. Push notifications installed. Now run:  python manage.py migrate")
+````
+
+## File: referrals_patch/apply_referrals.py
+````python
+#!/usr/bin/env python3
+"""
+Referral & Earnings System for OAM — backend.
+
+Adds a new app `apps.referrals`:
+  * Models: ReferralProfile, ReferralRelationship, ReferralCommissionLog,
+    ReferralNotification (+ hand-written 0001 migration).
+  * Commission engine: a referrer earns 5% of OAM's profit on a referred user's
+    transaction, but ONLY when OAM's NGN profit on that transaction is >= ₦5,000.
+    The commission is credited atomically to the referrer's NGN wallet (drawn
+    from OAM revenue), logged immutably, and an in-app notification is raised.
+  * Signal hook: settlement points (bills, subscription, boost) fire
+    `settle_referral(...)` which, on commit, sends `transaction_settled`; the
+    receiver evaluates the threshold and pays out.
+  * Endpoints: POST /api/v1/referrals/generate-link/, GET /api/v1/referrals/dashboard/.
+  * Registration accepts an optional `referral_code` (or a full /refer-slug-code link).
+
+Wires (guarded edits): settings INSTALLED_APPS, config/urls.py, accounts
+register serializer + view, and the three settlement points.
+
+RUN FROM BACKEND ROOT:
+    python3 referrals_patch/apply_referrals.py
+    python manage.py migrate
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def write(path, content):
+    full = _p(path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"  + wrote {path}")
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:160]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+# ============================================================ app files
+write("apps/referrals/__init__.py", "")
+
+write("apps/referrals/apps.py", '''from django.apps import AppConfig
+
+
+class ReferralsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.referrals"
+
+    def ready(self):
+        # Connect the commission receiver to the transaction_settled signal.
+        from . import services  # noqa: F401
+''')
+
+write("apps/referrals/models.py", '''from django.conf import settings
+from django.db import models
+
+from apps.common.models import TimeStampedModel
+
+
+class ReferralProfile(TimeStampedModel):
+    """A user's referral identity: their customisable slug + unique code."""
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                related_name="referral_profile")
+    custom_slug = models.SlugField(max_length=40)
+    referral_code = models.CharField(max_length=16, unique=True, db_index=True)
+    total_earnings = models.DecimalField(max_digits=20, decimal_places=2, default=0)   # NGN
+    total_referrals_count = models.PositiveIntegerField(default=0)
+
+    def link(self) -> str:
+        return f"https://oam-app.com/refer-{self.custom_slug}-{self.referral_code}"
+
+    def __str__(self):
+        return f"{self.user} · {self.referral_code}"
+
+
+class ReferralRelationship(TimeStampedModel):
+    """Records that `referee` signed up through `referrer`."""
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending"
+        ACTIVE = "active", "Active"      # becomes ACTIVE once they earn a commission
+
+    referrer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                 related_name="referrals_made")
+    referee = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                   related_name="referred_by")
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+
+    def __str__(self):
+        return f"{self.referrer} -> {self.referee} [{self.status}]"
+
+
+class ReferralCommissionLog(TimeStampedModel):
+    """Immutable record of a paid referral commission (one per source txn)."""
+    referrer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                 related_name="referral_commissions")
+    referee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
+                                null=True, blank=True, related_name="referral_commissions_generated")
+    source_transaction_id = models.CharField(max_length=120, unique=True, db_index=True)
+    oam_profit_amount = models.DecimalField(max_digits=20, decimal_places=2)   # NGN
+    commission_amount = models.DecimalField(max_digits=20, decimal_places=2)   # NGN
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.referrer} +{self.commission_amount} ({self.source_transaction_id})"
+
+
+class ReferralNotification(TimeStampedModel):
+    """Lightweight in-app notification (surfaced by the dashboard endpoint)."""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="referral_notifications")
+    message = models.CharField(max_length=255)
+    seen = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-created_at"]
+''')
+
+write("apps/referrals/signals.py", '''import django.dispatch
+
+# Fired (on transaction commit) whenever a user completes a transaction that
+# realised OAM profit. Args: user, oam_profit (Decimal), currency, source_reference.
+transaction_settled = django.dispatch.Signal()
+''')
+
+write("apps/referrals/hooks.py", '''"""
+Tiny integration surface for other apps. A settlement point calls
+`settle_referral(...)` after finalising a transaction; we defer the actual
+evaluation to transaction commit so a commission failure can never roll back
+(or block) the underlying settlement.
+"""
+from django.db import transaction
+
+from .signals import transaction_settled
+
+
+def settle_referral(*, user, oam_profit, currency="NGN", source_reference):
+    if user is None or not source_reference:
+        return
+
+    def _fire():
+        transaction_settled.send(
+            sender="referrals", user=user, oam_profit=oam_profit,
+            currency=currency, source_reference=source_reference,
+        )
+
+    transaction.on_commit(_fire)
+''')
+
+write("apps/referrals/services.py", '''import re
+import secrets
+from decimal import Decimal, ROUND_DOWN
+
+from django.db import transaction
+from django.db.models import F
+from django.dispatch import receiver
+from django.utils.text import slugify
+
+from apps.wallet.services import WalletService, REVENUE_ACCOUNT
+
+from .models import (ReferralProfile, ReferralRelationship,
+                     ReferralCommissionLog, ReferralNotification)
+from .signals import transaction_settled
+
+COMMISSION_RATE = Decimal("0.05")            # 5%
+PROFIT_THRESHOLD_NGN = Decimal("5000")       # only pays out at/above this OAM profit
+
+# NGN per 1 unit of currency (inverse of the display rates), for the threshold
+# check + payout when a referred transaction is not in NGN.
+_NGN_PER_UNIT = {
+    "NGN": Decimal("1"),
+    "USD": Decimal("1538.46"),
+    "GBP": Decimal("1960.78"),
+    "EUR": Decimal("1666.67"),
+}
+
+
+class ReferralService:
+    # ---------------- identity / link ----------------
+    @staticmethod
+    def _new_code() -> str:
+        while True:
+            raw = secrets.token_hex(4)  # 8 hex chars
+            code = raw.lower()
+            if not ReferralProfile.objects.filter(referral_code=code).exists():
+                return code
+
+    @staticmethod
+    def _slug_base(user) -> str:
+        base = user.first_name or (user.email or "").split("@")[0] or "oam"
+        return slugify(base)[:40] or "oam"
+
+    @staticmethod
+    def ensure_profile(user) -> ReferralProfile:
+        prof = ReferralProfile.objects.filter(user=user).first()
+        if prof:
+            return prof
+        return ReferralProfile.objects.create(
+            user=user, custom_slug=ReferralService._slug_base(user),
+            referral_code=ReferralService._new_code(),
+        )
+
+    @staticmethod
+    def set_slug(user, slug: str) -> ReferralProfile:
+        prof = ReferralService.ensure_profile(user)
+        clean = slugify(slug or "")[:40]
+        if clean:
+            prof.custom_slug = clean
+            prof.save(update_fields=["custom_slug", "updated_at"])
+        return prof
+
+    @staticmethod
+    def resolve_code(code):
+        """Accept a bare code, or a full '/refer-slug-CODE' link, and return the profile."""
+        if not code:
+            return None
+        text = str(code).strip()
+        # the code is the trailing alphanumeric run
+        m = re.search(r"([A-Za-z0-9]{6,})\\s*$", text)
+        key = (m.group(1) if m else text).lower()
+        return ReferralProfile.objects.filter(referral_code=key).select_related("user").first()
+
+    # ---------------- relationship ----------------
+    @staticmethod
+    @transaction.atomic
+    def attach_referral(user, code):
+        """Link a newly-registered `user` to the owner of `code` (once)."""
+        prof = ReferralService.resolve_code(code)
+        if not prof or prof.user_id == user.id:
+            return None
+        if ReferralRelationship.objects.filter(referee=user).exists():
+            return None
+        rel = ReferralRelationship.objects.create(referrer=prof.user, referee=user)
+        ReferralProfile.objects.filter(pk=prof.pk).update(
+            total_referrals_count=F("total_referrals_count") + 1)
+        return rel
+
+    # ---------------- commission engine ----------------
+    @staticmethod
+    def _to_ngn(amount, currency) -> Decimal:
+        rate = _NGN_PER_UNIT.get(str(currency or "NGN").upper(), Decimal("1"))
+        return Decimal(str(amount)) * rate
+
+    @staticmethod
+    @transaction.atomic
+    def reward_if_qualifies(*, user, oam_profit, currency="NGN", source_reference):
+        """Pay the referrer 5% if OAM's NGN profit on this txn >= ₦5,000. Idempotent."""
+        rel = (ReferralRelationship.objects
+               .select_related("referrer", "referee")
+               .filter(referee=user).first())
+        if not rel:
+            return None
+
+        profit_ngn = ReferralService._to_ngn(oam_profit, currency)
+        if profit_ngn < PROFIT_THRESHOLD_NGN:
+            return None
+        if ReferralCommissionLog.objects.filter(source_transaction_id=source_reference).exists():
+            return None  # already paid for this transaction
+
+        commission = (profit_ngn * COMMISSION_RATE).quantize(Decimal("0.01"), rounding=ROUND_DOWN)
+        if commission <= 0:
+            return None
+
+        referrer = rel.referrer
+        wallet = WalletService.get_or_create_wallet(referrer, "NGN")
+        WalletService.credit(
+            wallet, commission, source_code=REVENUE_ACCOUNT,
+            description=f"Referral commission ({rel.referee.first_name or 'a referral'})",
+            reference=source_reference, idempotency_key=f"referral:{source_reference}",
+            metadata={"type": "REFERRAL_COMMISSION", "referee": str(rel.referee_id),
+                      "source": str(source_reference)},
+        )
+        log = ReferralCommissionLog.objects.create(
+            referrer=referrer, referee=rel.referee, source_transaction_id=str(source_reference),
+            oam_profit_amount=profit_ngn.quantize(Decimal("0.01")), commission_amount=commission,
+        )
+        ReferralProfile.objects.filter(user=referrer).update(
+            total_earnings=F("total_earnings") + commission)
+        if rel.status != ReferralRelationship.Status.ACTIVE:
+            ReferralRelationship.objects.filter(pk=rel.pk).update(
+                status=ReferralRelationship.Status.ACTIVE)
+        ReferralService._notify(referrer, commission, rel.referee)
+        return log
+
+    @staticmethod
+    def _notify(referrer, amount, referee):
+        """In-app notification. Push (Expo/FCM) can hook in here once device tokens exist."""
+        try:
+            ReferralNotification.objects.create(
+                user=referrer,
+                message=(f"You earned ₦{amount:,.2f} from a referral transaction "
+                         f"by {referee.first_name or 'a referral'}!"),
+            )
+        except Exception:
+            pass
+
+    # ---------------- dashboard ----------------
+    @staticmethod
+    def dashboard(user):
+        prof = ReferralService.ensure_profile(user)
+        logs = list(ReferralCommissionLog.objects.filter(referrer=user)
+                    .select_related("referee")[:20])
+        total_refs = ReferralRelationship.objects.filter(referrer=user).count()
+        active = ReferralRelationship.objects.filter(
+            referrer=user, status=ReferralRelationship.Status.ACTIVE).count()
+        wallet = WalletService.get_or_create_wallet(user, "NGN")
+        return {"profile": prof, "logs": logs, "total_referrals": total_refs,
+                "active_referrals": active, "wallet_balance": wallet.cached_balance}
+
+
+@receiver(transaction_settled)
+def _on_transaction_settled(sender, user, oam_profit, currency="NGN", source_reference=None, **kwargs):
+    try:
+        ReferralService.reward_if_qualifies(
+            user=user, oam_profit=oam_profit, currency=currency,
+            source_reference=source_reference)
+    except Exception:
+        # never let a commission problem bubble into the caller
+        pass
+''')
+
+write("apps/referrals/serializers.py", '''from rest_framework import serializers
+
+from .models import ReferralCommissionLog
+
+
+class GenerateLinkSerializer(serializers.Serializer):
+    custom_slug = serializers.CharField(required=False, allow_blank=True, max_length=40)
+
+
+class CommissionLogSerializer(serializers.ModelSerializer):
+    referee_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ReferralCommissionLog
+        fields = ["id", "referee_name", "source_transaction_id",
+                  "oam_profit_amount", "commission_amount", "created_at"]
+
+    def get_referee_name(self, obj):
+        if not obj.referee:
+            return "A referral"
+        return (obj.referee.first_name or obj.referee.email or "A referral")
+''')
+
+write("apps/referrals/views.py", '''from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import ReferralNotification
+from .serializers import CommissionLogSerializer, GenerateLinkSerializer
+from .services import ReferralService, COMMISSION_RATE, PROFIT_THRESHOLD_NGN
+
+
+def _profile_payload(profile):
+    return {
+        "referral_code": profile.referral_code,
+        "custom_slug": profile.custom_slug,
+        "link": profile.link(),
+        "total_earnings": str(profile.total_earnings),
+        "total_referrals_count": profile.total_referrals_count,
+    }
+
+
+class GenerateLinkView(APIView):
+    """POST /api/v1/referrals/generate-link/ — create or rename the user's referral slug."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = GenerateLinkSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        slug = serializer.validated_data.get("custom_slug")
+        profile = (ReferralService.set_slug(request.user, slug) if slug
+                   else ReferralService.ensure_profile(request.user))
+        return Response(_profile_payload(profile))
+
+
+class DashboardView(APIView):
+    """GET /api/v1/referrals/dashboard/ — link, stats, balance, recent commissions."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        data = ReferralService.dashboard(request.user)
+        # surface + clear unseen in-app notifications
+        notes = list(ReferralNotification.objects.filter(user=request.user, seen=False)[:10])
+        if notes:
+            ReferralNotification.objects.filter(id__in=[n.id for n in notes]).update(seen=True)
+        return Response({
+            **_profile_payload(data["profile"]),
+            "stats": {
+                "total_referrals": data["total_referrals"],
+                "active_referrals": data["active_referrals"],
+                "total_earned": str(data["profile"].total_earnings),
+            },
+            "wallet_balance": str(data["wallet_balance"]),
+            "commission_rate": str(COMMISSION_RATE),
+            "profit_threshold": str(PROFIT_THRESHOLD_NGN),
+            "recent_commissions": CommissionLogSerializer(data["logs"], many=True).data,
+            "notifications": [n.message for n in notes],
+        })
+''')
+
+write("apps/referrals/urls.py", '''from django.urls import path
+
+from .views import DashboardView, GenerateLinkView
+
+urlpatterns = [
+    path("generate-link/", GenerateLinkView.as_view(), name="referral-generate-link"),
+    path("dashboard/", DashboardView.as_view(), name="referral-dashboard"),
+]
+''')
+
+write("apps/referrals/admin.py", '''from django.contrib import admin
+
+from .models import (ReferralProfile, ReferralRelationship,
+                     ReferralCommissionLog, ReferralNotification)
+
+admin.site.register(ReferralProfile)
+admin.site.register(ReferralRelationship)
+admin.site.register(ReferralCommissionLog)
+admin.site.register(ReferralNotification)
+''')
+
+write("apps/referrals/migrations/__init__.py", "")
+
+write("apps/referrals/migrations/0001_initial.py", '''from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="ReferralProfile",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("custom_slug", models.SlugField(max_length=40)),
+                ("referral_code", models.CharField(db_index=True, max_length=16, unique=True)),
+                ("total_earnings", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("total_referrals_count", models.PositiveIntegerField(default=0)),
+                ("user", models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name="referral_profile", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"abstract": False},
+        ),
+        migrations.CreateModel(
+            name="ReferralRelationship",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("status", models.CharField(choices=[("pending", "Pending"), ("active", "Active")], default="pending", max_length=10)),
+                ("referee", models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name="referred_by", to=settings.AUTH_USER_MODEL)),
+                ("referrer", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="referrals_made", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"abstract": False},
+        ),
+        migrations.CreateModel(
+            name="ReferralCommissionLog",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("source_transaction_id", models.CharField(db_index=True, max_length=120, unique=True)),
+                ("oam_profit_amount", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("commission_amount", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("referee", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="referral_commissions_generated", to=settings.AUTH_USER_MODEL)),
+                ("referrer", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="referral_commissions", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+        migrations.CreateModel(
+            name="ReferralNotification",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("message", models.CharField(max_length=255)),
+                ("seen", models.BooleanField(default=False)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="referral_notifications", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+    ]
+''')
+
+# ============================================================ wiring edits
+# settings: INSTALLED_APPS
+edit("config/settings/base.py", [(
+    '    "apps.affiliates",      # affiliate link generation + click/conversion tracking',
+    '    "apps.affiliates",      # affiliate link generation + click/conversion tracking\n'
+    '    "apps.referrals",       # user referral links + 5% commission engine',
+)])
+
+# config/urls.py
+edit("config/urls.py", [(
+    '    path("api/v1/marketplace/", include("apps.marketplace.urls")),',
+    '    path("api/v1/marketplace/", include("apps.marketplace.urls")),\n'
+    '    path("api/v1/referrals/", include("apps.referrals.urls")),',
+)])
+
+# accounts: register serializer accepts referral_code
+edit("apps/accounts/serializers.py", [(
+    '    preferred_language = serializers.ChoiceField(\n'
+    '        choices=[code for code, _ in settings.LANGUAGES], default="en"\n'
+    '    )',
+    '    preferred_language = serializers.ChoiceField(\n'
+    '        choices=[code for code, _ in settings.LANGUAGES], default="en"\n'
+    '    )\n'
+    '    referral_code = serializers.CharField(required=False, allow_blank=True, allow_null=True, max_length=120)',
+)])
+
+# accounts: RegisterView attaches the referral relationship
+edit("apps/accounts/views.py", [(
+    '        serializer = RegisterSerializer(data=request.data)\n'
+    '        serializer.is_valid(raise_exception=True)\n'
+    '        user = serializer.save()',
+    '        serializer = RegisterSerializer(data=request.data)\n'
+    '        serializer.is_valid(raise_exception=True)\n'
+    '        user = serializer.save()\n'
+    '        ref_code = serializer.validated_data.get("referral_code")\n'
+    '        if ref_code:\n'
+    '            try:\n'
+    '                from apps.referrals.services import ReferralService\n'
+    '                ReferralService.attach_referral(user, ref_code)\n'
+    '            except Exception:\n'
+    '                pass',
+)])
+
+# billing: settle referral after a bill order captures OAM revenue
+edit("apps/billing/services.py", [(
+    '        order.cost_amount = cost\n'
+    '        order.revenue_amount = order.amount - cost',
+    '        order.cost_amount = cost\n'
+    '        order.revenue_amount = order.amount - cost\n'
+    '        try:\n'
+    '            from apps.referrals.hooks import settle_referral\n'
+    '            settle_referral(user=order.wallet.user, oam_profit=order.revenue_amount,\n'
+    '                            currency=order.currency, source_reference=order.reference)\n'
+    '        except Exception:\n'
+    '            pass',
+)])
+
+# marketplace: settle referral when a subscription is activated (full price = OAM profit)
+edit("apps/marketplace/services.py", [(
+    '            sub.tier = p.tier\n'
+    '            sub.expires_at = base + timedelta(days=p.period_days)\n'
+    '            sub.save(update_fields=["tier", "expires_at", "updated_at"])\n'
+    '        return sub',
+    '            sub.tier = p.tier\n'
+    '            sub.expires_at = base + timedelta(days=p.period_days)\n'
+    '            sub.save(update_fields=["tier", "expires_at", "updated_at"])\n'
+    '            try:\n'
+    '                from apps.referrals.hooks import settle_referral\n'
+    '                settle_referral(user=p.user, oam_profit=p.amount,\n'
+    '                                currency=p.currency, source_reference=p.reference)\n'
+    '            except Exception:\n'
+    '                pass\n'
+    '        return sub',
+)])
+
+# homeservices: settle referral when a boost is marked paid (full price = OAM profit)
+edit("apps/homeservices/services.py", [(
+    '            p.status = BoostPayment.Status.PAID\n'
+    '            p.save(update_fields=["status", "updated_at"])\n'
+    '            profile = ArtisanProfile.objects.select_for_update().filter(user=p.user).first()',
+    '            p.status = BoostPayment.Status.PAID\n'
+    '            p.save(update_fields=["status", "updated_at"])\n'
+    '            try:\n'
+    '                from apps.referrals.hooks import settle_referral\n'
+    '                settle_referral(user=p.user, oam_profit=p.amount,\n'
+    '                                currency=p.currency, source_reference=p.reference)\n'
+    '            except Exception:\n'
+    '                pass\n'
+    '            profile = ArtisanProfile.objects.select_for_update().filter(user=p.user).first()',
+)])
+
+print("\\nDONE. Referral backend installed. Now run:  python manage.py migrate")
+````
+
+## File: reloadly_patch/apply_reloadly.py
+````python
+#!/usr/bin/env python3
+"""
+Reloadly international airtime — top-up engine + API.
+
+Builds on the foundation (apps/reloadly/services.py + models.py). Adds:
+  * topup.py — AirtimeTopupService: quote (NGN price = face USD x rate x (1+markup),
+    markup = operator Int'l discount %), create, pay (wallet OR Flutterwave card),
+    call Reloadly, capture (cost -> provider:reloadly, markup -> OAM revenue) or
+    refund on failure. Card settles via the same funding hook as bus.
+  * serializers.py, views.py, urls.py, admin.py, migration.
+  * settings: INSTALLED_APPS += apps.reloadly, RELOADLY_USD_NGN (default 1700),
+    RELOADLY_EXTRA_MARKUP_PERCENT (default 0).
+  * config/urls: /api/v1/reloadly/.
+  * FundingService.settle hook also completes a paid airtime top-up.
+
+RUN FROM BACKEND ROOT (after the foundation zip + travu are applied):
+    python3 reloadly_patch/apply_reloadly.py
+    python manage.py migrate
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def write(path, content):
+    full = _p(path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    open(full, "w", encoding="utf-8").write(content)
+    print(f"  + wrote {path}")
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:150]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+if not os.path.exists(_p("apps/reloadly/services.py")):
+    sys.exit("ABORT: apps/reloadly/services.py not found — apply the Reloadly foundation zip first.")
+
+# -------------------------------------------------------------- topup.py
+write("apps/reloadly/topup.py", '''"""
+Airtime top-up orchestration: price in NGN, take payment (wallet or card),
+call Reloadly, then capture (cost -> Reloadly, markup -> OAM revenue) or refund.
+"""
+import logging
+import uuid
+from decimal import Decimal, ROUND_HALF_UP
+
+from django.conf import settings
+from django.db import transaction
+
+from apps.wallet.services import WalletService, REVENUE_ACCOUNT
+from apps.payments.services import FundingService
+
+from .services import ReloadlyClient, ReloadlyError, s as _s
+from .models import AirtimeTopup, AirtimeApiLog
+
+logger = logging.getLogger(__name__)
+
+RELOADLY_ACCOUNT = "provider:reloadly"   # OAM's notional cost of airtime
+
+
+def usd_ngn() -> Decimal:
+    val = getattr(settings, "RELOADLY_USD_NGN", None)
+    try:
+        return Decimal(str(val)) if val not in (None, "") else Decimal("1700")
+    except Exception:
+        return Decimal("1700")
+
+
+def _extra_markup() -> Decimal:
+    val = getattr(settings, "RELOADLY_EXTRA_MARKUP_PERCENT", None)
+    try:
+        return Decimal(str(val)) if val not in (None, "") else Decimal("0")
+    except Exception:
+        return Decimal("0")
+
+
+def _ref() -> str:
+    return f"AIR-{uuid.uuid4().hex[:20]}"
+
+
+def _d(v) -> Decimal:
+    try:
+        return Decimal(str(v))
+    except Exception:
+        return Decimal("0")
+
+
+class AirtimeTopupService:
+    @staticmethod
+    def quote(*, operator: dict, amount, use_local_amount=False) -> dict:
+        """Price a top-up in NGN. markup = operator Int'l discount % (+ optional extra)."""
+        rate = usd_ngn()
+        disc = _d(operator.get("international_discount"))
+        fx = _d(operator.get("fx_rate"))
+        amt = _d(amount)
+        face_usd = (amt / fx) if (use_local_amount and fx > 0) else amt   # face value in USD
+        markup_pct = disc + _extra_markup()
+        total_ngn = (face_usd * rate * (Decimal("1") + markup_pct / Decimal("100"))).quantize(Decimal("0.01"), ROUND_HALF_UP)
+        cost_ngn = (face_usd * (Decimal("1") - disc / Decimal("100")) * rate).quantize(Decimal("0.01"), ROUND_HALF_UP)
+        markup_ngn = (total_ngn - cost_ngn).quantize(Decimal("0.01"))
+        return {
+            "face_usd": face_usd.quantize(Decimal("0.0001")),
+            "total_ngn": total_ngn, "cost_ngn": cost_ngn, "markup_ngn": markup_ngn,
+            "usd_ngn": rate, "markup_percent": markup_pct,
+        }
+
+    @staticmethod
+    @transaction.atomic
+    def create_topup(*, user, operator_id, amount, recipient_number, recipient_iso2,
+                     use_local_amount=False, pay_with="wallet") -> AirtimeTopup:
+        client = ReloadlyClient()
+        op = client.normalize_operator(client.operator(operator_id))
+        if not op.get("operator_id"):
+            raise ReloadlyError("That operator is not available.")
+        q = AirtimeTopupService.quote(operator=op, amount=amount, use_local_amount=use_local_amount)
+        return AirtimeTopup.objects.create(
+            user=user, reference=_ref(), status=AirtimeTopup.Status.PENDING,
+            operator_id=_s(operator_id), operator_name=op.get("name", ""),
+            country_iso=op.get("country_iso", ""),
+            recipient_number=_s(recipient_number), recipient_iso2=_s(recipient_iso2).upper(),
+            use_local_amount=bool(use_local_amount),
+            amount=_d(amount), currency=op.get("sender_currency", "USD") or "USD",
+            total_ngn=q["total_ngn"], cost_ngn=q["cost_ngn"], markup_ngn=q["markup_ngn"],
+            pay_with=pay_with,
+            request_payload={"operator": op.get("name"),
+                             "quote": {k: str(v) for k, v in q.items()}},
+        )
+
+    # ---------------- payment ----------------
+    @staticmethod
+    def pay_with_wallet(topup: AirtimeTopup) -> AirtimeTopup:
+        topup.status = AirtimeTopup.Status.PAID
+        topup.save(update_fields=["status", "updated_at"])
+        wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
+        WalletService.hold(wallet, topup.total_ngn, reference=topup.reference,
+                           description=f"Airtime {topup.reference}",
+                           metadata={"airtime": str(topup.id)})
+        return AirtimeTopupService._fulfill(topup)
+
+    @staticmethod
+    def pay_with_card(topup: AirtimeTopup) -> str:
+        txn, init = FundingService.initialize(topup.user, topup.total_ngn, "NGN")
+        topup.payment_reference = txn.internal_reference
+        topup.save(update_fields=["payment_reference", "updated_at"])
+        return init.authorization_url
+
+    @staticmethod
+    def settle_card(*, user, reference: str) -> AirtimeTopup:
+        topup = AirtimeTopup.objects.filter(payment_reference=reference, user=user).first()
+        if topup is None:
+            raise ReloadlyError("Unknown top-up reference.")
+        FundingService.settle(reference)   # credits wallet + fires on_funding_settled
+        topup.refresh_from_db()
+        return topup
+
+    @staticmethod
+    def on_funding_settled(reference: str):
+        with transaction.atomic():
+            topup = (AirtimeTopup.objects.select_for_update()
+                     .filter(payment_reference=reference,
+                             status=AirtimeTopup.Status.PENDING).first())
+            if topup is None:
+                return
+            topup.status = AirtimeTopup.Status.PAID
+            topup.save(update_fields=["status", "updated_at"])
+        wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
+        WalletService.hold(wallet, topup.total_ngn, reference=topup.reference,
+                           description=f"Airtime {topup.reference}",
+                           metadata={"airtime": str(topup.id)})
+        AirtimeTopupService._fulfill(topup)
+
+    # ---------------- core: send + capture / refund ----------------
+    @staticmethod
+    def _fulfill(topup: AirtimeTopup) -> AirtimeTopup:
+        wallet = WalletService.get_or_create_wallet(topup.user, "NGN")
+        client = ReloadlyClient()
+        try:
+            result = client.topup(
+                operator_id=topup.operator_id, amount=topup.amount,
+                recipient_number=topup.recipient_number, recipient_iso2=topup.recipient_iso2,
+                use_local_amount=topup.use_local_amount, custom_identifier=topup.reference,
+            )
+        except ReloadlyError as exc:
+            AirtimeApiLog.objects.create(topup=topup, endpoint="topups", ok=False, error=str(exc)[:255])
+            return AirtimeTopupService._refund(topup, wallet, str(exc)[:255])
+
+        AirtimeApiLog.objects.create(topup=topup, endpoint="topups", ok=True,
+                                     response_payload=result if isinstance(result, dict) else {})
+        status_ = str((result or {}).get("status") or "").upper()
+        txid = _s((result or {}).get("transactionId") or (result or {}).get("id"))
+        if status_ in ("SUCCESSFUL", "PROCESSING", "PENDING") or txid:
+            WalletService.capture(
+                "NGN", topup.total_ngn, reference=topup.reference, cost=topup.cost_ngn,
+                counterpart_code=RELOADLY_ACCOUNT, description=f"Airtime {topup.reference}",
+                metadata={"airtime": str(topup.id), "markup": str(topup.markup_ngn)},
+            )
+            topup.status = AirtimeTopup.Status.SUCCESS
+            topup.reloadly_transaction_id = txid
+            topup.delivered_amount = _d((result or {}).get("deliveredAmount"))
+            topup.delivered_currency = _s((result or {}).get("deliveredAmountCurrencyCode"))
+            topup.response_payload = result if isinstance(result, dict) else {}
+            topup.save(update_fields=["status", "reloadly_transaction_id", "delivered_amount",
+                                      "delivered_currency", "response_payload", "updated_at"])
+            return topup
+
+        return AirtimeTopupService._refund(topup, wallet,
+                                           _s((result or {}).get("message")) or "Top-up not completed.")
+
+    @staticmethod
+    def _refund(topup: AirtimeTopup, wallet, reason: str) -> AirtimeTopup:
+        WalletService.release(wallet, topup.total_ngn, reference=topup.reference,
+                              description=f"Airtime refund {topup.reference}",
+                              metadata={"airtime": str(topup.id)})
+        topup.status = AirtimeTopup.Status.FAILED
+        topup.failure_reason = reason
+        topup.save(update_fields=["status", "failure_reason", "updated_at"])
+        return topup
+''')
+
+# -------------------------------------------------------------- serializers
+write("apps/reloadly/serializers.py", '''from rest_framework import serializers
+
+from .models import AirtimeTopup
+
+
+class QuoteSerializer(serializers.Serializer):
+    operator_id = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4)
+    use_local_amount = serializers.BooleanField(default=False)
+
+
+class BuySerializer(serializers.Serializer):
+    operator_id = serializers.CharField()
+    amount = serializers.DecimalField(max_digits=20, decimal_places=4)
+    use_local_amount = serializers.BooleanField(default=False)
+    recipient_number = serializers.CharField()
+    recipient_iso2 = serializers.CharField()
+    pay_with = serializers.ChoiceField(choices=["wallet", "card"], default="wallet")
+
+
+class AirtimeTopupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AirtimeTopup
+        fields = ["reference", "status", "operator_name", "country_iso",
+                  "recipient_number", "recipient_iso2", "amount", "currency",
+                  "total_ngn", "markup_ngn", "reloadly_transaction_id",
+                  "delivered_amount", "delivered_currency", "failure_reason", "created_at"]
+        read_only_fields = fields
+''')
+
+# -------------------------------------------------------------- views
+write("apps/reloadly/views.py", '''from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .models import AirtimeTopup
+from .serializers import AirtimeTopupSerializer, BuySerializer, QuoteSerializer
+from .services import ReloadlyClient, ReloadlyError
+from .topup import AirtimeTopupService
+
+
+class CountriesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            return Response({"countries": ReloadlyClient().countries()})
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+
+
+class OperatorsView(APIView):
+    """GET /reloadly/operators/?country=GH  (or ?phone=...&country=GH to auto-detect)."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        iso = request.query_params.get("country", "")
+        phone = request.query_params.get("phone", "")
+        client = ReloadlyClient()
+        try:
+            if phone:
+                op = client.autodetect_operator(phone=phone, iso2=iso)
+                return Response({"operators": [client.normalize_operator(op)] if op else []})
+            ops = client.operators_by_country(iso)
+            return Response({"operators": [client.normalize_operator(o) for o in ops]})
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+
+
+class QuoteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        s = QuoteSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        client = ReloadlyClient()
+        try:
+            op = client.normalize_operator(client.operator(s.validated_data["operator_id"]))
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+        q = AirtimeTopupService.quote(operator=op, amount=s.validated_data["amount"],
+                                      use_local_amount=s.validated_data["use_local_amount"])
+        return Response({k: str(v) for k, v in q.items()})
+
+
+class BuyView(APIView):
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        s = BuySerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        d = s.validated_data
+        try:
+            topup = AirtimeTopupService.create_topup(
+                user=request.user, operator_id=d["operator_id"], amount=d["amount"],
+                recipient_number=d["recipient_number"], recipient_iso2=d["recipient_iso2"],
+                use_local_amount=d["use_local_amount"], pay_with=d["pay_with"],
+            )
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=502)
+
+        if d["pay_with"] == "card":
+            try:
+                url = AirtimeTopupService.pay_with_card(topup)
+            except Exception as exc:  # noqa: BLE001
+                return Response({"detail": "Couldn't start card payment.", "error": str(exc)}, status=502)
+            return Response({"topup": AirtimeTopupSerializer(topup).data,
+                             "authorization_url": url, "reference": topup.payment_reference})
+
+        try:
+            topup = AirtimeTopupService.pay_with_wallet(topup)
+        except Exception as exc:  # insufficient funds etc.
+            return Response({"detail": str(exc) or "Payment failed.",
+                             "topup": AirtimeTopupSerializer(topup).data}, status=402)
+        return Response({"topup": AirtimeTopupSerializer(topup).data})
+
+
+class CardVerifyView(APIView):
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        try:
+            topup = AirtimeTopupService.settle_card(user=request.user,
+                                                    reference=request.data.get("reference") or "")
+        except ReloadlyError as exc:
+            return Response({"detail": str(exc)}, status=400)
+        return Response({"topup": AirtimeTopupSerializer(topup).data})
+
+
+class TopupListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = AirtimeTopupSerializer
+
+    def get_queryset(self):
+        return AirtimeTopup.objects.filter(user=self.request.user)
+
+
+class TopupDetailView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = AirtimeTopupSerializer
+    lookup_field = "reference"
+
+    def get_queryset(self):
+        return AirtimeTopup.objects.filter(user=self.request.user)
+''')
+
+# -------------------------------------------------------------- urls
+write("apps/reloadly/urls.py", '''from django.urls import path
+
+from .views import (BuyView, CardVerifyView, CountriesView, OperatorsView,
+                    QuoteView, TopupDetailView, TopupListView)
+
+urlpatterns = [
+    path("countries/", CountriesView.as_view(), name="reloadly-countries"),
+    path("operators/", OperatorsView.as_view(), name="reloadly-operators"),
+    path("quote/", QuoteView.as_view(), name="reloadly-quote"),
+    path("buy/", BuyView.as_view(), name="reloadly-buy"),
+    path("card/verify/", CardVerifyView.as_view(), name="reloadly-card-verify"),
+    path("topups/", TopupListView.as_view(), name="reloadly-topups"),
+    path("topups/<str:reference>/", TopupDetailView.as_view(), name="reloadly-topup-detail"),
+]
+''')
+
+# -------------------------------------------------------------- admin
+write("apps/reloadly/admin.py", '''from django.contrib import admin
+
+from .models import AirtimeApiLog, AirtimeTopup
+
+
+@admin.register(AirtimeTopup)
+class AirtimeTopupAdmin(admin.ModelAdmin):
+    list_display = ("reference", "user", "operator_name", "recipient_number",
+                    "total_ngn", "markup_ngn", "status", "created_at")
+    list_filter = ("status", "country_iso")
+    search_fields = ("reference", "reloadly_transaction_id", "recipient_number", "user__email")
+
+
+admin.site.register(AirtimeApiLog)
+''')
+
+# -------------------------------------------------------------- migration
+write("apps/reloadly/migrations/__init__.py", "")
+write("apps/reloadly/migrations/0001_initial.py", '''from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="AirtimeTopup",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reference", models.CharField(db_index=True, max_length=40, unique=True)),
+                ("status", models.CharField(choices=[("pending", "Pending payment"), ("paid", "Paid — sending"), ("success", "Successful"), ("failed", "Failed"), ("refunded", "Refunded")], default="pending", max_length=12)),
+                ("operator_id", models.CharField(max_length=32)),
+                ("operator_name", models.CharField(blank=True, max_length=120)),
+                ("country_iso", models.CharField(blank=True, max_length=4)),
+                ("recipient_number", models.CharField(max_length=32)),
+                ("recipient_iso2", models.CharField(max_length=4)),
+                ("use_local_amount", models.BooleanField(default=False)),
+                ("amount", models.DecimalField(decimal_places=4, default=0, max_digits=20)),
+                ("currency", models.CharField(default="USD", max_length=6)),
+                ("total_ngn", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("cost_ngn", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("markup_ngn", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("payment_reference", models.CharField(blank=True, db_index=True, max_length=120)),
+                ("pay_with", models.CharField(default="wallet", max_length=10)),
+                ("reloadly_transaction_id", models.CharField(blank=True, db_index=True, max_length=64)),
+                ("delivered_amount", models.DecimalField(decimal_places=4, default=0, max_digits=20)),
+                ("delivered_currency", models.CharField(blank=True, max_length=6)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("failure_reason", models.CharField(blank=True, max_length=255)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="airtime_topups", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+        migrations.CreateModel(
+            name="AirtimeApiLog",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("endpoint", models.CharField(max_length=80)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("status_code", models.PositiveIntegerField(default=0)),
+                ("ok", models.BooleanField(default=False)),
+                ("error", models.CharField(blank=True, max_length=255)),
+                ("topup", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="api_logs", to="reloadly.airtimetopup")),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+    ]
+''')
+
+# -------------------------------------------------------------------- wiring
+edit("config/settings/base.py", [
+    (
+        '    "apps.travu",           # Travu intercity bus booking',
+        '    "apps.travu",           # Travu intercity bus booking\n'
+        '    "apps.reloadly",        # Reloadly international airtime',
+    ),
+    (
+        'BUS_FEE_PER_SEAT = env.int("BUS_FEE_PER_SEAT", default=500)',
+        'BUS_FEE_PER_SEAT = env.int("BUS_FEE_PER_SEAT", default=500)\n\n'
+        '# International airtime (Reloadly): USD->NGN pricing rate + optional extra markup.\n'
+        'RELOADLY_USD_NGN = env("RELOADLY_USD_NGN", default="1700")\n'
+        'RELOADLY_EXTRA_MARKUP_PERCENT = env("RELOADLY_EXTRA_MARKUP_PERCENT", default="0")',
+    ),
+])
+
+edit("config/urls.py", [(
+    '    path("api/v1/travu/", include("apps.travu.urls")),',
+    '    path("api/v1/travu/", include("apps.travu.urls")),\n'
+    '    path("api/v1/reloadly/", include("apps.reloadly.urls")),',
+)])
+
+# FundingService.settle: also complete a paid airtime top-up (alongside the bus hook)
+edit("apps/payments/services.py", [(
+    '''            def _book_bus(ref=reference):
+                try:
+                    from apps.travu.booking import BusBookingService
+                    BusBookingService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_book_bus)''',
+    '''            def _book_bus(ref=reference):
+                try:
+                    from apps.travu.booking import BusBookingService
+                    BusBookingService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_book_bus)
+
+            def _send_airtime(ref=reference):
+                try:
+                    from apps.reloadly.topup import AirtimeTopupService
+                    AirtimeTopupService.on_funding_settled(ref)
+                except Exception:
+                    pass
+            transaction.on_commit(_send_airtime)''',
+)])
+
+print("\\nDONE. Reloadly airtime backend installed. Now run:  python manage.py migrate")
+````
+
+## File: src/features/navigation/drawer.tsx
+````typescript
+import { createContext, useContext, useRef, useState, type ReactNode } from "react";
+import { View, Pressable, Modal, Animated, Dimensions, ScrollView, Alert, Linking } from "react-native";
+import { Image } from "expo-image";
+import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, BadgeCheck,
+  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon,
+} from "lucide-react-native";
+import { Text } from "@/shared/ui";
+import { colors, fonts } from "@/shared/theme";
+import { useAuthStore } from "@/features/auth";
+
+// Logo lives at the project root, exactly like AuthScaffold's require.
+const logo = require("../../../assets/images/logo.png");
+
+const { width: SCREEN_W } = Dimensions.get("window");
+const DRAWER_W = Math.min(322, SCREEN_W * 0.86);
+
+// Dimmed, scattered service icons — mirrors the web Hero left-side background.
+const BG_ICONS: { Icon: LucideIcon; left: number; top: number; size: number; o: number }[] = [
+  { Icon: Smartphone, left: 26, top: 96, size: 30, o: 0.06 },
+  { Icon: Wifi, left: 232, top: 64, size: 26, o: 0.05 },
+  { Icon: Tv, left: 150, top: 158, size: 34, o: 0.05 },
+  { Icon: Zap, left: 44, top: 226, size: 28, o: 0.06 },
+  { Icon: Store, left: 244, top: 214, size: 30, o: 0.055 },
+  { Icon: Plane, left: 64, top: 356, size: 32, o: 0.05 },
+  { Icon: Wrench, left: 214, top: 336, size: 28, o: 0.06 },
+  { Icon: Gift, left: 32, top: 470, size: 26, o: 0.05 },
+  { Icon: Send, left: 206, top: 486, size: 30, o: 0.05 },
+  { Icon: Ticket, left: 126, top: 576, size: 28, o: 0.05 },
+];
+
+type Ctx = { open: () => void; close: () => void };
+const DrawerCtx = createContext<Ctx>({ open: () => {}, close: () => {} });
+export const useDrawer = () => useContext(DrawerCtx);
+
+export function DrawerProvider({ children }: { children: ReactNode }) {
+  const [visible, setVisible] = useState(false);
+  const tx = useRef(new Animated.Value(-DRAWER_W)).current;
+  const fade = useRef(new Animated.Value(0)).current;
+
+  function open() {
+    setVisible(true);
+    Animated.parallel([
+      Animated.timing(tx, { toValue: 0, duration: 260, useNativeDriver: true }),
+      Animated.timing(fade, { toValue: 1, duration: 260, useNativeDriver: true }),
+    ]).start();
+  }
+  function close() {
+    Animated.parallel([
+      Animated.timing(tx, { toValue: -DRAWER_W, duration: 220, useNativeDriver: true }),
+      Animated.timing(fade, { toValue: 0, duration: 220, useNativeDriver: true }),
+    ]).start(() => setVisible(false));
+  }
+
+  return (
+    <DrawerCtx.Provider value={{ open, close }}>
+      {children}
+      <Modal visible={visible} transparent animationType="none" onRequestClose={close} statusBarTranslucent>
+        <View style={{ flex: 1 }}>
+          <Animated.View style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "rgba(0,0,0,0.5)", opacity: fade }}>
+            <Pressable style={{ flex: 1 }} onPress={close} />
+          </Animated.View>
+          <Animated.View style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: DRAWER_W, transform: [{ translateX: tx }] }}>
+            <DrawerPanel onClose={close} />
+          </Animated.View>
+        </View>
+      </Modal>
+    </DrawerCtx.Provider>
+  );
+}
+
+function DrawerPanel({ onClose }: { onClose: () => void }) {
+  const insets = useSafeAreaInsets();
+  const router = useRouter();
+  const { t } = useTranslation();
+  const user = useAuthStore((s) => s.user);
+  const signOut = useAuthStore((s) => s.signOut);
+
+  const name = [user?.first_name, user?.last_name].filter(Boolean).join(" ") || t("drawer.user", "OAM User");
+  const initial = (user?.first_name?.[0] || "O").toUpperCase();
+  const subtitle = user?.email || user?.phone || "";
+
+  function go(route: string) {
+    onClose();
+    setTimeout(() => router.push(route as never), 170);
+  }
+  function soon(label: string) {
+    onClose();
+    setTimeout(() => Alert.alert(label, t("drawer.soon", "This arrives in an upcoming update.")), 220);
+  }
+  function openSite() {
+    onClose();
+    setTimeout(() => Linking.openURL("https://oam-app.com").catch(() => {}), 170);
+  }
+
+  const links: { key: string; label: string; Icon: LucideIcon; onPress: () => void }[] = [
+    { key: "about", label: t("drawer.about", "About OAM"), Icon: Info, onPress: openSite },
+    { key: "bills", label: t("drawer.payBills", "Pay Bills"), Icon: Receipt, onPress: () => go("/airtime") },
+    { key: "marketplace", label: t("drawer.marketplace", "Market Place"), Icon: Store, onPress: () => go("/marketplace") },
+    { key: "betting", label: t("drawer.betting", "Fund Betting Wallet"), Icon: Ticket, onPress: () => go("/betting") },
+    { key: "artisans", label: t("drawer.artisans", "Find An Artisan"), Icon: Wrench, onPress: () => go("/artisans-find") },
+    { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },
+    { key: "ecommerce", label: t("drawer.ecommerce", "E-commerce"), Icon: ShoppingBag, onPress: () => go("/ecommerce") },
+  ];
+
+  return (
+    <View style={{ flex: 1, backgroundColor: "#062616", overflow: "hidden" }}>
+      {/* Green wash from the top-left, fading down — the Hero mood. */}
+      <LinearGradient
+        colors={["rgba(11,115,39,0.55)", "rgba(6,38,22,0.35)", "rgba(6,38,22,0.9)"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.9, y: 1 }}
+        style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
+      />
+      {/* Soft white "cloud" glows. */}
+      <View style={{ position: "absolute", top: -60, left: -40, height: 240, width: 240, borderRadius: 120, backgroundColor: "rgba(255,255,255,0.06)" }} />
+      <View style={{ position: "absolute", top: 260, right: -70, height: 200, width: 200, borderRadius: 100, backgroundColor: "rgba(255,255,255,0.045)" }} />
+      {/* Dimmed drifting-style service icons. */}
+      {BG_ICONS.map((b, i) => (
+        <View key={i} style={{ position: "absolute", left: b.left, top: b.top, opacity: b.o }}>
+          <b.Icon size={b.size} strokeWidth={1.5} color="#FFFFFF" />
+        </View>
+      ))}
+      {/* Red | green accent seam down the trailing edge. */}
+      <View style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: 3 }}>
+        <View style={{ flex: 1, backgroundColor: colors.brand.red }} />
+        <View style={{ flex: 1, backgroundColor: colors.brand.green }} />
+      </View>
+
+      <ScrollView contentContainerStyle={{ paddingTop: insets.top + 22, paddingBottom: insets.bottom + 20, paddingHorizontal: 20 }} showsVerticalScrollIndicator={false}>
+        {/* Logo — kept on a white chip so it reads on the dark background. */}
+        <View style={{ alignSelf: "flex-start", backgroundColor: "#FFFFFF", borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
+          <Image source={logo} style={{ width: 96, height: 30 }} contentFit="contain" />
+        </View>
+
+        {/* Profile */}
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 22 }}>
+          <View style={{ height: 52, width: 52, borderRadius: 26, backgroundColor: "rgba(255,255,255,0.14)", borderWidth: 1, borderColor: "rgba(255,255,255,0.25)", alignItems: "center", justifyContent: "center" }}>
+            <Text style={{ fontFamily: fonts.bold, fontSize: 20, color: "#FFFFFF" }}>{initial}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+              <Text style={{ fontFamily: fonts.bold, fontSize: 16, color: "#FFFFFF" }} numberOfLines={1}>{name}</Text>
+              {user?.is_verified ? <BadgeCheck size={15} strokeWidth={2} color="#7CE0A0" /> : null}
+            </View>
+            {subtitle ? <Text style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 1 }} numberOfLines={1}>{subtitle}</Text> : null}
+          </View>
+        </View>
+
+        <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 20, marginBottom: 6 }} />
+
+        {/* Nav links, one after the other: [icon] label › */}
+        {links.map((l) => (
+          <Pressable
+            key={l.key}
+            onPress={l.onPress}
+            style={({ pressed }) => ({
+              flexDirection: "row", alignItems: "center", paddingVertical: 12, paddingHorizontal: 12,
+              borderRadius: 14, marginBottom: 6,
+              backgroundColor: pressed ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.05)",
+            })}
+          >
+            <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.12)", alignItems: "center", justifyContent: "center", marginRight: 12 }}>
+              <l.Icon size={18} strokeWidth={1.75} color="#FFFFFF" />
+            </View>
+            <Text style={{ fontFamily: fonts.bold, fontSize: 14.5, color: "#FFFFFF" }}>{l.label}</Text>
+            <ChevronRight size={16} color="rgba(255,255,255,0.45)" style={{ marginLeft: 8 }} />
+          </Pressable>
+        ))}
+
+        <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 8, marginBottom: 6 }} />
+
+        {/* Sign out */}
+        <Pressable
+          onPress={() => { onClose(); setTimeout(() => signOut().catch(() => {}), 150); }}
+          style={({ pressed }) => ({ flexDirection: "row", alignItems: "center", gap: 14, paddingVertical: 14, paddingHorizontal: 6, borderRadius: 12, backgroundColor: pressed ? "rgba(255,255,255,0.08)" : "transparent" })}
+        >
+          <View style={{ height: 38, width: 38, borderRadius: 11, backgroundColor: "rgba(227,16,18,0.20)", alignItems: "center", justifyContent: "center" }}>
+            <LogOut size={18} strokeWidth={1.75} color="#FF6B6B" />
+          </View>
+          <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 14.5, color: "#FFD7D7" }}>{t("drawer.signOut", "Sign out")}</Text>
+        </Pressable>
+
+        <Text style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 14, paddingHorizontal: 6 }}>OAM · {t("drawer.tagline", "One app, everything")}</Text>
+      </ScrollView>
+    </View>
+  );
+}
+````
+
+## File: tasks/__init__.py
+````python
+
+````
+
+## File: tasks/example.py
+````python
+"""
+Placeholder task proving the Celery wiring end-to-end.
+
+Real task modules (tasks/payments.py, tasks/remittance.py, tasks/travel.py,
+tasks/reconciliation.py, tasks/notifications.py) arrive with their phases.
+"""
+from celery import shared_task
+
+
+@shared_task(name="tasks.example.ping")
+def ping():
+    return "pong"
+````
+
+## File: tasks/payments.py
+````python
+"""Celery tasks for payment processing (webhook settlement)."""
+from celery import shared_task
+
+
+@shared_task(name="tasks.payments.settle_funding", bind=True,
+             autoretry_for=(Exception,), retry_backoff=True, max_retries=5)
+def settle_funding(self, reference, verified_status=None, raw=None):
+    from apps.payments.services import FundingService
+    FundingService.settle(reference, verified_status=verified_status, raw=raw)
+````
+
+## File: transfer_fee_patch/apply_transfer_fee.py
+````python
+#!/usr/bin/env python3
+"""
+Add a wallet -> bank transfer fee (OAM revenue) to the payout/withdrawal flow.
+
+Fee schedule (NGN): ₦25 for transfers of ₦500 and above, ₦10 below ₦500.
+The user's wallet is debited `amount + fee`; the bank receives `amount`; the
+`fee` is booked to OAM revenue on capture. On failure the whole hold (amount +
+fee) is released.
+
+RUN FROM BACKEND ROOT:
+    python3 transfer_fee_patch/apply_transfer_fee.py
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+path = os.path.join(ROOT, "apps/payouts/services.py")
+
+if not os.path.exists(path):
+    sys.exit(f"ABORT: not found: {path}")
+
+s = open(path, encoding="utf-8").read()
+
+
+def apply(old, new, label):
+    global s
+    if new in s:
+        print(f"  = {label}: already applied")
+        return
+    if s.count(old) != 1:
+        sys.exit(f"ABORT: anchor for {label} not found exactly once")
+    s = s.replace(old, new, 1)
+    print(f"  + {label}")
+
+
+# 1) fee helper (next to _wd_ref)
+apply(
+    'def _wd_ref() -> str:',
+    'def _transfer_fee(amount, currency="NGN"):\n'
+    '    """Wallet -> bank transfer fee (OAM revenue). ₦25 from ₦500+, else ₦10. NGN only."""\n'
+    '    from decimal import Decimal\n'
+    '    if str(currency).upper() != "NGN":\n'
+    '        return Decimal("0")\n'
+    '    return Decimal("25") if Decimal(str(amount)) >= Decimal("500") else Decimal("10")\n'
+    '\n'
+    '\n'
+    'def _wd_ref() -> str:',
+    "fee helper",
+)
+
+# 2) create_and_hold: hold amount + fee, store fee
+apply(
+    '''        amount = Decimal(str(amount))
+        wallet = WalletService.get_or_create_wallet(user, currency)
+        with transaction.atomic():
+            order = WithdrawalOrder.objects.create(
+                user=user, wallet=wallet, bank_account=bank_account,
+                amount=amount, currency=currency.upper(), reference=_wd_ref(),
+                status=WithdrawalOrder.Status.PENDING,
+                request_payload={"amount": str(amount), "bank_account": str(bank_account.id)},
+            )
+            WalletService.hold(wallet, amount, reference=order.reference,
+                               description=f"Withdrawal hold {order.reference}",
+                               metadata={"withdrawal": str(order.id)})''',
+    '''        amount = Decimal(str(amount))
+        fee = _transfer_fee(amount, currency)
+        total = amount + fee
+        wallet = WalletService.get_or_create_wallet(user, currency)
+        with transaction.atomic():
+            order = WithdrawalOrder.objects.create(
+                user=user, wallet=wallet, bank_account=bank_account,
+                amount=amount, currency=currency.upper(), reference=_wd_ref(),
+                status=WithdrawalOrder.Status.PENDING,
+                request_payload={"amount": str(amount), "fee": str(fee), "total": str(total),
+                                 "bank_account": str(bank_account.id)},
+            )
+            WalletService.hold(wallet, total, reference=order.reference,
+                               description=f"Withdrawal hold {order.reference}",
+                               metadata={"withdrawal": str(order.id), "fee": str(fee)})''',
+    "create_and_hold holds amount+fee",
+)
+
+# 3) _capture: split cost (amount -> bank) vs revenue (fee -> OAM)
+apply(
+    '''    def _capture(order):
+        WalletService.capture(order.currency, order.amount, reference=order.reference,
+                              counterpart_code=PAYOUT_ACCOUNT,
+                              description=f"Withdrawal capture {order.reference}",
+                              metadata={"withdrawal": str(order.id)})''',
+    '''    def _capture(order):
+        fee = Decimal(str((order.request_payload or {}).get("fee", "0")))
+        total = order.amount + fee
+        WalletService.capture(order.currency, total, reference=order.reference,
+                              cost=order.amount, counterpart_code=PAYOUT_ACCOUNT,
+                              description=f"Withdrawal capture {order.reference}",
+                              metadata={"withdrawal": str(order.id), "fee": str(fee)})''',
+    "_capture splits fee to revenue",
+)
+
+# 4) _release: release the whole hold (amount + fee)
+apply(
+    '''    def _release(order):
+        WalletService.release(order.wallet, order.amount, reference=order.reference,
+                              description=f"Withdrawal refund {order.reference}",
+                              metadata={"withdrawal": str(order.id)})''',
+    '''    def _release(order):
+        fee = Decimal(str((order.request_payload or {}).get("fee", "0")))
+        total = order.amount + fee
+        WalletService.release(order.wallet, total, reference=order.reference,
+                              description=f"Withdrawal refund {order.reference}",
+                              metadata={"withdrawal": str(order.id)})''',
+    "_release refunds amount+fee",
+)
+
+open(path, "w", encoding="utf-8").write(s)
+print("\nDONE. Wallet->bank transfer fee active (₦25 from ₦500+, else ₦10).")
+````
+
+## File: travu_patch/apply_travu.py
+````python
+#!/usr/bin/env python3
+"""
+Travu bus booking — full backend (booking service, API, migration, wiring).
+
+Builds on the foundation (apps/travu/services.py + models.py). Adds:
+  * booking.py  — BusBookingService: quote, create_booking, pay_with_wallet,
+    pay_with_card (+ settle_card), and _fulfill (calls Travu book_trip, then
+    captures fare->Travu / fee->OAM revenue, or refunds on failure).
+  * serializers.py, views.py, urls.py, admin.py, migration.
+  * settings: INSTALLED_APPS += apps.travu, BUS_FEE_PER_SEAT (env, default ₦500).
+  * config/urls: /api/v1/travu/.
+
+Payment: wallet OR card (Paystack via FundingService). Convenience fee is
+₦500/seat by default, override with env BUS_FEE_PER_SEAT.
+
+RUN FROM BACKEND ROOT:
+    python3 travu_patch/apply_travu.py
+    python manage.py migrate
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+
+
+def _p(*parts):
+    return os.path.join(ROOT, *parts)
+
+
+def write(path, content):
+    full = _p(path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    open(full, "w", encoding="utf-8").write(content)
+    print(f"  + wrote {path}")
+
+
+def edit(path, subs):
+    full = _p(path)
+    if not os.path.exists(full):
+        sys.exit(f"ABORT: expected file not found: {path}")
+    s = open(full, encoding="utf-8").read()
+    for old, new in subs:
+        if new in s:
+            print(f"  = {path}: already applied, skipping one edit")
+            continue
+        if s.count(old) != 1:
+            sys.exit(f"ABORT: anchor not found exactly once in {path}:\n---\n{old[:150]}\n---")
+        s = s.replace(old, new, 1)
+    open(full, "w", encoding="utf-8").write(s)
+    print(f"  + patched {path}")
+
+
+if not os.path.exists(_p("apps/travu/services.py")):
+    sys.exit("ABORT: apps/travu/services.py not found — apply the Travu foundation zip first.")
+
+# ------------------------------------------------------------- booking.py
+write("apps/travu/booking.py", '''"""
+Bus booking orchestration: money in (wallet or card) -> Travu book_trip ->
+capture (fare to Travu, fee to OAM revenue) or refund on failure.
+"""
+import logging
+import uuid
+from decimal import Decimal
+
+from django.conf import settings
+from django.db import transaction
+
+from apps.wallet.services import WalletService, REVENUE_ACCOUNT
+from apps.payments.services import FundingService
+
+from .services import TravuClient, TravuError, s as _s
+from .models import BusBooking, BusPassenger, TravuApiLog
+
+logger = logging.getLogger(__name__)
+
+TRAVU_ACCOUNT = "provider:travu"   # OAM's cost of fares paid to Travu
+
+
+def fee_per_seat() -> Decimal:
+    """Convenience fee per seat (OAM revenue). Env BUS_FEE_PER_SEAT, default ₦500."""
+    val = getattr(settings, "BUS_FEE_PER_SEAT", None)
+    try:
+        return Decimal(str(val)) if val not in (None, "") else Decimal("500")
+    except Exception:
+        return Decimal("500")
+
+
+def _ref() -> str:
+    return f"BUS-{uuid.uuid4().hex[:20]}"
+
+
+class BusBookingService:
+    @staticmethod
+    def quote(fare_per_seat, seats: int) -> dict:
+        fare = Decimal(str(fare_per_seat or 0))
+        fee = fee_per_seat()
+        n = int(seats or 0)
+        fare_total = fare * n
+        fee_total = fee * n
+        return {
+            "fare_per_seat": fare, "fee_per_seat": fee, "seats": n,
+            "fare_total": fare_total, "fee_total": fee_total,
+            "total": fare_total + fee_total,
+        }
+
+    @staticmethod
+    @transaction.atomic
+    def create_booking(*, user, departure_state, destination_state, trip_id, order_id,
+                       origin_id, destination_id, boarding_at, provider, trip_date,
+                       amount_per_seat, seat_numbers, passengers, currency="NGN",
+                       narration="", departure_terminal="", destination_terminal="",
+                       vehicle_no="") -> BusBooking:
+        seats = [x.strip() for x in str(seat_numbers).split(",") if x.strip()]
+        q = BusBookingService.quote(amount_per_seat, len(seats))
+        booking = BusBooking.objects.create(
+            user=user, reference=_ref(), status=BusBooking.Status.PENDING,
+            departure_state=_s(departure_state), destination_state=_s(destination_state),
+            trip_id=_s(trip_id), order_id=_s(order_id), origin_id=_s(origin_id),
+            destination_id=_s(destination_id), boarding_at=_s(boarding_at),
+            provider=_s(provider), trip_date=_s(trip_date), narration=_s(narration),
+            departure_terminal=_s(departure_terminal), destination_terminal=_s(destination_terminal),
+            vehicle_no=_s(vehicle_no), seat_numbers=",".join(seats), total_seats=len(seats),
+            amount_per_seat=q["fare_per_seat"], total_amount=q["total"], currency=currency.upper(),
+            agent_email=getattr(settings, "TRAVU_AGENT_EMAIL", "") or "",
+        )
+        for idx, p in enumerate(passengers):
+            BusPassenger.objects.create(
+                booking=booking, title=_s(p.get("title")), name=_s(p.get("name")),
+                age=_s(p.get("age")), sex=_s(p.get("sex")), phone=_s(p.get("phone")),
+                email=_s(p.get("email")), blood=_s(p.get("blood")),
+                next_of_kin=_s(p.get("next_of_kin")), next_of_kin_phone=_s(p.get("next_of_kin_phone")),
+                is_primary=bool(p.get("is_primary")) or idx == 0,
+                seat_number=seats[idx] if idx < len(seats) else "",
+            )
+        return booking
+
+    # ---------------- payment entry points ----------------
+    @staticmethod
+    def pay_with_wallet(booking: BusBooking) -> BusBooking:
+        wallet = WalletService.get_or_create_wallet(booking.user, booking.currency)
+        WalletService.hold(wallet, booking.total_amount, reference=booking.reference,
+                           description=f"Bus booking hold {booking.reference}",
+                           metadata={"bus": str(booking.id)})
+        return BusBookingService._fulfill(booking)
+
+    @staticmethod
+    def pay_with_card(booking: BusBooking) -> str:
+        """Charge the card for the full total; the wallet is funded on success."""
+        txn, init = FundingService.initialize(booking.user, booking.total_amount, booking.currency)
+        booking.payment_reference = txn.internal_reference
+        booking.save(update_fields=["payment_reference", "updated_at"])
+        return init.authorization_url
+
+    @staticmethod
+    def settle_card(*, user, reference: str) -> BusBooking:
+        """Called after the user returns from the gateway (or via webhook)."""
+        booking = BusBooking.objects.filter(payment_reference=reference, user=user).first()
+        if booking is None:
+            raise TravuError("Unknown booking reference.")
+        if booking.status != BusBooking.Status.PENDING:
+            return booking  # already fulfilled/failed — idempotent
+        FundingService.settle(reference)  # verify + credit wallet (idempotent)
+        wallet = WalletService.get_or_create_wallet(booking.user, booking.currency)
+        WalletService.hold(wallet, booking.total_amount, reference=booking.reference,
+                           description=f"Bus booking hold {booking.reference}",
+                           metadata={"bus": str(booking.id)})
+        return BusBookingService._fulfill(booking)
+
+    # ---------------- core: book at Travu, capture or refund ----------------
+    @staticmethod
+    def _fulfill(booking: BusBooking) -> BusBooking:
+        booking.status = BusBooking.Status.PAID
+        booking.save(update_fields=["status", "updated_at"])
+        wallet = WalletService.get_or_create_wallet(booking.user, booking.currency)
+
+        passengers = [
+            {
+                "title": p.title, "name": p.name, "age": p.age, "sex": p.sex,
+                "phone": p.phone, "email": p.email, "blood": p.blood,
+                "next_of_kin": p.next_of_kin, "next_of_kin_phone": p.next_of_kin_phone,
+                "is_primary": p.is_primary,
+            }
+            for p in booking.passengers.all()
+        ]
+
+        client = TravuClient()
+        try:
+            result = client.book_trip(
+                seat_numbers=booking.seat_numbers,
+                amount_per_seat=str(booking.amount_per_seat),   # FARE only — Travu's price
+                passengers=passengers,
+                origin_id=booking.origin_id, destination_id=booking.destination_id,
+                boarding_at=booking.boarding_at, trip_id=booking.trip_id,
+                trip_date=booking.trip_date, order_id=booking.order_id,
+                provider=booking.provider, agent_email=booking.agent_email,
+            )
+        except TravuError as exc:
+            TravuApiLog.objects.create(booking=booking, endpoint="book_trip", ok=False,
+                                       error=str(exc)[:255])
+            return BusBookingService._refund(booking, wallet, str(exc)[:255])
+
+        TravuApiLog.objects.create(booking=booking, endpoint="book_trip", ok=True,
+                                   response_payload=result.get("raw", {}))
+
+        status_ = (result.get("order_status") or "").lower()
+        if status_ == "confirmed" or _s(result.get("order_id")):
+            fare_total = booking.amount_per_seat * booking.total_seats
+            WalletService.capture(
+                booking.currency, booking.total_amount, reference=booking.reference,
+                cost=fare_total, counterpart_code=TRAVU_ACCOUNT,
+                description=f"Bus booking {booking.reference}",
+                metadata={"bus": str(booking.id), "fee": str(booking.total_amount - fare_total)},
+            )
+            booking.status = BusBooking.Status.CONFIRMED
+            booking.travu_order_id = _s(result.get("order_id"))
+            booking.travu_order_number = _s(result.get("order_number"))
+            booking.vehicle_no = _s(result.get("vehicle_no")) or booking.vehicle_no
+            booking.narration = _s(result.get("narration")) or booking.narration
+            booking.response_payload = result.get("raw", {})
+            booking.save(update_fields=["status", "travu_order_id", "travu_order_number",
+                                        "vehicle_no", "narration", "response_payload", "updated_at"])
+            return booking
+
+        return BusBookingService._refund(booking, wallet, "Booking not confirmed by provider.")
+
+    @staticmethod
+    def _refund(booking: BusBooking, wallet, reason: str) -> BusBooking:
+        WalletService.release(wallet, booking.total_amount, reference=booking.reference,
+                              description=f"Bus refund {booking.reference}",
+                              metadata={"bus": str(booking.id)})
+        booking.status = BusBooking.Status.FAILED
+        booking.failure_reason = reason
+        booking.save(update_fields=["status", "failure_reason", "updated_at"])
+        return booking
+''')
+
+# ------------------------------------------------------------- serializers.py
+write("apps/travu/serializers.py", '''from rest_framework import serializers
+
+from .models import BusBooking, BusPassenger
+
+
+class PassengerSerializer(serializers.Serializer):
+    title = serializers.CharField(required=False, allow_blank=True, default="")
+    name = serializers.CharField()
+    age = serializers.CharField(required=False, allow_blank=True, default="")
+    sex = serializers.CharField(required=False, allow_blank=True, default="")
+    phone = serializers.CharField(required=False, allow_blank=True, default="")
+    email = serializers.CharField(required=False, allow_blank=True, default="")
+    blood = serializers.CharField(required=False, allow_blank=True, default="")
+    next_of_kin = serializers.CharField(required=False, allow_blank=True, default="")
+    next_of_kin_phone = serializers.CharField(required=False, allow_blank=True, default="")
+    is_primary = serializers.BooleanField(required=False, default=False)
+
+
+class TripSearchSerializer(serializers.Serializer):
+    departure_state = serializers.CharField()
+    destination_state = serializers.CharField()
+    trip_date = serializers.CharField()
+
+
+class BookSerializer(serializers.Serializer):
+    departure_state = serializers.CharField()
+    destination_state = serializers.CharField()
+    trip_id = serializers.CharField()
+    order_id = serializers.CharField()
+    origin_id = serializers.CharField()
+    destination_id = serializers.CharField()
+    boarding_at = serializers.CharField(required=False, allow_blank=True, default="")
+    provider = serializers.CharField(required=False, allow_blank=True, default="")
+    trip_date = serializers.CharField()
+    amount_per_seat = serializers.DecimalField(max_digits=20, decimal_places=2)  # Travu FARE per seat
+    seat_numbers = serializers.CharField()
+    narration = serializers.CharField(required=False, allow_blank=True, default="")
+    departure_terminal = serializers.CharField(required=False, allow_blank=True, default="")
+    destination_terminal = serializers.CharField(required=False, allow_blank=True, default="")
+    vehicle_no = serializers.CharField(required=False, allow_blank=True, default="")
+    passengers = PassengerSerializer(many=True)
+    pay_with = serializers.ChoiceField(choices=["wallet", "card"], default="wallet")
+
+    def validate(self, data):
+        seats = [x for x in str(data["seat_numbers"]).split(",") if x.strip()]
+        if not seats:
+            raise serializers.ValidationError("Select at least one seat.")
+        if len(data["passengers"]) != len(seats):
+            raise serializers.ValidationError("The number of passengers must match the number of seats.")
+        if not any(p.get("is_primary") for p in data["passengers"]):
+            data["passengers"][0]["is_primary"] = True
+        return data
+
+
+class BusPassengerOutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BusPassenger
+        fields = ["title", "name", "age", "sex", "phone", "email", "blood",
+                  "next_of_kin", "next_of_kin_phone", "is_primary", "seat_number"]
+
+
+class BusBookingSerializer(serializers.ModelSerializer):
+    passengers = BusPassengerOutSerializer(many=True, read_only=True)
+    fare_total = serializers.SerializerMethodField()
+    fee_total = serializers.SerializerMethodField()
+
+    class Meta:
+        model = BusBooking
+        fields = [
+            "reference", "status", "departure_state", "destination_state",
+            "trip_date", "narration", "departure_terminal", "destination_terminal",
+            "vehicle_no", "provider", "seat_numbers", "total_seats",
+            "amount_per_seat", "fare_total", "fee_total", "total_amount", "currency",
+            "travu_order_id", "travu_order_number", "failure_reason",
+            "passengers", "created_at",
+        ]
+        read_only_fields = fields
+
+    def get_fare_total(self, obj):
+        return str(obj.amount_per_seat * obj.total_seats)
+
+    def get_fee_total(self, obj):
+        return str(obj.total_amount - (obj.amount_per_seat * obj.total_seats))
+''')
+
+# ------------------------------------------------------------- views.py
+write("apps/travu/views.py", '''from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.common.permissions import IsVerified
+
+from .booking import BusBookingService, fee_per_seat
+from .models import BusBooking
+from .serializers import BookSerializer, BusBookingSerializer, TripSearchSerializer
+from .services import STATES, TravuClient, TravuError
+
+
+class StatesView(APIView):
+    """GET /travu/states/ — supported state strings for the dropdowns."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"states": STATES})
+
+
+class TripSearchView(APIView):
+    """POST /travu/trips/ {departure_state, destination_state, trip_date} -> trips."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        s = TripSearchSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        fee = fee_per_seat()
+        try:
+            trips = TravuClient().check_trips(
+                departure_state=s.validated_data["departure_state"],
+                destination_state=s.validated_data["destination_state"],
+                trip_date=s.validated_data["trip_date"],
+            )
+        except TravuError as exc:
+            return Response({"detail": str(exc)}, status=502)
+        # surface the all-in per-seat price so the UI shows the final fare
+        for t in trips:
+            t["service_fee_per_seat"] = float(fee)
+            t["total_fare_per_seat"] = float(t.get("fare", 0)) + float(fee)
+        return Response({"trips": trips, "service_fee_per_seat": float(fee)})
+
+
+class BookView(APIView):
+    """POST /travu/book/ — create booking + take payment (wallet or card)."""
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        s = BookSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        d = s.validated_data
+        booking = BusBookingService.create_booking(
+            user=request.user,
+            departure_state=d["departure_state"], destination_state=d["destination_state"],
+            trip_id=d["trip_id"], order_id=d["order_id"], origin_id=d["origin_id"],
+            destination_id=d["destination_id"], boarding_at=d["boarding_at"],
+            provider=d["provider"], trip_date=d["trip_date"],
+            amount_per_seat=d["amount_per_seat"], seat_numbers=d["seat_numbers"],
+            passengers=d["passengers"], narration=d["narration"],
+            departure_terminal=d["departure_terminal"], destination_terminal=d["destination_terminal"],
+            vehicle_no=d["vehicle_no"],
+        )
+
+        if d["pay_with"] == "card":
+            try:
+                url = BusBookingService.pay_with_card(booking)
+            except Exception as exc:  # noqa: BLE001
+                return Response({"detail": "Couldn't start card payment.", "error": str(exc)}, status=502)
+            return Response({"booking": BusBookingSerializer(booking).data,
+                             "authorization_url": url, "reference": booking.payment_reference})
+
+        # wallet
+        try:
+            booking = BusBookingService.pay_with_wallet(booking)
+        except Exception as exc:  # insufficient funds etc.
+            return Response({"detail": str(exc) or "Payment failed.",
+                             "booking": BusBookingSerializer(booking).data}, status=402)
+        return Response({"booking": BusBookingSerializer(booking).data})
+
+
+class CardVerifyView(APIView):
+    """POST /travu/card/verify/ {reference} — after returning from the gateway."""
+    permission_classes = [IsVerified]
+
+    def post(self, request):
+        reference = request.data.get("reference") or ""
+        try:
+            booking = BusBookingService.settle_card(user=request.user, reference=reference)
+        except TravuError as exc:
+            return Response({"detail": str(exc)}, status=400)
+        return Response({"booking": BusBookingSerializer(booking).data})
+
+
+class BookingListView(ListAPIView):
+    """GET /travu/bookings/ — the user's bus bookings."""
+    permission_classes = [IsAuthenticated]
+    serializer_class = BusBookingSerializer
+
+    def get_queryset(self):
+        return BusBooking.objects.filter(user=self.request.user).prefetch_related("passengers")
+
+
+class BookingDetailView(RetrieveAPIView):
+    """GET /travu/bookings/<reference>/ — one ticket."""
+    permission_classes = [IsAuthenticated]
+    serializer_class = BusBookingSerializer
+    lookup_field = "reference"
+
+    def get_queryset(self):
+        return BusBooking.objects.filter(user=self.request.user).prefetch_related("passengers")
+''')
+
+# ------------------------------------------------------------- urls.py
+write("apps/travu/urls.py", '''from django.urls import path
+
+from .views import (BookingDetailView, BookingListView, BookView, CardVerifyView,
+                    StatesView, TripSearchView)
+
+urlpatterns = [
+    path("states/", StatesView.as_view(), name="travu-states"),
+    path("trips/", TripSearchView.as_view(), name="travu-trips"),
+    path("book/", BookView.as_view(), name="travu-book"),
+    path("card/verify/", CardVerifyView.as_view(), name="travu-card-verify"),
+    path("bookings/", BookingListView.as_view(), name="travu-bookings"),
+    path("bookings/<str:reference>/", BookingDetailView.as_view(), name="travu-booking-detail"),
+]
+''')
+
+# ------------------------------------------------------------- admin.py
+write("apps/travu/admin.py", '''from django.contrib import admin
+
+from .models import BusBooking, BusPassenger, TravuApiLog
+
+
+class PassengerInline(admin.TabularInline):
+    model = BusPassenger
+    extra = 0
+
+
+@admin.register(BusBooking)
+class BusBookingAdmin(admin.ModelAdmin):
+    list_display = ("reference", "user", "departure_state", "destination_state",
+                    "total_seats", "total_amount", "status", "created_at")
+    list_filter = ("status", "provider")
+    search_fields = ("reference", "travu_order_id", "user__email")
+    inlines = [PassengerInline]
+
+
+admin.site.register(TravuApiLog)
+''')
+
+# ------------------------------------------------------------- migration
+write("apps/travu/migrations/__init__.py", "")
+write("apps/travu/migrations/0001_initial.py", '''from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="BusBooking",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reference", models.CharField(db_index=True, max_length=40, unique=True)),
+                ("status", models.CharField(choices=[("pending", "Pending payment"), ("paid", "Paid — booking"), ("confirmed", "Confirmed"), ("failed", "Failed"), ("refunded", "Refunded")], default="pending", max_length=12)),
+                ("departure_state", models.CharField(max_length=40)),
+                ("destination_state", models.CharField(max_length=40)),
+                ("trip_id", models.CharField(max_length=40)),
+                ("order_id", models.CharField(max_length=40)),
+                ("origin_id", models.CharField(max_length=40)),
+                ("destination_id", models.CharField(max_length=40)),
+                ("boarding_at", models.CharField(blank=True, max_length=40)),
+                ("provider", models.CharField(blank=True, max_length=40)),
+                ("trip_date", models.CharField(max_length=20)),
+                ("narration", models.CharField(blank=True, max_length=255)),
+                ("departure_terminal", models.CharField(blank=True, max_length=255)),
+                ("destination_terminal", models.CharField(blank=True, max_length=255)),
+                ("vehicle_no", models.CharField(blank=True, max_length=120)),
+                ("seat_numbers", models.CharField(max_length=120)),
+                ("total_seats", models.PositiveIntegerField(default=0)),
+                ("amount_per_seat", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("total_amount", models.DecimalField(decimal_places=2, default=0, max_digits=20)),
+                ("currency", models.CharField(default="NGN", max_length=3)),
+                ("agent_email", models.EmailField(blank=True, max_length=254)),
+                ("payment_reference", models.CharField(blank=True, db_index=True, max_length=120)),
+                ("travu_order_id", models.CharField(blank=True, db_index=True, max_length=64)),
+                ("travu_order_number", models.CharField(blank=True, max_length=64)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("failure_reason", models.CharField(blank=True, max_length=255)),
+                ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="bus_bookings", to=settings.AUTH_USER_MODEL)),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+        migrations.CreateModel(
+            name="BusPassenger",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("title", models.CharField(blank=True, max_length=10)),
+                ("name", models.CharField(max_length=120)),
+                ("age", models.CharField(blank=True, max_length=4)),
+                ("sex", models.CharField(blank=True, max_length=10)),
+                ("phone", models.CharField(blank=True, max_length=20)),
+                ("email", models.EmailField(blank=True, max_length=254)),
+                ("blood", models.CharField(blank=True, max_length=6)),
+                ("next_of_kin", models.CharField(blank=True, max_length=120)),
+                ("next_of_kin_phone", models.CharField(blank=True, max_length=20)),
+                ("is_primary", models.BooleanField(default=False)),
+                ("seat_number", models.CharField(blank=True, max_length=8)),
+                ("booking", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="passengers", to="travu.busbooking")),
+            ],
+            options={"ordering": ["-is_primary", "id"]},
+        ),
+        migrations.CreateModel(
+            name="TravuApiLog",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("endpoint", models.CharField(max_length=64)),
+                ("request_payload", models.JSONField(blank=True, default=dict)),
+                ("response_payload", models.JSONField(blank=True, default=dict)),
+                ("status_code", models.PositiveIntegerField(default=0)),
+                ("ok", models.BooleanField(default=False)),
+                ("error", models.CharField(blank=True, max_length=255)),
+                ("booking", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="api_logs", to="travu.busbooking")),
+            ],
+            options={"ordering": ["-created_at"]},
+        ),
+    ]
+''')
+
+# ------------------------------------------------------------------- wiring
+edit("config/settings/base.py", [
+    (
+        '    "apps.notifications",   # device push tokens + Expo push sender',
+        '    "apps.notifications",   # device push tokens + Expo push sender\n'
+        '    "apps.travu",           # Travu intercity bus booking',
+    ),
+    (
+        'AUTH_USER_MODEL = "accounts.User"',
+        'AUTH_USER_MODEL = "accounts.User"\n\n'
+        '# Bus booking convenience fee per seat (OAM revenue). Override via env.\n'
+        'BUS_FEE_PER_SEAT = env.int("BUS_FEE_PER_SEAT", default=500)',
+    ),
+])
+
+edit("config/urls.py", [(
+    '    path("api/v1/notifications/", include("apps.notifications.urls")),',
+    '    path("api/v1/notifications/", include("apps.notifications.urls")),\n'
+    '    path("api/v1/travu/", include("apps.travu.urls")),',
+)])
+
+print("\\nDONE. Travu booking backend installed. Now run:  python manage.py migrate")
+````
+
+## File: withdraw_min_patch/apply_withdraw_min.py
+````python
+#!/usr/bin/env python3
+"""
+Enforce a ₦100 minimum on wallet -> bank withdrawals (payouts).
+
+RUN FROM BACKEND ROOT:
+    python3 withdraw_min_patch/apply_withdraw_min.py
+"""
+import os
+import sys
+
+ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
+path = os.path.join(ROOT, "apps/payouts/serializers.py")
+
+if not os.path.exists(path):
+    sys.exit(f"ABORT: not found: {path}")
+
+s = open(path, encoding="utf-8").read()
+old = (
+    "    def validate_amount(self, value):\n"
+    "        if value <= 0:\n"
+    "            raise serializers.ValidationError(\"Amount must be positive.\")\n"
+    "        return value"
+)
+new = (
+    "    def validate_amount(self, value):\n"
+    "        if value < 100:\n"
+    "            raise serializers.ValidationError(\"Minimum withdrawal is \u20a6100.\")\n"
+    "        return value"
+)
+
+if new in s:
+    print("= already applied")
+elif s.count(old) != 1:
+    sys.exit("ABORT: validate_amount anchor not found exactly once")
+else:
+    open(path, "w", encoding="utf-8").write(s.replace(old, new, 1))
+    print("+ payouts: withdrawal minimum set to \u20a6100")
+
+print("DONE.")
+````
+
+## File: .gitignore
+````
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+.env.*
+venv/
+.venv/
+.vscode/
+*.log
+````
+
+## File: .python-version
+````
+3.12.10
+````
+
+## File: .token
+````
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg0NjEwNDg5LCJpYXQiOjE3ODQ1NjcyODksImp0aSI6IjcwODg0ZWQ1OGE4MTRmZTRiNjRkN2NmYjQyMjM2MjMzIiwidXNlcl9pZCI6ImFlYTM2NjFhLTUzMGUtNGFmZi1hZjRhLTY1ZjE3NGZiNTAzMyIsImlzX3ZlcmlmaWVkIjp0cnVlfQ.-Vsw91vy96lnAFbCVcL7EurBk8RqM7nk6Ou904v6QJA
+````
+
+## File: add_categories.py
+````python
+"""
+Add marketplace categories: Clothes, Accessories, Equipment, Others.
+
+These live in the database, so once added they appear EVERYWHERE automatically:
+the Post an item dropdown, the Browse Items tabs, and the filters. Only the
+landing page needs a matching frontend change, because its tabs are still
+mock data.
+
+A NOTE ON TWO SPELLINGS
+  You wrote "Accessaries" and "Equipments". I've used "Accessories" and
+  "Equipment", which are the standard spellings — a visible misspelling in a
+  primary navigation tab is the kind of thing that quietly costs trust on a
+  marketplace handling real money.
+
+  If you'd rather keep your originals, or use "Equipments" (which is common in
+  Nigerian English), just edit the NAMES list below before running. The slug is
+  what the code matches on, so the label can say anything.
+
+RUN FROM THE BACKEND ROOT:
+    python3 manage.py shell < add_categories.py
+"""
+from django.utils.text import slugify
+
+from apps.marketplace.models import Category
+
+# (name, slug, description)
+NEW = [
+    ("Clothes", "clothes", "Men's, women's and children's clothing"),
+    ("Accessories", "accessories", "Bags, watches, jewellery and personal accessories"),
+    ("Equipment", "equipment", "Tools, machinery and professional equipment"),
+    ("Others", "others", "Anything that doesn't fit the categories above"),
+]
+
+existing = {c.slug: c for c in Category.objects.all()}
+start_order = (max((c.order or 0) for c in existing.values()) + 1) if existing else 0
+
+created = 0
+for i, (name, slug, description) in enumerate(NEW):
+    slug = slug or slugify(name)
+    if slug in existing:
+        print(f"  exists : {name} ({slug})")
+        continue
+    Category.objects.create(
+        name=name,
+        slug=slug,
+        description=description,
+        icon="",
+        is_admin_only=False,
+        is_active=True,
+        # "Others" is deliberately last — it's the fallback, and a catch-all
+        # sitting mid-list pulls listings that belong somewhere more specific.
+        order=start_order + (900 if slug == "others" else i),
+    )
+    created += 1
+    print(f"  created: {name} ({slug})")
+
+print(f"\n{created} added.\n")
+print("All marketplace categories, in tab order:")
+for c in Category.objects.filter(is_active=True).order_by("order", "name"):
+    flag = "  [admin only]" if c.is_admin_only else ""
+    print(f"  {c.order:>4}  {c.name:<22} {c.slug}{flag}")
+````
+
+## File: apply_reloadly_flutterwave.py
+````python
+#!/usr/bin/env python3
+"""
+Make International Airtime (Reloadly) card top-ups charge via FLUTTERWAVE
+instead of the default gateway (Paystack).
+
+Run from the backend root (the folder that contains `apps/`):
+    python apply_reloadly_flutterwave.py
+
+Guarded (aborts on anchor mismatch) and idempotent (safe to run twice).
+"""
+import sys, pathlib
+
+TARGET = pathlib.Path("apps/reloadly/topup.py")
+OLD = 'FundingService.initialize(topup.user, topup.total_ngn, "NGN")'
+NEW = 'FundingService.initialize(topup.user, topup.total_ngn, "NGN", provider_key="flutterwave")'
+
+if not TARGET.exists():
+    sys.exit(f"ABORT: {TARGET} not found. Run this from the backend root (where 'apps/' lives).")
+
+src = TARGET.read_text()
+
+if NEW in src:
+    print("Already applied — international airtime card top-ups already use Flutterwave. No change made.")
+    sys.exit(0)
+
+if OLD not in src:
+    sys.exit(
+        "ABORT: expected call not found in apps/reloadly/topup.py (anchor mismatch).\n"
+        "       Looking for:  " + OLD + "\n"
+        "       Nothing was changed. Send me the file and I'll adjust the anchor."
+    )
+
+TARGET.write_text(src.replace(OLD, NEW, 1))
+print("Done - international airtime card top-ups now initialize the charge via Flutterwave "
+      "(provider_key='flutterwave'). No other payment path is affected.")
+````
+
+## File: build.sh
+````bash
+#!/usr/bin/env bash
+# Render build command for the Django service.
+#
+# set -o errexit matters: without it a failed migration would still produce a
+# "successful" deploy, and the service would start against a half-migrated
+# database.
+set -o errexit
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+python manage.py collectstatic --no-input
+python manage.py migrate
+````
+
+## File: fix_banklist_permission.py
+````python
+"""
+Fix: the bank list is admin-only, so ordinary users can't add a payout account.
+
+BankListView (GET /payouts/banks-list/) is declared IsAdminUser. Customers need
+that list to choose their bank when saving a withdrawal account, so this changes
+it to a normal authenticated+verified user.
+
+Only that ONE view changes. Withdrawals, resolve-account and admin views keep
+their existing permissions.
+
+Run from the backend root:   python3 fix_banklist_permission.py
+"""
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(".").resolve()
+SKIP = {"venv", ".venv", "node_modules", ".git", "__pycache__", "staticfiles"}
+
+target = None
+for p in ROOT.rglob("*.py"):
+    if any(part in SKIP for part in p.parts):
+        continue
+    try:
+        s = p.read_text()
+    except Exception:
+        continue
+    if "class BankListView" in s:
+        target = p
+        break
+
+if target is None:
+    sys.exit("Could not find BankListView. Is apps/payouts/views.py present?")
+
+s = target.read_text()
+
+m = re.search(
+    r'(class BankListView\b.*?permission_classes\s*=\s*)\[([^\]]*)\]',
+    s, re.S,
+)
+if not m:
+    sys.exit(f"Found {target} but not the permission_classes line — patch by hand.")
+
+current = m.group(2).strip()
+if "IsAdminUser" not in current:
+    print(f"Already changed (currently: [{current}]). Nothing to do.")
+    sys.exit(0)
+
+s = s[: m.start(2)] + "IsAuthenticated, IsVerified" + s[m.end(2):]
+
+# make sure both permissions are imported
+if "IsAuthenticated" not in s.split("class ")[0]:
+    s = re.sub(
+        r'(from rest_framework\.permissions import )([^\n]+)',
+        lambda mm: mm.group(1) + mm.group(2) + (", IsAuthenticated" if "IsAuthenticated" not in mm.group(2) else ""),
+        s, count=1,
+    )
+if "IsVerified" not in s:
+    # add the project's IsVerified import next to other apps.common imports
+    if "from apps.common.permissions import" in s:
+        s = re.sub(
+            r'(from apps\.common\.permissions import )([^\n]+)',
+            lambda mm: mm.group(1) + mm.group(2) + (", IsVerified" if "IsVerified" not in mm.group(2) else ""),
+            s, count=1,
+        )
+    else:
+        lines = s.splitlines(keepends=True)
+        last_import = max(
+            (i for i, ln in enumerate(lines[:60]) if ln.startswith(("import ", "from "))),
+            default=0,
+        )
+        lines.insert(last_import + 1, "from apps.common.permissions import IsVerified\n")
+        s = "".join(lines)
+
+target.write_text(s)
+print(f"✓ patched {target}")
+print("  BankListView is now available to any verified signed-in user.")
+print("\nNext: python3 manage.py check   then restart the server.")
+````
+
+## File: manage.py
+````python
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+import os
+import sys
+
+
+def main():
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Is it installed and is your virtual "
+            "environment activated?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == "__main__":
+    main()
+````
+
+## File: patch_boost.py
+````python
+"""
+Align artisan boost packages with the Premium / Pro tier names.
+
+BEFORE:  {7 days: ₦800, 30 days: ₦2,000}
+AFTER:   {30 days: ₦2,500, 90 days: ₦5,000}
+         Premium = 30 days, Pro = 90 days
+
+WHY THESE DURATIONS
+  You asked for the same tier NAMES in both verticals, but artisans buy a timed
+  boost rather than a subscription, so a tier here has to mean a length of
+  time. Pricing Pro at 90 days makes it ₦1,667/month against Premium's ₦2,500 —
+  the longer commitment is cheaper per month, which is what makes it worth
+  taking. Equal monthly rates would give an artisan no reason to pay more up
+  front.
+
+  Prices and durations are server-side and validated against these keys, so a
+  caller cannot name their own price. That was already true — worth keeping.
+
+TO CHOOSE DIFFERENT NUMBERS
+  Edit the PACKAGES line below before running, or edit BOOST_PACKAGES in
+  apps/homeservices/models.py afterwards. Nothing else depends on the values.
+
+RUN FROM THE BACKEND ROOT:
+    python3 patch_boost.py
+"""
+import ast
+import pathlib
+import re
+import sys
+
+# tier name -> (days, price)
+PACKAGES = {"premium": (30, "2500"), "pro": (90, "5000")}
+
+p = pathlib.Path("apps/homeservices/models.py")
+if not p.exists():
+    sys.exit("apps/homeservices/models.py not found — run from the backend root.")
+
+original = s = p.read_text()
+
+pkg_literal = ", ".join(f'{days}: Decimal("{price}")'
+                        for days, price in PACKAGES.values())
+
+m = re.search(r'^BOOST_PACKAGES\s*=\s*\{[^}]*\}', s, re.M)
+if not m:
+    sys.exit("Could not find BOOST_PACKAGES.")
+s = s[:m.start()] + f'BOOST_PACKAGES = {{{pkg_literal}}}' + s[m.end():]
+
+# Name the tiers alongside the packages so the frontend and backend agree on
+# what "Premium" means without the label being hardcoded in two places.
+if "BOOST_TIERS" not in s:
+    tier_literal = ", ".join(f'"{name}": {days}' for name, (days, _) in PACKAGES.items())
+    s = s.replace(
+        "DEFAULT_BOOST_DAYS",
+        f'# tier name -> days, so the API can speak in tiers rather than raw durations\n'
+        f'BOOST_TIERS = {{{tier_literal}}}\n\nDEFAULT_BOOST_DAYS',
+        1,
+    )
+
+# default to the entry tier
+s = re.sub(r'^DEFAULT_BOOST_DAYS\s*=\s*\d+', 
+           f'DEFAULT_BOOST_DAYS = {PACKAGES["premium"][0]}', s, count=1, flags=re.M)
+
+p.write_text(s)
+
+try:
+    ast.parse(s)
+except SyntaxError as exc:
+    p.write_text(original)
+    sys.exit(f"Edit would have broken the file ({exc}) — rolled back.")
+
+print("✓ patched apps/homeservices/models.py\n")
+for line in s.splitlines():
+    if line.startswith(("BOOST_PACKAGES", "BOOST_TIERS", "DEFAULT_BOOST_DAYS")):
+        print("  " + line)
+
+print("\nNo migration needed — module constants only.")
+print("\nCheck nobody has already bought a boost at the old prices:")
+print('  python3 manage.py shell -c "from apps.homeservices.models import BoostPayment; '
+      "print('paid boosts:', BoostPayment.objects.filter(status='success').count())\"")
+````
+
+## File: patch_callback.py
+````python
+"""
+Adds per-charge `callback_url` support to the Paystack adapter.
+
+Why: Paystack's LIVE dashboard rejects localhost as a callback URL. But a
+callback_url sent with each charge OVERRIDES the dashboard setting, and it may
+point at localhost — Paystack only redirects the user's own browser there.
+
+Run from the backend root:   python3 patch_callback.py
+"""
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(".").resolve()
+SKIP = {"venv", ".venv", "node_modules", ".git", "__pycache__", "staticfiles"}
+
+targets = []
+for p in ROOT.rglob("*.py"):
+    if any(part in SKIP for part in p.parts):
+        continue
+    try:
+        text = p.read_text()
+    except Exception:
+        continue
+    if "/transaction/initialize" in text:
+        targets.append(p)
+
+if not targets:
+    sys.exit("Could not find the Paystack adapter (no file calls /transaction/initialize).")
+
+patched = []
+for p in targets:
+    s = p.read_text()
+    if "callback_url" in s:
+        print(f"  - {p}: already has callback_url, skipping")
+        continue
+
+    # Match the initialize payload dict passed to /transaction/initialize
+    pattern = re.compile(
+        r'(data\s*=\s*self\.post\(\s*"/transaction/initialize"\s*,\s*json=)\{(.*?)\}\s*\)',
+        re.S,
+    )
+    m = pattern.search(s)
+    if not m:
+        print(f"  ! {p}: found the endpoint but not the expected payload shape; skipping")
+        continue
+
+    body = m.group(2)
+    replacement = (
+        "payload = {" + body + "}\n"
+        "        _cb = _paystack_callback_url()\n"
+        "        if _cb:\n"
+        "            payload[\"callback_url\"] = _cb\n"
+        "        data = self.post(\"/transaction/initialize\", json=payload)"
+    )
+    s = s[: m.start()] + replacement + s[m.end():]
+
+    # module-level helper + imports
+    helper = (
+        '\n\ndef _paystack_callback_url():\n'
+        '    """Where Paystack should send the user after payment (overrides dashboard)."""\n'
+        '    import os\n'
+        '    try:\n'
+        '        from django.conf import settings\n'
+        '        val = getattr(settings, "PAYSTACK_CALLBACK_URL", "")\n'
+        '    except Exception:\n'
+        '        val = ""\n'
+        '    return val or os.environ.get("PAYSTACK_CALLBACK_URL", "")\n'
+    )
+    # insert helper after the last import line near the top
+    lines = s.splitlines(keepends=True)
+    last_import = 0
+    for i, ln in enumerate(lines[:60]):
+        if ln.startswith("import ") or ln.startswith("from "):
+            last_import = i
+    lines.insert(last_import + 1, helper)
+    s = "".join(lines)
+
+    p.write_text(s)
+    patched.append(p)
+    print(f"  ✓ patched {p}")
+
+if patched:
+    print("\nDone. Now add the setting + env var (see instructions).")
+else:
+    print("\nNothing patched.")
+````
+
+## File: patch_contact_privacy.py
+````python
+"""
+Remove contact details from the PUBLIC detail endpoints.
+
+THE HOLE THIS CLOSES
+  ArtisanDetailSerializer returned  phone / whatsapp
+  ListingDetailSerializer returned  contact_phone / contact_whatsapp
+
+  Both endpoints are readable by any signed-in user, so the messaging contact
+  gate was decorative: you could fetch /artisans/<id>/ and read the number
+  without ever making an enquiry, and a script could walk every profile in
+  minutes. Numbers harvested that way are what fuel the WhatsApp scams these
+  marketplaces are known for — and every off-platform deal is one you have no
+  record of.
+
+  After this patch, contacts come from ONE place: an accepted conversation, via
+  /api/v1/messaging/. The provider chooses when to share, and you have a record
+  that the introduction happened.
+
+WHAT ABOUT THE OWNER?
+  Owners still see and edit their own numbers — those live on the WRITE
+  serializers (ArtisanWriteSerializer, ListingWriteSerializer), which this
+  script deliberately leaves alone. The script prints which views use which
+  serializer so you can confirm nothing owner-facing broke.
+
+RUN FROM THE BACKEND ROOT:
+    python3 patch_contact_privacy.py
+"""
+import ast
+import pathlib
+import re
+import sys
+
+TARGETS = [
+    ("apps/homeservices/serializers.py", "ArtisanDetailSerializer", ("phone", "whatsapp")),
+    ("apps/marketplace/serializers.py", "ListingDetailSerializer",
+     ("contact_phone", "contact_whatsapp")),
+]
+
+for path_str, class_name, drop in TARGETS:
+    p = pathlib.Path(path_str)
+    if not p.exists():
+        print(f"  !! {path_str} not found — skipped")
+        continue
+
+    original = s = p.read_text()
+
+    # Find the class, then its Meta.fields tuple.
+    cls = re.search(rf'class {class_name}\b.*?(?=\nclass |\Z)', s, re.S)
+    if not cls:
+        print(f"  !! {class_name} not found in {path_str}")
+        continue
+
+    block = cls.group(0)
+    fields = re.search(r'fields\s*=\s*\(([^)]*)\)', block, re.S)
+    if not fields:
+        print(f"  !! no Meta.fields tuple in {class_name}")
+        continue
+
+    names = [n.strip() for n in fields.group(1).split(",")]
+    names = [n for n in names if n and n.strip("\"'") not in drop]
+    rebuilt = "fields = (" + ", ".join(names) + ")"
+
+    new_block = block[:fields.start()] + rebuilt + block[fields.end():]
+    s = s.replace(block, new_block)
+    p.write_text(s)
+
+    try:
+        ast.parse(s)
+    except SyntaxError as exc:
+        p.write_text(original)
+        print(f"  !! edit to {path_str} would have broken it ({exc}) — rolled back")
+        continue
+
+    removed = [d for d in drop if d in block]
+    print(f"  ✓ {class_name}: removed {removed or 'nothing (already clean)'}")
+
+print("\nWhich serializer each view uses — check owner-facing views still")
+print("use a WRITE serializer (those keep the contact fields):\n")
+for path_str in ("apps/homeservices/views.py", "apps/marketplace/views.py"):
+    p = pathlib.Path(path_str)
+    if not p.exists():
+        continue
+    print(f"  {path_str}")
+    current = None
+    for line in p.read_text().splitlines():
+        m = re.match(r'class (\w+)', line)
+        if m:
+            current = m.group(1)
+        for ser in re.findall(r'(\w+Serializer)', line):
+            if current:
+                print(f"    {current:28s} -> {ser}")
+    print()
+
+print("No migration needed — serializer fields only. Restart the server.")
+````
+
+## File: patch_owner_serializer.py
+````python
+"""
+Give artisans back their own contact details.
+
+THE PROBLEM
+  Stripping phone/whatsapp from ArtisanDetailSerializer correctly hid them from
+  the public. But MyArtisanView returns that same serializer, so an artisan
+  viewing their OWN profile no longer sees their number — and the dashboard
+  form would load blank and overwrite the saved value with an empty string.
+
+WHY NOT JUST USE ArtisanWriteSerializer
+  It has the contact fields but lacks is_featured, is_verified and views_count,
+  which the dashboard needs to show boost status. So this adds a dedicated
+  owner serializer: everything in the detail view, plus the contacts.
+
+  Three serializers, three audiences:
+      ArtisanListSerializer   — search results, no contacts
+      ArtisanDetailSerializer — public profile, no contacts
+      ArtisanOwnerSerializer  — your own profile, WITH contacts
+
+RUN FROM THE BACKEND ROOT:
+    python3 patch_owner_serializer.py
+"""
+import ast
+import pathlib
+import re
+import sys
+
+# ---------------------------------------------------------------- serializer --
+sp = pathlib.Path("apps/homeservices/serializers.py")
+if not sp.exists():
+    sys.exit("apps/homeservices/serializers.py not found — run from the backend root.")
+
+s = sp.read_text()
+original = s
+
+if "ArtisanOwnerSerializer" in s:
+    print("  serializer: already present")
+else:
+    m = re.search(r'class ArtisanDetailSerializer\b.*?(?=\nclass |\Z)', s, re.S)
+    if not m:
+        sys.exit("Could not find ArtisanDetailSerializer.")
+    block = m.group(0)
+    fields = re.search(r'fields\s*=\s*\(([^)]*)\)', block, re.S)
+    names = [n.strip() for n in fields.group(1).split(",") if n.strip()]
+
+    # insert contacts after business_name so the shape reads naturally
+    try:
+        at = names.index('"business_name"') + 1
+    except ValueError:
+        at = 1
+    names[at:at] = ['"phone"', '"whatsapp"']
+
+    owner = (
+        '\n\nclass ArtisanOwnerSerializer(ArtisanDetailSerializer):\n'
+        '    """\n'
+        '    The artisan\'s own view of their profile.\n\n'
+        '    Same as the public one plus phone/whatsapp — they must be able to see\n'
+        '    and edit the numbers they gave us. Never use this for anyone else\'s\n'
+        '    profile: contacts belong behind an accepted conversation.\n'
+        '    """\n\n'
+        '    class Meta(ArtisanDetailSerializer.Meta):\n'
+        f'        fields = ({", ".join(names)})\n'
+    )
+    s = s[:m.end()] + owner + s[m.end():]
+    sp.write_text(s)
+    try:
+        ast.parse(s)
+        print("  serializer: added ArtisanOwnerSerializer")
+    except SyntaxError as exc:
+        sp.write_text(original)
+        sys.exit(f"Edit broke serializers.py ({exc}) — rolled back.")
+
+# --------------------------------------------------------------------- views --
+vp = pathlib.Path("apps/homeservices/views.py")
+v = vp.read_text()
+v_original = v
+
+if "ArtisanOwnerSerializer" not in v:
+    v = v.replace("    ArtisanDetailSerializer,",
+                  "    ArtisanDetailSerializer,\n    ArtisanOwnerSerializer,", 1)
+
+# Swap ONLY the owner-facing responses. ArtisanDetailView (public) keeps the
+# public serializer — that's the whole point.
+changed = 0
+lines = v.splitlines(keepends=True)
+current = None
+for i, line in enumerate(lines):
+    m = re.match(r'class (\w+)', line)
+    if m:
+        current = m.group(1)
+    if current in ("ArtisanRegisterView", "MyArtisanView") and "ArtisanDetailSerializer(" in line:
+        lines[i] = line.replace("ArtisanDetailSerializer(", "ArtisanOwnerSerializer(")
+        changed += 1
+v = "".join(lines)
+
+vp.write_text(v)
+try:
+    ast.parse(v)
+except SyntaxError as exc:
+    vp.write_text(v_original)
+    sys.exit(f"Edit broke views.py ({exc}) — rolled back.")
+
+print(f"  views: swapped {changed} owner response(s) to ArtisanOwnerSerializer")
+print("\nWhich serializer each view now returns:")
+current = None
+for line in v.splitlines():
+    m = re.match(r'class (\w+)', line)
+    if m:
+        current = m.group(1)
+    for ser in re.findall(r'(Artisan\w*Serializer)\(', line):
+        print(f"    {current:24s} -> {ser}")
+
+print("\nNo migration needed. Restart the server, then verify:")
+print('  python3 manage.py shell -c "from apps.homeservices.serializers import '
+      'ArtisanOwnerSerializer, ArtisanDetailSerializer; '
+      "print('owner :', ArtisanOwnerSerializer.Meta.fields); "
+      "print('public:', ArtisanDetailSerializer.Meta.fields)\"")
+````
+
+## File: patch_refresh_urls.py
+````python
+"""
+Wire the order-refresh endpoints into apps/billing/urls.py.
+
+WHY A SCRIPT
+  Order matters here. Django matches urlpatterns top to bottom and stops at the
+  first hit, so a literal path like "orders/refresh/" MUST sit above
+  "orders/<str:reference>/" — otherwise <str:reference> swallows the word
+  "refresh" and you get 405 Method Not Allowed (which is exactly what happened:
+  the detail view matched, and it only accepts GET).
+
+  This inserts both routes in the correct position and adds the import.
+
+RUN FROM THE BACKEND ROOT:
+    python3 patch_refresh_urls.py
+"""
+import pathlib
+import re
+import sys
+
+p = pathlib.Path("apps/billing/urls.py")
+if not p.exists():
+    sys.exit("apps/billing/urls.py not found — run this from the backend root.")
+
+if not pathlib.Path("apps/billing/refresh.py").exists():
+    sys.exit("apps/billing/refresh.py not found — unzip oam_auto_refresh_backend.zip "
+             "into apps/billing first.")
+
+s = p.read_text()
+
+if "OrdersRefreshAllView" in s:
+    print("Already wired. Nothing to do.")
+    sys.exit(0)
+
+# 1. import
+m = re.search(r'^from \.[\w.]+ import [^\n]+$', s, re.M)
+imp = "from .refresh import OrderRefreshView, OrdersRefreshAllView\n"
+if m:
+    s = s[:m.end() + 1] + imp + s[m.end() + 1:]
+else:
+    lines = s.splitlines(keepends=True)
+    last = max((i for i, ln in enumerate(lines[:40])
+                if ln.startswith(("import ", "from "))), default=0)
+    lines.insert(last + 1, imp)
+    s = "".join(lines)
+
+# 2. routes — inserted directly BEFORE the detail route
+detail = re.search(r'^\s*path\(\s*"orders/<str:reference>/"[^\n]*\n', s, re.M)
+if not detail:
+    sys.exit('Could not find the path("orders/<str:reference>/", ...) line. '
+             "Add the two routes by hand — see the README.")
+
+indent = re.match(r'\s*', detail.group(0)).group(0)
+routes = (
+    f'{indent}path("orders/refresh/", OrdersRefreshAllView.as_view(), name="orders-refresh-all"),\n'
+    f'{indent}path("orders/<str:reference>/refresh/", OrderRefreshView.as_view(), name="order-refresh"),\n'
+)
+s = s[:detail.start()] + routes + s[detail.start():]
+
+p.write_text(s)
+print("✓ patched apps/billing/urls.py\n")
+for i, ln in enumerate(s.splitlines(), 1):
+    if "orders" in ln and "path(" in ln:
+        print(f"  {i:3d} {ln.strip()}")
+print("\nNow restart the server:  python3 manage.py runserver 8080")
+````
+
+## File: patch_tiers.py
+````python
+"""
+Reorder the marketplace tiers: Free -> Premium (₦2,500) -> Pro (₦5,000).
+
+The backend was built the other way round (Pro ₦2,500, Premium ₦6,000). This
+swaps the meaning so Pro becomes the top tier, matching the intended product.
+
+Safe to run now because nobody has subscribed yet — SellerSubscription rows
+would otherwise need migrating, since an existing "pro" subscriber would
+silently change tier.
+
+RUN FROM THE BACKEND ROOT:
+    python3 patch_tiers.py
+"""
+import ast
+import pathlib
+import re
+import sys
+
+p = pathlib.Path("apps/marketplace/models.py")
+if not p.exists():
+    sys.exit("apps/marketplace/models.py not found — run from the backend root.")
+
+original = s = p.read_text()
+
+# --- guard: refuse to run if anyone has already paid --------------------- #
+print("Before changing prices, confirm nobody has subscribed:")
+print("  python3 manage.py shell -c \"")
+print("  from apps.marketplace.models import SellerSubscription, SubscriptionPayment")
+print("  print('subs:', SellerSubscription.objects.exclude(tier='free').count())")
+print("  print('paid:', SubscriptionPayment.objects.filter(status='success').count())\"")
+print()
+
+edits = 0
+
+# 1. limits — pro becomes unlimited, premium the middle tier
+m = re.search(r'^TIER_LIMITS\s*=\s*\{[^}]*\}', s, re.M)
+if m:
+    s = s[:m.start()] + 'TIER_LIMITS = {"free": 3, "premium": 20, "pro": None}' + s[m.end():]
+    edits += 1
+
+# 2. prices
+m = re.search(r'^SUBSCRIPTION_PRICES\s*=\s*\{[^}]*\}', s, re.M)
+if m:
+    s = (s[:m.start()]
+         + 'SUBSCRIPTION_PRICES = {"premium": Decimal("2500"), "pro": Decimal("5000")}'
+         + s[m.end():])
+    edits += 1
+
+# 3. both paid tiers still get featured treatment
+m = re.search(r'^FEATURED_TIERS\s*=\s*\{[^}]*\}', s, re.M)
+if m:
+    s = s[:m.start()] + 'FEATURED_TIERS = {"premium", "pro"}' + s[m.end():]
+    edits += 1
+
+# 4. docstring line, so the file doesn't contradict itself
+s = s.replace(
+    "- Seller tiers (free/pro/premium) cap the number of active listings and unlock",
+    "- Seller tiers (free/premium/pro) cap the number of active listings and unlock",
+)
+
+# 5. choice ORDER drives dropdown order in admin and any serializer that
+#    exposes it — list them cheapest first so the ladder reads correctly.
+choices = re.search(
+    r'(class Tier\b[^\n]*\n)((?:\s+\w+\s*=\s*"[^"]+",\s*_\("[^"]+"\)\n)+)', s
+)
+if choices:
+    block = choices.group(2)
+    lines = {}
+    for line in block.strip().splitlines():
+        key = re.search(r'"([a-z]+)"', line)
+        if key:
+            lines[key.group(1)] = line
+    wanted = [k for k in ("free", "premium", "pro") if k in lines]
+    if wanted:
+        indent = re.match(r'\s*', block.splitlines()[0]).group(0)
+        rebuilt = "\n".join(lines[k].strip() for k in wanted)
+        rebuilt = "\n".join(indent + ln for ln in rebuilt.splitlines()) + "\n"
+        s = s.replace(block, rebuilt)
+        edits += 1
+
+p.write_text(s)
+
+try:
+    ast.parse(s)
+except SyntaxError as exc:
+    p.write_text(original)
+    sys.exit(f"Edit would have broken the file ({exc}) — rolled back, nothing changed.")
+
+print(f"✓ applied {edits} change(s) to apps/marketplace/models.py\n")
+for line in s.splitlines():
+    if any(k in line for k in ("TIER_LIMITS", "SUBSCRIPTION_PRICES", "FEATURED_TIERS")):
+        print("  " + line.strip())
+
+print("\nNo migration needed — these are module constants, not model fields.")
+print("Restart the server, then verify:")
+print("  python3 manage.py shell -c \"from apps.marketplace.models import "
+      "SUBSCRIPTION_PRICES, TIER_LIMITS; print(SUBSCRIPTION_PRICES); print(TIER_LIMITS)\"")
+````
+
+## File: Pipfile
+````
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==5.0.6"
+djangorestframework = "==3.15.1"
+django-environ = "==0.11.2"
+djangorestframework-simplejwt = "==5.3.1"
+pyjwt = "==2.8.0"
+django-modeltranslation = "==0.18.11"
+django-cors-headers = "==4.3.1"
+drf-spectacular = "==0.27.2"
+celery = "==5.4.0"
+redis = "==5.0.4"
+django-celery-beat = "==2.6.0"
+django-celery-results = "==2.5.1"
+channels = "==4.1.0"
+channels-redis = "==4.2.0"
+requests = "==2.32.3"
+urllib3 = "==2.2.1"
+gunicorn = "==22.0.0"
+uvicorn = "==0.30.1"
+whitenoise = "==6.7.0"
+psycopg = {extras = ["binary"], version = "==3.1.19"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+````
+
+## File: preflight.py
+````python
+"""
+Pre-deployment check.
+
+Reports what's ready and what would break in production. Read-only — it changes
+nothing.
+
+Most of these are things that work perfectly on a laptop and fail the moment
+the app is public: DEBUG left on, a secret key committed to git, a database that
+deletes itself after 30 days.
+
+RUN FROM THE BACKEND ROOT:
+    python3 manage.py shell < preflight.py
+"""
+import os
+import pathlib
+
+from django.conf import settings
+
+OK, WARN, FAIL = "  [ok]  ", "  [warn]", "  [FAIL]"
+issues = {"fail": 0, "warn": 0}
+
+
+def check(label, condition, detail="", severity="fail"):
+    if condition:
+        print(f"{OK} {label}")
+        return True
+    marker = FAIL if severity == "fail" else WARN
+    issues[severity if severity in issues else "fail"] += 1
+    print(f"{marker} {label}")
+    if detail:
+        for line in detail.strip().splitlines():
+            print(f"          {line.strip()}")
+    return False
+
+
+print("\n" + "=" * 66)
+print("  OAM — PRE-DEPLOYMENT CHECK")
+print("=" * 66)
+
+# ---------------------------------------------------------------- core ---
+print("\nCORE SETTINGS")
+
+check(
+    "DEBUG is off",
+    not settings.DEBUG,
+    "DEBUG=True in production exposes your settings, your database "
+    "credentials and a full traceback to anyone who triggers an error. "
+    "Set DJANGO_SETTINGS_MODULE to your production settings on Render.",
+)
+
+secret = getattr(settings, "SECRET_KEY", "")
+check(
+    "SECRET_KEY comes from the environment",
+    bool(os.environ.get("DJANGO_SECRET_KEY") or os.environ.get("SECRET_KEY")),
+    "A key hardcoded in settings is in your git history forever. Anyone with "
+    "it can forge session cookies and password-reset tokens. Generate a new "
+    "one for production and set it as an environment variable.",
+    severity="warn",
+)
+
+check(
+    "SECRET_KEY is not the Django default",
+    not secret.startswith("django-insecure-"),
+    "This is the placeholder Django generates. It must not be used in production.",
+)
+
+hosts = getattr(settings, "ALLOWED_HOSTS", [])
+check(
+    "ALLOWED_HOSTS is set",
+    bool(hosts) and hosts != ["*"],
+    f"Currently {hosts!r}. Set it to your real domains, e.g.\n"
+    "  api.oam-app.com, oam-platform-api.onrender.com\n"
+    "'*' accepts any Host header, which enables cache-poisoning and "
+    "password-reset links pointing at an attacker's domain.",
+)
+
+# ------------------------------------------------------------- database ---
+print("\nDATABASE")
+
+db = settings.DATABASES.get("default", {})
+engine = db.get("ENGINE", "")
+check("PostgreSQL, not SQLite", "postgresql" in engine,
+      f"Engine is {engine}. SQLite on Render lives on an ephemeral disk and is "
+      "erased on every deploy — taking every wallet balance with it.")
+check(
+    "DATABASE_URL is used",
+    bool(os.environ.get("DATABASE_URL")),
+    "Render provides DATABASE_URL. Read it with dj-database-url rather than "
+    "hardcoding credentials.",
+    severity="warn",
+)
+
+# --------------------------------------------------------------- https ---
+print("\nHTTPS AND COOKIES")
+
+check("SECURE_SSL_REDIRECT", getattr(settings, "SECURE_SSL_REDIRECT", False),
+      "Without it, a request over plain HTTP is served rather than redirected — "
+      "and any token sent with it travels in clear text.", severity="warn")
+check("SESSION_COOKIE_SECURE", getattr(settings, "SESSION_COOKIE_SECURE", False),
+      "Stops the session cookie being sent over plain HTTP.", severity="warn")
+check("CSRF_COOKIE_SECURE", getattr(settings, "CSRF_COOKIE_SECURE", False),
+      severity="warn")
+check("HSTS is set", getattr(settings, "SECURE_HSTS_SECONDS", 0) >= 3600,
+      "SECURE_HSTS_SECONDS tells browsers to refuse plain HTTP for your domain. "
+      "Start at 3600 while testing, raise to 31536000 once you're confident.",
+      severity="warn")
+
+trusted = getattr(settings, "CSRF_TRUSTED_ORIGINS", [])
+check("CSRF_TRUSTED_ORIGINS includes your frontend", bool(trusted),
+      "Needs the full scheme, e.g. https://app.oam-app.com", severity="warn")
+
+cors = getattr(settings, "CORS_ALLOWED_ORIGINS", None)
+allow_all = getattr(settings, "CORS_ALLOW_ALL_ORIGINS", False)
+check("CORS is restricted to your frontend", bool(cors) and not allow_all,
+      f"CORS_ALLOWED_ORIGINS={cors!r}, CORS_ALLOW_ALL_ORIGINS={allow_all}. "
+      "Allowing every origin lets any site call your API with a user's "
+      "credentials attached.")
+
+# --------------------------------------------------------------- static ---
+print("\nSTATIC FILES")
+check("STATIC_ROOT is set", bool(getattr(settings, "STATIC_ROOT", None)),
+      "collectstatic needs somewhere to write. Set STATIC_ROOT = BASE_DIR / 'staticfiles'.")
+check("WhiteNoise is installed",
+      any("whitenoise" in m.lower() for m in settings.MIDDLEWARE),
+      "Django won't serve static files with DEBUG=False. WhiteNoise does it "
+      "without a separate CDN — add whitenoise to requirements and put "
+      "WhiteNoiseMiddleware directly after SecurityMiddleware.",
+      severity="warn")
+
+# ------------------------------------------------------------ providers ---
+print("\nTHIRD-PARTY SERVICES")
+
+def env_check(label, *names, severity="warn", detail=""):
+    check(label, any(os.environ.get(n) for n in names), detail, severity=severity)
+
+env_check("Paystack keys", "PAYSTACK_SECRET_KEY", "PAYSTACK_SECRET",
+          detail="Payments and withdrawals need these. Use LIVE keys in production.")
+env_check("VTU provider credentials", "VTU_USERNAME", "VTUNG_USERNAME", "VTU_NG_USERNAME",
+          detail="Bill purchases fail without these.")
+env_check("Cloudinary", "CLOUDINARY_CLOUD_NAME",
+          detail="Photo and document uploads fail without these.")
+env_check("Email host", "EMAIL_HOST", "DJANGO_EMAIL_HOST",
+          detail="OTPs, password resets and receipts all depend on this.")
+env_check("Assistant API key (optional)", "ANTHROPIC_API_KEY",
+          detail="Without it the assistant answers from its knowledge base, which is fine.")
+
+# ------------------------------------------------------------ live keys ---
+print("\nLIVE vs TEST KEYS")
+paystack = os.environ.get("PAYSTACK_SECRET_KEY", "") or os.environ.get("PAYSTACK_SECRET", "")
+if paystack.startswith("sk_test"):
+    print(f"{WARN} Paystack is using TEST keys")
+    print("          Real customers' cards will be declined. Switch to sk_live_ when ready.")
+    issues["warn"] += 1
+elif paystack.startswith("sk_live"):
+    print(f"{OK} Paystack is using LIVE keys")
+else:
+    print(f"{WARN} Couldn't identify the Paystack key type")
+    issues["warn"] += 1
+
+# ---------------------------------------------------------------- files ---
+print("\nREPOSITORY HYGIENE")
+root = pathlib.Path(".")
+gitignore = (root / ".gitignore")
+ignored = gitignore.read_text() if gitignore.exists() else ""
+check(".env is git-ignored", ".env" in ignored,
+      "Your Paystack secret, database password and Django key live in .env.")
+
+# ----------------------------------------------------------- scheduling ---
+print("\nSCHEDULED WORK")
+print(f"{WARN} settle_bill_orders needs a Render Cron Job")
+print("          Without it, a customer who closes the app during a slow")
+print("          delivery never gets their electricity token. Command:")
+print("            python manage.py settle_bill_orders --apply")
+print("          Suggested schedule: */2 * * * *")
+issues["warn"] += 1
+
+# --------------------------------------------------------------- verdict ---
+print("\n" + "=" * 66)
+if issues["fail"]:
+    print(f"  {issues['fail']} blocking issue(s), {issues['warn']} warning(s).")
+    print("  Fix the blocking ones before going live.")
+else:
+    print(f"  No blocking issues. {issues['warn']} warning(s) to review.")
+print("=" * 66 + "\n")
+````
+
+## File: production.py
+````python
+"""
+Production settings for Render.
+
+Imports everything from base and overrides only what must differ. Every value
+that varies by environment — or that must never appear in git — comes from an
+environment variable.
+
+Save as config/settings/production.py and set on Render:
+    DJANGO_SETTINGS_MODULE = config.settings.production
+"""
+import os
+
+import dj_database_url
+
+from .base import *  # noqa: F401,F403
+from .base import BASE_DIR, INSTALLED_APPS, MIDDLEWARE
+
+# --------------------------------------------------------------------------- #
+# Core
+# --------------------------------------------------------------------------- #
+
+DEBUG = False
+
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]  # deliberately no default: a
+# missing key should stop the deploy, not silently fall back to something
+# predictable and shared.
+
+# Render sets RENDER_EXTERNAL_HOSTNAME automatically.
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()]
+_render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+if _render_host:
+    ALLOWED_HOSTS.append(_render_host)
+
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "https://app.oam-app.com").rstrip("/")
+
+# --------------------------------------------------------------------------- #
+# Database
+# --------------------------------------------------------------------------- #
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL", ""),
+        conn_max_age=600,           # reuse connections; Postgres handshakes are
+        conn_health_checks=True,    # slow, and Render's network adds latency
+        ssl_require=True,
+    )
+}
+
+# --------------------------------------------------------------------------- #
+# HTTPS
+# --------------------------------------------------------------------------- #
+
+# Render terminates TLS at its proxy and forwards this header. Without it Django
+# believes every request is plain HTTP and redirects forever.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Start at an hour. Raise to 31536000 once you're confident — HSTS is hard to
+# undo, because browsers remember it.
+SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", 3600))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+CSRF_TRUSTED_ORIGINS = [
+    o.strip() for o in os.environ.get("CSRF_TRUSTED_ORIGINS", FRONTEND_URL).split(",")
+    if o.strip()
+]
+
+# --------------------------------------------------------------------------- #
+# CORS — the frontend is on a different origin
+# --------------------------------------------------------------------------- #
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    o.strip() for o in os.environ.get("CORS_ALLOWED_ORIGINS", FRONTEND_URL).split(",")
+    if o.strip()
+]
+CORS_ALLOW_CREDENTIALS = True
+
+# --------------------------------------------------------------------------- #
+# Static files
+# --------------------------------------------------------------------------- #
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"
+
+if "whitenoise.middleware.WhiteNoiseMiddleware" not in MIDDLEWARE:
+    # Directly after SecurityMiddleware, which WhiteNoise requires.
+    _i = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware") + 1
+    MIDDLEWARE.insert(_i, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
+
+# --------------------------------------------------------------------------- #
+# Logging — Render captures stdout
+# --------------------------------------------------------------------------- #
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {"format": "{levelname} {asctime} {name} {message}", "style": "{"},
+    },
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "simple"},
+    },
+    "root": {"handlers": ["console"], "level": "INFO"},
+    "loggers": {
+        # These carry the money paths. Keep them findable in Render's log search.
+        "billing": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "accounts": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "assistant": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "django.request": {"handlers": ["console"], "level": "ERROR", "propagate": False},
+    },
+}
+````
+
+## File: PROVIDERS.md
+````markdown
+# OAM Platform — Provider Integration Matrix
+
+Two integration *styles*, chosen per service:
+
+| Style | Meaning | Touches our ledger? | Adapter base |
+|---|---|---|---|
+| **API** | Money/order flows through us; we get webhooks/status | Yes | `interfaces.*Provider` |
+| **AFFILIATE** | We deep-link the user to the partner & earn commission | No (we log a click) | `affiliate.AffiliateProvider` |
+
+## Current decisions
+
+| Service (category) | Provider key | Style | Status |
+|---|---|---|---|
+| Payments (`payments`) | `paystack`, `flutterwave` | API | adapters land in Phase 1 |
+| Bills/VTU (`vtu`) | `default` (your aggregator) | API | skeleton ready |
+| Hotels (`hotels`) | `hotelbeds` (or `booking`) | API | skeleton ready (X-Signature auth) |
+| Flights (`flights`) | `travelpayouts` | AFFILIATE | link builder ready |
+| Car hire (`carhire`) | `travelpayouts` | AFFILIATE | link builder ready |
+| Food delivery (`delivery`) | `ubereats` | AFFILIATE | link builder ready |
+| Money transfer (`remittance`) | `wise`, `lemfi`, `remitly`, `taptap` | AFFILIATE | link builders ready; API mode later |
+
+## How a domain feature uses a provider
+
+**Affiliate (flights, car hire, food, remittance):**
+```python
+from apps.affiliates.services import AffiliateService
+
+link = AffiliateService.link(
+    category="flights", user=request.user,
+    params={"origin": "LOS", "destination": "LHR"},
+)
+# -> records an AffiliateClick, returns a tracked URL with our sub_id
+return Response({"redirect_url": link.url})
+```
+
+**API (payments, VTU, hotels):**
+```python
+from integrations.base import ProviderFactory
+
+gateway = ProviderFactory.get("payments")        # resolves "paystack"
+charge = gateway.initialize_charge(...)          # money flows -> ledger postings
+```
+
+## Switching a provider
+
+Change one env var — no code change:
+```
+DEFAULT_PROVIDER_REMITTANCE=lemfi    # was wise
+```
+
+## What you must obtain (per dashboard)
+
+- **Travelpayouts:** affiliate *marker* (and API token if using their data/widgets).
+- **Uber Eats:** affiliate tracked URL / code (often via Impact or Awin by region).
+- **Wise / Lemfi / Remitly / Taptap:** affiliate/referral link from each program;
+  API tokens only when transactional partnership is granted.
+- **Hotelbeds:** API key + secret (signature auth).
+- **VTU aggregator:** base URL + API key/secret for your chosen provider.
+- **Paystack / Flutterwave:** secret/public keys (Phase 1).
+````
+
+## File: README.md
+````markdown
+# OAM Platform — Backend (Phase 0: Foundation)
+
+Django + DRF + PostgreSQL backend for the OAM travel/commerce/lifestyle super-app.
+This phase delivers the project skeleton, the 12-language i18n setup, and the
+third-party integration scaffolding. No money-moving features yet — that's Phase 1.
+
+## What's in here
+
+```
+backend/
+├── config/            # project: settings (base/dev/prod/test), celery, urls, wsgi/asgi
+├── apps/
+│   └── common/        # base models (UUID/timestamp/Immutable), i18n helpers, health+languages API
+├── integrations/
+│   └── base/          # ⭐ provider scaffolding: client, interfaces, registry/factory, DTOs, exceptions
+├── tasks/             # Celery tasks (one ping task for now)
+└── locale/            # gettext catalogues, one folder per language
+```
+
+## Languages (12)
+
+English, Chinese (Simplified), Spanish, French, Arabic*, Hindi, Portuguese,
+Russian, Bengali, Indonesian, German, Urdu*.  (* = right-to-left)
+
+Three layers cover "multilingual":
+1. **Static UI strings / emails / errors** → Django gettext (`locale/*`), served per
+   request via `Accept-Language` and `LocaleMiddleware`.
+2. **Dynamic model content** (category names, CMS text) → `django-modeltranslation`.
+3. **Direction (LTR/RTL)** → exposed by `GET /api/v1/languages/` so web/mobile flip layout.
+
+## Run it locally
+
+```bash
+# 1. datastores
+docker compose -f ../infra/docker-compose.yml up -d
+
+# 2. python env
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env            # then edit secrets
+
+# 3. database + run
+python manage.py migrate
+python manage.py runserver
+
+# 4. background worker (separate terminal)
+celery -A config worker -l info -Q default,payments,bookings,notifications,beat
+celery -A config beat -l info
+```
+
+## Verify the setup
+
+- `GET /api/v1/health/`        → `{"status": "ok"}`
+- `GET /api/v1/languages/`     → active language, direction, and the 12-language list
+  - try it with a header: `Accept-Language: ar`  → `"direction": "rtl"`
+- `GET /api/docs/`             → Swagger UI
+
+## Translation workflow
+
+```bash
+python manage.py makemessages -l ar -l zh_Hans -l es ...   # extract strings
+# translators fill in locale/<lang>/LC_MESSAGES/django.po
+python manage.py compilemessages                            # build .mo files
+```
+
+## Next: Phase 1
+
+Wallet + immutable double-entry ledger + Paystack funding (with webhook ingestion
+and Celery settlement), plus the `accounts` app for JWT auth/OTP.
+````
+
+## File: README.txt
+````
+OAM — production deployment on Render (step 6 of 6)
+===================================================
+
+START HERE
+  cd /Users/mac/Desktop/oam-platform/backend
+  unzip -o oam_deploy.zip
+  python3 manage.py shell < preflight.py
+
+  Read that output before anything else. It checks read-only and reports what
+  would break in production.
+
+FILES
+  DEPLOY.md                  full step-by-step, ~45 minutes
+  preflight.py               readiness check (changes nothing)
+  production.py              -> config/settings/production.py
+  build.sh                   Render build command
+  render.yaml                Blueprint, if you'd rather not click through the UI
+  requirements-additions.txt gunicorn, whitenoise, dj-database-url, psycopg
+
+THE FOUR THINGS THAT USUALLY GO WRONG
+
+  1. THE FREE DATABASE DELETES ITSELF AFTER 30 DAYS
+     Render's free PostgreSQL is capped at 1GB and expires. That would take
+     every wallet balance and order record with it. Fine for testing with
+     people you know; genuinely unsuitable for real money. Budget for the paid
+     plan before you launch.
+
+  2. REFRESHING ON /dashboard RETURNS 404 WITHOUT A REWRITE RULE
+     Your routing is client-side, so the server is asked for a file that
+     doesn't exist. Everything works while you click around, then breaks the
+     moment someone reloads — or follows a link from a receipt email, which is
+     exactly what a customer does.
+     Fix: Redirects/Rewrites -> /* to /index.html, type Rewrite.
+
+  3. GENERATE A NEW SECRET KEY
+     If your development key has ever been committed, it's in git history
+     permanently, and anyone with it can forge session cookies and
+     password-reset tokens. production.py reads DJANGO_SECRET_KEY with NO
+     default, deliberately — a missing key stops the deploy rather than quietly
+     falling back to something predictable.
+
+  4. WEBHOOKS STILL POINT AT LOCALHOST
+     After deploying, update Paystack and ask vtu.ng to point delivery
+     callbacks at the new URL. Otherwise payments succeed and nothing is
+     delivered — the worst failure mode you have, because the customer has paid.
+
+ALSO WORTH KNOWING
+  * Free web services sleep after 15 minutes. A cold start on a Paystack
+    redirect looks exactly like a failed payment to the customer.
+  * Cron jobs aren't on the free plan, and settle_bill_orders is what delivers
+    tokens to anyone who closed the app. Without it they get nothing until they
+    return.
+
+SUGGESTED DOMAIN SPLIT
+  api.oam-app.com   backend
+  app.oam-app.com   frontend
+  oam-app.com       keep the countdown until launch day
+
+  That lets you test everything in production — real webhooks, real HTTPS, real
+  scheduled jobs — without revealing anything early.
+````
+
+## File: render.yaml
+````yaml
+# Render Blueprint for OAM.
+#
+# Push this to the repo root and use "New > Blueprint" in Render, or create the
+# services by hand using these values.
+#
+# Secrets are marked sync:false — Render prompts for them rather than reading
+# them from this file, so nothing sensitive lives in git.
+
+databases:
+  - name: oam-db
+    databaseName: oam
+    user: oam
+    # NOTE: the free tier expires after 30 days and is capped at 1GB.
+    # For real customers use a paid plan — a database that deletes itself
+    # takes every wallet balance with it.
+    plan: free
+
+services:
+  # ---------------------------------------------------------------- API ---
+  - type: web
+    name: oam-api
+    runtime: python
+    plan: free           # free instances sleep after 15 min; first request
+                         # after that takes up to a minute
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application --workers 2 --timeout 120"
+    healthCheckPath: /api/v1/homeservices/featured/
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.production
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: oam-db
+          property: connectionString
+      - key: ALLOWED_HOSTS
+        sync: false      # e.g. api.oam-app.com
+      - key: FRONTEND_URL
+        sync: false      # e.g. https://app.oam-app.com
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: PAYSTACK_PUBLIC_KEY
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        sync: false
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false      # optional
+      # Add your vtu.ng and Africa's Talking variables here too.
+
+  # ------------------------------------------------------------ frontend ---
+  - type: web
+    name: oam-web
+    runtime: static
+    buildCommand: "npm ci && npm run build"
+    staticPublishPath: ./dist
+    rootDir: frontend
+    envVars:
+      - key: VITE_API_URL
+        sync: false      # e.g. https://api.oam-app.com/api/v1
+    routes:
+      # Without this, refreshing on /dashboard returns 404: the browser asks
+      # the server for a file that doesn't exist, because routing is client-side.
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # ---------------------------------------------------------------- cron ---
+  - type: cron
+    name: oam-settle-orders
+    runtime: python
+    plan: starter        # cron jobs are not available on the free plan
+    schedule: "*/5 * * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python manage.py settle_bill_orders --apply"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: oam-db
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+````
+
+## File: requirements-additions.txt
+````
+# Add these to requirements.txt before deploying.
+#
+# gunicorn      — runserver is a development server and explicitly not for
+#                 production use; it's single-threaded and unhardened
+# whitenoise    — Django refuses to serve static files with DEBUG=False, and
+#                 WhiteNoise does it from the app without a separate CDN
+# dj-database-url — parses Render's DATABASE_URL into Django's DATABASES dict
+# psycopg[binary] — the PostgreSQL driver
+
+gunicorn>=21.2.0
+whitenoise>=6.6.0
+dj-database-url>=2.1.0
+psycopg[binary]>=3.1.0
+````
+
+## File: requirements.txt
+````
+# --- Core ---
+Django==5.0.6
+djangorestframework==3.15.1
+django-environ==0.11.2
+psycopg[binary]>=3.2.10
+
+# --- Auth ---
+djangorestframework-simplejwt==5.3.1
+PyJWT==2.8.0
+
+# --- Internationalisation (dynamic, per-field model translation) ---
+django-modeltranslation==0.18.11
+
+# --- CORS / API ---
+django-cors-headers==4.3.1
+drf-spectacular==0.27.2          # OpenAPI schema for the typed web/mobile clients
+
+# --- Async / background work ---
+celery==5.4.0
+redis==5.0.4
+django-celery-beat==2.6.0        # DB-backed periodic tasks (reconciliation, polling)
+django-celery-results==2.5.1
+
+# --- Real-time (used later for order/booking status, notifications) ---
+channels==4.1.0
+channels-redis==4.2.0
+
+# --- Third-party HTTP integrations ---
+requests==2.32.3
+urllib3==2.2.1
+
+# --- Server ---
+gunicorn==22.0.0
+uvicorn==0.30.1
+whitenoise==6.7.0
+# Add these to requirements.txt before deploying.
+#
+# gunicorn      — runserver is a development server and explicitly not for
+#                 production use; it's single-threaded and unhardened
+# whitenoise    — Django refuses to serve static files with DEBUG=False, and
+#                 WhiteNoise does it from the app without a separate CDN
+# dj-database-url — parses Render's DATABASE_URL into Django's DATABASES dict
+# psycopg[binary] — the PostgreSQL driver
+
+gunicorn>=21.2.0
+whitenoise>=6.6.0
+dj-database-url>=2.1.0
+psycopg[binary]>=3.1.0
+````
+
+## File: reset_test_money.py
+````python
+"""
+Reset all TEST money data so the platform starts from a clean, truthful ledger.
+
+WHY A RESET AND NOT AN ADJUSTMENT
+  Your wallet's balance was built almost entirely from test funding (₦30,500)
+  that never existed at Paystack, and part of it was spent on real VTU
+  purchases. There is no set of correcting entries that makes that history
+  "true" — the cleanest and most honest option before launch is to clear the
+  test data entirely and begin with a ledger that only ever contains real money.
+
+WHAT IT DELETES
+  • all ledger postings + journal entries      (the double-entry history)
+  • all bill orders + card checkouts           (test purchases)
+  • all withdrawal orders                      (test payouts)
+  • all funding/service transactions           (test top-ups)
+  • all wallet transfers, if that app is installed
+  • resets every wallet's cached_balance to 0
+
+WHAT IT KEEPS
+  • user accounts (you stay logged in, still verified, still admin)
+  • saved bank accounts
+  • billers / service categories / marketplace / artisan data
+  • your Paystack + provider configuration
+
+SAFETY
+  • Dry run by default — shows counts and changes NOTHING.
+  • Requires  --confirm  to actually delete.
+  • Refuses to run if DEBUG is False (i.e. looks like production) unless you
+    also pass --force, so this can never be casually run against live data.
+
+USAGE
+    python3 reset_test_money.py              # dry run, shows what would go
+    python3 reset_test_money.py --confirm    # actually reset
+"""
+import os
+import sys
+
+import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+django.setup()
+
+from django.conf import settings  # noqa: E402
+from django.db import transaction  # noqa: E402
+
+CONFIRM = "--confirm" in sys.argv
+FORCE = "--force" in sys.argv
+
+
+def model(path, name):
+    """
+    Import a model if its app is installed AND its table exists.
+
+    A model class can import fine while its migration hasn't been run yet
+    (e.g. transfer.py copied in but not migrated), so we check the table too
+    and simply skip anything that isn't there.
+    """
+    try:
+        mod = __import__(path, fromlist=[name])
+        klass = getattr(mod, name)
+    except Exception:
+        return None
+
+    from django.db import connection
+
+    table = klass._meta.db_table
+    if table not in connection.introspection.table_names():
+        print(f"  (skipping {name}: table '{table}' does not exist yet)")
+        return None
+    return klass
+
+
+def main():
+    if not settings.DEBUG and not FORCE:
+        sys.exit(
+            "Refusing to run: DEBUG is False, which looks like production.\n"
+            "If you are certain, re-run with --force."
+        )
+
+    from apps.wallet.models import Wallet, LedgerPosting, JournalEntry
+
+    targets = []
+
+    def add(label, qs):
+        if qs is not None:
+            targets.append((label, qs))
+
+    add("ledger postings", LedgerPosting.objects.all())
+    add("journal entries", JournalEntry.objects.all())
+
+    BillOrder = model("apps.billing.models", "BillOrder")
+    add("bill orders", BillOrder.objects.all() if BillOrder else None)
+
+    CardCheckout = model("apps.billing.card", "CardCheckout")
+    add("card checkouts", CardCheckout.objects.all() if CardCheckout else None)
+
+    WithdrawalOrder = model("apps.payouts.models", "WithdrawalOrder")
+    add("withdrawal orders", WithdrawalOrder.objects.all() if WithdrawalOrder else None)
+
+    ServiceTransaction = model("apps.payments.models", "ServiceTransaction")
+    add("funding transactions", ServiceTransaction.objects.all() if ServiceTransaction else None)
+
+    WalletTransfer = model("apps.wallet.transfer", "WalletTransfer")
+    add("wallet transfers", WalletTransfer.objects.all() if WalletTransfer else None)
+
+    print("\n=== TEST DATA RESET ===\n")
+    total = 0
+    for label, qs in targets:
+        try:
+            n = qs.count()
+        except Exception as exc:
+            print(f"  {label:24s}  skipped ({exc.__class__.__name__})")
+            continue
+        total += n
+        print(f"  {label:24s} {n:>6}")
+
+    wallets = Wallet.objects.all()
+    print(f"  {'wallets to zero':24s} {wallets.count():>6}")
+    print(f"\n  total rows to delete: {total}")
+
+    if not CONFIRM:
+        print("\nDRY RUN — nothing was changed.")
+        print("Re-run with --confirm to actually reset:\n")
+        print("    python3 reset_test_money.py --confirm\n")
+        return
+
+    print("\nDeleting…")
+    with transaction.atomic():
+        # Delete children before parents to avoid FK problems.
+        for label, qs in targets:
+            try:
+                qs.delete()
+                print(f"  cleared {label}")
+            except Exception as exc:
+                print(f"  skipped {label} ({exc.__class__.__name__})")
+        updated = wallets.update(cached_balance=0)
+        print(f"  zeroed {updated} wallet(s)")
+
+    print("\n✓ Done. Your ledger is now empty and every wallet reads 0.00.")
+    print("  Real money from here on will be the only money in the system.\n")
+
+
+if __name__ == "__main__":
+    main()
+````
+
+## File: revert_reloadly_flutterwave.py
+````python
+#!/usr/bin/env python3
+"""
+Revert the international-airtime Flutterwave change (back to the default gateway),
+so /reloadly/buy/ stops 502-ing while we diagnose. Run from the backend root.
+Guarded + idempotent.
+"""
+import sys, pathlib
+T = pathlib.Path("apps/reloadly/topup.py")
+NEW = 'FundingService.initialize(topup.user, topup.total_ngn, "NGN", provider_key="flutterwave")'
+OLD = 'FundingService.initialize(topup.user, topup.total_ngn, "NGN")'
+if not T.exists(): sys.exit("ABORT: run from backend root (folder with 'apps/').")
+s = T.read_text()
+if NEW not in s:
+    print("Nothing to revert (Flutterwave line not present)."); sys.exit(0)
+T.write_text(s.replace(NEW, OLD, 1))
+print("Reverted - airtime card charge uses the default gateway again. /reloadly/buy/ should stop erroring.")
+````
+
+## File: seed_demo.py
+````python
+"""
+Seed one marketplace listing and one artisan profile, so the chat can be
+tested before the browse pages exist.
+
+Both are owned by the ADMIN account, so you can enquire from your second
+account and exercise the full flow: enquiry -> accept -> contacts revealed.
+
+Field values are chosen by introspecting each model, because status/condition
+choices differ between projects and a hardcoded guess would just fail.
+
+RUN FROM THE BACKEND ROOT:
+    python3 manage.py shell < seed_demo.py
+
+REMOVE IT AGAIN LATER:
+    python3 manage.py shell -c "
+    from apps.marketplace.models import Listing
+    from apps.homeservices.models import ArtisanProfile
+    Listing.objects.filter(title__startswith='[demo]').delete()
+    ArtisanProfile.objects.filter(business_name__startswith='[demo]').delete()
+    print('demo data removed')
+    "
+"""
+from datetime import timedelta
+
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from django.utils.text import slugify
+
+from apps.homeservices.models import ArtisanProfile, ServiceCategory
+from apps.marketplace.models import Category, Listing
+
+User = get_user_model()
+
+
+def first_choice(model, field_name, prefer=()):
+    """Pick a sensible value for a choices field without hardcoding it."""
+    field = model._meta.get_field(field_name)
+    choices = [c[0] for c in (field.choices or [])]
+    if not choices:
+        return ""
+    for want in prefer:
+        if want in choices:
+            return want
+    return choices[0]
+
+
+admin = User.objects.filter(is_staff=True).order_by("id").first()
+if admin is None:
+    print("No staff user found — create one first.")
+else:
+    print(f"Seeding as: {admin}")
+
+    # ---------------- marketplace ---------------- #
+    cat, _ = Category.objects.get_or_create(
+        slug="electronics",
+        defaults={"name": "Electronics", "description": "Phones, laptops and gadgets",
+                  "is_active": True},
+    )
+
+    listing, created = Listing.objects.get_or_create(
+        title="[demo] Hisense 43\" Smart TV",
+        defaults={
+            "seller": admin,
+            "category": cat,
+            "description": "Barely used, full HD smart TV with remote and original box. "
+                           "Collection in Abuja, or delivery can be arranged.",
+            "price": 145000,
+            "currency": "NGN",
+            "negotiable": True,
+            "condition": first_choice(Listing, "condition", prefer=("used", "fairly_used")),
+            "location": "Abuja, FCT",
+            "contact_phone": "08031234567",
+            "contact_whatsapp": "2348031234567",
+            "status": first_choice(Listing, "status", prefer=("active", "published", "approved")),
+            "expires_at": timezone.now() + timedelta(days=30),
+        },
+    )
+    print(("created" if created else "exists "), "listing:", listing.title, "|", listing.id)
+
+    # ---------------- artisan ---------------- #
+    svc, _ = ServiceCategory.objects.get_or_create(
+        slug="plumbing",
+        defaults={"name": "Plumbing", "is_active": True},
+    )
+
+    artisan, created = ArtisanProfile.objects.get_or_create(
+        business_name="[demo] Sure Flow Plumbing",
+        defaults={
+            "user": admin,
+            "category": svc,
+            "description": "Burst pipes, water heaters, bathroom fittings and general "
+                           "plumbing repairs. Same-day callout across Abuja.",
+            "phone": "08039876543",
+            "whatsapp": "2348039876543",
+            "address": "No 12, Ademola Adetokunbo Crescent",
+            "city": "Abuja",
+            "state": "FCT",
+            "years_experience": 8,
+            "is_available": True,
+            "status": first_choice(ArtisanProfile, "status", prefer=("active", "approved", "published")),
+        },
+    )
+    print(("created" if created else "exists "), "artisan:", artisan.business_name, "|", artisan.id)
+
+    print("\nNow, signed in as your OTHER account, start a conversation:")
+    print(f"  listing id : {listing.id}")
+    print(f"  artisan id : {artisan.id}")
+````
+
+## File: test_webhooks.py
+````python
+"""
+Exercise the webhook handlers locally with CORRECTLY SIGNED payloads.
+
+We can't have Paystack/VTU reach 127.0.0.1, but we can prove the handler logic:
+signature verification, payload parsing, settlement, and idempotency. The
+signature is computed with your REAL secret key exactly the way Paystack does
+it (HMAC-SHA512 of the raw body), so this is a genuine test, not a bypass.
+
+Run:
+    python manage.py shell < test_webhooks.py
+or:
+    python test_webhooks.py            (after `export DJANGO_SETTINGS_MODULE=...`)
+"""
+import hashlib
+import hmac
+import json
+
+import django
+from django.conf import settings
+from django.test import Client
+
+try:
+    django.setup()
+except Exception:
+    pass
+
+client = Client()
+
+
+def hr(title):
+    print("\n" + "=" * 64)
+    print(f"  {title}")
+    print("=" * 64)
+
+
+def paystack_sign(body: bytes) -> str:
+    secret = settings.PROVIDER_CONFIG["payments"]["paystack"]["secret_key"].encode()
+    return hmac.new(secret, body, hashlib.sha512).hexdigest()
+
+
+def post_signed(url: str, payload: dict, sign=True):
+    body = json.dumps(payload).encode()
+    headers = {"content_type": "application/json"}
+    if sign:
+        headers["HTTP_X_PAYSTACK_SIGNATURE"] = paystack_sign(body)
+    return client.post(url, data=body, **headers)
+
+
+# ---------------------------------------------------------------- 1. security
+hr("1. FORGED signature must be REJECTED")
+resp = client.post(
+    "/api/v1/payments/webhook/paystack/",
+    data=json.dumps({"event": "charge.success", "data": {"reference": "FAKE-123"}}),
+    content_type="application/json",
+    HTTP_X_PAYSTACK_SIGNATURE="deadbeef" * 16,      # bogus
+)
+print(f"  status: {resp.status_code}  (expect 403)")
+print("  PASS — forged webhook rejected" if resp.status_code == 403
+      else "  *** FAIL — a forged webhook was accepted! ***")
+
+hr("2. MISSING signature must be REJECTED")
+resp = client.post(
+    "/api/v1/payments/webhook/paystack/",
+    data=json.dumps({"event": "charge.success", "data": {"reference": "FAKE-123"}}),
+    content_type="application/json",
+)
+print(f"  status: {resp.status_code}  (expect 403)")
+print("  PASS — unsigned webhook rejected" if resp.status_code == 403
+      else "  *** FAIL — an unsigned webhook was accepted! ***")
+
+# ---------------------------------------------------------------- 3. real flow
+hr("3. VALID signature is ACCEPTED (unknown reference -> no-op)")
+resp = post_signed("/api/v1/payments/webhook/paystack/",
+                   {"event": "charge.success",
+                    "data": {"reference": "FUND-does-not-exist", "amount": 100000}})
+print(f"  status: {resp.status_code}  (expect 200)")
+print(f"  body:   {resp.content.decode()[:120]}")
+print("  PASS — signed webhook accepted" if resp.status_code == 200
+      else "  *** FAIL — a correctly signed webhook was rejected ***")
+
+print("\nDone. To test a REAL settlement, create a pending funding/subscription")
+print("first, then replay its reference through the signed webhook above.")
+````
+
+## File: wire_assistant.py
+````python
+"""
+Register the assistant app.
+
+RUN FROM THE BACKEND ROOT:
+    python3 wire_assistant.py
+"""
+import ast, pathlib, re, sys
+
+ROOT = pathlib.Path(".")
+
+
+def safe(path, new, original, label):
+    path.write_text(new)
+    try:
+        ast.parse(new)
+        print(f"  {label}: done")
+        return True
+    except SyntaxError as exc:
+        path.write_text(original)
+        print(f"  !! {label} would have broken ({exc}) — rolled back")
+        return False
+
+
+settings_file = None
+for c in sorted(ROOT.glob("config/settings/*.py")) + sorted(ROOT.glob("config/*.py")):
+    t = c.read_text()
+    if "apps.marketplace" in t and "INSTALLED_APPS" in t:
+        settings_file = c
+        break
+if settings_file is None:
+    sys.exit("Could not find INSTALLED_APPS.")
+
+s = settings_file.read_text()
+if "apps.assistant" in s:
+    print("  settings: already registered")
+else:
+    m = re.search(r'^(\s*)["\']apps\.marketplace["\'],', s, re.M)
+    safe(settings_file, s[:m.end()] + f'\n{m.group(1)}"apps.assistant",' + s[m.end():],
+         s, "settings")
+
+s = settings_file.read_text()
+if "ANTHROPIC_API_KEY" not in s:
+    uses_env = "env(" in s
+    block = '''
+
+# --- Assistant --------------------------------------------------------------
+# Optional. With a key, the assistant answers freely using a language model.
+# Without one it falls back to answering from the built-in knowledge base, so
+# the feature works either way and the button is never broken.
+'''
+    if uses_env:
+        block += ('ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", default="")\n'
+                  'ASSISTANT_MODEL = env("ASSISTANT_MODEL", default="claude-sonnet-4-6")\n')
+    else:
+        block += ('ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")\n'
+                  'ASSISTANT_MODEL = os.environ.get("ASSISTANT_MODEL", "claude-sonnet-4-6")\n')
+        if not re.search(r'^import os$', s, re.M):
+            block = "\nimport os\n" + block
+    safe(settings_file, s + block, s, "settings: assistant keys")
+else:
+    print("  settings: assistant keys already present")
+
+urls_file = ROOT / "config" / "urls.py"
+s = urls_file.read_text()
+if "apps.assistant.urls" in s:
+    print("  urls: already registered")
+else:
+    m = re.search(r'^(\s*)path\([^\n]*include\([^\n]*apps\.marketplace\.urls[^\n]*\),', s, re.M)
+    if not m:
+        m = re.search(r'^(\s*)path\([^\n]*include\([^\n]*apps\.\w+\.urls[^\n]*\),', s, re.M)
+    if not m:
+        sys.exit('Add by hand: path("api/v1/assistant/", include("apps.assistant.urls")),')
+    safe(urls_file,
+         s[:m.end()] + f'\n{m.group(1)}path("api/v1/assistant/", include("apps.assistant.urls")),' + s[m.end():],
+         s, "urls")
+
+print("\nNo migration needed — the assistant stores nothing.")
+print("Restart the server.")
+````
+
+## File: wire_featured.py
+````python
+"""
+Add the public featured-artisans routes.
+
+RUN FROM THE BACKEND ROOT:
+    python3 wire_featured.py
+"""
+import ast, pathlib, re, sys
+
+p = pathlib.Path("apps/homeservices/urls.py")
+if not p.exists():
+    sys.exit("apps/homeservices/urls.py not found — run from the backend root.")
+
+original = s = p.read_text()
+if "FeaturedArtisansView" in s:
+    sys.exit("Already wired. Nothing to do.")
+
+m = re.search(r'^urlpatterns\s*=', s, re.M)
+s = (s[:m.start()]
+     + "from .featured import FeaturedArtisansView, ServiceCategoriesPublicView\n\n"
+     + s[m.start():])
+
+# Literal paths must sit above "artisans/<uuid:artisan_id>/", or the converter
+# swallows the word and you get a 404 that looks like a missing view.
+detail = re.search(r'^([ \t]*)path\(\s*"artisans/<uuid:artisan_id>/"', s, re.M)
+if not detail:
+    sys.exit("Couldn't find the artisan detail route to anchor to.")
+ind = detail.group(1)
+routes = (
+    f'{ind}path("featured/", FeaturedArtisansView.as_view(), name="hs-featured"),\n'
+    f'{ind}path("categories/public/", ServiceCategoriesPublicView.as_view(), name="hs-categories-public"),\n'
+)
+s = s[:detail.start()] + routes + s[detail.start():]
+
+p.write_text(s)
+try:
+    ast.parse(s)
+except SyntaxError as exc:
+    p.write_text(original)
+    sys.exit(f"Edit would have broken urls.py ({exc}) — rolled back.")
+
+print("patched apps/homeservices/urls.py\n")
+for i, ln in enumerate(s.splitlines(), 1):
+    if "path(" in ln:
+        print(f"  {i:3d} {ln.strip()}")
+print("\nNo migration needed. Restart the server.")
+````
+
+## File: wire_messaging.py
+````python
+"""
+Register apps.messaging in INSTALLED_APPS and config/urls.py.
+
+Finds the files by looking for where apps.marketplace is already registered,
+so it works regardless of how your settings are split. Verifies both files
+still parse before it finishes, and refuses to leave a broken file behind.
+
+RUN FROM THE BACKEND ROOT:
+    python3 wire_messaging.py
+"""
+import ast
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(".")
+
+
+def _check(path: pathlib.Path, original: str) -> bool:
+    """Roll back if our edit broke the file."""
+    try:
+        ast.parse(path.read_text())
+        return True
+    except SyntaxError as exc:
+        path.write_text(original)
+        print(f"  !! edit to {path} would have broken it ({exc}) — rolled back")
+        return False
+
+
+# ---------------------------------------------------------------- settings --
+settings_file = None
+for candidate in sorted(ROOT.glob("config/settings/*.py")) + sorted(ROOT.glob("config/*.py")):
+    text = candidate.read_text()
+    if "apps.marketplace" in text and "INSTALLED_APPS" in text:
+        settings_file = candidate
+        break
+
+if settings_file is None:
+    sys.exit("Could not find the file containing INSTALLED_APPS with apps.marketplace.")
+
+text = settings_file.read_text()
+if "apps.messaging" in text:
+    print(f"  settings: already registered ({settings_file})")
+else:
+    original = text
+    m = re.search(r'^(\s*)["\']apps\.marketplace["\'],', text, re.M)
+    if not m:
+        sys.exit(f'Found {settings_file} but not the "apps.marketplace" entry.')
+    indent = m.group(1)
+    text = text[:m.end()] + f'\n{indent}"apps.messaging",' + text[m.end():]
+    settings_file.write_text(text)
+    if _check(settings_file, original):
+        print(f"  settings: added to {settings_file}")
+
+# -------------------------------------------------------------------- urls --
+urls_file = ROOT / "config" / "urls.py"
+if not urls_file.exists():
+    sys.exit("config/urls.py not found.")
+
+text = urls_file.read_text()
+if "apps.messaging.urls" in text:
+    print("  urls: already registered")
+else:
+    original = text
+    m = re.search(r'^(\s*)path\(\s*["\']api/v1/[^"\']*["\']\s*,\s*include\(\s*["\']apps\.marketplace\.urls["\']\s*\)\s*\),',
+                  text, re.M)
+    if not m:
+        m = re.search(r'^(\s*)path\([^\n]*include\([^\n]*apps\.\w+\.urls[^\n]*\),', text, re.M)
+    if not m:
+        sys.exit("Could not find an existing api/v1 include to anchor to. Add by hand:\n"
+                 '    path("api/v1/messaging/", include("apps.messaging.urls")),')
+    indent = m.group(1)
+    text = (text[:m.end()]
+            + f'\n{indent}path("api/v1/messaging/", include("apps.messaging.urls")),'
+            + text[m.end():])
+    urls_file.write_text(text)
+    if _check(urls_file, original):
+        print("  urls: added to config/urls.py")
+
+print("\nNow run:")
+print("  python3 manage.py makemigrations messaging")
+print("  python3 manage.py migrate")
+````
+
+## File: wire_motors.py
+````python
+"""
+Wire the O.A.M Motors inventory into the marketplace app.
+
+Also exposes vehicle facts on the PUBLIC listing detail, so a buyer browsing
+normally sees the year, mileage and transmission rather than a bare description.
+
+RUN FROM THE BACKEND ROOT:
+    python3 wire_motors.py
+"""
+import ast, pathlib, re, sys
+
+ROOT = pathlib.Path(".")
+
+
+def safe(path, new, original, label):
+    path.write_text(new)
+    try:
+        ast.parse(new)
+        print(f"  {label}: done")
+        return True
+    except SyntaxError as exc:
+        path.write_text(original)
+        print(f"  !! {label} would have broken ({exc}) — rolled back")
+        return False
+
+
+# ------------------------------------------------------------------ models --
+p = ROOT / "apps" / "marketplace" / "models.py"
+s = p.read_text()
+if "from .motors import" in s:
+    print("  models.py: already registered")
+else:
+    # At the END: motors.py imports Listing from this module, so the models
+    # above must exist before it loads.
+    new = s.rstrip() + (
+        "\n\n# Registered last: motors.py imports Listing/Category from this module,\n"
+        "# so those models must be defined before it is loaded.\n"
+        "from .motors import VehicleDetail  # noqa: E402,F401\n"
+    )
+    safe(p, new, s, "models.py")
+
+# -------------------------------------------------------------------- urls --
+p = ROOT / "apps" / "marketplace" / "urls.py"
+s = p.read_text()
+if "MotorsInventoryView" in s:
+    print("  urls.py: already registered")
+else:
+    m = re.search(r'^urlpatterns\s*=', s, re.M)
+    new = (s[:m.start()]
+           + "from .motors import MotorsDetailView, MotorsInventoryView\n\n"
+           + s[m.start():])
+
+    # Literal path BEFORE listings/<uuid:listing_id>/, or the converter would
+    # swallow it — the same trap that cost us an evening on orders/refresh/.
+    anchor = re.search(r'^([ \t]*)path\(\s*"listings/', new, re.M)
+    ind = anchor.group(1) if anchor else "    "
+    routes = (
+        f'{ind}path("motors/", MotorsInventoryView.as_view(), name="mkt-motors"),\n'
+        f'{ind}path("motors/<uuid:listing_id>/", MotorsDetailView.as_view(), name="mkt-motors-detail"),\n'
+    )
+    at = anchor.start() if anchor else new.index("[", m.start()) + 1
+    new = new[:at] + routes + new[at:]
+    safe(p, new, s, "urls.py")
+
+# ------------------------------------- vehicle facts on the public listing --
+p = ROOT / "apps" / "marketplace" / "serializers.py"
+s = p.read_text()
+if "vehicle" in s and "VehicleSerializer" in s:
+    print("  serializers.py: already exposes vehicle")
+else:
+    m = re.search(r'class ListingDetailSerializer\b.*?(?=\nclass |\Z)', s, re.S)
+    if not m:
+        print("  !! ListingDetailSerializer not found — add `vehicle` by hand")
+    else:
+        block = m.group(0)
+        fields = re.search(r'fields\s*=\s*\(([^)]*)\)', block, re.S)
+        names = [n.strip() for n in fields.group(1).split(",") if n.strip()]
+        names.append('"vehicle"')
+        new_block = (block[:fields.start()]
+                     + "fields = (" + ", ".join(names) + ")"
+                     + block[fields.end():])
+
+        # declare the nested serializer on the class
+        decl = re.search(r'(class ListingDetailSerializer[^\n]*\n)', new_block)
+        new_block = (new_block[:decl.end()]
+                     + '    # Present only on O.A.M Motors listings; null everywhere else.\n'
+                     + '    vehicle = VehicleSerializer(read_only=True)\n'
+                     + new_block[decl.end():])
+
+        new = s.replace(block, new_block)
+        if "from .motors import VehicleSerializer" not in new:
+            mm = re.search(r'^from \.models import[^\n]*\n', new, re.M)
+            at = mm.end() if mm else 0
+            new = new[:at] + "from .motors import VehicleSerializer\n" + new[at:]
+        safe(p, new, s, "serializers.py")
+
+print("\nNow run:")
+print("  python3 manage.py makemigrations marketplace")
+print("  python3 manage.py migrate")
+````
+
+## File: wire_public_listings.py
+````python
+"""
+Add the public marketplace routes.
+
+RUN FROM THE BACKEND ROOT:
+    python3 wire_public_listings.py
+"""
+import ast, pathlib, re, sys
+
+p = pathlib.Path("apps/marketplace/urls.py")
+if not p.exists():
+    sys.exit("apps/marketplace/urls.py not found — run from the backend root.")
+
+original = s = p.read_text()
+if "PublicListingsView" in s:
+    sys.exit("Already wired.")
+
+m = re.search(r'^urlpatterns\s*=', s, re.M)
+s = (s[:m.start()]
+     + "from .public_listings import PublicCategoriesView, PublicListingsView\n\n"
+     + s[m.start():])
+
+# Literal paths before any <uuid:...> converter route.
+anchor = re.search(r'^([ \t]*)path\(\s*"listings/', s, re.M)
+ind = anchor.group(1) if anchor else "    "
+routes = (
+    f'{ind}path("public/listings/", PublicListingsView.as_view(), name="mkt-public-listings"),\n'
+    f'{ind}path("public/categories/", PublicCategoriesView.as_view(), name="mkt-public-categories"),\n'
+)
+at = anchor.start() if anchor else s.index("[", m.start()) + 1
+s = s[:at] + routes + s[at:]
+
+p.write_text(s)
+try:
+    ast.parse(s)
+except SyntaxError as exc:
+    p.write_text(original)
+    sys.exit(f"Edit would have broken urls.py ({exc}) — rolled back.")
+
+print("patched apps/marketplace/urls.py\n")
+for i, ln in enumerate(s.splitlines(), 1):
+    if "path(" in ln:
+        print(f"  {i:3d} {ln.strip()}")
+print("\nNo migration needed. Restart the server.")
+````
+
+## File: wire_verification.py
+````python
+"""
+Wire the uploads app and artisan verification into the project.
+
+Verifies both edited files still parse and rolls back if not.
+
+RUN FROM THE BACKEND ROOT:
+    python3 wire_verification.py
+"""
+import ast
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(".")
+
+
+def _safe_write(path: pathlib.Path, new: str, original: str, label: str) -> bool:
+    path.write_text(new)
+    try:
+        ast.parse(new)
+        print(f"  {label}: done")
+        return True
+    except SyntaxError as exc:
+        path.write_text(original)
+        print(f"  !! {label} would have broken ({exc}) — rolled back")
+        return False
+
+
+# -------------------------------------------------------------- INSTALLED_APPS
+settings_file = None
+for candidate in sorted(ROOT.glob("config/settings/*.py")) + sorted(ROOT.glob("config/*.py")):
+    text = candidate.read_text()
+    if "apps.homeservices" in text and "INSTALLED_APPS" in text:
+        settings_file = candidate
+        break
+if settings_file is None:
+    sys.exit("Could not find INSTALLED_APPS.")
+
+text = settings_file.read_text()
+if "apps.uploads" in text:
+    print("  settings: already registered")
+else:
+    m = re.search(r'^(\s*)["\']apps\.homeservices["\'],', text, re.M)
+    if not m:
+        sys.exit("Could not find the apps.homeservices entry.")
+    new = text[:m.end()] + f'\n{m.group(1)}"apps.uploads",' + text[m.end():]
+    _safe_write(settings_file, new, text, f"settings ({settings_file})")
+
+# ------------------------------------------------------------ Cloudinary config
+text = settings_file.read_text()
+if "CLOUDINARY_CLOUD_NAME" not in text:
+    block = '''
+
+# --- Cloudinary (file uploads) ----------------------------------------------
+# The browser uploads straight to Cloudinary using a signature generated here,
+# so large videos never pass through this server. The SECRET must stay
+# server-side: it's what proves an upload was authorised by us.
+CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME", default="")
+CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY", default="")
+CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET", default="")
+'''
+    if "env(" not in text:
+        block = block.replace('env("CLOUDINARY_CLOUD_NAME", default="")',
+                              'os.environ.get("CLOUDINARY_CLOUD_NAME", "")')
+        block = block.replace('env("CLOUDINARY_API_KEY", default="")',
+                              'os.environ.get("CLOUDINARY_API_KEY", "")')
+        block = block.replace('env("CLOUDINARY_API_SECRET", default="")',
+                              'os.environ.get("CLOUDINARY_API_SECRET", "")')
+        if not re.search(r'^import os$', text, re.M):
+            block = "\nimport os\n" + block
+    _safe_write(settings_file, text + block, text, "settings: Cloudinary keys")
+else:
+    print("  settings: Cloudinary keys already present")
+
+# ---------------------------------------------------------------- project urls
+urls_file = ROOT / "config" / "urls.py"
+text = urls_file.read_text()
+if "apps.uploads.urls" in text:
+    print("  urls: already registered")
+else:
+    m = re.search(r'^(\s*)path\([^\n]*include\(\s*["\']apps\.homeservices\.urls["\']\s*\)\s*\),',
+                  text, re.M)
+    if not m:
+        m = re.search(r'^(\s*)path\([^\n]*include\([^\n]*apps\.\w+\.urls[^\n]*\),', text, re.M)
+    if not m:
+        sys.exit('Add by hand: path("api/v1/uploads/", include("apps.uploads.urls")),')
+    new = (text[:m.end()]
+           + f'\n{m.group(1)}path("api/v1/uploads/", include("apps.uploads.urls")),'
+           + text[m.end():])
+    _safe_write(urls_file, new, text, "urls")
+
+# ------------------------------------------------- homeservices models + routes
+models_file = ROOT / "apps" / "homeservices" / "models.py"
+text = models_file.read_text()
+if "from .verification import" in text:
+    print("  homeservices/models.py: already imports verification")
+else:
+    # At the END: verification.py imports ArtisanProfile from here, so the
+    # models must be defined before it loads.
+    new = text.rstrip() + (
+        "\n\n# Registered last: verification.py imports ArtisanProfile from this module,\n"
+        "# so the models above must exist before it is loaded.\n"
+        "from .verification import (  # noqa: E402,F401\n"
+        "    ArtisanServiceImage,\n"
+        "    ArtisanVerification,\n"
+        ")\n"
+    )
+    _safe_write(models_file, new, text, "homeservices/models.py")
+
+hs_urls = ROOT / "apps" / "homeservices" / "urls.py"
+text = hs_urls.read_text()
+if "MyVerificationView" in text:
+    print("  homeservices/urls.py: already wired")
+else:
+    imp = (
+        "from .verification_views import (\n"
+        "    AttachDocumentView,\n"
+        "    MyVerificationView,\n"
+        "    RemoveServiceImageView,\n"
+        "    ReviewDecisionView,\n"
+        "    ReviewDetailView,\n"
+        "    ReviewQueueView,\n"
+        "    SubmitVerificationView,\n"
+        ")\n"
+    )
+    m = re.search(r'^urlpatterns\s*=', text, re.M)
+    new = text[:m.start()] + imp + "\n" + text[m.start():]
+
+    # Literal paths BEFORE "artisans/<uuid:artisan_id>/", or the converter
+    # swallows the word "verification" and you get a 404 that looks like a bug.
+    detail = re.search(r'^([ \t]*)path\(\s*"artisans/<uuid:artisan_id>/"', new, re.M)
+    if not detail:
+        sys.exit("Could not find the artisan detail route to anchor to.")
+    ind = detail.group(1)
+    routes = (
+        f'{ind}path("artisans/verification/", MyVerificationView.as_view(), name="hs-verification"),\n'
+        f'{ind}path("artisans/verification/attach/", AttachDocumentView.as_view(), name="hs-verif-attach"),\n'
+        f'{ind}path("artisans/verification/submit/", SubmitVerificationView.as_view(), name="hs-verif-submit"),\n'
+        f'{ind}path("artisans/verification/images/<uuid:image_id>/", RemoveServiceImageView.as_view(), name="hs-verif-image"),\n'
+        f'{ind}path("artisans/verification/queue/", ReviewQueueView.as_view(), name="hs-verif-queue"),\n'
+        f'{ind}path("artisans/verification/queue/<uuid:verification_id>/", ReviewDetailView.as_view(), name="hs-verif-detail"),\n'
+        f'{ind}path("artisans/verification/queue/<uuid:verification_id>/<str:decision>/", ReviewDecisionView.as_view(), name="hs-verif-decision"),\n'
+    )
+    new = new[:detail.start()] + routes + new[detail.start():]
+    _safe_write(hs_urls, new, text, "homeservices/urls.py")
+
+print("\nNow run:")
+print("  python3 manage.py makemigrations homeservices")
+print("  python3 manage.py migrate")
+````

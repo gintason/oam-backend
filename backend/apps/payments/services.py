@@ -167,9 +167,14 @@ class WebhookService:
             payload = json.loads(raw_body or b"{}")
         except ValueError:
             payload = {}
+
         event_type = payload.get("event", "")
         data = payload.get("data", {}) or {}
-        reference = data.get("reference", "")
+
+        # Paystack uses `data.reference`; Flutterwave uses `data.tx_ref`.
+        # We always initialise Flutterwave with our own tx_ref (== internal
+        # reference), so either shape resolves to the same value.
+        reference = data.get("reference") or data.get("tx_ref") or ""
         external_id = f"{event_type}:{reference}" or str(uuid.uuid4())
 
         event, created = WebhookEvent.objects.get_or_create(
@@ -182,8 +187,16 @@ class WebhookService:
                 event.status = WebhookEvent.Status.FAILED
                 event.save(update_fields=["status"])
             return event, False
-        # Only process a freshly-seen, valid, success event.
-        should = created and event_type == "charge.success"
+
+        # Paystack signals a success with event="charge.success".
+        # Flutterwave signals it with event="charge.completed" +
+        # data.status == "successful".
+        is_success = (
+            event_type == "charge.success"
+            or (event_type == "charge.completed"
+                and str(data.get("status", "")).lower() == "successful")
+        )
+        should = created and is_success
         return event, should
 
     @staticmethod

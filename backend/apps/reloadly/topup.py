@@ -131,10 +131,19 @@ class AirtimeTopupService:
         return AirtimeTopupService._fulfill(topup)
 
     @staticmethod
-    def pay_with_card(topup: AirtimeTopup) -> str:
+    def pay_with_card(topup: AirtimeTopup, callback_url: str = "") -> str:
+        """
+        Start a card payment for this international airtime top-up.
+
+        IMPORTANT: Only this flow is routed to Flutterwave. Wallet top-ups,
+        local bills and payouts stay on the default gateway (Paystack).
+        The funding transaction is created with provider="flutterwave", so
+        verify/settle and the Flutterwave webhook all resolve it correctly.
+        """
         txn, init = FundingService.initialize(
             topup.user, topup.total_ngn, "NGN",
-            provider_key=settings.LISTING_UPGRADE_PROVIDER,   # same gateway marketplace uses (Flutterwave)
+            provider_key="flutterwave",
+            callback_url=(callback_url or None),
         )
         topup.payment_reference = txn.internal_reference
         topup.save(update_fields=["payment_reference", "updated_at"])

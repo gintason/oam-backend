@@ -73,15 +73,26 @@ class BuyView(APIView):
 
         if d["pay_with"] == "card":
             try:
-                url = AirtimeTopupService.pay_with_card(topup)
+                url = AirtimeTopupService.pay_with_card(
+                    topup,
+                    callback_url=(request.data.get("callback_url") or "").strip(),
+                )
             except Exception as exc:  # noqa: BLE001
-                return Response({"detail": "Couldn't start card payment.", "error": str(exc)}, status=502)
-            return Response({"topup": AirtimeTopupSerializer(topup).data,
-                             "authorization_url": url, "reference": topup.payment_reference})
+                return Response(
+                    {"detail": "Couldn't start card payment.", "error": str(exc)},
+                    status=502,
+                )
+            return Response({
+                "topup": AirtimeTopupSerializer(topup).data,
+                "authorization_url": url,
+                "reference": topup.payment_reference,
+                "provider": "flutterwave",
+            })
 
+        # wallet path unchanged
         try:
             topup = AirtimeTopupService.pay_with_wallet(topup)
-        except Exception as exc:  # insufficient funds etc.
+        except Exception as exc:
             return Response({"detail": str(exc) or "Payment failed.",
                              "topup": AirtimeTopupSerializer(topup).data}, status=402)
         return Response({"topup": AirtimeTopupSerializer(topup).data})
