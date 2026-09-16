@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useMemo } from "react";
 import { View, Pressable, ActivityIndicator, Modal, ScrollView, TextInput } from "react-native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -9,14 +10,12 @@ import { apiErrorMessage } from "@/shared/api";
 import { useDebounced } from "@/shared/hooks/use-debounced";
 import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
-import { PaystackModal } from "@/features/bills";
+import * as WebBrowser from "expo-web-browser";
 import { reloadlyApi, type Operator, type AirtimeTopup } from "./api";
-import { useTranslation } from "react-i18next";
 
 /** International airtime flow (Reloadly). Rendered inside the airtime screen's "International" tab. */
 export function IntlAirtime() {
   const qc = useQueryClient();
-  const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
   const isVerified = user?.is_verified ?? false;
   const balance = Number(pickHeadline(useWallets().data?.wallets)?.balance ?? 0);
@@ -32,8 +31,6 @@ export function IntlAirtime() {
   const [payWith, setPayWith] = useState<"wallet" | "card">("wallet");
   const [topup, setTopup] = useState<AirtimeTopup | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [cardUrl, setCardUrl] = useState<string | null>(null);
-  const [payRef, setPayRef] = useState<string | null>(null);
   const [verifying, setVerifying] = useState(false);
 
   const countries = useQuery({ queryKey: ["intl", "countries"], queryFn: reloadlyApi.countries, enabled: isVerified, staleTime: 3600_000 });
@@ -64,32 +61,33 @@ export function IntlAirtime() {
         operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal,
         recipient_number: phone.trim(), recipient_iso2: country, pay_with: payWith,
       }),
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
       if (payWith === "card" && data.authorization_url && data.reference) {
-        setPayRef(data.reference); setCardUrl(data.authorization_url); return;
+        await WebBrowser.openBrowserAsync(data.authorization_url);   // Flutterwave (or any) hosted checkout
+        await onCardReturn(data.reference);                          // verify once the user returns
+        return;
       }
       finish(data.topup);
     },
     onError: (err) => {
       const st = (err as { response?: { status?: number } })?.response?.status;
-      setError(st === 402 ? t("airtime.intl.errBalance") : apiErrorMessage(err, t("airtime.intl.errFailed")));
+      setError(st === 402 ? "Your wallet balance is too low. Add money or pay by card." : apiErrorMessage(err, "Top-up failed. Try again."));
     },
   });
 
-  async function onCardReturn() {
-    setCardUrl(null);
-    if (!payRef) return;
+  async function onCardReturn(ref: string) {
+    if (!ref) return;
     setVerifying(true);
     try {
-      let t = await reloadlyApi.cardVerify(payRef);
+      let t = await reloadlyApi.cardVerify(ref);
       for (let i = 0; i < 5 && t.status !== "success" && t.status !== "failed"; i++) {
         await new Promise((r) => setTimeout(r, 2000));
         t = await reloadlyApi.topup(t.reference);
       }
       finish(t);
     } catch (err) {
-      setError(apiErrorMessage(err, t("airtime.intl.errConfirm")));
+      setError(apiErrorMessage(err, "Couldn't confirm the top-up."));
     } finally {
       setVerifying(false);
     }
@@ -103,10 +101,10 @@ export function IntlAirtime() {
 
   function submit() {
     setError(null);
-    if (!country) return setError(t("airtime.intl.errCountry"));
-    if (phone.trim().length < 6) return setError(t("airtime.intl.errPhone"));
-    if (!operator) return setError(t("airtime.intl.errNetwork"));
-    if (Number(amount) <= 0) return setError(t("airtime.intl.errAmount"));
+    if (!country) return setError("Choose the recipient's country.");
+    if (phone.trim().length < 6) return setError("Enter the recipient's phone number.");
+    if (!operator) return setError("Choose a network operator.");
+    if (Number(amount) <= 0) return setError("Choose an amount.");
     buy.mutate();
   }
 
@@ -133,11 +131,11 @@ export function IntlAirtime() {
     return (
       <View style={{ borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 22, alignItems: "center" }}>
         {ok ? <CheckCircle2 size={46} color={colors.brand.green} /> : <XCircle size={46} color={colors.danger} />}
-        <Text variant="heading" style={{ marginTop: 10 }}>{ok ? t("airtime.intl.successTitle") : t("airtime.intl.failedTitle")}</Text>
+        <Text variant="heading" style={{ marginTop: 10 }}>{ok ? "Airtime sent!" : "Top-up failed"}</Text>
         <Text variant="body" color="muted" style={{ marginTop: 4, textAlign: "center" }}>
-          {ok ? `${topup.operator_name} · ${topup.recipient_number}` : (topup.failure_reason || t("airtime.intl.refunded"))}
+          {ok ? `${topup.operator_name} · ${topup.recipient_number}` : (topup.failure_reason || "If you were charged, it has been refunded.")}
         </Text>
-        <Button title={t("airtime.intl.done")} onPress={() => { setTopup(null); setAmount(""); }} style={{ marginTop: 16, alignSelf: "stretch" }} />
+        <Button title="Done" onPress={() => { setTopup(null); setAmount(""); }} style={{ marginTop: 16, alignSelf: "stretch" }} />
       </View>
     );
   }
@@ -148,11 +146,11 @@ export function IntlAirtime() {
 
       <Text variant="label" style={{ marginBottom: 8 }}>Recipient's country</Text>
       <Pressable onPress={() => { setCountryOpen(true); setCountrySearch(""); }} style={{ height: 48, borderRadius: 12, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 14, marginBottom: 14 }}>
-        <Text variant="body" color={countryName ? "ink" : "muted"}>{countryName || t("airtime.intl.selectCountry")}</Text>
+        <Text variant="body" color={countryName ? "ink" : "muted"}>{countryName || "Select country"}</Text>
         <ChevronDown size={18} color={colors.muted} />
       </Pressable>
 
-      <Input label={t("airtime.intl.phone")} value={phone} onChangeText={(v) => { setPhone(v.replace(/[^\d+]/g, "")); setOperator(null); }} keyboardType="phone-pad" placeholder={t("airtime.intl.phonePlaceholder")} autoCapitalize="none" />
+      <Input label="Recipient phone (with local format)" value={phone} onChangeText={(v) => { setPhone(v.replace(/[^0-9+]/g, "")); setOperator(null); }} keyboardType="phone-pad" placeholder="e.g. 233501234567" autoCapitalize="none" />
 
       {country ? (
         operators.isLoading ? <ActivityIndicator color={colors.brand.green} style={{ alignSelf: "flex-start", marginBottom: 14 }} /> : (
@@ -175,7 +173,7 @@ export function IntlAirtime() {
 
       {operator ? (
         <>
-          <Text variant="label" style={{ marginBottom: 8 }}>{t("airtime.intl.amount")} {useLocal ? `(${operator.destination_currency})` : "(USD)"}</Text>
+          <Text variant="label" style={{ marginBottom: 8 }}>Amount {useLocal ? `(${operator.destination_currency})` : "(USD)"}</Text>
           {amounts.length > 0 ? (
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 14 }}>
               {amounts.slice(0, 12).map((a) => {
@@ -188,7 +186,7 @@ export function IntlAirtime() {
               })}
             </View>
           ) : (
-            <Input label="" value={amount} onChangeText={(v) => setAmount(v.replace(/[^\d.]/g, ""))} keyboardType="decimal-pad" placeholder={`${symbol}0`} />
+            <Input label="" value={amount} onChangeText={(v) => setAmount(v.replace(/[^0-9.]/g, ""))} keyboardType="decimal-pad" placeholder={`${symbol}0`} />
           )}
 
           {Number(amount) > 0 ? (
@@ -208,14 +206,14 @@ export function IntlAirtime() {
               const sel = payWith === m;
               return (
                 <Pressable key={m} onPress={() => setPayWith(m)} style={{ flex: 1, height: 48, borderRadius: 11, borderWidth: 2, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.10)" : colors.paper, alignItems: "center", justifyContent: "center" }}>
-                  <Text variant="label" color={sel ? "green" : "muted"}>{m === "wallet" ? t("airtime.intl.wallet") : t("airtime.intl.card")}</Text>
+                  <Text variant="label" color={sel ? "green" : "muted"}>{m === "wallet" ? "Wallet" : "Card"}</Text>
                 </Pressable>
               );
             })}
           </View>
-          {payWith === "wallet" ? <Text variant="caption" color="muted" style={{ marginBottom: 12 }}>{t("airtime.intl.walletBalance", { balance: naira(balance) })}</Text> : null}
+          {payWith === "wallet" ? <Text variant="caption" color="muted" style={{ marginBottom: 12 }}>Wallet balance: {naira(balance)}</Text> : null}
 
-          <Button title={quote.data ? t("airtime.intl.sendAmount", { amount: priceNgn }) : t("airtime.intl.send")} onPress={submit} loading={buy.isPending} />
+          <Button title={quote.data ? `Send ${priceNgn}` : "Send airtime"} onPress={submit} loading={buy.isPending} />
         </>
       ) : null}
 
@@ -243,7 +241,7 @@ export function IntlAirtime() {
             <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>Choose a country</Text>
             <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
               <Search size={15} color={colors.muted} />
-              <TextInput value={countrySearch} onChangeText={setCountrySearch} autoFocus placeholder={t("airtime.intl.searchCountries")} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+              <TextInput value={countrySearch} onChangeText={setCountrySearch} autoFocus placeholder="Search countries" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
             </View>
             <ScrollView keyboardShouldPersistTaps="handled">
               {filteredCountries.map((c) => (
@@ -256,7 +254,6 @@ export function IntlAirtime() {
         </Pressable>
       </Modal>
 
-      <PaystackModal visible={!!cardUrl} url={cardUrl ?? ""} onComplete={onCardReturn} onCancel={() => setCardUrl(null)} />
     </View>
   );
 }

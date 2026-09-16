@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
 import { authApi, useAuthStore } from "@/features/auth";
+import { pinVault } from "@/shared/auth/pin-store";
 import { apiErrorMessage } from "@/shared/api";
 import { Button, Input, Text } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
@@ -13,6 +14,7 @@ export default function SignIn() {
   const router = useRouter();
   const { t } = useTranslation();
   const setSession = useAuthStore((s) => s.setSession);
+  const beginPinSetup = useAuthStore((s) => s.beginPinSetup);
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +24,14 @@ export default function SignIn() {
     mutationFn: () => authApi.login(identifier.trim(), password),
     onSuccess: async ({ user, tokens }) => {
       await setSession(user, tokens);
-      router.replace("/home");
+      // First login on this device (no unlock PIN yet)? Set one up, so the user
+      // can unlock with a PIN on every launch afterwards.
+      if (await pinVault.has()) {
+        router.replace("/home");
+      } else {
+        beginPinSetup();
+        router.replace("/create-pin");
+      }
     },
     onError: (err) => {
       // A 403 with reason "unverified" means the backend re-sent an OTP — go verify.
@@ -69,26 +78,23 @@ export default function SignIn() {
         placeholder={t("auth.signIn.passwordPlaceholder")}
       />
 
-      <View style={{ alignItems: "flex-end", marginBottom: 20 }}>
-        <Link href="/forgot-password" asChild>
-          <Text variant="label" color="green">
-            {t("auth.signIn.forgot")}
-          </Text>
-        </Link>
-      </View>
+      <Text
+        variant="label"
+        color="green"
+        onPress={() => router.push("/forgot-password")}
+        style={{ textAlign: "right", marginBottom: 20 }}
+      >
+        {t("auth.signIn.forgot")}
+      </Text>
 
       <Button title={t("auth.signIn.submit")} onPress={submit} loading={login.isPending} />
 
-      <View style={{ flexDirection: "row", justifyContent: "center", gap: 4, marginTop: 24 }}>
-        <Text variant="body" color="muted">
-          {t("auth.signIn.altPrompt")}
+      <Text variant="body" color="muted" style={{ textAlign: "center", marginTop: 24 }}>
+        {t("auth.signIn.altPrompt")}{" "}
+        <Text variant="label" color="green" onPress={() => router.push("/sign-up")}>
+          {t("auth.signIn.altLabel")}
         </Text>
-        <Link href="/sign-up" asChild>
-          <Text variant="label" color="green">
-            {t("auth.signIn.altLabel")}
-          </Text>
-        </Link>
-      </View>
+      </Text>
     </AuthScaffold>
   );
 }

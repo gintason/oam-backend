@@ -44,13 +44,18 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({ status: "unauthenticated", user: null });
       return;
     }
+    // A saved session + a local PIN => go straight to the unlock screen. We do NOT
+    // call the API here: an expired access token (which the interceptor refreshes
+    // on the next real request) must not bounce a returning user to the password
+    // screen. The user object is refreshed after the PIN is entered (see unlock()).
+    if (await pinVault.has()) {
+      set({ status: "locked", lockedName: (await pinVault.name()) || "" });
+      return;
+    }
+    // Session but no PIN yet: confirm it's live, then continue authenticated.
     try {
       const user = await authApi.me();
-      if (await pinVault.has()) {
-        set({ status: "locked", user, lockedName: (await pinVault.name()) || user.first_name || "" });
-      } else {
-        set({ status: "authenticated", user });
-      }
+      set({ status: "authenticated", user });
     } catch {
       await tokenVault.clear();
       set({ status: "unauthenticated", user: null });
@@ -72,7 +77,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   unlock: async (pin) => {
     const ok = await pinVault.verify(pin);
-    if (ok) set({ status: "authenticated" });
+    if (ok) {
+      set({ status: "authenticated" });
+      try {
+        const user = await authApi.me();
+        set({ user });
+      } catch {
+        /* token refresh / session handling covers a stale token here */
+      }
+    }
     return ok;
   },
 

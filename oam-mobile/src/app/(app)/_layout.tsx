@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import { Redirect, Tabs } from "expo-router";
-import { Home as HomeIcon, Receipt as OrdersIcon, MessageCircle as MessagesIcon, User as UserIcon, type LucideIcon } from "lucide-react-native";
+import { Home as HomeIcon, Wallet as WalletIcon, Receipt as OrdersIcon, MessageCircle as MessagesIcon, User as UserIcon, type LucideIcon } from "lucide-react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuthStore } from "@/features/auth";
 import { colors, fonts } from "@/shared/theme";
 
@@ -36,6 +37,7 @@ function TabIcon({ Icon, color, focused }: { Icon: LucideIcon; color: string; fo
 }
 
 export default function AppLayout() {
+  const insets = useSafeAreaInsets();
   const status = useAuthStore((s) => s.status);
   if (status === "locked") return <Redirect href="/unlock" />;
   if (status !== "authenticated") return <Redirect href="/sign-in" />;
@@ -50,21 +52,21 @@ export default function AppLayout() {
         tabBarStyle: {
           backgroundColor: "transparent",
           borderTopWidth: 0,
-          height: 64,
+          height: 64 + insets.bottom,
           paddingTop: 6,
-          paddingBottom: 8,
+          paddingBottom: 8 + insets.bottom,
           elevation: 0,
         },
         tabBarLabelStyle: { fontFamily: fonts.medium, fontSize: 11 },
       }}
     >
       <Tabs.Screen name="home" options={{ title: "Home", tabBarIcon: ({ color, focused }) => <TabIcon Icon={HomeIcon} color={color} focused={focused} /> }} />
+      <Tabs.Screen name="wallet" options={{ title: "Wallet", tabBarIcon: ({ color, focused }) => <TabIcon Icon={WalletIcon} color={color} focused={focused} /> }} />
       <Tabs.Screen name="orders" options={{ title: "Orders", tabBarIcon: ({ color, focused }) => <TabIcon Icon={OrdersIcon} color={color} focused={focused} /> }} />
       <Tabs.Screen name="messages" options={{ title: "Messages", tabBarIcon: ({ color, focused }) => <TabIcon Icon={MessagesIcon} color={color} focused={focused} /> }} />
       <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, focused }) => <TabIcon Icon={UserIcon} color={color} focused={focused} /> }} />
 
       {/* Service screens — navigable, hidden from the tab bar, tab bar hidden while open. */}
-      <Tabs.Screen name="wallet" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="marketplace" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="create-pin" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="assistant" options={{ href: null, tabBarStyle: { display: "none" } }} />

@@ -7,19 +7,53 @@
     "icon": "./assets/images/icon.png",
     "scheme": "oammobile",
     "userInterfaceStyle": "automatic",
+    "jsEngine": "hermes",
+    "primaryColor": "#0B7327",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d51ee557-4078-4787-8c00-6a2ada5dcaa0",
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gintason.oammobile"
+      "bundleIdentifier": "com.gintason.oammobile",
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "OAM uses your camera so you can photograph items to sell and submit verification documents.",
+        "NSPhotoLibraryUsageDescription": "OAM needs access to your photos so you can upload listing images and verification documents.",
+        "NSPhotoLibraryAddUsageDescription": "OAM saves receipt images and shared files to your photo library when you choose to.",
+        "NSMicrophoneUsageDescription": "OAM uses your microphone when you record a short video of your work for artisan verification.",
+        "NSLocationWhenInUseUsageDescription": "OAM uses your location to show artisans, listings and services near you.",
+        "NSFaceIDUsageDescription": "OAM uses Face ID to protect your wallet and confirm sensitive account actions."
+      }
     },
     "android": {
+      "package": "com.gintason.oammobile",
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF",
         "foregroundImage": "./assets/images/icon.png"
       },
-      "predictiveBackGestureEnabled": false,
-      "package": "com.gintason.oammobile"
+      "permissions": [
+        "CAMERA",
+        "READ_MEDIA_IMAGES",
+        "READ_MEDIA_VIDEO",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "RECORD_AUDIO",
+        "VIBRATE",
+        "INTERNET"
+      ]
     },
     "web": {
+      "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
@@ -38,7 +72,27 @@
       "expo-image",
       "expo-web-browser",
       "@react-native-community/datetimepicker",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "OAM uses your location to show artisans, listings and services near you."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "OAM needs access to your photos so you can upload listing images and verification documents.",
+          "cameraPermission": "OAM uses your camera so you can photograph items to sell and submit verification documents.",
+          "microphonePermission": "OAM uses your microphone when you record a short video of your work."
+        }
+      ],
+      [
+        "expo-gradle-properties",
+        {
+          "android.ndkVersion": "27.1.12297006"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
@@ -49,6 +103,7 @@
       "eas": {
         "projectId": "d51ee557-4078-4787-8c00-6a2ada5dcaa0"
       }
-    }
+    },
+    "owner": "gintason"
   }
 }

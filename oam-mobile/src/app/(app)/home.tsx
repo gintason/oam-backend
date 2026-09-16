@@ -138,8 +138,8 @@ export default function Home() {
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: H_PADDING, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
-        <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.mist, marginBottom: 10 }}>
-          <Menu size={22} strokeWidth={1.9} color={colors.ink} />
+        <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.brand.green, marginBottom: 10 }}>
+          <Menu size={22} strokeWidth={2} color="#FFFFFF" />
         </Pressable>
         <Text variant="body" color="muted">
           {t(greetingKey())}

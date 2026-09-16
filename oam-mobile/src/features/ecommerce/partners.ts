@@ -19,8 +19,8 @@ export type EcommercePartner = {
 };
 
 export const PARTNER_LOGOS: Record<string, ImageSourcePropType> = {
-  amazon: require("../../../assets/images/amazon_logo.png"),
-  temu: require("../../../assets/images/temu_logo.png"),
+  amazon: require("../../../assets/images/amazon_logo.jpg"),      // was .png
+  temu: require("../../../assets/images/temu_logo.webp"),         // was .png
   alibaba: require("../../../assets/images/alibaba_logo.png"),
   banggood: require("../../../assets/images/banggood_logo.png"),
   cj: require("../../../assets/images/cjaffiliate_logo.png"),
@@ -37,11 +37,11 @@ export const ECOMMERCE_PARTNERS: EcommercePartner[] = [
     tagline: "Shop like a billionaire", accent: "#FB7701",
     blurb: "Budget-friendly everything — gadgets, fashion, home and more at low prices.",
     categories: ["Fashion", "Home", "Gadgets", "Beauty", "Jewelry", "Outdoor"] },
-  { slug: "alibaba", name: "Alibaba", link: "https://offer.alibaba.com/cps/bjeo4au9?bm=cps&src=saf",
+  { slug: "alibaba", name: "Alibaba", link: "",
     tagline: "Global wholesale", accent: "#FF6A00",
     blurb: "Source products at wholesale prices directly from verified suppliers.",
     categories: ["Wholesale", "Electronics", "Machinery", "Apparel", "Packaging", "Beauty"] },
-  { slug: "banggood", name: "Banggood", link: "https://www.banggood.com/Affiliate-products.html?p=LO171678966137202608&custlinkid=5252905",
+  { slug: "banggood", name: "Banggood", link: "https://www.banggood.com/index.html?p=LO171678966137202608&custlinkid=5252905",
     tagline: "Gadgets & more", accent: "#E63700",
     blurb: "RC hobbies, electronics, tools and lifestyle products at keen prices.",
     categories: ["Electronics", "RC & Hobbies", "Tools", "Home", "Outdoor", "Automotive"] },
