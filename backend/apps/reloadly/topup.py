@@ -132,7 +132,10 @@ class AirtimeTopupService:
 
     @staticmethod
     def pay_with_card(topup: AirtimeTopup) -> str:
-        txn, init = FundingService.initialize(topup.user, topup.total_ngn, "NGN")
+        txn, init = FundingService.initialize(
+            topup.user, topup.total_ngn, "NGN",
+            provider_key=settings.LISTING_UPGRADE_PROVIDER,   # same gateway marketplace uses (Flutterwave)
+        )
         topup.payment_reference = txn.internal_reference
         topup.save(update_fields=["payment_reference", "updated_at"])
         return init.authorization_url
