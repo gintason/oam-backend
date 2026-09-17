@@ -12,6 +12,30 @@ export const uploadsApi = {
   ticket: (purpose: string) => api.post<UploadTicket>("/uploads/ticket/", { purpose }).then((r) => r.data),
 };
 
+/**
+ * Upload a multipart FormData via XMLHttpRequest. React Native's XHR handles the
+ * { uri, name, type } file part correctly; the newer global fetch throws
+ * "Unsupported FormDataPart implementation" for it, which is the marketplace
+ * upload error. Returns the parsed JSON response.
+ */
+function xhrUpload(url: string, form: FormData): Promise<Record<string, unknown>> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.onload = () => {
+      let data: Record<string, unknown> = {};
+      try { data = JSON.parse(xhr.responseText || "{}"); } catch { /* non-JSON */ }
+      if (xhr.status >= 200 && xhr.status < 300) resolve(data);
+      else {
+        const err = (data.error as { message?: string } | undefined)?.message;
+        reject(new Error(err ?? "Upload failed. Please try again."));
+      }
+    };
+    xhr.onerror = () => reject(new Error("Upload failed. Please check your connection and try again."));
+    xhr.send(form as unknown as Document);
+  });
+}
+
 /** Signed direct-to-Cloudinary upload for any purpose. Returns the hosted URL. */
 export async function uploadMedia(purpose: string, media: PickedMedia): Promise<string> {
   const ticket = await uploadsApi.ticket(purpose);
@@ -28,11 +52,8 @@ export async function uploadMedia(purpose: string, media: PickedMedia): Promise<
   form.append("folder", ticket.folder);
   if (ticket.type !== "upload") form.append("type", ticket.type);
 
-  const res = await fetch(ticket.upload_url, { method: "POST", body: form });
-  const data = (await res.json()) as { secure_url?: string; url?: string; error?: { message?: string } };
-  if (!res.ok || !(data.secure_url || data.url)) {
-    throw new Error(data?.error?.message ?? "Upload failed. Please try again.");
-  }
+  const data = (await xhrUpload(ticket.upload_url, form)) as { secure_url?: string; url?: string };
+  if (!(data.secure_url || data.url)) throw new Error("Upload failed. Please try again.");
   return (data.secure_url || data.url) as string;
 }
 
@@ -55,8 +76,7 @@ export async function uploadMediaDetailed(purpose: string, media: PickedMedia): 
   form.append("folder", ticket.folder);
   if (ticket.type !== "upload") form.append("type", ticket.type);
 
-  const res = await fetch(ticket.upload_url, { method: "POST", body: form });
-  const data = (await res.json()) as { public_id?: string; secure_url?: string; url?: string; error?: { message?: string } };
-  if (!res.ok || !data.public_id) throw new Error(data?.error?.message ?? "Upload failed. Please try again.");
+  const data = (await xhrUpload(ticket.upload_url, form)) as { public_id?: string; secure_url?: string; url?: string };
+  if (!data.public_id) throw new Error("Upload failed. Please try again.");
   return { public_id: data.public_id, url: (data.secure_url || data.url) as string };
 }

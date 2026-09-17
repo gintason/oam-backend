@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { View, ScrollView, Pressable, Alert, Dimensions } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, useFocusEffect } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Check, CheckCircle2, Loader2, XCircle, Smartphone, Wallet, CreditCard } from "lucide-react-native";
@@ -30,6 +30,14 @@ export default function Airtime() {
   const isVerified = user?.is_verified ?? false;
 
   const [mode, setMode] = useState<"local" | "international">("local");
+
+  // Returning to the airtime tab should show the FORM, not a stale success card
+  // from a previous purchase. Clear the terminal result each time the screen gains focus.
+  useFocusEffect(
+    useCallback(() => {
+      setOrder(null);
+    }, []),
+  );
   const [network, setNetwork] = useState("");
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
@@ -229,7 +237,7 @@ export default function Airtime() {
 
             <View style={{ flexDirection: "row", gap: 10, marginTop: 22, width: "100%" }}>
               <Button title={t("airtime.success.buyAgain")} variant="secondary" onPress={() => { setOrder(null); setAmount(""); }} style={{ flex: 1 }} />
-              <Button title={t("airtime.success.done")} onPress={() => router.back()} style={{ flex: 1 }} />
+              <Button title={t("airtime.success.done")} onPress={() => { setOrder(null); setAmount(""); router.back(); }} style={{ flex: 1 }} />
             </View>
           </View>
         </ScrollView>
