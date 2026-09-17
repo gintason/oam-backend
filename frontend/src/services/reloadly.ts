@@ -15,6 +15,18 @@ export type Operator = {
 export type Quote = {
   face_usd: string; total_ngn: string; cost_ngn: string; markup_ngn: string;
   usd_ngn: string; markup_percent: string;
+  charge_options?: Record<string, string>;   // ← new
+};
+
+export type BuyInput = {
+  operator_id: string;
+  amount: number;
+  use_local_amount: boolean;
+  recipient_number: string;
+  recipient_iso2: string;
+  pay_with: "wallet" | "card";
+  currency?: "NGN" | "USD" | "GBP" | "EUR";   // ← new (was charge_currency)
+  callback_url?: string;
 };
 
 export type AirtimeTopup = {
