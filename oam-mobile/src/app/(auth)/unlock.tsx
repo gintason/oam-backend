@@ -28,7 +28,7 @@ export default function Unlock() {
   return (
     <Screen edges={["top", "bottom"]}>
       <View style={{ flex: 1, paddingHorizontal: 28, paddingTop: 40, alignItems: "center" }}>
-        <Text variant="heading" style={{ textAlign: "center" }}>{name ? `Welcome back, ${name}` : "Welcome back"}</Text>
+        <Text variant="heading" style={{ textAlign: "center", alignSelf: "stretch" }} numberOfLines={2}>{name ? `Welcome back, ${name}` : "Welcome back"}</Text>
 
         <View style={{ height: 40 }} />
         <PinPad value={pin} onChange={(v) => { setError(false); setPin(v); }} error={error} />

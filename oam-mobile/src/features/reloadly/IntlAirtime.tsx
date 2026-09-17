@@ -11,8 +11,11 @@ import { useDebounced } from "@/shared/hooks/use-debounced";
 import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
 import { useCurrency } from "@/features/currency";
+import { PaymentCurrencyChips } from "@/features/payments/ui/PaymentCurrencyChips";
 import * as WebBrowser from "expo-web-browser";
 import { reloadlyApi, type Operator, type AirtimeTopup } from "./api";
+
+const SYMBOLS: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
 
 /** International airtime flow (Reloadly). Rendered inside the airtime screen's "International" tab. */
 export function IntlAirtime() {
@@ -60,14 +63,21 @@ export function IntlAirtime() {
   // Per-currency card amounts come from the backend. Charge in the picked currency
   // only if the backend can collect it; otherwise fall back to NGN. (Mirrors web.)
   const chargeOptions: Record<string, string> = quote.data?.charge_options ?? {};
-  const effectiveCurrency = chargeOptions[currency.code] ? currency.code : "NGN";
+  const payOptions = Object.keys(chargeOptions);
+  const [payCcy, setPayCcy] = useState<string>("NGN");
+  // Default the pay currency to the one picked in the global switcher, when the
+  // backend can actually collect it for this top-up; otherwise NGN.
+  useEffect(() => {
+    setPayCcy(chargeOptions[currency.code] ? currency.code : "NGN");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quote.data, currency.code]);
 
   const buy = useMutation({
     mutationFn: () =>
       reloadlyApi.buy({
         operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal,
         recipient_number: phone.trim(), recipient_iso2: country, pay_with: payWith,
-        currency: effectiveCurrency,
+        currency: payCcy,
       }),
     onSuccess: async (data) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
@@ -124,6 +134,15 @@ export function IntlAirtime() {
 
   const symbol = useLocal ? "" : "$";
   const priceNgn = quote.data ? naira(Number(quote.data.total_ngn)) : "";
+  // What "You pay" / "Send" show: on card in a non-NGN currency, the amount in
+  // that currency (from the backend charge_options); otherwise NGN.
+  const priceForCharge = (() => {
+    if (!quote.data) return "";
+    if (payWith !== "card") return priceNgn;
+    const v = chargeOptions[payCcy];
+    if (!v) return priceNgn;
+    return `${SYMBOLS[payCcy] ?? ""}${Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+  })();
 
   if (verifying) {
     return (
@@ -202,7 +221,7 @@ export function IntlAirtime() {
               {quote.isLoading ? <ActivityIndicator color={colors.brand.green} /> : (
                 <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                   <Text variant="label" color="ink">You pay</Text>
-                  <Text variant="title" color="green">{priceNgn}</Text>
+                  <Text variant="title" color="green">{priceForCharge}</Text>
                 </View>
               )}
             </View>
@@ -219,9 +238,20 @@ export function IntlAirtime() {
               );
             })}
           </View>
+          {payWith === "card" && payOptions.length > 1 ? (
+            <View style={{ marginBottom: 12 }}>
+              <Text variant="label" style={{ marginBottom: 8 }}>Pay in</Text>
+              <PaymentCurrencyChips options={payOptions} value={payCcy} onChange={setPayCcy} />
+              {chargeOptions[payCcy] ? (
+                <Text variant="caption" color="muted" style={{ marginTop: 6 }}>
+                  Card is charged {payCcy} {chargeOptions[payCcy]}
+                </Text>
+              ) : null}
+            </View>
+          ) : null}
           {payWith === "wallet" ? <Text variant="caption" color="muted" style={{ marginBottom: 12 }}>Wallet balance: {naira(balance)}</Text> : null}
 
-          <Button title={quote.data ? `Send ${priceNgn}` : "Send airtime"} onPress={submit} loading={buy.isPending} />
+          <Button title={quote.data ? `Send ${priceForCharge}` : "Send airtime"} onPress={submit} loading={buy.isPending} />
         </>
       ) : null}
 

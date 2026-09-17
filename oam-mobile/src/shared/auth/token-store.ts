@@ -19,6 +19,7 @@ export const tokenVault = {
     await SecureStore.setItemAsync(REFRESH_KEY, pair.refresh);
   },
   setAccess: (access: string) => SecureStore.setItemAsync(ACCESS_KEY, access),
+  setRefresh: (refresh: string) => SecureStore.setItemAsync(REFRESH_KEY, refresh),
 
   async clear() {
     await SecureStore.deleteItemAsync(ACCESS_KEY);

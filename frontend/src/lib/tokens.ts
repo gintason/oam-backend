@@ -23,6 +23,9 @@ export const tokenStore = {
     localStorage.setItem(ACCESS_KEY, pair.access);
     localStorage.setItem(REFRESH_KEY, pair.refresh);
   },
+  setRefresh(refresh: string) {
+    localStorage.setItem(REFRESH_KEY, refresh);
+  },
   setAccess(access: string) {
     localStorage.setItem(ACCESS_KEY, access);
   },

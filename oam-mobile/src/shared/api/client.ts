@@ -41,8 +41,12 @@ async function refreshAccessToken(): Promise<string | null> {
   const refresh = await tokenVault.getRefresh();
   if (!refresh) return null;
   try {
-    const { data } = await bare.post<{ access: string }>("/auth/token/refresh/", { refresh });
+    const { data } = await bare.post<{ access: string; refresh?: string }>("/auth/token/refresh/", { refresh });
     await tokenVault.setAccess(data.access);
+    // Backend rotates refresh tokens (ROTATE_REFRESH_TOKENS + BLACKLIST_AFTER_ROTATION):
+    // the OLD refresh is blacklisted after use, so we MUST persist the new one or the
+    // next refresh fails and the user is bounced to the login screen.
+    if (data.refresh) await tokenVault.setRefresh(data.refresh);
     return data.access;
   } catch {
     return null;

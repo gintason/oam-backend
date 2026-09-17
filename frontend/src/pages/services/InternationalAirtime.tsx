@@ -1,9 +1,7 @@
-// src/pages/services/InternationalAirtime.tsx
 import { useState, useEffect, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { useAuth } from "../../auth/AuthContext";
-import { useCurrency } from "../../currency/CurrencyContext";
 import { walletApi } from "../../services/wallet";
 import { naira } from "../../lib/format";
 import { apiErrorMessage } from "../../lib/api";
@@ -11,28 +9,22 @@ import { useDebounced } from "../../hooks/useDebounced";
 import { useTranslation } from "react-i18next";
 import { reloadlyApi, intlAirStore, type Operator, type AirtimeTopup } from "../../services/reloadly";
 
-const SYMBOLS: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
-
+/** International airtime (Reloadly). Rendered inside BuyAirtime's "International" tab. */
 export default function InternationalAirtime() {
   const qc = useQueryClient();
   const { isVerified } = useAuth();
   const { t } = useTranslation();
-  const { currency } = useCurrency();          // "NGN" | "USD" | "GBP" | "EUR"
 
   const [country, setCountry] = useState("");
   const [phone, setPhone] = useState("");
   const [operator, setOperator] = useState<Operator | null>(null);
   const [amount, setAmount] = useState("");
   const [payWith, setPayWith] = useState<"wallet" | "card">("wallet");
-  const [payCcy, setPayCcy] = useState<string>("NGN");
   const [topup, setTopup] = useState<AirtimeTopup | null>(null);
   const [error, setError] = useState<string>();
   const [resuming, setResuming] = useState(false);
 
-  const countries = useQuery({
-    queryKey: ["intl", "countries"], queryFn: reloadlyApi.countries,
-    enabled: isVerified, staleTime: 60 * 60 * 1000,
-  });
+  const countries = useQuery({ queryKey: ["intl", "countries"], queryFn: reloadlyApi.countries, enabled: isVerified, staleTime: 60 * 60 * 1000 });
   const walletsQ = useQuery({ queryKey: ["wallets"], queryFn: walletApi.getWallets, enabled: isVerified });
   const balance = Number(walletsQ.data?.wallets.find((w) => w.currency === "NGN")?.balance ?? 0);
   const history = useQuery({ queryKey: ["intl", "history"], queryFn: reloadlyApi.topups, enabled: isVerified });
@@ -49,19 +41,20 @@ export default function InternationalAirtime() {
     if (ops.length === 1) setOperator(ops[0]);
   }, [operators.data]);
 
+  // Resume a card payment on return from Paystack.
   useEffect(() => {
     const pending = intlAirStore.take();
     if (!pending) return;
     setResuming(true);
     (async () => {
       try {
-        let tp = await reloadlyApi.cardVerify(pending.ref).catch(() => reloadlyApi.topup(pending.topupRef));
-        for (let i = 0; i < 6 && tp.status !== "success" && tp.status !== "failed"; i++) {
+        let t = await reloadlyApi.cardVerify(pending.ref).catch(() => reloadlyApi.topup(pending.topupRef));
+        for (let i = 0; i < 6 && t.status !== "success" && t.status !== "failed"; i++) {
           await new Promise((r) => setTimeout(r, 2000));
-          tp = await reloadlyApi.topup(pending.topupRef);
+          t = await reloadlyApi.topup(pending.topupRef);
         }
         qc.invalidateQueries({ queryKey: ["wallets"] });
-        setTopup(tp);
+        setTopup(t);
       } catch {
         setError(t("airtime.intl.errConfirm"));
       } finally {
@@ -72,37 +65,19 @@ export default function InternationalAirtime() {
   }, []);
 
   const useLocal = operator?.denomination_type === "RANGE" || (operator?.local_fixed_amounts?.length ?? 0) > 0;
-  const amounts = useMemo(
-    () => (!operator ? [] : useLocal ? operator.local_fixed_amounts : operator.fixed_amounts),
-    [operator, useLocal],
-  );
+  const amounts = useMemo(() => (!operator ? [] : useLocal ? operator.local_fixed_amounts : operator.fixed_amounts), [operator, useLocal]);
 
   const quote = useQuery({
     queryKey: ["intl", "quote", operator?.operator_id, amount, useLocal],
-    queryFn: () => reloadlyApi.quote({
-      operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal,
-    }),
+    queryFn: () => reloadlyApi.quote({ operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal }),
     enabled: !!operator && Number(amount) > 0,
   });
-
-  const chargeOptions: Record<string, string> = quote.data?.charge_options ?? {};
-  // If the global switcher is on a currency the backend won't collect, fall
-  // back to NGN for the charge only — the switcher itself is untouched.
-  const payOptions = Object.keys(chargeOptions);
-  // Default the pay currency to the global switcher choice when the backend can
-  // collect it for this top-up; otherwise NGN. User can override with the chips.
-  useEffect(() => {
-    setPayCcy(chargeOptions[currency.code] ? currency.code : "NGN");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quote.data, currency.code]);
 
   const buy = useMutation({
     mutationFn: () =>
       reloadlyApi.buy({
         operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal,
         recipient_number: phone.trim(), recipient_iso2: country, pay_with: payWith,
-        // The selected switcher value is sent as-is; the backend resolves it.
-        currency: payCcy,
       }),
     onSuccess: (data) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
@@ -131,16 +106,6 @@ export default function InternationalAirtime() {
   const inputCls = "h-11 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10";
   const symbol = useLocal ? "" : "$";
   const priceNgn = quote.data ? naira(Number(quote.data.total_ngn)) : "";
-
-  // What the pay button shows. On card, it's the charge currency the user
-  // selected via the global switcher; on wallet, always NGN.
-  const priceForCharge = (() => {
-    if (!quote.data) return "";
-    if (payWith !== "card") return priceNgn;
-    const v = chargeOptions[payCcy];
-    if (!v) return priceNgn;
-    return `${SYMBOLS[payCcy] ?? ""}${Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-  })();
 
   if (resuming) {
     return <div className="py-16 text-center"><Loader2 size={30} className="mx-auto animate-spin text-brand-green" /><p className="mt-3 text-[14px] text-muted">Confirming your top-up…</p></div>;
@@ -198,6 +163,13 @@ export default function InternationalAirtime() {
             <input value={amount} onChange={(e) => setAmount(e.target.value.replace(/[^\d.]/g, ""))} placeholder={`${symbol}0`} className={`${inputCls} mb-4`} />
           )}
 
+          {Number(amount) > 0 && (
+            <div className="mb-4 flex items-center justify-between rounded-xl bg-mist p-4">
+              <span className="text-[13px] font-semibold text-ink">You pay</span>
+              {quote.isLoading ? <Loader2 size={16} className="animate-spin text-brand-green" /> : <span className="text-[16px] font-semibold text-brand-green">{priceNgn}</span>}
+            </div>
+          )}
+
           <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay with</label>
           <div className="mb-4 grid grid-cols-2 gap-2">
             {(["wallet", "card"] as const).map((m) => (
@@ -205,47 +177,9 @@ export default function InternationalAirtime() {
             ))}
           </div>
           {payWith === "wallet" && <p className="mb-3 text-[12px] text-muted">{t("airtime.intl.walletBalance", { balance: naira(balance) })}</p>}
-          {payWith === "card" && payOptions.length > 1 && (
-            <>
-              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay in</label>
-              <div className="mb-2 flex flex-wrap gap-2">
-                {payOptions.map((c) => (
-                  <button
-                    key={c}
-                    onClick={() => setPayCcy(c)}
-                    className={`h-9 rounded-[10px] border px-3 text-[13px] font-medium transition ${payCcy === c ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}
-                  >
-                    {(SYMBOLS[c] ?? "")} {c}
-                  </button>
-                ))}
-              </div>
-              {chargeOptions[payCcy] && (
-                <p className="mb-3 text-[12px] text-muted">Card is charged {payCcy} {chargeOptions[payCcy]}</p>
-              )}
-            </>
-          )}
-          {payWith === "card" && payOptions.length <= 1 && (
-            <p className="mb-3 text-[12px] text-muted">Card is charged in <span className="font-semibold text-ink">NGN</span>.</p>
-          )}
-
-          {Number(amount) > 0 && (
-            <div className="mb-4 flex items-center justify-between rounded-xl bg-mist p-4">
-              <div>
-                <p className="text-[13px] font-semibold text-ink">You pay</p>
-                {payWith === "card" && payCcy !== "NGN" && (
-                  <p className="mt-0.5 text-[11.5px] text-muted">≈ {priceNgn}</p>
-                )}
-              </div>
-              {quote.isLoading ? (
-                <Loader2 size={16} className="animate-spin text-brand-green" />
-              ) : (
-                <span className="text-[16px] font-semibold text-brand-green">{priceForCharge}</span>
-              )}
-            </div>
-          )}
 
           <button onClick={submit} disabled={buy.isPending} className="flex h-11 w-full items-center justify-center rounded-[11px] bg-brand-red text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(227,16,18,0.25)] transition hover:brightness-95 disabled:opacity-60">
-            {buy.isPending ? <Loader2 size={18} className="animate-spin" /> : (quote.data ? `Pay ${priceForCharge}` : t("airtime.intl.send"))}
+            {buy.isPending ? <Loader2 size={18} className="animate-spin" /> : (quote.data ? t("airtime.intl.sendAmount", { amount: priceNgn }) : t("airtime.intl.send"))}
           </button>
         </>
       )}
@@ -254,15 +188,15 @@ export default function InternationalAirtime() {
         <div className="mt-6 border-t border-hairline pt-4">
           <p className="mb-3 text-[12.5px] font-semibold text-ink">Recent top-ups</p>
           <ul className="space-y-2">
-            {history.data!.slice(0, 8).map((tp) => (
-              <li key={tp.reference} className="flex items-center justify-between gap-3 rounded-xl bg-mist px-3.5 py-2.5">
+            {history.data!.slice(0, 8).map((t) => (
+              <li key={t.reference} className="flex items-center justify-between gap-3 rounded-xl bg-mist px-3.5 py-2.5">
                 <div className="min-w-0">
-                  <p className="truncate text-[13px] font-medium text-ink">{tp.operator_name || tp.country_iso}</p>
-                  <p className="truncate text-[11.5px] text-muted">{tp.recipient_number} · {new Date(tp.created_at).toLocaleDateString()}</p>
+                  <p className="truncate text-[13px] font-medium text-ink">{t.operator_name || t.country_iso}</p>
+                  <p className="truncate text-[11.5px] text-muted">{t.recipient_number} · {new Date(t.created_at).toLocaleDateString()}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[13px] font-semibold text-ink">{naira(Number(tp.total_ngn))}</p>
-                  <p className={`text-[11px] font-medium ${tp.status === "success" ? "text-brand-green" : tp.status === "failed" ? "text-danger" : "text-muted"}`}>{tp.status}</p>
+                  <p className="text-[13px] font-semibold text-ink">{naira(Number(t.total_ngn))}</p>
+                  <p className={`text-[11px] font-medium ${t.status === "success" ? "text-brand-green" : t.status === "failed" ? "text-danger" : "text-muted"}`}>{t.status}</p>
                 </div>
               </li>
             ))}

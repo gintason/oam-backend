@@ -51,10 +51,13 @@ async function refreshAccessToken(): Promise<string | null> {
   const refresh = tokenStore.refresh;
   if (!refresh) return null;
   try {
-    const { data } = await bare.post<{ access: string }>("/auth/token/refresh/", {
+    const { data } = await bare.post<{ access: string; refresh?: string }>("/auth/token/refresh/", {
       refresh,
     });
     tokenStore.setAccess(data.access);
+    // Backend rotates + blacklists refresh tokens -> persist the new one, else the
+    // next refresh fails and the user is logged out.
+    if (data.refresh) tokenStore.setRefresh(data.refresh);
     return data.access;
   } catch {
     return null;
