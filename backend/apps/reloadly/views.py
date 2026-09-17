@@ -50,9 +50,20 @@ class QuoteView(APIView):
             op = client.normalize_operator(client.operator(s.validated_data["operator_id"]))
         except ReloadlyError as exc:
             return Response({"detail": str(exc)}, status=502)
-        q = AirtimeTopupService.quote(operator=op, amount=s.validated_data["amount"],
-                                      use_local_amount=s.validated_data["use_local_amount"])
-        return Response({k: str(v) for k, v in q.items()})
+        q = AirtimeTopupService.quote(
+            operator=op, amount=s.validated_data["amount"],
+            use_local_amount=s.validated_data["use_local_amount"],
+        )
+        # charge_options: {currency_code: amount_string}, computed server-side
+        # so the frontend never converts money with its own rates.
+        return Response({
+            "total_ngn": str(q["total_ngn"]),
+            "cost_usd": str(q["cost_usd"]),
+            "fx_rate": str(q["fx_rate"]),
+            "usd_ngn": str(q["usd_ngn"]),
+            "use_local_amount": q["use_local_amount"],
+            "charge_options": q["charge_options"],
+        })
 
 
 class BuyView(APIView):
@@ -76,6 +87,7 @@ class BuyView(APIView):
                 url = AirtimeTopupService.pay_with_card(
                     topup,
                     callback_url=(request.data.get("callback_url") or "").strip(),
+                    currency=d.get("currency", "NGN"),
                 )
             except Exception as exc:  # noqa: BLE001
                 return Response(
@@ -86,17 +98,16 @@ class BuyView(APIView):
                 "topup": AirtimeTopupSerializer(topup).data,
                 "authorization_url": url,
                 "reference": topup.payment_reference,
-                "provider": "flutterwave",
+                "charge_currency": d.get("currency", "NGN"),
+                "provider": getattr(settings, "RELOADLY_CHARGE_PROVIDER", "flutterwave"),
             })
 
-        # wallet path unchanged
         try:
             topup = AirtimeTopupService.pay_with_wallet(topup)
         except Exception as exc:
             return Response({"detail": str(exc) or "Payment failed.",
                              "topup": AirtimeTopupSerializer(topup).data}, status=402)
         return Response({"topup": AirtimeTopupSerializer(topup).data})
-
 
 class CardVerifyView(APIView):
     permission_classes = [IsVerified]

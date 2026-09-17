@@ -401,3 +401,4 @@ CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET", default="")
 # the feature works either way and the button is never broken.
 ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", default="")
 ASSISTANT_MODEL = env("ASSISTANT_MODEL", default="claude-sonnet-4-6")
+RELOADLY_CHARGE_PROVIDER = env("RELOADLY_CHARGE_PROVIDER", default="flutterwave")

@@ -24,6 +24,8 @@ from integrations.base.dto import TxnStatus
 from apps.wallet.services import WalletService
 
 from .models import ServiceTransaction, WebhookEvent
+import logging
+logger = logging.getLogger("payments")
 
 
 def _funding_ref() -> str:
@@ -58,41 +60,61 @@ class FundingService:
     @staticmethod
     @transaction.atomic
     def initialize(user, amount: Decimal, currency: str, *, provider_key=None, callback_url=None,
-                   subaccount=None, transaction_charge=None, bearer=None):
-        currency = currency.upper()
-        wallet = WalletService.get_or_create_wallet(user, currency)
+                   subaccount=None, transaction_charge=None, bearer=None,
+                   settle_amount: Decimal | None = None,
+                   settle_currency: str | None = None):
+        """
+        Create a PENDING funding transaction and open a gateway charge.
+
+        `currency`/`amount` are what the CARD is charged. By default the wallet
+        is credited the same; pass `settle_amount`/`settle_currency` to
+        decouple — the airtime flow charges USD/GBP/EUR but credits NGN.
+
+        The Paystack deposit-subaccount gross-up is only applied to an NGN
+        charge on Paystack; it models Paystack's fee schedule and would
+        overcharge a foreign-currency or Flutterwave charge.
+        """
+        charge_ccy = currency.upper()
+        settle_ccy = (settle_currency or charge_ccy).upper()
+        settle_amt = Decimal(str(settle_amount)) if settle_amount is not None else amount
+
+        wallet = WalletService.get_or_create_wallet(user, settle_ccy)
         gateway = ProviderFactory.get("payments", provider_key)
         reference = _funding_ref()
+
+        meta = {
+            "user_id": str(user.id),
+            "charge_currency": charge_ccy,
+            "charge_amount": str(amount),
+            "settle_currency": settle_ccy,
+            "settle_amount": str(settle_amt),
+        }
 
         txn = ServiceTransaction.objects.create(
             user=user, service_type=ServiceTransaction.Service.WALLET_FUND,
             provider=gateway.provider_key, status=ServiceTransaction.Status.PENDING,
-            amount=amount, currency=currency,
+            amount=amount, currency=charge_ccy,
             internal_reference=reference, idempotency_key=reference, wallet=wallet,
-            request_payload={"amount": str(amount), "currency": currency},
+            request_payload={"amount": str(amount), "currency": charge_ccy},
+            metadata=meta,
         )
 
-        # Escrow compliance: user wallet funding must settle 100% into the dedicated
-        # deposit subaccount, never the main account balance. (Paystack requirement.)
         charge_amount = amount
-        if subaccount is None:
-            dep = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "") or ""
-            if dep:
-                subaccount = dep
-                if transaction_charge is None:
-                    transaction_charge = 0        # 0 to main -> 100% to the reserve
-                if bearer is None:
-                    bearer = "subaccount"         # subaccount bears the Paystack fee
-                # Pass Paystack's fee to the customer: charge deposit + fee so that,
-                # after the subaccount bears the fee, the reserve nets the full deposit
-                # and the wallet is credited 100% of what the user intended.
-                if currency == "NGN":
+        if charge_ccy == "NGN" and gateway.provider_key == "paystack":
+            if subaccount is None:
+                dep = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "") or ""
+                if dep:
+                    subaccount = dep
+                    if transaction_charge is None:
+                        transaction_charge = 0
+                    if bearer is None:
+                        bearer = "subaccount"
                     charge_amount = paystack_gross_up(amount)
 
         init = gateway.initialize_charge(
-            amount=charge_amount, currency=currency,
+            amount=charge_amount, currency=charge_ccy,
             email=user.email or f"{user.id}@no-email.oam",
-            reference=reference, metadata={"user_id": str(user.id), "txn": str(txn.id)},
+            reference=reference, metadata=meta,
             callback_url=callback_url,
             subaccount=subaccount, transaction_charge=transaction_charge, bearer=bearer,
         )
@@ -105,13 +127,21 @@ class FundingService:
     @staticmethod
     @transaction.atomic
     def settle(reference: str, *, verified_status: str | None = None, raw: dict | None = None):
+        """
+        Idempotently settle a funding transaction.
+
+        Before crediting, cross-checks the gateway's reported amount and
+        currency against the initiated record. A mismatch (tampered webhook,
+        unexpected FX move, or a payload from a different transaction) is
+        logged and the transaction is left in PROCESSING for investigation.
+        """
         txn = (ServiceTransaction.objects
                .select_for_update()
                .filter(internal_reference=reference).first())
         if txn is None:
             return None
         if txn.status == ServiceTransaction.Status.SUCCESS:
-            return txn  # already settled — idempotent
+            return txn
 
         status_val = verified_status
         if status_val is None:
@@ -119,13 +149,41 @@ class FundingService:
             result = gateway.verify_charge(txn.provider_reference or reference)
             status_val, raw = result.status, result.raw
 
+        # Cross-check amount + currency when the gateway reported success.
+        if status_val == TxnStatus.SUCCESS and isinstance(raw, dict):
+            d = raw.get("data", raw) or {}
+            reported_ccy = str(d.get("currency", "")).upper()
+            try:
+                reported_amt = Decimal(str(d.get("amount", "0")))
+            except Exception:
+                reported_amt = Decimal("0")
+            if reported_ccy and reported_ccy != txn.currency.upper():
+                logger.error("settle %s: currency mismatch gateway=%s txn=%s",
+                             reference, reported_ccy, txn.currency)
+                return txn
+            if reported_amt and reported_amt != txn.amount:
+                logger.error("settle %s: amount mismatch gateway=%s txn=%s",
+                             reference, reported_amt, txn.amount)
+                return txn
+
         if status_val == TxnStatus.SUCCESS:
+            meta = txn.metadata or {}
+            credit_amount = Decimal(str(meta.get("settle_amount") or txn.amount))
+            credit_currency = (meta.get("settle_currency") or txn.currency).upper()
+
+            if txn.wallet is None or txn.wallet.currency != credit_currency:
+                txn.wallet = WalletService.get_or_create_wallet(txn.user, credit_currency)
+
             journal = WalletService.credit(
-                txn.wallet, txn.amount,
+                txn.wallet, credit_amount,
                 source_code=f"gateway:{txn.provider}",
                 description=f"Wallet funding {reference}",
                 reference=reference, idempotency_key=f"fund:{reference}",
-                metadata={"txn": str(txn.id), "provider": txn.provider},
+                metadata={
+                    "txn": str(txn.id), "provider": txn.provider,
+                    "charge_currency": txn.currency, "charge_amount": str(txn.amount),
+                    "settle_currency": credit_currency, "settle_amount": str(credit_amount),
+                },
             )
             txn.journal = journal
             txn.status = ServiceTransaction.Status.SUCCESS
@@ -136,7 +194,6 @@ class FundingService:
             txn.response_payload = {**(txn.response_payload or {}), "settle": raw}
         txn.save(update_fields=["journal", "status", "response_payload", "updated_at"])
 
-        # After a successful funding, complete any pending order paid by card.
         if txn.status == ServiceTransaction.Status.SUCCESS:
             def _book_bus(ref=reference):
                 try:

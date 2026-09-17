@@ -129,25 +129,43 @@ class AirtimeTopupService:
                            description=f"Airtime {topup.reference}",
                            metadata={"airtime": str(topup.id)})
         return AirtimeTopupService._fulfill(topup)
+    
 
     @staticmethod
-    def pay_with_card(topup: AirtimeTopup, callback_url: str = "") -> str:
+    def pay_with_card(topup: AirtimeTopup, callback_url: str = "",
+                      currency: str = "NGN") -> str:
         """
-        Start a card payment for this international airtime top-up.
+        Start a card charge for this top-up in the requested currency.
 
-        IMPORTANT: Only this flow is routed to Flutterwave. Wallet top-ups,
-        local bills and payouts stay on the default gateway (Paystack).
-        The funding transaction is created with provider="flutterwave", so
-        verify/settle and the Flutterwave webhook all resolve it correctly.
+        The customer's card is charged `currency`; the NGN wallet is credited
+        `total_ngn` on settle, which is the same amount the hold uses. The
+        Reloadly dispatch on success is untouched.
         """
+        from apps.payments.pricing import resolve_payment_currency
+
+        charge_ccy = resolve_payment_currency(currency)
+
+        if charge_ccy == "NGN":
+            charge_amount = topup.total_ngn
+        else:
+            rate = ngn_per_unit(charge_ccy)          # NGN per 1 unit of charge_ccy
+            if rate <= 0:
+                raise ReloadlyError(f"FX rate for {charge_ccy} is unavailable.")
+            charge_amount = (topup.total_ngn / rate).quantize(
+                Decimal("0.01"), ROUND_HALF_UP
+            )
+
         txn, init = FundingService.initialize(
-            topup.user, topup.total_ngn, "NGN",
-            provider_key="flutterwave",
+            topup.user, charge_amount, charge_ccy,
+            provider_key=getattr(settings, "RELOADLY_CHARGE_PROVIDER", "flutterwave"),
             callback_url=(callback_url or None),
+            settle_amount=topup.total_ngn,
+            settle_currency="NGN",
         )
         topup.payment_reference = txn.internal_reference
         topup.save(update_fields=["payment_reference", "updated_at"])
         return init.authorization_url
+    
 
     @staticmethod
     def settle_card(*, user, reference: str) -> AirtimeTopup:

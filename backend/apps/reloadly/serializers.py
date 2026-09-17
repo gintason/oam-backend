@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models import AirtimeTopup
+from apps.payments.pricing import resolve_payment_currency
 
 
 class QuoteSerializer(serializers.Serializer):
@@ -16,6 +17,13 @@ class BuySerializer(serializers.Serializer):
     recipient_number = serializers.CharField()
     recipient_iso2 = serializers.CharField()
     pay_with = serializers.ChoiceField(choices=["wallet", "card"], default="wallet")
+    # Currency the CARD is charged in. Ignored on the wallet path.
+    # Resolved against SUPPORTED_PAYMENT_CURRENCIES via the same helper
+    # the marketplace uses; unknown currencies silently fall back to NGN.
+    currency = serializers.CharField(max_length=3, default="NGN", required=False)
+
+    def validate_currency(self, value):
+        return resolve_payment_currency(value)
 
 
 class AirtimeTopupSerializer(serializers.ModelSerializer):
