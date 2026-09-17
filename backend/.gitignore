@@ -9,3 +9,12 @@ venv/
 .venv/
 .vscode/
 *.log
+
+*.zip
+*.sqlite3
+*.xml
+repomix-*.xml
+
+node_modules/
+*.xml
+repomix-*

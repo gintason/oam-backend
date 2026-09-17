@@ -61,6 +61,49 @@ def usd_to_ngn() -> Decimal:
     return Decimal("1550")
 
 
+# All rates relative to USD (units per 1 USD) from open.er-api.com, cached 30 min.
+_rates_cache = {"rates": None, "exp": 0.0}
+
+
+def _usd_rates() -> dict:
+    now = time.time()
+    if _rates_cache["rates"] and now < _rates_cache["exp"]:
+        return _rates_cache["rates"]
+    try:
+        data = requests.get(_ER_URL, timeout=8).json()
+        rates = data.get("rates") or {}
+        if rates.get("NGN"):
+            _rates_cache.update(rates=rates, exp=now + 1800)
+            return rates
+    except Exception:
+        pass
+    # Fallback: at least NGN (from usd_to_ngn) + USD, so NGN pricing still works.
+    return {"NGN": float(usd_to_ngn()), "USD": 1.0}
+
+
+def ngn_per_unit(ccy: str) -> Decimal:
+    """NGN per 1 unit of `ccy`. NGN->1; USD->rates.NGN; else rates.NGN / rates.ccy.
+    Returns 0 when the rate is unavailable (callers treat that as 'skip/unavailable')."""
+    ccy = (ccy or "NGN").upper()
+    if ccy == "NGN":
+        return Decimal("1")
+    rates = _usd_rates()
+    ngn = rates.get("NGN")
+    if not ngn:
+        return Decimal("0")
+    ngn = Decimal(str(ngn))
+    if ccy == "USD":
+        return ngn
+    per_usd = rates.get(ccy)
+    try:
+        per_usd = Decimal(str(per_usd))
+    except Exception:
+        return Decimal("0")
+    if per_usd <= 0:
+        return Decimal("0")
+    return (ngn / per_usd).quantize(Decimal("0.0001"), ROUND_HALF_UP)
+
+
 def _ref() -> str:
     return f"AIR-{uuid.uuid4().hex[:20]}"
 
@@ -95,7 +138,26 @@ class AirtimeTopupService:
             "fx_rate": fx,
             "usd_ngn": rate,
             "use_local_amount": bool(use_local_amount),
+            # Per-currency card charge amounts, computed server-side with the SAME
+            # FX helper pay_with_card uses, so the app never converts money itself.
+            "charge_options": AirtimeTopupService._charge_options(total_ngn),
         }
+
+    @staticmethod
+    def _charge_options(total_ngn: Decimal) -> dict:
+        """{currency_code: amount_string} for every supported payment currency."""
+        from apps.payments.pricing import supported_currencies
+        opts: dict = {}
+        for ccy in supported_currencies():
+            ccy = str(ccy).upper()
+            if ccy == "NGN":
+                opts["NGN"] = str(total_ngn)
+                continue
+            r = ngn_per_unit(ccy)
+            if r > 0:
+                opts[ccy] = str((total_ngn / r).quantize(Decimal("0.01"), ROUND_HALF_UP))
+        opts.setdefault("NGN", str(total_ngn))   # NGN is always available
+        return opts
 
     @staticmethod
     @transaction.atomic
