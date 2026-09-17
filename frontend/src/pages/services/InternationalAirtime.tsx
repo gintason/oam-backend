@@ -24,6 +24,7 @@ export default function InternationalAirtime() {
   const [operator, setOperator] = useState<Operator | null>(null);
   const [amount, setAmount] = useState("");
   const [payWith, setPayWith] = useState<"wallet" | "card">("wallet");
+  const [payCcy, setPayCcy] = useState<string>("NGN");
   const [topup, setTopup] = useState<AirtimeTopup | null>(null);
   const [error, setError] = useState<string>();
   const [resuming, setResuming] = useState(false);
@@ -87,7 +88,13 @@ export default function InternationalAirtime() {
   const chargeOptions: Record<string, string> = quote.data?.charge_options ?? {};
   // If the global switcher is on a currency the backend won't collect, fall
   // back to NGN for the charge only — the switcher itself is untouched.
-  const effectiveCurrency = chargeOptions[currency.code] ? currency.code : "NGN";
+  const payOptions = Object.keys(chargeOptions);
+  // Default the pay currency to the global switcher choice when the backend can
+  // collect it for this top-up; otherwise NGN. User can override with the chips.
+  useEffect(() => {
+    setPayCcy(chargeOptions[currency.code] ? currency.code : "NGN");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quote.data, currency.code]);
 
   const buy = useMutation({
     mutationFn: () =>
@@ -95,7 +102,7 @@ export default function InternationalAirtime() {
         operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal,
         recipient_number: phone.trim(), recipient_iso2: country, pay_with: payWith,
         // The selected switcher value is sent as-is; the backend resolves it.
-        currency: effectiveCurrency,
+        currency: payCcy,
       }),
     onSuccess: (data) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
@@ -130,9 +137,9 @@ export default function InternationalAirtime() {
   const priceForCharge = (() => {
     if (!quote.data) return "";
     if (payWith !== "card") return priceNgn;
-    const v = chargeOptions[effectiveCurrency];
+    const v = chargeOptions[payCcy];
     if (!v) return priceNgn;
-    return `${SYMBOLS[effectiveCurrency] ?? ""}${Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+    return `${SYMBOLS[payCcy] ?? ""}${Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
   })();
 
   if (resuming) {
@@ -198,18 +205,34 @@ export default function InternationalAirtime() {
             ))}
           </div>
           {payWith === "wallet" && <p className="mb-3 text-[12px] text-muted">{t("airtime.intl.walletBalance", { balance: naira(balance) })}</p>}
-          {payWith === "card" && (
-            <p className="mb-3 text-[12px] text-muted">
-              You'll be charged in <span className="font-semibold text-ink">{effectiveCurrency}</span>.
-              {" "}Change this in the currency switcher at the top of the page.
-            </p>
+          {payWith === "card" && payOptions.length > 1 && (
+            <>
+              <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Pay in</label>
+              <div className="mb-2 flex flex-wrap gap-2">
+                {payOptions.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setPayCcy(c)}
+                    className={`h-9 rounded-[10px] border px-3 text-[13px] font-medium transition ${payCcy === c ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-hairline bg-paper text-ink hover:bg-mist"}`}
+                  >
+                    {(SYMBOLS[c] ?? "")} {c}
+                  </button>
+                ))}
+              </div>
+              {chargeOptions[payCcy] && (
+                <p className="mb-3 text-[12px] text-muted">Card is charged {payCcy} {chargeOptions[payCcy]}</p>
+              )}
+            </>
+          )}
+          {payWith === "card" && payOptions.length <= 1 && (
+            <p className="mb-3 text-[12px] text-muted">Card is charged in <span className="font-semibold text-ink">NGN</span>.</p>
           )}
 
           {Number(amount) > 0 && (
             <div className="mb-4 flex items-center justify-between rounded-xl bg-mist p-4">
               <div>
                 <p className="text-[13px] font-semibold text-ink">You pay</p>
-                {payWith === "card" && effectiveCurrency !== "NGN" && (
+                {payWith === "card" && payCcy !== "NGN" && (
                   <p className="mt-0.5 text-[11.5px] text-muted">≈ {priceNgn}</p>
                 )}
               </div>
