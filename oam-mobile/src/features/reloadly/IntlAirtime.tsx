@@ -10,6 +10,7 @@ import { apiErrorMessage } from "@/shared/api";
 import { useDebounced } from "@/shared/hooks/use-debounced";
 import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
+import { useCurrency } from "@/features/currency";
 import * as WebBrowser from "expo-web-browser";
 import { reloadlyApi, type Operator, type AirtimeTopup } from "./api";
 
@@ -29,6 +30,7 @@ export function IntlAirtime() {
   const [operator, setOperator] = useState<Operator | null>(null);
   const [amount, setAmount] = useState("");
   const [payWith, setPayWith] = useState<"wallet" | "card">("wallet");
+  const { currency } = useCurrency();   // display currency picked in the switcher
   const [topup, setTopup] = useState<AirtimeTopup | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [verifying, setVerifying] = useState(false);
@@ -55,11 +57,17 @@ export function IntlAirtime() {
     enabled: !!operator && Number(amount) > 0,
   });
 
+  // Per-currency card amounts come from the backend. Charge in the picked currency
+  // only if the backend can collect it; otherwise fall back to NGN. (Mirrors web.)
+  const chargeOptions: Record<string, string> = quote.data?.charge_options ?? {};
+  const effectiveCurrency = chargeOptions[currency.code] ? currency.code : "NGN";
+
   const buy = useMutation({
     mutationFn: () =>
       reloadlyApi.buy({
         operator_id: operator!.operator_id, amount: Number(amount), use_local_amount: useLocal,
         recipient_number: phone.trim(), recipient_iso2: country, pay_with: payWith,
+        currency: effectiveCurrency,
       }),
     onSuccess: async (data) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });

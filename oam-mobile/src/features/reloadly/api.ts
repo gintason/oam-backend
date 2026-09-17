@@ -14,6 +14,7 @@ export type Operator = {
 
 export type Quote = {
   total_ngn: string; cost_usd?: string; fx_rate: string; usd_ngn?: string;
+  charge_options?: Record<string, string>;   // {currency_code: amount} for card, from backend
 };
 
 export type AirtimeTopup = {
