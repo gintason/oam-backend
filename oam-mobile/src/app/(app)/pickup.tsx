@@ -21,9 +21,12 @@ export default function Pickup() {
   const [passengers, setPassengers] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
+  // Airport pickups open a fixed, globally-accessible affiliate link (carries our
+  // tracking), rather than a dynamically-built partner URL that some regions block.
+  const PICKUP_URL = "https://tpk.ro/2VAJWYaW";
   const search = useMutation({
-    mutationFn: () => affiliatesApi.getLink("transfers", { airport, destination, date, passengers }),
-    onSuccess: (link) => WebBrowser.openBrowserAsync(link.url),
+    mutationFn: async () => PICKUP_URL,
+    onSuccess: (url) => WebBrowser.openBrowserAsync(url),
     onError: (err) => setError(apiErrorMessage(err, t("travel.pickup.errOpen"))),
   });
 

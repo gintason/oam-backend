@@ -144,24 +144,33 @@ class FundingService:
             return txn
 
         status_val = verified_status
+        reported_amt = None          # in MAJOR units (naira/USD), never provider subunits
+        reported_ccy = ""
         if status_val is None:
             gateway = ProviderFactory.get("payments", txn.provider)
             result = gateway.verify_charge(txn.provider_reference or reference)
             status_val, raw = result.status, result.raw
+            # verify_charge() already normalises amount to major units (e.g. Paystack /100).
+            reported_amt = result.amount
+            reported_ccy = str(result.currency or "").upper()
 
         # Cross-check amount + currency when the gateway reported success.
-        if status_val == TxnStatus.SUCCESS and isinstance(raw, dict):
-            d = raw.get("data", raw) or {}
-            reported_ccy = str(d.get("currency", "")).upper()
-            try:
-                reported_amt = Decimal(str(d.get("amount", "0")))
-            except Exception:
-                reported_amt = Decimal("0")
+        if status_val == TxnStatus.SUCCESS:
+            if reported_amt is None and isinstance(raw, dict):
+                # Webhook path: derive from the raw payload, normalising Paystack's
+                # kobo (NGN subunits) to major units so it matches txn.amount.
+                d = raw.get("data", raw) or {}
+                reported_ccy = reported_ccy or str(d.get("currency", "")).upper()
+                try:
+                    amt = Decimal(str(d.get("amount", "0")))
+                    reported_amt = (amt / 100) if str(txn.provider) == "paystack" else amt
+                except Exception:
+                    reported_amt = None
             if reported_ccy and reported_ccy != txn.currency.upper():
                 logger.error("settle %s: currency mismatch gateway=%s txn=%s",
                              reference, reported_ccy, txn.currency)
                 return txn
-            if reported_amt and reported_amt != txn.amount:
+            if reported_amt is not None and reported_amt != txn.amount:
                 logger.error("settle %s: amount mismatch gateway=%s txn=%s",
                              reference, reported_amt, txn.amount)
                 return txn
