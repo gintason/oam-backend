@@ -33,6 +33,8 @@ export const billsApi = {
 
   purchase: (input: PurchaseInput) =>
     api.post<BillOrder>("/billing/purchase/", { currency: "NGN", country: "NG", ...input }).then((r) => r.data),
+  fundBetting: (input: { code: string; customer_id: string; amount: number | string; verification_id: string }) =>
+    api.post<BillOrder>("/billing/betting/fund/", { currency: "NGN", country: "NG", ...input }).then((r) => r.data),
 
   cardStart: (input: PurchaseInput) =>
     api.post<{ authorization_url: string; reference: string }>("/billing/purchase/card/", { currency: "NGN", country: "NG", ...input }).then((r) => r.data),

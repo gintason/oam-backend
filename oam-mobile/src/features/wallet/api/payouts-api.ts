@@ -47,6 +47,9 @@ export const payoutsApi = {
   addBankAccount: (input: { bank_code: string; account_number: string; currency?: string }) =>
     api.post<BankAccount>("/payouts/banks/", { currency: "NGN", ...input }).then((r) => r.data),
 
-  withdraw: (input: { bank_account_id: string; amount: number | string; currency?: string }) =>
+  withdraw: (input: { bank_account_id: string; amount: number | string; currency?: string; pin: string }) =>
     api.post<Withdrawal>("/payouts/withdrawals/", { currency: "NGN", ...input }).then((r) => r.data),
+  getPinStatus: () => api.get<{ has_pin: boolean }>("/wallet/pin/").then((r) => r.data),
+  setPin: (input: { pin: string; password?: string; current_pin?: string }) =>
+    api.post<{ has_pin: boolean }>("/wallet/pin/", input).then((r) => r.data),
 };

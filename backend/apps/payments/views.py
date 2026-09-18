@@ -23,6 +23,7 @@ class FundInitView(APIView):
         txn, init = FundingService.initialize(
             request.user, serializer.validated_data["amount"],
             serializer.validated_data["currency"],
+            callback_url=serializer.validated_data.get("callback_url") or None,
         )
         return Response({
             "transaction": ServiceTransactionSerializer(txn).data,

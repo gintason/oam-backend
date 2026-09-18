@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { TransactionPinModal } from "@/features/wallet/ui/TransactionPinModal";
 import { View, ScrollView, Pressable, ActivityIndicator, Modal, TextInput } from "react-native";
 import { useRouter } from "expo-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -22,6 +23,7 @@ export default function Transfer() {
 
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
+  const [pinOpen, setPinOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
@@ -34,7 +36,7 @@ export default function Transfer() {
   const accounts = accountsQuery.data ?? [];
 
   const withdraw = useMutation({
-    mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount) }),
+    mutationFn: (pin: string) => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
     onSuccess: (w) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
       qc.invalidateQueries({ queryKey: ["transactions"] });
@@ -59,7 +61,7 @@ export default function Transfer() {
     if (!accountId) return setError(t("withdraw.errChooseAccount"));
     if (!amount || Number(amount) < 100) return setError(t("xferbank.errMin", "Minimum transfer is ₦100."));
     if (total > balance) return setError(t("withdraw.errExceeds"));
-    withdraw.mutate();
+    setPinOpen(true);
   }
 
   if (!isVerified) {
@@ -124,7 +126,7 @@ export default function Transfer() {
               {accounts.map((a) => {
                 const sel = accountId === a.id;
                 return (
-                  <Pressable key={a.id} onPress={() => setAccountId(a.id)} style={{ flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 12, borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.06)" : colors.paper, paddingHorizontal: 12, paddingVertical: 12 }}>
+                  <Pressable key={a.id} onPress={() => { setAccountId(a.id); setError(null); }} style={{ flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 12, borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.06)" : colors.paper, paddingHorizontal: 12, paddingVertical: 12 }}>
                     <View style={{ height: 36, width: 36, borderRadius: 18, backgroundColor: colors.mist, alignItems: "center", justifyContent: "center" }}>
                       <Building2 size={16} strokeWidth={1.75} color={colors.muted} />
                     </View>
@@ -165,6 +167,12 @@ export default function Transfer() {
           ) : null}
         </View>
       </ScrollView>
+      <TransactionPinModal
+        visible={pinOpen}
+        onCancel={() => setPinOpen(false)}
+        onConfirm={(pin) => { setPinOpen(false); withdraw.mutate(pin); }}
+        busy={withdraw.isPending}
+      />
     </Screen>
   );
 }
