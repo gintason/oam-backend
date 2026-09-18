@@ -170,8 +170,12 @@ class FundingService:
                 logger.error("settle %s: currency mismatch gateway=%s txn=%s",
                              reference, reported_ccy, txn.currency)
                 return txn
-            if reported_amt is not None and reported_amt != txn.amount:
-                logger.error("settle %s: amount mismatch gateway=%s txn=%s",
+            # The customer may be charged MORE than txn.amount when the fee is
+            # passed to them (Paystack gross-up: charge = deposit + fee). That's
+            # expected. Only reject a genuine UNDER-payment (charged less than the
+            # intended deposit), with a ₦1 tolerance for rounding.
+            if reported_amt is not None and reported_amt < (txn.amount - Decimal("1")):
+                logger.error("settle %s: underpaid gateway=%s txn=%s",
                              reference, reported_amt, txn.amount)
                 return txn
 
