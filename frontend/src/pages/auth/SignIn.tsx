@@ -6,6 +6,9 @@ import { useAuth } from "../../auth/AuthContext";
 import { apiErrorMessage } from "../../lib/api";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
+import { GoogleLogin } from "@react-oauth/google";
+import type { CredentialResponse } from "@react-oauth/google";
+import axios from "axios";
 
 export default function SignIn() {
   const { t } = useTranslation();
@@ -40,6 +43,32 @@ export default function SignIn() {
     }
   }
 
+  const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+    setError(undefined);
+    setLoading(true);
+    try {
+      const idToken = credentialResponse.credential;
+      
+      if (!idToken) {
+        throw new Error("Google credential token is missing.");
+      }
+
+      // POST the Google ID token to your Django backend verification endpoint
+      const response = await axios.post("https://www.oam-app.com/api/v1/auth/google/", {
+        token: idToken,
+      });
+
+      console.log("Google Login Success:", response.data);
+      
+      // TODO: If your backend returns JWT tokens on social login, 
+      // ensure your AuthContext updates its state, then navigate to destination
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(apiErrorMessage(err, "Google sign-in failed. Please try again."));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <AuthLayout
@@ -49,6 +78,25 @@ export default function SignIn() {
       altLink="/sign-up"
       altLabel={t("auth.signIn.altLabel")}
     >
+      {/* Google Sign-In Button Integration */}
+      <div className="mb-6">
+        <GoogleLogin
+          onSuccess={handleGoogleSuccess}
+          onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
+          useOneTap
+          theme="outline"
+          size="large"
+          width="100%"
+        />
+        <div className="relative my-6 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200" />
+          </div>
+          <span className="relative bg-white px-4 text-xs uppercase text-muted">
+            Or continue with email
+          </span>
+        </div>
+      </div>
 
       <form onSubmit={onSubmit} noValidate>
         <FormError message={error} />
