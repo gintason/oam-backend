@@ -172,6 +172,7 @@ class SendTransferSerializer(serializers.Serializer):
     amount = serializers.DecimalField(max_digits=20, decimal_places=2, min_value=Decimal("1"))
     currency = serializers.CharField(max_length=3, required=False, default="NGN")
     note = serializers.CharField(max_length=140, required=False, allow_blank=True)
+    pin = serializers.CharField(required=False, allow_blank=True)
 
 
 class WalletTransferSerializer(serializers.ModelSerializer):
@@ -217,6 +218,17 @@ class SendTransferView(APIView):
         s = SendTransferSerializer(data=request.data)
         s.is_valid(raise_exception=True)
         d = s.validated_data
+
+        # Transaction PIN authorizes money leaving the wallet (same as withdraw/bank).
+        if not request.user.has_transaction_pin:
+            return Response(
+                {"detail": "Set a transaction PIN before transferring.", "reason": "pin_not_set"},
+                status=status.HTTP_403_FORBIDDEN)
+        if not request.user.check_transaction_pin(d.get("pin", "")):
+            return Response(
+                {"detail": "Incorrect transaction PIN.", "reason": "invalid_pin"},
+                status=status.HTTP_400_BAD_REQUEST)
+
         try:
             trf = TransferService.send(
                 sender=request.user,

@@ -99,6 +99,7 @@ export default function AppLayout() {
       <Tabs.Screen name="ecommerce" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="ecommerce-company" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="motors-admin" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="transactions" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="company-about" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="company-contact" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="company-terms" options={{ href: null, tabBarStyle: { display: "none" } }} />

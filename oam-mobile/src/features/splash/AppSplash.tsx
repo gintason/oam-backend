@@ -79,7 +79,7 @@ export function AppSplash({ onReady }: { onReady?: () => void }) {
         </View>
 
         <Animated.Text style={{ fontSize: 22, fontWeight: "800", letterSpacing: 0.5, color, textShadowColor: "rgba(0,0,0,0.25)", textShadowRadius: 6 }}>
-          O.A.M Mobile
+          O.A.M
         </Animated.Text>
 
         <View style={{ flexDirection: "row", gap: 6, marginTop: 2 }}>

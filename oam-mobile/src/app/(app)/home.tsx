@@ -4,7 +4,7 @@ import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Sparkles, Menu, Bus, Ticket, type LucideIcon,
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, MessageCircle, Menu, Bus, History, Ticket, type LucideIcon,
 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
@@ -67,7 +67,7 @@ const GAP = 10;
 const COLS = 4;
 const TILE_W = (Dimensions.get("window").width - H_PADDING * 2 - GAP * (COLS - 1)) / COLS;
 
-function ServiceTile({ label, Icon, tint, onPress }: Omit<Tile, "id"> & { onPress: () => void }) {
+function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon" | "tint"> & { onPress: () => void }) {
   const accent = tint === "red" ? colors.brand.red : colors.brand.green;
   const bg = tint === "red" ? "rgba(227,16,18,0.10)" : "rgba(11,115,39,0.10)";
   return (
@@ -111,7 +111,6 @@ export default function Home() {
 
   const wallets = useWallets();
   const headline = pickHeadline(wallets.data?.wallets);
-  const txns = useTransactions(headline?.currency);
 
   function onTile(id: string) {
     if (id === "airtime") return router.push("/airtime");
@@ -138,15 +137,35 @@ export default function Home() {
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: H_PADDING, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
-        <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.brand.green, marginBottom: 10 }}>
-          <Menu size={22} strokeWidth={2} color="#FFFFFF" />
-        </Pressable>
-        <Text variant="body" color="muted">
-          {t(greetingKey())}
-        </Text>
-        <Text variant="heading" style={{ marginBottom: 18 }}>
-          {user?.first_name || t("dashboard.greeting")}
-        </Text>
+        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+          <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.brand.green }}>
+            <Menu size={22} strokeWidth={2} color="#FFFFFF" />
+          </Pressable>
+          <Pressable
+        onPress={() => router.push("/transactions")}
+        hitSlop={8}
+        accessibilityLabel="Transaction history"
+        style={{
+          height: 40,
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 6,
+          paddingHorizontal: 14,
+          borderRadius: 20,
+          backgroundColor: colors.mist,
+        }}
+      >
+        <Text variant="label" color="green">{t("dashboard.history", "History")}</Text>
+        <History size={18} strokeWidth={1.9} color={colors.brand.green} />
+      </Pressable>
+        </View>
+
+       <Text variant="body" color="muted" style={{ fontSize: 16 }}>
+        {t(greetingKey())}
+      </Text>
+      <Text variant="heading" style={{ fontSize: 20, marginBottom: 18 }}>
+        {user?.first_name || t("dashboard.greeting")}
+      </Text>
 
         <BalanceCard balance={headline?.balance} currency={headline?.currency} loading={wallets.isLoading} />
 
@@ -169,18 +188,7 @@ export default function Home() {
           </View>
         ))}
 
-        <Text variant="title" style={{ marginTop: 26, marginBottom: 4 }}>
-          {t("dashboard.recentTransactions")}
-        </Text>
-        {txns.isLoading ? (
-          <ActivityIndicator color={colors.brand.green} style={{ marginTop: 16 }} />
-        ) : txns.data && txns.data.length > 0 ? (
-          txns.data.slice(0, 6).map((t) => <TransactionRow key={t.id} txn={t} />)
-        ) : (
-          <Text variant="body" color="muted" style={{ marginTop: 8 }}>
-            {t("dashboard.noTransactions")}
-          </Text>
-        )}
+
       </ScrollView>
 
       <Pressable
@@ -188,7 +196,7 @@ export default function Home() {
         style={{ position: "absolute", right: 18, bottom: 22, height: 56, width: 56, borderRadius: 28, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", shadowColor: "#000", shadowOpacity: 0.18, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 6 }}
         accessibilityLabel="O.A.M Assistant"
       >
-        <Sparkles size={24} strokeWidth={2} color="#fff" />
+        <MessageCircle size={24} strokeWidth={2} color="#fff" />
       </Pressable>
     </Screen>
   );

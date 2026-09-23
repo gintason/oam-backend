@@ -13,6 +13,7 @@ export default function Profile() {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
+  const lock = useAuthStore((s) => s.lock);
 
   const [firstName, setFirstName] = useState(user?.first_name ?? "");
   const [lastName, setLastName] = useState(user?.last_name ?? "");
@@ -100,7 +101,11 @@ export default function Profile() {
           <LanguagePicker variant="row" />
         </View>
 
-        <Button title={t("profile.signOut", "Sign out")} variant="secondary" onPress={signOut} style={{ marginTop: 24 }} />
+        <Button title={t("profile.lock", "Lock app")} onPress={lock} style={{ marginTop: 24 }} />
+        <Button title={t("profile.signOut", "Sign out")} variant="secondary" onPress={signOut} style={{ marginTop: 12 }} />
+        <Text variant="caption" color="muted" style={{ textAlign: "center", marginTop: 10 }}>
+          {t("profile.lockHint", "Lock keeps you signed in — return with your PIN. Sign out switches account (asks for email & password).")}
+        </Text>
       </ScrollView>
     </Screen>
   );

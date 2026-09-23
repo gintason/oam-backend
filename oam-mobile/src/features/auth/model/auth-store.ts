@@ -29,6 +29,7 @@ interface AuthState {
   beginPinSetup: () => void;
   setPin: (pin: string) => Promise<void>;
   unlock: (pin: string) => Promise<boolean>;
+  lock: () => Promise<void>;
   refreshUser: () => Promise<void>;
   signOut: () => Promise<void>;
 }
@@ -96,6 +97,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     } catch {
       /* transient — the API interceptor handles hard session failures */
     }
+  },
+
+  // Lock the app WITHOUT signing out: keep the session + PIN, just require the
+  // PIN to get back in. This is what "log out & return with your PIN" needs — a
+  // real signOut would destroy the session and force an email/password login.
+  lock: async () => {
+    if (!(await pinVault.has())) { await get().signOut(); return; }  // no PIN -> real sign out
+    set({ status: "locked", lockedName: (await pinVault.name()) || get().user?.first_name || "" });
   },
 
   signOut: async () => {

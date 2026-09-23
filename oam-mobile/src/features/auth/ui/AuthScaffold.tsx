@@ -53,7 +53,7 @@ export function AuthScaffold({
               contentFit="contain"
               transition={150}
             />
-            <Text variant="heading" style={{ marginTop: 18 }}>
+            <Text variant="heading" style={{ marginTop: 18, textAlign: "center", alignSelf: "stretch" }} numberOfLines={2}>
               {title}
             </Text>
             {subtitle ? (

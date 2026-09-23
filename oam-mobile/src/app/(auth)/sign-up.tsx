@@ -3,6 +3,8 @@ import { View } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
 import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
+import { PhoneInput } from "@/features/auth/ui/PhoneInput";
+import { COUNTRIES } from "@/features/auth/ui/countries";
 import { authApi } from "@/features/auth";
 import { apiErrorMessage } from "@/shared/api";
 import { Button, Input, Text } from "@/shared/ui";
@@ -14,7 +16,9 @@ export default function SignUp() {
 
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("");          // full E.164, e.g. +2348012345678
+  const [phoneLocal, setPhoneLocal] = useState("");
+  const [country, setCountry] = useState(COUNTRIES[0]);   // default Nigeria
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -34,7 +38,7 @@ export default function SignUp() {
 
   function submit() {
     setError(null);
-    if (!email.trim() || !phone.trim() || !password) {
+    if (!email.trim() || !phoneLocal.trim() || !password) {
       setError(t("auth.signUp.errRequired"));
       return;
     }
@@ -69,11 +73,13 @@ export default function SignUp() {
         keyboardType="email-address"
         placeholder={t("auth.signUp.emailPlaceholder")}
       />
-      <Input
+      <PhoneInput
         label={t("auth.signUp.phoneLabel")}
-        value={phone}
-        onChangeText={(v) => setPhone(v.replace(/[^\d+]/g, ""))}
-        keyboardType="phone-pad"
+        valueLocal={phoneLocal}
+        onChangeLocal={setPhoneLocal}
+        onChangeFull={setPhone}
+        country={country}
+        onChangeCountry={setCountry}
         placeholder={t("auth.signUp.phonePlaceholder")}
       />
       <Input

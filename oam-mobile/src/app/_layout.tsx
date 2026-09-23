@@ -12,6 +12,8 @@ import * as Linking from "expo-linking";
 import { referralStore, extractReferralToken } from "@/features/referrals";
 import { syncPushToken } from "@/features/notifications";
 import { AppSplash } from "@/features/splash/AppSplash";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Can't perform a React state update on a component that hasn't mounted yet"]);
 
 SplashScreen.preventAutoHideAsync();
 

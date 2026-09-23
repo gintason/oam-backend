@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput } from "react-native";
+import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -30,6 +30,7 @@ export default function Artisan() {
 
   return (
     <Screen edges={["top"]}>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={80}>
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 40 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
         <Pressable onPress={() => router.back()} hitSlop={8} style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 14 }}>
           <ArrowLeft size={16} color={colors.muted} /><Text variant="label" color="muted">{t("artisans.profile.back")}</Text>
@@ -106,6 +107,7 @@ export default function Artisan() {
           </>
         )}
       </ScrollView>
+      </KeyboardAvoidingView>
     </Screen>
   );
 }
