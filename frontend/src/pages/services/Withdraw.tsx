@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowUpRight, BadgeCheck, Building2, CheckCircle2, Loader2, 
 import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
+import ShareReceiptButton from "../../components/ShareReceiptButton";
+import type { ReceiptData } from "../../components/Receipt";
 import { payoutsApi, type BankAccount } from "../../services/payouts";
 import { walletApi, formatBalance } from "../../services/wallet";
 import { apiErrorMessage } from "../../lib/api";
@@ -16,7 +18,7 @@ import { useTranslation } from "react-i18next";
 export default function Withdraw() {
   const { t } = useTranslation();
   const scope = useUserScope();
-  const { isVerified } = useAuth();
+  const { isVerified, user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -25,6 +27,7 @@ export default function Withdraw() {
   const [pin, setPin] = useState("");
   const [error, setError] = useState<string>();
   const [done, setDone] = useState<string>();
+  const [receipt, setReceipt] = useState<ReceiptData | null>(null);
   const [adding, setAdding] = useState(false);
 
   const walletsQuery = useQuery({
@@ -69,6 +72,16 @@ export default function Withdraw() {
       setError(undefined);
       setAmount("");
       setPin("");
+      setReceipt({
+        amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+        date: new Date().toLocaleString(),
+        recipientName: w.account_name || t("withdraw.yourBank"),
+        recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
+        senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
+        senderSub: "OAM Wallet",
+        type: "Withdrawal",
+        reference: w.reference ?? "",
+      });
       const pending = w.status === "pending" || w.status === "processing";
       setDone(
         pending
@@ -118,6 +131,7 @@ export default function Withdraw() {
               <CheckCircle2 size={15} className="mt-0.5 shrink-0" />{done}
             </div>
           )}
+          {receipt && <ShareReceiptButton data={receipt} />}
 
           {/* Saved accounts */}
           <div className="mb-1.5 flex items-center justify-between">
