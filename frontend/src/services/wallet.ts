@@ -110,6 +110,7 @@ export const transferApi = {
     amount: number | string;
     currency?: string;
     note?: string;
+    pin: string;
   }): Promise<WalletTransfer> {
     const { data } = await api.post<WalletTransfer>("/wallet/transfer/", {
       currency: "NGN",

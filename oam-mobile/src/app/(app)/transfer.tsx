@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import { TransactionPinModal } from "@/features/wallet/ui/TransactionPinModal";
 import { View, ScrollView, Pressable, ActivityIndicator, Modal, TextInput } from "react-native";
 import { useRouter } from "expo-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -21,9 +20,9 @@ export default function Transfer() {
   const user = useAuthStore((s) => s.user);
   const isVerified = user?.is_verified ?? false;
 
+  const [mode, setMode] = useState<"choose" | "bank">("choose");
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
-  const [pinOpen, setPinOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
@@ -36,7 +35,7 @@ export default function Transfer() {
   const accounts = accountsQuery.data ?? [];
 
   const withdraw = useMutation({
-    mutationFn: (pin: string) => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
+    mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount) }),
     onSuccess: (w) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
       qc.invalidateQueries({ queryKey: ["transactions"] });
@@ -61,7 +60,7 @@ export default function Transfer() {
     if (!accountId) return setError(t("withdraw.errChooseAccount"));
     if (!amount || Number(amount) < 100) return setError(t("xferbank.errMin", "Minimum transfer is ₦100."));
     if (total > balance) return setError(t("withdraw.errExceeds"));
-    setPinOpen(true);
+    withdraw.mutate();
   }
 
   if (!isVerified) {
@@ -81,10 +80,44 @@ export default function Transfer() {
   const total = amt > 0 ? amt + fee : 0;
   const overBalance = Boolean(amount) && total > balance;
 
+  if (mode === "choose") {
+    return (
+      <Screen edges={["top"]}>
+        <ScrollView contentContainerStyle={{ padding: 20 }} showsVerticalScrollIndicator={false}>
+          <Pressable onPress={() => router.back()} hitSlop={8} style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 16 }}>
+            <ArrowLeft size={16} color={colors.muted} /><Text variant="label" color="muted">{t("withdraw.back")}</Text>
+          </Pressable>
+          <Text variant="heading">{t("transfer.choose.title", "Transfer")}</Text>
+          <Text variant="caption" color="muted" style={{ marginTop: 4, marginBottom: 20 }}>{t("transfer.choose.subtitle", "How would you like to send money?")}</Text>
+
+          <Pressable onPress={() => router.push("/transfer-wallet")} style={{ flexDirection: "row", alignItems: "center", gap: 14, borderRadius: 16, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 18, marginBottom: 12 }}>
+            <View style={{ height: 46, width: 46, borderRadius: 23, backgroundColor: "rgba(11,115,39,0.10)", alignItems: "center", justifyContent: "center" }}>
+              <Send size={22} strokeWidth={1.9} color={colors.brand.green} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text variant="label" color="ink">{t("transfer.choose.wallet", "Transfer to Wallet")}</Text>
+              <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("transfer.choose.walletBody", "Send instantly to another OAM user by email.")}</Text>
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => setMode("bank")} style={{ flexDirection: "row", alignItems: "center", gap: 14, borderRadius: 16, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 18 }}>
+            <View style={{ height: 46, width: 46, borderRadius: 23, backgroundColor: "rgba(11,115,39,0.10)", alignItems: "center", justifyContent: "center" }}>
+              <Building2 size={22} strokeWidth={1.9} color={colors.brand.green} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text variant="label" color="ink">{t("transfer.choose.bank", "Transfer to Bank")}</Text>
+              <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("transfer.choose.bankBody", "Send to any Nigerian bank account.")}</Text>
+            </View>
+          </Pressable>
+        </ScrollView>
+      </Screen>
+    );
+  }
+
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 44 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-        <Pressable onPress={() => router.back()} hitSlop={8} style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 14 }}>
+        <Pressable onPress={() => setMode("choose")} hitSlop={8} style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 14 }}>
           <ArrowLeft size={16} color={colors.muted} /><Text variant="label" color="muted">{t("withdraw.back")}</Text>
         </Pressable>
 
@@ -126,7 +159,7 @@ export default function Transfer() {
               {accounts.map((a) => {
                 const sel = accountId === a.id;
                 return (
-                  <Pressable key={a.id} onPress={() => { setAccountId(a.id); setError(null); }} style={{ flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 12, borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.06)" : colors.paper, paddingHorizontal: 12, paddingVertical: 12 }}>
+                  <Pressable key={a.id} onPress={() => setAccountId(a.id)} style={{ flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 12, borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.06)" : colors.paper, paddingHorizontal: 12, paddingVertical: 12 }}>
                     <View style={{ height: 36, width: 36, borderRadius: 18, backgroundColor: colors.mist, alignItems: "center", justifyContent: "center" }}>
                       <Building2 size={16} strokeWidth={1.75} color={colors.muted} />
                     </View>
@@ -167,12 +200,6 @@ export default function Transfer() {
           ) : null}
         </View>
       </ScrollView>
-      <TransactionPinModal
-        visible={pinOpen}
-        onCancel={() => setPinOpen(false)}
-        onConfirm={(pin) => { setPinOpen(false); withdraw.mutate(pin); }}
-        busy={withdraw.isPending}
-      />
     </Screen>
   );
 }

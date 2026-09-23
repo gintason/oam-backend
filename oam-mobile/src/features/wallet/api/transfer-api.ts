@@ -6,7 +6,7 @@ export const transferApi = {
   resolve: (identifier: string) =>
     api.post<{ name: string; identifier: string }>("/wallet/transfer/resolve/", { identifier }).then((r) => r.data),
 
-  send: (input: { identifier: string; amount: number | string; currency?: string; note?: string }) =>
+  send: (input: { identifier: string; amount: number | string; currency?: string; note?: string; pin: string }) =>
     api.post<WalletTransfer>("/wallet/transfer/", { currency: "NGN", ...input }).then((r) => r.data),
 
   history: () =>

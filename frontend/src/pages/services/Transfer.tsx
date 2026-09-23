@@ -6,7 +6,7 @@ import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
 import { payoutsApi, type BankAccount } from "../../services/payouts";
-import { walletApi, formatBalance } from "../../services/wallet";
+import { walletApi, transferApi, formatBalance } from "../../services/wallet";
 import { apiErrorMessage } from "../../lib/api";
 import { VerifyGate } from "./BuyData";
 import { useDebounced } from "../../hooks/useDebounced";
@@ -20,6 +20,9 @@ export default function Transfer() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  const [mode, setMode] = useState<"choose" | "wallet" | "bank">("choose");
+  const [identifier, setIdentifier] = useState("");
+  const [note, setNote] = useState("");
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
   const [pin, setPin] = useState("");
@@ -46,6 +49,25 @@ export default function Transfer() {
     enabled: isVerified,
   });
   const hasPin = pinStatus.data?.has_pin;
+
+  // Wallet-to-wallet (P2P) recipient lookup + send.
+  const debouncedId = useDebounced(identifier, 500);
+  const resolved = useQuery({
+    queryKey: ["wallet", scope, "resolve", debouncedId],
+    queryFn: () => transferApi.resolve(debouncedId.trim()),
+    enabled: debouncedId.trim().length >= 3,
+    retry: false,
+  });
+  const walletSend = useMutation({
+    mutationFn: () => transferApi.send({ identifier: identifier.trim(), amount: Number(amount), note: note.trim(), pin }),
+    onSuccess: (w) => {
+      queryClient.invalidateQueries({ queryKey: ["wallet"] });
+      setDone(t("xferwallet.sent", "₦{{amount}} sent to {{name}}.", { amount: Number(amount).toLocaleString(), name: resolved.data?.name ?? "" }));
+      setAmount(""); setPin(""); setNote("");
+    },
+    onError: (err) => setError(apiErrorMessage(err, t("xferwallet.errFailed", "Transfer failed. Try again."))),
+    onSettled: () => pinStatus.refetch(),
+  });
 
   const withdraw = useMutation({
     mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
@@ -90,6 +112,104 @@ export default function Transfer() {
   const amt = Number(amount) || 0;
   const fee = amt >= 500 ? 25 : 10;
   const total = amt > 0 ? amt + fee : 0;
+
+  // ---- Chooser ----
+  if (mode === "choose") {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <div className="mx-auto max-w-lg px-4 py-6">
+          <button onClick={() => navigate(-1)} className="mb-6 flex items-center gap-1.5 text-[13px] text-muted hover:text-ink">
+            <ArrowLeft size={16} /> {t("withdraw.back")}
+          </button>
+          <h1 className="mb-1 font-display text-xl font-semibold text-ink">{t("transfer.choose.title", "Transfer")}</h1>
+          <p className="mb-6 text-[13.5px] text-muted">{t("transfer.choose.subtitle", "How would you like to send money?")}</p>
+
+          <button onClick={() => setMode("wallet")} className="mb-3 flex w-full items-center gap-4 rounded-2xl border border-hairline bg-paper p-5 text-left transition hover:border-brand-green/40 hover:shadow-sm">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-green/10"><Send size={22} className="text-brand-green" /></span>
+            <span className="flex-1">
+              <span className="block text-[14.5px] font-semibold text-ink">{t("transfer.choose.wallet", "Transfer to Wallet")}</span>
+              <span className="block text-[12.5px] text-muted">{t("transfer.choose.walletBody", "Send instantly to another OAM user by email.")}</span>
+            </span>
+          </button>
+
+          <button onClick={() => setMode("bank")} className="flex w-full items-center gap-4 rounded-2xl border border-hairline bg-paper p-5 text-left transition hover:border-brand-green/40 hover:shadow-sm">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-green/10"><Building2 size={22} className="text-brand-green" /></span>
+            <span className="flex-1">
+              <span className="block text-[14.5px] font-semibold text-ink">{t("transfer.choose.bank", "Transfer to Bank")}</span>
+              <span className="block text-[12.5px] text-muted">{t("transfer.choose.bankBody", "Send to any Nigerian bank account.")}</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ---- Wallet-to-wallet form ----
+  if (mode === "wallet") {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <div className="mx-auto max-w-lg px-4 py-6">
+          <button onClick={() => setMode("choose")} className="mb-6 flex items-center gap-1.5 text-[13px] text-muted hover:text-ink">
+            <ArrowLeft size={16} /> {t("withdraw.back")}
+          </button>
+          <h1 className="mb-1 font-display text-xl font-semibold text-ink">{t("xferwallet.title", "Send to an OAM wallet")}</h1>
+          <p className="mb-5 text-[13.5px] text-muted">{t("xferwallet.subtitle", "Instant, free transfer to another OAM user.")}</p>
+
+          <div className="rounded-2xl border border-hairline bg-paper p-5">
+            {error && <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">{error}</div>}
+            {done && <div className="mb-4 flex items-start gap-2 rounded-lg border border-brand-green/30 bg-brand-green/5 px-3.5 py-2.5 text-[13px] text-brand-green"><CheckCircle2 size={15} className="mt-0.5" />{done}</div>}
+
+            <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("xferwallet.recipient", "Recipient email or phone")}</label>
+            <input value={identifier} onChange={(e) => setIdentifier(e.target.value.trim())} placeholder="name@example.com" className="h-11 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10" />
+            {resolved.isFetching ? (
+              <p className="mt-1.5 flex items-center gap-1.5 text-[12.5px] text-muted"><Loader2 size={13} className="animate-spin" /> {t("xferwallet.checking", "Checking…")}</p>
+            ) : resolved.data?.name ? (
+              <p className="mt-1.5 flex items-center gap-1.5 text-[12.5px] font-medium text-brand-green"><BadgeCheck size={14} /> {resolved.data.name}</p>
+            ) : debouncedId.trim().length >= 3 ? (
+              <p className="mt-1.5 text-[12.5px] text-muted">{t("xferwallet.notFound", "No OAM user with that email/phone.")}</p>
+            ) : null}
+
+            <label className="mb-1.5 mt-4 block text-[12.5px] font-semibold text-ink">{t("xferwallet.amount", "Amount (₦)")}</label>
+            <input value={amount} onChange={(e) => setAmount(e.target.value.replace(/[^\d.]/g, ""))} placeholder="0" inputMode="decimal" className="h-11 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10" />
+            <p className="mt-1.5 text-[12px] text-muted">{t("withdraw.available")} <span className="font-medium text-ink">{formatBalance(ngn?.balance ?? "0", "NGN")}</span></p>
+
+            <label className="mb-1.5 mt-4 block text-[12.5px] font-semibold text-ink">{t("xferwallet.note", "Note (optional)")}</label>
+            <input value={note} onChange={(e) => setNote(e.target.value)} placeholder={t("xferwallet.notePlaceholder", "What's it for?")} className="h-11 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[14px] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10" />
+
+            {pinStatus.isLoading ? (
+              <div className="mt-4 h-11 animate-pulse rounded-[11px] bg-hairline/60" />
+            ) : hasPin === false ? (
+              <div className="mt-4"><SetPin onDone={() => pinStatus.refetch()} onError={setError} t={t} /></div>
+            ) : (
+              <div className="mt-4">
+                <label htmlFor="wpin" className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("withdraw.pinLabel")}</label>
+                <input id="wpin" type="password" inputMode="numeric" autoComplete="off" maxLength={6} value={pin} onChange={(e) => setPin(e.target.value.replace(/[^\d]/g, ""))} placeholder={t("withdraw.pinPlaceholder")} className="h-12 w-full rounded-[11px] border border-hairline bg-paper px-3.5 text-[15px] tracking-[0.3em] text-ink outline-none transition focus:border-brand-green focus:ring-[3px] focus:ring-brand-green/10" />
+              </div>
+            )}
+
+            <button
+              onClick={() => {
+                setError(undefined); setDone(undefined);
+                if (!identifier.trim()) return setError(t("xferwallet.errRecipient", "Enter the recipient's email or phone."));
+                if (!resolved.data?.name) return setError(t("xferwallet.errResolve", "We couldn't find that OAM user."));
+                if (!amount || Number(amount) <= 0) return setError(t("xferwallet.errAmount", "Enter a valid amount."));
+                if (Number(amount) > balance) return setError(t("withdraw.errExceeds"));
+                if (hasPin === false) return setError(t("withdraw.errCreatePin"));
+                if (!pin || pin.length < 4) return setError(t("withdraw.errPin", "Enter your transaction PIN."));
+                walletSend.mutate();
+              }}
+              disabled={walletSend.isPending}
+              className="mt-5 flex h-11 w-full items-center justify-center rounded-[11px] bg-brand-red text-[14px] font-semibold text-white shadow-[0_8px_20px_rgba(227,16,18,0.25)] transition hover:brightness-95 disabled:opacity-60"
+            >
+              {walletSend.isPending ? <Loader2 size={18} className="animate-spin" /> : (amount ? t("xferwallet.sendAmount", "Send ₦{{amount}}", { amount: Number(amount).toLocaleString() }) : t("xferwallet.send", "Send"))}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-mist">
