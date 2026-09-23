@@ -5,6 +5,8 @@ import { ArrowLeft, Send, BadgeCheck, Building2, CheckCircle2, Loader2, Plus, Se
 import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
+import ReceiptSuccess from "../../components/ReceiptSuccess";
+import type { ReceiptData } from "../../components/Receipt";
 import { payoutsApi, type BankAccount } from "../../services/payouts";
 import { walletApi, transferApi, formatBalance } from "../../services/wallet";
 import { apiErrorMessage } from "../../lib/api";
@@ -16,13 +18,14 @@ import { useTranslation } from "react-i18next";
 export default function Transfer() {
   const { t } = useTranslation();
   const scope = useUserScope();
-  const { isVerified } = useAuth();
+  const { isVerified, user } = useAuth();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const [mode, setMode] = useState<"choose" | "wallet" | "bank">("choose");
   const [identifier, setIdentifier] = useState("");
   const [note, setNote] = useState("");
+  const [receipt, setReceipt] = useState<ReceiptData | null>(null);
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
   const [pin, setPin] = useState("");
@@ -62,6 +65,17 @@ export default function Transfer() {
     mutationFn: () => transferApi.send({ identifier: identifier.trim(), amount: Number(amount), note: note.trim(), pin }),
     onSuccess: (w) => {
       queryClient.invalidateQueries({ queryKey: ["wallet"] });
+      setReceipt({
+        amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+        date: new Date().toLocaleString(),
+        recipientName: resolved.data?.name ?? "",
+        recipientSub: "OAM Wallet" + (identifier.includes("@") ? ` · ${identifier}` : ""),
+        senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
+        senderSub: "OAM Wallet",
+        type: "Wallet Transfer",
+        note: note.trim() || undefined,
+        reference: (w as { reference?: string }).reference ?? "",
+      });
       setDone(t("xferwallet.sent", "₦{{amount}} sent to {{name}}.", { amount: Number(amount).toLocaleString(), name: resolved.data?.name ?? "" }));
       setAmount(""); setPin(""); setNote("");
     },
@@ -92,6 +106,17 @@ export default function Transfer() {
       setAmount("");
       setPin("");
       const pending = w.status === "pending" || w.status === "processing";
+      setReceipt({
+        amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+        date: new Date().toLocaleString(),
+        statusLabel: pending ? "Transfer Processing" : "Successful Transaction",
+        recipientName: w.account_name || t("withdraw.yourBank"),
+        recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
+        senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
+        senderSub: "OAM Wallet",
+        type: "Bank Transfer",
+        reference: w.reference ?? "",
+      });
       setDone(
         pending
           ? t("xferbank.onWay", "₦{{amount}} is on its way to {{name}}.", { amount: Number(amount).toLocaleString(), name: w.account_name || t("withdraw.yourBank") })
@@ -112,6 +137,16 @@ export default function Transfer() {
   const amt = Number(amount) || 0;
   const fee = amt >= 500 ? 25 : 10;
   const total = amt > 0 ? amt + fee : 0;
+
+  // ---- Success: show the shareable receipt ----
+  if (receipt) {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <ReceiptSuccess data={receipt} onBack={() => navigate("/dashboard")} />
+      </div>
+    );
+  }
 
   // ---- Chooser ----
   if (mode === "choose") {

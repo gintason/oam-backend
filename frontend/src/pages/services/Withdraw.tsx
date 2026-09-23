@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowUpRight, BadgeCheck, Building2, CheckCircle2, Loader2, 
 import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
-import ShareReceiptButton from "../../components/ShareReceiptButton";
+import ReceiptSuccess from "../../components/ReceiptSuccess";
 import type { ReceiptData } from "../../components/Receipt";
 import { payoutsApi, type BankAccount } from "../../services/payouts";
 import { walletApi, formatBalance } from "../../services/wallet";
@@ -104,6 +104,15 @@ export default function Withdraw() {
   const fee = amt >= 500 ? 25 : 10;
   const total = amt > 0 ? amt + fee : 0;
 
+  if (receipt) {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <ReceiptSuccess data={receipt} onBack={() => navigate("/dashboard")} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-mist">
       <AppHeader />
@@ -131,7 +140,6 @@ export default function Withdraw() {
               <CheckCircle2 size={15} className="mt-0.5 shrink-0" />{done}
             </div>
           )}
-          {receipt && <ShareReceiptButton data={receipt} />}
 
           {/* Saved accounts */}
           <div className="mb-1.5 flex items-center justify-between">
