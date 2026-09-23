@@ -11,6 +11,7 @@ import { useAuth } from "../auth/AuthContext";
 import BottomTabs from "./BottomTabs";
 import Assistant from "./Assistant";
 import LanguageSwitcher from "./LanguageSwitcher";
+import NotificationBell from "./NotificationBell";
 
 /**
  * Travel, Marketplace and Find Artisans are deliberately absent: they already
@@ -106,6 +107,7 @@ export default function AppHeader() {
         </div>
 
         <div className="flex items-center gap-3">
+          <NotificationBell />
           <LanguageSwitcher className="hidden sm:block" />
           <Link to="/profile" title={t("header.nav.profile")} className="hidden items-center gap-2.5 rounded-lg px-1.5 py-1 transition hover:bg-mist sm:flex">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green/10 text-[13px] font-semibold text-brand-green">
