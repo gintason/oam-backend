@@ -19,20 +19,6 @@ export type ReceiptData = {
 
 const S = "1.5px dashed #d7dde5";
 
-/** "24 Sep 2026, 1:52 AM" — accepts an ISO string or an already-formatted string. */
-function fmtDate(input: string): string {
-  const d = new Date(input);
-  if (isNaN(d.getTime())) return input; // already formatted upstream
-  const day = d.getDate();
-  const mon = d.toLocaleString("en-US", { month: "short" });
-  const year = d.getFullYear();
-  let h = d.getHours();
-  const m = d.getMinutes().toString().padStart(2, "0");
-  const ampm = h >= 12 ? "PM" : "AM";
-  h = h % 12; if (h === 0) h = 12;
-  return `${day} ${mon} ${year}, ${h}:${m} ${ampm}`;
-}
-
 /** The shareable OAM receipt. Rendered off-screen and captured to an image. */
 export const Receipt = forwardRef<HTMLDivElement, { data: ReceiptData }>(({ data }, ref) => {
   const cur = data.currency ?? "₦";
@@ -47,7 +33,7 @@ export const Receipt = forwardRef<HTMLDivElement, { data: ReceiptData }>(({ data
         <img src={logo} alt="OAM" style={{ height: 32, display: "block", marginBottom: 20 }} />
         <div style={{ textAlign: "center", fontSize: 38, fontWeight: 800, color: "#0B7327", letterSpacing: -1 }}>{cur} {data.amount}</div>
         <div style={{ textAlign: "center", fontSize: 17, color: "#1a1a1a", marginTop: 6, fontWeight: 600 }}>{data.statusLabel ?? "Successful Transaction"}</div>
-        <div style={{ textAlign: "center", fontSize: 13, color: "#98a1ad", marginTop: 6 }}>{fmtDate(data.date)}</div>
+        <div style={{ textAlign: "center", fontSize: 13, color: "#98a1ad", marginTop: 6 }}>{data.date}</div>
 
         <hr style={{ border: "none", borderTop: S, margin: "20px 0" }} />
         <div style={{ display: "flex", justifyContent: "space-between", gap: 14 }}>
@@ -82,9 +68,8 @@ export const Receipt = forwardRef<HTMLDivElement, { data: ReceiptData }>(({ data
         ))}
         <hr style={{ border: "none", borderTop: S, margin: "20px 0" }} />
         <div style={{ fontSize: 13, color: "#98a1ad", lineHeight: "20px" }}>
-          All services. One app. Endless possibilities.<br />
-          Sent securely with <b style={{ color: "#0B7327" }}>O.A.M</b>.<br />
-          <span style={{ color: "#0B7327" }}>info@oam-app.com</span>
+          All services. One app. Endless possibilities.<br />Sent securely with <b style={{ color: "#0B7327" }}>O.A.M</b>.
+          <br />info@oam-app.com &middot; oam-app.com
         </div>
       </div>
     </div>

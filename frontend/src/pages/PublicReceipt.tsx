@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { toPng } from "html-to-image";
 import { Download, Loader2 } from "lucide-react";
 import { Receipt, type ReceiptData } from "../components/Receipt";
+import { formatReceiptDate } from "../components/formatReceiptDate";
 
 const BASE_URL =
   (import.meta.env.VITE_API_URL as string | undefined) ?? "http://localhost:8080/api/v1";
@@ -42,7 +43,7 @@ export default function PublicReceipt() {
 
   const data: ReceiptData | null = q.data ? {
     amount: q.data.amount, currency: q.data.currency,
-    statusLabel: q.data.status, date: new Date(q.data.date).toLocaleString(),
+    statusLabel: q.data.status, date: q.data.date,
     recipientName: q.data.recipient_name, recipientSub: q.data.recipient_sub,
     senderName: q.data.sender_name, senderSub: q.data.sender_sub,
     type: q.data.type, note: q.data.note || undefined, reference: q.data.reference,

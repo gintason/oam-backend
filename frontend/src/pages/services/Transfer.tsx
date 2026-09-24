@@ -6,6 +6,7 @@ import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
 import ReceiptSuccess from "../../components/ReceiptSuccess";
+import { formatReceiptDate } from "../../components/formatReceiptDate";
 import type { ReceiptData } from "../../components/Receipt";
 import { payoutsApi, type BankAccount } from "../../services/payouts";
 import { walletApi, transferApi, formatBalance } from "../../services/wallet";
@@ -69,7 +70,7 @@ export default function Transfer() {
       queryClient.invalidateQueries({ queryKey: ["wallet"] });
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
-        date: new Date().toLocaleString(),
+        date: formatReceiptDate(new Date()),
         recipientName: resolved.data?.name ?? "",
         recipientSub: "OAM Wallet" + (identifier.includes("@") ? ` · ${identifier}` : ""),
         senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
@@ -110,7 +111,7 @@ export default function Transfer() {
       const pending = w.status === "pending" || w.status === "processing";
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
-        date: new Date().toLocaleString(),
+        date: formatReceiptDate(new Date()),
         statusLabel: pending ? "Transfer Processing" : "Successful Transaction",
         recipientName: w.account_name || t("withdraw.yourBank"),
         recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,

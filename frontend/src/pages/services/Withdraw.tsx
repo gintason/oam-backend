@@ -6,6 +6,7 @@ import AppHeader from "../../components/AppHeader";
 import { useUserScope } from "../../auth/useUserScope";
 import { useAuth } from "../../auth/AuthContext";
 import ReceiptSuccess from "../../components/ReceiptSuccess";
+import { formatReceiptDate } from "../../components/formatReceiptDate";
 import type { ReceiptData } from "../../components/Receipt";
 import { payoutsApi, type BankAccount } from "../../services/payouts";
 import { walletApi, formatBalance } from "../../services/wallet";
@@ -74,7 +75,7 @@ export default function Withdraw() {
       setPin("");
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
-        date: new Date().toLocaleString(),
+        date: new Date().toISOString(),
         recipientName: w.account_name || t("withdraw.yourBank"),
         recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
         senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
