@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { queryClient } from "./lib/queryClient";
 import { CurrencyProvider } from "./currency/CurrencyContext";
 import { AuthProvider } from "./auth/AuthContext";
@@ -8,6 +7,7 @@ import { RequireAuth, RedirectIfAuthed } from "./routes/guards";
 
 import LandingPage from "./LandingPage";
 import SignIn from "./pages/auth/SignIn";
+import PublicReceipt from "./pages/PublicReceipt";
 import SignUp from "./pages/auth/SignUp";
 import Referral from "./pages/Referral";
 import { ReferralCapture } from "./routes/ReferralCapture";
@@ -60,121 +60,118 @@ import PaymentCallback from "./pages/services/PaymentCallback";
 import FlutterwaveCallback from "./pages/services/FlutterwaveCallback";
 import Profile from "./pages/Profile";
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
-
 /**
  * App root: global providers + routes.
- *  Public:     /                   (landing)
- *  Auth-only: /sign-in /sign-up   (redirect to /dashboard if already authed)
+ *  Public:    /              (landing)
+ *  Auth-only: /sign-in /sign-up  (redirect to /dashboard if already authed)
  *  /verify:   OTP screen (reached from sign-up / unverified sign-in)
- *  Protected: /dashboard       (requires a logged-in user)
+ *  Protected: /dashboard     (requires a logged-in user)
  */
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <CurrencyProvider>
         <AuthProvider>
-          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/:refToken" element={<ReferralCapture />} />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/receipt/:reference" element={<PublicReceipt />} />
+              <Route path="/:refToken" element={<ReferralCapture />} />
 
-                <Route
-                  path="/sign-in"
-                  element={
-                    <RedirectIfAuthed>
-                      <SignIn />
-                    </RedirectIfAuthed>
-                  }
-                />
-                <Route
-                  path="/sign-up"
-                  element={
-                    <RedirectIfAuthed>
-                      <SignUp />
-                    </RedirectIfAuthed>
-                  }
-                />
-                <Route path="/verify" element={<VerifyOtp />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
+              <Route
+                path="/sign-in"
+                element={
+                  <RedirectIfAuthed>
+                    <SignIn />
+                  </RedirectIfAuthed>
+                }
+              />
+              <Route
+                path="/sign-up"
+                element={
+                  <RedirectIfAuthed>
+                    <SignUp />
+                  </RedirectIfAuthed>
+                }
+              />
+              <Route path="/verify" element={<VerifyOtp />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
 
-                <Route
-                  path="/dashboard"
-                  element={
-                    <RequireAuth>
-                      <Dashboard />
-                    </RequireAuth>
-                  }
-                />
+              <Route
+                path="/dashboard"
+                element={
+                  <RequireAuth>
+                    <Dashboard />
+                  </RequireAuth>
+                }
+              />
 
-                {/* Public company pages — deliberately outside RequireAuth */}
+              {/* Public company pages — deliberately outside RequireAuth */}
 
-                <Route path="/about" element={<About />} />
+              <Route path="/about" element={<About />} />
 
-                <Route path="/contact" element={<Contact />} />
+              <Route path="/contact" element={<Contact />} />
 
-                <Route path="/help" element={<Help />} />
+              <Route path="/help" element={<Help />} />
 
-                <Route path="/terms" element={<Terms />} />
+              <Route path="/terms" element={<Terms />} />
 
-                <Route path="/privacy" element={<Privacy />} />
-              <Route path="/refund-policy" element={<RefundPolicy />} />
-                <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+              <Route path="/privacy" element={<Privacy />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
-                <Route path="/marketplace" element={<RequireAuth><MarketplaceHub /></RequireAuth>} />
-                <Route path="/marketplace/browse" element={<RequireAuth><BrowseListings /></RequireAuth>} />
-                <Route path="/marketplace/sell" element={<RequireAuth><SellDashboard /></RequireAuth>} />
-                <Route path="/marketplace/post" element={<RequireAuth><PostListing /></RequireAuth>} />
-                <Route path="/admin/motors" element={<RequireAuth><MotorsAdmin /></RequireAuth>} />
-                <Route path="/marketplace/:id" element={<RequireAuth><ListingDetail /></RequireAuth>} />
-                {/* Services — airtime is live; the rest are placeholders for now */}
-                <Route path="/services/airtime" element={<RequireAuth><BuyAirtime /></RequireAuth>} />
-                <Route path="/payment/callback" element={<RequireAuth><PaymentCallback /></RequireAuth>} />
-                <Route path="/payment/flutterwave-callback" element={<RequireAuth><FlutterwaveCallback /></RequireAuth>} />
-                <Route path="/services/callback" element={<RequireAuth><ServiceCallback /></RequireAuth>} />
-                <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
-                <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
-                <Route path="/services/betting" element={<RequireAuth><BuyBetting /></RequireAuth>} />
-                <Route path="/referral" element={<RequireAuth><Referral /></RequireAuth>} />
-                <Route path="/services/cable" element={<RequireAuth><BuyCable /></RequireAuth>} />
-                <Route path="/services/giftcards" element={<RequireAuth><GiftCards /></RequireAuth>} />
-                <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />
-                <Route path="/ecommerce/:slug" element={<RequireAuth><EcommerceCompany /></RequireAuth>} />
+              <Route path="/marketplace" element={<RequireAuth><MarketplaceHub /></RequireAuth>} />
+              <Route path="/marketplace/browse" element={<RequireAuth><BrowseListings /></RequireAuth>} />
+              <Route path="/marketplace/sell" element={<RequireAuth><SellDashboard /></RequireAuth>} />
+              <Route path="/marketplace/post" element={<RequireAuth><PostListing /></RequireAuth>} />
+              <Route path="/admin/motors" element={<RequireAuth><MotorsAdmin /></RequireAuth>} />
+              <Route path="/marketplace/:id" element={<RequireAuth><ListingDetail /></RequireAuth>} />
+              {/* Services — airtime is live; the rest are placeholders for now */}
+              <Route path="/services/airtime" element={<RequireAuth><BuyAirtime /></RequireAuth>} />
+              <Route path="/payment/callback" element={<RequireAuth><PaymentCallback /></RequireAuth>} />
+              <Route path="/payment/flutterwave-callback" element={<RequireAuth><FlutterwaveCallback /></RequireAuth>} />
+              <Route path="/services/callback" element={<RequireAuth><ServiceCallback /></RequireAuth>} />
+              <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
+              <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
+              <Route path="/services/betting" element={<RequireAuth><BuyBetting /></RequireAuth>} />
+              <Route path="/referral" element={<RequireAuth><Referral /></RequireAuth>} />
+              <Route path="/services/cable" element={<RequireAuth><BuyCable /></RequireAuth>} />
+              <Route path="/services/giftcards" element={<RequireAuth><GiftCards /></RequireAuth>} />
+              <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />
+              <Route path="/ecommerce/:slug" element={<RequireAuth><EcommerceCompany /></RequireAuth>} />
 
-                {/* Money */}
-                <Route path="/wallet/fund" element={<RequireAuth><FundWallet /></RequireAuth>} />
-                <Route path="/wallet/fund/callback" element={<RequireAuth><FundCallback /></RequireAuth>} />
-                <Route path="/wallet/withdraw" element={<RequireAuth><Withdraw /></RequireAuth>} />
-                <Route path="/wallet/send" element={<RequireAuth><Transfer /></RequireAuth>} />
-                <Route path="/travel/bus" element={<RequireAuth><BusTickets /></RequireAuth>} />
-                <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
-                <Route path="/earnings" element={<RequireAuth><Earnings /></RequireAuth>} />
-                <Route path="/orders" element={<RequireAuth><Orders /></RequireAuth>} />
-                <Route path="/messages" element={<RequireAuth><Inbox /></RequireAuth>} />
-                <Route path="/messages/:id" element={<RequireAuth><Chat /></RequireAuth>} />
-                <Route path="/wallet/transactions" element={<RequireAuth><Wallet /></RequireAuth>} />
+              {/* Money */}
+              <Route path="/wallet/fund" element={<RequireAuth><FundWallet /></RequireAuth>} />
+              <Route path="/wallet/fund/callback" element={<RequireAuth><FundCallback /></RequireAuth>} />
+              <Route path="/wallet/withdraw" element={<RequireAuth><Withdraw /></RequireAuth>} />
+              <Route path="/wallet/send" element={<RequireAuth><Transfer /></RequireAuth>} />
+              <Route path="/travel/bus" element={<RequireAuth><BusTickets /></RequireAuth>} />
+              <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
+              <Route path="/earnings" element={<RequireAuth><Earnings /></RequireAuth>} />
+              <Route path="/orders" element={<RequireAuth><Orders /></RequireAuth>} />
+              <Route path="/messages" element={<RequireAuth><Inbox /></RequireAuth>} />
+              <Route path="/messages/:id" element={<RequireAuth><Chat /></RequireAuth>} />
+              <Route path="/wallet/transactions" element={<RequireAuth><Wallet /></RequireAuth>} />
 
-                {/* Travel & more */}
-                <Route path="/travel" element={<RequireAuth><Travel /></RequireAuth>} />
-                <Route path="/travel/flights" element={<RequireAuth><Flights /></RequireAuth>} />
-                <Route path="/travel/hotels" element={<RequireAuth><Hotels /></RequireAuth>} />
-                <Route path="/travel/carhire" element={<RequireAuth><CarHire /></RequireAuth>} />
-                <Route path="/travel/pickup" element={<RequireAuth><Pickup /></RequireAuth>} />
+              {/* Travel & more */}
+              <Route path="/travel" element={<RequireAuth><Travel /></RequireAuth>} />
+              <Route path="/travel/flights" element={<RequireAuth><Flights /></RequireAuth>} />
+              <Route path="/travel/hotels" element={<RequireAuth><Hotels /></RequireAuth>} />
+              <Route path="/travel/carhire" element={<RequireAuth><CarHire /></RequireAuth>} />
+              <Route path="/travel/pickup" element={<RequireAuth><Pickup /></RequireAuth>} />
 
-                {/* Artisans */}
-                <Route path="/artisans" element={<RequireAuth><ArtisansHub /></RequireAuth>} />
-                <Route path="/artisans/find" element={<RequireAuth><FindArtisans /></RequireAuth>} />
-                <Route path="/artisans/me" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
-                <Route path="/artisans/verify" element={<RequireAuth><ArtisanVerify /></RequireAuth>} />
-                <Route path="/artisans/:id" element={<RequireAuth><ArtisanProfile /></RequireAuth>} />
+              {/* Artisans */}
+              <Route path="/artisans" element={<RequireAuth><ArtisansHub /></RequireAuth>} />
+              <Route path="/artisans/find" element={<RequireAuth><FindArtisans /></RequireAuth>} />
+              <Route path="/artisans/me" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
+              <Route path="/artisans/verify" element={<RequireAuth><ArtisanVerify /></RequireAuth>} />
+              <Route path="/artisans/:id" element={<RequireAuth><ArtisanProfile /></RequireAuth>} />
 
-                {/* Fallback: anything unknown goes to the landing page */}
-                <Route path="*" element={<LandingPage />} />
-              </Routes>
-            </BrowserRouter>
-          </GoogleOAuthProvider>
+              {/* Fallback: anything unknown goes to the landing page */}
+              <Route path="*" element={<LandingPage />} />
+            </Routes>
+          </BrowserRouter>
         </AuthProvider>
       </CurrencyProvider>
     </QueryClientProvider>
