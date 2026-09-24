@@ -159,19 +159,22 @@ class TransferService:
             currency=currency, note=note or "", reference=reference,
         )
 
-        # Notify the recipient that money landed in their wallet (bell + email).
-        try:
-            from apps.notifications.services import notify
-            pretty = f"{currency} {amt:,.2f}"
-            notify(
-                recipient, kind="wallet_credit",
-                title="Money received",
-                body=f"You received {pretty} from {from_name}." + (f" Note: {note}" if note else ""),
-                data={"amount": str(amt), "currency": currency, "from": from_name, "reference": reference},
-                email=True,
-            )
-        except Exception:
-            pass
+        # Notify the recipient AFTER the money transaction commits. Running this
+        # inside the atomic block is unsafe: a notifications write failure would
+        # poison the transaction and roll back the transfer. on_commit guarantees
+        # the money is already durably saved before we ever touch notifications.
+        def _notify_recipient():
+            try:
+                from apps.notifications.services import notify
+                notify(
+                    recipient, kind="wallet_credit", title="Money received",
+                    body=f"You received {currency} {amt:,.2f} from {from_name}." + (f" Note: {note}" if note else ""),
+                    data={"amount": str(amt), "currency": currency, "from": from_name, "reference": reference},
+                    email=True,
+                )
+            except Exception:
+                pass
+        transaction.on_commit(_notify_recipient)
 
         return trf
 
@@ -188,6 +191,7 @@ class SendTransferSerializer(serializers.Serializer):
     amount = serializers.DecimalField(max_digits=20, decimal_places=2, min_value=Decimal("1"))
     currency = serializers.CharField(max_length=3, required=False, default="NGN")
     note = serializers.CharField(max_length=140, required=False, allow_blank=True)
+    pin = serializers.CharField(required=False, allow_blank=True)
 
 
 class WalletTransferSerializer(serializers.ModelSerializer):
@@ -233,6 +237,15 @@ class SendTransferView(APIView):
         s = SendTransferSerializer(data=request.data)
         s.is_valid(raise_exception=True)
         d = s.validated_data
+
+        # Transaction PIN authorises money leaving the wallet.
+        if not request.user.has_transaction_pin:
+            return Response({"detail": "Set a transaction PIN before transferring.", "reason": "pin_not_set"},
+                            status=status.HTTP_403_FORBIDDEN)
+        if not request.user.check_transaction_pin(d.get("pin", "")):
+            return Response({"detail": "Incorrect transaction PIN.", "reason": "invalid_pin"},
+                            status=status.HTTP_400_BAD_REQUEST)
+
         try:
             trf = TransferService.send(
                 sender=request.user,

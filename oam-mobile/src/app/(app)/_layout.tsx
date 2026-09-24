@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, type ColorValue } from "react-native";
 import { Redirect, Tabs } from "expo-router";
 import { Home as HomeIcon, Wallet as WalletIcon, Receipt as OrdersIcon, MessageCircle as MessagesIcon, User as UserIcon, type LucideIcon } from "lucide-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -19,7 +19,7 @@ function TabBarBackground() {
   );
 }
 
-function TabIcon({ Icon, color, focused }: { Icon: LucideIcon; color: string; focused: boolean }) {
+function TabIcon({ Icon, color, focused }: { Icon: LucideIcon; color: ColorValue; focused: boolean }) {
   return (
     <View
       style={{
@@ -31,7 +31,7 @@ function TabIcon({ Icon, color, focused }: { Icon: LucideIcon; color: string; fo
         backgroundColor: focused ? "rgba(11,115,39,0.28)" : "transparent",
       }}
     >
-      <Icon color={color} size={20} strokeWidth={focused ? 2.1 : 1.75} />
+      <Icon color={color as string} size={20} strokeWidth={focused ? 2.1 : 1.75} />
     </View>
   );
 }
@@ -60,6 +60,7 @@ export default function AppLayout() {
         tabBarLabelStyle: { fontFamily: fonts.medium, fontSize: 11 },
       }}
     >
+      <Tabs.Screen name="notifications" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="home" options={{ title: "Home", tabBarIcon: ({ color, focused }) => <TabIcon Icon={HomeIcon} color={color} focused={focused} /> }} />
       <Tabs.Screen name="wallet" options={{ title: "Wallet", tabBarIcon: ({ color, focused }) => <TabIcon Icon={WalletIcon} color={color} focused={focused} /> }} />
       <Tabs.Screen name="orders" options={{ title: "Orders", tabBarIcon: ({ color, focused }) => <TabIcon Icon={OrdersIcon} color={color} focused={focused} /> }} />

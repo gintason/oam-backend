@@ -5,7 +5,9 @@ import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
   Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, MessageCircle, Menu, Bus, History, Ticket, type LucideIcon,
-} from "lucide-react-native";
+}
+from "lucide-react-native";
+import { NotificationBell } from "@/features/notifications/NotificationBell";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { useAuthStore } from "@/features/auth";
@@ -141,23 +143,26 @@ export default function Home() {
           <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.brand.green }}>
             <Menu size={22} strokeWidth={2} color="#FFFFFF" />
           </Pressable>
-          <Pressable
-        onPress={() => router.push("/transactions")}
-        hitSlop={8}
-        accessibilityLabel="Transaction history"
-        style={{
-          height: 40,
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 6,
-          paddingHorizontal: 14,
-          borderRadius: 20,
-          backgroundColor: colors.mist,
-        }}
-      >
-        <Text variant="label" color="green">{t("dashboard.history", "History")}</Text>
-        <History size={18} strokeWidth={1.9} color={colors.brand.green} />
-      </Pressable>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+            <Pressable
+              onPress={() => router.push("/transactions")}
+              hitSlop={8}
+              accessibilityLabel="Transaction history"
+              style={{
+                height: 40,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 6,
+                paddingHorizontal: 14,
+                borderRadius: 20,
+                backgroundColor: colors.mist,
+              }}
+            >
+              <Text variant="label" color="green">{t("dashboard.history", "History")}</Text>
+              <History size={18} strokeWidth={1.9} color={colors.brand.green} />
+            </Pressable>
+            <NotificationBell />
+          </View>
         </View>
 
        <Text variant="body" color="muted" style={{ fontSize: 16 }}>
