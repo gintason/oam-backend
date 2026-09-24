@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { ChangeEvent, ComponentType, CSSProperties, FormEvent, ReactNode } from "react";
 import { referralStore } from "../../services/referrals";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
@@ -6,11 +7,109 @@ import { Field, SubmitButton, FormError } from "./fields";
 import { authApi } from "../../auth/authApi";
 import { apiErrorMessage } from "../../lib/api";
 import { useTranslation } from "react-i18next";
-import { GoogleLogin } from "@react-oauth/google";
+import * as GoogleAuth from "@react-oauth/google";
 import type { CredentialResponse } from "@react-oauth/google";
-import FacebookLogin from "@greatsumini/react-facebook-login";
+import * as FacebookAuth from "@greatsumini/react-facebook-login";
 import type { SuccessResponse } from "@greatsumini/react-facebook-login";
 import axios from "axios";
+
+/* -------------------------------------------------------------------------- */
+/*  Minimal ambient types for the Facebook JS SDK fallback path.               */
+/*  (The primary path uses @greatsumini/react-facebook-login.)                 */
+/* -------------------------------------------------------------------------- */
+interface FacebookAuthResponse {
+  accessToken: string;
+  userID?: string;
+  expiresIn?: number;
+  signedRequest?: string;
+}
+
+interface FacebookLoginResponse {
+  status: "connected" | "not_authorized" | "unknown";
+  authResponse?: FacebookAuthResponse;
+}
+
+interface FacebookSDK {
+  init(options: {
+    appId: string;
+    cookie?: boolean;
+    xfbml?: boolean;
+    version: string;
+  }): void;
+  login(
+    callback: (response: FacebookLoginResponse) => void,
+    options?: { scope?: string },
+  ): void;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Non-disruptive fix for React error #130                                    */
+/*                                                                            */
+/*  "Element type is invalid ... but got: object" happens when a third-party   */
+/*  component import resolves to a module-namespace / interop wrapper object   */
+/*  instead of the component function itself (common with mixed ESM/CJS        */
+/*  packages under Vite/Rollup production builds).                             */
+/*                                                                            */
+/*  This helper walks `default` / named exports until it finds a callable      */
+/*  component, and returns `null` if none exists so we can render a safe       */
+/*  fallback instead of crashing the whole page.                               */
+/* -------------------------------------------------------------------------- */
+function resolveComponent<Props = Record<string, unknown>>(
+  mod: unknown,
+  exportName: string,
+): ComponentType<Props> | null {
+  const seen = new Set<unknown>();
+  const queue: unknown[] = [mod];
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    if (current == null || seen.has(current)) continue;
+    seen.add(current);
+
+    if (typeof current === "function") {
+      return current as ComponentType<Props>;
+    }
+
+    if (typeof current === "object") {
+      const obj = current as Record<string, unknown>;
+      if (obj[exportName] !== undefined) queue.push(obj[exportName]);
+      if (obj.default !== undefined) queue.push(obj.default);
+    }
+  }
+
+  return null;
+}
+
+const GoogleLogin = resolveComponent<{
+  onSuccess: (r: CredentialResponse) => void;
+  onError: () => void;
+  useOneTap?: boolean;
+  theme?: "outline" | "filled_blue" | "filled_black";
+  size?: "large" | "medium" | "small";
+}>(GoogleAuth, "GoogleLogin");
+
+const FacebookLogin = resolveComponent<{
+  appId: string;
+  onSuccess: (r: SuccessResponse) => void;
+  onFail: (error: unknown) => void;
+  style?: CSSProperties;
+  children?: ReactNode;
+}>(FacebookAuth, "FacebookLogin");
+
+if (import.meta.env.DEV) {
+  if (!GoogleLogin) {
+    console.warn(
+      "[SignUp] Could not resolve `GoogleLogin` from @react-oauth/google. " +
+        "The Google button will be hidden. Check the installed package version.",
+    );
+  }
+  if (!FacebookLogin) {
+    console.warn(
+      "[SignUp] Could not resolve `FacebookLogin` from @greatsumini/react-facebook-login. " +
+        "Falling back to the raw Facebook SDK button.",
+    );
+  }
+}
 
 export default function SignUp() {
   const { t } = useTranslation();
@@ -19,10 +118,11 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
 
-  const update = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm((f) => ({ ...f, [key]: e.target.value }));
+  const update =
+    (key: keyof typeof form) => (e: ChangeEvent<HTMLInputElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(undefined);
     setLoading(true);
@@ -46,19 +146,24 @@ export default function SignUp() {
     }
   }
 
-  const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
+  const handleGoogleSuccess = async (
+    credentialResponse: CredentialResponse,
+  ) => {
     setError(undefined);
     setLoading(true);
     try {
       const idToken = credentialResponse.credential;
-      
+
       if (!idToken) {
         throw new Error("Google credential token is missing.");
       }
 
-      const response = await axios.post("https://www.oam-app.com/api/v1/auth/google/", {
-        token: idToken,
-      });
+      const response = await axios.post(
+        "https://www.oam-app.com/api/v1/auth/google/",
+        {
+          token: idToken,
+        },
+      );
 
       console.log("Google Auth Success:", response.data);
       navigate("/dashboard");
@@ -78,17 +183,47 @@ export default function SignUp() {
         throw new Error("Facebook access token is missing.");
       }
 
-      const backendResponse = await axios.post("https://www.oam-app.com/api/v1/auth/facebook/", {
-        token: accessToken,
-      });
+      const backendResponse = await axios.post(
+        "https://www.oam-app.com/api/v1/auth/facebook/",
+        {
+          token: accessToken,
+        },
+      );
 
       console.log("Facebook Auth Success:", backendResponse.data);
       navigate("/dashboard");
     } catch (err) {
-      setError(apiErrorMessage(err, "Facebook sign-up failed. Please try again."));
+      setError(
+        apiErrorMessage(err, "Facebook sign-up failed. Please try again."),
+      );
     } finally {
       setLoading(false);
     }
+  };
+
+  /* Only used if `FacebookLogin` could not be resolved above. */
+  const handleFacebookFallback = () => {
+    const FB = (window as unknown as { FB?: FacebookSDK }).FB;
+    if (!FB) {
+      setError(
+        "Facebook sign-up is unavailable right now. Please use email sign-up.",
+      );
+      return;
+    }
+
+    const appId = import.meta.env.VITE_FACEBOOK_APP_ID || "";
+    FB.init({ appId, cookie: true, xfbml: false, version: "v19.0" });
+    FB.login(
+      (response) => {
+        const token = response?.authResponse?.accessToken;
+        if (token) {
+          void handleFacebookSuccess({
+            accessToken: token,
+          } as SuccessResponse);
+        }
+      },
+      { scope: "public_profile,email" },
+    );
   };
 
   return (
@@ -100,37 +235,66 @@ export default function SignUp() {
       altLabel={t("auth.signUp.altLabel")}
     >
       <div className="mb-6 space-y-3">
-        <div className="flex justify-center w-full">
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
-            useOneTap
-            theme="outline"
-            size="large"
-          />
-        </div>
+        {GoogleLogin ? (
+          <div className="flex justify-center w-full">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() =>
+                setError("Google sign-in was unsuccessful. Please try again.")
+              }
+              useOneTap
+              theme="outline"
+              size="large"
+            />
+          </div>
+        ) : null}
 
-        <FacebookLogin
-          appId={import.meta.env.VITE_FACEBOOK_APP_ID || ""}
-          onSuccess={handleFacebookSuccess}
-          onFail={(error) => console.log("Facebook Login Failed:", error)}
-          style={{
-            backgroundColor: "#1877f2",
-            color: "#fff",
-            fontSize: "14px",
-            fontWeight: "500",
-            padding: "10px 16px",
-            borderRadius: "4px",
-            border: "none",
-            width: "100%",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          Continue with Facebook
-        </FacebookLogin>
+        {FacebookLogin ? (
+          <FacebookLogin
+            appId={import.meta.env.VITE_FACEBOOK_APP_ID || ""}
+            onSuccess={handleFacebookSuccess}
+            onFail={(error: unknown) =>
+              console.log("Facebook Login Failed:", error)
+            }
+            style={{
+              backgroundColor: "#1877f2",
+              color: "#fff",
+              fontSize: "14px",
+              fontWeight: "500",
+              padding: "10px 16px",
+              borderRadius: "4px",
+              border: "none",
+              width: "100%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Continue with Facebook
+          </FacebookLogin>
+        ) : (
+          <button
+            type="button"
+            onClick={handleFacebookFallback}
+            style={{
+              backgroundColor: "#1877f2",
+              color: "#fff",
+              fontSize: "14px",
+              fontWeight: "500",
+              padding: "10px 16px",
+              borderRadius: "4px",
+              border: "none",
+              width: "100%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Continue with Facebook
+          </button>
+        )}
 
         <div className="relative my-6 flex items-center justify-center">
           <div className="absolute inset-0 flex items-center">
