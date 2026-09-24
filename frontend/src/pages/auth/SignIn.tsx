@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ChangeEvent, ComponentType, FormEvent } from "react";
+import type { ChangeEvent, ComponentType, CSSProperties, FormEvent, ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Field, SubmitButton, FormError } from "./fields";
@@ -14,8 +14,47 @@ import type { SuccessResponse } from "@greatsumini/react-facebook-login";
 import axios from "axios";
 
 /* -------------------------------------------------------------------------- */
+/*  Shared button style — used by both the Google wrapper and the Facebook     */
+/*  button so the two look identical (only the icons keep brand colours).      */
+/* -------------------------------------------------------------------------- */
+const SOCIAL_BUTTON_STYLE: CSSProperties = {
+  backgroundColor: "#ffffff",
+  color: "#3c4043",
+  border: "1px solid #dadce0",
+  borderRadius: "4px",
+  fontSize: "14px",
+  fontWeight: 500,
+  fontFamily: "Roboto, arial, sans-serif",
+  height: "40px",
+  padding: "0 12px",
+  width: "100%",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "8px",
+  boxSizing: "border-box",
+};
+
+function FacebookIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        fill="#1877f2"
+        d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+      />
+    </svg>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Minimal ambient types for the Facebook JS SDK fallback path.               */
-/*  (The primary path uses @greatsumini/react-facebook-login.)                 */
 /* -------------------------------------------------------------------------- */
 interface FacebookAuthResponse {
   accessToken: string;
@@ -44,15 +83,6 @@ interface FacebookSDK {
 
 /* -------------------------------------------------------------------------- */
 /*  Non-disruptive fix for React error #130                                    */
-/*                                                                            */
-/*  "Element type is invalid ... but got: object" happens when a third-party   */
-/*  component import resolves to a module-namespace / interop wrapper object   */
-/*  instead of the component function itself (common with mixed ESM/CJS        */
-/*  packages under Vite/Rollup production builds).                             */
-/*                                                                            */
-/*  This helper walks `default` / named exports until it finds a callable      */
-/*  component, and returns `null` if none exists so we can render a safe       */
-/*  fallback instead of crashing the whole page.                               */
 /* -------------------------------------------------------------------------- */
 function resolveComponent<Props = Record<string, unknown>>(
   mod: unknown,
@@ -86,21 +116,24 @@ const GoogleLogin = resolveComponent<{
   useOneTap?: boolean;
   theme?: "outline" | "filled_blue" | "filled_black";
   size?: "large" | "medium" | "small";
+  shape?: "rectangular" | "pill" | "circle" | "square";
+  text?: "signin_with" | "signup_with" | "continue_with" | "signin";
+  logo_alignment?: "left" | "center";
 }>(GoogleAuth, "GoogleLogin");
 
 const FacebookLogin = resolveComponent<{
   appId: string;
   onSuccess: (r: SuccessResponse) => void;
   onFail: (error: unknown) => void;
-  style?: React.CSSProperties;
-  children?: React.ReactNode;
+  style?: CSSProperties;
+  children?: ReactNode;
 }>(FacebookAuth, "FacebookLogin");
 
 if (import.meta.env.DEV) {
   if (!GoogleLogin) {
     console.warn(
       "[SignIn] Could not resolve `GoogleLogin` from @react-oauth/google. " +
-        "The Google button will be hidden. Check the installed package version.",
+        "The Google button will be hidden.",
     );
   }
   if (!FacebookLogin) {
@@ -157,16 +190,13 @@ export default function SignIn() {
     setLoading(true);
     try {
       const idToken = credentialResponse.credential;
-
       if (!idToken) {
         throw new Error("Google credential token is missing.");
       }
 
       const response = await axios.post(
         "https://www.oam-app.com/api/v1/auth/google/",
-        {
-          token: idToken,
-        },
+        { token: idToken },
       );
 
       console.log("Google Login Success:", response.data);
@@ -189,9 +219,7 @@ export default function SignIn() {
 
       const backendResponse = await axios.post(
         "https://www.oam-app.com/api/v1/auth/facebook/",
-        {
-          token: accessToken,
-        },
+        { token: accessToken },
       );
 
       console.log("Facebook Login Success:", backendResponse.data);
@@ -205,7 +233,6 @@ export default function SignIn() {
     }
   };
 
-  /* Only used if `FacebookLogin` could not be resolved above. */
   const handleFacebookFallback = () => {
     const FB = (window as unknown as { FB?: FacebookSDK }).FB;
     if (!FB) {
@@ -221,7 +248,9 @@ export default function SignIn() {
       (response) => {
         const token = response?.authResponse?.accessToken;
         if (token) {
-          void handleFacebookSuccess({ accessToken: token } as SuccessResponse);
+          void handleFacebookSuccess({
+            accessToken: token,
+          } as SuccessResponse);
         }
       },
       { scope: "public_profile,email" },
@@ -236,10 +265,18 @@ export default function SignIn() {
       altLink="/sign-up"
       altLabel={t("auth.signIn.altLabel")}
     >
-      {/* Social Logins Integration */}
+      {/* Social Logins — both buttons full-width, same height, same outline style */}
       <div className="mb-6 space-y-3">
         {GoogleLogin ? (
-          <div className="flex justify-center w-full">
+          <div
+            className={
+              "w-full flex justify-center " +
+              // Force Google's injected iframe / wrapper to fill width
+              "[&>div]:!w-full [&>div>div]:!w-full " +
+              "[&_.g_id_signin]:!w-full [&_.g_id_signin>*]:!w-full " +
+              "[&_iframe]:!w-full"
+            }
+          >
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
               onError={() =>
@@ -247,7 +284,10 @@ export default function SignIn() {
               }
               useOneTap
               theme="outline"
+              shape="rectangular"
               size="large"
+              text="continue_with"
+              logo_alignment="left"
             />
           </div>
         ) : null}
@@ -259,43 +299,19 @@ export default function SignIn() {
             onFail={(error: unknown) =>
               console.log("Facebook Login Failed:", error)
             }
-            style={{
-              backgroundColor: "#1877f2",
-              color: "#fff",
-              fontSize: "14px",
-              fontWeight: "500",
-              padding: "10px 16px",
-              borderRadius: "4px",
-              border: "none",
-              width: "100%",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={SOCIAL_BUTTON_STYLE}
           >
-            Continue with Facebook
+            <FacebookIcon />
+            <span>Continue with Facebook</span>
           </FacebookLogin>
         ) : (
           <button
             type="button"
             onClick={handleFacebookFallback}
-            style={{
-              backgroundColor: "#1877f2",
-              color: "#fff",
-              fontSize: "14px",
-              fontWeight: "500",
-              padding: "10px 16px",
-              borderRadius: "4px",
-              border: "none",
-              width: "100%",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={SOCIAL_BUTTON_STYLE}
           >
-            Continue with Facebook
+            <FacebookIcon />
+            <span>Continue with Facebook</span>
           </button>
         )}
 
