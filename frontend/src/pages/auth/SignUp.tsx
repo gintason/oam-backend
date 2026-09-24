@@ -1,5 +1,11 @@
 import { useState } from "react";
-import type { ChangeEvent, ComponentType, CSSProperties, FormEvent, ReactNode } from "react";
+import type {
+  ChangeEvent,
+  ComponentType,
+  CSSProperties,
+  FormEvent,
+  ReactNode,
+} from "react";
 import { referralStore } from "../../services/referrals";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
@@ -8,6 +14,7 @@ import { authApi } from "../../auth/authApi";
 import { apiErrorMessage } from "../../lib/api";
 import { useTranslation } from "react-i18next";
 import * as GoogleAuth from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { CredentialResponse } from "@react-oauth/google";
 import * as FacebookAuth from "@greatsumini/react-facebook-login";
 import type { SuccessResponse } from "@greatsumini/react-facebook-login";
@@ -128,11 +135,25 @@ const FacebookLogin = resolveComponent<{
   children?: ReactNode;
 }>(FacebookAuth, "FacebookLogin");
 
+/* -------------------------------------------------------------------------- */
+/*  Google OAuth client id — read once so we can safely hide the button if     */
+/*  the env var is missing (the provider would throw at render otherwise).     */
+/* -------------------------------------------------------------------------- */
+const GOOGLE_CLIENT_ID: string =
+  (import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined) ?? "";
+
+const GOOGLE_READY = Boolean(GoogleLogin) && GOOGLE_CLIENT_ID.length > 0;
+
 if (import.meta.env.DEV) {
   if (!GoogleLogin) {
     console.warn(
       "[SignUp] Could not resolve `GoogleLogin` from @react-oauth/google. " +
         "The Google button will be hidden.",
+    );
+  } else if (!GOOGLE_CLIENT_ID) {
+    console.warn(
+      "[SignUp] `VITE_GOOGLE_CLIENT_ID` is not set. The Google button will be hidden. " +
+        "Add it to your .env file to enable Google sign-up.",
     );
   }
   if (!FacebookLogin) {
@@ -260,30 +281,42 @@ export default function SignUp() {
       altLink="/sign-in"
       altLabel={t("auth.signUp.altLabel")}
     >
-      {/* Social Logins — matching Google & Facebook buttons */}
+      {/* Social Logins — Google and Facebook buttons share the same style */}
       <div className="mb-6 space-y-3">
-        {GoogleLogin ? (
-          <div
-            className={
-              "w-full flex justify-center " +
-              "[&>div]:!w-full [&>div>div]:!w-full " +
-              "[&_.g_id_signin]:!w-full [&_.g_id_signin>*]:!w-full " +
-              "[&_iframe]:!w-full"
-            }
-          >
-            <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={() =>
-                setError("Google sign-in was unsuccessful. Please try again.")
+        {GOOGLE_READY ? (
+          /*
+           * GoogleOAuthProvider is required by @react-oauth/google.
+           * If you already have it at the app root (main.tsx / App.tsx),
+           * you can safely remove this wrapper — the outer provider will
+           * be used instead and this nested one becomes redundant.
+           */
+          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            <div
+              className={
+                "w-full flex justify-center " +
+                "[&>div]:!w-full [&>div>div]:!w-full " +
+                "[&_.g_id_signin]:!w-full [&_.g_id_signin>*]:!w-full " +
+                "[&_iframe]:!w-full"
               }
-              useOneTap
-              theme="outline"
-              shape="rectangular"
-              size="large"
-              text="continue_with"
-              logo_alignment="left"
-            />
-          </div>
+            >
+              {GoogleLogin ? (
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={() =>
+                    setError(
+                      "Google sign-in was unsuccessful. Please try again.",
+                    )
+                  }
+                  useOneTap
+                  theme="outline"
+                  shape="rectangular"
+                  size="large"
+                  text="continue_with"
+                  logo_alignment="left"
+                />
+              ) : null}
+            </div>
+          </GoogleOAuthProvider>
         ) : null}
 
         {FacebookLogin ? (
