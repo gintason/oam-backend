@@ -64,6 +64,8 @@ export default function Transfer() {
   const walletSend = useMutation({
     mutationFn: () => transferApi.send({ identifier: identifier.trim(), amount: Number(amount), note: note.trim(), pin }),
     onSuccess: (w) => {
+      const ref = (w as { reference?: string })?.reference;
+      if (!ref) { setError(t("xferwallet.errFailed", "Transfer could not be confirmed. Please check your wallet before retrying.")); return; }
       queryClient.invalidateQueries({ queryKey: ["wallet"] });
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
@@ -74,7 +76,7 @@ export default function Transfer() {
         senderSub: "OAM Wallet",
         type: "Wallet Transfer",
         note: note.trim() || undefined,
-        reference: (w as { reference?: string }).reference ?? "",
+        reference: ref,
       });
       setDone(t("xferwallet.sent", "₦{{amount}} sent to {{name}}.", { amount: Number(amount).toLocaleString(), name: resolved.data?.name ?? "" }));
       setAmount(""); setPin(""); setNote("");
