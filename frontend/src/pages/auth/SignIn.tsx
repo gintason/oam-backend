@@ -8,6 +8,8 @@ import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
 import { GoogleLogin } from "@react-oauth/google";
 import type { CredentialResponse } from "@react-oauth/google";
+import FacebookLogin from "@greatsumini/react-facebook-login";
+import type { SuccessResponse } from "@greatsumini/react-facebook-login";
 import axios from "axios";
 
 export default function SignIn() {
@@ -53,18 +55,36 @@ export default function SignIn() {
         throw new Error("Google credential token is missing.");
       }
 
-      // POST the Google ID token to your Django backend verification endpoint
       const response = await axios.post("https://www.oam-app.com/api/v1/auth/google/", {
         token: idToken,
       });
 
       console.log("Google Login Success:", response.data);
-      
-      // TODO: If your backend returns JWT tokens on social login, 
-      // ensure your AuthContext updates its state, then navigate to destination
       navigate(from, { replace: true });
     } catch (err) {
       setError(apiErrorMessage(err, "Google sign-in failed. Please try again."));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFacebookSuccess = async (response: SuccessResponse) => {
+    setError(undefined);
+    setLoading(true);
+    try {
+      const accessToken = response.accessToken;
+      if (!accessToken) {
+        throw new Error("Facebook access token is missing.");
+      }
+
+      const backendResponse = await axios.post("https://www.oam-app.com/api/v1/auth/facebook/", {
+        token: accessToken,
+      });
+
+      console.log("Facebook Login Success:", backendResponse.data);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(apiErrorMessage(err, "Facebook sign-in failed. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -78,16 +98,40 @@ export default function SignIn() {
       altLink="/sign-up"
       altLabel={t("auth.signIn.altLabel")}
     >
-      {/* Google Sign-In Button Integration */}
-      <div className="mb-6">
-        <GoogleLogin
-          onSuccess={handleGoogleSuccess}
-          onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
-          useOneTap
-          theme="outline"
-          size="large"
-          width="100%"
-        />
+      {/* Social Logins Integration */}
+      <div className="mb-6 space-y-3">
+        <div className="flex justify-center w-full">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
+            useOneTap
+            theme="outline"
+            size="large"
+          />
+        </div>
+
+        <FacebookLogin
+          appId={import.meta.env.VITE_FACEBOOK_APP_ID || ""}
+          onSuccess={handleFacebookSuccess}
+          onFail={(error) => console.log("Facebook Login Failed:", error)}
+          style={{
+            backgroundColor: "#1877f2",
+            color: "#fff",
+            fontSize: "14px",
+            fontWeight: "500",
+            padding: "10px 16px",
+            borderRadius: "4px",
+            border: "none",
+            width: "100%",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          Continue with Facebook
+        </FacebookLogin>
+
         <div className="relative my-6 flex items-center justify-center">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-200" />

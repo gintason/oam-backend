@@ -100,14 +100,15 @@ export default function SignUp() {
       altLabel={t("auth.signUp.altLabel")}
     >
       <div className="mb-6 space-y-3">
-        <GoogleLogin
-          onSuccess={handleGoogleSuccess}
-          onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
-          useOneTap
-          theme="outline"
-          size="large"
-          width="100%"
-        />
+        <div className="flex justify-center w-full">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
+            useOneTap
+            theme="outline"
+            size="large"
+          />
+        </div>
 
         <FacebookLogin
           appId={import.meta.env.VITE_FACEBOOK_APP_ID || ""}
