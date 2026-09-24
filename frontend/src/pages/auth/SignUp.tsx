@@ -8,6 +8,8 @@ import { apiErrorMessage } from "../../lib/api";
 import { useTranslation } from "react-i18next";
 import { GoogleLogin } from "@react-oauth/google";
 import type { CredentialResponse } from "@react-oauth/google";
+import FacebookLogin from "@greatsumini/react-facebook-login";
+import type { SuccessResponse } from "@greatsumini/react-facebook-login";
 import axios from "axios";
 
 export default function SignUp() {
@@ -67,6 +69,28 @@ export default function SignUp() {
     }
   };
 
+  const handleFacebookSuccess = async (response: SuccessResponse) => {
+    setError(undefined);
+    setLoading(true);
+    try {
+      const accessToken = response.accessToken;
+      if (!accessToken) {
+        throw new Error("Facebook access token is missing.");
+      }
+
+      const backendResponse = await axios.post("https://www.oam-app.com/api/v1/auth/facebook/", {
+        token: accessToken,
+      });
+
+      console.log("Facebook Auth Success:", backendResponse.data);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(apiErrorMessage(err, "Facebook sign-up failed. Please try again."));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AuthLayout
       title={t("auth.signUp.title")}
@@ -75,7 +99,7 @@ export default function SignUp() {
       altLink="/sign-in"
       altLabel={t("auth.signUp.altLabel")}
     >
-      <div className="mb-6">
+      <div className="mb-6 space-y-3">
         <GoogleLogin
           onSuccess={handleGoogleSuccess}
           onError={() => setError("Google sign-in was unsuccessful. Please try again.")}
@@ -84,6 +108,29 @@ export default function SignUp() {
           size="large"
           width="100%"
         />
+
+        <FacebookLogin
+          appId={import.meta.env.VITE_FACEBOOK_APP_ID || ""}
+          onSuccess={handleFacebookSuccess}
+          onFail={(error) => console.log("Facebook Login Failed:", error)}
+          style={{
+            backgroundColor: "#1877f2",
+            color: "#fff",
+            fontSize: "14px",
+            fontWeight: "500",
+            padding: "10px 16px",
+            borderRadius: "4px",
+            border: "none",
+            width: "100%",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          Continue with Facebook
+        </FacebookLogin>
+
         <div className="relative my-6 flex items-center justify-center">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-200" />
