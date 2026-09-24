@@ -105,6 +105,18 @@ class WithdrawalService:
                                metadata={"withdrawal": str(order.id), "fee": str(fee)})
             order.status = WithdrawalOrder.Status.PROCESSING
             order.save(update_fields=["status", "updated_at"])
+
+        # Notify the user (outside the atomic block — money is already held).
+        try:
+            from apps.notifications.services import notify
+            bank = getattr(bank_account, "bank_name", "") or "your bank"
+            acct = getattr(bank_account, "account_number", "") or ""
+            notify(user, kind="wallet_debit", title="Withdrawal processing",
+                   body=f"Your withdrawal of {currency.upper()} {Decimal(str(amount)):,.2f} to {bank} ({acct}) is processing.",
+                   data={"amount": str(amount), "currency": currency.upper(), "reference": order.reference},
+                   email=True)
+        except Exception:
+            pass
         return order
 
     @staticmethod

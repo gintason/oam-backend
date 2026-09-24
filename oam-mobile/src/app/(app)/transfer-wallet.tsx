@@ -12,18 +12,22 @@ import { useWallets, pickHeadline } from "@/features/wallet";
 import { transferApi } from "@/features/wallet/api/transfer-api";
 import { TransactionPinModal } from "@/features/wallet/ui/TransactionPinModal";
 import { useTranslation } from "react-i18next";
+import { useAuthStore } from "@/features/auth";
+import { ReceiptScreen, type MobileReceipt } from "@/features/receipts/ReceiptScreen";
+import { formatReceiptDate } from "@/features/receipts/format-receipt-date";
 
 export default function TransferWallet() {
   const router = useRouter();
   const { t } = useTranslation();
   const qc = useQueryClient();
   const balance = Number(pickHeadline(useWallets().data?.wallets)?.balance ?? 0);
+  const user = useAuthStore((s) => s.user);
 
   const [identifier, setIdentifier] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState<string | null>(null);
+  const [receipt, setReceipt] = useState<MobileReceipt | null>(null);
   const [pinOpen, setPinOpen] = useState(false);
 
   // Resolve the recipient by email/phone so the sender sees the name before sending.
@@ -38,9 +42,20 @@ export default function TransferWallet() {
   const send = useMutation({
     mutationFn: (pin: string) => transferApi.send({ identifier: identifier.trim(), amount: Number(amount), note: note.trim(), pin }),
     onSuccess: (trf) => {
+      if (!trf?.reference) { setError(t("transfer.wallet.errFailed", "Transfer couldn't be confirmed. Check your wallet before retrying.")); return; }
       qc.invalidateQueries({ queryKey: ["wallets"] });
       qc.invalidateQueries({ queryKey: ["transactions"] });
-      setDone(trf.reference || "ok");
+      setReceipt({
+        amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+        date: formatReceiptDate(new Date()),
+        recipientName: resolved.data?.name ?? "",
+        recipientSub: "OAM Wallet" + (identifier.includes("@") ? ` · ${identifier}` : ""),
+        senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
+        senderSub: "OAM Wallet",
+        type: "Wallet Transfer",
+        note: note.trim() || undefined,
+        reference: trf.reference,
+      });
     },
     onError: (err) => setError(apiErrorMessage(err, t("transfer.wallet.errFailed", "Transfer failed. Try again."))),
   });
@@ -55,19 +70,8 @@ export default function TransferWallet() {
     setPinOpen(true);
   }
 
-  if (done) {
-    return (
-      <Screen edges={["top"]}>
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
-          <CheckCircle2 size={54} color={colors.brand.green} />
-          <Text variant="heading" style={{ marginTop: 12 }}>{t("transfer.wallet.sentTitle", "Money sent!")}</Text>
-          <Text variant="body" color="muted" style={{ marginTop: 4, textAlign: "center" }}>
-            {naira(Number(amount))} {t("transfer.wallet.sentTo", "to")} {resolved.data?.name}
-          </Text>
-          <Button title={t("common.done", "Done")} onPress={() => router.back()} style={{ marginTop: 20, alignSelf: "stretch" }} />
-        </View>
-      </Screen>
-    );
+  if (receipt) {
+    return <ReceiptScreen data={receipt} onBack={() => router.replace("/home")} />;
   }
 
   return (

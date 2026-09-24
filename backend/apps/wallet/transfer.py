@@ -27,7 +27,7 @@ from decimal import Decimal, InvalidOperation
 from django.conf import settings
 from django.db import IntegrityError, models, transaction
 from rest_framework import serializers, status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -163,18 +163,27 @@ class TransferService:
         # inside the atomic block is unsafe: a notifications write failure would
         # poison the transaction and roll back the transfer. on_commit guarantees
         # the money is already durably saved before we ever touch notifications.
-        def _notify_recipient():
+        to_name = _display_name(recipient)
+        def _notify_parties():
             try:
                 from apps.notifications.services import notify
+                # recipient: money received
                 notify(
                     recipient, kind="wallet_credit", title="Money received",
                     body=f"You received {currency} {amt:,.2f} from {from_name}." + (f" Note: {note}" if note else ""),
                     data={"amount": str(amt), "currency": currency, "from": from_name, "reference": reference},
                     email=True,
                 )
+                # sender: money sent
+                notify(
+                    sender, kind="wallet_debit", title="Transfer sent",
+                    body=f"You sent {currency} {amt:,.2f} to {to_name}." + (f" Note: {note}" if note else ""),
+                    data={"amount": str(amt), "currency": currency, "to": to_name, "reference": reference},
+                    email=True,
+                )
             except Exception:
                 pass
-        transaction.on_commit(_notify_recipient)
+        transaction.on_commit(_notify_parties)
 
         return trf
 
@@ -285,3 +294,45 @@ class TransferHistoryView(APIView):
                 qs, many=True, context={"user": request.user}
             ).data
         })
+
+
+
+class PublicReceiptView(APIView):
+    """Public, read-only receipt for a transaction reference — powers the shareable
+    link (oam-app.com/receipt/<reference>). References are unguessable, and only
+    non-sensitive fields are returned (names, amount, masked bank tail, reference)."""
+    permission_classes = [AllowAny]
+
+    def get(self, request, reference):
+        ref = (reference or "").strip().upper()
+
+        trf = WalletTransfer.objects.select_related("sender", "recipient").filter(reference=ref).first()
+        if trf:
+            return Response({
+                "amount": f"{trf.amount:,.2f}", "currency": trf.currency,
+                "status": "Successful Transaction", "date": trf.created_at.isoformat(),
+                "recipientName": _display_name(trf.recipient), "recipientSub": "OAM Wallet",
+                "senderName": _display_name(trf.sender), "senderSub": "OAM Wallet",
+                "type": "Wallet Transfer", "note": trf.note or "", "reference": trf.reference,
+            })
+
+        try:
+            from apps.payouts.models import Withdrawal
+            wd = Withdrawal.objects.select_related("bank_account", "user").filter(reference=ref).first()
+        except Exception:
+            wd = None
+        if wd:
+            ba = getattr(wd, "bank_account", None)
+            last4 = (ba.account_number or "")[-4:] if ba and ba.account_number else ""
+            ok = str(wd.status).lower() in ("success", "successful", "completed", "paid")
+            return Response({
+                "amount": f"{Decimal(str(wd.amount)):,.2f}", "currency": "NGN",
+                "status": "Successful Transaction" if ok else str(wd.status).title(),
+                "date": wd.created_at.isoformat(),
+                "recipientName": (ba.account_name if ba else "Bank account"),
+                "recipientSub": (f"{ba.bank_name} \u00b7 ****{last4}" if ba else ""),
+                "senderName": _display_name(wd.user), "senderSub": "OAM Wallet",
+                "type": "Withdrawal", "reference": wd.reference,
+            })
+
+        return Response({"detail": "Receipt not found."}, status=404)

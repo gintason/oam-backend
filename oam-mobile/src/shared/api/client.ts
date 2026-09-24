@@ -29,8 +29,18 @@ const bare = axios.create({
 
 // ---- attach access token ---------------------------------------------------
 api.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
-  const token = await tokenVault.getAccess();
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  // Never send an old token to the unauthenticated auth endpoints — a stale token
+  // in the header makes the backend reject the whole request ("Given token not
+  // valid for any token type") before login/register/refresh can even run.
+  const u = config.url ?? "";
+  const isAuthCall =
+    u.includes("/auth/login/") || u.includes("/auth/register/") ||
+    u.includes("/auth/token/refresh/") || u.includes("/auth/verify") ||
+    u.includes("/auth/password") || u.includes("/auth/otp");
+  if (!isAuthCall) {
+    const token = await tokenVault.getAccess();
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
@@ -43,7 +53,7 @@ async function refreshAccessToken(): Promise<string | null> {
   try {
     const { data } = await bare.post<{ access: string; refresh?: string }>("/auth/token/refresh/", { refresh });
     await tokenVault.setAccess(data.access);
-    if (data.refresh) await tokenVault.setRefresh(data.refresh);
+    if (data.refresh) await tokenVault.setRefresh(data.refresh);   // rotation-safe
     return data.access;
   } catch {
     return null;

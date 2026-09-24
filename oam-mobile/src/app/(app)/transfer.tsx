@@ -12,6 +12,8 @@ import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
 import { payoutsApi, type BankAccount } from "@/features/wallet/api/payouts-api";
 import { useTranslation } from "react-i18next";
+import { ReceiptScreen, type MobileReceipt } from "@/features/receipts/ReceiptScreen";
+import { formatReceiptDate } from "@/features/receipts/format-receipt-date";
 
 export default function Transfer() {
   const router = useRouter();
@@ -25,6 +27,7 @@ export default function Transfer() {
   const [amount, setAmount] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
+  const [receipt, setReceipt] = useState<MobileReceipt | null>(null);
   const [adding, setAdding] = useState(false);
 
   const wallets = useWallets();
@@ -47,6 +50,20 @@ export default function Transfer() {
       }
       setError(null);
       const pending = w.status === "pending" || w.status === "processing";
+      if (w.reference) {
+        setReceipt({
+          amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+          date: formatReceiptDate(new Date()),
+          status: pending ? "Processing" : "Successful Transaction",
+          recipientName: w.account_name || t("withdraw.yourBank"),
+          recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
+          senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
+          senderSub: "OAM Wallet",
+          type: "Bank Transfer",
+          reference: w.reference,
+        });
+        return;
+      }
       setDone(pending
         ? t("xferbank.onWay", "₦{{amount}} is on its way to {{name}}.", { amount: Number(amount).toLocaleString(), name: w.account_name || t("withdraw.yourBank") })
         : t("xferbank.completed", "₦{{amount}} sent successfully.", { amount: Number(amount).toLocaleString() }));
@@ -79,6 +96,10 @@ export default function Transfer() {
   const fee = amt >= 500 ? 25 : 10;
   const total = amt > 0 ? amt + fee : 0;
   const overBalance = Boolean(amount) && total > balance;
+
+  if (receipt) {
+    return <ReceiptScreen data={receipt} onBack={() => router.replace("/home")} />;
+  }
 
   if (mode === "choose") {
     return (
