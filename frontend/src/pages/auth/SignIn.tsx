@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Field, SubmitButton, FormError } from "./fields";
 import { useAuth } from "../../auth/AuthContext";
+import { signInWithGoogle, signInWithFacebook, SocialAuthCancelled, enabledProviders } from "../../auth/socialSdk";
 import { apiErrorMessage } from "../../lib/api";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
@@ -55,6 +56,17 @@ function FacebookIcon() {
         fill="#1877f2"
         d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
       />
+    </svg>
+  );
+}
+
+function GoogleIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/>
+      <path fill="#FBBC05" d="M5.84 14.09a6.6 6.6 0 0 1 0-4.18V7.07H2.18a11 11 0 0 0 0 9.86l3.66-2.84z"/>
+      <path fill="#EA4335" d="M12 4.75c1.62 0 3.07.56 4.21 1.64l3.15-3.15C17.45 1.4 14.97.5 12 .5A11 11 0 0 0 2.18 7.07L5.84 9.91C6.71 7.31 9.14 4.75 12 4.75z"/>
     </svg>
   );
 }
@@ -214,7 +226,12 @@ export default function SignIn() {
         throw new Error("Google credential token is missing.");
       }
 
-      await socialLogin("google", idToken);
+      const response = await axios.post(
+        "https://www.oam-app.com/api/v1/auth/google/",
+        { token: idToken },
+      );
+
+      console.log("Google Login Success:", response.data);
       navigate(from, { replace: true });
     } catch (err) {
       setError(apiErrorMessage(err, "Google sign-in failed. Please try again."));
@@ -232,7 +249,12 @@ export default function SignIn() {
         throw new Error("Facebook access token is missing.");
       }
 
-      await socialLogin("facebook", accessToken);
+      const backendResponse = await axios.post(
+        "https://www.oam-app.com/api/v1/auth/facebook/",
+        { token: accessToken },
+      );
+
+      console.log("Facebook Login Success:", backendResponse.data);
       navigate(from, { replace: true });
     } catch (err) {
       setError(
@@ -267,6 +289,30 @@ export default function SignIn() {
     );
   };
 
+  async function onGoogle() {
+    setError(undefined);
+    setLoading(true);
+    try {
+      const token = await signInWithGoogle();
+      await socialLogin("google", token);
+      navigate(from, { replace: true });
+    } catch (e) {
+      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Google sign-in failed. Please try again."));
+    } finally { setLoading(false); }
+  }
+  async function onFacebook() {
+    setError(undefined);
+    setLoading(true);
+    try {
+      const token = await signInWithFacebook();
+      await socialLogin("facebook", token);
+      navigate(from, { replace: true });
+    } catch (e) {
+      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Facebook sign-in failed. Please try again."));
+    } finally { setLoading(false); }
+  }
+
+
   return (
     <AuthLayout
       title={t("auth.signIn.title")}
@@ -275,62 +321,16 @@ export default function SignIn() {
       altLink="/sign-up"
       altLabel={t("auth.signIn.altLabel")}
     >
-      {/* Social Logins — Google and Facebook buttons share the same style */}
+      {/* Social Logins */}
       <div className="mb-6 space-y-3">
-        {GOOGLE_READY ? (
-          /*
-           * GoogleOAuthProvider is required by @react-oauth/google.
-           * If you already have it at the app root (main.tsx / App.tsx),
-           * you can safely remove this wrapper — the outer provider will
-           * be used instead and this nested one becomes redundant.
-           */
-          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <div
-              className={
-                "w-full flex justify-center " +
-                "[&>div]:!w-full [&>div>div]:!w-full " +
-                "[&_.g_id_signin]:!w-full [&_.g_id_signin>*]:!w-full " +
-                "[&_iframe]:!w-full"
-              }
-            >
-              {GoogleLogin ? (
-                <GoogleLogin
-                  onSuccess={handleGoogleSuccess}
-                  onError={() =>
-                    setError(
-                      "Google sign-in was unsuccessful. Please try again.",
-                    )
-                  }
-                  useOneTap
-                  theme="outline"
-                  shape="rectangular"
-                  size="large"
-                  text="continue_with"
-                  logo_alignment="left"
-                />
-              ) : null}
-            </div>
-          </GoogleOAuthProvider>
-        ) : null}
-
-        {FacebookLogin ? (
-          <FacebookLogin
-            appId={import.meta.env.VITE_FACEBOOK_APP_ID || ""}
-            onSuccess={handleFacebookSuccess}
-            onFail={(error: unknown) =>
-              console.log("Facebook Login Failed:", error)
-            }
-            style={SOCIAL_BUTTON_STYLE}
-          >
-            <FacebookIcon />
-            <span>Continue with Facebook</span>
-          </FacebookLogin>
-        ) : (
-          <button
-            type="button"
-            onClick={handleFacebookFallback}
-            style={SOCIAL_BUTTON_STYLE}
-          >
+        {enabledProviders.google && (
+          <button type="button" onClick={onGoogle} disabled={loading} style={SOCIAL_BUTTON_STYLE}>
+            <GoogleIcon />
+            <span>Continue with Google</span>
+          </button>
+        )}
+        {enabledProviders.facebook && (
+          <button type="button" onClick={onFacebook} disabled={loading} style={SOCIAL_BUTTON_STYLE}>
             <FacebookIcon />
             <span>Continue with Facebook</span>
           </button>
