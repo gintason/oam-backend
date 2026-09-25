@@ -12,7 +12,7 @@ import { useUserScope } from "../../auth/useUserScope";
 import { marketplaceApi, SELLER_TIERS } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
-import { naira, friendlyTime } from "../../lib/format";
+import { naira, friendlyTime, money } from "../../lib/format";
 import { pricingApi } from "../../services/pricing";
 import { useCurrency, CURRENCIES, type CurrencyCode } from "../../currency/CurrencyContext";
 import { useTranslation } from "react-i18next";
@@ -324,7 +324,7 @@ export default function SellDashboard() {
                     <div className="min-w-0 flex-1">
                       <p className="line-clamp-1 text-[13.5px] font-medium text-ink">{l.title}</p>
                       <p className="tabular text-[13px] font-semibold text-brand-red">
-                        {naira(l.price)}
+                        {money(l.price, l.currency)}
                       </p>
                       <p className="flex items-center gap-1.5 text-[11px] text-muted">
                         {friendlyTime(l.created_at)}

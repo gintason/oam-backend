@@ -20,6 +20,14 @@ import { useTranslation } from "react-i18next";
 const MAX_IMAGES = Infinity;
 const MAX_VIDEOS = 2;
 
+const LISTING_CURRENCIES = [
+  { code: "NGN", symbol: "₦" },
+  { code: "USD", symbol: "$" },
+  { code: "GBP", symbol: "£" },
+  { code: "EUR", symbol: "€" },
+];
+const CUR_SYMBOL: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
+
 const EMPTY: ListingWrite = {
   category: "", title: "", description: "", price: "", currency: "NGN",
   negotiable: false, condition: "used", location: "",
@@ -221,13 +229,24 @@ export default function PostListing() {
           </Field>
 
           <div className="grid gap-3.5 sm:grid-cols-2">
-            <Field label={t("marketplace.post.price")}>
-              <Input value={form.price} inputMode="numeric"
-                     onChange={(v) => set("price", v.replace(/\D/g, ""))}
-                     placeholder={t("marketplace.post.pricePlaceholder")} />
+            <Field label={t("marketplace.post.priceLabel", "Price")}>
+              <div className="flex gap-2">
+                <select
+                  value={form.currency}
+                  onChange={(e) => set("currency", e.target.value)}
+                  className="h-11 rounded-xl border border-hairline bg-paper px-2 text-[14px] text-ink outline-none focus:border-brand-green"
+                >
+                  {LISTING_CURRENCIES.map((c) => <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>)}
+                </select>
+                <div className="flex-1">
+                  <Input value={form.price} inputMode="numeric"
+                         onChange={(v) => set("price", v.replace(/\D/g, ""))}
+                         placeholder={t("marketplace.post.pricePlaceholder")} />
+                </div>
+              </div>
               {form.price && (
                 <p className="mt-1 text-[12px] font-semibold text-brand-red">
-                  {naira(form.price)}
+                  {CUR_SYMBOL[form.currency] ?? ""}{Number(form.price).toLocaleString()}
                 </p>
               )}
             </Field>

@@ -13,7 +13,7 @@ import { useDebounced } from "../../hooks/useDebounced";
 import {
   marketplaceApi, CONDITIONS, type ListingListItem,
 } from "../../services/marketplace";
-import { naira, friendlyTime } from "../../lib/format";
+import { naira, friendlyTime, money } from "../../lib/format";
 import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
@@ -276,7 +276,7 @@ function Card({ listing }: { listing: ListingListItem }) {
         <div className="p-3.5">
           <p className="line-clamp-1 text-[14px] font-semibold text-ink">{listing.title}</p>
           <p className="mt-0.5 text-[16px] font-bold text-brand-red tabular">
-            {naira(listing.price)}
+            {money(listing.price, listing.currency)}
             {listing.negotiable && (
               <span className="ml-1.5 text-[11px] font-medium text-muted">{t("marketplace.negotiable")}</span>
             )}

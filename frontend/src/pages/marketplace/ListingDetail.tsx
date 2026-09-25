@@ -11,7 +11,7 @@ import { useUserScope } from "../../auth/useUserScope";
 import { marketplaceApi } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
-import { naira, friendlyTime } from "../../lib/format";
+import { naira, friendlyTime, money } from "../../lib/format";
 import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
@@ -117,7 +117,7 @@ export default function ListingDetail() {
                   {l.title}
                 </h1>
                 <p className="mt-1 text-2xl font-bold text-brand-red tabular">
-                  {naira(l.price)}
+                  {money(l.price, l.currency)}
                   {l.negotiable && (
                     <span className="ml-2 text-[12px] font-medium text-muted">{t("marketplace.negotiable")}</span>
                   )}
