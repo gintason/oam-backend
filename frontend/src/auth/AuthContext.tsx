@@ -11,6 +11,7 @@ type AuthState = {
   isAuthenticated: boolean;
   isVerified: boolean;
   login: (identifier: string, password: string) => Promise<User>;
+  socialLogin: (provider: "google" | "facebook" | "apple", token: string) => Promise<User>;
   register: Parameters<typeof authApi.register>[0] extends infer P
     ? (input: P & Record<string, unknown>) => Promise<User>
     : never;
@@ -80,6 +81,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return user;
   }, [resetCache]);
 
+  const socialLogin = useCallback(async (provider: "google" | "facebook" | "apple", token: string) => {
+    resetCache();
+    const { user } = await authApi.social(provider, { token });
+    setUser(user);
+    resetCache();
+    return user;
+  }, [resetCache]);
+
   const register = useCallback(async (input: Record<string, unknown>) => {
     resetCache();
     const { user } = await authApi.register(input as never);
@@ -112,6 +121,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isAuthenticated: Boolean(user),
     isVerified: Boolean(user?.is_verified),
     login,
+    socialLogin,
     register: register as AuthState["register"],
     verifyOtp,
     logout,

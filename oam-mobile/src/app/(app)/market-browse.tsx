@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Search, SlidersHorizontal, Star, X } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
-import { naira } from "@/shared/lib/format";
+import { naira, money } from "@/shared/lib/format";
 import { useDebounced } from "@/shared/hooks/use-debounced";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { CONDITIONS } from "@/entities/marketplace";
@@ -95,7 +95,7 @@ export default function MarketBrowse() {
                 </View>
                 <View style={{ padding: 10 }}>
                   <Text variant="label" color="ink" numberOfLines={1}>{l.title}</Text>
-                  <Text variant="label" color="red" style={{ marginTop: 2 }}>{naira(l.price)}{l.negotiable ? <Text variant="caption" color="muted"> · {t("marketplace.negotiable")}</Text> : null}</Text>
+                  <Text variant="label" color="red" style={{ marginTop: 2 }}>{money(l.price, l.currency)}{l.negotiable ? <Text variant="caption" color="muted"> · {t("marketplace.negotiable")}</Text> : null}</Text>
                   {l.location ? <Text variant="caption" color="muted" numberOfLines={1} style={{ marginTop: 2 }}>{l.location}</Text> : null}
                 </View>
               </Pressable>

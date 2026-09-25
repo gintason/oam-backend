@@ -17,6 +17,13 @@ import { CONDITIONS, type ListingWrite } from "@/entities/marketplace";
 import { catLabel } from "@/shared/i18n/labels";
 
 const MAX_IMAGES = 5;
+const LISTING_CURRENCIES = [
+  { code: "NGN", symbol: "₦" },
+  { code: "USD", symbol: "$" },
+  { code: "GBP", symbol: "£" },
+  { code: "EUR", symbol: "€" },
+];
+
 const EMPTY: ListingWrite = { category: "", title: "", description: "", price: "", currency: "NGN", negotiable: false, condition: "used", location: "", contact_phone: "", contact_whatsapp: "", images: [], videos: [] };
 
 export default function PostListing() {
@@ -179,8 +186,20 @@ export default function PostListing() {
             style={{ marginBottom: 14, minHeight: 90, borderRadius: 12, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, padding: 12, fontFamily: fonts.regular, fontSize: 15, color: colors.ink, textAlignVertical: "top" }}
           />
 
+          <Text variant="label" style={{ marginBottom: 8 }}>{t("marketplace.post.currency", "Currency")}</Text>
+          <View style={{ flexDirection: "row", gap: 8, marginBottom: 14 }}>
+            {LISTING_CURRENCIES.map((c) => {
+              const sel = form.currency === c.code;
+              return (
+                <Pressable key={c.code} onPress={() => set("currency", c.code)} style={{ flex: 1, height: 42, borderRadius: 10, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.10)" : colors.paper }}>
+                  <Text variant="caption" color={sel ? "green" : "ink"}>{c.symbol} {c.code}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+
           <View style={{ flexDirection: "row", gap: 12 }}>
-            <View style={{ flex: 1 }}><Input label={t("marketplace.post.price")} value={form.price} onChangeText={(v) => set("price", v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder={t("marketplace.post.pricePlaceholder")} /></View>
+            <View style={{ flex: 1 }}><Input label={`${t("marketplace.post.priceLabel", "Price")} (${LISTING_CURRENCIES.find((c) => c.code === form.currency)?.symbol ?? "₦"})`} value={form.price} onChangeText={(v) => set("price", v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder={t("marketplace.post.pricePlaceholder")} /></View>
             <View style={{ flex: 1 }}><Input label={t("marketplace.post.location")} value={form.location} onChangeText={(v) => set("location", v)} placeholder={t("marketplace.post.locationPlaceholder")} /></View>
           </View>
 

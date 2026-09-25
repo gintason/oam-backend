@@ -166,7 +166,7 @@ if (import.meta.env.DEV) {
 
 export default function SignIn() {
   const { t } = useTranslation();
-  const { login } = useAuth();
+  const { login, socialLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from =
@@ -214,12 +214,7 @@ export default function SignIn() {
         throw new Error("Google credential token is missing.");
       }
 
-      const response = await axios.post(
-        "https://www.oam-app.com/api/v1/auth/google/",
-        { token: idToken },
-      );
-
-      console.log("Google Login Success:", response.data);
+      await socialLogin("google", idToken);
       navigate(from, { replace: true });
     } catch (err) {
       setError(apiErrorMessage(err, "Google sign-in failed. Please try again."));
@@ -237,12 +232,7 @@ export default function SignIn() {
         throw new Error("Facebook access token is missing.");
       }
 
-      const backendResponse = await axios.post(
-        "https://www.oam-app.com/api/v1/auth/facebook/",
-        { token: accessToken },
-      );
-
-      console.log("Facebook Login Success:", backendResponse.data);
+      await socialLogin("facebook", accessToken);
       navigate(from, { replace: true });
     } catch (err) {
       setError(

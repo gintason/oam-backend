@@ -7,7 +7,7 @@ import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star } from "luc
 import { Screen, Text } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
-import { naira, shortDate } from "@/shared/lib/format";
+import { naira, shortDate, money } from "@/shared/lib/format";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { CONDITIONS } from "@/entities/marketplace";
@@ -76,7 +76,7 @@ export default function Listing() {
             <View style={{ marginTop: 16 }}>
               <Text variant="heading" style={{ fontSize: 20 }}>{l.title}</Text>
               <Text style={{ marginTop: 4, fontFamily: fonts.bold, fontSize: 24, color: colors.brand.red }}>
-                {naira(l.price)}{l.negotiable ? <Text variant="caption" color="muted">{"  "}{t("marketplace.negotiable")}</Text> : null}
+                {money(l.price, l.currency)}{l.negotiable ? <Text variant="caption" color="muted">{"  "}{t("marketplace.negotiable")}</Text> : null}
               </Text>
 
               <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 12 }}>

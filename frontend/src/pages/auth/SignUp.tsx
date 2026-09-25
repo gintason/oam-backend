@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Field, SubmitButton, FormError } from "./fields";
 import { authApi } from "../../auth/authApi";
+import { useAuth } from "../../auth/AuthContext";
 import { apiErrorMessage } from "../../lib/api";
 import { useTranslation } from "react-i18next";
 import * as GoogleAuth from "@react-oauth/google";
@@ -167,6 +168,7 @@ if (import.meta.env.DEV) {
 export default function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { socialLogin } = useAuth();
   const [form, setForm] = useState({ first_name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
@@ -210,12 +212,7 @@ export default function SignUp() {
         throw new Error("Google credential token is missing.");
       }
 
-      const response = await axios.post(
-        "https://www.oam-app.com/api/v1/auth/google/",
-        { token: idToken },
-      );
-
-      console.log("Google Auth Success:", response.data);
+      await socialLogin("google", idToken);
       navigate("/dashboard");
     } catch (err) {
       setError(apiErrorMessage(err, "Google sign-up failed. Please try again."));
@@ -233,12 +230,7 @@ export default function SignUp() {
         throw new Error("Facebook access token is missing.");
       }
 
-      const backendResponse = await axios.post(
-        "https://www.oam-app.com/api/v1/auth/facebook/",
-        { token: accessToken },
-      );
-
-      console.log("Facebook Auth Success:", backendResponse.data);
+      await socialLogin("facebook", accessToken);
       navigate("/dashboard");
     } catch (err) {
       setError(
