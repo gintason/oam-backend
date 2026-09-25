@@ -98,7 +98,7 @@ export default function Transfer() {
   const overBalance = Boolean(amount) && total > balance;
 
   if (receipt) {
-    return <ReceiptScreen data={receipt} onBack={() => router.replace("/home")} />;
+    return <ReceiptScreen data={receipt} onBack={() => router.navigate("/home")} />;
   }
 
   if (mode === "choose") {

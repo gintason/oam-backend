@@ -12,7 +12,7 @@ export type ReceiptHtmlData = {
 const esc = (s: string) => String(s ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
 
-export function receiptHtml(d: ReceiptHtmlData): string {
+export function receiptHtml(d: ReceiptHtmlData, scale = 1): string {
   const cur = d.currency ?? "\u20a6";
   const rows = [
     ["Transaction Type", d.type],
@@ -23,12 +23,12 @@ export function receiptHtml(d: ReceiptHtmlData): string {
     `<div class="inf"><div class="ik">${esc(k)}</div><div class="iv">${esc(v)}</div></div>`).join("");
 
   return `<!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=460, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=460, initial-scale=${scale}, minimum-scale=${scale}, maximum-scale=${scale}, user-scalable=no">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#fff}
 body{font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
-.receipt{position:relative;width:460px;background:#fff;border-radius:22px;overflow:hidden;padding:34px 30px 30px}
+.receipt{position:relative;width:100%;max-width:460px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;padding:28px 22px}
 .wm{position:absolute;inset:0;z-index:0;opacity:.05;background-image:url('data:image/png;base64,${LOGO_B64}');background-repeat:repeat;background-size:150px auto;transform:rotate(-18deg) scale(1.6)}
 .c{position:relative;z-index:1}
 .logo{height:32px;display:block;margin-bottom:20px}
@@ -37,14 +37,14 @@ body{font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
 .dt{text-align:center;font-size:13px;color:#98a1ad;margin-top:6px}
 .sep{border:none;border-top:1.5px dashed #d7dde5;margin:20px 0}
 .row{display:flex;justify-content:space-between;gap:14px}
-.lbl{font-size:15px;color:#1a1a1a;font-weight:500}
-.val{text-align:right}
-.vn{font-size:14.5px;font-weight:700;color:#111}
-.vs{font-size:13px;color:#9aa2ad;margin-top:4px}
+.lbl{font-size:15px;color:#1a1a1a;font-weight:500;flex-shrink:0}
+.val{text-align:right;min-width:0;flex:1;overflow-wrap:anywhere}
+.vn{font-size:14.5px;font-weight:700;color:#111;overflow-wrap:anywhere}
+.vs{font-size:13px;color:#9aa2ad;margin-top:4px;overflow-wrap:anywhere}
 .it{font-size:16px;color:#111;font-weight:600;margin-bottom:14px}
 .inf{display:flex;justify-content:space-between;gap:14px;margin-bottom:13px}
 .ik{font-size:13.5px;color:#9aa2ad}
-.iv{font-size:13.5px;color:#1a1a1a;text-align:right;font-weight:500;max-width:250px;word-break:break-word}
+.iv{font-size:13.5px;color:#1a1a1a;text-align:right;font-weight:500;word-break:break-word;overflow-wrap:anywhere}
 .foot{font-size:13px;color:#98a1ad;line-height:20px}
 .foot b{color:#0B7327}
 </style></head><body>
