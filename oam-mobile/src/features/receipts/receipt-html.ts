@@ -12,7 +12,7 @@ export type ReceiptHtmlData = {
 const esc = (s: string) => String(s ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
 
-export function receiptHtml(d: ReceiptHtmlData, scale = 1): string {
+export function receiptHtml(d: ReceiptHtmlData): string {
   const cur = d.currency ?? "\u20a6";
   const rows = [
     ["Transaction Type", d.type],
@@ -23,7 +23,7 @@ export function receiptHtml(d: ReceiptHtmlData, scale = 1): string {
     `<div class="inf"><div class="ik">${esc(k)}</div><div class="iv">${esc(v)}</div></div>`).join("");
 
   return `<!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=460, initial-scale=${scale}, minimum-scale=${scale}, maximum-scale=${scale}, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#fff}

@@ -12,12 +12,11 @@ export type MobileReceipt = ReceiptHtmlData;
 /** Pixel-matches the web receipt by rendering the SAME HTML in a WebView. */
 export function ReceiptScreen({ data, onBack }: { data: MobileReceipt; onBack?: () => void }) {
   const router = useRouter();
-  const contentW = Dimensions.get("window").width - 40; // matches the 20px page padding
-  const html = receiptHtml(data, scale);
-  const [natH, setNatH] = useState(760);                 // natural (CSS) height; updated on load
+  const html = receiptHtml(data);
+  const contentW = Dimensions.get("window").width - 40;
+  const [natH, setNatH] = useState(760);
 
   const goHome = useCallback(() => { if (onBack) onBack(); else router.navigate("/home"); }, [onBack, router]);
-  // Intercept hardware/gesture back so it lands on the dashboard (no GO_BACK error).
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => { goHome(); return true; });
     return () => sub.remove();

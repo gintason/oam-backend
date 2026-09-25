@@ -26,6 +26,7 @@ urlpatterns = [
     path("api/v1/bus/", include("apps.travu.urls")),
     path("api/v1/travu/", include("apps.travu.urls")),
     path("api/v1/reloadly/", include("apps.reloadly.urls")),
+    path("api/v1/notifications/", include("apps.notifications.urls")),
     # OpenAPI schema + docs (drives the typed web/mobile clients)
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),

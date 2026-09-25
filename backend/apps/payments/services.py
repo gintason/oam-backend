@@ -99,6 +99,10 @@ class FundingService:
             metadata=meta,
         )
 
+        # The customer pays EXACTLY the amount they entered — no Paystack-fee gross-up.
+        # The deposit still settles to the reserve subaccount, but OAM's main account
+        # bears the Paystack fee (bearer defaults to "account"), so nothing extra is
+        # added to what the customer is charged.
         charge_amount = amount
         if charge_ccy == "NGN" and gateway.provider_key == "paystack":
             if subaccount is None:
@@ -107,9 +111,6 @@ class FundingService:
                     subaccount = dep
                     if transaction_charge is None:
                         transaction_charge = 0
-                    if bearer is None:
-                        bearer = "subaccount"
-                    charge_amount = paystack_gross_up(amount)
 
         init = gateway.initialize_charge(
             amount=charge_amount, currency=charge_ccy,
@@ -188,7 +189,6 @@ class FundingService:
             txn.journal = journal
             txn.status = ServiceTransaction.Status.SUCCESS
 
-            # Deposit notification — AFTER commit so it can't affect the credit.
             _u, _amt, _cur, _ref = txn.user, credit_amount, credit_currency, reference
             def _notify_deposit():
                 try:

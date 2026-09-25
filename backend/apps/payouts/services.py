@@ -106,7 +106,6 @@ class WithdrawalService:
             order.status = WithdrawalOrder.Status.PROCESSING
             order.save(update_fields=["status", "updated_at"])
 
-        # Notify the user (outside the atomic block — money is already held).
         try:
             from apps.notifications.services import notify
             bank = getattr(bank_account, "bank_name", "") or "your bank"
