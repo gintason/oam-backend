@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signInWithGoogle, signInWithFacebook, SocialAuthCancelled, enabledProviders } from "../../auth/socialSdk";
+import { useAuth } from "../../auth/AuthContext";
 import type {
   ChangeEvent,
   ComponentType,
