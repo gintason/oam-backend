@@ -183,6 +183,7 @@ export default function SignUp() {
   const { socialLogin } = useAuth();
   const [form, setForm] = useState({ first_name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const [socialBusy, setSocialBusy] = useState<null | "google" | "facebook">(null);
   const [error, setError] = useState<string>();
 
   const update =
@@ -289,25 +290,25 @@ export default function SignUp() {
 
   async function onGoogle() {
     setError(undefined);
-    setLoading(true);
+    setSocialBusy("google");
     try {
       const token = await signInWithGoogle();
       await socialLogin("google", token);
       navigate("/dashboard");
     } catch (e) {
-      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Google sign-up failed. Please try again."));
-    } finally { setLoading(false); }
+      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Google sign-in failed. Please try again."));
+    } finally { setSocialBusy(null); }
   }
   async function onFacebook() {
     setError(undefined);
-    setLoading(true);
+    setSocialBusy("facebook");
     try {
       const token = await signInWithFacebook();
       await socialLogin("facebook", token);
       navigate("/dashboard");
     } catch (e) {
-      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Facebook sign-up failed. Please try again."));
-    } finally { setLoading(false); }
+      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Facebook sign-in failed. Please try again."));
+    } finally { setSocialBusy(null); }
   }
 
 
@@ -322,15 +323,15 @@ export default function SignUp() {
       {/* Social Logins — Google and Facebook buttons share the same style */}
       <div className="mb-6 space-y-3">
         {enabledProviders.google && (
-          <button type="button" onClick={onGoogle} disabled={loading} style={SOCIAL_BUTTON_STYLE}>
+          <button type="button" onClick={onGoogle} disabled={socialBusy !== null} style={SOCIAL_BUTTON_STYLE}>
             <GoogleIcon />
-            <span>Continue with Google</span>
+            <span>{socialBusy === "google" ? "Connecting…" : "Continue with Google"}</span>
           </button>
         )}
         {enabledProviders.facebook && (
-          <button type="button" onClick={onFacebook} disabled={loading} style={SOCIAL_BUTTON_STYLE}>
+          <button type="button" onClick={onFacebook} disabled={socialBusy !== null} style={SOCIAL_BUTTON_STYLE}>
             <FacebookIcon />
-            <span>Continue with Facebook</span>
+            <span>{socialBusy === "facebook" ? "Connecting…" : "Continue with Facebook"}</span>
           </button>
         )}
 
