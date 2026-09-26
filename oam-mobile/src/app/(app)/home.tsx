@@ -1,10 +1,11 @@
 import { View, ScrollView, Pressable, ActivityIndicator, Alert, Dimensions } from "react-native";
+import { useState } from "react";
 import { useRouter } from "expo-router";
 import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, MessageCircle, Menu, Bus, History, Ticket, type LucideIcon,
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, MessageCircle, Menu, Bus, History, Ticket, X, type LucideIcon,
 }
 from "lucide-react-native";
 import { NotificationBell } from "@/features/notifications/NotificationBell";
@@ -107,6 +108,7 @@ function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon"
 
 export default function Home() {
   const router = useRouter();
+  const [fabHidden, setFabHidden] = useState(false);
   const { open } = useDrawer();
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
@@ -196,13 +198,33 @@ export default function Home() {
 
       </ScrollView>
 
-      <Pressable
-        onPress={() => router.push("/assistant")}
-        style={{ position: "absolute", right: 18, bottom: 22, height: 56, width: 56, borderRadius: 28, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", shadowColor: "#000", shadowOpacity: 0.18, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 6 }}
-        accessibilityLabel="O.A.M Assistant"
-      >
-        <MessageCircle size={24} strokeWidth={2} color="#fff" />
-      </Pressable>
+      {!fabHidden ? (
+        <View style={{ position: "absolute", right: 18, bottom: 22 }}>
+          <Pressable
+            onPress={() => router.push("/assistant")}
+            style={{ height: 56, width: 56, borderRadius: 28, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", shadowColor: "#000", shadowOpacity: 0.18, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 6 }}
+            accessibilityLabel="O.A.M Assistant"
+          >
+            <MessageCircle size={24} strokeWidth={2} color="#fff" />
+          </Pressable>
+          <Pressable
+            onPress={() => setFabHidden(true)}
+            hitSlop={8}
+            style={{ position: "absolute", top: -4, right: -4, height: 22, width: 22, borderRadius: 11, backgroundColor: "#fff", borderWidth: 1, borderColor: colors.hairline, alignItems: "center", justifyContent: "center", elevation: 7 }}
+            accessibilityLabel="Hide assistant"
+          >
+            <X size={12} color={colors.ink} />
+          </Pressable>
+        </View>
+      ) : (
+        <Pressable
+          onPress={() => setFabHidden(false)}
+          style={{ position: "absolute", right: 0, bottom: 30, height: 44, width: 26, borderTopLeftRadius: 14, borderBottomLeftRadius: 14, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", elevation: 6 }}
+          accessibilityLabel="Show assistant"
+        >
+          <MessageCircle size={16} strokeWidth={2} color="#fff" />
+        </Pressable>
+      )}
     </Screen>
   );
 }

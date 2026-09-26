@@ -16,6 +16,7 @@ import { apiErrorMessage } from "../lib/api";
 export default function Assistant() {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string>();
@@ -58,20 +59,40 @@ export default function Assistant() {
   return (
     <>
       {/* Launcher — sits above the mobile tab bar so it never covers a tab. */}
-      {!open && (
+      {!open && !hidden && (
+        <div className="fixed bottom-[86px] right-4 z-[60] md:bottom-6">
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="O.A.M Assistant"
+            className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#0a0a0a] text-white shadow-[0_8px_24px_rgba(10,10,10,0.28)] transition hover:scale-105"
+          >
+            <span
+              className="absolute inset-0 rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at 25% 20%, rgba(11,115,39,0.55), transparent 60%), radial-gradient(circle at 80% 85%, rgba(227,16,18,0.28), transparent 55%)",
+              }}
+            />
+            <MessageCircle size={22} strokeWidth={1.75} className="relative" />
+          </button>
+          <button
+            onClick={() => setHidden(true)}
+            aria-label="Hide assistant"
+            className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border border-hairline bg-white text-ink shadow"
+          >
+            <X size={11} />
+          </button>
+        </div>
+      )}
+
+      {/* Minimized — a slim tab peeking from the edge; tap to restore. */}
+      {!open && hidden && (
         <button
-          onClick={() => setOpen(true)}
-          aria-label="O.A.M Assistant"
-          className="fixed bottom-[86px] right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#0a0a0a] text-white shadow-[0_8px_24px_rgba(10,10,10,0.28)] transition hover:scale-105 md:bottom-6"
+          onClick={() => setHidden(false)}
+          aria-label="Show assistant"
+          className="fixed bottom-[86px] right-0 z-[60] flex h-11 w-7 items-center justify-center rounded-l-xl bg-[#0a0a0a] text-white shadow-[0_8px_24px_rgba(10,10,10,0.28)] transition hover:w-8 md:bottom-6"
         >
-          <span
-            className="absolute inset-0 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 25% 20%, rgba(11,115,39,0.55), transparent 60%), radial-gradient(circle at 80% 85%, rgba(227,16,18,0.28), transparent 55%)",
-            }}
-          />
-          <MessageCircle size={22} strokeWidth={1.75} className="relative" />
+          <MessageCircle size={15} strokeWidth={1.75} />
         </button>
       )}
 
