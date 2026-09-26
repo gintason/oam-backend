@@ -84,6 +84,7 @@ export default function AppLayout() {
       <Tabs.Screen name="transfer" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="transfer-wallet" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="withdraw" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="transactions" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="giftcards" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="flights" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="hotels" options={{ href: null, tabBarStyle: { display: "none" } }} />

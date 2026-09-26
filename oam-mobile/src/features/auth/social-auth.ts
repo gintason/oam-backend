@@ -1,43 +1,51 @@
 /**
  * Native Google sign-in for OAM mobile.
  *
- * The @react-native-google-signin native module ("RNGoogleSignin") only exists
- * in a custom dev/preview/production build — NOT in Expo Go or an older binary.
- * So we lazy-require it inside the functions: importing this file never crashes,
- * and if the native module is missing we surface a clear, catchable error only
- * when the user taps "Continue with Google".
+ * @react-native-google-signin needs the native "RNGoogleSignin" module, which
+ * only exists in a custom dev/preview/production build — NOT in Expo Go. We
+ * detect Expo Go up front and never even require the module there, so the app
+ * runs fine (the Google button is simply hidden). In a real build the module
+ * is present, the button appears, and sign-in works.
  */
+import Constants from "expo-constants";
 
 // OAM Google OAuth client IDs (project 74521252008).
 export const GOOGLE_IOS_CLIENT_ID = "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com";
 export const GOOGLE_ANDROID_CLIENT_ID = "74521252008-ho6i39aapc7flmc26emrc9dja1oh0j55.apps.googleusercontent.com";
-// webClientId drives the ID token audience the backend verifies. If your ID
+// webClientId drives the ID token audience the backend verifies. If the ID
 // token comes back null on Android, set this to the *Web* client ID from the
 // same Google project and add it to the backend GOOGLE_CLIENT_IDS.
 export const GOOGLE_WEB_CLIENT_ID = GOOGLE_IOS_CLIENT_ID;
+
+// "storeClient" === Expo Go. Anything else (standalone / bare / dev-client) is
+// a real build that can contain the native module.
+const IS_EXPO_GO = Constants.executionEnvironment === "storeClient";
 
 export class SocialCancelled extends Error {
   constructor() { super("cancelled"); this.name = "SocialCancelled"; }
 }
 export class SocialUnavailable extends Error {
-  constructor() { super("Google sign-in needs a new app build to work."); this.name = "SocialUnavailable"; }
+  constructor() { super("Google sign-in needs a full app build (not Expo Go)."); this.name = "SocialUnavailable"; }
 }
 
-/** Loads the native module lazily; returns null if it isn't in this binary. */
+let cached: { GoogleSignin: any; statusCodes: any } | null | undefined;
 function loadGoogle(): { GoogleSignin: any; statusCodes: any } | null {
+  if (IS_EXPO_GO) return null;            // never require the native module in Expo Go
+  if (cached !== undefined) return cached;
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const mod = require("@react-native-google-signin/google-signin");
-    if (!mod?.GoogleSignin) return null;
-    return { GoogleSignin: mod.GoogleSignin, statusCodes: mod.statusCodes };
+    cached = mod?.GoogleSignin ? { GoogleSignin: mod.GoogleSignin, statusCodes: mod.statusCodes } : null;
   } catch {
-    return null;
+    cached = null;
   }
+  return cached;
 }
 
-/** True only when the native module is present (i.e. a proper build). */
+/** True only when the native module is present (a real build, not Expo Go). */
 export function isGoogleAvailable(): boolean {
-  return loadGoogle() !== null;
+  if (IS_EXPO_GO) return false;
+  try { return loadGoogle() !== null; } catch { return false; }
 }
 
 let configured = false;

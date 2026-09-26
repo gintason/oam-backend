@@ -45,6 +45,7 @@ class NotificationListView(ListAPIView):
     """GET /notifications/ — the user's 50 most recent notifications."""
     permission_classes = [IsAuthenticated]
     serializer_class = NotificationSerializer
+    pagination_class = None  # return a plain array; the web + mobile clients read r.data directly
 
     def get_queryset(self):
         return Notification.objects.filter(user=self.request.user)[:50]
