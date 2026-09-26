@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
+import { SocialAuthButtons } from "@/features/auth/ui/SocialAuthButtons";
 import { authApi, useAuthStore } from "@/features/auth";
 import { pinVault } from "@/shared/auth/pin-store";
 import { apiErrorMessage } from "@/shared/api";
@@ -55,6 +56,8 @@ export default function SignIn() {
 
   return (
     <AuthScaffold title={t("auth.signIn.title")} subtitle={t("auth.signIn.subtitle")} headerGap={72}>
+      <SocialAuthButtons onError={setError} />
+
       {error ? (
         <Text variant="caption" color="danger" style={{ marginBottom: 12 }}>
           {error}

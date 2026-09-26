@@ -31,6 +31,9 @@ export const authApi = {
   login: (identifier: string, password: string) =>
     api.post<AuthResult>("/auth/login/", { identifier, password }).then((r) => r.data),
 
+  social: (provider: "google" | "facebook", token: string) =>
+    api.post<AuthResult & { created?: boolean }>(`/auth/social/${provider}/`, { token }).then((r) => r.data),
+
   logout: (refresh: string) =>
     api.post<{ detail?: string }>("/auth/logout/", { refresh }).then((r) => r.data),
 

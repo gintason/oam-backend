@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
 import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
+import { SocialAuthButtons } from "@/features/auth/ui/SocialAuthButtons";
 import { PhoneInput } from "@/features/auth/ui/PhoneInput";
 import { COUNTRIES } from "@/features/auth/ui/countries";
 import { authApi } from "@/features/auth";
@@ -51,6 +52,8 @@ export default function SignUp() {
 
   return (
     <AuthScaffold title={t("auth.signUp.title")} subtitle={t("auth.signUp.subtitle")}>
+      <SocialAuthButtons onError={setError} />
+
       {error ? (
         <View style={{ marginBottom: 16, borderRadius: 12, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", paddingHorizontal: 14, paddingVertical: 11 }}>
           <Text variant="caption" color="danger">{error}</Text>

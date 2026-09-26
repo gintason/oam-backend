@@ -21,16 +21,9 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.oam.mobile",
+      "bundleIdentifier": "com.gintason.oammobile",
       "usesAppleSignIn": true,
       "infoPlist": {
-        "CFBundleURLTypes": [
-          {
-            "CFBundleURLSchemes": [
-              "com.googleusercontent.apps.74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7"
-            ]
-          }
-        ],
         "ITSAppUsesNonExemptEncryption": false,
         "NSCameraUsageDescription": "OAM uses your camera so you can photograph items to sell and submit verification documents.",
         "NSPhotoLibraryUsageDescription": "OAM needs access to your photos so you can upload listing images and verification documents.",
@@ -41,7 +34,7 @@
       }
     },
     "android": {
-      "package": "com.oam.mobile",
+      "package": "com.gintason.oammobile",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "adaptiveIcon": {
@@ -117,6 +110,6 @@
         "projectId": "d51ee557-4078-4787-8c00-6a2ada5dcaa0"
       }
     },
-    "owner": "oam-motors"
+    "owner": "gintason"
   }
 }

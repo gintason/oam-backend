@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signInWithGoogle, signInWithFacebook, SocialAuthCancelled, enabledProviders } from "../../auth/socialSdk";
 import { useAuth } from "../../auth/AuthContext";
+import PhoneField from "../../components/PhoneField";
 import type {
   ChangeEvent,
   ComponentType,
@@ -181,7 +182,7 @@ export default function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { socialLogin } = useAuth();
-  const [form, setForm] = useState({ first_name: "", email: "", password: "" });
+  const [form, setForm] = useState({ first_name: "", email: "", phone: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [socialBusy, setSocialBusy] = useState<null | "google" | "facebook">(null);
   const [error, setError] = useState<string>();
@@ -197,6 +198,7 @@ export default function SignUp() {
     try {
       const res = await authApi.register({
         email: form.email.trim(),
+        phone: form.phone.trim(),
         password: form.password,
         referral_code: referralStore.take(),
         first_name: form.first_name.trim(),
@@ -365,6 +367,16 @@ export default function SignUp() {
           autoComplete="email"
           required
         />
+        <div className="mb-4">
+          <label className="mb-1.5 block text-[13px] font-medium text-ink">
+            {t("auth.signUp.phoneLabel", "Phone number")}
+          </label>
+          <PhoneField
+            value={form.phone}
+            onChange={(v) => setForm((f) => ({ ...f, phone: v }))}
+            placeholder="801 234 5678"
+          />
+        </div>
         <Field
           id="password"
           label={t("auth.signUp.passwordLabel")}
