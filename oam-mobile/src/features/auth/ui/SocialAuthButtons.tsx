@@ -6,7 +6,7 @@ import { colors } from "@/shared/theme";
 import { apiErrorMessage } from "@/shared/api";
 import { authApi, useAuthStore } from "@/features/auth";
 import { pinVault } from "@/shared/auth/pin-store";
-import { signInWithGoogle, SocialCancelled } from "@/features/auth/social-auth";
+import { signInWithGoogle, SocialCancelled, SocialUnavailable, isGoogleAvailable } from "@/features/auth/social-auth";
 
 /** "Continue with Google" for the auth screens. Runs the full native flow and
  *  lands the user exactly where a password login would (home or create-pin). */
@@ -15,6 +15,7 @@ export function SocialAuthButtons({ onError }: { onError?: (msg: string) => void
   const setSession = useAuthStore((s) => s.setSession);
   const beginPinSetup = useAuthStore((s) => s.beginPinSetup);
   const [busy, setBusy] = useState<null | "google">(null);
+  const googleReady = isGoogleAvailable();
 
   async function finish() {
     if (await pinVault.has()) router.replace("/home");
@@ -30,9 +31,12 @@ export function SocialAuthButtons({ onError }: { onError?: (msg: string) => void
       await setSession(user, tokens);
       await finish();
     } catch (e) {
-      if (!(e instanceof SocialCancelled)) onError?.(apiErrorMessage(e, "Google sign-in failed. Please try again."));
+      if (e instanceof SocialUnavailable) onError?.("Google sign-in will be available after the next app update.");
+      else if (!(e instanceof SocialCancelled)) onError?.(apiErrorMessage(e, "Google sign-in failed. Please try again."));
     } finally { setBusy(null); }
   }
+
+  if (!googleReady) return null;
 
   return (
     <View style={{ marginBottom: 8 }}>
