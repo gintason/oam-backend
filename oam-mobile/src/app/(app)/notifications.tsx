@@ -20,7 +20,7 @@ export default function Notifications() {
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-        <Pressable onPress={() => router.back()} hitSlop={8} style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 14 }}>
+        <Pressable onPress={() => (router.canGoBack() ? router.back() : router.replace("/home"))} hitSlop={8} style={{ flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 14 }}>
           <ArrowLeft size={16} color={colors.muted} /><Text variant="label" color="muted">Back</Text>
         </Pressable>
         <Text variant="heading" style={{ marginBottom: 16 }}>Notifications</Text>

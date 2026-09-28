@@ -11,49 +11,39 @@ export default function CreatePin() {
   const router = useRouter();
   const setPin = useAuthStore((s) => s.setPin);
 
-  const [step, setStep] = useState<"create" | "confirm">("create");
-  const [first, setFirst] = useState("");
   const [pin, setPinValue] = useState("");
-  const [error, setError] = useState(false);
+  const [busy, setBusy] = useState(false);
 
+  // Single entry: the moment 4 digits are in, save the PIN and continue.
   useEffect(() => {
-    if (pin.length !== 4) return;
+    if (pin.length !== 4 || busy) return;
     (async () => {
-      if (step === "create") {
-        setFirst(pin);
+      setBusy(true);
+      try {
+        await setPin(pin);
+        router.replace("/home");
+      } catch {
+        setBusy(false);
         setPinValue("");
-        setStep("confirm");
-      } else {
-        if (pin === first) {
-          await setPin(pin);
-          router.replace("/home");
-        } else {
-          setError(true);
-          setTimeout(() => { setPinValue(""); setError(false); setFirst(""); setStep("create"); }, 800);
-        }
       }
     })();
   }, [pin]);
 
-  const title = step === "create" ? "Create your Unlock Code" : "Confirm your Unlock Code";
-  const hint = error ? "PINs didn't match. Start again." : step === "create"
-    ? "Choose a 4-digit PIN to unlock the app next time"
-    : "Enter it once more to confirm";
-
-  const subtitle = step === "create"
-    ? "Choose a 4-digit code to unlock the app quickly next time."
-    : "Enter the same 4-digit code again to confirm.";
   return (
     <Screen edges={["top", "bottom"]}>
       <View style={{ flex: 1, paddingHorizontal: 24, paddingTop: 64, alignItems: "center" }}>
         <View style={{ height: 72, width: 72, borderRadius: 36, backgroundColor: "rgba(11,115,39,0.10)", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
           <Lock size={32} strokeWidth={1.75} color={colors.brand.green} />
         </View>
-        <Text style={{ fontFamily: fonts.bold, fontSize: 26, color: colors.ink, textAlign: "center" }}>{title}</Text>
-        <Text variant="body" color="muted" style={{ textAlign: "center", marginTop: 10, lineHeight: 22, paddingHorizontal: 8 }}>{subtitle}</Text>
+        <Text style={{ fontFamily: fonts.bold, fontSize: 26, color: colors.ink, textAlign: "center" }}>Create your Unlock Code</Text>
+        <Text variant="body" color="muted" style={{ textAlign: "center", marginTop: 10, lineHeight: 22, paddingHorizontal: 8 }}>
+          Choose a 4-digit code to unlock the app quickly next time.
+        </Text>
         <View style={{ height: 48 }} />
-        <PinPad value={pin} onChange={(v) => { setError(false); setPinValue(v); }} error={error} />
-        <Text variant="body" color={error ? "danger" : "muted"} style={{ marginTop: 28, textAlign: "center" }}>{hint}</Text>
+        <PinPad value={pin} onChange={setPinValue} />
+        <Text variant="body" color="muted" style={{ marginTop: 28, textAlign: "center" }}>
+          You'll use this 4-digit code to unlock the app.
+        </Text>
       </View>
     </Screen>
   );

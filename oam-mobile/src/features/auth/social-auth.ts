@@ -12,10 +12,11 @@ import Constants from "expo-constants";
 // OAM Google OAuth client IDs (project 74521252008).
 export const GOOGLE_IOS_CLIENT_ID = "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com";
 export const GOOGLE_ANDROID_CLIENT_ID = "74521252008-ho6i39aapc7flmc26emrc9dja1oh0j55.apps.googleusercontent.com";
+export const GOOGLE_WEB_CLIENT_ID_REAL = "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com";
 // webClientId drives the ID token audience the backend verifies. If the ID
 // token comes back null on Android, set this to the *Web* client ID from the
 // same Google project and add it to the backend GOOGLE_CLIENT_IDS.
-export const GOOGLE_WEB_CLIENT_ID = GOOGLE_IOS_CLIENT_ID;
+export const GOOGLE_WEB_CLIENT_ID = GOOGLE_WEB_CLIENT_ID_REAL;
 
 // "storeClient" === Expo Go. Anything else (standalone / bare / dev-client) is
 // a real build that can contain the native module.

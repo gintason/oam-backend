@@ -10,19 +10,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Field, SubmitButton, FormError } from "./fields";
 import { useAuth } from "../../auth/AuthContext";
-import { signInWithGoogle, signInWithFacebook, SocialAuthCancelled, enabledProviders } from "../../auth/socialSdk";
+import { signInWithGoogle, SocialAuthCancelled, enabledProviders } from "../../auth/socialSdk";
 import { apiErrorMessage } from "../../lib/api";
 import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
 import * as GoogleAuth from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { CredentialResponse } from "@react-oauth/google";
-import * as FacebookAuth from "@greatsumini/react-facebook-login";
-import type { SuccessResponse } from "@greatsumini/react-facebook-login";
 import axios from "axios";
 
 /* -------------------------------------------------------------------------- */
-/*  Shared button style — identical for Google wrapper and Facebook button.    */
 /* -------------------------------------------------------------------------- */
 const SOCIAL_BUTTON_STYLE: CSSProperties = {
   backgroundColor: "#ffffff",
@@ -43,22 +40,6 @@ const SOCIAL_BUTTON_STYLE: CSSProperties = {
   boxSizing: "border-box",
 };
 
-function FacebookIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        fill="#1877f2"
-        d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-      />
-    </svg>
-  );
-}
 
 function GoogleIcon() {
   return (
@@ -72,32 +53,9 @@ function GoogleIcon() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Facebook SDK fallback types                                                */
 /* -------------------------------------------------------------------------- */
-interface FacebookAuthResponse {
-  accessToken: string;
-  userID?: string;
-  expiresIn?: number;
-  signedRequest?: string;
-}
 
-interface FacebookLoginResponse {
-  status: "connected" | "not_authorized" | "unknown";
-  authResponse?: FacebookAuthResponse;
-}
 
-interface FacebookSDK {
-  init(options: {
-    appId: string;
-    cookie?: boolean;
-    xfbml?: boolean;
-    version: string;
-  }): void;
-  login(
-    callback: (response: FacebookLoginResponse) => void,
-    options?: { scope?: string },
-  ): void;
-}
 
 /* -------------------------------------------------------------------------- */
 /*  Non-disruptive fix for React error #130                                    */
@@ -139,13 +97,6 @@ const GoogleLogin = resolveComponent<{
   logo_alignment?: "left" | "center";
 }>(GoogleAuth, "GoogleLogin");
 
-const FacebookLogin = resolveComponent<{
-  appId: string;
-  onSuccess: (r: SuccessResponse) => void;
-  onFail: (error: unknown) => void;
-  style?: CSSProperties;
-  children?: ReactNode;
-}>(FacebookAuth, "FacebookLogin");
 
 /* -------------------------------------------------------------------------- */
 /*  Google OAuth client id — read once so we can safely hide the button if     */
@@ -168,12 +119,6 @@ if (import.meta.env.DEV) {
         "Add it to your .env file to enable Google sign-in.",
     );
   }
-  if (!FacebookLogin) {
-    console.warn(
-      "[SignIn] Could not resolve `FacebookLogin` from @greatsumini/react-facebook-login. " +
-        "Falling back to the raw Facebook SDK button.",
-    );
-  }
 }
 
 export default function SignIn() {
@@ -187,7 +132,7 @@ export default function SignIn() {
 
   const [form, setForm] = useState({ identifier: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const [socialBusy, setSocialBusy] = useState<null | "google" | "facebook">(null);
+  const [socialBusy, setSocialBusy] = useState<null | "google">(null);
   const [error, setError] = useState<string>();
 
   const update =
@@ -241,54 +186,7 @@ export default function SignIn() {
     }
   };
 
-  const handleFacebookSuccess = async (response: SuccessResponse) => {
-    setError(undefined);
-    setLoading(true);
-    try {
-      const accessToken = response.accessToken;
-      if (!accessToken) {
-        throw new Error("Facebook access token is missing.");
-      }
 
-      const backendResponse = await axios.post(
-        "https://www.oam-app.com/api/v1/auth/facebook/",
-        { token: accessToken },
-      );
-
-      console.log("Facebook Login Success:", backendResponse.data);
-      navigate(from, { replace: true });
-    } catch (err) {
-      setError(
-        apiErrorMessage(err, "Facebook sign-in failed. Please try again."),
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleFacebookFallback = () => {
-    const FB = (window as unknown as { FB?: FacebookSDK }).FB;
-    if (!FB) {
-      setError(
-        "Facebook sign-in is unavailable right now. Please use email sign-in.",
-      );
-      return;
-    }
-
-    const appId = import.meta.env.VITE_FACEBOOK_APP_ID || "";
-    FB.init({ appId, cookie: true, xfbml: false, version: "v19.0" });
-    FB.login(
-      (response) => {
-        const token = response?.authResponse?.accessToken;
-        if (token) {
-          void handleFacebookSuccess({
-            accessToken: token,
-          } as SuccessResponse);
-        }
-      },
-      { scope: "public_profile,email" },
-    );
-  };
 
   async function onGoogle() {
     setError(undefined);
@@ -299,17 +197,6 @@ export default function SignIn() {
       navigate(from, { replace: true });
     } catch (e) {
       if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Google sign-in failed. Please try again."));
-    } finally { setSocialBusy(null); }
-  }
-  async function onFacebook() {
-    setError(undefined);
-    setSocialBusy("facebook");
-    try {
-      const token = await signInWithFacebook();
-      await socialLogin("facebook", token);
-      navigate(from, { replace: true });
-    } catch (e) {
-      if (!(e instanceof SocialAuthCancelled)) setError(apiErrorMessage(e, "Facebook sign-in failed. Please try again."));
     } finally { setSocialBusy(null); }
   }
 
@@ -328,12 +215,6 @@ export default function SignIn() {
           <button type="button" onClick={onGoogle} disabled={socialBusy !== null} style={SOCIAL_BUTTON_STYLE}>
             <GoogleIcon />
             <span>{socialBusy === "google" ? "Connecting…" : "Continue with Google"}</span>
-          </button>
-        )}
-        {enabledProviders.facebook && (
-          <button type="button" onClick={onFacebook} disabled={socialBusy !== null} style={SOCIAL_BUTTON_STYLE}>
-            <FacebookIcon />
-            <span>{socialBusy === "facebook" ? "Connecting…" : "Continue with Facebook"}</span>
           </button>
         )}
 
