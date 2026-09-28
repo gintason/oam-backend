@@ -167,7 +167,7 @@ export default function Dashboard() {
                 items={[
                   { to: "/marketplace", icon: <Store size={20} strokeWidth={1.75} />, label: t("dashboard.services.marketplace"), tint: "green" },
                   { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: t("dashboard.services.artisans"), tint: "green" },
-                  { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "E-commerce"), tint: "green" },
+                  { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "Shop"), tint: "green" },
                   { to: "/services/betting", icon: <Ticket size={20} strokeWidth={1.75} />, label: t("dashboard.services.betting", "Fund Betting"), tint: "green" },
                   { to: "/referral", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.referral", "Refer & Earn"), tint: "green" },
                 ]}

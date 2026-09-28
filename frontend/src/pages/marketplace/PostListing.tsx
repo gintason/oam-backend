@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
@@ -51,11 +51,16 @@ export default function PostListing() {
     queryKey: ["marketplace", scope, "listing", id],
     queryFn: () => marketplaceApi.detail(id!),
     enabled: isEdit,
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
   });
 
+  const prefilled = useRef(false);
   useEffect(() => {
+    if (!isEdit || prefilled.current) return;
     const l = existing.data;
     if (!l) return;
+    prefilled.current = true;
     setForm({
       category: l.category,
       title: l.title,
