@@ -190,3 +190,33 @@ class SubscriptionPayment(TimeStampedModel):
 # Registered last: motors.py imports Listing/Category from this module,
 # so those models must be defined before it is loaded.
 from .motors import VehicleDetail  # noqa: E402,F401
+
+
+class ListingLike(TimeStampedModel):
+    """A user's like on a listing. Unique per (listing, user) — the like toggles."""
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="likes")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="listing_likes")
+
+    class Meta:
+        unique_together = ("listing", "user")
+        indexes = [models.Index(fields=["listing"])]
+
+    def __str__(self):
+        return f"{self.user} ♥ {self.listing_id}"
+
+
+class ListingComment(TimeStampedModel):
+    """A comment left by a user on a listing."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="listing_comments")
+    body = models.TextField(max_length=1000)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["listing", "-created_at"])]
+
+    def __str__(self):
+        return f"comment by {self.user} on {self.listing_id}"

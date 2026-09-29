@@ -12,6 +12,7 @@ from .views import (
     SubscriptionVerifyView,
     SubscriptionView,
     SubscriptionWebhookView,
+    ListingLikeToggleView, ListingCommentsView,
 )
 
 from .motors import MotorsDetailView, MotorsInventoryView
@@ -19,6 +20,8 @@ from .motors import MotorsDetailView, MotorsInventoryView
 from .public_listings import PublicCategoriesView, PublicListingsView
 
 urlpatterns = [
+    path("listings/<uuid:listing_id>/like/", ListingLikeToggleView.as_view(), name="mkt-like"),
+    path("listings/<uuid:listing_id>/comments/", ListingCommentsView.as_view(), name="mkt-comments"),
     path("categories/", CategoryListView.as_view(), name="mkt-categories"),
     path("motors/", MotorsInventoryView.as_view(), name="mkt-motors"),
     path("motors/<uuid:listing_id>/", MotorsDetailView.as_view(), name="mkt-motors-detail"),

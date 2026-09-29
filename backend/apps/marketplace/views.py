@@ -13,8 +13,9 @@ from rest_framework.views import APIView
 
 from apps.common.permissions import IsVerified
 
-from .models import Category, Listing, ListingImage, ListingVideo, LISTING_TTL_DAYS
+from .models import Category, Listing, ListingImage, ListingVideo, LISTING_TTL_DAYS, ListingLike, ListingComment
 from .serializers import (
+    ListingCommentSerializer,
     CategorySerializer,
     ListingDetailSerializer,
     ListingListSerializer,
@@ -38,12 +39,26 @@ class ListingListView(ListAPIView):
     serializer_class = ListingListSerializer
 
     def get_queryset(self):
+        from django.db.models import Count
         p = self.request.query_params
-        return MarketplaceService.browse(
+        qs = MarketplaceService.browse(
             category=p.get("category"), q=p.get("q"),
             min_price=p.get("min_price"), max_price=p.get("max_price"),
             location=p.get("location"), condition=p.get("condition"),
         )
+        return qs.annotate(
+            likes_count_ann=Count("likes", distinct=True),
+            comments_count_ann=Count("comments", distinct=True),
+        ).prefetch_related("images")
+
+    def get_serializer_context(self):
+        ctx = super().get_serializer_context()
+        user = getattr(self.request, "user", None)
+        if user and user.is_authenticated:
+            ctx["liked_ids"] = set(
+                ListingLike.objects.filter(user=user).values_list("listing_id", flat=True)
+            )
+        return ctx
 
 
 class ListingCreateView(APIView):
@@ -263,3 +278,52 @@ class SubscriptionWebhookView(APIView):
         if ok and reference:
             MarketplaceService.activate_by_reference(reference)
         return Response({"status": "ok"})
+
+
+class ListingLikeToggleView(APIView):
+    """POST /listings/<id>/like/ — toggle the current user's like."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        like = ListingLike.objects.filter(listing=listing, user=request.user).first()
+        if like:
+            like.delete()
+            liked = False
+        else:
+            ListingLike.objects.create(listing=listing, user=request.user)
+            liked = True
+        return Response({"liked": liked, "likes_count": listing.likes.count()})
+
+
+class ListingCommentsView(APIView):
+    """GET list comments / POST add a comment on a listing."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        comments = listing.comments.select_related("user").all()[:100]
+        return Response(ListingCommentSerializer(comments, many=True).data)
+
+    def post(self, request, listing_id):
+        listing = Listing.objects.filter(id=listing_id).first()
+        if listing is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        body = (request.data.get("body") or "").strip()
+        if not body:
+            return Response({"detail": "Comment cannot be empty."}, status=status.HTTP_400_BAD_REQUEST)
+        c = ListingComment.objects.create(listing=listing, user=request.user, body=body[:1000])
+        # Best-effort: let the seller know (never blocks the comment).
+        try:
+            if listing.seller_id != request.user.id:
+                from apps.notifications.services import notify
+                notify(listing.seller, kind="general", title="New comment on your listing",
+                       body=f"Someone commented on '{listing.title}'.",
+                       data={"listing_id": str(listing.id)})
+        except Exception:
+            pass
+        return Response(ListingCommentSerializer(c).data, status=status.HTTP_201_CREATED)
