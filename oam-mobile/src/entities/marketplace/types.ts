@@ -8,13 +8,14 @@ export type ListingListItem = {
   negotiable: boolean; condition: string; location: string;
   category_name: string; is_featured: boolean;
   primary_image: string | null; created_at: string;
+  views_count?: number; likes_count?: number; comments_count?: number; liked?: boolean;
 };
 
 export type ListingDetail = {
   id: string; title: string; description: string; price: string; currency: string;
   negotiable: boolean; condition: string; location: string;
   category: string; category_name: string; status: string;
-  is_featured: boolean; views_count: number; seller_name: string;
+  is_featured: boolean; views_count: number; likes_count?: number; comments_count?: number; liked?: boolean; seller_name: string;
   images: { id: string; url: string; is_primary: boolean }[];
   videos?: { id: string; url: string; thumbnail_url?: string }[];
   expires_at: string | null; created_at: string; updated_at: string;
@@ -47,3 +48,11 @@ export const CONDITIONS = [
 export function categoryLabel(slug: string, name: string) {
   return slug === "oam-motors" ? "O.A.M Motors" : name;
 }
+
+
+export type ListingComment = {
+  id: string;
+  body: string;
+  user_name: string;
+  created_at: string;
+};

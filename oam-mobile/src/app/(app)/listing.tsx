@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, Dimensions } from "react-native";
+import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, Dimensions, Share } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star } from "lucide-react-native";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star, Heart, MessageCircle, Share2 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
-import { naira, shortDate, money } from "@/shared/lib/format";
+import { naira, shortDate } from "@/shared/lib/format";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { CONDITIONS } from "@/entities/marketplace";
@@ -25,6 +25,20 @@ export default function Listing() {
   const [active, setActive] = useState(0);
 
   const listing = useQuery({ queryKey: ["marketplace", "listing", id], queryFn: () => marketplaceApi.detail(id), enabled: !!id });
+  const qc = useQueryClient();
+  const [comment, setComment] = useState("");
+  const likeMut = useMutation({
+    mutationFn: () => marketplaceApi.toggleLike(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace", "listing", id] }),
+  });
+  const commentsQ = useQuery({ queryKey: ["marketplace", "comments", id], queryFn: () => marketplaceApi.comments(id), enabled: !!id });
+  const addComment = useMutation({
+    mutationFn: (body: string) => marketplaceApi.addComment(id, body),
+    onSuccess: () => { setComment(""); commentsQ.refetch(); qc.invalidateQueries({ queryKey: ["marketplace", "listing", id] }); },
+  });
+  async function shareListing(title: string) {
+    try { await Share.share({ message: `${title} on OAM — https://oam-app.com/marketplace/${id}`, url: `https://oam-app.com/marketplace/${id}` }); } catch { /* cancelled */ }
+  }
 
   const enquire = useMutation({
     mutationFn: () => messagingApi.start({ kind: "listing", id, body: message.trim() }),
@@ -76,7 +90,7 @@ export default function Listing() {
             <View style={{ marginTop: 16 }}>
               <Text variant="heading" style={{ fontSize: 20 }}>{l.title}</Text>
               <Text style={{ marginTop: 4, fontFamily: fonts.bold, fontSize: 24, color: colors.brand.red }}>
-                {money(l.price, l.currency)}{l.negotiable ? <Text variant="caption" color="muted">{"  "}{t("marketplace.negotiable")}</Text> : null}
+                {naira(l.price)}{l.negotiable ? <Text variant="caption" color="muted">{"  "}{t("marketplace.negotiable")}</Text> : null}
               </Text>
 
               <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 12 }}>
@@ -86,6 +100,21 @@ export default function Listing() {
                 <Chip icon={<Eye size={11} strokeWidth={2} color={colors.muted} />}>{t("marketplace.detail.views", { count: l.views_count })}</Chip>
               </View>
 
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginTop: 14, borderTopWidth: 1, borderTopColor: colors.hairline, paddingTop: 14 }}>
+                <Pressable onPress={() => likeMut.mutate()} disabled={likeMut.isPending}
+                  style={{ flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: l.liked ? colors.brand.red : colors.hairline, backgroundColor: l.liked ? "rgba(227,16,18,0.06)" : colors.paper, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 7 }}>
+                  <Heart size={15} color={l.liked ? colors.brand.red : colors.ink} fill={l.liked ? colors.brand.red : "none"} />
+                  <Text variant="caption" color={l.liked ? "red" : "ink"}>{l.likes_count ?? 0}</Text>
+                </Pressable>
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: colors.hairline, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 7 }}>
+                  <MessageCircle size={15} color={colors.ink} /><Text variant="caption" color="ink">{l.comments_count ?? 0}</Text>
+                </View>
+                <Pressable onPress={() => shareListing(l.title)}
+                  style={{ marginLeft: "auto", flexDirection: "row", alignItems: "center", gap: 6, borderWidth: 1, borderColor: colors.hairline, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 7 }}>
+                  <Share2 size={15} color={colors.ink} /><Text variant="caption" color="ink">{t("marketplace.detail.share", "Share")}</Text>
+                </Pressable>
+              </View>
+
               {l.description ? (
                 <Text variant="body" color="ink" style={{ marginTop: 16, paddingTop: 16, borderTopWidth: 1, borderTopColor: colors.hairline, lineHeight: 21 }}>{l.description}</Text>
               ) : null}
@@ -93,6 +122,37 @@ export default function Listing() {
               <Text variant="caption" color="muted" style={{ marginTop: 16 }}>
                 {t("marketplace.detail.listedBy")} <Text variant="caption" color="ink">{l.seller_name}</Text> · {shortDate(l.created_at)}
               </Text>
+
+              <View style={{ marginTop: 18, borderTopWidth: 1, borderTopColor: colors.hairline, paddingTop: 16 }}>
+                <Text variant="title">{t("marketplace.detail.comments", "Comments")} ({l.comments_count ?? 0})</Text>
+                <View style={{ flexDirection: "row", gap: 8, marginTop: 12 }}>
+                  <TextInput
+                    value={comment}
+                    onChangeText={setComment}
+                    placeholder={t("marketplace.detail.commentPlaceholder", "Write a comment…")}
+                    placeholderTextColor={colors.muted}
+                    style={{ flex: 1, height: 44, borderRadius: 12, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, paddingHorizontal: 12, fontFamily: fonts.regular, fontSize: 14, color: colors.ink }}
+                  />
+                  <Pressable onPress={() => comment.trim() && addComment.mutate(comment.trim())} disabled={addComment.isPending || !comment.trim()}
+                    style={{ height: 44, paddingHorizontal: 16, borderRadius: 12, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", opacity: (addComment.isPending || !comment.trim()) ? 0.5 : 1 }}>
+                    <Send size={17} color="#fff" />
+                  </Pressable>
+                </View>
+                <View style={{ gap: 8, marginTop: 12 }}>
+                  {(commentsQ.data ?? []).map((c) => (
+                    <View key={c.id} style={{ borderWidth: 1, borderColor: colors.hairline, borderRadius: 12, backgroundColor: colors.paper, padding: 12 }}>
+                      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <Text variant="label" color="ink">{c.user_name}</Text>
+                        <Text variant="caption" color="muted">{shortDate(c.created_at)}</Text>
+                      </View>
+                      <Text variant="body" color="ink" style={{ marginTop: 4 }}>{c.body}</Text>
+                    </View>
+                  ))}
+                  {commentsQ.data && commentsQ.data.length === 0 ? (
+                    <Text variant="caption" color="muted">{t("marketplace.detail.noComments", "No comments yet. Be the first!")}</Text>
+                  ) : null}
+                </View>
+              </View>
             </View>
 
             {/* Message the seller */}

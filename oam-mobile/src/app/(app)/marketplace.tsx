@@ -1,8 +1,8 @@
-import { View, ScrollView, Pressable, ActivityIndicator, Image } from "react-native";
+import { View, ScrollView, Pressable, ActivityIndicator, Image, Share } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
-import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown } from "lucide-react-native";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown, Eye, Heart, Share2 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { naira } from "@/shared/lib/format";
@@ -101,6 +101,14 @@ export default function Marketplace() {
 
 function ListingRow({ title, data, loading, onSeeAll, onOpen }: { title: string; data?: ListingListItem[]; loading: boolean; onSeeAll: () => void; onOpen: (id: string) => void }) {
   const { t } = useTranslation();
+  const qc = useQueryClient();
+  const likeMut = useMutation({
+    mutationFn: (lid: string) => marketplaceApi.toggleLike(lid),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace", "browse"] }),
+  });
+  async function shareItem(item: { id: string; title: string }) {
+    try { await Share.share({ message: `${item.title} on OAM — https://oam-app.com/marketplace/${item.id}`, url: `https://oam-app.com/marketplace/${item.id}` }); } catch { /* cancelled */ }
+  }
   if (!loading && (!data || data.length === 0)) return null;
   return (
     <>
@@ -123,6 +131,21 @@ function ListingRow({ title, data, loading, onSeeAll, onOpen }: { title: string;
                 <Text variant="label" color="ink" numberOfLines={1}>{l.title}</Text>
                 <Text variant="label" color="red" style={{ marginTop: 2 }}>{naira(l.price)}</Text>
                 {l.location ? <Text variant="caption" color="muted" numberOfLines={1} style={{ marginTop: 2 }}>{l.location}</Text> : null}
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginTop: 7 }}>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
+                    <Eye size={12} color={colors.muted} /><Text variant="caption" color="muted" style={{ fontSize: 11 }}>{l.views_count ?? 0}</Text>
+                  </View>
+                  <Pressable onPress={() => likeMut.mutate(l.id)} hitSlop={6} style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
+                    <Heart size={12} color={l.liked ? colors.brand.red : colors.muted} fill={l.liked ? colors.brand.red : "none"} />
+                    <Text variant="caption" color={l.liked ? "red" : "muted"} style={{ fontSize: 11 }}>{l.likes_count ?? 0}</Text>
+                  </Pressable>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
+                    <MessageCircle size={12} color={colors.muted} /><Text variant="caption" color="muted" style={{ fontSize: 11 }}>{l.comments_count ?? 0}</Text>
+                  </View>
+                  <Pressable onPress={() => shareItem(l)} hitSlop={6} style={{ marginLeft: "auto" }}>
+                    <Share2 size={12} color={colors.muted} />
+                  </Pressable>
+                </View>
               </View>
             </Pressable>
           ))}

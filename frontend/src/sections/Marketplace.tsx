@@ -7,7 +7,7 @@ import CategoryTabs from "../components/CategoryTabs";
 import { publicMarketApi, type PublicListing } from "../services/publicArtisans";
 import { marketplaceApi } from "../services/marketplace";
 import { useAuth } from "../auth/AuthContext";
-import { naira, friendlyTime } from "../lib/format";
+import { naira, friendlyTime, money } from "../lib/format";
 
 /**
  * Live marketplace preview.
@@ -156,7 +156,7 @@ function ListingCard({ item }: { item: PublicListing }) {
       <div className="flex flex-1 flex-col p-3.5">
         <p className="line-clamp-1 text-[14px] font-semibold text-ink">{item.title}</p>
         <p className="mt-0.5 tabular text-[16px] font-bold text-brand-red">
-          {naira(item.price)}
+          {money(item.price, item.currency)}
           {item.negotiable && (
             <span className="ml-1.5 text-[11px] font-medium text-muted">{t("landing.marketplace.negotiable")}</span>
           )}

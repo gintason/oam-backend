@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, Modal } from "react-native";
+import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, Modal, Share } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Search, SlidersHorizontal, Star, X } from "lucide-react-native";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { ArrowLeft, Search, SlidersHorizontal, Star, X, Eye, Heart, MessageCircle, Share2 } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
-import { naira, money } from "@/shared/lib/format";
+import { naira } from "@/shared/lib/format";
 import { useDebounced } from "@/shared/hooks/use-debounced";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { CONDITIONS } from "@/entities/marketplace";
@@ -41,6 +41,14 @@ export default function MarketBrowse() {
 
   const activeFilters = [condition, location, minPrice, maxPrice].filter(Boolean).length;
   const results = listings.data?.results ?? [];
+  const qc = useQueryClient();
+  const likeMut = useMutation({
+    mutationFn: (lid: string) => marketplaceApi.toggleLike(lid),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace", "browse"] }),
+  });
+  async function shareItem(item: { id: string; title: string }) {
+    try { await Share.share({ message: `${item.title} on OAM — https://oam-app.com/marketplace/${item.id}`, url: `https://oam-app.com/marketplace/${item.id}` }); } catch { /* cancelled */ }
+  }
 
   return (
     <Screen edges={["top"]}>
@@ -95,8 +103,23 @@ export default function MarketBrowse() {
                 </View>
                 <View style={{ padding: 10 }}>
                   <Text variant="label" color="ink" numberOfLines={1}>{l.title}</Text>
-                  <Text variant="label" color="red" style={{ marginTop: 2 }}>{money(l.price, l.currency)}{l.negotiable ? <Text variant="caption" color="muted"> · {t("marketplace.negotiable")}</Text> : null}</Text>
+                  <Text variant="label" color="red" style={{ marginTop: 2 }}>{naira(l.price)}{l.negotiable ? <Text variant="caption" color="muted"> · {t("marketplace.negotiable")}</Text> : null}</Text>
                   {l.location ? <Text variant="caption" color="muted" numberOfLines={1} style={{ marginTop: 2 }}>{l.location}</Text> : null}
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginTop: 8 }}>
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
+                      <Eye size={13} color={colors.muted} /><Text variant="caption" color="muted">{l.views_count ?? 0}</Text>
+                    </View>
+                    <Pressable onPress={() => likeMut.mutate(l.id)} hitSlop={6} style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
+                      <Heart size={13} color={l.liked ? colors.brand.red : colors.muted} fill={l.liked ? colors.brand.red : "none"} />
+                      <Text variant="caption" color={l.liked ? "red" : "muted"}>{l.likes_count ?? 0}</Text>
+                    </Pressable>
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
+                      <MessageCircle size={13} color={colors.muted} /><Text variant="caption" color="muted">{l.comments_count ?? 0}</Text>
+                    </View>
+                    <Pressable onPress={() => shareItem(l)} hitSlop={6} style={{ marginLeft: "auto" }}>
+                      <Share2 size={13} color={colors.muted} />
+                    </Pressable>
+                  </View>
                 </View>
               </Pressable>
             ))}

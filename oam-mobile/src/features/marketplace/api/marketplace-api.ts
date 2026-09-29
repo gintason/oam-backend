@@ -1,5 +1,5 @@
 import { api } from "@/shared/api";
-import type { MarketCategory, ListingListItem, ListingDetail, ListingWrite, Subscription } from "@/entities/marketplace";
+import type { MarketCategory, ListingListItem, ListingDetail, ListingWrite, Subscription, ListingComment } from "@/entities/marketplace";
 
 export type BrowseParams = {
   category?: string; q?: string; min_price?: string; max_price?: string; location?: string; condition?: string;
@@ -19,6 +19,15 @@ export const marketplaceApi = {
       }),
 
   detail: (id: string) => api.get<ListingDetail>(`/marketplace/listings/${id}/`).then((r) => r.data),
+
+  toggleLike: (id: string) =>
+    api.post<{ liked: boolean; likes_count: number }>(`/marketplace/listings/${id}/like/`, {}).then((r) => r.data),
+
+  comments: (id: string) =>
+    api.get<ListingComment[]>(`/marketplace/listings/${id}/comments/`).then((r) => r.data),
+
+  addComment: (id: string, body: string) =>
+    api.post<ListingComment>(`/marketplace/listings/${id}/comments/`, { body }).then((r) => r.data),
 
   create: (input: ListingWrite) =>
     api.post<ListingDetail>("/marketplace/listings/create/", { currency: "NGN", ...input }).then((r) => r.data),
