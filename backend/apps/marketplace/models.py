@@ -200,7 +200,7 @@ class ListingLike(TimeStampedModel):
 
     class Meta:
         unique_together = ("listing", "user")
-        indexes = [models.Index(fields=["listing"])]
+        indexes = [models.Index(fields=["listing"], name="mkt_like_listing_idx")]
 
     def __str__(self):
         return f"{self.user} ♥ {self.listing_id}"
@@ -216,7 +216,7 @@ class ListingComment(TimeStampedModel):
 
     class Meta:
         ordering = ["-created_at"]
-        indexes = [models.Index(fields=["listing", "-created_at"])]
+        indexes = [models.Index(fields=["listing", "-created_at"], name="mkt_comment_listing_idx")]
 
     def __str__(self):
         return f"comment by {self.user} on {self.listing_id}"
