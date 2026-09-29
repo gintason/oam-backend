@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, type MouseEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin, ChevronLeft, ChevronRight, Eye, Heart, MessageCircle } from "lucide-react";
+  ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin, ChevronLeft, ChevronRight, Eye, Heart, MessageCircle, Share2 } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import VerifiedBadge from "../../components/VerifiedBadge";
 import { DarkPanel } from "../../components/Surface";
@@ -245,6 +245,25 @@ export default function BrowseListings() {
 
 function Card({ listing }: { listing: ListingListItem }) {
   const { t } = useTranslation();
+  const qc = useQueryClient();
+  const like = useMutation({
+    mutationFn: () => marketplaceApi.toggleLike(listing.id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace"] }),
+  });
+  function onLike(e: MouseEvent) {
+    e.preventDefault(); e.stopPropagation();
+    like.mutate();
+  }
+  async function onShare(e: MouseEvent) {
+    e.preventDefault(); e.stopPropagation();
+    const url = `${window.location.origin}/marketplace/${listing.id}`;
+    const text = `${listing.title} on OAM`;
+    try {
+      const nav = navigator as Navigator & { share?: (d: unknown) => Promise<void> };
+      if (nav.share) await nav.share({ title: listing.title, text, url });
+      else await navigator.clipboard.writeText(url);
+    } catch { /* cancelled */ }
+  }
   return (
     <li>
       <Link
@@ -285,10 +304,16 @@ function Card({ listing }: { listing: ListingListItem }) {
             <span className="line-clamp-1">{listing.location || "—"}</span>
           </p>
           <p className="mt-0.5 text-[11px] text-muted">{friendlyTime(listing.created_at)}</p>
-          <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted">
-            <span className="flex items-center gap-1"><Eye size={11} strokeWidth={1.75} /> {listing.views_count ?? 0}</span>
-            <span className="flex items-center gap-1"><Heart size={11} strokeWidth={1.75} fill={listing.liked ? "currentColor" : "none"} className={listing.liked ? "text-brand-red" : ""} /> {listing.likes_count ?? 0}</span>
-            <span className="flex items-center gap-1"><MessageCircle size={11} strokeWidth={1.75} /> {listing.comments_count ?? 0}</span>
+          <div className="mt-2 flex items-center gap-3 text-[11.5px] text-muted">
+            <span className="flex items-center gap-1"><Eye size={12} strokeWidth={1.75} /> {listing.views_count ?? 0}</span>
+            <button type="button" onClick={onLike} disabled={like.isPending}
+              className={`flex items-center gap-1 transition hover:text-brand-red ${listing.liked ? "text-brand-red" : ""}`}>
+              <Heart size={12} strokeWidth={1.75} fill={listing.liked ? "currentColor" : "none"} /> {listing.likes_count ?? 0}
+            </button>
+            <span className="flex items-center gap-1"><MessageCircle size={12} strokeWidth={1.75} /> {listing.comments_count ?? 0}</span>
+            <button type="button" onClick={onShare} className="ml-auto flex items-center gap-1 transition hover:text-brand-green" aria-label="Share">
+              <Share2 size={12} strokeWidth={1.75} />
+            </button>
           </div>
         </div>
       </Link>
