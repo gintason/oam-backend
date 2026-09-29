@@ -10,6 +10,7 @@ export type ListingListItem = {
   negotiable: boolean; condition: string; location: string;
   category_name: string; is_featured: boolean; is_verified: boolean;
   primary_image: string | null; created_at: string;
+  views_count?: number; likes_count?: number; comments_count?: number; liked?: boolean;
 };
 
 /** No contact fields — those come from an accepted conversation only. */
@@ -18,7 +19,7 @@ export type ListingDetail = {
   negotiable: boolean; condition: string; location: string;
   category: string; category_name: string; status: string;
   is_featured: boolean; is_verified: boolean; verified_at: string | null;
-  views_count: number; seller_name: string; is_owner: boolean;
+  views_count: number; likes_count?: number; comments_count?: number; liked?: boolean; seller_name: string; is_owner: boolean;
   images: { id: string; url: string; is_primary: boolean }[];
   videos: { id: string; url: string; thumbnail_url: string }[];
   expires_at: string | null; created_at: string; updated_at: string;
@@ -87,6 +88,24 @@ export const marketplaceApi = {
     return data;
   },
 
+  /** Toggle the current user's like on a listing. */
+  async toggleLike(id: string): Promise<{ liked: boolean; likes_count: number }> {
+    const { data } = await api.post(`/marketplace/listings/${id}/like/`);
+    return data;
+  },
+
+  /** List comments on a listing. */
+  async comments(id: string): Promise<ListingComment[]> {
+    const { data } = await api.get(`/marketplace/listings/${id}/comments/`);
+    return data;
+  },
+
+  /** Add a comment to a listing. */
+  async addComment(id: string, body: string): Promise<ListingComment> {
+    const { data } = await api.post(`/marketplace/listings/${id}/comments/`, { body });
+    return data;
+  },
+
   /** Delete a listing (owner only). */
   async remove(id: string): Promise<void> {
     await api.delete(`/marketplace/listings/${id}/`);
@@ -116,4 +135,12 @@ export const marketplaceApi = {
     const { data } = await api.post("/marketplace/subscription/verify/", { reference });
     return data;
   },
+};
+
+
+export type ListingComment = {
+  id: string;
+  body: string;
+  user_name: string;
+  created_at: string;
 };

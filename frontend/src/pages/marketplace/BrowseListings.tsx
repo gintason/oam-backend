@@ -2,8 +2,7 @@ import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
-  ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin, ChevronLeft, ChevronRight,
-} from "lucide-react";
+  ArrowLeft, Search, Loader2, Star, Package, SlidersHorizontal, MapPin, ChevronLeft, ChevronRight, Eye, Heart, MessageCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import VerifiedBadge from "../../components/VerifiedBadge";
 import { DarkPanel } from "../../components/Surface";
@@ -13,7 +12,7 @@ import { useDebounced } from "../../hooks/useDebounced";
 import {
   marketplaceApi, CONDITIONS, type ListingListItem,
 } from "../../services/marketplace";
-import { naira, friendlyTime, money } from "../../lib/format";
+import { naira, friendlyTime } from "../../lib/format";
 import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
@@ -276,7 +275,7 @@ function Card({ listing }: { listing: ListingListItem }) {
         <div className="p-3.5">
           <p className="line-clamp-1 text-[14px] font-semibold text-ink">{listing.title}</p>
           <p className="mt-0.5 text-[16px] font-bold text-brand-red tabular">
-            {money(listing.price, listing.currency)}
+            {naira(listing.price)}
             {listing.negotiable && (
               <span className="ml-1.5 text-[11px] font-medium text-muted">{t("marketplace.negotiable")}</span>
             )}
@@ -286,6 +285,11 @@ function Card({ listing }: { listing: ListingListItem }) {
             <span className="line-clamp-1">{listing.location || "—"}</span>
           </p>
           <p className="mt-0.5 text-[11px] text-muted">{friendlyTime(listing.created_at)}</p>
+          <div className="mt-1.5 flex items-center gap-3 text-[11px] text-muted">
+            <span className="flex items-center gap-1"><Eye size={11} strokeWidth={1.75} /> {listing.views_count ?? 0}</span>
+            <span className="flex items-center gap-1"><Heart size={11} strokeWidth={1.75} fill={listing.liked ? "currentColor" : "none"} className={listing.liked ? "text-brand-red" : ""} /> {listing.likes_count ?? 0}</span>
+            <span className="flex items-center gap-1"><MessageCircle size={11} strokeWidth={1.75} /> {listing.comments_count ?? 0}</span>
+          </div>
         </div>
       </Link>
     </li>

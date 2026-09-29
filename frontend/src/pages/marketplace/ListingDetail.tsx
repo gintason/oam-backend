@@ -3,15 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft, Package, Star, MapPin, Eye, Loader2, Lock, Send, Tag,
-  Pencil, Trash2,
-} from "lucide-react";
+  Pencil, Trash2, Heart, Share2, MessageCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import VerifiedBadge from "../../components/VerifiedBadge";
 import { useUserScope } from "../../auth/useUserScope";
 import { marketplaceApi } from "../../services/marketplace";
 import { messagingApi } from "../../services/messaging";
 import { apiErrorMessage } from "../../lib/api";
-import { naira, friendlyTime, money } from "../../lib/format";
+import { naira, friendlyTime } from "../../lib/format";
 import { categoryLabel } from "../../lib/categoryLabel";
 import { useTranslation } from "react-i18next";
 
@@ -30,6 +29,35 @@ export default function ListingDetail() {
     queryFn: () => marketplaceApi.detail(id),
     enabled: Boolean(id),
   });
+
+  const [comment, setComment] = useState("");
+  const likeMut = useMutation({
+    mutationFn: () => marketplaceApi.toggleLike(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace", scope, "listing", id] }),
+  });
+  const commentsQ = useQuery({
+    queryKey: ["marketplace", "comments", id],
+    queryFn: () => marketplaceApi.comments(id),
+    enabled: Boolean(id),
+  });
+  const addComment = useMutation({
+    mutationFn: (body: string) => marketplaceApi.addComment(id, body),
+    onSuccess: () => {
+      setComment("");
+      commentsQ.refetch();
+      qc.invalidateQueries({ queryKey: ["marketplace", scope, "listing", id] });
+    },
+  });
+
+  async function share(l: { title: string; price: string; currency: string }) {
+    const url = `${window.location.origin}/marketplace/${id}`;
+    const text = `${l.title} — ${l.currency} ${l.price} on OAM`;
+    try {
+      const nav = navigator as Navigator & { share?: (d: unknown) => Promise<void>; canShare?: (d: unknown) => boolean };
+      if (nav.share) await nav.share({ title: l.title, text, url });
+      else { await navigator.clipboard.writeText(url); }
+    } catch { /* cancelled */ }
+  }
 
   const enquire = useMutation({
     mutationFn: () => messagingApi.start({ kind: "listing", id, body: message.trim() }),
@@ -117,7 +145,7 @@ export default function ListingDetail() {
                   {l.title}
                 </h1>
                 <p className="mt-1 text-2xl font-bold text-brand-red tabular">
-                  {money(l.price, l.currency)}
+                  {naira(l.price)}
                   {l.negotiable && (
                     <span className="ml-2 text-[12px] font-medium text-muted">{t("marketplace.negotiable")}</span>
                   )}
@@ -128,6 +156,25 @@ export default function ListingDetail() {
                   {conditionLabel && <Chip>{conditionLabel}</Chip>}
                   {l.location && <Chip icon={<MapPin size={11} strokeWidth={2} />}>{l.location}</Chip>}
                   <Chip icon={<Eye size={11} strokeWidth={2} />}>{t("marketplace.detail.views", { count: l.views_count })}</Chip>
+                </div>
+
+                <div className="mt-4 flex items-center gap-2 border-t border-hairline pt-4">
+                  <button
+                    onClick={() => likeMut.mutate()}
+                    disabled={likeMut.isPending}
+                    className={`flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[13px] font-medium transition ${l.liked ? "border-brand-red/40 bg-brand-red/5 text-brand-red" : "border-hairline text-ink hover:bg-mist"}`}
+                  >
+                    <Heart size={15} fill={l.liked ? "currentColor" : "none"} /> {l.likes_count ?? 0}
+                  </button>
+                  <div className="flex items-center gap-1.5 rounded-full border border-hairline px-3.5 py-1.5 text-[13px] text-ink">
+                    <MessageCircle size={15} /> {l.comments_count ?? 0}
+                  </div>
+                  <button
+                    onClick={() => share(l)}
+                    className="ml-auto flex items-center gap-1.5 rounded-full border border-hairline px-3.5 py-1.5 text-[13px] font-medium text-ink transition hover:bg-mist"
+                  >
+                    <Share2 size={15} /> {t("marketplace.detail.share", "Share")}
+                  </button>
                 </div>
 
                 {l.description && (
@@ -155,6 +202,42 @@ export default function ListingDetail() {
                   {t("marketplace.detail.listedBy")} <span className="font-medium text-ink">{l.seller_name}</span>
                   {" · "}{friendlyTime(l.created_at)}
                 </p>
+
+                <div className="mt-5 border-t border-hairline pt-4">
+                  <h3 className="text-[14px] font-semibold text-ink">
+                    {t("marketplace.detail.comments", "Comments")} ({l.comments_count ?? 0})
+                  </h3>
+                  <div className="mt-3 flex gap-2">
+                    <input
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === "Enter" && comment.trim()) addComment.mutate(comment.trim()); }}
+                      placeholder={t("marketplace.detail.commentPlaceholder", "Write a comment…")}
+                      className="h-10 flex-1 rounded-xl border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
+                    />
+                    <button
+                      onClick={() => comment.trim() && addComment.mutate(comment.trim())}
+                      disabled={addComment.isPending || !comment.trim()}
+                      className="flex h-10 items-center gap-1.5 rounded-xl bg-brand-green px-4 text-[13px] font-semibold text-white transition hover:brightness-95 disabled:opacity-50"
+                    >
+                      <Send size={15} /> {t("marketplace.detail.post", "Post")}
+                    </button>
+                  </div>
+                  <div className="mt-4 space-y-2.5">
+                    {commentsQ.data?.map((c) => (
+                      <div key={c.id} className="rounded-xl border border-hairline bg-paper p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[13px] font-semibold text-ink">{c.user_name}</span>
+                          <span className="text-[11px] text-muted">{friendlyTime(c.created_at)}</span>
+                        </div>
+                        <p className="mt-1 whitespace-pre-wrap text-[13.5px] text-ink">{c.body}</p>
+                      </div>
+                    ))}
+                    {commentsQ.data && commentsQ.data.length === 0 && (
+                      <p className="text-[13px] text-muted">{t("marketplace.detail.noComments", "No comments yet. Be the first!")}</p>
+                    )}
+                  </div>
+                </div>
 
                 {l.is_owner && (
                   <div className="mt-4 flex gap-2 border-t border-hairline pt-4">
