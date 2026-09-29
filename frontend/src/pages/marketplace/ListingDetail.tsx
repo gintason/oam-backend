@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -31,6 +31,8 @@ export default function ListingDetail() {
   });
 
   const [comment, setComment] = useState("");
+  const commentsRef = useRef<HTMLDivElement>(null);
+  const commentInputRef = useRef<HTMLInputElement>(null);
   const likeMut = useMutation({
     mutationFn: () => marketplaceApi.toggleLike(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["marketplace", scope, "listing", id] }),
@@ -166,9 +168,16 @@ export default function ListingDetail() {
                   >
                     <Heart size={15} fill={l.liked ? "currentColor" : "none"} /> {l.likes_count ?? 0}
                   </button>
-                  <div className="flex items-center gap-1.5 rounded-full border border-hairline px-3.5 py-1.5 text-[13px] text-ink">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      commentsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      setTimeout(() => commentInputRef.current?.focus(), 300);
+                    }}
+                    className="flex items-center gap-1.5 rounded-full border border-hairline px-3.5 py-1.5 text-[13px] text-ink transition hover:bg-mist"
+                  >
                     <MessageCircle size={15} /> {l.comments_count ?? 0}
-                  </div>
+                  </button>
                   <button
                     onClick={() => share(l)}
                     className="ml-auto flex items-center gap-1.5 rounded-full border border-hairline px-3.5 py-1.5 text-[13px] font-medium text-ink transition hover:bg-mist"
@@ -203,12 +212,13 @@ export default function ListingDetail() {
                   {" · "}{friendlyTime(l.created_at)}
                 </p>
 
-                <div className="mt-5 border-t border-hairline pt-4">
+                <div ref={commentsRef} className="mt-5 border-t border-hairline pt-4">
                   <h3 className="text-[14px] font-semibold text-ink">
                     {t("marketplace.detail.comments", "Comments")} ({l.comments_count ?? 0})
                   </h3>
                   <div className="mt-3 flex gap-2">
                     <input
+                      ref={commentInputRef}
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
                       onKeyDown={(e) => { if (e.key === "Enter" && comment.trim()) addComment.mutate(comment.trim()); }}
