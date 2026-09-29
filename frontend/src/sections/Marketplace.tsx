@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, type MouseEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, ImageOff, Loader2, MapPin, Package, Star } from "lucide-react";
+import { ArrowRight, ImageOff, Loader2, MapPin, Package, Star, Eye, Heart, MessageCircle, Share2 } from "lucide-react";
 import CategoryTabs from "../components/CategoryTabs";
 import { publicMarketApi, type PublicListing } from "../services/publicArtisans";
+import { marketplaceApi } from "../services/marketplace";
+import { useAuth } from "../auth/AuthContext";
 import { naira, friendlyTime } from "../lib/format";
 
 /**
@@ -96,6 +98,36 @@ export default function Marketplace() {
 
 function ListingCard({ item }: { item: PublicListing }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const [liked, setLiked] = useState(item.liked ?? false);
+  const [likes, setLikes] = useState(item.likes_count ?? 0);
+  const [busy, setBusy] = useState(false);
+
+  async function onLike(e: MouseEvent) {
+    e.preventDefault(); e.stopPropagation();
+    if (!isAuthenticated) { navigate("/sign-in"); return; }
+    if (busy) return;
+    setBusy(true);
+    const prevLiked = liked, prevLikes = likes;
+    setLiked(!liked); setLikes(liked ? likes - 1 : likes + 1);   // optimistic
+    try {
+      const r = await marketplaceApi.toggleLike(item.id);
+      setLiked(r.liked); setLikes(r.likes_count);
+    } catch {
+      setLiked(prevLiked); setLikes(prevLikes);
+    } finally { setBusy(false); }
+  }
+  async function onShare(e: MouseEvent) {
+    e.preventDefault(); e.stopPropagation();
+    const url = `${window.location.origin}/marketplace/${item.id}`;
+    try {
+      const nav = navigator as Navigator & { share?: (d: unknown) => Promise<void> };
+      if (nav.share) await nav.share({ title: item.title, text: `${item.title} on OAM`, url });
+      else await navigator.clipboard.writeText(url);
+    } catch { /* cancelled */ }
+  }
+
   return (
     <Link
       to={`/marketplace/${item.id}`}
@@ -134,6 +166,17 @@ function ListingCard({ item }: { item: PublicListing }) {
           <span className="line-clamp-1">{item.location || item.category_name}</span>
         </p>
         <p className="mt-auto pt-1 text-[11px] text-muted">{friendlyTime(item.created_at)}</p>
+        <div className="mt-2 flex items-center gap-3 border-t border-hairline pt-2 text-[11.5px] text-muted">
+          <span className="flex items-center gap-1"><Eye size={12} strokeWidth={1.75} /> {item.views_count ?? 0}</span>
+          <button type="button" onClick={onLike} disabled={busy}
+            className={`flex items-center gap-1 transition hover:text-brand-red ${liked ? "text-brand-red" : ""}`}>
+            <Heart size={12} strokeWidth={1.75} fill={liked ? "currentColor" : "none"} /> {likes}
+          </button>
+          <span className="flex items-center gap-1"><MessageCircle size={12} strokeWidth={1.75} /> {item.comments_count ?? 0}</span>
+          <button type="button" onClick={onShare} className="ml-auto flex items-center gap-1 transition hover:text-brand-green" aria-label="Share">
+            <Share2 size={12} strokeWidth={1.75} />
+          </button>
+        </div>
       </div>
     </Link>
   );

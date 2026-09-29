@@ -52,6 +52,7 @@ export type PublicListing = {
   category_name: string;
   is_featured: boolean;
   primary_image: string | null;
+  views_count?: number; likes_count?: number; comments_count?: number; liked?: boolean;
   created_at: string;
 };
 
