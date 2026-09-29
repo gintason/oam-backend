@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown, Eye, Heart, Share2 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
-import { naira } from "@/shared/lib/format";
+import { naira, money } from "@/shared/lib/format";
 import { useAuthStore } from "@/features/auth";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { categoryLabel, type ListingListItem } from "@/entities/marketplace";
@@ -129,7 +129,7 @@ function ListingRow({ title, data, loading, onSeeAll, onOpen }: { title: string;
               </View>
               <View style={{ padding: 10 }}>
                 <Text variant="label" color="ink" numberOfLines={1}>{l.title}</Text>
-                <Text variant="label" color="red" style={{ marginTop: 2 }}>{naira(l.price)}</Text>
+                <Text variant="label" color="red" style={{ marginTop: 2 }}>{money(l.price, l.currency)}</Text>
                 {l.location ? <Text variant="caption" color="muted" numberOfLines={1} style={{ marginTop: 2 }}>{l.location}</Text> : null}
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginTop: 7 }}>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
