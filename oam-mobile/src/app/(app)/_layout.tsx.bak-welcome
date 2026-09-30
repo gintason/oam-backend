@@ -39,7 +39,7 @@ function TabIcon({ Icon, color, focused }: { Icon: LucideIcon; color: ColorValue
 export default function AppLayout() {
   const insets = useSafeAreaInsets();
   const status = useAuthStore((s) => s.status);
-  if (status === "locked") return <Redirect href="/welcome-back" />;
+  if (status === "locked") return <Redirect href="/unlock" />;
   if (status !== "authenticated") return <Redirect href="/sign-in" />;
 
   return (
@@ -69,6 +69,7 @@ export default function AppLayout() {
 
       {/* Service screens — navigable, hidden from the tab bar, tab bar hidden while open. */}
       <Tabs.Screen name="marketplace" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="create-pin" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="assistant" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="bus" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="boost" options={{ href: null, tabBarStyle: { display: "none" } }} />

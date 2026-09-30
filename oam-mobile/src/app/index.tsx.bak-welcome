@@ -6,7 +6,7 @@ import { useAuthStore } from "@/features/auth";
 const FIRST_RUN_KEY = "oam.hasLaunched";
 
 /**
- * Entry router. Signed-in users go home; a remembered account goes to Welcome back (password only). For everyone
+ * Entry router. Signed-in users go home; a saved PIN goes to unlock. For everyone
  * else we distinguish a BRAND-NEW install (never launched -> Registration) from a
  * returning-but-signed-out user (-> Sign in). The first-run flag is persisted so
  * this only sends someone to sign-up once, ever.
@@ -31,7 +31,7 @@ export default function Index() {
     })();
   }, []);
 
-  if (status === "locked") return <Redirect href="/welcome-back" />;
+  if (status === "locked") return <Redirect href="/unlock" />;
   if (status === "authenticated") return <Redirect href="/home" />;
   if (firstRun === null) return null;                 // brief wait for the flag check
   return <Redirect href={firstRun ? "/sign-up" : "/sign-in"} />;

@@ -109,7 +109,7 @@ export async function signInWithGoogle(): Promise<string> {
       throw new SocialCancelled();
     }
     // DEVELOPER_ERROR (10): the "OAM Mobile Android Client" in project
-    // 74521252008 doesn't list this build's signing SHA-1 for com.oam.mobile.
+    // 74521252008 doesn't list this build's package name + signing SHA-1.
     if (String(e?.code) === "10" || /DEVELOPER_ERROR/i.test(String(e?.message))) {
       throw new Error("Google sign-in isn't set up for this build yet. Please use email for now.");
     }

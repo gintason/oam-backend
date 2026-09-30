@@ -13,7 +13,6 @@ import { referralStore, extractReferralToken } from "@/features/referrals";
 import { syncPushToken } from "@/features/notifications";
 import { useJobsPushRouting } from "@/features/jobs"; // oam-jobs
 import { AppSplash } from "@/features/splash/AppSplash";
-import { markSplashDone } from "@/features/splash/splash-state";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Can't perform a React state update on a component that hasn't mounted yet"]);
 
@@ -68,10 +67,7 @@ export default function RootLayout() {
   const ready = dataReady && minTimePassed;
 
   useEffect(() => {
-    if (ready) {
-      SplashScreen.hideAsync();
-      markSplashDone();   // lets entry animations start once the splash is gone
-    }
+    if (ready) SplashScreen.hideAsync();
   }, [ready]);
 
   return (

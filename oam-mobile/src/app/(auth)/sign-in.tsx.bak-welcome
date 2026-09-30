@@ -6,6 +6,7 @@ import type { AxiosError } from "axios";
 import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
 import { SocialAuthButtons } from "@/features/auth/ui/SocialAuthButtons";
 import { authApi, useAuthStore } from "@/features/auth";
+import { pinVault } from "@/shared/auth/pin-store";
 import { apiErrorMessage } from "@/shared/api";
 import { Button, Input, Text } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
@@ -14,6 +15,7 @@ export default function SignIn() {
   const router = useRouter();
   const { t } = useTranslation();
   const setSession = useAuthStore((s) => s.setSession);
+  const beginPinSetup = useAuthStore((s) => s.beginPinSetup);
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -22,9 +24,15 @@ export default function SignIn() {
   const login = useMutation({
     mutationFn: () => authApi.login(identifier.trim(), password),
     onSuccess: async ({ user, tokens }) => {
-      // Also remembers the account, so next launch only asks for the password.
       await setSession(user, tokens);
-      router.replace("/home");
+      // First login on this device (no unlock PIN yet)? Set one up, so the user
+      // can unlock with a PIN on every launch afterwards.
+      if (await pinVault.has()) {
+        router.replace("/home");
+      } else {
+        beginPinSetup();
+        router.replace("/create-pin");
+      }
     },
     onError: (err) => {
       // A 403 with reason "unverified" means the backend re-sent an OTP — go verify.

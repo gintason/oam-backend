@@ -6,7 +6,6 @@ import { Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { apiErrorMessage } from "@/shared/api";
 import { authApi, useAuthStore } from "@/features/auth";
-import { pinVault } from "@/shared/auth/pin-store";
 import { signInWithGoogle, SocialCancelled, SocialUnavailable, isGoogleAvailable } from "@/features/auth/social-auth";
 
 /** "Continue with Google" for the auth screens. Uses the native Google module
@@ -15,14 +14,10 @@ import { signInWithGoogle, SocialCancelled, SocialUnavailable, isGoogleAvailable
 export function SocialAuthButtons({ onError }: { onError?: (msg: string) => void }) {
   const router = useRouter();
   const setSession = useAuthStore((s) => s.setSession);
-  const beginPinSetup = useAuthStore((s) => s.beginPinSetup);
   const [busy, setBusy] = useState<null | "google">(null);
   const googleReady = isGoogleAvailable();
 
-  const finish = useCallback(async () => {
-    if (await pinVault.has()) router.replace("/home");
-    else { beginPinSetup(); router.replace("/create-pin"); }
-  }, [router, beginPinSetup]);
+  const finish = useCallback(() => router.replace("/home"), [router]);
 
   async function onGoogle() {
     onError?.("");
@@ -57,40 +52,48 @@ export function SocialAuthButtons({ onError }: { onError?: (msg: string) => void
 export function GoogleButton({ onPress, busy, disabled, label = "Continue with Google" }: {
   onPress: () => void; busy?: boolean; disabled?: boolean; label?: string;
 }) {
+  // Plain style objects only: NativeWind drops Pressable `style={({ pressed }) => …}`
+  // on devices, so the pressed tint is tracked in state instead.
+  const [pressed, setPressed] = useState(false);
   return (
     <Pressable
       onPress={onPress}
+      onPressIn={() => setPressed(true)}
+      onPressOut={() => setPressed(false)}
       disabled={disabled}
       accessibilityRole="button"
       accessibilityLabel={label}
-      style={({ pressed }) => ({
-        height: 40,
-        width: "100%",
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: "#dadce0",
-        backgroundColor: pressed ? "#f8faff" : "#ffffff",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 8,
-        paddingHorizontal: 12,
-        opacity: disabled && !busy ? 0.6 : 1,
-      })}
+      style={{ width: "100%", opacity: disabled && !busy ? 0.6 : 1 }}
     >
-      {busy ? <ActivityIndicator size="small" color="#4285F4" /> : <GoogleIcon />}
-      <RNText
-        numberOfLines={1}
+      <View
         style={{
-          color: "#3c4043",
-          fontSize: 14,
-          fontWeight: "500",
-          letterSpacing: 0.25,
-          fontFamily: Platform.OS === "android" ? "sans-serif-medium" : undefined,
+          height: 40,
+          borderRadius: 4,
+          borderWidth: 1,
+          borderColor: "#dadce0",
+          backgroundColor: pressed ? "#f8faff" : "#ffffff",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingHorizontal: 12,
         }}
       >
-        {busy ? "Connecting…" : label}
-      </RNText>
+        <View style={{ width: 18, height: 18, alignItems: "center", justifyContent: "center", marginRight: 8 }}>
+          {busy ? <ActivityIndicator size="small" color="#4285F4" /> : <GoogleIcon />}
+        </View>
+        <RNText
+          numberOfLines={1}
+          style={{
+            color: "#3c4043",
+            fontSize: 14,
+            fontWeight: "500",
+            letterSpacing: 0.25,
+            fontFamily: Platform.OS === "android" ? "sans-serif-medium" : undefined,
+          }}
+        >
+          {busy ? "Connecting…" : label}
+        </RNText>
+      </View>
     </Pressable>
   );
 }

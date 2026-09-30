@@ -354,7 +354,7 @@ export function useActionSheet() {
         <Text variant="label" color="muted" numberOfLines={2} style={{ textAlign: "center", marginBottom: 6 }}>{open?.title}</Text>
         {open?.actions.map((a) => (
           <Pressable key={a.label} accessibilityRole="button" onPress={() => { close(); a.run(); }}
-                     style={({ pressed }) => ({ paddingVertical: 14, borderTopWidth: 1, borderTopColor: colors.hairline, opacity: pressed ? 0.6 : 1 })}>
+                     style={{ paddingVertical: 14, borderTopWidth: 1, borderTopColor: colors.hairline }}>
             <Text variant="body" color={a.destructive ? "red" : undefined} style={{ textAlign: "center" }}>{a.label}</Text>
           </Pressable>
         ))}

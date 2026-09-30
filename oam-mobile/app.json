@@ -21,7 +21,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gintapeterson.oammobile",
+      "bundleIdentifier": "com.oam.app",
       "usesAppleSignIn": true,
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
@@ -34,7 +34,7 @@
       }
     },
     "android": {
-      "package": "com.gintapeterson.oammobile",
+      "package": "com.oam.app",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "adaptiveIcon": {

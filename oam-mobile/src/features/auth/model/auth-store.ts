@@ -1,18 +1,20 @@
 /**
  * Global auth state (Zustand). Holds the current user + a coarse status the
- * router guards read. Tokens live only in SecureStore (tokenVault); the local
- * unlock PIN lives in pinVault.
+ * router guards read. Tokens live only in SecureStore (tokenVault); the
+ * returning account ("Welcome back, Ada") lives in accountVault.
  *
- *  - hydrate():   on launch. If a session exists AND a local unlock PIN is set,
- *                 the app opens "locked" (PIN screen). Otherwise authenticated.
- *  - setSession(): after login / register / verify — stores tokens + user.
- *  - setPin():    save a local unlock PIN for this device (created at signup).
- *  - unlock():    verify the entered PIN and, on success, open the app.
- *  - signOut():   server logout + clear tokens AND the local PIN (switch account).
+ *  - hydrate():            on launch. A remembered account opens the app "locked":
+ *                          the Welcome-back screen asks for the password only.
+ *  - setSession():         after login / register / verify / Google — stores tokens,
+ *                          the user, and remembers the account on this device.
+ *  - unlockWithPassword(): log the remembered account in with just its password.
+ *  - signOut():            server logout + clear tokens; the account stays
+ *                          remembered, so the next screen is Welcome back.
+ *  - switchAccount():      sign out AND forget the account (full sign-in next).
  */
 import { create } from "zustand";
 import { tokenVault } from "@/shared/auth/token-store";
-import { pinVault } from "@/shared/auth/pin-store";
+import { accountVault, accountFromUser, type RememberedAccount } from "@/shared/auth/account-store";
 import { sessionEvents } from "@/shared/api";
 import type { AuthTokens, User } from "@/entities/user";
 import { authApi } from "../api/auth-api";
@@ -22,72 +24,64 @@ export type AuthStatus = "loading" | "authenticated" | "locked" | "unauthenticat
 interface AuthState {
   status: AuthStatus;
   user: User | null;
-  lockedName: string;
-  pendingPin: boolean;
+  account: RememberedAccount | null;
   hydrate: () => Promise<void>;
   setSession: (user: User, tokens: AuthTokens) => Promise<void>;
-  beginPinSetup: () => void;
-  setPin: (pin: string) => Promise<void>;
-  unlock: (pin: string) => Promise<boolean>;
-  lock: () => Promise<void>;
+  unlockWithPassword: (password: string) => Promise<void>;
   refreshUser: () => Promise<void>;
   signOut: () => Promise<void>;
+  switchAccount: () => Promise<void>;
+}
+
+async function revokeRefresh() {
+  const refresh = await tokenVault.getRefresh();
+  if (!refresh) return;
+  try {
+    await authApi.logout(refresh);
+  } catch {
+    /* best-effort */
+  }
 }
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   status: "loading",
   user: null,
-  lockedName: "",
-  pendingPin: false,
+  account: null,
 
   hydrate: async () => {
-    if (!(await tokenVault.hasSession())) {
-      set({ status: "unauthenticated", user: null });
-      return;
+    await accountVault.clearLegacyPin();
+    let account = await accountVault.get();
+
+    // Signed in before this update (e.g. with the old unlock PIN) but no
+    // remembered account yet: use the saved session once to learn who it is.
+    if (!account && (await tokenVault.hasSession())) {
+      try {
+        const user = await authApi.me();
+        account = accountFromUser(user);
+        if (account) await accountVault.set(account);
+      } catch {
+        await tokenVault.clear();
+      }
     }
-    // A saved session + a local PIN => go straight to the unlock screen. We do NOT
-    // call the API here: an expired access token (which the interceptor refreshes
-    // on the next real request) must not bounce a returning user to the password
-    // screen. The user object is refreshed after the PIN is entered (see unlock()).
-    if (await pinVault.has()) {
-      set({ status: "locked", lockedName: (await pinVault.name()) || "" });
-      return;
-    }
-    // Session but no PIN yet: confirm it's live, then continue authenticated.
-    try {
-      const user = await authApi.me();
-      set({ status: "authenticated", user });
-    } catch {
-      await tokenVault.clear();
-      set({ status: "unauthenticated", user: null });
-    }
+
+    // Returning user: always ask for the password on launch (no API call here —
+    // the password login below issues fresh tokens).
+    set(account ? { status: "locked", account, user: null } : { status: "unauthenticated", account: null, user: null });
   },
 
   setSession: async (user, tokens) => {
     await tokenVault.setTokens(tokens);
-    set({ status: "authenticated", user });
+    const account = accountFromUser(user);
+    if (account) await accountVault.set(account);
+    set({ status: "authenticated", user, account: account ?? get().account });
   },
 
-  beginPinSetup: () => set({ pendingPin: true }),
-
-  setPin: async (pin) => {
-    const user = get().user;
-    await pinVault.set(pin, user?.first_name || "");
-    set({ pendingPin: false });
-  },
-
-  unlock: async (pin) => {
-    const ok = await pinVault.verify(pin);
-    if (ok) {
-      set({ status: "authenticated" });
-      try {
-        const user = await authApi.me();
-        set({ user });
-      } catch {
-        /* token refresh / session handling covers a stale token here */
-      }
-    }
-    return ok;
+  unlockWithPassword: async (password) => {
+    const account = get().account;
+    if (!account) throw new Error("No saved account on this device. Please sign in.");
+    const { user, tokens } = await authApi.login(account.identifier, password);
+    await revokeRefresh();            // retire the previous session's refresh token
+    await get().setSession(user, tokens);
   },
 
   refreshUser: async () => {
@@ -99,30 +93,23 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }
   },
 
-  // Lock the app WITHOUT signing out: keep the session + PIN, just require the
-  // PIN to get back in. This is what "log out & return with your PIN" needs — a
-  // real signOut would destroy the session and force an email/password login.
-  lock: async () => {
-    if (!(await pinVault.has())) { await get().signOut(); return; }  // no PIN -> real sign out
-    set({ status: "locked", lockedName: (await pinVault.name()) || get().user?.first_name || "" });
+  signOut: async () => {
+    await revokeRefresh();
+    await tokenVault.clear();
+    const account = get().account;
+    set({ status: account ? "locked" : "unauthenticated", user: null });
   },
 
-  signOut: async () => {
-    const refresh = await tokenVault.getRefresh();
-    if (refresh) {
-      try {
-        await authApi.logout(refresh);
-      } catch {
-        /* best-effort */
-      }
-    }
+  switchAccount: async () => {
+    await revokeRefresh();
     await tokenVault.clear();
-    await pinVault.clear();
-    set({ status: "unauthenticated", user: null, lockedName: "" });
+    await accountVault.clear();
+    set({ status: "unauthenticated", user: null, account: null });
   },
 }));
 
-// A session that can't be refreshed = signed out.
+// A session that can't be refreshed = signed out (back to Welcome back if we know the user).
 sessionEvents.onExpired(() => {
-  useAuthStore.setState({ status: "unauthenticated", user: null, lockedName: "" });
+  const { account } = useAuthStore.getState();
+  useAuthStore.setState({ status: account ? "locked" : "unauthenticated", user: null });
 });
