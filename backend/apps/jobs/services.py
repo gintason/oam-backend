@@ -1016,6 +1016,36 @@ class MaintenanceService:
 
 
 # --------------------------------------------------------------------------- #
+# Home page feed
+# --------------------------------------------------------------------------- #
+
+class FeedService:
+    @staticmethod
+    def home_feed(limit: int = 6) -> dict:
+        """
+        Jobs for the public landing page.
+
+        `featured` = live jobs from employers on an ACTIVE Premium or Pro plan
+        (Pro first, then boosted/featured, then newest). `latest` = the newest
+        other live jobs, so the two lists never repeat a job.
+        """
+        from django.db.models import Case, IntegerField, Value, When
+
+        now = timezone.now()
+        base = JobListing.objects.live().select_related("employer", "employer__subscription")
+        paid = Q(employer__subscription__plan__in=PAID_PLANS,
+                 employer__subscription__current_period_end__gt=now)
+        featured = list(
+            base.filter(paid).promoted_first().annotate(
+                plan_rank=Case(When(employer__subscription__plan="pro", then=Value(0)),
+                               default=Value(1), output_field=IntegerField()))
+            .order_by("plan_rank", "promo_rank", "-published_at")[:limit])
+        latest = list(base.exclude(pk__in=[j.pk for j in featured])
+                      .order_by("-published_at")[:limit])
+        return {"featured": featured, "latest": latest, "total_live": base.count()}
+
+
+# --------------------------------------------------------------------------- #
 # Analytics
 # --------------------------------------------------------------------------- #
 

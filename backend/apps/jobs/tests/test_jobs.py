@@ -354,6 +354,31 @@ class JobsFlowTests(TransactionTestCase):
 
         async_to_sync(scenario)()
 
+    def test_home_feed_puts_paid_employers_first(self):
+        from apps.jobs.models import EmployerSubscription
+        self.make_employer()                                   # free employer
+        self.make_job(title="Warehouse Supervisor")
+        api_other = APIClient()
+        api_other.force_authenticate(self.other)
+        self.make_employer(client=api_other, name="Pro Corp")
+        sub = EmployerSubscription.objects.get(employer__company_name="Pro Corp")
+        sub.plan, sub.current_period_end = "pro", timezone.now() + timedelta(days=30)
+        sub.save()
+        r = api_other.post("/api/v1/jobs/listings/", {**JOB, "title": "Head of Engineering",
+                                                      "publish": True}, format="json")
+        self.assertEqual(r.status_code, 201, r.content)
+
+        r = APIClient().get("/api/v1/jobs/listings/home-feed/")   # anonymous
+        self.assertEqual(r.status_code, 200)
+        data = r.json()
+        self.assertEqual([j["title"] for j in data["featured"]], ["Head of Engineering"])
+        self.assertEqual([j["title"] for j in data["latest"]], ["Warehouse Supervisor"])
+        self.assertEqual(data["total_live"], 2)
+        # a lapsed paid plan no longer counts as featured
+        sub.current_period_end = timezone.now() - timedelta(days=1)
+        sub.save()
+        self.assertEqual(APIClient().get("/api/v1/jobs/listings/home-feed/").json()["featured"], [])
+
     def test_application_status_is_enum(self):
         self.assertIn("interview", ApplicationStatus.values)
 

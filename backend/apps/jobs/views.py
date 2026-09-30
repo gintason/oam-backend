@@ -251,6 +251,7 @@ class CandidateViewSet(JobsErrorMixin, viewsets.GenericViewSet):
 class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
     """
     Public:    GET /jobs/listings/?q=&location_type=remote,hybrid&salary_min=…
+               GET /jobs/listings/home-feed/   (landing page: Premium/Pro first, then latest)
                GET /jobs/listings/<id>/   GET /jobs/listings/by-slug/<slug>/
     Candidate: GET /jobs/listings/recommended/   GET /jobs/listings/saved/
                POST|DELETE /jobs/listings/<id>/save/   POST /jobs/listings/<id>/report/
@@ -259,7 +260,7 @@ class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
                POST /jobs/listings/<id>/{publish,pause,resume,close,renew,feature}/
                GET  /jobs/listings/<id>/{manage,applications,matches,analytics}/
     """
-    public_actions = ("list", "retrieve", "by_slug")
+    public_actions = ("list", "retrieve", "by_slug", "home_feed")
 
     def get_permissions(self):
         if self.action in self.public_actions:
@@ -312,6 +313,25 @@ class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         return self._detail(request, self.get_object())
+
+    @action(detail=False, methods=["get"], url_path="home-feed")
+    def home_feed(self, request):
+        """
+        GET /jobs/listings/home-feed/?limit=6 — public, for the landing page:
+        {featured: [jobs from Premium/Pro employers], latest: [...], total_live}
+        """
+        from .services import FeedService
+        try:
+            limit = max(1, min(int(request.query_params.get("limit", 6)), 12))
+        except ValueError:
+            limit = 6
+        feed = FeedService.home_feed(limit)
+        ctx = _user_job_context(request)
+        return Response({
+            "featured": JobListingListSerializer(feed["featured"], many=True, context=ctx).data,
+            "latest": JobListingListSerializer(feed["latest"], many=True, context=ctx).data,
+            "total_live": feed["total_live"],
+        })
 
     @action(detail=False, methods=["get"], url_path=r"by-slug/(?P<slug>[-\w]+)")
     def by_slug(self, request, slug=None):
