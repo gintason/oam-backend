@@ -107,22 +107,6 @@ export default function AppLayout() {
       <Tabs.Screen name="company-terms" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="company-privacy" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="company-refund" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      {/* oam-jobs: Jobs & Recruitment screens */}
-      <Tabs.Screen name="jobs" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-search" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="job" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-applications" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-saved" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-profile" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-employer" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-company" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-post" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-pipeline" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-candidates" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-candidate" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-plans" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-messages" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="jobs-chat" options={{ href: null, tabBarStyle: { display: "none" } }} />
     </Tabs>
   );
 }

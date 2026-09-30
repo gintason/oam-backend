@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, ChevronDown, BadgeCheck,
-  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon, BriefcaseBusiness
+  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon,
 } from "lucide-react-native";
 import Svg, { Path } from "react-native-svg";
 import { Text } from "@/shared/ui";
@@ -123,7 +123,6 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     { key: "about", label: t("drawer.about", "About OAM"), Icon: Info, onPress: () => setAboutOpen((v) => !v), expandable: true },
     { key: "bills", label: t("drawer.payBills", "Pay Bills"), Icon: Receipt, onPress: () => go("/airtime") },
     { key: "marketplace", label: t("drawer.marketplace", "Market Place"), Icon: Store, onPress: () => go("/marketplace") },
-    { key: "jobs", label: t("drawer.jobs", "Jobs & Careers"), Icon: BriefcaseBusiness, onPress: () => go("/jobs") },
     { key: "betting", label: t("drawer.betting", "Fund Betting Wallet"), Icon: Ticket, onPress: () => go("/betting") },
     { key: "artisans", label: t("drawer.artisans", "Find An Artisan"), Icon: Wrench, onPress: () => go("/artisans-find") },
     { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },

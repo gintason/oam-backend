@@ -22,7 +22,7 @@ declare global {
 }
 
 export const GOOGLE_CLIENT_ID = (import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined)
-  || "111824619190-v8kndsqt8oq9nj4vtubosio0hk3lsqbb.apps.googleusercontent.com";
+  || "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com";
 export const FACEBOOK_APP_ID = (import.meta.env.VITE_FACEBOOK_APP_ID as string | undefined)
   || "1360671685491147";
 export const APPLE_CLIENT_ID = import.meta.env.VITE_APPLE_CLIENT_ID as string | undefined;

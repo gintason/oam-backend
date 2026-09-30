@@ -4,7 +4,7 @@ import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, MessageCircle, Menu, Bus, History, Ticket, type LucideIcon, BriefcaseBusiness
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, MessageCircle, Menu, Bus, History, Ticket, type LucideIcon,
 }
 from "lucide-react-native";
 import { NotificationBell } from "@/features/notifications/NotificationBell";
@@ -56,7 +56,6 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
     title: "Shop & services", gkey: "shop",
     items: [
       { id: "marketplace", lkey: "marketplace", label: "Marketplace", Icon: Store, tint: "green" },
-      { id: "jobs", lkey: "jobs", label: "Jobs", Icon: BriefcaseBusiness, tint: "green" },
       { id: "artisans", lkey: "artisans", label: "Artisans", Icon: Wrench, tint: "green" },
       { id: "ecommerce", lkey: "ecommerce", label: "Shop", Icon: ShoppingBag, tint: "green" },
       { id: "betting", lkey: "betting", label: "Fund Betting", Icon: Ticket, tint: "green" },
@@ -130,7 +129,6 @@ export default function Home() {
     if (id === "carhire") return router.push("/carhire");
     if (id === "pickup") return router.push("/pickup");
     if (id === "bus") return router.push("/bus");
-    if (id === "jobs") return router.push("/jobs" as never);
     if (id === "marketplace") return router.push("/marketplace");
     if (id === "artisans") return router.push("/artisans");
     if (id === "ecommerce") return router.push("/ecommerce");

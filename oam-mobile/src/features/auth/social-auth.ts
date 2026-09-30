@@ -6,17 +6,30 @@
  * detect Expo Go up front and never even require the module there, so the app
  * runs fine (the Google button is simply hidden). In a real build the module
  * is present, the button appears, and sign-in works.
+ *
+ * Token audience
+ * --------------
+ * The ID token Google returns is issued for `webClientId` (its `aud`), on iOS
+ * and Android alike. The backend accepts only the IDs in GOOGLE_CLIENT_IDS, so
+ * EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID must be the same *Web application* client
+ * ID the backend (and the website, VITE_GOOGLE_CLIENT_ID) uses. The Android
+ * and iOS OAuth clients must live in the same Google Cloud project as that
+ * web client, or Google refuses the sign-in (DEVELOPER_ERROR).
  */
 import Constants from "expo-constants";
 
-// OAM Google OAuth client IDs (project 74521252008).
-export const GOOGLE_IOS_CLIENT_ID = "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com";
-export const GOOGLE_ANDROID_CLIENT_ID = "74521252008-ho6i39aapc7flmc26emrc9dja1oh0j55.apps.googleusercontent.com";
-export const GOOGLE_WEB_CLIENT_ID_REAL = "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com";
-// webClientId drives the ID token audience the backend verifies. If the ID
-// token comes back null on Android, set this to the *Web* client ID from the
-// same Google project and add it to the backend GOOGLE_CLIENT_IDS.
-export const GOOGLE_WEB_CLIENT_ID = GOOGLE_WEB_CLIENT_ID_REAL;
+// OAM's one Google Cloud project: "OAM Platform" (74521252008). Web, backend
+// and mobile all use it. The web client ID is the backend's GOOGLE_CLIENT_IDS
+// on Render and the website's VITE_GOOGLE_CLIENT_ID. The env vars can override
+// these, but the web client ID must stay the same everywhere.
+const OAM_WEB_CLIENT_ID = "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com";
+const OAM_IOS_CLIENT_ID = "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com";
+
+// Must be written out literally: Expo inlines EXPO_PUBLIC_* at build time.
+/** The backend's Web client ID — becomes the ID token `aud`. */
+export const GOOGLE_WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID?.trim() || OAM_WEB_CLIENT_ID;
+/** iOS OAuth client ("OAM iOS Client") from the same project. */
+export const GOOGLE_IOS_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID?.trim() || OAM_IOS_CLIENT_ID;
 
 // "storeClient" === Expo Go. Anything else (standalone / bare / dev-client) is
 // a real build that can contain the native module.
@@ -53,11 +66,22 @@ let configured = false;
 function configure(GoogleSignin: any) {
   if (configured) return;
   GoogleSignin.configure({
+    webClientId: GOOGLE_WEB_CLIENT_ID,   // → ID token `aud`; must match the backend
     iosClientId: GOOGLE_IOS_CLIENT_ID,
-    webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: false,
   });
   configured = true;
+}
+
+/** Reads `aud` from a JWT without verifying it (the backend verifies). */
+function tokenAudience(idToken: string): string | undefined {
+  try {
+    const part = idToken.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const json = typeof atob === "function" ? atob(part.padEnd(part.length + ((4 - (part.length % 4)) % 4), "=")) : "";
+    return json ? JSON.parse(json).aud : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 /** Opens the Google account picker and returns the ID token. */
@@ -68,13 +92,26 @@ export async function signInWithGoogle(): Promise<string> {
   configure(GoogleSignin);
   try {
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Always show the account picker instead of silently reusing the last account.
+    await GoogleSignin.signOut().catch(() => {});
     const res: any = await GoogleSignin.signIn();
+    if (res?.type === "cancelled") throw new SocialCancelled();
     const idToken = res?.data?.idToken ?? res?.idToken;
     if (!idToken) throw new Error("Google did not return an ID token.");
+    if (__DEV__) {
+      const aud = tokenAudience(idToken);
+      if (aud && aud !== GOOGLE_WEB_CLIENT_ID) console.warn(`[google] token aud ${aud} ≠ webClientId ${GOOGLE_WEB_CLIENT_ID}`);
+    }
     return idToken;
   } catch (e: any) {
+    if (e instanceof SocialCancelled) throw e;
     if (e?.code === statusCodes?.SIGN_IN_CANCELLED || e?.code === statusCodes?.IN_PROGRESS) {
       throw new SocialCancelled();
+    }
+    // DEVELOPER_ERROR (10): the "OAM Mobile Android Client" in project
+    // 74521252008 doesn't list this build's signing SHA-1 for com.oam.mobile.
+    if (String(e?.code) === "10" || /DEVELOPER_ERROR/i.test(String(e?.message))) {
+      throw new Error("Google sign-in isn't set up for this build yet. Please use email for now.");
     }
     throw e;
   }

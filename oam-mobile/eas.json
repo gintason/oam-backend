@@ -9,7 +9,9 @@
       "distribution": "internal",
       "channel": "development",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://api.oam-app.com/api/v1"
+        "EXPO_PUBLIC_API_URL": "https://api.oam-app.com/api/v1",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com"
       },
       "node": "22.23.1"
     },
@@ -23,7 +25,9 @@
         "simulator": false
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://api.oam-app.com/api/v1"
+        "EXPO_PUBLIC_API_URL": "https://api.oam-app.com/api/v1",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com"
       },
       "node": "22.23.1"
     },
@@ -32,7 +36,9 @@
       "channel": "production",
       "credentialsSource": "remote",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://api.oam-app.com/api/v1"
+        "EXPO_PUBLIC_API_URL": "https://api.oam-app.com/api/v1",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "74521252008-u08inid1vo4tu9s4blkk7j119g8k851t.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com"
       },
       "node": "22.23.1"
     }
