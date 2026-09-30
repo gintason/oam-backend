@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  ArrowUpRight, BedDouble, Bell, Car, CreditCard, Eye, Gift, History, House, MapPinned, Menu, MessageCircle,
-  Plane, Plus, ReceiptText, Send, Smartphone, Store, Tv, User, Wallet, Wifi, Wrench, Zap, type LucideIcon,
-} from "lucide-react";
+import { BedDouble, Bell, Car, CreditCard, Gift, Plane, Send, Smartphone, Store, Tv, Wallet, Wifi, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 /**
  * Landing hero.
  *  Left  (dim green #062616): drifting + pulsing service icons, headline,
  *        side-by-side CTAs.
  *  Right (white diagonal, desktop): two realistic CSS phones (Android behind,
- *        iPhone front) showing the real OAM mobile dashboard — wallet card,
- *        currency chips, service sections, tab bar — in ₦ (Android) and $ (iOS);
- *        tiles ripple in sequence; download caption + store badges.
+ *        iPhone front) running the OAM app with a full 9-service grid whose
+ *        tiles ripple/glow in sequence; download caption + store badges.
  *  Mobile: stacks; phones scale down. Pure CSS/SVG. Brand colours only.
  */
 
@@ -50,142 +46,34 @@ const DRIFTERS: Drifter[] = [
   { Icon: Tv,          left: "9%",  top: "44%", size: 26, dur: "28s", delay: "-13s", dx: "14px",  dy: "-16px" },
 ];
 
-/* ------------------------------------------------------------------------ */
-/* The real mobile Home dashboard, drawn at phone width (390px) and scaled   */
-/* into each phone. Mirrors the app: header, balance card, service groups,   */
-/* bottom tab bar and the assistant button.                                  */
-/* ------------------------------------------------------------------------ */
+/* App service tiles (shared shape) */
+type Svc = { Icon: LucideIcon; label: string; tint: "ink" | "red" | "green" };
 
-type DashTile = { Icon: LucideIcon; label: string };
-
-const DASH_GROUPS: { title: string; items: DashTile[] }[] = [
-  { title: "Bills & Utilities", items: [
-    { Icon: Smartphone, label: "Airtime" }, { Icon: Wifi, label: "Data" },
-    { Icon: Zap, label: "Electricity" }, { Icon: Tv, label: "Cable TV" } ] },
-  { title: "Money", items: [
-    { Icon: Plus, label: "Fund" }, { Icon: ArrowUpRight, label: "Withdraw" },
-    { Icon: Send, label: "Transfer" }, { Icon: Gift, label: "Gift Cards" } ] },
-  { title: "Travel & more", items: [
-    { Icon: Plane, label: "Flights" }, { Icon: BedDouble, label: "Hotels" },
-    { Icon: Car, label: "Car Hire" }, { Icon: MapPinned, label: "Pick Up" } ] },
+const ANDROID_SVCS: Svc[] = [
+  { Icon: Smartphone, label: "Airtime", tint: "ink" },
+  { Icon: Wifi,       label: "Data",    tint: "ink" },
+  { Icon: Tv,         label: "Cable",   tint: "red" },
+  { Icon: Zap,        label: "Power",   tint: "red" },
+  { Icon: Store,      label: "Market",  tint: "green" },
+  { Icon: Wrench,     label: "Artisans",tint: "green" },
+  { Icon: Plane,      label: "Flights", tint: "ink" },
+  { Icon: Gift,       label: "Cards",   tint: "red" },
+  { Icon: Send,       label: "Send",    tint: "green" },
+];
+const IOS_SVCS: Svc[] = [
+  { Icon: Smartphone, label: "Airtime", tint: "ink" },
+  { Icon: Tv,         label: "Cable",   tint: "red" },
+  { Icon: Zap,        label: "Power",   tint: "red" },
+  { Icon: Store,      label: "Market",  tint: "ink" },
+  { Icon: Wrench,     label: "Artisans",tint: "green" },
+  { Icon: Plane,      label: "Travel",  tint: "ink" },
+  { Icon: BedDouble,  label: "Hotels",  tint: "ink" },
+  { Icon: Gift,       label: "Cards",   tint: "red" },
+  { Icon: Send,       label: "Send",    tint: "green" },
 ];
 
-const TABS: { Icon: LucideIcon; label: string }[] = [
-  { Icon: House, label: "Home" }, { Icon: Wallet, label: "Wallet" }, { Icon: ReceiptText, label: "Orders" },
-  { Icon: MessageCircle, label: "Messages" }, { Icon: User, label: "Profile" },
-];
-
-const CURRENCIES = ["NGN", "USD", "GBP", "EUR"] as const;
-type Currency = (typeof CURRENCIES)[number];
-
-function SeamBar({ height = 4 }: { height?: number }) {
-  return (
-    <div className="flex" style={{ height }}>
-      <div className="flex-1 bg-brand-red" />
-      <div className="flex-1 bg-brand-green" />
-    </div>
-  );
-}
-
-function MobileDashboard({ name, currency, amount, statusTime, pulse = false }: {
-  name: string; currency: Currency; amount: string; statusTime: string; pulse?: boolean;
-}) {
-  return (
-    <div className="relative h-full w-[390px] overflow-hidden bg-white text-left">
-      {/* status bar */}
-      <div className="flex h-[46px] items-end justify-between px-7 pb-1.5 text-[14px] font-semibold text-ink">
-        <span className="tabular">{statusTime}</span>
-        <span className="flex items-center gap-1.5">
-          <span className="flex items-end gap-[2px]">
-            {[5, 8, 11, 14].map((h) => <span key={h} className="w-[3px] rounded-sm bg-ink" style={{ height: h }} />)}
-          </span>
-          <span className="ml-1 h-[12px] w-[24px] rounded-[4px] border-2 border-ink p-[1px]"><span className="block h-full w-[70%] rounded-[1px] bg-ink" /></span>
-        </span>
-      </div>
-
-      <div className="px-5 pt-2">
-        {/* header */}
-        <div className="flex items-center justify-between">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-green text-white"><Menu size={22} /></span>
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-11 items-center gap-2 rounded-full bg-mist px-4 text-[15px] font-medium text-brand-green">History <History size={17} /></span>
-            <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-mist text-brand-green">
-              <Bell size={19} /><span className="absolute right-2.5 top-2 h-2 w-2 rounded-full bg-brand-red" />
-            </span>
-          </div>
-        </div>
-
-        <p className="mt-4 text-[15px] text-muted">Good morning</p>
-        <p className="font-display text-[26px] font-semibold leading-tight text-ink">{name}</p>
-
-        {/* balance card */}
-        <div className="mt-4 overflow-hidden rounded-[22px] text-white shadow-[0_10px_24px_rgba(6,38,22,0.28)]"
-             style={{ background: "linear-gradient(135deg,#0b4a22 0%,#062616 45%,#0a0a0a 100%)" }}>
-          <SeamBar />
-          <div className="px-5 pb-5 pt-4">
-            <div className="flex items-center justify-between text-[14px] text-white/80">
-              <span>Available balance</span><Eye size={18} className="text-white/80" />
-            </div>
-            <p className={`mt-2 text-[38px] font-bold leading-none tracking-tight tabular ${pulse ? "oam-balpulse" : ""}`}>{amount}</p>
-            <p className="mt-2 text-[13px] text-white/55">{currency}</p>
-            <div className="mt-4 flex gap-2">
-              {CURRENCIES.map((c) => (
-                <span key={c} className={`rounded-full px-4 py-2 text-[13px] font-semibold ${c === currency ? "bg-white text-brand-green" : "bg-white/[0.14] text-white"}`}>{c}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* service groups */}
-        {DASH_GROUPS.map((g, gi) => (
-          <div key={g.title} className="mt-5">
-            <p className="text-[16px] font-semibold text-ink">{g.title}</p>
-            <div className="mt-2.5 grid grid-cols-4 gap-2.5">
-              {g.items.map((it, i) => (
-                <div key={it.label} className="oam-tile flex h-[92px] flex-col items-center justify-center gap-2 rounded-[16px] border border-hairline bg-white"
-                     style={{ animationDelay: `${(gi * 4 + i) * 0.45}s` }}>
-                  <span className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-brand-green/10 text-brand-green">
-                    <it.Icon size={20} strokeWidth={1.75} />
-                  </span>
-                  <span className="text-[12.5px] text-ink">{it.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* assistant button */}
-      <span className="absolute bottom-[88px] right-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#0a0a0a] text-white shadow-[0_8px_20px_rgba(10,10,10,0.3)]"
-            style={{ backgroundImage: "radial-gradient(circle at 25% 20%, rgba(11,115,39,0.55), transparent 60%), radial-gradient(circle at 80% 85%, rgba(227,16,18,0.28), transparent 55%)" }}>
-        <MessageCircle size={22} strokeWidth={1.75} />
-      </span>
-
-      {/* bottom tab bar */}
-      <div className="absolute inset-x-0 bottom-0 bg-[#0a0a0a]">
-        <SeamBar height={3} />
-        <div className="flex h-[72px] items-center justify-around pb-2">
-          {TABS.map((t, i) => (
-            <span key={t.label} className={`flex flex-col items-center gap-1 text-[11px] ${i === 0 ? "text-white" : "text-white/55"}`}>
-              <span className={`flex h-8 w-12 items-center justify-center rounded-full ${i === 0 ? "bg-brand-green/40" : ""}`}><t.Icon size={20} strokeWidth={i === 0 ? 2.1 : 1.75} /></span>
-              {t.label}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Scales the 390px-wide dashboard to the phone's screen width (responsive). */
-function PhoneScreen({ scaleClass, children }: { scaleClass: string; children: React.ReactNode }) {
-  return (
-    <div className={`absolute left-0 top-0 h-full ${scaleClass}`}
-         style={{ width: 390, height: "calc(100% / var(--s))", transform: "scale(var(--s))", transformOrigin: "top left" }}>
-      {children}
-    </div>
-  );
-}
+const tintClass = (t: Svc["tint"]) =>
+  t === "red" ? "text-brand-red" : t === "green" ? "text-brand-green" : "text-ink";
 
 /* Store badges — inline SVG (lucide has no brand icons) */
 const PlayGlyph = () => (
@@ -220,19 +108,36 @@ const glare =
 function AndroidPhone() {
   return (
     <div
-      className="relative z-[1] h-[392px] w-[200px] shrink-0 sm:h-[468px] sm:w-[234px]"
+      className="relative z-[1] h-[392px] w-[200px] sm:h-[468px] sm:w-[234px]"
       style={{ transform: "rotate(-8deg) translateX(34px) translateY(6px)" }}
     >
       <div
         className="h-full w-full rounded-[36px] p-1.5 shadow-[0_26px_60px_rgba(0,0,0,0.42)] ring-1 ring-white/5"
         style={{ background: "linear-gradient(145deg,#2a2a2e,#0d0d0f)" }}
       >
-        <div className="relative h-full w-full overflow-hidden rounded-[30px] bg-white">
+        <div className="relative h-full w-full overflow-hidden rounded-[30px]"
+             style={{ background: "linear-gradient(180deg,#0e8a2f,#0B7327)" }}>
           <div className="absolute left-1/2 top-2 z-[4] h-2 w-2 -translate-x-1/2 rounded-full border-2 border-[#1a1a1a] bg-black" />
-          {/* screen width: 200-12=188px (sm: 234-12=222px) → scale from 390px */}
-          <PhoneScreen scaleClass="[--s:0.482] sm:[--s:0.569]">
-            <MobileDashboard name="Preye" currency="NGN" amount="₦19,610" statusTime="9:41" pulse />
-          </PhoneScreen>
+          <div className="px-3.5 pb-3.5 pt-6">
+            <div className="text-[9px] text-white/60">Good morning</div>
+            <div className="mb-2.5 text-[11px] font-semibold text-white">Preye 👋</div>
+            <div className="mb-3 rounded-[13px] bg-white/10 p-3">
+              <div className="text-[8px] text-white/70">Wallet balance</div>
+              <div className="oam-balpulse tabular text-[20px] font-bold tracking-tight text-white">₦19,610</div>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {ANDROID_SVCS.map((s, i) => (
+                <div
+                  key={i}
+                  className="oam-tile flex h-[42px] flex-col items-center justify-center gap-0.5 rounded-[11px] bg-white"
+                  style={{ animationDelay: `${i * 0.4}s` }}
+                >
+                  <s.Icon size={16} strokeWidth={1.75} className={s.tint === "ink" ? "text-[#062616]" : tintClass(s.tint)} />
+                  <span className="text-[7px] font-medium text-muted">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className={glare} />
         </div>
       </div>
@@ -243,7 +148,7 @@ function AndroidPhone() {
 function IOSPhone() {
   return (
     <div
-      className="relative z-[2] h-[416px] w-[212px] shrink-0 sm:h-[496px] sm:w-[250px]"
+      className="relative z-[2] h-[416px] w-[212px] sm:h-[496px] sm:w-[250px]"
       style={{ transform: "rotate(6deg) translateX(-34px) translateY(-6px)" }}
     >
       <div
@@ -252,10 +157,34 @@ function IOSPhone() {
       >
         <div className="relative h-full w-full overflow-hidden rounded-[34px] bg-white">
           <div className="absolute left-1/2 top-2.5 z-[4] h-4 w-14 -translate-x-1/2 rounded-[11px] bg-black" />
-          {/* screen width: 212-12=200px (sm: 250-12=238px) → scale from 390px */}
-          <PhoneScreen scaleClass="[--s:0.513] sm:[--s:0.610]">
-            <MobileDashboard name="Preye" currency="USD" amount="$1,250.00" statusTime="9:41" />
-          </PhoneScreen>
+          <div className="px-3.5 pb-3.5 pt-8">
+            <div className="mb-3 flex items-center justify-between">
+              <div className="text-[13px] font-bold text-ink">
+                O<span className="text-brand-red">.</span>A<span className="text-brand-green">.</span>M<span className="text-brand-red">.</span>
+              </div>
+              <Bell size={13} strokeWidth={1.75} className="text-muted" />
+            </div>
+            <div className="mb-3 rounded-[15px] p-3.5" style={{ background: GREEN }}>
+              <div className="text-[8px] text-white/70">Wallet balance</div>
+              <div className="tabular text-[22px] font-bold tracking-tight text-white">₦19,610</div>
+              <div className="mt-2.5 flex gap-1.5">
+                <span className="rounded-lg bg-brand-red px-3 py-1.5 text-[8px] font-medium text-white">+ Add money</span>
+                <span className="rounded-lg bg-brand-green/[0.12] px-3 py-1.5 text-[8px] font-medium text-brand-green">Send</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {IOS_SVCS.map((s, i) => (
+                <div
+                  key={i}
+                  className="oam-tile flex h-[44px] flex-col items-center justify-center gap-0.5 rounded-[11px] bg-mist"
+                  style={{ animationDelay: `${i * 0.4}s` }}
+                >
+                  <s.Icon size={16} strokeWidth={1.75} className={tintClass(s.tint)} />
+                  <span className="text-[7px] font-medium text-muted">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className={glare} />
         </div>
       </div>
