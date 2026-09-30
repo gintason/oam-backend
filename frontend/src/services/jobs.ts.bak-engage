@@ -241,19 +241,6 @@ export type JobCardData = {
   is_saved: boolean | null;
   has_applied: boolean | null;
   match?: MatchDetail;
-  // engagement (optional so older API responses still type-check)
-  views_count?: number;
-  likes_count?: number;
-  comments_count?: number;
-  liked?: boolean | null;
-};
-
-export type JobComment = {
-  id: string;
-  body: string;
-  user_name: string;
-  is_employer: boolean;
-  created_at: string;
 };
 
 export type ScreeningQuestion = { id: string; question: string; required: boolean };
@@ -590,12 +577,6 @@ export const jobsApi = {
   unsave: async (id: string) => (await api.delete(`${J}/listings/${id}/save/`)).data as { saved: boolean },
   report: async (id: string, reason: string) =>
     (await api.post(`${J}/listings/${id}/report/`, { reason })).data,
-  like: async (id: string) =>
-    (await api.post(`${J}/listings/${id}/like/`)).data as { liked: boolean; likes_count: number },
-  comments: async (id: string): Promise<JobComment[]> =>
-    (await api.get(`${J}/listings/${id}/comments/`)).data,
-  addComment: async (id: string, body: string): Promise<JobComment> =>
-    (await api.post(`${J}/listings/${id}/comments/`, { body })).data,
 
   // candidate
   me: async (): Promise<CandidateProfile> => (await api.get(`${J}/candidates/me/`)).data,

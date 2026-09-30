@@ -16,6 +16,7 @@ import {
 } from "@/features/jobs";
 import { pickDocument } from "@/features/jobs/pickers";
 import { JobsScreen, Card, Loading, CompanyLogo, MatchBadge, PillButton, ErrorNote, Field, TextBox } from "@/features/jobs/ui/kit";
+import { EngagementBar, JobComments } from "@/features/jobs/ui/Engagement";
 
 export default function JobDetailScreen() {
   const { id = "" } = useLocalSearchParams<{ id: string }>();
@@ -28,6 +29,7 @@ export default function JobDetailScreen() {
   const [applied, setApplied] = useState(false);
   const [applyOpen, setApplyOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [commentFocus, setCommentFocus] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   const isSaved = saved ?? Boolean(job.data?.is_saved);
@@ -104,6 +106,7 @@ export default function JobDetailScreen() {
           <Fact icon={<Users size={14} color={colors.muted} />} label="Openings" value={String(j.openings)} />
         </View>
         {salary ? <Text variant="title" style={{ marginTop: 12, fontFamily: fonts.bold }}>{salary}</Text> : null}
+        <EngagementBar job={j} showShare={false} onComments={() => setCommentFocus((n) => n + 1)} />
       </Card>
       <ErrorNote>{error}</ErrorNote>
 
@@ -130,6 +133,7 @@ export default function JobDetailScreen() {
         </View>
         {j.employer.description ? <Text variant="caption" color="muted" style={{ marginTop: 10, lineHeight: 18 }} numberOfLines={5}>{j.employer.description}</Text> : null}
       </Card>
+      <JobComments jobId={j.id} focusKey={commentFocus} />
       <Pressable onPress={() => setReportOpen(true)} style={{ flexDirection: "row", alignItems: "center", gap: 6, alignSelf: "flex-start" }}>
         <Flag size={13} color={colors.muted} /><Text variant="caption" color="muted">Report this listing</Text>
       </Pressable>

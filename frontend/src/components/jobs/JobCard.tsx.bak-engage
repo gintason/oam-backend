@@ -6,7 +6,6 @@ import {
   jobsApi, formatSalary, timeAgo, LOCATION_LABEL, EMPLOYMENT_LABEL, type JobCardData,
 } from "../../services/jobs";
 import { CompanyLogo, MatchBadge } from "./ui";
-import { CardEngagement } from "./Engagement";
 
 /** One search result. The whole card links to the job; the bookmark doesn't. */
 export default function JobCard({ job, showMatch = false }: { job: JobCardData; showMatch?: boolean }) {
@@ -69,8 +68,6 @@ export default function JobCard({ job, showMatch = false }: { job: JobCardData; 
           </div>
         </div>
       </div>
-
-      <CardEngagement job={job} />
 
       {job.is_saved !== null && (
         <button

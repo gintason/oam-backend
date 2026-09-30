@@ -18,6 +18,7 @@ from .models import (
     ChatThread,
     EmployerProfile,
     JobApplication,
+    JobComment,
     JobListing,
     JobPayment,
     SavedSearch,
@@ -172,6 +173,7 @@ class JobListingListSerializer(serializers.ModelSerializer):
     is_promoted = serializers.BooleanField(read_only=True)
     is_saved = serializers.SerializerMethodField()
     has_applied = serializers.SerializerMethodField()
+    liked = serializers.SerializerMethodField()
     salary = serializers.SerializerMethodField()
 
     class Meta:
@@ -179,7 +181,8 @@ class JobListingListSerializer(serializers.ModelSerializer):
         fields = ["id", "slug", "title", "employer", "category", "employment_type",
                   "experience_level", "location_type", "location", "country", "salary",
                   "skills", "is_promoted", "is_featured", "is_boosted", "published_at",
-                  "expires_at", "apply_method", "is_saved", "has_applied"]
+                  "expires_at", "apply_method", "is_saved", "has_applied",
+                  "views_count", "likes_count", "comments_count", "liked"]
         read_only_fields = fields
 
     def get_salary(self, obj):
@@ -196,6 +199,10 @@ class JobListingListSerializer(serializers.ModelSerializer):
         ids = self.context.get("applied_ids")
         return str(obj.id) in ids if ids is not None else None
 
+    def get_liked(self, obj):
+        ids = self.context.get("liked_ids")
+        return str(obj.id) in ids if ids is not None else None
+
 
 class JobListingDetailSerializer(JobListingListSerializer):
     employer = EmployerPublicSerializer(read_only=True)
@@ -205,11 +212,29 @@ class JobListingDetailSerializer(JobListingListSerializer):
         fields = JobListingListSerializer.Meta.fields + [
             "description", "responsibilities", "requirements", "benefits",
             "screening_questions", "min_years_experience", "openings", "external_apply_url",
-            "views_count", "applications_count", "status", "match"]
+            "applications_count", "status", "match"]
         read_only_fields = fields
 
     def get_match(self, obj):
         return self.context.get("match")
+
+
+class JobCommentSerializer(serializers.ModelSerializer):
+    user_name = serializers.SerializerMethodField()
+    is_employer = serializers.SerializerMethodField()
+
+    class Meta:
+        model = JobComment
+        fields = ["id", "body", "user_name", "is_employer", "created_at"]
+        read_only_fields = ["id", "user_name", "is_employer", "created_at"]
+
+    def get_user_name(self, obj):
+        u = obj.user
+        full = (u.get_full_name() or "").strip() if u else ""
+        return full or (u.first_name if u else "") or "OAM User"
+
+    def get_is_employer(self, obj):
+        return obj.user_id == obj.job.employer.owner_id
 
 
 class JobListingWriteSerializer(serializers.ModelSerializer):
@@ -225,11 +250,12 @@ class JobListingWriteSerializer(serializers.ModelSerializer):
                   # read-only extras for the owner
                   "slug", "status", "published_at", "expires_at", "is_featured",
                   "featured_until", "is_boosted", "boosted_until", "posted_with_credit",
-                  "views_count", "applications_count", "is_flagged", "moderation_note",
-                  "created_at", "updated_at"]
+                  "views_count", "applications_count", "likes_count", "comments_count",
+                  "is_flagged", "moderation_note", "created_at", "updated_at"]
         read_only_fields = ["id", "slug", "status", "published_at", "expires_at", "is_featured",
                             "featured_until", "is_boosted", "boosted_until",
                             "posted_with_credit", "views_count", "applications_count",
+                            "likes_count", "comments_count",
                             "is_flagged", "moderation_note", "created_at", "updated_at"]
 
     def validate_skills(self, value):

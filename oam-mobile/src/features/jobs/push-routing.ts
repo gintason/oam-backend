@@ -25,6 +25,8 @@ export function routeForJobsPush(data: Data | undefined): { pathname: string; pa
       const ids = Array.isArray(data.job_ids) ? (data.job_ids as string[]) : [];
       return ids.length === 1 ? { pathname: "/job", params: { id: ids[0] } } : { pathname: "/jobs-saved" };
     }
+    case "job_comment":
+      return str("job_id") ? { pathname: "/job", params: { id: str("job_id") } } : { pathname: "/jobs-employer" };
     case "job.expired":
     case "jobs.plan_expiring":
       return { pathname: "/jobs-employer" };

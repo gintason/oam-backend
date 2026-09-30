@@ -12,7 +12,9 @@ from __future__ import annotations
 import json
 import logging
 
-from django.db.models import Count, Q
+from django.core.cache import cache
+from django.db import transaction
+from django.db.models import Count, F, Q
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -29,7 +31,9 @@ from .models import (
     CandidateProfile,
     EmployerProfile,
     JobApplication,
+    JobComment,
     JobFlag,
+    JobLike,
     JobListing,
     JobPayment,
     SavedJob,
@@ -55,6 +59,7 @@ from .serializers import (
     EmployerApplicationSerializer,
     EmployerOwnerSerializer,
     EmployerPublicSerializer,
+    JobCommentSerializer,
     JobListingDetailSerializer,
     JobListingListSerializer,
     JobListingWriteSerializer,
@@ -71,6 +76,7 @@ from .services import (
     JobService,
     PaymentService,
     ProfileService,
+    notify_user,
 )
 
 logger = logging.getLogger(__name__)
@@ -101,6 +107,8 @@ def _user_job_context(request) -> dict:
                       .values_list("job_id", flat=True)},
         "applied_ids": {str(i) for i in JobApplication.objects.filter(candidate__user=user)
                         .values_list("job_id", flat=True)},
+        "liked_ids": {str(i) for i in JobLike.objects.filter(user=user)
+                      .values_list("job_id", flat=True)},
     }
 
 
@@ -255,6 +263,7 @@ class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
                GET /jobs/listings/<id>/   GET /jobs/listings/by-slug/<slug>/
     Candidate: GET /jobs/listings/recommended/   GET /jobs/listings/saved/
                POST|DELETE /jobs/listings/<id>/save/   POST /jobs/listings/<id>/report/
+               POST /jobs/listings/<id>/like/   GET (public) | POST /jobs/listings/<id>/comments/
     Employer:  POST /jobs/listings/   PATCH/DELETE /jobs/listings/<id>/
                GET /jobs/listings/mine/
                POST /jobs/listings/<id>/{publish,pause,resume,close,renew,feature}/
@@ -265,6 +274,8 @@ class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action in self.public_actions:
             return [AllowAny()]
+        if self.action == "comments" and self.request.method == "GET":
+            return [AllowAny()]           # reading comments is public, like the job itself
         if self.action in ("create", "mine"):
             return [IsAuthenticated(), IsEmployer()]
         return [IsAuthenticated()]
@@ -284,7 +295,7 @@ class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
                 return base.filter(Q(pk__in=JobListing.objects.live().values("pk"))
                                    | Q(employer__owner=self.request.user))
             return base.filter(pk__in=JobListing.objects.live().values("pk"))
-        if self.action in ("toggle_save", "report"):
+        if self.action in ("toggle_save", "report", "like", "comments"):
             return base.filter(pk__in=JobListing.objects.live().values("pk"))
         return base.filter(employer__owner=self.request.user)
 
@@ -472,6 +483,56 @@ class JobListingViewSet(JobsErrorMixin, viewsets.ModelViewSet):
         job = self.get_object()
         SavedJob.objects.get_or_create(user=request.user, job=job)
         return Response({"saved": True})
+
+    # ---- engagement (mirrors the marketplace) ------------------------------ #
+
+    @action(detail=True, methods=["post"])
+    def like(self, request, pk=None):
+        """POST /jobs/listings/<id>/like/ — toggle the current user's like."""
+        job = self.get_object()
+        with transaction.atomic():
+            deleted, _ = JobLike.objects.filter(job=job, user=request.user).delete()
+            if deleted:
+                JobListing.objects.filter(pk=job.pk, likes_count__gt=0).update(likes_count=F("likes_count") - 1)
+                liked = False
+            else:
+                _, created = JobLike.objects.get_or_create(job=job, user=request.user)
+                if created:
+                    JobListing.objects.filter(pk=job.pk).update(likes_count=F("likes_count") + 1)
+                liked = True
+        job.refresh_from_db(fields=["likes_count"])
+        return Response({"liked": liked, "likes_count": job.likes_count})
+
+    @action(detail=True, methods=["get", "post"])
+    def comments(self, request, pk=None):
+        """GET (public) / POST (signed in) /jobs/listings/<id>/comments/"""
+        job = self.get_object()
+        if request.method == "GET":
+            rows = job.comments.select_related("user", "job__employer").all()[:100]
+            return Response(JobCommentSerializer(rows, many=True).data)
+
+        body = (request.data.get("body") or "").strip()
+        if not body:
+            return Response({"detail": "Comment cannot be empty."}, status=400)
+        # Light spam guard: at most 10 comments a minute per user.
+        key = f"jobs:comment-rate:{request.user.pk}"
+        n = cache.get(key, 0)
+        if n >= 10:
+            return Response({"detail": "You're commenting too fast. Please wait a minute."}, status=429)
+        cache.set(key, n + 1, 60)
+
+        with transaction.atomic():
+            c = JobComment.objects.create(job=job, user=request.user, body=body[:1000])
+            JobListing.objects.filter(pk=job.pk).update(comments_count=F("comments_count") + 1)
+        # Best-effort: tell the employer (never blocks the comment).
+        try:
+            owner = job.employer.owner
+            if owner and owner.pk != request.user.pk:
+                notify_user(owner, title=f"New comment on {job.title}", body=body[:120],
+                            data={"type": "job_comment", "job_id": str(job.id)}, kind="job_comment")
+        except Exception:  # noqa: BLE001
+            logger.warning("job comment notify failed for %s", job.pk, exc_info=True)
+        return Response(JobCommentSerializer(c).data, status=201)
 
     @action(detail=True, methods=["post"])
     def report(self, request, pk=None):

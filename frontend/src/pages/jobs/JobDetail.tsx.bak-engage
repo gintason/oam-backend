@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -14,7 +14,6 @@ import {
 } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
 import { useUserScope } from "../../auth/useUserScope";
-import { EngagementBar, JobComments } from "../../components/jobs/Engagement";
 
 export default function JobDetail() {
   const { id = "" } = useParams();
@@ -23,7 +22,6 @@ export default function JobDetail() {
   const qc = useQueryClient();
   const [applyOpen, setApplyOpen] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
-  const commentsRef = useRef<HTMLElement>(null);
   const [applied, setApplied] = useState(false);
   const [error, setError] = useState<string>();
 
@@ -135,7 +133,6 @@ export default function JobDetail() {
               </Button>
               <Button variant="ghost" onClick={share}><Share2 size={15} /> Share</Button>
             </div>
-            <EngagementBar job={j} showShare={false} onComments={() => commentsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })} />
             <div className="mt-3"><ErrorNote>{error}</ErrorNote></div>
           </header>
 
@@ -154,8 +151,6 @@ export default function JobDetail() {
               </div>
             </section>
           )}
-
-          <JobComments jobId={j.id} anchorRef={commentsRef} />
 
           <button onClick={() => setReportOpen(true)} className="inline-flex items-center gap-1.5 text-[12.5px] text-muted hover:text-danger">
             <Flag size={13} /> Report this listing

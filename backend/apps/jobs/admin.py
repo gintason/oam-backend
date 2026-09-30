@@ -2,6 +2,7 @@ from django.contrib import admin, messages
 from django.utils import timezone
 
 from .models import (
+    JobComment,
     ApplicationStatusEvent,
     CandidateProfile,
     ChatMessage,
@@ -144,3 +145,16 @@ class MessageInline(admin.TabularInline):
 class ChatThreadAdmin(admin.ModelAdmin):
     list_display = ("employer", "candidate", "job", "last_message_at", "is_closed")
     inlines = [MessageInline]
+
+
+@admin.register(JobComment)
+class JobCommentAdmin(admin.ModelAdmin):
+    """Moderate public comments on job posts (delete abusive ones)."""
+    list_display = ("job", "user", "short_body", "created_at")
+    search_fields = ("body", "job__title", "user__email")
+    raw_id_fields = ("job", "user")
+    list_select_related = ("job", "user")
+
+    @admin.display(description="Comment")
+    def short_body(self, obj):
+        return (obj.body[:80] + "…") if len(obj.body) > 80 else obj.body

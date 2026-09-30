@@ -7,6 +7,7 @@ import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
 import { jobsApi, formatSalary, timeAgo, LOCATION_LABEL, EMPLOYMENT_LABEL, type JobCardData } from "../api";
 import { CompanyLogo, MatchBadge } from "./kit";
+import { CardEngagement } from "./Engagement";
 
 /** One job in a list. Tapping opens the detail screen; the bookmark saves it. */
 export function JobCard({ job, showMatch = false }: { job: JobCardData; showMatch?: boolean }) {
@@ -64,6 +65,7 @@ export function JobCard({ job, showMatch = false }: { job: JobCardData; showMatc
           </View>
           <Text variant="caption" color="muted">{timeAgo(job.published_at)}</Text>
         </View>
+        <CardEngagement job={job} />
       </View>
       {job.is_saved !== null ? (
         <Pressable onPress={() => toggle.mutate()} hitSlop={10} style={{ position: "absolute", right: 12, top: 12 }}

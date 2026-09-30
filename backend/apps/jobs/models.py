@@ -351,6 +351,8 @@ class JobListing(TimeStampedModel):
     # Counters (denormalised; updated with F() expressions)
     views_count = models.PositiveIntegerField(default=0)
     applications_count = models.PositiveIntegerField(default=0)
+    likes_count = models.PositiveIntegerField(default=0)
+    comments_count = models.PositiveIntegerField(default=0)
 
     # Moderation
     content_hash = models.CharField(max_length=40, blank=True, db_index=True)
@@ -804,3 +806,37 @@ class JobFlag(TimeStampedModel):
 
     def __str__(self):
         return f"{self.kind}: {self.job_id}"
+
+
+# --------------------------------------------------------------------------- #
+# Engagement — likes & comments (mirrors the marketplace)
+# --------------------------------------------------------------------------- #
+
+class JobLike(TimeStampedModel):
+    """A user's like on a job. Unique per (job, user) — the like toggles."""
+    job = models.ForeignKey(JobListing, on_delete=models.CASCADE, related_name="likes")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="job_likes")
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["job", "user"], name="jobs_like_once")]
+        indexes = [models.Index(fields=["job"], name="jobs_like_job_idx")]
+
+    def __str__(self):
+        return f"{self.user} ♥ {self.job_id}"
+
+
+class JobComment(TimeStampedModel):
+    """A public comment on a job post."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    job = models.ForeignKey(JobListing, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="job_comments")
+    body = models.TextField(max_length=1000)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["job", "-created_at"], name="jobs_comment_job_idx")]
+
+    def __str__(self):
+        return f"comment by {self.user} on {self.job_id}"
