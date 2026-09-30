@@ -100,8 +100,8 @@ JOBS_MODERATE_UNVERIFIED = env.bool("JOBS_MODERATE_UNVERIFIED", default=False)
 # Risk score (0-100) at which a listing is flagged / held for review.
 JOBS_FLAG_THRESHOLD = env.int("JOBS_FLAG_THRESHOLD", default=40)
 JOBS_HOLD_THRESHOLD = env.int("JOBS_HOLD_THRESHOLD", default=70)
-# Gateway for employer plans / job credits / boosts (defaults to the listing one).
-JOBS_PAYMENT_PROVIDER = env("JOBS_PAYMENT_PROVIDER", default=LISTING_UPGRADE_PROVIDER)
+# Employer plans / job credits / boosts are always charged through Flutterwave.
+JOBS_PAYMENT_GATEWAY = "flutterwave"
 
 from celery.schedules import crontab  # noqa: E402
 

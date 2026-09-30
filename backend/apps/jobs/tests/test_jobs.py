@@ -64,7 +64,7 @@ class WebsocketCommunicator(ApplicationCommunicator):
 
 TEST_SETTINGS = dict(
     CHANNEL_LAYERS={"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}},
-    JOBS_PAYMENT_PROVIDER="mock",
+    JOBS_PAYMENT_GATEWAY="mock",
     JOBS_USE_CELERY=False,
     CLOUDINARY_CLOUD_NAME="demo",
     CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
@@ -378,6 +378,16 @@ class JobsFlowTests(TransactionTestCase):
         sub.current_period_end = timezone.now() - timedelta(days=1)
         sub.save()
         self.assertEqual(APIClient().get("/api/v1/jobs/listings/home-feed/").json()["featured"], [])
+
+    def test_jobs_billing_uses_flutterwave_by_default(self):
+        from django.conf import settings as dj_settings
+
+        from apps.jobs.services import PaymentService
+        with override_settings():
+            del dj_settings.JOBS_PAYMENT_GATEWAY
+            self.assertEqual(PaymentService._gateway().provider_key, "flutterwave")
+        with override_settings(FRONTEND_URL="https://app.oam.test/"):
+            self.assertEqual(PaymentService._return_url(), "https://app.oam.test/jobs/payment-return")
 
     def test_application_status_is_enum(self):
         self.assertIn("interview", ApplicationStatus.values)

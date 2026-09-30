@@ -4,6 +4,7 @@ WebSocket consumer, Celery tasks and the admin all behave the same way.
 """
 from __future__ import annotations
 
+import inspect
 import logging
 import uuid
 from datetime import timedelta
@@ -805,10 +806,19 @@ class AlertService:
 class PaymentService:
     @staticmethod
     def _gateway(key=None):
+        """
+        Jobs billing always goes through Flutterwave, whatever the rest of the
+        app uses. JOBS_PAYMENT_GATEWAY exists only so tests can swap in "mock".
+        """
         from integrations.base import ProviderFactory
-        key = key or getattr(settings, "JOBS_PAYMENT_PROVIDER", "") or \
-            getattr(settings, "LISTING_UPGRADE_PROVIDER", None)
-        return ProviderFactory.get("payments", key)
+        return ProviderFactory.get("payments", key or getattr(settings, "JOBS_PAYMENT_GATEWAY",
+                                                               "flutterwave"))
+
+    @staticmethod
+    def _return_url() -> str:
+        """Send the payer straight back to the jobs confirmation page."""
+        base = (getattr(settings, "FRONTEND_URL", "") or "").rstrip("/")
+        return f"{base}/jobs/payment-return" if base else ""
 
     @staticmethod
     def quote(*, purpose, plan="", quantity=1, days=0, currency="NGN") -> tuple:
@@ -841,6 +851,10 @@ class PaymentService:
                                                 days=days, currency=currency)
         reference = f"JOB-{uuid.uuid4().hex[:20]}"
         gateway = PaymentService._gateway()
+        extra = {}
+        return_url = PaymentService._return_url()
+        if return_url and "callback_url" in inspect.signature(gateway.initialize_charge).parameters:
+            extra["callback_url"] = return_url
         try:
             init = gateway.initialize_charge(
                 amount=amount, currency=currency, reference=reference,
@@ -848,6 +862,7 @@ class PaymentService:
                 metadata={"purpose": f"jobs_{purpose}", "plan": plan, "user": str(user.id),
                           "employer": str(employer.id),
                           "name": _display_name(user), "phone": getattr(user, "phone", "") or ""},
+                **extra,
             )
         except ProviderError as exc:
             raise JobsError(f"Could not start payment: {exc}", status=502)
