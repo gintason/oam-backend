@@ -1,3 +1,2 @@
 export { assistantApi } from "./api";
 export type { ChatTurn } from "./api";
-export { AssistantLauncher } from "./ui/AssistantLauncher";
