@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Check, X, Zap } from "lucide-react";
+import { Check, Lock, X, Zap } from "lucide-react";
 import { jobsApi, type PlanKey } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
 import { useCurrency } from "../../currency/CurrencyContext";
@@ -132,6 +132,7 @@ export default function UpgradeSheet({
           </div>
         )}
 
+        <p className="mt-3 flex items-center justify-center gap-1.5 text-[12px] text-muted"><Lock size={12} /> Secure payment by Flutterwave · card, bank transfer or USSD</p>
         <div className="mt-3"><ErrorNote>{error}</ErrorNote></div>
       </div>
     </div>

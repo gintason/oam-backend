@@ -32,15 +32,15 @@ export default function LandingPage() {
     <div className="min-h-screen bg-paper">
       {/* Navbar */}
       <header className="sticky top-0 z-30 border-b border-hairline bg-paper/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           <img
             src={logo}
             alt="OAM — All services. One app."
-            className="h-8 w-auto sm:h-9"
+            className="h-8 w-auto shrink-0 sm:h-9"
           />
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
+          <nav className="hidden shrink-0 items-center gap-5 whitespace-nowrap text-sm text-muted xl:flex">
             {NAV_LINKS.map((l) => (
               <a key={l.key} href={l.href} className="hover:text-ink transition">
                 {t(`landing.nav.${l.key}`)}
@@ -58,7 +58,7 @@ export default function LandingPage() {
 
           {/* Mobile hamburger */}
           <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-hairline text-ink md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-hairline text-ink xl:hidden"
             aria-label={open ? t("landing.closeMenu") : t("landing.openMenu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -69,11 +69,11 @@ export default function LandingPage() {
 
         {/* Mobile menu panel */}
         <div
-          className={`border-t border-hairline bg-paper transition-opacity duration-300 md:hidden ${
+          className={`border-t border-hairline bg-paper transition-opacity duration-300 xl:hidden ${
             open ? "block opacity-100" : "hidden opacity-0"
           }`}
         >
-          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.key}

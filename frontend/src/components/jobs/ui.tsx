@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { Loader2, Building2 } from "lucide-react";
+import { Loader2, Building2, ArrowLeft } from "lucide-react";
 import type { ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes } from "react";
 import AppHeader from "../AppHeader";
 import {
@@ -21,7 +21,7 @@ const SEEKER_TABS: Tab[] = [
 ];
 
 const EMPLOYER_TABS: Tab[] = [
-  { to: "/jobs/employer", label: "Dashboard", end: true },
+  { to: "/jobs/employer", label: "Hiring overview", end: true },
   { to: "/jobs/employer/post", label: "Post a job" },
   { to: "/jobs/employer/candidates", label: "Candidates" },
   { to: "/jobs/messages", label: "Messages" },
@@ -41,13 +41,13 @@ export function JobsShell({
   return (
     <div className="min-h-screen bg-mist pb-24 md:pb-10">
       <AppHeader />
-      {tabs.length > 0 && (
-        <div className="sticky top-[65px] z-30 border-b border-hairline bg-paper/95 backdrop-blur">
-          <nav
-            className={`mx-auto flex gap-1 overflow-x-auto px-3 sm:px-5 ${wide ? "max-w-7xl" : "max-w-5xl"}`}
-            aria-label="Jobs"
-          >
-            {tabs.map((t) => (
+      <div className="sticky top-[65px] z-30 border-b border-hairline bg-paper/95 backdrop-blur">
+        <nav
+          className={`mx-auto flex items-center gap-1 overflow-x-auto px-3 sm:px-5 ${wide ? "max-w-7xl" : "max-w-5xl"}`}
+          aria-label="Jobs"
+        >
+          <BackToDashboard className={tabs.length ? "mr-2 border-r border-hairline pr-4" : ""} />
+          {tabs.map((t) => (
               <NavLink
                 key={t.to}
                 to={t.to}
@@ -63,13 +63,24 @@ export function JobsShell({
                 {t.label}
               </NavLink>
             ))}
-          </nav>
-        </div>
-      )}
+        </nav>
+      </div>
       <main className={`mx-auto px-3 py-5 sm:px-5 sm:py-6 ${wide ? "max-w-7xl" : "max-w-5xl"}`}>
         {children}
       </main>
     </div>
+  );
+}
+
+/** The way out of the jobs section, on every jobs page. */
+export function BackToDashboard({ className = "" }: { className?: string }) {
+  return (
+    <Link
+      to="/dashboard"
+      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap py-3 text-[13px] font-semibold text-brand-green transition hover:text-ink ${className}`}
+    >
+      <ArrowLeft size={15} strokeWidth={2} /> Back to Dashboard
+    </Link>
   );
 }
 
@@ -227,7 +238,7 @@ export function Button({
   children, onClick, type = "button", disabled, loading, variant = "primary", size = "md",
   className = "", to,
 }: BtnProps) {
-  const base = `inline-flex items-center justify-center gap-1.5 rounded-lg font-semibold transition disabled:opacity-60 ${
+  const base = `inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg font-semibold transition disabled:opacity-60 ${
     size === "sm" ? "h-8 px-3 text-[12.5px]" : "h-10 px-4 text-[13.5px]"
   }`;
   const tone = {

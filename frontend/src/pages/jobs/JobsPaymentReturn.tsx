@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, Clock, Loader2, XCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
+import { BackToDashboard } from "../../components/jobs/ui";
 import { jobsApi, type JobPayment } from "../../services/jobs";
 
 /**
@@ -64,7 +65,8 @@ export default function JobsPaymentReturn() {
   return (
     <div className="min-h-screen bg-mist">
       <AppHeader />
-      <main className="mx-auto max-w-md px-5 py-12">
+      <main className="mx-auto max-w-md px-5 pb-12 pt-4">
+        <div className="mb-4"><BackToDashboard /></div>
         <div className="rounded-2xl border border-hairline bg-paper p-8 text-center">
           {phase === "working" ? (
             <>

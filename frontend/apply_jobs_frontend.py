@@ -13,7 +13,8 @@ Safe to run more than once. Each edited file is backed up once as
 What it changes
   src/App.tsx             + {jobsRoutes}; JOB- payments go to the jobs return page
   src/pages/Dashboard.tsx + "Jobs" card under Shop & Services
-  src/LandingPage.tsx     + Jobs section after Marketplace, + "Jobs" nav link
+  src/LandingPage.tsx     + Jobs section after Marketplace, + "Jobs" nav link,
+                          menu kept on one line (wider row; hamburger below 1280px)
   src/sections/Services.tsx + "Jobs" card in the home page Services grid
   src/i18n/locales/en.json  + English strings for the above (other languages fall back)
   .env.example            + optional VITE_WS_URL note
@@ -220,6 +221,36 @@ def patch_en_locale():
     write(rel, out + ("\n" if raw.endswith("\n") else ""))
 
 
+
+def patch_landing_nav():
+    """Keep the landing menu on one line: wider row, no wrapping, hamburger below 1280px."""
+    rel = "src/LandingPage.tsx"
+    text = read(rel)
+    if text is None:
+        return
+    if "xl:hidden" in text:
+        skipped.append(rel + " (menu)")
+        return
+    subs = [
+        (r'(<div className="mx-auto flex h-16 )max-w-6xl( items-center justify-between)( px-4 sm:px-6">)',
+         r'\1max-w-7xl\2 gap-4\3'),
+        (r'className="h-8 w-auto sm:h-9"', 'className="h-8 w-auto shrink-0 sm:h-9"'),
+        (r'<nav className="hidden items-center gap-6 text-sm text-muted md:flex">',
+         '<nav className="hidden shrink-0 items-center gap-5 whitespace-nowrap text-sm text-muted xl:flex">'),
+        (r'(border border-hairline text-ink) md:hidden"', r'\1 xl:hidden"'),
+        (r'(transition-opacity duration-300) md:hidden', r'\1 xl:hidden'),
+        (r'<nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">',
+         '<nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">'),
+    ]
+    for pattern, repl in subs:
+        text, n = re.subn(pattern, repl, text, count=1)
+        if n == 0:
+            problems.append(f"{rel}: menu markup differs from expected ({pattern[:40]}…); "
+                            "menu width not adjusted")
+            return
+    write(rel, text)
+
+
 def main():
     if not (ROOT / "package.json").exists():
         print("Run this from the frontend root (the folder with package.json).")
@@ -227,7 +258,7 @@ def main():
     if not (ROOT / "src" / "routes" / "jobsRoutes.tsx").exists():
         print("src/routes/jobsRoutes.tsx is missing — unzip oam-jobs-frontend.zip here first.")
         sys.exit(1)
-    for fn in (patch_app, patch_dashboard, patch_landing, patch_services_grid,
+    for fn in (patch_app, patch_dashboard, patch_landing, patch_landing_nav, patch_services_grid,
                patch_en_locale, patch_env_example):
         fn()
     print(("Would change: " if CHECK else "Changed: ") + (", ".join(changed) or "nothing"))

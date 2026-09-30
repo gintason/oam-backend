@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Paperclip, Send, FileText, Loader2, AlertCircle, RotateCw, WifiOff } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
-import { Avatar, CompanyLogo, StatusPill } from "../../components/jobs/ui";
+import { Avatar, BackToDashboard, CompanyLogo, StatusPill } from "../../components/jobs/ui";
 import { jobsApi, uploadJobsFile, type Attachment, type JobChatMessage } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
 import { sendJobsEvent, useJobsSocket } from "../../lib/jobsSocket";
@@ -166,7 +166,8 @@ export default function JobsChat() {
   return (
     <div className="flex h-[100dvh] flex-col bg-mist">
       <AppHeader />
-      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col overflow-hidden px-0 sm:px-5 sm:py-4">
+      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col overflow-hidden px-0 sm:px-5 sm:pb-4">
+        <div className="px-4 sm:px-0"><BackToDashboard /></div>
         <header className="flex items-center gap-3 border-b border-hairline bg-paper px-4 py-3 sm:rounded-t-2xl sm:border">
           <button onClick={() => navigate("/jobs/messages")} className="rounded-lg p-1 text-muted hover:bg-mist" aria-label="Back"><ArrowLeft size={18} /></button>
           {t && (t.my_side === "employer"

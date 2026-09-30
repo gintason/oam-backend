@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Check, Zap, Receipt } from "lucide-react";
+import { Check, Lock, Zap, Receipt } from "lucide-react";
 import { JobsShell, Spinner, Button, ErrorNote } from "../../components/jobs/ui";
 import { jobsApi, type PlanKey } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
@@ -112,6 +112,7 @@ export default function Plans() {
           </Button>
         </div>
       </section>
+      <p className="mt-3 flex items-center justify-center gap-1.5 text-[12px] text-muted"><Lock size={12} /> Secure payment by Flutterwave · card, bank transfer or USSD</p>
       <div className="mt-3"><ErrorNote>{error}</ErrorNote></div>
 
       {(payments.data?.length ?? 0) > 0 && (
