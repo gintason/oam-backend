@@ -64,8 +64,7 @@
       "bus": "Bus Tickets",
       "betting": "Fund Betting",
       "referral": "Refer & Earn",
-      "ecommerce": "Shop",
-      "jobs": "Jobs"
+      "ecommerce": "Shop"
     },
     "verifyBanner": {
       "title": "Verify your account",
@@ -171,8 +170,7 @@
       "services": "Services",
       "marketplace": "Marketplace",
       "findArtisans": "Find Artisans",
-      "faq": "FAQ",
-      "jobs": "Jobs"
+      "faq": "FAQ"
     },
     "signIn": "Sign in",
     "getStarted": "Get started",
@@ -237,10 +235,6 @@
         "carhire": {
           "title": "Car Hire",
           "desc": "Rent a ride, anywhere."
-        },
-        "jobs": {
-          "title": "Jobs",
-          "desc": "Find work or hire talent."
         }
       }
     },
@@ -309,19 +303,6 @@
       },
       "rights": "© {{year}} OAM. All rights reserved.",
       "developedBy": "Developed by AiTrend"
-    },
-    "jobs": {
-      "eyebrow": "Jobs & careers",
-      "title": "Hiring now on OAM",
-      "subtitle": "Apply in one tap with your OAM CV, or post a job and meet candidates today.",
-      "viewAll": "View all jobs",
-      "featured": "From Premium & Pro employers",
-      "latest": "Latest jobs",
-      "emptyTitle": "No open jobs yet",
-      "emptyBody": "Be the first employer to post — your job goes live in minutes.",
-      "postJob": "Post a job",
-      "hiringTitle": "Hiring?",
-      "hiringBody": "Post your first job free and manage applicants on one board."
     }
   },
   "bills": {

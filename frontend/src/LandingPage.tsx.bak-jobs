@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 import Hero from "./Hero";
 import Services from "./sections/Services";
 import Marketplace from "./sections/Marketplace";
-import Jobs from "./sections/Jobs"; // oam-jobs
 import FeaturedArtisans from "./sections/FeaturedArtisans";
 import { CTA, Footer } from "./sections/CTAFooter";
 import LanguageSwitcher from "./components/LanguageSwitcher";
@@ -18,7 +17,6 @@ const NAV_LINKS = [
   { key: "about", href: "https://oam-app.com/about" },
   { key: "services", href: "#services" },
   { key: "marketplace", href: "#marketplace" },
-  { key: "jobs", href: "#jobs" },
   { key: "findArtisans", href: "#artisans" },
   { key: "faq", href: "#faq" },
 ];
@@ -109,7 +107,6 @@ export default function LandingPage() {
         <Hero />
         <Services />
         <Marketplace />
-        <Jobs />
         <FeaturedArtisans />
         <CTA />
       </main>

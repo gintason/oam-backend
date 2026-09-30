@@ -566,6 +566,9 @@ export const jobsApi = {
   search: async (params: Record<string, string>): Promise<Page<JobCardData>> =>
     (await api.get(`${J}/listings/`, { params })).data,
   job: async (id: string): Promise<JobDetail> => (await api.get(`${J}/listings/${id}/`)).data,
+  /** Public landing-page feed: Premium/Pro employers' jobs first, then the latest. */
+  homeFeed: async (limit = 6): Promise<{ featured: JobCardData[]; latest: JobCardData[]; total_live: number }> =>
+    (await api.get(`${J}/listings/home-feed/`, { params: { limit } })).data,
   recommended: async (limit = 12): Promise<{ results: JobCardData[] }> =>
     (await api.get(`${J}/listings/recommended/`, { params: { limit } })).data,
   savedJobs: async (page = 1): Promise<Page<JobCardData>> =>
