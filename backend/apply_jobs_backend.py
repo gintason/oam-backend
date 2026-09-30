@@ -21,6 +21,7 @@ What it changes
   apps/notifications/push.py    + push_to_user alias (fixes silent push failures)
   apps/payments/views.py        forward JOB- references from the main webhooks
   render.yaml                   ASGI start command (mirror of the dashboard setting)
+  build.sh                      migrate -> migrate_safe (advisory lock; no deploy races)
 """
 from __future__ import annotations
 
@@ -357,6 +358,29 @@ def patch_render():
     write(rel, text)
 
 
+def patch_build():
+    rel = "build.sh"
+    text = read(rel)
+    if text is None:
+        skipped.append(rel + " (not found)")
+        return
+    if "migrate_safe" in text:
+        skipped.append(rel)
+        return
+    lines = text.splitlines(keepends=True)
+    hit = False
+    for i, line in enumerate(lines):
+        if line.strip() == "python manage.py migrate":
+            lines[i] = line.replace("python manage.py migrate",
+                                    "python manage.py migrate_safe  " + MARK
+                                    + " one migrate at a time")
+            hit = True
+    if not hit:
+        problems.append(f"{rel}: no 'python manage.py migrate' line; use migrate_safe there")
+        return
+    write(rel, "".join(lines))
+
+
 RENDER_STEPS = """
 On Render (dashboard -> oam-api service):
   1. Settings -> Start Command:
@@ -376,7 +400,7 @@ def main():
         print("apps/jobs is missing — unzip oam-jobs-backend.zip into this folder first.")
         sys.exit(1)
     for fn in (patch_requirements, patch_settings, patch_urls, patch_asgi, patch_celery,
-               patch_purposes, patch_push, patch_payment_webhooks, patch_render):
+               patch_purposes, patch_push, patch_payment_webhooks, patch_render, patch_build):
         fn()
     verb = "Would change" if CHECK else "Changed"
     print(f"{verb}: " + (", ".join(changed) or "nothing"))

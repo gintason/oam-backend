@@ -10,4 +10,4 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
-python manage.py migrate_safe  # [oam-jobs] one migrate at a time
+python manage.py migrate
