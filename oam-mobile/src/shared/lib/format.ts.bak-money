@@ -3,15 +3,9 @@ export function naira(v: string | number): string {
   return `₦${Number(v || 0).toLocaleString()}`;
 }
 
-const CURRENCY_SYMBOLS: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
-
-/** Money with its currency symbol (₦, $, £, €); other currencies keep their code. */
+/** Money with currency (NGN uses the ₦ symbol). */
 export function money(v: string | number, currency = "NGN"): string {
-  const code = (currency || "NGN").toUpperCase();
-  if (code === "NGN") return naira(v);
-  const amount = Number(v || 0).toLocaleString();
-  const symbol = CURRENCY_SYMBOLS[code];
-  return symbol ? `${symbol}${amount}` : `${code} ${amount}`;
+  return currency === "NGN" ? naira(v) : `${currency} ${Number(v || 0).toLocaleString()}`;
 }
 
 /** BLOCK CAPS biller names → Title Case for display only. */
