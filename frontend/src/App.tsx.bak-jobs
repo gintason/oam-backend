@@ -60,10 +60,6 @@ import PaymentCallback from "./pages/services/PaymentCallback";
 import FlutterwaveCallback from "./pages/services/FlutterwaveCallback";
 import Profile from "./pages/Profile";
 
-// oam-jobs: Jobs & Recruitment
-import { jobsRoutes } from "./routes/jobsRoutes";
-import { JobsPaymentGate } from "./pages/jobs/JobsPaymentReturn";
-
 /**
  * App root: global providers + routes.
  *  Public:    /              (landing)
@@ -133,8 +129,8 @@ export default function App() {
               <Route path="/marketplace/:id" element={<RequireAuth><ListingDetail /></RequireAuth>} />
               {/* Services — airtime is live; the rest are placeholders for now */}
               <Route path="/services/airtime" element={<RequireAuth><BuyAirtime /></RequireAuth>} />
-              <Route path="/payment/callback" element={<RequireAuth><JobsPaymentGate fallback={<PaymentCallback />} /></RequireAuth>} />
-              <Route path="/payment/flutterwave-callback" element={<RequireAuth><JobsPaymentGate fallback={<FlutterwaveCallback />} /></RequireAuth>} />
+              <Route path="/payment/callback" element={<RequireAuth><PaymentCallback /></RequireAuth>} />
+              <Route path="/payment/flutterwave-callback" element={<RequireAuth><FlutterwaveCallback /></RequireAuth>} />
               <Route path="/services/callback" element={<RequireAuth><ServiceCallback /></RequireAuth>} />
               <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
               <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
@@ -171,9 +167,6 @@ export default function App() {
               <Route path="/artisans/me" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
               <Route path="/artisans/verify" element={<RequireAuth><ArtisanVerify /></RequireAuth>} />
               <Route path="/artisans/:id" element={<RequireAuth><ArtisanProfile /></RequireAuth>} />
-
-              {/* oam-jobs */}
-              {jobsRoutes}
 
               {/* Fallback: anything unknown goes to the landing page */}
               <Route path="*" element={<LandingPage />} />
