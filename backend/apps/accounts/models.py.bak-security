@@ -118,19 +118,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.transaction_pin = make_password(str(raw_pin))
 
     def check_transaction_pin(self, raw_pin: str) -> bool:
-        """Verify a raw PIN against the stored hash.
-
-        oam-security: after too many wrong PINs this raises Throttled (HTTP 429)
-        instead of checking, so the 4-digit PIN can't be brute-forced.
-        """
+        """Verify a raw PIN against the stored hash."""
         from django.contrib.auth.hashers import check_password
-        from .pin_lockout import ensure_not_locked, record_result
         if not self.transaction_pin:
             return False
-        ensure_not_locked(self.pk)
-        ok = check_password(str(raw_pin), self.transaction_pin)
-        record_result(self.pk, ok)
-        return ok
+        return check_password(str(raw_pin), self.transaction_pin)
 
 
 class OTPCode(models.Model):

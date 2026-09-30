@@ -12,7 +12,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import OTPCode
 from .otp import issue_otp, verify_otp
-from .throttles import AUTH_THROTTLES  # oam-security
 from .serializers import (
     LoginSerializer,
     LogoutSerializer,
@@ -44,8 +43,6 @@ def _invalidate_all_sessions(user):
 # ----------------------- Registration & OTP -----------------------
 class RegisterView(APIView):
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_register"
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -70,9 +67,6 @@ class RegisterView(APIView):
 
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_otp"
-    identifier_throttle_scope = "auth_otp_account"
 
     def post(self, request):
         serializer = VerifyOTPSerializer(data=request.data)
@@ -93,9 +87,6 @@ class VerifyOTPView(APIView):
 
 class ResendOTPView(APIView):
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_otp"
-    identifier_throttle_scope = "auth_otp_account"
 
     def post(self, request):
         serializer = ResendOTPSerializer(data=request.data)
@@ -112,9 +103,6 @@ class ResendOTPView(APIView):
 # ----------------------- Login / Logout / Me ----------------------- 
 class LoginView(APIView):
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_login"
-    identifier_throttle_scope = "auth_login_account"
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
@@ -179,8 +167,6 @@ class MeView(APIView):
 # ----------------------- Social -----------------------
 class SocialAuthView(APIView):
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_social"
 
     def post(self, request, provider):
         serializer = SocialAuthSerializer(data=request.data)
@@ -207,9 +193,6 @@ class PasswordResetRequestView(APIView):
     emails/phones are registered.
     """
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_reset"
-    identifier_throttle_scope = "auth_reset_account"
     GENERIC = {"detail": "If an account exists for that identifier, a reset code has been sent."}
 
     def post(self, request):
@@ -229,9 +212,6 @@ class PasswordResetConfirmView(APIView):
     new password, mark the account verified, and invalidate ALL old sessions.
     """
     permission_classes = [AllowAny]
-    throttle_classes = AUTH_THROTTLES   # oam-security: brute-force limits
-    throttle_scope = "auth_otp"
-    identifier_throttle_scope = "auth_otp_account"
 
     def post(self, request):
         serializer = PasswordResetConfirmSerializer(data=request.data)

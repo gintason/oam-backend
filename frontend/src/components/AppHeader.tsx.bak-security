@@ -3,6 +3,7 @@ import { LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { revenueApi } from "../services/billing";
 import logo from "../assets/logo.png";
 import { useUserScope } from "../auth/useUserScope";
 import { messagingApi } from "../services/messaging";
@@ -40,10 +41,13 @@ export default function AppHeader() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  // Admin links come from the user's own flags (/auth/me/ returns is_staff),
-  // so non-admins never call the admin-only revenue endpoint (no 403 noise).
-  const staff = user as { is_staff?: boolean; is_superuser?: boolean } | null;
-  const isAdmin = Boolean(staff?.is_staff || staff?.is_superuser);
+  // Only admins can read revenue — if it succeeds, show the Earnings link.
+  const isAdmin = useQuery({
+    queryKey: ["revenue", scope, "probe"],
+    queryFn: revenueApi.get,
+    retry: false,
+    staleTime: 10 * 60_000,
+  }).isSuccess;
 
   // Unread badge. Polled rather than pushed — see Chat.tsx for why.
   const unread = useQuery({
