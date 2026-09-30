@@ -11,7 +11,7 @@ app = Celery("oam")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
 # Auto-discover tasks in the top-level `tasks` package.
-app.autodiscover_tasks(["tasks", "apps.jobs"])  # [oam-jobs]
+app.autodiscover_tasks(["tasks"])
 
 
 @app.task(bind=True, ignore_result=True)

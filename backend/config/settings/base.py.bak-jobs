@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "django_celery_results",
     "rest_framework_simplejwt.token_blacklist",
-    "django_filters",  # [oam-jobs]
-    "channels",  # [oam-jobs]
 
     # Local apps
     "apps.common",
@@ -68,7 +66,6 @@ INSTALLED_APPS = [
      "apps.travu",
     "apps.reloadly",
     
-    "apps.jobs",  # [oam-jobs] jobs & recruitment
     # ...
 ]
 
@@ -405,46 +402,3 @@ CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET", default="")
 ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", default="")
 ASSISTANT_MODEL = env("ASSISTANT_MODEL", default="claude-sonnet-4-6")
 RELOADLY_CHARGE_PROVIDER = env("RELOADLY_CHARGE_PROVIDER", default="flutterwave")
-
-
-# [oam-jobs] ------------------------------------------------------------------------
-# Jobs & Recruitment
-# --------------------------------------------------------------------------
-# Real-time chat + live pipeline updates (Django Channels). With REDIS_URL set,
-# every web worker shares one channel layer; without it (local dev) an
-# in-memory layer is used, which only works with a single process.
-_REDIS_FOR_CHANNELS = env("REDIS_URL", default="")
-CHANNEL_LAYERS = (
-    {"default": {"BACKEND": "channels_redis.core.RedisChannelLayer",
-                  "CONFIG": {"hosts": [_REDIS_FOR_CHANNELS]}}}
-    if _REDIS_FOR_CHANNELS else
-    {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
-)
-
-# Run alert fan-out / moderation on Celery (True) or inline after commit (False).
-# Leave False until a Celery worker is actually running in production.
-JOBS_USE_CELERY = env.bool("JOBS_USE_CELERY", default=False)
-# Hold listings from unverified employers for staff review before they go live.
-JOBS_MODERATE_UNVERIFIED = env.bool("JOBS_MODERATE_UNVERIFIED", default=False)
-# Risk score (0-100) at which a listing is flagged / held for review.
-JOBS_FLAG_THRESHOLD = env.int("JOBS_FLAG_THRESHOLD", default=40)
-JOBS_HOLD_THRESHOLD = env.int("JOBS_HOLD_THRESHOLD", default=70)
-# Gateway for employer plans / job credits / boosts (defaults to the listing one).
-JOBS_PAYMENT_PROVIDER = env("JOBS_PAYMENT_PROVIDER", default=LISTING_UPGRADE_PROVIDER)
-
-from celery.schedules import crontab  # noqa: E402
-
-CELERY_BEAT_SCHEDULE = {
-    **globals().get("CELERY_BEAT_SCHEDULE", {}),
-    "jobs-expire-listings": {"task": "jobs.expire_listings",
-                             "schedule": crontab(minute="*/15")},
-    "jobs-alert-digests": {"task": "jobs.send_due_alert_digests",
-                           "schedule": crontab(minute=5)},
-    "jobs-flag-suspicious": {"task": "jobs.flag_suspicious_listings",
-                             "schedule": crontab(minute=20, hour="*/6")},
-    "jobs-plan-reminders": {"task": "jobs.subscription_reminders",
-                            "schedule": crontab(minute=0, hour=9)},
-    "jobs-matching-index": {"task": "jobs.rebuild_matching_index",
-                            "schedule": crontab(minute=40)},
-}
-CELERY_TASK_ROUTES = {**CELERY_TASK_ROUTES, "jobs.*": {"queue": "default"}}

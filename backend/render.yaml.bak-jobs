@@ -23,7 +23,7 @@ services:
     plan: free           # free instances sleep after 15 min; first request
                          # after that takes up to a minute
     buildCommand: "./build.sh"
-    startCommand: "gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --workers 2 --timeout 120"  # [oam-jobs] ASGI for WebSockets
+    startCommand: "gunicorn config.wsgi:application --workers 2 --timeout 120"
     healthCheckPath: /api/v1/homeservices/featured/
     envVars:
       - key: DJANGO_SETTINGS_MODULE

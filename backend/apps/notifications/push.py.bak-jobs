@@ -46,8 +46,3 @@ def send_push_to_user(user, title, body, data=None):
                 dead.append(token)
     if dead:
         DeviceToken.objects.filter(token__in=dead).update(is_active=False)
-
-
-# [oam-jobs] services.notify() imports `push_to_user`, which never existed, so
-# every push silently failed. Alias it to the real sender.
-push_to_user = send_push_to_user
