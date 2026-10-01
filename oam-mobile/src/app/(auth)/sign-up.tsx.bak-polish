@@ -6,7 +6,7 @@ import { AuthScaffold } from "@/features/auth/ui/AuthScaffold";
 import { SocialAuthButtons } from "@/features/auth/ui/SocialAuthButtons";
 import { PhoneInput } from "@/features/auth/ui/PhoneInput";
 import { COUNTRIES } from "@/features/auth/ui/countries";
-import { authApi, useAuthStore } from "@/features/auth";
+import { authApi } from "@/features/auth";
 import { apiErrorMessage } from "@/shared/api";
 import { Button, Input, Text } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
@@ -23,8 +23,6 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const rememberAccount = useAuthStore((s) => s.rememberAccount);
-
   const register = useMutation({
     mutationFn: () =>
       authApi.register({
@@ -34,10 +32,7 @@ export default function SignUp() {
         first_name: firstName.trim(),
       }),
     onSuccess: () => {
-      // Remember the new account now, so leaving mid-signup still lands on Welcome back.
-      const mail = email.trim().toLowerCase();
-      rememberAccount({ name: firstName.trim(), identifier: mail, email: mail, phone: phone.trim() || null, provider: "email" }).catch(() => {});
-      router.push({ pathname: "/verify-otp", params: { identifier: mail } });
+      router.push({ pathname: "/verify-otp", params: { identifier: email.trim().toLowerCase() } });
     },
     onError: (err) => setError(apiErrorMessage(err, t("auth.signUp.errFailed"))),
   });

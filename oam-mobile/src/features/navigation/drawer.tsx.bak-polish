@@ -6,12 +6,11 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import {
-  Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, ChevronDown, ChevronUp, BadgeCheck,
+  Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, ChevronDown, BadgeCheck,
   Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon, BriefcaseBusiness
 } from "lucide-react-native";
 import Svg, { Path } from "react-native-svg";
 import { Text } from "@/shared/ui";
-import { Reveal, SpringPressable } from "@/shared/ui/motion";
 import { colors, fonts } from "@/shared/theme";
 import { useAuthStore } from "@/features/auth";
 
@@ -56,12 +55,11 @@ export function DrawerProvider({ children }: { children: ReactNode }) {
   const tx = useRef(new Animated.Value(-DRAWER_W)).current;
   const fade = useRef(new Animated.Value(0)).current;
 
-  // Opens with a soft spring (a touch of overshoot) — the panel feels alive.
   function open() {
     setVisible(true);
     Animated.parallel([
-      Animated.spring(tx, { toValue: 0, friction: 9, tension: 65, useNativeDriver: true }),
-      Animated.timing(fade, { toValue: 1, duration: 240, useNativeDriver: true }),
+      Animated.timing(tx, { toValue: 0, duration: 260, useNativeDriver: true }),
+      Animated.timing(fade, { toValue: 1, duration: 260, useNativeDriver: true }),
     ]).start();
   }
   function close() {
@@ -79,7 +77,7 @@ export function DrawerProvider({ children }: { children: ReactNode }) {
           <Animated.View style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "rgba(0,0,0,0.5)", opacity: fade }}>
             <Pressable style={{ flex: 1 }} onPress={close} />
           </Animated.View>
-          <Animated.View style={{ position: "absolute", top: 0, bottom: 0, left: -24, width: DRAWER_W + 24, paddingLeft: 24, backgroundColor: "#062616", transform: [{ translateX: tx }] }}>
+          <Animated.View style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: DRAWER_W, transform: [{ translateX: tx }] }}>
             <DrawerPanel onClose={close} />
           </Animated.View>
         </View>
@@ -95,9 +93,6 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
   const [aboutOpen, setAboutOpen] = useState(false);
-  // Each row cascades in from the left as the drawer opens (the panel remounts on every open).
-  const STEP = 45;
-  const rowDelay = (i: number) => 120 + i * STEP;
 
   const companyPages: { key: string; label: string; route: string }[] = [
     { key: "c-about", label: t("company.about.title", "About OAM"), route: "/company-about" },
@@ -161,14 +156,11 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
 
       <ScrollView contentContainerStyle={{ paddingTop: insets.top + 22, paddingBottom: insets.bottom + 20, paddingHorizontal: 20 }} showsVerticalScrollIndicator={false}>
         {/* Logo — kept on a white chip so it reads on the dark background. */}
-        <Reveal delay={40} distance={10} scale={0.9} style={{ alignSelf: "center" }}>
-          <View style={{ backgroundColor: "#FFFFFF", borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
-            <Image source={logo} style={{ width: 96, height: 30 }} contentFit="contain" />
-          </View>
-        </Reveal>
+        <View style={{ alignSelf: "center", backgroundColor: "#FFFFFF", borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8 }}>
+          <Image source={logo} style={{ width: 96, height: 30 }} contentFit="contain" />
+        </View>
 
         {/* Profile */}
-        <Reveal delay={90} from="left" distance={22}>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 22 }}>
           <View style={{ height: 52, width: 52, borderRadius: 26, backgroundColor: "rgba(255,255,255,0.14)", borderWidth: 1, borderColor: "rgba(255,255,255,0.25)", alignItems: "center", justifyContent: "center" }}>
             <Text style={{ fontFamily: fonts.bold, fontSize: 20, color: "#FFFFFF" }}>{initial}</Text>
@@ -181,18 +173,18 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
             {subtitle ? <Text style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 1 }} numberOfLines={1}>{subtitle}</Text> : null}
           </View>
         </View>
-        </Reveal>
 
         <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 20, marginBottom: 6 }} />
 
         {/* Nav links: [green icon]  Label  › */}
-        {links.map((l, i) => (
-          <Reveal key={l.key} delay={rowDelay(i)} from="left" distance={28}>
-            <SpringPressable
+        {links.map((l) => (
+          <View key={l.key}>
+            <Pressable
               onPress={l.onPress}
-              accessibilityRole="button"
-              style={{ borderRadius: 14, marginBottom: 6, backgroundColor: "rgba(255,255,255,0.06)" }}
-              pressedStyle={{ backgroundColor: "rgba(255,255,255,0.16)" }}
+              style={({ pressed }) => ({
+                borderRadius: 14, marginBottom: 6,
+                backgroundColor: pressed ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.06)",
+              })}
             >
               <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 11, paddingHorizontal: 12 }}>
                 <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: colors.brand.green, alignItems: "center", justifyContent: "center", marginRight: 12 }}>
@@ -200,43 +192,36 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
                 </View>
                 <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 15, color: "#FFFFFF" }} numberOfLines={1}>{l.label}</Text>
                 {l.expandable
-                  ? (aboutOpen ? <ChevronUp size={18} color="rgba(255,255,255,0.7)" /> : <ChevronDown size={18} color="rgba(255,255,255,0.5)" />)
+                  ? <ChevronDown size={18} color="rgba(255,255,255,0.5)" style={{ transform: [{ rotate: aboutOpen ? "180deg" : "0deg" }] }} />
                   : <ChevronRight size={18} color="rgba(255,255,255,0.5)" />}
               </View>
-            </SpringPressable>
+            </Pressable>
 
             {l.key === "about" && aboutOpen ? (
               <View style={{ marginLeft: 20, marginBottom: 6, borderLeftWidth: 1, borderLeftColor: "rgba(255,255,255,0.14)", paddingLeft: 8 }}>
-                {companyPages.map((cp, j) => (
-                  <Reveal key={cp.key} delay={j * 40} from="left" distance={16}>
-                    <SpringPressable
-                      onPress={() => go(cp.route)}
-                      accessibilityRole="button"
-                      scaleTo={0.97}
-                      style={{ borderRadius: 10 }}
-                      pressedStyle={{ backgroundColor: "rgba(255,255,255,0.12)" }}
-                    >
-                      <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 10, paddingHorizontal: 12 }}>
-                        <Text style={{ flex: 1, fontFamily: fonts.medium, fontSize: 14, color: "rgba(255,255,255,0.9)" }} numberOfLines={1}>{cp.label}</Text>
-                        <ChevronRight size={15} color="rgba(255,255,255,0.4)" />
-                      </View>
-                    </SpringPressable>
-                  </Reveal>
+                {companyPages.map((cp) => (
+                  <Pressable
+                    key={cp.key}
+                    onPress={() => go(cp.route)}
+                    style={({ pressed }) => ({ borderRadius: 10, backgroundColor: pressed ? "rgba(255,255,255,0.12)" : "transparent" })}
+                  >
+                    <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 10, paddingHorizontal: 12 }}>
+                      <Text style={{ flex: 1, fontFamily: fonts.medium, fontSize: 14, color: "rgba(255,255,255,0.9)" }} numberOfLines={1}>{cp.label}</Text>
+                      <ChevronRight size={15} color="rgba(255,255,255,0.4)" />
+                    </View>
+                  </Pressable>
                 ))}
               </View>
             ) : null}
-          </Reveal>
+          </View>
         ))}
 
         <View style={{ height: 1, backgroundColor: "rgba(255,255,255,0.12)", marginTop: 8, marginBottom: 6 }} />
 
         {/* Sign out — same horizontal row shape as the nav links */}
-        <Reveal delay={rowDelay(links.length)} from="left" distance={28}>
-        <SpringPressable
+        <Pressable
           onPress={() => { onClose(); setTimeout(() => signOut().catch(() => {}), 150); }}
-          accessibilityRole="button"
-          style={{ borderRadius: 12 }}
-          pressedStyle={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+          style={({ pressed }) => ({ borderRadius: 12, backgroundColor: pressed ? "rgba(255,255,255,0.08)" : "transparent" })}
         >
           <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 11, paddingHorizontal: 12 }}>
             <View style={{ height: 36, width: 36, borderRadius: 10, backgroundColor: "rgba(227,16,18,0.20)", alignItems: "center", justifyContent: "center", marginRight: 12 }}>
@@ -244,18 +229,14 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
             </View>
             <Text style={{ flex: 1, fontFamily: fonts.bold, fontSize: 15, color: "#FFD7D7" }}>{t("drawer.signOut", "Sign out")}</Text>
           </View>
-        </SpringPressable>
-        </Reveal>
+        </Pressable>
 
         {/* Social media */}
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 22 }}>
-          {SOCIALS.map((sm, k) => (
-            <Reveal key={sm.key} delay={rowDelay(links.length + 1) + k * 60} distance={12} scale={0.6}>
-              <SpringPressable onPress={() => Linking.openURL(sm.url).catch(() => {})} scaleTo={0.88} accessibilityLabel={sm.key}
-                style={{ height: 42, width: 42, borderRadius: 21, backgroundColor: "rgba(255,255,255,0.10)", alignItems: "center", justifyContent: "center", marginHorizontal: 7 }}>
-                <Svg width={19} height={19} viewBox="0 0 24 24"><Path d={sm.d} fill="#FFFFFF" /></Svg>
-              </SpringPressable>
-            </Reveal>
+          {SOCIALS.map((sm) => (
+            <Pressable key={sm.key} onPress={() => Linking.openURL(sm.url).catch(() => {})} style={{ height: 42, width: 42, borderRadius: 21, backgroundColor: "rgba(255,255,255,0.10)", alignItems: "center", justifyContent: "center", marginHorizontal: 7 }}>
+              <Svg width={19} height={19} viewBox="0 0 24 24"><Path d={sm.d} fill="#FFFFFF" /></Svg>
+            </Pressable>
           ))}
         </View>
 

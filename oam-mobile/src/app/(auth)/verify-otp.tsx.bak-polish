@@ -10,10 +10,7 @@ import { Button, Input, Text } from "@/shared/ui";
 export default function VerifyOtp() {
   const router = useRouter();
   const setSession = useAuthStore((s) => s.setSession);
-  const completeVerification = useAuthStore((s) => s.completeVerification);
-  // next="home": came from a login attempt (password already typed) → straight in.
-  // Otherwise (fresh signup) → Welcome back, to log in with the password.
-  const { identifier, next } = useLocalSearchParams<{ identifier: string; next?: string }>();
+  const { identifier } = useLocalSearchParams<{ identifier: string }>();
   const ident = String(identifier ?? "");
 
   const [code, setCode] = useState("");
@@ -23,13 +20,8 @@ export default function VerifyOtp() {
   const verify = useMutation({
     mutationFn: () => authApi.verifyOtp(ident, code.trim()),
     onSuccess: async ({ user, tokens }) => {
-      if (next === "home") {
-        await setSession(user, tokens);
-        router.replace("/home");
-      } else {
-        await completeVerification(user, tokens);
-        router.replace("/welcome-back");
-      }
+      await setSession(user, tokens);
+      router.replace("/home");
     },
     onError: (err) => setError(apiErrorMessage(err, "That code didn't work. Check it and try again.")),
   });

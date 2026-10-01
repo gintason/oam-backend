@@ -8,7 +8,7 @@ import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TextInput, View 
 import { Redirect, useRouter } from "expo-router";
 import { Image } from "expo-image";
 import type { AxiosError } from "axios";
-import { Eye, EyeOff } from "lucide-react-native";
+import { BadgeCheck, Eye, EyeOff } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { Button, Screen, Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
@@ -29,6 +29,7 @@ export default function WelcomeBack() {
   const unlockWithPassword = useAuthStore((s) => s.unlockWithPassword);
   const setSession = useAuthStore((s) => s.setSession);
   const switchAccount = useAuthStore((s) => s.switchAccount);
+  const notice = useAuthStore((s) => s.notice);
 
   const [password, setPassword] = useState("");
   const [hidden, setHidden] = useState(true);
@@ -59,7 +60,7 @@ export default function WelcomeBack() {
       const res = (err as AxiosError<{ reason?: string }>).response;
       const data = res?.data;
       if (data?.reason === "unverified") {
-        router.push({ pathname: "/verify-otp", params: { identifier: account!.identifier } });
+        router.push({ pathname: "/verify-otp", params: { identifier: account!.identifier, next: "home" } });
         return;
       }
       setPassword("");
@@ -120,6 +121,16 @@ export default function WelcomeBack() {
             </View>
             <Text variant="body" color="muted" numberOfLines={1} style={{ flex: 1 }}>{maskIdentifier(account)}</Text>
           </View>
+
+          {notice === "verified" ? (
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 8, marginTop: 14, paddingHorizontal: 12, paddingVertical: 10,
+                           borderRadius: 12, backgroundColor: "rgba(11,115,39,0.08)", borderWidth: 1, borderColor: "rgba(11,115,39,0.25)" }}>
+              <BadgeCheck size={18} color={colors.brand.green} />
+              <Text variant="caption" style={{ flex: 1, color: colors.brand.green, fontFamily: fonts.bold }}>
+                {t("auth.welcomeBack.verified", "Your account is verified. Enter your password to log in.")}
+              </Text>
+            </View>
+          ) : null}
 
           {usesGoogle && googleReady ? (
             <Text variant="caption" color="muted" style={{ marginTop: 8 }}>

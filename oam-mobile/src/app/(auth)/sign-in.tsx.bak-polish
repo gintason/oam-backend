@@ -30,7 +30,7 @@ export default function SignIn() {
       // A 403 with reason "unverified" means the backend re-sent an OTP — go verify.
       const data = (err as AxiosError<{ reason?: string }>).response?.data;
       if (data?.reason === "unverified") {
-        router.push({ pathname: "/verify-otp", params: { identifier: identifier.trim(), next: "home" } });
+        router.push({ pathname: "/verify-otp", params: { identifier: identifier.trim() } });
         return;
       }
       setError(apiErrorMessage(err, t("auth.signIn.errFailed")));

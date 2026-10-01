@@ -9,7 +9,6 @@ import {
 from "lucide-react-native";
 import { NotificationBell } from "@/features/notifications/NotificationBell";
 import { Screen, Text } from "@/shared/ui";
-import { Reveal, SpringPressable } from "@/shared/ui/motion";
 import { colors } from "@/shared/theme";
 import { useAuthStore } from "@/features/auth";
 import { useWallets, useTransactions, pickHeadline, BalanceCard, TransactionRow } from "@/features/wallet";
@@ -76,12 +75,8 @@ function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon"
   const accent = tint === "red" ? colors.brand.red : colors.brand.green;
   const bg = tint === "red" ? "rgba(227,16,18,0.10)" : "rgba(11,115,39,0.10)";
   return (
-    <SpringPressable
+    <Pressable
       onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      scaleTo={0.93}
-      pressedStyle={{ borderColor: "rgba(11,115,39,0.35)", backgroundColor: "rgba(11,115,39,0.04)" }}
       style={{
         width: TILE_W,
         alignItems: "center",
@@ -108,15 +103,9 @@ function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon"
       <Text variant="caption" color="ink" numberOfLines={1}>
         {label}
       </Text>
-    </SpringPressable>
+    </Pressable>
   );
 }
-
-// Dashboard entrance (plays when Home mounts, i.e. after each login): header,
-// greeting, wallet card, then each section with its tiles popping in.
-const SECTION_START = 300;   // ms — first service section
-const SECTION_STEP = 110;    // ms between sections
-const TILE_STEP = 45;        // ms between tiles in a section
 
 export default function Home() {
   const router = useRouter();
@@ -153,7 +142,6 @@ export default function Home() {
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: H_PADDING, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
-        <Reveal delay={0} distance={10}>
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
           <Pressable onPress={open} hitSlop={8} style={{ height: 40, width: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", backgroundColor: colors.brand.green }}>
             <Menu size={22} strokeWidth={2} color="#FFFFFF" />
@@ -179,38 +167,30 @@ export default function Home() {
             <NotificationBell />
           </View>
         </View>
-        </Reveal>
 
-      <Reveal delay={70} from="left" distance={18}>
-        <Text variant="body" color="muted" style={{ fontSize: 16 }}>
-          {t(greetingKey())}
-        </Text>
-        <Text variant="heading" style={{ fontSize: 20, marginBottom: 18 }}>
-          {user?.first_name || t("dashboard.greeting")}
-        </Text>
-      </Reveal>
+       <Text variant="body" color="muted" style={{ fontSize: 16 }}>
+        {t(greetingKey())}
+      </Text>
+      <Text variant="heading" style={{ fontSize: 20, marginBottom: 18 }}>
+        {user?.first_name || t("dashboard.greeting")}
+      </Text>
 
-        <Reveal delay={150} distance={22} scale={0.95}>
-          <BalanceCard balance={headline?.balance} currency={headline?.currency} loading={wallets.isLoading} />
-        </Reveal>
+        <BalanceCard balance={headline?.balance} currency={headline?.currency} loading={wallets.isLoading} />
 
-        {GROUPS.map((group, gi) => (
+        {GROUPS.map((group) => (
           <View key={group.gkey} style={{ marginTop: 22 }}>
-            <Reveal delay={SECTION_START + gi * SECTION_STEP} from="left" distance={16}>
-              <Text variant="title" style={{ marginBottom: 12 }}>
-                {t(`dashboard.groups.${group.gkey}`)}
-              </Text>
-            </Reveal>
+            <Text variant="title" style={{ marginBottom: 12 }}>
+              {t(`dashboard.groups.${group.gkey}`)}
+            </Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GAP }}>
-              {group.items.map((item, i) => (
-                <Reveal key={item.id} delay={SECTION_START + gi * SECTION_STEP + 60 + i * TILE_STEP} distance={14} scale={0.85}>
-                  <ServiceTile
-                    label={t(`dashboard.services.${item.lkey}`)}
-                    Icon={item.Icon}
-                    tint={item.tint}
-                    onPress={() => onTile(item.id)}
-                  />
-                </Reveal>
+              {group.items.map((item) => (
+                <ServiceTile
+                  key={item.id}
+                  label={t(`dashboard.services.${item.lkey}`)}
+                  Icon={item.Icon}
+                  tint={item.tint}
+                  onPress={() => onTile(item.id)}
+                />
               ))}
             </View>
           </View>
