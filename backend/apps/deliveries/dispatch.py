@@ -32,6 +32,7 @@ from django.utils import timezone
 from .events import delivery_updated, money, notify, push_only, broadcast, timeline
 from .models import (
     ACTIVE_STATUSES,
+    DISPATCHABLE_PAYMENT,
     DeliveryRequest,
     DeliveryStatus,
     DispatchOffer,
@@ -83,6 +84,8 @@ def candidates(d, radius_km: float, cfg: DispatchSettings, now=None) -> list[tup
           .exclude(user_id=d.customer_id)
           .exclude(id__in=busy).exclude(id__in=holding_offer).exclude(id__in=already)
           .select_related("user"))
+    if d.payment_method == DeliveryRequest.PaymentMethod.CASH:
+        qs = qs.filter(cash_commission_due__lte=cfg.cash_debt_limit)   # settle up first
 
     found = []
     for rider in qs[:500]:
@@ -106,7 +109,7 @@ def run_round(delivery_id) -> int:
     d = (DeliveryRequest.objects.select_for_update(of=("self",))
          .select_related("customer").filter(pk=delivery_id).first())
     if (d is None or d.status != DeliveryStatus.PENDING or d.rider_id
-            or d.payment_status != DeliveryRequest.PaymentStatus.PAID):
+            or d.payment_status not in DISPATCHABLE_PAYMENT):
         return 0
     if _live_offers(d, now).exists():
         return 0                                  # still waiting on this round
@@ -182,7 +185,7 @@ def advance(delivery_ids=None, *, limit=50) -> int:
     now = timezone.now()
     expire_offers(now)
     qs = DeliveryRequest.objects.filter(status=DeliveryStatus.PENDING, rider__isnull=True,
-                                        payment_status=DeliveryRequest.PaymentStatus.PAID)
+                                        payment_status__in=DISPATCHABLE_PAYMENT)
     if delivery_ids is not None:
         qs = qs.filter(pk__in=list(delivery_ids))
     qs = qs.exclude(offers__status=DispatchOffer.Status.OFFERED, offers__expires_at__gt=now)

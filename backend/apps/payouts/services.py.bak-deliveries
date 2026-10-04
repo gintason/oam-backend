@@ -87,10 +87,9 @@ class WithdrawalService:
 
     # ---------------- withdrawal lifecycle ----------------
     @staticmethod
-    def create_and_hold(*, user, bank_account, amount, currency="NGN", fee=None) -> WithdrawalOrder:
+    def create_and_hold(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
         amount = Decimal(str(amount))
-        # fee=None → normal user withdrawal fee; delivery payouts pass fee=0.  # [oam-deliveries]
-        fee = _transfer_fee(amount, currency) if fee is None else Decimal(str(fee))
+        fee = _transfer_fee(amount, currency)
         total = amount + fee
         wallet = WalletService.get_or_create_wallet(user, currency)
         with transaction.atomic():
@@ -163,9 +162,9 @@ class WithdrawalService:
         return o
 
     @staticmethod
-    def withdraw(*, user, bank_account, amount, currency="NGN", fee=None) -> WithdrawalOrder:
+    def withdraw(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
         order = WithdrawalService.create_and_hold(
-            user=user, bank_account=bank_account, amount=amount, currency=currency, fee=fee)
+            user=user, bank_account=bank_account, amount=amount, currency=currency)
         return WithdrawalService.execute(order)
 
     # ---------------- resolve pending (webhook) ----------------

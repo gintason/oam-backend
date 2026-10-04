@@ -17,6 +17,7 @@ from __future__ import annotations
 import hmac
 import inspect
 import logging
+import uuid
 from datetime import timedelta
 from decimal import Decimal
 
@@ -30,10 +31,12 @@ from . import dispatch, pricing
 from .events import DeliveryError, delivery_updated, money, notify, timeline, broadcast
 from .models import (
     ACTIVE_STATUSES,
+    DISPATCHABLE_PAYMENT,
     DeliveryRequest,
     DeliveryStatus,
     DeliveryTransaction,
     DispatchOffer,
+    DispatchSettings,
     RiderDocument,
     RiderProfile,
 )
@@ -103,6 +106,8 @@ class CustomerService:
             timeline(d, DeliveryStatus.PENDING, note="Delivery requested.", actor="customer")
             if method == DeliveryRequest.PaymentMethod.WALLET:
                 PaymentService.pay_from_wallet(d)
+            elif method == DeliveryRequest.PaymentMethod.CASH:
+                PaymentService.mark_cash(d)
         if method == DeliveryRequest.PaymentMethod.CARD:
             PaymentService.start_card_checkout(d, return_url=data.get("return_url") or "")
         else:
@@ -186,6 +191,19 @@ class PaymentService:
             "gross_amount": d.fee, "rider_payout": d.rider_payout, "platform_fee": d.platform_fee,
             "currency": d.currency, "ledger_reference": d.reference})
         timeline(d, DeliveryStatus.PENDING, note="Payment received — finding a rider.")
+
+    @staticmethod
+    def mark_cash(d):
+        """Cash to the rider: nothing is held; the rider remits OAM's share later."""
+        if not DispatchSettings.load().cash_enabled:
+            raise DeliveryError("Cash payment isn't available right now. Pay with your wallet or card.",
+                                code="cash_disabled")
+        d.payment_status = DeliveryRequest.PaymentStatus.CASH
+        d.save(update_fields=["payment_status", "updated_at"])
+        DeliveryTransaction.objects.get_or_create(delivery=d, defaults={
+            "gross_amount": d.fee, "rider_payout": d.rider_payout, "platform_fee": d.platform_fee,
+            "currency": d.currency, "ledger_reference": d.reference})
+        timeline(d, DeliveryStatus.PENDING, note=f"Cash on delivery — pay the rider {money(d.fee, d.currency)}.")
 
     @staticmethod
     def pay_from_wallet(d):
@@ -314,7 +332,11 @@ class PaymentService:
     def settle(d):
         """Split the held fee: rider payout to their wallet, commission to revenue."""
         from apps.wallet.services import WalletService
-        if d.payment_status != DeliveryRequest.PaymentStatus.PAID or not d.rider_id:
+        if not d.rider_id:
+            return
+        if d.payment_status == DeliveryRequest.PaymentStatus.CASH:
+            return PaymentService.settle_cash(d)
+        if d.payment_status != DeliveryRequest.PaymentStatus.PAID:
             return
         WalletService.capture(d.currency, d.fee, reference=d.reference, cost=d.rider_payout,
                               counterpart_code=RIDER_CLEARING,
@@ -333,6 +355,144 @@ class PaymentService:
         RiderProfile.objects.filter(pk=d.rider_id).update(
             total_earnings=F("total_earnings") + d.rider_payout,
             completed_deliveries=F("completed_deliveries") + 1)
+        txn_id = DeliveryTransaction.objects.filter(delivery=d).values_list("pk", flat=True).first()
+        if txn_id:
+            transaction.on_commit(lambda: PayoutService.send(txn_id))
+
+    @staticmethod
+    def settle_cash(d):
+        """The rider kept the whole fee in cash; record OAM's share as owed."""
+        now = timezone.now()
+        DeliveryTransaction.objects.filter(delivery=d).update(
+            status=DeliveryTransaction.Status.CASH_DUE, rider=d.rider, settled_at=now, updated_at=now)
+        RiderProfile.objects.filter(pk=d.rider_id).update(
+            total_earnings=F("total_earnings") + d.rider_payout,
+            completed_deliveries=F("completed_deliveries") + 1,
+            cash_commission_due=F("cash_commission_due") + d.platform_fee)
+
+
+# --------------------------------------------------------------------------- #
+# Rider payouts: 80% to the rider's bank, OAM's share of cash jobs back to OAM
+# --------------------------------------------------------------------------- #
+
+class PayoutService:
+    @staticmethod
+    def send(txn_id) -> str:
+        """
+        Transfer one delivery's rider payout from the rider's OAM wallet to their
+        bank (apps.payouts: hold → Paystack transfer → capture, or refund on
+        failure). No transfer fee: the full 80% reaches the bank. Never raises —
+        if anything fails, the money simply stays in the rider's wallet.
+        """
+        t = (DeliveryTransaction.objects.select_related("rider__user", "rider__payout_account", "delivery")
+             .filter(pk=txn_id).first())
+        if t is None or t.status != DeliveryTransaction.Status.SETTLED or t.payout_status not in (
+                DeliveryTransaction.Payout.NONE, DeliveryTransaction.Payout.FAILED):
+            return t.payout_status if t else ""
+        rider = t.rider
+        acct = rider.payout_account if rider else None
+        if not rider or not rider.auto_payout or not acct or not acct.recipient_code or not acct.is_active:
+            DeliveryTransaction.objects.filter(pk=t.pk).update(payout_status=DeliveryTransaction.Payout.WALLET)
+            return DeliveryTransaction.Payout.WALLET
+        try:
+            from apps.payouts.services import WithdrawalService
+            order = WithdrawalService.withdraw(user=rider.user, bank_account=acct, amount=t.rider_payout,
+                                               currency=t.currency, fee=Decimal("0"))
+            status = {"success": DeliveryTransaction.Payout.SENT, "failed": DeliveryTransaction.Payout.FAILED,
+                      "reversed": DeliveryTransaction.Payout.FAILED}.get(order.status, DeliveryTransaction.Payout.PROCESSING)
+            ref = order.reference
+        except Exception:
+            logger.exception("delivery payout %s failed to start", t.ledger_reference)
+            status, ref = DeliveryTransaction.Payout.FAILED, t.payout_reference
+        DeliveryTransaction.objects.filter(pk=t.pk).update(payout_status=status, payout_reference=ref or "")
+        bank = f"{acct.bank_name or 'your bank'} ({acct.account_number[-4:]})"
+        if status == DeliveryTransaction.Payout.SENT:
+            notify(rider.user, title=f"{money(t.rider_payout, t.currency)} sent to your bank",
+                   body=f"Earnings for {t.delivery.reference} were transferred to {bank}.",
+                   data={"type": "delivery.payout", "delivery_id": str(t.delivery_id)})
+        elif status == DeliveryTransaction.Payout.FAILED:
+            notify(rider.user, title="Bank transfer didn't go through",
+                   body=f"{money(t.rider_payout, t.currency)} for {t.delivery.reference} is in your OAM wallet. "
+                        "Check your bank details or withdraw from the wallet.",
+                   data={"type": "delivery.payout_failed", "delivery_id": str(t.delivery_id)})
+        return status
+
+    @staticmethod
+    def sync_processing() -> int:
+        """Pick up the final state of transfers the payouts webhook has resolved."""
+        from apps.payouts.models import WithdrawalOrder
+        n = 0
+        for t in DeliveryTransaction.objects.filter(payout_status=DeliveryTransaction.Payout.PROCESSING)[:200]:
+            o = WithdrawalOrder.objects.filter(reference=t.payout_reference).only("status").first()
+            if not o:
+                continue
+            new = {"success": DeliveryTransaction.Payout.SENT, "failed": DeliveryTransaction.Payout.FAILED,
+                   "reversed": DeliveryTransaction.Payout.FAILED}.get(o.status)
+            if new:
+                DeliveryTransaction.objects.filter(pk=t.pk).update(payout_status=new)
+                n += 1
+        return n
+
+    @staticmethod
+    def _clear_commission(rider, amount, *, note):
+        """Reduce what the rider owes; once fully paid, close their cash jobs."""
+        now = timezone.now()
+        r = RiderProfile.objects.select_for_update().get(pk=rider.pk)
+        r.cash_commission_due = max(Decimal("0"), r.cash_commission_due - amount)
+        r.save(update_fields=["cash_commission_due", "updated_at"])
+        if r.cash_commission_due == 0:
+            DeliveryTransaction.objects.filter(rider=r, status=DeliveryTransaction.Status.CASH_DUE).update(
+                status=DeliveryTransaction.Status.SETTLED, commission_paid_at=now,
+                payout_status=DeliveryTransaction.Payout.NONE, updated_at=now)
+        logger.info("rider %s commission -%s (%s)", r.pk, amount, note)
+        return r
+
+    @staticmethod
+    def pay_commission_from_wallet(rider) -> RiderProfile:
+        """Rider settles OAM's cash share from their OAM wallet balance."""
+        from apps.wallet.exceptions import InsufficientFunds
+        from apps.wallet.services import REVENUE_ACCOUNT, WalletService
+        owed = rider.cash_commission_due
+        if owed <= 0:
+            raise DeliveryError("You don't owe any commission.", code="nothing_due")
+        wallet = WalletService.get_or_create_wallet(rider.user, "NGN")
+        ref = f"DLVCOM-{uuid.uuid4().hex[:12].upper()}"
+        with transaction.atomic():
+            try:
+                WalletService.hold(wallet, owed, reference=ref, description="Delivery commission to OAM")
+            except InsufficientFunds:
+                raise DeliveryError(f"Your wallet balance is below {money(owed)}. Top up, or transfer to OAM's bank account.",
+                                    code="insufficient_funds", status=402)
+            WalletService.capture("NGN", owed, reference=ref, cost=owed, counterpart_code=REVENUE_ACCOUNT,
+                                  description="Delivery commission (cash jobs)")
+            r = PayoutService._clear_commission(rider, owed, note=f"wallet {ref}")
+        notify(rider.user, title="Commission paid", body=f"{money(owed)} paid to OAM from your wallet. Thank you!",
+               data={"type": "rider.commission_paid"})
+        return r
+
+    @staticmethod
+    def record_commission(*, rider_id, amount, admin=None) -> RiderProfile:
+        """Admin confirms a bank transfer from the rider into OAM's account."""
+        from apps.wallet.models import LedgerAccount, LedgerPosting
+        from apps.wallet.services import REVENUE_ACCOUNT, WalletService
+        amount = Decimal(str(amount))
+        if amount <= 0:
+            raise DeliveryError("Enter the amount received.")
+        rider = RiderProfile.objects.filter(pk=rider_id).first()
+        if rider is None:
+            raise DeliveryError("Rider not found.", code="not_found", status=404)
+        with transaction.atomic():
+            # Book it as OAM revenue received into the company bank account.
+            bank = WalletService.system_account("cash:oam_bank", "NGN", LedgerAccount.Type.ASSET)
+            revenue = WalletService.system_account(REVENUE_ACCOUNT, "NGN", LedgerAccount.Type.LIABILITY)
+            WalletService.post(currency="NGN", description=f"Rider commission received ({rider.full_name})",
+                               lines=[(bank, LedgerPosting.Direction.DEBIT, amount),
+                                      (revenue, LedgerPosting.Direction.CREDIT, amount)],
+                               metadata={"rider": str(rider.pk), "by": str(getattr(admin, "pk", ""))})
+            r = PayoutService._clear_commission(rider, amount, note="bank transfer")
+        notify(rider.user, title="Commission received", body=f"OAM received {money(amount)}. Thank you!",
+               data={"type": "rider.commission_paid"})
+        return r
 
 
 # --------------------------------------------------------------------------- #
@@ -356,6 +516,8 @@ class RiderService:
             profile.verification_status = RiderProfile.Verification.PENDING
             profile.review_note = ""
             profile.save()
+            if data.get("bank_code") and data.get("account_number"):
+                RiderService.set_bank(profile, data["bank_code"], data["account_number"])
             if documents:
                 profile.documents.filter(kind__in=[doc["kind"] for doc in documents]).delete()
                 RiderDocument.objects.bulk_create(
@@ -365,6 +527,19 @@ class RiderService:
                body="We're reviewing your documents. You'll be notified once you're approved.",
                data={"type": "rider.applied"})
         return profile
+
+    @staticmethod
+    def set_bank(rider, bank_code, account_number) -> RiderProfile:
+        """Verify the account with the bank (name lookup) and save it for payouts."""
+        from apps.payouts.services import WithdrawalError, WithdrawalService
+        try:
+            acct = WithdrawalService.add_bank_account(user=rider.user, bank_code=bank_code,
+                                                      account_number=account_number)
+        except WithdrawalError as exc:
+            raise DeliveryError(f"We couldn't verify that bank account: {exc}", code="bank_invalid")
+        rider.payout_account = acct
+        rider.save(update_fields=["payout_account", "updated_at"])
+        return rider
 
     @staticmethod
     def review(*, admin, rider_id, action, note="") -> RiderProfile:
@@ -610,8 +785,10 @@ class RiderService:
         now = timezone.localtime()
         day0 = now.replace(hour=0, minute=0, second=0, microsecond=0)
         week0 = day0 - timedelta(days=day0.weekday())
-        settled = DeliveryTransaction.objects.filter(rider=rider,
-                                                     status=DeliveryTransaction.Status.SETTLED)
+        settled = DeliveryTransaction.objects.filter(
+            rider=rider, status__in=[DeliveryTransaction.Status.SETTLED, DeliveryTransaction.Status.CASH_DUE])
+        cfg = DispatchSettings.load()
+        acct = rider.payout_account
 
         def total(qs):
             return qs.aggregate(s=Sum("rider_payout"))["s"] or Decimal("0")
@@ -625,11 +802,20 @@ class RiderService:
             "this_week": total(settled.filter(settled_at__gte=week0)),
             "today_count": settled.filter(settled_at__gte=day0).count(),
             "rating_avg": rider.rating_avg, "rating_count": rider.rating_count,
+            "auto_payout": rider.auto_payout,
+            "payout_account": ({"bank_name": acct.bank_name, "account_name": acct.account_name,
+                                "account_number": "•" * 6 + acct.account_number[-4:]} if acct else None),
+            "cash_commission_due": rider.cash_commission_due,
+            "cash_debt_limit": cfg.cash_debt_limit,
+            "oam_bank": ({"bank_name": cfg.oam_bank_name, "account_number": cfg.oam_account_number,
+                          "account_name": cfg.oam_account_name} if cfg.oam_account_number else None),
             "ledger": [
                 {"reference": t.delivery.reference, "delivery_id": str(t.delivery_id),
                  "gross_amount": t.gross_amount, "rider_payout": t.rider_payout,
                  "platform_fee": t.platform_fee, "currency": t.currency,
-                 "settled_at": t.settled_at, "dropoff_address": t.delivery.dropoff_address}
+                 "settled_at": t.settled_at, "dropoff_address": t.delivery.dropoff_address,
+                 "payment_method": t.delivery.payment_method, "status": t.status,
+                 "payout_status": t.payout_status, "payout_label": t.get_payout_status_display()}
                 for t in settled.select_related("delivery").order_by("-settled_at")[:50]
             ],
         }
@@ -656,7 +842,7 @@ class AdminService:
                        .values_list("rider_id", flat=True))
         active = (DeliveryRequest.objects.filter(
             Q(status__in=ACTIVE_STATUSES) | Q(status=DeliveryStatus.PENDING,
-                                              payment_status=DeliveryRequest.PaymentStatus.PAID))
+                                              payment_status__in=DISPATCHABLE_PAYMENT))
             .select_related("rider")[:200])
         return {
             "deliveries_by_status": by_status,
@@ -669,7 +855,7 @@ class AdminService:
                 "rider_payouts": settled_today.aggregate(s=Sum("rider_payout"))["s"] or Decimal("0"),
             },
             "unassigned_over_5_min": DeliveryRequest.objects.filter(
-                status=DeliveryStatus.PENDING, payment_status=DeliveryRequest.PaymentStatus.PAID,
+                status=DeliveryStatus.PENDING, payment_status__in=DISPATCHABLE_PAYMENT,
                 created_at__lte=now - timedelta(minutes=5)).count(),
             "online_riders": [
                 {"id": str(r.id), "name": r.full_name, "lat": r.lat, "lng": r.lng,
@@ -710,11 +896,11 @@ class AdminService:
 class MaintenanceService:
     @staticmethod
     def tick() -> dict:
-        out = {"offers": dispatch.advance(limit=200)}
+        out = {"offers": dispatch.advance(limit=200), "payouts_synced": PayoutService.sync_processing()}
         now = timezone.now()
         # Paid but nobody accepted for too long → cancel + refund.
         lapsed = DeliveryRequest.objects.filter(
-            status=DeliveryStatus.PENDING, payment_status=DeliveryRequest.PaymentStatus.PAID,
+            status=DeliveryStatus.PENDING, payment_status__in=DISPATCHABLE_PAYMENT,
             created_at__lte=now - timedelta(minutes=PENDING_TIMEOUT_MIN)).values_list("pk", flat=True)
         n = 0
         for pk in list(lapsed[:100]):

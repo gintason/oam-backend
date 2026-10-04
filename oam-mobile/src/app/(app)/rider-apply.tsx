@@ -12,6 +12,7 @@ import { useAuthStore } from "@/features/auth";
 import { pickDocument } from "@/features/jobs/pickers";
 import type { PickedMedia } from "@/features/marketplace/api/uploads-api";
 import { riderApi, uploadDeliveriesFile, VEHICLES, type DocKind, type RiderProfile, type VehicleType } from "@/features/deliveries";
+import { BankFields, type BankValue } from "@/features/deliveries/ui/BankFields";
 import { Card, Chip, DeliveriesScreen, ErrorNote, Field, Loading, PillButton, TextBox, useActionSheet } from "@/features/deliveries/ui/kit";
 
 const DOCS: { kind: DocKind; label: string; hint: string; requiredFor: (v: VehicleType) => boolean }[] = [
@@ -43,6 +44,10 @@ function Form({ existing }: { existing: RiderProfile | null }) {
   }));
   const [docs, setDocs] = useState<Partial<Record<DocKind, string>>>(() =>
     Object.fromEntries((existing?.documents ?? []).map((d) => [d.kind, d.url])));
+  const [bank, setBank] = useState<BankValue>(() => ({
+    bank_code: existing?.payout_account?.bank_code ?? "", bank_name: existing?.payout_account?.bank_name ?? "",
+    account_number: "", account_name: "",
+  }));
   const [uploading, setUploading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -78,11 +83,14 @@ function Form({ existing }: { existing: RiderProfile | null }) {
 
   const missing = DOCS.filter((d) => d.requiredFor(v.vehicle_type) && !docs[d.kind]).map((d) => d.label);
   const needsPlate = v.vehicle_type !== "bicycle" && !v.vehicle_plate.trim();
+  const bankOk = Boolean(bank.bank_code && /^\d{10}$/.test(bank.account_number) && bank.account_name);
+  if (!bankOk) missing.push("bank account");
   const ok = v.full_name.trim().length >= 3 && /^\+?[0-9 ()-]{7,20}$/.test(v.phone.trim()) && !missing.length && !needsPlate;
 
   const submit = useMutation({
     mutationFn: () => riderApi.apply({
-      ...v, documents: (Object.entries(docs) as [DocKind, string][]).filter(([, url]) => url).map(([kind, url]) => ({ kind, url })),
+      ...v, bank_code: bank.bank_code, account_number: bank.account_number,
+      documents: (Object.entries(docs) as [DocKind, string][]).filter(([, url]) => url).map(([kind, url]) => ({ kind, url })),
     }),
     onSuccess: (r) => { qc.setQueryData(["rider", "me"], r); router.replace("/rider" as never); },
     onError: (e) => setError(apiErrorMessage(e, "Couldn't submit your application.")),
@@ -140,6 +148,10 @@ function Form({ existing }: { existing: RiderProfile | null }) {
           </Card>
         );
       })}
+
+      <Text variant="title" style={{ marginTop: 4 }}>Where should we pay you?</Text>
+      <Text variant="caption" color="muted">Your 80% of every delivery paid in the app is sent straight to this account. It must be in your name.</Text>
+      <BankFields value={bank} onChange={setBank} />
 
       {missing.length ? <Text variant="caption" color="muted">Still needed: {missing.join(", ")}.</Text> : null}
       <ErrorNote>{error}</ErrorNote>

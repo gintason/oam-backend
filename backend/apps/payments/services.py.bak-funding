@@ -154,16 +154,17 @@ class FundingService:
         if status_val == TxnStatus.SUCCESS and isinstance(raw, dict):
             d = raw.get("data", raw) or {}
             reported_ccy = str(d.get("currency", "")).upper()
+            try:
+                reported_amt = Decimal(str(d.get("amount", "0")))
+            except Exception:
+                reported_amt = Decimal("0")
             if reported_ccy and reported_ccy != txn.currency.upper():
                 logger.error("settle %s: currency mismatch gateway=%s txn=%s",
                              reference, reported_ccy, txn.currency)
                 return txn
-            paid = _reported_paid(txn.provider, d)
-            # Underpayment is refused. Paying MORE is normal: with "pass fees to
-            # customer" on, Paystack charges e.g. ₦507.62 for a ₦500 deposit.
-            if paid is not None and paid < txn.amount:
+            if reported_amt and reported_amt != txn.amount:
                 logger.error("settle %s: amount mismatch gateway=%s txn=%s",
-                             reference, paid, txn.amount)
+                             reference, reported_amt, txn.amount)
                 return txn
 
         if status_val == TxnStatus.SUCCESS:
@@ -223,29 +224,6 @@ class FundingService:
             transaction.on_commit(_send_airtime)
 
         return txn
-
-
-def _to_decimal(v):
-    try:
-        return Decimal(str(v)) if v not in (None, "") else None
-    except Exception:
-        return None
-
-
-def _reported_paid(provider: str, d: dict):
-    """
-    What the gateway says was paid, in MAJOR units (naira, dollars), or None.
-
-    Paystack reports kobo/cents (50762 = ₦507.62) and, when fees are passed to
-    the customer, `requested_amount` is the original amount before fees.
-    Flutterwave reports major units (`amount`; `charged_amount` includes fees).
-    """
-    if (provider or "").lower() == "paystack":
-        req, amt = _to_decimal(d.get("requested_amount")), _to_decimal(d.get("amount"))
-        vals = [v / 100 for v in (req, amt) if v]
-        return max(vals) if vals else None
-    vals = [v for v in (_to_decimal(d.get("amount")), _to_decimal(d.get("charged_amount"))) if v]
-    return max(vals) if vals else None
 
 
 class WebhookService:

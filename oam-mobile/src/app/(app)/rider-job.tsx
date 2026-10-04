@@ -71,6 +71,13 @@ export default function RiderJob() {
         </Card>
       ) : null}
 
+      {d.payment_method === "cash" && live ? (
+        <Card style={{ gap: 4, borderColor: "rgba(180,83,9,0.35)", backgroundColor: "rgba(180,83,9,0.06)" }}>
+          <Text variant="title" style={{ color: colors.warn }}>💵 Collect {fee(d.fee, d.currency)} in cash</Text>
+          <Text variant="caption" color="muted">The customer pays you in cash. You keep {fee(d.rider_payout, d.currency)}; remit OAM's {fee(d.platform_fee, d.currency)} from your Earnings screen.</Text>
+        </Card>
+      ) : null}
+
       <Card style={{ flexDirection: "row", gap: 12, alignItems: "center" }}>
         <Package size={20} color={colors.muted} />
         <View style={{ flex: 1 }}>
@@ -86,7 +93,11 @@ export default function RiderJob() {
         <Card style={{ alignItems: "center", gap: 8, paddingVertical: 24 }}>
           <CheckCircle2 size={40} color={colors.brand.green} />
           <Text variant="heading">Delivered!</Text>
-          <Text variant="body" color="muted">{fee(d.rider_payout, d.currency)} has been added to your wallet.</Text>
+          <Text variant="body" color="muted" style={{ textAlign: "center" }}>
+            {d.payment_method === "cash"
+              ? `You collected ${fee(d.fee, d.currency)} in cash. OAM's share (${fee(d.platform_fee, d.currency)}) is on your Earnings screen.`
+              : `${fee(d.rider_payout, d.currency)} is on its way to your bank account.`}
+          </Text>
           <PillButton label="Back to requests" style={{ alignSelf: "stretch", marginTop: 8 }} onPress={() => router.replace("/rider" as never)} />
         </Card>
       ) : null}

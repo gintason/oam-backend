@@ -16,6 +16,7 @@ import {
   currentPosition, deliveryErrorCode, fee, riderApi, useRiderLocationReporter, CATEGORY_LABEL, type Offer, type RiderProfile,
 } from "@/features/deliveries";
 import { Card, DeliveriesScreen, EmptyState, ErrorNote, Loading, MoneyChip, PillButton } from "@/features/deliveries/ui/kit";
+import { CommissionCard } from "@/features/deliveries/ui/Commission";
 
 export default function RiderHome() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function RiderHome() {
   const r = me.data;
 
   return (
-    <DeliveriesScreen title="Ride & earn" subtitle="Deliver nearby and get paid to your OAM wallet.">
+    <DeliveriesScreen title="Ride & earn" subtitle="Deliver nearby and get paid straight to your bank.">
       {me.isLoading ? <Loading /> : !r ? <Intro onStart={() => router.push("/rider-apply" as never)} />
         : r.verification_status === "approved" ? <Dashboard rider={r} />
         : <ReviewStatus rider={r} onEdit={() => router.push("/rider-apply" as never)} />}
@@ -129,6 +130,16 @@ function Dashboard({ rider }: { rider: RiderProfile }) {
           trackColor={{ true: "#5BD47A", false: colors.hairline }} thumbColor="#FFF" />
       </Card>
       <ErrorNote>{toggleErr}</ErrorNote>
+
+      {!rider.payout_account ? (
+        <Card onPress={() => router.push("/rider-earnings" as never)} style={{ flexDirection: "row", gap: 10, alignItems: "center", borderColor: "rgba(180,83,9,0.35)" }}>
+          <WalletIcon size={18} color={colors.warn} />
+          <Text variant="caption" style={{ flex: 1 }}>Add your bank account so delivery earnings are paid straight to you.</Text>
+          <ChevronRight size={16} color={colors.muted} />
+        </Card>
+      ) : null}
+      <CommissionCard due={earnings.data?.cash_commission_due ?? rider.cash_commission_due} limit={earnings.data?.cash_debt_limit}
+        oamBank={earnings.data?.oam_bank ?? null} walletBalance={earnings.data?.wallet_balance} />
 
       {active.data ? (
         <Card onPress={() => router.push({ pathname: "/rider-job", params: { id: active.data!.id } } as never)} style={{ gap: 8, borderColor: colors.brand.green, borderWidth: 2 }}>

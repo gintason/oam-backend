@@ -30,6 +30,8 @@ TEST_SETTINGS = dict(
     CLOUDINARY_CLOUD_NAME="demo",
     CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
 )
+from django.conf import settings as _s  # noqa: E402
+TEST_SETTINGS["DEFAULT_PROVIDERS"] = {**getattr(_s, "DEFAULT_PROVIDERS", {}), "payouts": "mock"}
 
 PICKUP = (Decimal("6.428100"), Decimal("3.421900"))      # Victoria Island
 DROPOFF = (Decimal("6.455000"), Decimal("3.394100"))     # Ikoyi, ~4 km straight
@@ -370,12 +372,14 @@ class DeliveriesTests(TransactionTestCase):
         self.assertEqual(bad.status_code, 400)                  # plate + licence needed
         r = c.post("/api/v1/deliveries/rider/apply/", {
             "full_name": "Emeka", "phone": "08030000000", "vehicle_type": "motorcycle",
-            "vehicle_plate": "LAG-123-XY",
+            "vehicle_plate": "LAG-123-XY", "bank_code": "058", "account_number": "0123456789",
             "documents": [{"kind": "id_card", "url": "https://res.cloudinary.com/demo/id.jpg"},
                           {"kind": "license", "url": "https://res.cloudinary.com/demo/lic.jpg"}]},
             format="json")
         self.assertEqual(r.status_code, 201, r.content)
         self.assertEqual(r.json()["verification_status"], "pending")
+        self.assertEqual(r.json()["payout_account"]["account_number"], "••••••6789")
+        self.assertEqual(r.json()["payout_account"]["account_name"], "MOCK ACCOUNT HOLDER")
         on = c.post("/api/v1/deliveries/rider/availability/", {"online": True, "lat": 6.43, "lng": 3.42},
                     format="json")
         self.assertEqual(on.json()["code"], "not_approved")
@@ -439,3 +443,101 @@ class DeliveriesTests(TransactionTestCase):
         self.assertEqual(r.status_code, 200, r.content)
         self.assertEqual(r.json()["ran"]["auto_cancelled"], 1)
         self.assertEqual(self.balance(), Decimal("50000"))
+
+
+    # -- bank payouts + cash ------------------------------------------------ #
+
+    def bank(self, rider, number="0123456789"):
+        r = rider.client.post("/api/v1/deliveries/rider/bank/", {"bank_code": "058", "account_number": number},
+                              format="json")
+        self.assertEqual(r.status_code, 200, r.content)
+
+    def run_job(self, rider, d):
+        offer = DispatchOffer.objects.get(delivery_id=d["id"], rider=rider)
+        rider.client.post(f"/api/v1/deliveries/rider/offers/{offer.id}/accept/")
+        base = "/api/v1/deliveries/rider/deliveries/" + d["id"]
+        rider.client.post(f"{base}/pickup/")
+        r = rider.client.post(f"{base}/deliver/", {"code": d["delivery_code"]})
+        self.assertEqual(r.status_code, 200, r.content)
+        return r.json()
+
+    def test_in_app_payment_sends_80_percent_to_rider_bank(self):
+        from apps.payouts.models import WithdrawalOrder
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        self.bank(rider)
+        d = self.order().json()
+        self.run_job(rider, d)
+        fee = Decimal(d["fee"])
+        payout = (fee * Decimal("0.8")).quantize(Decimal("0.01"))
+        txn = DeliveryTransaction.objects.get()
+        self.assertEqual(txn.payout_status, "sent")
+        order = WithdrawalOrder.objects.get(reference=txn.payout_reference)
+        self.assertEqual((order.amount, order.status), (payout, "success"))
+        self.assertEqual(self.balance(rider.user), Decimal("0"))            # all of it went to the bank
+        self.assertEqual(WalletService.revenue_balance("NGN"), fee - payout)  # OAM keeps 20%, no transfer fee
+        e = rider.client.get("/api/v1/deliveries/rider/earnings/").json()
+        self.assertEqual(e["ledger"][0]["payout_status"], "sent")
+        self.assertTrue(e["payout_account"]["account_number"].endswith("6789"))
+
+    def test_failed_transfer_keeps_money_in_wallet(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        self.bank(rider)
+        d = self.order().json()
+        DeliveryRequest.objects.filter(pk=d["id"]).update(rider_payout=Decimal("1000.99"))   # mock fails .99
+        DeliveryTransaction.objects.filter(delivery_id=d["id"]).update(rider_payout=Decimal("1000.99"))
+        self.run_job(rider, d)
+        self.assertEqual(DeliveryTransaction.objects.get().payout_status, "failed")
+        self.assertEqual(self.balance(rider.user), Decimal("1000.99"))
+
+    def test_no_bank_account_keeps_earnings_in_wallet(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        d = self.order().json()
+        self.run_job(rider, d)
+        self.assertEqual(DeliveryTransaction.objects.get().payout_status, "wallet")
+        self.assertEqual(self.balance(rider.user), (Decimal(d["fee"]) * Decimal("0.8")).quantize(Decimal("0.01")))
+
+    def test_bad_bank_account_rejected(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        r = rider.client.post("/api/v1/deliveries/rider/bank/", {"bank_code": "058", "account_number": "1234560000"},
+                              format="json")
+        self.assertEqual(r.json()["code"], "bank_invalid")
+
+    def test_cash_delivery_commission_due_then_paid(self):
+        DispatchSettings.objects.update_or_create(pk=1, defaults={
+            "oam_bank_name": "GTBank", "oam_account_number": "0011223344", "oam_account_name": "OAM Ltd"})
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        d = self.order(payment_method="cash").json()
+        self.assertEqual(d["payment_status"], "cash")
+        self.assertEqual(self.balance(), Decimal("50000"))                   # nothing taken from the wallet
+        job = rider.client.get(f"/api/v1/deliveries/rider/offers/").json()[0]["delivery"]
+        self.assertEqual(job["payment_method"], "cash")
+        self.run_job(rider, d)
+        fee = Decimal(d["fee"]); commission = (fee * Decimal("0.2")).quantize(Decimal("0.01"))
+        rider.refresh_from_db()
+        self.assertEqual(rider.cash_commission_due, commission)
+        e = rider.client.get("/api/v1/deliveries/rider/earnings/").json()
+        self.assertEqual(Decimal(e["cash_commission_due"]), commission)
+        self.assertEqual(e["oam_bank"]["account_number"], "0011223344")
+        # pay from wallet
+        r = rider.client.post("/api/v1/deliveries/rider/commission/pay-wallet/")
+        self.assertEqual(r.json()["code"], "insufficient_funds")
+        WalletService.credit(WalletService.get_or_create_wallet(rider.user, "NGN"), Decimal("5000"))
+        r = rider.client.post("/api/v1/deliveries/rider/commission/pay-wallet/")
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertEqual(Decimal(r.json()["cash_commission_due"]), 0)
+        self.assertEqual(WalletService.revenue_balance("NGN"), commission)
+        self.assertEqual(DeliveryTransaction.objects.get().status, "settled")
+
+    def test_admin_records_commission_and_debt_limit_blocks_cash_jobs(self):
+        DispatchSettings.objects.update_or_create(pk=1, defaults={"cash_debt_limit": Decimal("100")})
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        RiderProfile.objects.filter(pk=rider.pk).update(cash_commission_due=Decimal("500"))
+        self.order(payment_method="cash")
+        self.assertFalse(DispatchOffer.objects.exists())                     # owes too much for cash jobs
+        r = self.api_admin.post(f"/api/v1/deliveries/admin/riders/{rider.id}/commission/", {"amount": "500"},
+                                format="json")
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertEqual(Decimal(r.json()["cash_commission_due"]), 0)
+        self.assertEqual(WalletService.revenue_balance("NGN"), Decimal("500"))
+        self.order(payment_method="cash")
+        self.assertEqual(DispatchOffer.objects.count(), 1)

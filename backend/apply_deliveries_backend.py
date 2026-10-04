@@ -15,6 +15,7 @@ What it changes
   config/urls.py                + /api/v1/deliveries/
   apps/uploads/purposes.py      + rider_document, rider_photo, delivery_proof
   apps/payments/views.py        forward DLV- card references from the main webhooks
+  apps/payouts/services.py      optional fee=0 for rider payouts (user withdrawals unchanged)
 """
 from __future__ import annotations
 
@@ -184,9 +185,40 @@ def patch_payment_webhooks():
     write(rel, text)
 
 
+def patch_payouts():
+    rel = "apps/payouts/services.py"
+    text = need(rel)
+    if text is None:
+        return
+    if "delivery payouts pass fee=0" in text:
+        skipped.append(rel)
+        return
+    reps = [
+        ('''    def create_and_hold(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
+        amount = Decimal(str(amount))
+        fee = _transfer_fee(amount, currency)''',
+         '''    def create_and_hold(*, user, bank_account, amount, currency="NGN", fee=None) -> WithdrawalOrder:
+        amount = Decimal(str(amount))
+        # fee=None → normal user withdrawal fee; delivery payouts pass fee=0.  # [oam-deliveries]
+        fee = _transfer_fee(amount, currency) if fee is None else Decimal(str(fee))'''),
+        ('''    def withdraw(*, user, bank_account, amount, currency="NGN") -> WithdrawalOrder:
+        order = WithdrawalService.create_and_hold(
+            user=user, bank_account=bank_account, amount=amount, currency=currency)''',
+         '''    def withdraw(*, user, bank_account, amount, currency="NGN", fee=None) -> WithdrawalOrder:
+        order = WithdrawalService.create_and_hold(
+            user=user, bank_account=bank_account, amount=amount, currency=currency, fee=fee)'''),
+    ]
+    for old, new in reps:
+        if old not in text:
+            problems.append(f"{rel}: couldn't find the withdrawal functions — rider bank payouts need them")
+            return
+        text = text.replace(old, new, 1)
+    write(rel, text)
+
+
 STEPS = """
 Next:
-  local:   python manage.py migrate deliveries && python manage.py test apps.deliveries
+  local:   python manage.py migrate deliveries   (0001 + 0002 rider payouts / cash) && python manage.py test apps.deliveries
   Render:  push — build.sh runs `migrate`, so the delivery tables are created on deploy.
 
 Optional (recommended) on Render -> oam-api -> Environment:
@@ -206,7 +238,7 @@ def main():
     if not (ROOT / "apps" / "deliveries" / "models.py").exists():
         print("apps/deliveries is missing — unzip oam-deliveries-backend.zip into this folder first.")
         sys.exit(1)
-    for fn in (patch_settings, patch_urls, patch_purposes, patch_payment_webhooks):
+    for fn in (patch_settings, patch_urls, patch_purposes, patch_payment_webhooks, patch_payouts):
         fn()
     verb = "Would change" if CHECK else "Changed"
     print(f"{verb}: " + (", ".join(changed) or "nothing"))

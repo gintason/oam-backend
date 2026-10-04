@@ -84,6 +84,13 @@ class RiderProfile(TimeStampedModel):
     lng = models.DecimalField(**COORD, null=True, blank=True)
     location_updated_at = models.DateTimeField(null=True, blank=True)
 
+    # Where the rider's 80% goes (apps.payouts — verified with the bank, Paystack recipient).
+    payout_account = models.ForeignKey("payouts.BankAccount", on_delete=models.SET_NULL, null=True,
+                                       blank=True, related_name="+")
+    auto_payout = models.BooleanField(default=True, help_text=_("Send each delivery's earnings to the bank."))
+    cash_commission_due = models.DecimalField(**MONEY, default=Decimal("0"),
+                                              help_text=_("OAM's share of cash deliveries not yet remitted."))
+
     total_earnings = models.DecimalField(**MONEY, default=Decimal("0"))
     completed_deliveries = models.PositiveIntegerField(default=0)
     rating_avg = models.DecimalField(max_digits=3, decimal_places=2, default=Decimal("0"))
@@ -147,6 +154,14 @@ class DispatchSettings(models.Model):
     offer_timeout_s = models.PositiveSmallIntegerField(default=45)
     location_fresh_min = models.PositiveSmallIntegerField(default=10,
                                                           help_text=_("Ignore riders whose last location is older."))
+
+    # Cash deliveries: the customer pays the rider; the rider remits OAM's share.
+    cash_enabled = models.BooleanField(default=True)
+    cash_debt_limit = models.DecimalField(**MONEY, default=Decimal("10000"),
+                                          help_text=_("Riders owing more than this get no cash jobs."))
+    oam_bank_name = models.CharField(max_length=80, blank=True)
+    oam_account_number = models.CharField(max_length=20, blank=True)
+    oam_account_name = models.CharField(max_length=120, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -220,6 +235,8 @@ class DeliveryStatus(models.TextChoices):
 
 
 ACTIVE_STATUSES = (DeliveryStatus.ACCEPTED, DeliveryStatus.PICKED_UP, DeliveryStatus.IN_TRANSIT)
+# Payment states that let a delivery be dispatched (paid & held, or cash to the rider).
+DISPATCHABLE_PAYMENT = ("paid", "cash")
 
 
 class DeliveryRequest(TimeStampedModel):
@@ -228,10 +245,12 @@ class DeliveryRequest(TimeStampedModel):
         PAID = "paid", _("Paid (held)")
         SETTLED = "settled", _("Settled")
         REFUNDED = "refunded", _("Refunded")
+        CASH = "cash", _("Cash on delivery")
 
     class PaymentMethod(models.TextChoices):
         WALLET = "wallet", _("OAM wallet")
         CARD = "card", _("Card / bank (Flutterwave)")
+        CASH = "cash", _("Cash to rider")
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     reference = models.CharField(max_length=16, unique=True, default=_reference, editable=False)
@@ -361,6 +380,14 @@ class DeliveryTransaction(TimeStampedModel):
         HELD = "held", _("Held")
         SETTLED = "settled", _("Settled")
         REFUNDED = "refunded", _("Refunded")
+        CASH_DUE = "cash_due", _("Cash collected — commission due")
+
+    class Payout(models.TextChoices):
+        NONE = "", _("—")
+        WALLET = "wallet", _("Kept in OAM wallet")
+        PROCESSING = "processing", _("Bank transfer processing")
+        SENT = "sent", _("Sent to bank")
+        FAILED = "failed", _("Transfer failed — in wallet")
 
     delivery = models.OneToOneField(DeliveryRequest, on_delete=models.CASCADE, related_name="transaction")
     rider = models.ForeignKey(RiderProfile, on_delete=models.SET_NULL, null=True, blank=True,
@@ -371,6 +398,9 @@ class DeliveryTransaction(TimeStampedModel):
     currency = models.CharField(max_length=3, default="NGN")
     status = models.CharField(max_length=8, choices=Status.choices, default=Status.HELD, db_index=True)
     ledger_reference = models.CharField(max_length=40)
+    payout_status = models.CharField(max_length=10, choices=Payout.choices, default=Payout.NONE, blank=True)
+    payout_reference = models.CharField(max_length=40, blank=True)
+    commission_paid_at = models.DateTimeField(null=True, blank=True)
     settled_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:

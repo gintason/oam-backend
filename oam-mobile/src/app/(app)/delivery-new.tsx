@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { Pressable, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, Box, CreditCard, FileText, Package, PackageOpen, Utensils, Wallet as WalletIcon, Wine, type LucideIcon } from "lucide-react-native";
+import { ArrowRight, Banknote, Box, CreditCard, FileText, Package, PackageOpen, Utensils, Wallet as WalletIcon, Wine, type LucideIcon } from "lucide-react-native";
 import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
 import { apiErrorMessage } from "@/shared/api";
@@ -52,6 +52,7 @@ export default function DeliveryNew() {
   const [checkout, setCheckout] = useState<{ url: string; id: string } | null>(null);
 
   const wallets = useWallets();
+  const meta = useQuery({ queryKey: ["deliveries", "meta"], queryFn: deliveriesApi.meta, staleTime: 300_000 });
   const ngn = Number(wallets.data?.wallets.find((w) => w.currency === "NGN")?.balance ?? 0);
 
   const input = useMemo(() => pickup && dropoff ? {
@@ -179,10 +180,14 @@ export default function DeliveryNew() {
           <PayOption on={method === "wallet"} onPress={() => setMethod("wallet")} Icon={WalletIcon} title="OAM wallet"
             sub={wallets.isLoading ? "Checking balance…" : `Balance ${fee(ngn)}`} warn={short ? "Low balance" : undefined} />
           <PayOption on={method === "card"} onPress={() => setMethod("card")} Icon={CreditCard} title="Card, bank or USSD" sub="Secure checkout by Flutterwave" />
+          {meta.data?.cash_enabled !== false ? (
+            <PayOption on={method === "cash"} onPress={() => setMethod("cash")} Icon={Banknote} title="Cash to rider" sub="Pay the rider in cash at pickup" />
+          ) : null}
           {short ? <Text variant="caption" color="muted">Top up your wallet, or pay by card.</Text> : null}
           <ErrorNote>{error}</ErrorNote>
           <PillButton tone="red" style={{ height: 50 }} loading={create.isPending} disabled={short || quote.isFetching}
-            label={method === "card" ? `Pay ${fee(quote.data.fee)} & request rider` : `Confirm & pay ${fee(quote.data.fee)}`}
+            label={method === "card" ? `Pay ${fee(quote.data.fee)} & request rider`
+              : method === "cash" ? `Request rider · pay ${fee(quote.data.fee)} cash` : `Confirm & pay ${fee(quote.data.fee)}`}
             onPress={() => { setError(null); create.mutate(); }} />
           <PillButton label="Back" tone="outline" onPress={() => { setError(null); setStep("details"); }} />
           <Text variant="caption" color="muted" style={{ textAlign: "center" }}>Cancel before pickup for a full refund to your wallet.</Text>

@@ -158,6 +158,7 @@ class RiderDeliverySerializer(serializers.ModelSerializer):
             "dropoff_address", "dropoff_lat", "dropoff_lng", "recipient_name", "recipient_phone",
             "dropoff_note", "package_description", "package_category", "category_label",
             "weight_kg", "distance_km", "duration_min", "rider_payout", "currency",
+            "payment_method", "fee", "platform_fee",
             "customer_name", "customer_phone", "accepted_at", "picked_up_at", "in_transit_at",
             "delivered_at", "cancelled_at", "rating", "events", "created_at",
         ]
@@ -192,8 +193,20 @@ class RiderDocumentSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "created_at"]
 
 
+class PayoutAccountSerializer(serializers.Serializer):
+    bank_code = serializers.CharField()
+    bank_name = serializers.CharField()
+    account_name = serializers.CharField()
+    account_number = serializers.SerializerMethodField()
+
+    def get_account_number(self, obj):
+        n = obj.account_number or ""
+        return ("•" * max(0, len(n) - 4)) + n[-4:]
+
+
 class RiderProfileSerializer(serializers.ModelSerializer):
     documents = RiderDocumentSerializer(many=True, read_only=True)
+    payout_account = PayoutAccountSerializer(read_only=True)
     vehicle_label = serializers.CharField(source="get_vehicle_type_display", read_only=True)
     verification_label = serializers.CharField(source="get_verification_status_display", read_only=True)
 
@@ -204,11 +217,11 @@ class RiderProfileSerializer(serializers.ModelSerializer):
             "vehicle_plate", "vehicle_description", "verification_status", "verification_label",
             "review_note", "reviewed_at", "availability", "lat", "lng", "location_updated_at",
             "total_earnings", "completed_deliveries", "rating_avg", "rating_count", "documents",
-            "created_at",
+            "payout_account", "auto_payout", "cash_commission_due", "created_at",
         ]
         read_only_fields = [f for f in fields if f not in (
             "full_name", "phone", "city", "photo_url", "vehicle_type", "vehicle_plate",
-            "vehicle_description")]
+            "vehicle_description", "auto_payout")]
 
 
 class RiderApplySerializer(serializers.Serializer):
@@ -220,6 +233,8 @@ class RiderApplySerializer(serializers.Serializer):
     vehicle_plate = serializers.CharField(max_length=20, required=False, allow_blank=True)
     vehicle_description = serializers.CharField(max_length=80, required=False, allow_blank=True)
     documents = RiderDocumentSerializer(many=True, required=False)
+    bank_code = serializers.CharField(max_length=20)
+    account_number = serializers.RegexField(r"^\d{10}$", error_messages={"invalid": "Enter your 10-digit account number."})
 
     def validate(self, attrs):
         docs = attrs.get("documents") or []
@@ -232,6 +247,15 @@ class RiderApplySerializer(serializers.Serializer):
             if RiderDocument.Kind.LICENSE not in kinds:
                 raise serializers.ValidationError({"documents": "Upload your rider's/driver's licence."})
         return attrs
+
+
+class BankSerializer(serializers.Serializer):
+    bank_code = serializers.CharField(max_length=20)
+    account_number = serializers.RegexField(r"^\d{10}$", error_messages={"invalid": "Enter your 10-digit account number."})
+
+
+class CommissionSerializer(serializers.Serializer):
+    amount = serializers.DecimalField(max_digits=14, decimal_places=2, min_value=Decimal("1"))
 
 
 class AvailabilitySerializer(serializers.Serializer):

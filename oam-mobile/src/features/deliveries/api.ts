@@ -10,8 +10,8 @@ import { uploadMedia, type PickedMedia } from "@/features/marketplace/api/upload
 
 
 export type DeliveryStatus = "pending" | "accepted" | "picked_up" | "in_transit" | "delivered" | "cancelled";
-export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded";
-export type PaymentMethod = "wallet" | "card";
+export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded" | "cash";
+export type PaymentMethod = "wallet" | "card" | "cash";
 export type PackageCategory = "documents" | "small" | "medium" | "large" | "food" | "fragile";
 export type Verification = "pending" | "approved" | "rejected" | "suspended";
 
@@ -24,6 +24,7 @@ export type DeliveriesMeta = {
   statuses: Choice[];
   offer_timeout_s: number;
   free_weight_kg: string;
+  cash_enabled?: boolean;
 };
 
 export type Place = { address: string; lat: number; lng: number };
@@ -95,7 +96,11 @@ export type RiderProfile = {
   availability: "online" | "offline"; lat: string | null; lng: string | null; location_updated_at: string | null;
   total_earnings: string; completed_deliveries: number; rating_avg: string; rating_count: number;
   documents: RiderDocument[]; created_at: string; active_delivery_id?: string | null;
+  payout_account: PayoutAccount | null; auto_payout: boolean; cash_commission_due: string;
 };
+
+export type PayoutAccount = { bank_code?: string; bank_name: string; account_name: string; account_number: string };
+export type OamBank = { bank_name: string; account_number: string; account_name: string };
 
 export type RiderDelivery = {
   id: string; reference: string; status: DeliveryStatus; status_label: string;
@@ -104,6 +109,7 @@ export type RiderDelivery = {
   dropoff_lng: string; recipient_name: string; recipient_phone: string; dropoff_note: string;
   package_description: string; package_category: PackageCategory; category_label: string; weight_kg: string;
   distance_km: string; duration_min: number; rider_payout: string; currency: string;
+  payment_method: PaymentMethod; fee: string; platform_fee: string;
   customer_name: string; customer_phone: string; accepted_at: string | null; picked_up_at: string | null;
   in_transit_at: string | null; delivered_at: string | null; cancelled_at: string | null;
   rating: number | null; events: TimelineEvent[]; created_at: string;
@@ -117,13 +123,17 @@ export type Offer = {
 export type Earnings = {
   currency: string; wallet_balance: string; total_earnings: string; completed_deliveries: number;
   today: string; this_week: string; today_count: number; rating_avg: string; rating_count: number;
+  auto_payout: boolean; payout_account: PayoutAccount | null; cash_commission_due: string; cash_debt_limit: string;
+  oam_bank: OamBank | null;
   ledger: { reference: string; delivery_id: string; gross_amount: string; rider_payout: string; platform_fee: string;
-            currency: string; settled_at: string; dropoff_address: string }[];
+            currency: string; settled_at: string; dropoff_address: string; payment_method: PaymentMethod;
+            status: string; payout_status: string; payout_label: string }[];
 };
 
 export type RiderApplyInput = {
   full_name: string; phone: string; city?: string; photo_url?: string; vehicle_type: VehicleType;
   vehicle_plate?: string; vehicle_description?: string; documents: { kind: DocKind; url: string }[];
+  bank_code: string; account_number: string;
 };
 
 type Geo = { lat?: number; lng?: number };
@@ -156,6 +166,9 @@ export const riderApi = {
   },
   apply: async (body: RiderApplyInput): Promise<RiderProfile> => (await api.post(`${B}/rider/apply/`, body)).data,
   update: async (patch: Partial<RiderProfile>): Promise<RiderProfile> => (await api.patch(`${B}/rider/me/`, patch)).data,
+  setBank: async (bank_code: string, account_number: string): Promise<RiderProfile> =>
+    (await api.post(`${B}/rider/bank/`, { bank_code, account_number })).data,
+  payCommission: async (): Promise<RiderProfile> => (await api.post(`${B}/rider/commission/pay-wallet/`)).data,
   setAvailability: async (online: boolean, geo: Geo = {}): Promise<RiderProfile> =>
     (await api.post(`${B}/rider/availability/`, { online, ...geo })).data,
   location: async (lat: number, lng: number) => (await api.post(`${B}/rider/location/`, { lat, lng })).data,

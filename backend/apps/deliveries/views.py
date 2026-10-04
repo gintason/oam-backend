@@ -42,7 +42,9 @@ from .serializers import (
     AdminDeliverySerializer,
     AdminRiderSerializer,
     AvailabilitySerializer,
+    BankSerializer,
     CancelSerializer,
+    CommissionSerializer,
     CreateDeliverySerializer,
     DeliveryDetailSerializer,
     DeliveryListSerializer,
@@ -60,7 +62,7 @@ from .serializers import (
     RiderReviewSerializer,
     SurgePricingSerializer,
 )
-from .services import AdminService, CustomerService, MaintenanceService, PaymentService, RiderService
+from .services import AdminService, CustomerService, MaintenanceService, PaymentService, PayoutService, RiderService
 
 logger = logging.getLogger(__name__)
 
@@ -136,6 +138,7 @@ class MetaView(APIView):
             "statuses": [{"value": v, "label": str(l)} for v, l in DeliveryStatus.choices],
             "offer_timeout_s": cfg.offer_timeout_s,
             "free_weight_kg": str(cfg.free_weight_kg),
+            "cash_enabled": cfg.cash_enabled,
         })
 
 
@@ -263,6 +266,26 @@ class RiderDocumentView(DeliveryErrorMixin, APIView):
         rider.documents.filter(kind=s.validated_data["kind"]).delete()
         doc = s.save(rider=rider)
         return Response(RiderDocumentSerializer(doc).data, status=status.HTTP_201_CREATED)
+
+
+class RiderBankView(DeliveryErrorMixin, APIView):
+    """POST /rider/bank/ {bank_code, account_number} — verified with the bank, used for payouts."""
+    permission_classes = [HasRiderProfile]
+
+    def post(self, request):
+        s = BankSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        rider = RiderService.set_bank(_rider(request), **s.validated_data)
+        return Response(RiderProfileSerializer(rider).data)
+
+
+class RiderCommissionPayView(DeliveryErrorMixin, APIView):
+    """POST /rider/commission/pay-wallet/ — remit OAM's cash share from the rider's wallet."""
+    permission_classes = [HasRiderProfile]
+
+    def post(self, request):
+        rider = PayoutService.pay_commission_from_wallet(_rider(request))
+        return Response(RiderProfileSerializer(rider).data)
 
 
 class RiderAvailabilityView(DeliveryErrorMixin, APIView):
@@ -404,6 +427,14 @@ class AdminRiderViewSet(DeliveryErrorMixin, mixins.ListModelMixin, mixins.Retrie
         return qs
 
     @action(detail=True, methods=["post"])
+    def commission(self, request, pk=None):
+        """Record a cash-commission bank transfer received from this rider."""
+        s = CommissionSerializer(data=request.data)
+        s.is_valid(raise_exception=True)
+        rider = PayoutService.record_commission(rider_id=pk, amount=s.validated_data["amount"], admin=request.user)
+        return Response(AdminRiderSerializer(self.get_queryset().get(pk=rider.pk)).data)
+
+    @action(detail=True, methods=["post"])
     def review(self, request, pk=None):
         s = RiderReviewSerializer(data=request.data)
         s.is_valid(raise_exception=True)
@@ -428,7 +459,7 @@ class AdminDeliveryViewSet(DeliveryErrorMixin, mixins.ListModelMixin, mixins.Ret
             qs = qs.filter(payment_status=p["payment_status"])
         if p.get("unassigned") == "1":
             qs = qs.filter(status=DeliveryStatus.PENDING,
-                           payment_status=DeliveryRequest.PaymentStatus.PAID)
+                           payment_status__in=("paid", "cash"))
         if p.get("q"):
             q = p["q"].strip()
             qs = qs.filter(Q(reference__icontains=q) | Q(customer__email__icontains=q)

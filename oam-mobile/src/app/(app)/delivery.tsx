@@ -57,9 +57,14 @@ export default function DeliveryTrack() {
       <MapView markers={markers} height={250} fitKey={`${d.id}-${riderPos && moving ? "r" : ""}`} />
       {d.status !== "cancelled" ? <Card><StatusStepper status={d.status} /></Card> : null}
       {d.payment_status === "unpaid" && d.status === "pending" ? <PayNow d={d} /> : null}
-      {d.status === "pending" && d.payment_status === "paid" ? <Searching d={d} /> : null}
+      {d.status === "pending" && (d.payment_status === "paid" || d.payment_status === "cash") ? <Searching d={d} /> : null}
+      {d.payment_method === "cash" && !["delivered", "cancelled"].includes(d.status) ? (
+        <Card style={{ borderColor: "rgba(180,83,9,0.35)", backgroundColor: "rgba(180,83,9,0.06)" }}>
+          <Text variant="body">💵 Cash on delivery — have <Text variant="body" style={{ fontFamily: fonts.bold }}>{fee(d.fee, d.currency)}</Text> ready for the rider.</Text>
+        </Card>
+      ) : null}
       {d.rider && d.status !== "cancelled" ? <RiderCard d={d} /> : null}
-      {moving || (d.status === "pending" && d.payment_status === "paid") ? <CodeCard d={d} /> : null}
+      {moving || (d.status === "pending" && d.payment_status !== "unpaid") ? <CodeCard d={d} /> : null}
       {d.can_rate ? <RateCard d={d} /> : null}
       {d.rating ? (
         <Card style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
