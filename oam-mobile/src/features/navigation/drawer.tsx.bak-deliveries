@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Info, Receipt, Store, Ticket, Wrench, Gift, ShoppingBag, LogOut, ChevronRight, ChevronDown, ChevronUp, BadgeCheck,
-  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon, BriefcaseBusiness, PackageCheck, Bike
+  Smartphone, Wifi, Zap, Plane, Tv, Send, type LucideIcon, BriefcaseBusiness
 } from "lucide-react-native";
 import Svg, { Path } from "react-native-svg";
 import { Text } from "@/shared/ui";
@@ -129,8 +129,6 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     { key: "bills", label: t("drawer.payBills", "Pay Bills"), Icon: Receipt, onPress: () => go("/airtime") },
     { key: "marketplace", label: t("drawer.marketplace", "Market Place"), Icon: Store, onPress: () => go("/marketplace") },
     { key: "jobs", label: t("drawer.jobs", "Jobs & Careers"), Icon: BriefcaseBusiness, onPress: () => go("/jobs") },
-    { key: "deliveries", label: t("drawer.deliveries", "Send a Package"), Icon: PackageCheck, onPress: () => go("/deliveries") },
-    { key: "rider", label: t("drawer.rider", "Ride & Earn"), Icon: Bike, onPress: () => go("/rider") },
     { key: "betting", label: t("drawer.betting", "Fund Betting Wallet"), Icon: Ticket, onPress: () => go("/betting") },
     { key: "artisans", label: t("drawer.artisans", "Find An Artisan"), Icon: Wrench, onPress: () => go("/artisans-find") },
     { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },

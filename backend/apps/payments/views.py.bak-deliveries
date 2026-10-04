@@ -61,11 +61,6 @@ class PaystackWebhookView(APIView):
                         else TxnStatus.FAILED if st in ("failed", "abandoned", "reversed")
                         else None)
             FundingService.settle(data.get("reference", ""), verified_status=verified, raw=data)
-            try:  # [oam-deliveries] delivery card payments
-                from apps.deliveries.services import PaymentService as _DlvPay
-                _DlvPay.confirm_by_reference(data.get("reference", ""))
-            except Exception:
-                pass
             try:  # [oam-jobs] employer plans / job credits / boosts
                 from apps.jobs.services import PaymentService as _JobsPay
                 _JobsPay.activate_by_reference(data.get("reference", ""))
@@ -100,11 +95,6 @@ class FlutterwaveWebhookView(APIView):
                         else TxnStatus.FAILED if st in ("failed", "cancelled")
                         else None)
             FundingService.settle(ref, verified_status=verified, raw=data)
-            try:  # [oam-deliveries] delivery card payments
-                from apps.deliveries.services import PaymentService as _DlvPay
-                _DlvPay.confirm_by_reference(ref)
-            except Exception:
-                pass
             try:  # [oam-jobs] employer plans / job credits / boosts
                 from apps.jobs.services import PaymentService as _JobsPay
                 _JobsPay.activate_by_reference(ref)

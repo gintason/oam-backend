@@ -17,10 +17,6 @@ import { jobsApi, type JobPayment } from "../../services/jobs";
 export function JobsPaymentGate({ fallback }: { fallback: ReactNode }) {
   const [params] = useSearchParams();
   const ref = params.get("tx_ref") || params.get("reference") || params.get("trxref") || "";
-  if (ref.startsWith("DLV-")) {  // oam-deliveries: delivery card payments
-    window.location.replace(`/deliveries/payment-return?${params.toString()}`);
-    return null;
-  }
   return ref.startsWith("JOB-") ? <JobsPaymentReturn /> : <>{fallback}</>;
 }
 

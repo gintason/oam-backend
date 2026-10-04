@@ -12,7 +12,6 @@ import * as Linking from "expo-linking";
 import { referralStore, extractReferralToken } from "@/features/referrals";
 import { syncPushToken } from "@/features/notifications";
 import { useJobsPushRouting } from "@/features/jobs"; // oam-jobs
-import { useDeliveriesPushRouting } from "@/features/deliveries/push-routing"; // oam-deliveries
 import { AppSplash } from "@/features/splash/AppSplash";
 import { markSplashDone } from "@/features/splash/splash-state";
 import { LogBox } from "react-native";
@@ -64,8 +63,6 @@ export default function RootLayout() {
 
   // oam-jobs: tapping a jobs notification opens the matching screen.
   useJobsPushRouting(status === "authenticated");
-  // oam-deliveries: delivery / rider notifications.
-  useDeliveriesPushRouting(status === "authenticated");
 
   const dataReady = (fontsLoaded || Boolean(fontError)) && status !== "loading";
   const ready = dataReady && minTimePassed;

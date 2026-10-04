@@ -55,7 +55,7 @@ export default function AppHeader() {
   }).data ?? 0;
 
   const navItems = isAdmin
-    ? [...NAV, { key: "earnings", to: "/earnings", inTabs: false }, { key: "dispatch", to: "/admin/dispatch", inTabs: false }]
+    ? [...NAV, { key: "earnings", to: "/earnings", inTabs: false }]
     : NAV;
 
   // Bottom-bar destinations are dropped from the mobile menu.

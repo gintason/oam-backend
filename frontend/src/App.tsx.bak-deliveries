@@ -62,8 +62,6 @@ import Profile from "./pages/Profile";
 
 // oam-jobs: Jobs & Recruitment
 import { jobsRoutes } from "./routes/jobsRoutes";
-// oam-deliveries: Delivery & Dispatch
-import { deliveriesRoutes } from "./routes/deliveriesRoutes";
 import { JobsPaymentGate } from "./pages/jobs/JobsPaymentReturn";
 
 /**
@@ -176,9 +174,6 @@ export default function App() {
 
               {/* oam-jobs */}
               {jobsRoutes}
-
-              {/* oam-deliveries */}
-              {deliveriesRoutes}
 
               {/* Fallback: anything unknown goes to the landing page */}
               <Route path="*" element={<LandingPage />} />

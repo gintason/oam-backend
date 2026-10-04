@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus, BriefcaseBusiness, PackageCheck } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus, BriefcaseBusiness } from "lucide-react";
 import { useState } from "react";
 import AppHeader from "../components/AppHeader";
 import { useUserScope } from "../auth/useUserScope";
@@ -166,7 +166,6 @@ export default function Dashboard() {
                 title={t("dashboard.groups.shop")}
                 items={[
                   { to: "/marketplace", icon: <Store size={20} strokeWidth={1.75} />, label: t("dashboard.services.marketplace"), tint: "green" },
-                  { to: "/deliveries/new", icon: <PackageCheck size={20} strokeWidth={1.75} />, label: t("dashboard.services.delivery", "Send Package"), tint: "green" },
                   { to: "/jobs", icon: <BriefcaseBusiness size={20} strokeWidth={1.75} />, label: t("dashboard.services.jobs", "Jobs"), tint: "green" },
                   { to: "/artisans", icon: <Wrench size={20} strokeWidth={1.75} />, label: t("dashboard.services.artisans"), tint: "green" },
                   { to: "/ecommerce", icon: <ShoppingBag size={20} strokeWidth={1.75} />, label: t("dashboard.services.ecommerce", "Shop"), tint: "green" },

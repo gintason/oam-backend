@@ -172,38 +172,3 @@ PURPOSES.update({
         hint="Documents or images up to 15 MB.",
     ),
 })
-
-
-# [oam-deliveries] Delivery & Dispatch uploads
-PURPOSES.update({
-    "rider_document": Purpose(
-        key="rider_document",
-        folder="oam/deliveries/rider-docs",
-        resource_type="image",
-        delivery_type="upload",
-        max_bytes=10 * MB,
-        allowed_formats=["jpg", "jpeg", "png", "webp", "heic", "pdf"],
-        label="Rider document",
-        hint="A clear photo or PDF, up to 10 MB.",
-    ),
-    "rider_photo": Purpose(
-        key="rider_photo",
-        folder="oam/deliveries/rider-photos",
-        resource_type="image",
-        delivery_type="upload",
-        max_bytes=5 * MB,
-        allowed_formats=["jpg", "jpeg", "png", "webp", "heic"],
-        label="Rider photo",
-        min_width=200,
-        min_height=200,
-    ),
-    "delivery_proof": Purpose(
-        key="delivery_proof",
-        folder="oam/deliveries/proof",
-        resource_type="image",
-        delivery_type="upload",
-        max_bytes=8 * MB,
-        allowed_formats=["jpg", "jpeg", "png", "webp", "heic"],
-        label="Proof of delivery",
-    ),
-})

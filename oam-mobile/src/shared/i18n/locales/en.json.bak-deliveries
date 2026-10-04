@@ -10,7 +10,9 @@
     "save": "Save"
   },
   "language": {
-    "label": "Language"
+    "label": "Language",
+    "select": "Select language",
+    "searchPlaceholder": "Search"
   },
   "header": {
     "nav": {
@@ -18,8 +20,7 @@
       "wallet": "Wallet",
       "orders": "Orders",
       "messages": "Messages",
-      "earnings": "Earnings",
-      "dispatch": "Dispatch"
+      "earnings": "Earnings"
     },
     "signOut": "Sign out",
     "menu": "Menu"
@@ -62,10 +63,10 @@
       "pickup": "Pick Up",
       "marketplace": "Marketplace",
       "artisans": "Artisans",
+      "ecommerce": "Shop",
       "bus": "Bus Tickets",
       "betting": "Fund Betting",
       "referral": "Refer & Earn",
-      "ecommerce": "Shop",
       "jobs": "Jobs"
     },
     "verifyBanner": {
@@ -172,8 +173,7 @@
       "services": "Services",
       "marketplace": "Marketplace",
       "findArtisans": "Find Artisans",
-      "faq": "FAQ",
-      "jobs": "Jobs"
+      "faq": "FAQ"
     },
     "signIn": "Sign in",
     "getStarted": "Get started",
@@ -238,10 +238,6 @@
         "carhire": {
           "title": "Car Hire",
           "desc": "Rent a ride, anywhere."
-        },
-        "jobs": {
-          "title": "Jobs",
-          "desc": "Find work or hire talent."
         }
       }
     },
@@ -310,19 +306,6 @@
       },
       "rights": "© {{year}} OAM. All rights reserved.",
       "developedBy": "Developed by AiTrend"
-    },
-    "jobs": {
-      "eyebrow": "Jobs & careers",
-      "title": "Hiring now on OAM",
-      "subtitle": "Apply in one tap with your OAM CV, or post a job and meet candidates today.",
-      "viewAll": "View all jobs",
-      "featured": "From Premium & Pro employers",
-      "latest": "Latest jobs",
-      "emptyTitle": "No open jobs yet",
-      "emptyBody": "Be the first employer to post — your job goes live in minutes.",
-      "postJob": "Post a job",
-      "hiringTitle": "Hiring?",
-      "hiringBody": "Post your first job free and manage applicants on one board."
     }
   },
   "bills": {
@@ -357,7 +340,33 @@
       "buyAgain": "Buy again",
       "viewInOrders": "View in Orders",
       "done": "Done"
-    }
+    },
+    "fee": "Fee",
+    "total": "Total",
+    "walletBalance": "Wallet balance: {{balance}}",
+    "notEnough": "— not enough for this purchase",
+    "confirmWarning": "Check the details carefully — completed purchases can't be reversed.",
+    "cardPayment": "Card payment",
+    "tokenTitle": "YOUR RECHARGE TOKEN",
+    "tokenUnits": "units",
+    "tokenCopy": "Copy token",
+    "tokenCopied": "Copied",
+    "tokenHint": "Type this into your meter keypad. It's saved in your order history.",
+    "verifyingTitle": "Verifying payment",
+    "verifyingBody": "Confirming your card payment — this only takes a moment.",
+    "lowFundsAdd": "Your wallet balance is too low. Add money to continue.",
+    "fundWallet": "Fund wallet",
+    "payNoteCardShort": "You'll complete payment securely via Paystack.",
+    "errPurchase": "Couldn't complete the purchase.",
+    "errVerifyPayment": "Couldn't verify the payment. Check Recent activity shortly.",
+    "processingShort": "Your purchase is processing — it'll arrive shortly.",
+    "noChargeRetry": "No charge was made. Please try again.",
+    "confirmTitle": "Confirm purchase",
+    "service": "Service",
+    "phone": "Phone",
+    "amount": "Amount",
+    "plan": "Plan",
+    "goBack": "Go back"
   },
   "data": {
     "title": "Buy Data",
@@ -413,7 +422,8 @@
     "minAmount": "Enter an amount of at least ₦100.",
     "couldntVerifyMeter": "Couldn't verify that meter number.",
     "successTitle": "Payment successful!",
-    "successMessage": "₦{{amount}} to meter {{recipient}}."
+    "successMessage": "₦{{amount}} to meter {{recipient}}.",
+    "confirmMeterFirst": "Confirm the meter owner first — enter the full meter number."
   },
   "cable": {
     "title": "Cable TV",
@@ -437,7 +447,10 @@
     "couldntConfirmSmartcard": "Couldn't confirm that smartcard.",
     "couldntVerifySmartcard": "Couldn't verify that smartcard number.",
     "successTitle": "Subscription successful!",
-    "successMessage": "{{plan}} on {{recipient}}."
+    "successMessage": "{{plan}} on {{recipient}}.",
+    "keepTyping": "Keep typing — we'll confirm the account once the full number is in.",
+    "chooseProviderFirst": "Choose your provider above to confirm the account.",
+    "renewAgain": "Renew again"
   },
   "marketplace": {
     "navDashboard": "Dashboard",
@@ -491,7 +504,9 @@
       "emptyDefault": "The marketplace is just getting started — be one of the first to list something.",
       "postItem": "Post an item",
       "countOne": "{{count}} item",
-      "countOther": "{{count}} items"
+      "countOther": "{{count}} items",
+      "any": "Any",
+      "showResults": "Show results"
     },
     "sell": {
       "heading": "Selling",
@@ -603,7 +618,19 @@
       "whatsapp": "WhatsApp (optional)",
       "whatsappHint": "Pick the country code, then enter the number.",
       "submitSave": "Save changes",
-      "submitPost": "Post listing"
+      "submitPost": "Post listing",
+      "addPhotos": "Add photos",
+      "addVideo": "Add a short video",
+      "contactHeading": "Contact (shared only after you accept a buyer)",
+      "errImageUpload": "Image upload failed.",
+      "errVideoUpload": "Video upload failed.",
+      "permPhotos": "Allow photo access to add images.",
+      "permVideo": "Allow media access to add a video.",
+      "vLocation": "Add a location.",
+      "videoAttached": "Video attached",
+      "videoAttachedHint": "Buyers will see it on your listing.",
+      "atLimitInline": "You've reached your {{tier}} plan's limit of {{limit}} active listings. Remove one or upgrade to post more.",
+      "subtitleNew": "Post a listing buyers can find and message you about."
     },
     "detail": {
       "errMessage": "Couldn't send that message.",
@@ -618,7 +645,11 @@
       "messagePlaceholder": "Hi, is this still available? Would you take…",
       "sendMessage": "Send message",
       "safeLabel": "Stay safe:",
-      "safeBody": "meet in a public place, inspect before you pay, and never send money in advance to someone you haven't met."
+      "safeBody": "meet in a public place, inspect before you pay, and never send money in advance to someone you haven't met.",
+      "messageSentTitle": "Message sent",
+      "unavailableTitle": "Listing unavailable",
+      "unavailableBody": "It may have been sold or removed.",
+      "messageSentBody": "The seller will see it in their inbox. You'll be able to chat and, once they accept, exchange contact details."
     },
     "categories": {
       "electronics": "Electronics",
@@ -635,6 +666,16 @@
       "accessories": "Accessories",
       "equipment": "Equipment",
       "others": "Others"
+    },
+    "home": {
+      "subtitle": "Buy and sell across Nigeria.",
+      "browseDesc": "Find what you need.",
+      "sellTitle": "Sell an item",
+      "sellDesc": "Post in minutes.",
+      "categories": "Categories",
+      "recent": "Recent listings",
+      "seeAll": "See all",
+      "safety": "You chat in the app; contact details are shared only when a seller accepts. Meet in public and inspect before you pay."
     }
   },
   "wallet": {
@@ -718,7 +759,16 @@
     "amountLabel": "Amount (₦)",
     "continue": "Continue to payment",
     "continueAmount": "Continue to payment · {{amount}}",
-    "secured": "Secured by Paystack. Your card details never touch OAM."
+    "secured": "Secured by Paystack. Your card details never touch OAM.",
+    "confirmingTitle": "Confirming payment",
+    "confirmingBody": "Crediting your wallet — one moment.",
+    "okTitle": "Wallet funded",
+    "pendingTitle": "Almost there",
+    "failedTitle": "Payment failed",
+    "okBody": "{{amount}} added to your wallet.",
+    "pendingBody": "Your payment is processing — your balance will update shortly.",
+    "failedBody": "No charge was completed. Please try again.",
+    "addMore": "Add more"
   },
   "transfer": {
     "errResolve": "Couldn't find that account.",
@@ -749,7 +799,8 @@
     "instant": "Instant, free transfers between OAM wallets.",
     "recentTitle": "Recent transfers",
     "from": "From",
-    "to": "To"
+    "to": "To",
+    "verifyBody": "You need a verified account to send money."
   },
   "earnings": {
     "sweptOk": "Swept to your {{currency}} wallet. New balance: {{balance}}",
@@ -804,7 +855,8 @@
       "passwordPlaceholder": "Your password",
       "forgot": "Forgot password?",
       "submit": "Sign in",
-      "errFailed": "Could not sign you in."
+      "errFailed": "Could not sign you in.",
+      "errRequired": "Enter your email or phone, and your password."
     },
     "signUp": {
       "title": "Create your account",
@@ -819,7 +871,12 @@
       "passwordPlaceholder": "At least 8 characters",
       "terms": "By creating an account you agree to OAM's Terms and Privacy Policy.",
       "submit": "Create account",
-      "errFailed": "Could not create your account."
+      "errFailed": "Could not create your account.",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "0803 123 4567",
+      "firstNameOptional": "Optional",
+      "errRequired": "Email, phone number and password are all required.",
+      "errPasswordShort": "Password must be at least 8 characters."
     },
     "otp": {
       "title": "Verify your account",
@@ -898,7 +955,8 @@
       "privacyTitle": "Contacts stay private.",
       "privacyBody": "Numbers are shared only after an artisan accepts your job.",
       "boostTitle": "Boosted artisans appear first.",
-      "boostBody": "Featured placement from ₦2,500 for 30 days."
+      "boostBody": "Featured placement from ₦2,500 for 30 days.",
+      "tagline": "Trusted hands, near you."
     },
     "find": {
       "back": "Home services",
@@ -915,7 +973,10 @@
       "emptyBody": "Try a wider radius or a different trade. This is a new service, so coverage is still growing.",
       "listOwn": "List your own trade",
       "countOne": "{{count}} artisan within {{radius}} km",
-      "countOther": "{{count}} artisans within {{radius}} km"
+      "countOther": "{{count}} artisans within {{radius}} km",
+      "yourCity": "Your city",
+      "nearMe": "Near me",
+      "usingGps": "Using GPS"
     },
     "profile": {
       "errEnquiry": "Couldn't send that enquiry.",
@@ -998,7 +1059,16 @@
       "availableHint": "Turn this off when you're fully booked — you'll still appear, marked busy.",
       "saved": "Saved",
       "saveChanges": "Save changes",
-      "createProfile": "Create my profile"
+      "createProfile": "Create my profile",
+      "editTitle": "Edit your profile",
+      "changePhoto": "Change photo",
+      "addPhoto": "Add a profile photo",
+      "permPhoto": "Allow photo access to add a profile photo.",
+      "errPhotoUpload": "Photo upload failed.",
+      "vBusiness": "Add your business name.",
+      "vTrade": "Choose your trade.",
+      "vPhone": "Add a phone number.",
+      "vCity": "Choose your city."
     },
     "verify": {
       "status": {
@@ -1048,7 +1118,14 @@
       "pendingTitle": "With our review team",
       "pendingBody": "Nothing more to do. Your profile is live in search meanwhile, so you can keep taking enquiries while you wait.",
       "submitForReview": "Submit for review",
-      "addAllThree": "Add all three items above to submit."
+      "addAllThree": "Add all three items above to submit.",
+      "replaceVideo": "Replace video",
+      "addVideo": "Add a video",
+      "replaceId": "Replace ID",
+      "uploadId": "Upload ID",
+      "errUpload": "Upload failed.",
+      "permWorkPhotos": "Allow photo access to add work photos.",
+      "permId": "Allow photo access to add your ID."
     },
     "trades": {
       "mechanic": "Mechanic",
@@ -1111,7 +1188,8 @@
       "noMessages": "No messages yet.",
       "placeholder": "Write a message…",
       "sendAria": "Send",
-      "safetyNote": "Keep payments and details on OAM. Never send money outside the app."
+      "safetyNote": "Keep payments and details on OAM. Never send money outside the app.",
+      "closedPlaceholder": "This conversation is closed"
     }
   },
   "travel": {
@@ -1166,7 +1244,10 @@
       "tip3Label": "Self-drive usually needs",
       "tip3Body": "a valid licence (an international permit if you're visiting), a deposit, and sometimes a guarantor.",
       "tip4Label": "Photograph the car before and after.",
-      "tip4Body": "It settles any dispute over existing scratches."
+      "tip4Body": "It settles any dispute over existing scratches.",
+      "errChooseLocation": "Choose a pick-up location.",
+      "errChoosePickup": "Choose a pick-up date.",
+      "returnDate": "Return date"
     },
     "pickup": {
       "errOpen": "Couldn't open transfer search.",
@@ -1190,7 +1271,10 @@
       "tip3Label": "Give your flight number",
       "tip3Body": "when booking, and share your driver's details with someone at home.",
       "tip4Label": "Lagos traffic is unpredictable.",
-      "tip4Body": "Allow generous time for the return trip to the airport."
+      "tip4Body": "Allow generous time for the return trip to the airport.",
+      "errChooseAirport": "Choose an airport.",
+      "errDestination": "Where should the driver take you?",
+      "errChooseDate": "Choose an arrival date."
     },
     "flights": {
       "errOpen": "Couldn't open flight search.",
@@ -1225,7 +1309,13 @@
       "tip4Label": "Mid-week departures are usually cheaper",
       "tip4Body": "than Friday and Sunday, and prices tend to climb closer to departure.",
       "tip5Label": "Confirm baggage allowance",
-      "tip5Body": "before paying — the cheapest fare often excludes checked bags."
+      "tip5Body": "before paying — the cheapest fare often excludes checked bags.",
+      "errChooseAirports": "Choose both airports.",
+      "errSameAirport": "Origin and destination can't be the same.",
+      "errChooseDepart": "Choose a departure date.",
+      "selectReturn": "Select return date",
+      "search": "Search flights",
+      "partnerNote": "Opens results with Aviasales, our flights partner."
     },
     "hotels": {
       "back": "Travel",
@@ -1631,7 +1721,9 @@
     "pinsNoMatch": "PINs don't match.",
     "errPinMatch": "Enter a matching 4–6 digit PIN and your password.",
     "settingUp": "Setting up…",
-    "createPin": "Create PIN"
+    "createPin": "Create PIN",
+    "verifyBody": "You need a verified account to withdraw.",
+    "chooseBank": "Choose bank"
   },
   "beneficiaries": {
     "recentNumbers": "Recent numbers",
@@ -1641,7 +1733,12 @@
     "namePlaceholder": "Name (e.g. John)",
     "save": "Save",
     "cancel": "Cancel",
-    "rename": "Rename"
+    "rename": "Rename",
+    "emptyNumbers": "Numbers you recharge will appear here.",
+    "emptyMeters": "Meters you pay will be saved here.",
+    "emptyCards": "Smartcards you pay will be saved here.",
+    "nameThisNumber": "Name this number",
+    "nameThisAccount": "Name this account"
   },
   "ecommerce": {
     "title": "Shop the world",
@@ -1654,7 +1751,78 @@
     "pending": "{{name}} is coming soon.",
     "popularCategories": "Categories",
     "disclosure": "You'll be taken to the partner's own website to complete your purchase.",
-    "companyDisclosure": "You're leaving OAM to shop on {{name}}. Your order and payment are handled by {{name}}, not OAM."
+    "companyDisclosure": "You're leaving OAM to shop on {{name}}. Your order and payment are handled by {{name}}, not OAM.",
+    "partners": {
+      "amazon": {
+        "tagline": "The everything store",
+        "blurb": "Electronics, home, fashion and books with fast, reliable global shipping."
+      },
+      "temu": {
+        "tagline": "Shop like a billionaire",
+        "blurb": "Budget-friendly everything — gadgets, fashion, home and more at low prices."
+      },
+      "alibaba": {
+        "tagline": "Global wholesale",
+        "blurb": "Source products at wholesale prices directly from verified suppliers."
+      },
+      "banggood": {
+        "tagline": "Gadgets & more",
+        "blurb": "RC hobbies, electronics, tools and lifestyle products at keen prices."
+      },
+      "cj": {
+        "tagline": "Dropshipping made easy",
+        "blurb": "Source and dropship trending products worldwide with fulfilment built in."
+      },
+      "shein": {
+        "tagline": "Fashion for less",
+        "blurb": "On-trend clothing, accessories and beauty at prices that are hard to beat."
+      },
+      "dhgate": {
+        "tagline": "Wholesale deals",
+        "blurb": "Wholesale and retail across every category, shipped worldwide."
+      }
+    }
+  },
+  "home": {
+    "greetMorning": "Good morning",
+    "greetAfternoon": "Good afternoon",
+    "greetEvening": "Good evening"
+  },
+  "profile": {
+    "title": "Profile",
+    "account": "Your account",
+    "signOut": "Sign out",
+    "editTitle": "Edit your details",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "email": "Email",
+    "emailNote": "Email can't be changed — it's your login.",
+    "save": "Save changes",
+    "saved": "Saved!",
+    "errSave": "Couldn't save your changes. Try again.",
+    "verified": "Verified"
+  },
+  "giftcards": {
+    "back": "Back",
+    "hero": {
+      "badge": "Global digital marketplace",
+      "title": "Gift cards & digital codes",
+      "subtitle": "Buy gaming credit, streaming subscriptions, app store top-ups and retail gift cards from sellers worldwide — delivered as a code, usually within minutes.",
+      "cta": "Browse gift cards",
+      "note": "Opens with G2A, our marketplace partner. Purchase and delivery happen there."
+    },
+    "tabs": {
+      "buy": "Buying",
+      "sell": "Selling"
+    },
+    "buyHeading": "What you can buy",
+    "regionsHeading": "Understanding regions",
+    "sellHeading": "Selling digital codes",
+    "sellCta": "Visit the marketplace",
+    "safetyHeading": "Stay safe with gift cards",
+    "bottomTitle": "Browse thousands of digital codes",
+    "bottomCta": "Open marketplace"
   },
   "bus": {
     "title": "Bus Tickets",
@@ -1714,21 +1882,6 @@
     "errConfirm": "Couldn't confirm your booking.",
     "sexLabel": "Sex"
   },
-  "profile": {
-    "title": "Profile",
-    "account": "Your account",
-    "editTitle": "Edit your details",
-    "firstName": "First name",
-    "lastName": "Last name",
-    "phone": "Phone",
-    "email": "Email",
-    "emailNote": "Email can't be changed — it's your login.",
-    "save": "Save changes",
-    "saved": "Saved!",
-    "signOut": "Sign out",
-    "errSave": "Couldn't save your changes. Try again.",
-    "verified": "Verified"
-  },
   "drawer": {
     "user": "OAM User",
     "soon": "This arrives in an upcoming update.",
@@ -1740,7 +1893,9 @@
     "referral": "Get Referral Link",
     "ecommerce": "E-commerce",
     "signOut": "Sign out",
-    "tagline": "One app, everything"
+    "tagline": "One app, everything",
+    "motorsAdmin": "Motors Admin",
+    "jobs": "Jobs & Careers"
   },
   "referral": {
     "title": "Refer & Earn",

@@ -67,7 +67,8 @@
       "bus": "Bus Tickets",
       "betting": "Fund Betting",
       "referral": "Refer & Earn",
-      "jobs": "Jobs"
+      "jobs": "Jobs",
+      "delivery": "Send Package"
     },
     "verifyBanner": {
       "title": "Verify your account",
@@ -1895,7 +1896,9 @@
     "signOut": "Sign out",
     "tagline": "One app, everything",
     "motorsAdmin": "Motors Admin",
-    "jobs": "Jobs & Careers"
+    "jobs": "Jobs & Careers",
+    "deliveries": "Send a Package",
+    "rider": "Ride & Earn"
   },
   "referral": {
     "title": "Refer & Earn",

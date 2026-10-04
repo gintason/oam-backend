@@ -122,14 +122,6 @@ export default function AppLayout() {
       <Tabs.Screen name="jobs-plans" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="jobs-messages" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="jobs-chat" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      {/* oam-deliveries: Delivery & Dispatch screens */}
-      <Tabs.Screen name="deliveries" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="delivery-new" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="delivery" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="rider" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="rider-apply" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="rider-job" options={{ href: null, tabBarStyle: { display: "none" } }} />
-      <Tabs.Screen name="rider-earnings" options={{ href: null, tabBarStyle: { display: "none" } }} />
     </Tabs>
   );
 }

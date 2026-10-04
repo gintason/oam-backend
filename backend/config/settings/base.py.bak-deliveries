@@ -69,7 +69,6 @@ INSTALLED_APPS = [
     "apps.reloadly",
     
     "apps.jobs",  # [oam-jobs] jobs & recruitment
-    "apps.deliveries",  # [oam-deliveries] delivery & dispatch
     # ...
 ]
 
@@ -499,12 +498,3 @@ PIN_LOCK_MINUTES = env.int("PIN_LOCK_MINUTES", default=15)
 if not DEBUG:
     SPECTACULAR_SETTINGS = {**SPECTACULAR_SETTINGS,
                             "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"]}
-
-
-# [oam-deliveries] ------------------------------------------------------------------
-# Delivery & Dispatch
-# --------------------------------------------------------------------------
-# Card payments for deliveries (wallet payments need no gateway).
-DELIVERIES_PAYMENT_GATEWAY = env("DELIVERIES_PAYMENT_GATEWAY", default="flutterwave")
-# Secret for POST /api/v1/deliveries/internal/tick/ (falls back to JOBS_CRON_SECRET).
-DELIVERIES_CRON_SECRET = env("DELIVERIES_CRON_SECRET", default="")

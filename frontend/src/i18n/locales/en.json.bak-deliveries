@@ -18,8 +18,7 @@
       "wallet": "Wallet",
       "orders": "Orders",
       "messages": "Messages",
-      "earnings": "Earnings",
-      "dispatch": "Dispatch"
+      "earnings": "Earnings"
     },
     "signOut": "Sign out",
     "menu": "Menu"
