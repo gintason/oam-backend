@@ -67,7 +67,12 @@ export default function TrackDelivery() {
 
         <div className="space-y-4">
           {d.payment_status === "unpaid" && d.status === "pending" && <PayNow d={d} />}
-          {d.status === "pending" && d.payment_status === "paid" && <Searching d={d} />}
+          {d.status === "pending" && (d.payment_status === "paid" || d.payment_status === "cash") && <Searching d={d} />}
+          {d.payment_method === "cash" && !["delivered", "cancelled"].includes(d.status) && (
+            <Card className="border-warn/30 bg-warn/5 text-[13.5px] text-ink">
+              💵 Cash on delivery — have <b>{money(d.fee, d.currency)}</b> ready for the rider.
+            </Card>
+          )}
           {d.rider && d.status !== "cancelled" && <RiderCard d={d} />}
           {["pending", "accepted", "picked_up", "in_transit"].includes(d.status) && d.payment_status !== "unpaid" && <CodeCard d={d} />}
           {d.can_rate && <RateCard d={d} />}

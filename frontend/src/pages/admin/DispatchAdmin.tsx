@@ -357,6 +357,14 @@ function RiderPanel({ rider, onChange, onClose }: { rider: AdminRider; onChange:
           </div>
         ) : <p className="text-[12.5px] text-muted">No documents uploaded.</p>}
       </div>
+      <div className="rounded-xl border border-hairline p-3 text-[13px]">
+        <p className="mb-1 text-[12px] font-semibold uppercase tracking-wide text-muted">Payout bank</p>
+        {rider.payout_account
+          ? <p className="text-ink">{rider.payout_account.account_name} · {rider.payout_account.bank_name} · {rider.payout_account.account_number}
+              <span className="ml-2 text-[11.5px] text-muted">{rider.auto_payout ? "auto-payout on" : "auto-payout off"}</span></p>
+          : <p className="text-warn">No bank account yet — earnings stay in the rider's OAM wallet.</p>}
+      </div>
+      <CommissionBox rider={rider} onChange={onChange} />
       {rider.review_note && <p className="text-[12.5px] text-muted">Last note: “{rider.review_note}”</p>}
       <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={2} maxLength={300} placeholder="Note to the rider (required to reject/suspend)"
         className="w-full rounded-xl border border-hairline px-3 py-2 text-[13px] outline-none focus:border-brand-green" />
@@ -368,6 +376,29 @@ function RiderPanel({ rider, onChange, onClose }: { rider: AdminRider; onChange:
         {v === "suspended" && <button disabled={review.isPending} onClick={() => review.mutate("reinstate")} className={`${btn} bg-brand-green text-white`}><ShieldCheck size={14} /> Reinstate</button>}
       </div>
     </Card>
+  );
+}
+
+function CommissionBox({ rider, onChange }: { rider: AdminRider; onChange: (r: AdminRider) => void }) {
+  const qc = useQueryClient();
+  const due = Number(rider.cash_commission_due || 0);
+  const [amount, setAmount] = useState("");
+  const rec = useMutation({
+    mutationFn: () => dispatchAdminApi.recordCommission(rider.id, amount || String(due)),
+    onSuccess: (r) => { onChange(r); setAmount(""); qc.invalidateQueries({ queryKey: ["dispatch"] }); },
+  });
+  return (
+    <div className={`rounded-xl border p-3 text-[13px] ${due > 0 ? "border-warn/30 bg-warn/5" : "border-hairline"}`}>
+      <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Cash commission owed to OAM</p>
+      <p className={`font-display text-[20px] font-semibold ${due > 0 ? "text-warn" : "text-ink"}`}>{money(due)}</p>
+      {due > 0 && (
+        <div className="mt-2 flex gap-2">
+          <input className={inputCls + " !h-9"} placeholder={`Amount received (${money(due)})`} value={amount} onChange={(e) => setAmount(e.target.value)} inputMode="decimal" />
+          <button onClick={() => rec.mutate()} disabled={rec.isPending} className="h-9 shrink-0 rounded-lg bg-ink px-3 text-[12.5px] font-semibold text-white disabled:opacity-50">Mark received</button>
+        </div>
+      )}
+      {rec.error && <p className="mt-1 text-[12px] text-danger">{apiErrorMessage(rec.error)}</p>}
+    </div>
   );
 }
 
@@ -414,6 +445,11 @@ const SETTING_FIELDS: { key: keyof DispatchSettings; label: string; hint?: strin
   { key: "offer_batch", label: "Riders per round" },
   { key: "offer_timeout_s", label: "Offer timeout (s)" },
   { key: "location_fresh_min", label: "Location freshness (min)" },
+  { key: "cash_enabled", label: "Allow cash to rider", type: "bool" },
+  { key: "cash_debt_limit", label: "Max cash commission owed ₦", hint: "Riders owing more get no cash jobs" },
+  { key: "oam_bank_name", label: "OAM bank name", hint: "Shown to riders for cash commission" },
+  { key: "oam_account_number", label: "OAM account number" },
+  { key: "oam_account_name", label: "OAM account name" },
 ];
 
 function SettingsCard() {

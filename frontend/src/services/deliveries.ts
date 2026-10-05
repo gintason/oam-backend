@@ -8,8 +8,8 @@ import { api } from "../lib/api";
  */
 
 export type DeliveryStatus = "pending" | "accepted" | "picked_up" | "in_transit" | "delivered" | "cancelled";
-export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded";
-export type PaymentMethod = "wallet" | "card";
+export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded" | "cash";
+export type PaymentMethod = "wallet" | "card" | "cash";
 export type PackageCategory = "documents" | "small" | "medium" | "large" | "food" | "fragile";
 export type Verification = "pending" | "approved" | "rejected" | "suspended";
 
@@ -22,6 +22,7 @@ export type DeliveriesMeta = {
   statuses: Choice[];
   offer_timeout_s: number;
   free_weight_kg: string;
+  cash_enabled?: boolean;
 };
 
 export type Place = { address: string; lat: number; lng: number };
@@ -91,6 +92,9 @@ export type AdminRider = {
   location_updated_at: string | null; total_earnings: string; completed_deliveries: number;
   rating_avg: string; rating_count: number; documents: RiderDocument[]; created_at: string;
   active_delivery: { id: string; reference: string } | null;
+  payout_account: { bank_code: string; bank_name: string; account_name: string; account_number: string } | null;
+  auto_payout: boolean;
+  cash_commission_due: string;
 };
 
 export type AdminDeliveryListItem = DeliveryListItem & {
@@ -132,7 +136,8 @@ export type DispatchSettings = {
   default_min_fare: string; free_weight_kg: string; road_factor: string; round_to: number;
   auto_surge_enabled: boolean; max_surge: string; search_radius_km: string; radius_step_km: string;
   max_rounds: number; offer_batch: number; offer_timeout_s: number; location_fresh_min: number;
-  updated_at: string;
+  cash_enabled: boolean; cash_debt_limit: string; oam_bank_name: string; oam_account_number: string;
+  oam_account_name: string; updated_at: string;
 };
 
 // ---------------------------------------------------------------- client ---
@@ -158,6 +163,8 @@ export const dispatchAdminApi = {
   overview: () => api.get<Overview>(`${B}/admin/overview/`).then((r) => r.data),
   riders: (params: { status?: string; availability?: string; q?: string; page?: number } = {}) =>
     api.get<Paginated<AdminRider>>(`${B}/admin/riders/`, { params }).then((r) => r.data),
+  recordCommission: (id: string, amount: string) =>
+    api.post<AdminRider>(`${B}/admin/riders/${id}/commission/`, { amount }).then((r) => r.data),
   reviewRider: (id: string, action: "approve" | "reject" | "suspend" | "reinstate", note = "") =>
     api.post<AdminRider>(`${B}/admin/riders/${id}/review/`, { action, note }).then((r) => r.data),
   deliveries: (params: { status?: string; q?: string; page?: number; unassigned?: "1" } = {}) =>

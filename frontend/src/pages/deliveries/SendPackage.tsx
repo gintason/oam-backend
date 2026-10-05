@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  ArrowRight, Bike, Box, CreditCard, FileText, Loader2, Package, PackageOpen, ShieldAlert,
+  ArrowRight, Banknote, Bike, Box, CreditCard, FileText, Loader2, Package, PackageOpen, ShieldAlert,
   Utensils, Wallet as WalletIcon, Wine,
 } from "lucide-react";
 import { useAuth } from "../../auth/AuthContext";
@@ -50,6 +50,7 @@ export default function SendPackage() {
   const [method, setMethod] = useState<PaymentMethod>("wallet");
   const [error, setError] = useState("");
 
+  const meta = useQuery({ queryKey: ["deliveries", "meta"], queryFn: deliveriesApi.meta, staleTime: 300_000 });
   const wallets = useQuery({ queryKey: ["wallet", scope, "list"], queryFn: walletApi.getWallets, enabled: isVerified });
   const ngn = Number(wallets.data?.wallets.find((w) => w.currency === "NGN")?.balance ?? 0);
 
@@ -201,6 +202,10 @@ export default function SendPackage() {
                   title="OAM wallet" sub={wallets.isLoading ? "Checking balance…" : `Balance ${money(ngn)}`} warn={short ? "Not enough balance" : undefined} />
                 <PayOption active={method === "card"} onClick={() => setMethod("card")} icon={<CreditCard size={18} />}
                   title="Card, bank or USSD" sub="Secure checkout by Flutterwave" />
+                {meta.data?.cash_enabled !== false && (
+                  <PayOption active={method === "cash"} onClick={() => setMethod("cash")} icon={<Banknote size={18} />}
+                    title="Cash to rider" sub="Pay the rider in cash when they pick up" />
+                )}
                 {short && (
                   <p className="text-[12.5px] text-muted">
                     <Link to="/wallet/fund" className="font-semibold text-brand-green hover:underline">Top up your wallet</Link> or pay by card.
@@ -217,7 +222,8 @@ export default function SendPackage() {
                 <button disabled={create.isPending || short || quote.isFetching} onClick={() => { setError(""); create.mutate(); }}
                   className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-brand-red text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(227,16,18,0.25)] transition hover:bg-brand-red/90 disabled:opacity-40">
                   {create.isPending ? <Loader2 size={18} className="animate-spin" /> : null}
-                  {method === "card" ? `Pay ${money(quote.data.fee)} & request rider` : `Confirm & pay ${money(quote.data.fee)}`}
+                  {method === "card" ? `Pay ${money(quote.data.fee)} & request rider`
+                    : method === "cash" ? `Request rider · pay ${money(quote.data.fee)} cash` : `Confirm & pay ${money(quote.data.fee)}`}
                 </button>
               </div>
               <p className="text-center text-[11.5px] text-muted">Cancel before pickup for a full refund to your wallet.</p>
