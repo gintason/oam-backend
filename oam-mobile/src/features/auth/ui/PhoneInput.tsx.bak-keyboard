@@ -4,7 +4,6 @@ import { ChevronDown, Search, X } from "lucide-react-native";
 import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
 import { COUNTRIES, type Country } from "./countries";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 /**
  * Phone field with a country-code selector. Tapping the flag/code opens a
@@ -68,29 +67,27 @@ export function PhoneInput({
       </View>
 
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "80%" }}>
-              <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, marginBottom: 10 }}>
-                <Text variant="title">Select country</Text>
-                <Pressable onPress={() => setOpen(false)} hitSlop={8}><X size={20} color={colors.muted} /></Pressable>
-              </View>
-              <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
-                <Search size={15} color={colors.muted} />
-                <TextInput value={search} onChangeText={setSearch} autoFocus placeholder="Search country or code" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
-              </View>
-              <ScrollView keyboardShouldPersistTaps="handled">
-                {list.map((c) => (
-                  <Pressable key={c.iso} onPress={() => pick(c)} style={{ flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
-                    <Text style={{ fontSize: 20 }}>{c.flag}</Text>
-                    <Text variant="body" color="ink" style={{ flex: 1 }}>{c.name}</Text>
-                    <Text variant="body" color="muted">+{c.dial}</Text>
-                  </Pressable>
-                ))}
-              </ScrollView>
-            </Pressable>
+        <Pressable onPress={() => setOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "80%" }}>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, marginBottom: 10 }}>
+              <Text variant="title">Select country</Text>
+              <Pressable onPress={() => setOpen(false)} hitSlop={8}><X size={20} color={colors.muted} /></Pressable>
+            </View>
+            <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
+              <Search size={15} color={colors.muted} />
+              <TextInput value={search} onChangeText={setSearch} autoFocus placeholder="Search country or code" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+            </View>
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {list.map((c) => (
+                <Pressable key={c.iso} onPress={() => pick(c)} style={{ flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                  <Text style={{ fontSize: 20 }}>{c.flag}</Text>
+                  <Text variant="body" color="ink" style={{ flex: 1 }}>{c.name}</Text>
+                  <Text variant="body" color="muted">+{c.dial}</Text>
+                </Pressable>
+              ))}
+            </ScrollView>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
     </View>
   );

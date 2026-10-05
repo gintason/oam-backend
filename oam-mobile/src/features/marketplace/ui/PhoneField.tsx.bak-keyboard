@@ -3,7 +3,6 @@ import { View, Pressable, Modal, ScrollView, TextInput } from "react-native";
 import { ChevronDown, Search, Check } from "lucide-react-native";
 import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 /** Common dialling codes, Nigeria first. name + dial code only (no flag glyphs). */
 export const COUNTRY_CODES: { name: string; dial: string }[] = [
@@ -72,31 +71,29 @@ export function PhoneField({
       </View>
 
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "72%" }}>
-              <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>Country code</Text>
-              <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
-                <Search size={15} color={colors.muted} />
-                <TextInput value={q} onChangeText={setQ} autoFocus placeholder="Search country" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
-              </View>
-              <ScrollView keyboardShouldPersistTaps="handled">
-                {filtered.map((c) => {
-                  const sel = c.dial === dial && true;
-                  return (
-                    <Pressable key={c.name} onPress={() => { setDial(c.dial); emit(c.dial, local); setOpen(false); }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
-                      <Text variant="body" color="ink">{c.name}</Text>
-                      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-                        <Text variant="label" color="muted">{c.dial}</Text>
-                        {sel ? <Check size={16} strokeWidth={2.5} color={colors.brand.green} /> : null}
-                      </View>
-                    </Pressable>
-                  );
-                })}
-              </ScrollView>
-            </Pressable>
+        <Pressable onPress={() => setOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "72%" }}>
+            <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>Country code</Text>
+            <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
+              <Search size={15} color={colors.muted} />
+              <TextInput value={q} onChangeText={setQ} autoFocus placeholder="Search country" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+            </View>
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {filtered.map((c) => {
+                const sel = c.dial === dial && true;
+                return (
+                  <Pressable key={c.name} onPress={() => { setDial(c.dial); emit(c.dial, local); setOpen(false); }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                    <Text variant="body" color="ink">{c.name}</Text>
+                    <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+                      <Text variant="label" color="muted">{c.dial}</Text>
+                      {sel ? <Check size={16} strokeWidth={2.5} color={colors.brand.green} /> : null}
+                    </View>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
     </View>
   );

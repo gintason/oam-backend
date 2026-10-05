@@ -9,7 +9,6 @@ import { Screen, Text, Input, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
 import { PickerField } from "@/features/travel";
-import { CityField, type CityPick } from "@/features/artisans/ui/CityField";
 import { PhoneField } from "@/features/marketplace/ui/PhoneField";
 import { uploadMedia } from "@/features/marketplace/api/uploads-api";
 import { homeServicesApi } from "@/features/artisans/api/homeservices-api";
@@ -18,7 +17,7 @@ import { tradeLabel } from "@/shared/i18n/labels";
 
 const EMPTY: ArtisanWrite = {
   category: "", profile_photo: "", business_name: "", description: "", phone: "", whatsapp: "",
-  address: "", city: "", state: "", years_experience: 0, is_available: true,
+  address: "", city: "Abuja", state: "", years_experience: 0, is_available: true,
   latitude: CITIES[0].lat, longitude: CITIES[0].lng,
 };
 
@@ -52,13 +51,9 @@ export default function ArtisanRegister() {
 
   const catOptions = (categories.data ?? []).map((c) => ({ value: c.slug, label: tradeLabel(t, c.slug, c.name) }));
 
-  function pickCity(pick: CityPick) {
-    // Any city worldwide; coordinates/state come along when the place is known.
-    setForm((f) => ({
-      ...f, city: pick.city,
-      state: f.state || pick.state || "",
-      latitude: pick.lat ?? f.latitude, longitude: pick.lng ?? f.longitude,
-    }));
+  function pickCity(name: string) {
+    const c = CITIES.find((x) => x.name === name);
+    setForm((f) => ({ ...f, city: name, latitude: c?.lat ?? f.latitude, longitude: c?.lng ?? f.longitude }));
   }
 
   async function pickPhoto() {
@@ -128,7 +123,7 @@ export default function ArtisanRegister() {
           <PhoneField label={t("artisans.dashboard.whatsappLabel")} initial={form.whatsapp} onChange={(full) => set("whatsapp", full)} placeholder={t("artisans.dashboard.whatsappPlaceholder")} />
 
           <View style={{ marginTop: 2 }}>
-            <CityField label={t("artisans.dashboard.cityLabel")} value={form.city} onChange={pickCity} />
+            <PickerField label={t("artisans.dashboard.cityLabel")} value={form.city} options={CITIES.map((c) => ({ value: c.name, label: c.name }))} onSelect={pickCity} title={t("artisans.dashboard.cityLabel")} />
           </View>
           <View style={{ flexDirection: "row", gap: 12, marginTop: 14 }}>
             <View style={{ flex: 1 }}><Input label={t("artisans.dashboard.stateLabel")} value={form.state} onChangeText={(v) => set("state", v)} placeholder={t("artisans.dashboard.statePlaceholder")} /></View>

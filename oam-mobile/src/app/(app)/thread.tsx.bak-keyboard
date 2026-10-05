@@ -68,7 +68,7 @@ export default function Thread() {
           <Text variant="title">{t("messages.chat.unavailable")}</Text>
         </View>
       ) : (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined} keyboardVerticalOffset={90}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={90}>
           {/* Contact gate */}
           {convo.contacts ? (
             <View style={{ paddingHorizontal: 20, paddingVertical: 12, backgroundColor: "rgba(11,115,39,0.05)" }}>

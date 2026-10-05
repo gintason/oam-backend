@@ -15,7 +15,6 @@ import { payoutsApi, type BankAccount } from "@/features/wallet/api/payouts-api"
 import { useTranslation } from "react-i18next";
 import { ReceiptScreen, type MobileReceipt } from "@/features/receipts/ReceiptScreen";
 import { formatReceiptDate } from "@/features/receipts/format-receipt-date";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 export default function Withdraw() {
   const router = useRouter();
@@ -265,30 +264,28 @@ function AddAccount({ onDone, onError }: { onDone: () => void; onError: (m: stri
       <Button title={save.isPending ? t("withdraw.saving") : t("withdraw.saveAccount")} onPress={() => save.mutate()} loading={save.isPending} disabled={!resolvedName} />
 
       <Modal visible={bankOpen} transparent animationType="slide" onRequestClose={() => setBankOpen(false)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setBankOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "75%" }}>
-              <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>{t("withdraw.chooseBank")}</Text>
-              <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
-                <Search size={15} color={colors.muted} />
-                <TextInput value={bankSearch} onChangeText={setBankSearch} autoFocus placeholder={t("withdraw.searchBank")} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
-              </View>
-              <ScrollView keyboardShouldPersistTaps="handled">
-                {banksQuery.isLoading ? (
-                  <Text variant="caption" color="muted" style={{ paddingHorizontal: 20, paddingVertical: 12 }}>{t("withdraw.loadingBanks")}</Text>
-                ) : banks.length === 0 ? (
-                  <Text variant="caption" color="muted" style={{ paddingHorizontal: 20, paddingVertical: 12 }}>{t("withdraw.noBankMatch", { query: bankSearch })}</Text>
-                ) : (
-                  banks.map((b) => (
-                    <Pressable key={String(b.code)} onPress={() => { setBankCode(String(b.code)); setBankName(String(b.name)); setBankOpen(false); setResolvedName(undefined); }} style={{ paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
-                      <Text variant="body" color="ink">{String(b.name)}</Text>
-                    </Pressable>
-                  ))
-                )}
-              </ScrollView>
-            </Pressable>
+        <Pressable onPress={() => setBankOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "75%" }}>
+            <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>{t("withdraw.chooseBank")}</Text>
+            <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
+              <Search size={15} color={colors.muted} />
+              <TextInput value={bankSearch} onChangeText={setBankSearch} autoFocus placeholder={t("withdraw.searchBank")} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+            </View>
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {banksQuery.isLoading ? (
+                <Text variant="caption" color="muted" style={{ paddingHorizontal: 20, paddingVertical: 12 }}>{t("withdraw.loadingBanks")}</Text>
+              ) : banks.length === 0 ? (
+                <Text variant="caption" color="muted" style={{ paddingHorizontal: 20, paddingVertical: 12 }}>{t("withdraw.noBankMatch", { query: bankSearch })}</Text>
+              ) : (
+                banks.map((b) => (
+                  <Pressable key={String(b.code)} onPress={() => { setBankCode(String(b.code)); setBankName(String(b.name)); setBankOpen(false); setResolvedName(undefined); }} style={{ paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                    <Text variant="body" color="ink">{String(b.name)}</Text>
+                  </Pressable>
+                ))
+              )}
+            </ScrollView>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
     </View>
   );

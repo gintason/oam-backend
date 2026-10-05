@@ -11,7 +11,6 @@ import { useDebounced } from "@/shared/hooks/use-debounced";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { CONDITIONS } from "@/entities/marketplace";
 import { catLabel } from "@/shared/i18n/labels";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 export default function MarketBrowse() {
   const router = useRouter();
@@ -130,40 +129,38 @@ export default function MarketBrowse() {
 
       {/* Filters sheet */}
       <Modal visible={showFilters} transparent animationType="slide" onRequestClose={() => setShowFilters(false)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setShowFilters(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, padding: 20, paddingBottom: 28 }}>
-              <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-                <Text variant="heading">{t("marketplace.browse.filters")}</Text>
-                <Pressable onPress={() => setShowFilters(false)} hitSlop={8}><X size={20} color={colors.muted} /></Pressable>
-              </View>
+        <Pressable onPress={() => setShowFilters(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, padding: 20, paddingBottom: 28 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+              <Text variant="heading">{t("marketplace.browse.filters")}</Text>
+              <Pressable onPress={() => setShowFilters(false)} hitSlop={8}><X size={20} color={colors.muted} /></Pressable>
+            </View>
 
-              <Text variant="label" style={{ marginBottom: 8 }}>{t("marketplace.browse.condition")}</Text>
-              <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
-                {[{ value: "", label: t("marketplace.browse.anyCondition") }, ...CONDITIONS].map((c) => {
-                  const sel = condition === c.value;
-                  const label = c.value ? t(`marketplace.conditions.${c.value}`, { defaultValue: c.label }) : c.label;
-                  return (
-                    <Pressable key={c.value || "any"} onPress={() => setCondition(c.value)} style={{ paddingHorizontal: 14, height: 38, borderRadius: 10, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.10)" : colors.paper }}>
-                      <Text variant="caption" color={sel ? "green" : "ink"}>{label}</Text>
-                    </Pressable>
-                  );
-                })}
-              </View>
+            <Text variant="label" style={{ marginBottom: 8 }}>{t("marketplace.browse.condition")}</Text>
+            <View style={{ flexDirection: "row", gap: 8, marginBottom: 16 }}>
+              {[{ value: "", label: t("marketplace.browse.anyCondition") }, ...CONDITIONS].map((c) => {
+                const sel = condition === c.value;
+                const label = c.value ? t(`marketplace.conditions.${c.value}`, { defaultValue: c.label }) : c.label;
+                return (
+                  <Pressable key={c.value || "any"} onPress={() => setCondition(c.value)} style={{ paddingHorizontal: 14, height: 38, borderRadius: 10, alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: sel ? colors.brand.green : colors.hairline, backgroundColor: sel ? "rgba(11,115,39,0.10)" : colors.paper }}>
+                    <Text variant="caption" color={sel ? "green" : "ink"}>{label}</Text>
+                  </Pressable>
+                );
+              })}
+            </View>
 
-              <Input label={t("marketplace.browse.location")} value={location} onChangeText={setLocation} placeholder={t("marketplace.browse.locationPlaceholder")} />
-              <View style={{ flexDirection: "row", gap: 12 }}>
-                <View style={{ flex: 1 }}><Input label={t("marketplace.browse.min")} value={minPrice} onChangeText={(v) => setMinPrice(v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder="0" /></View>
-                <View style={{ flex: 1 }}><Input label={t("marketplace.browse.max")} value={maxPrice} onChangeText={(v) => setMaxPrice(v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder={t("marketplace.browse.any")} /></View>
-              </View>
+            <Input label={t("marketplace.browse.location")} value={location} onChangeText={setLocation} placeholder={t("marketplace.browse.locationPlaceholder")} />
+            <View style={{ flexDirection: "row", gap: 12 }}>
+              <View style={{ flex: 1 }}><Input label={t("marketplace.browse.min")} value={minPrice} onChangeText={(v) => setMinPrice(v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder="0" /></View>
+              <View style={{ flex: 1 }}><Input label={t("marketplace.browse.max")} value={maxPrice} onChangeText={(v) => setMaxPrice(v.replace(/[^\d]/g, ""))} keyboardType="number-pad" placeholder={t("marketplace.browse.any")} /></View>
+            </View>
 
-              <View style={{ flexDirection: "row", gap: 10, marginTop: 6 }}>
-                <Button title={t("marketplace.browse.clearFilters")} variant="secondary" onPress={() => { setCondition(""); setLocation(""); setMinPrice(""); setMaxPrice(""); }} style={{ flex: 1 }} />
-                <Button title={t("marketplace.browse.showResults")} onPress={() => setShowFilters(false)} style={{ flex: 1 }} />
-              </View>
-            </Pressable>
+            <View style={{ flexDirection: "row", gap: 10, marginTop: 6 }}>
+              <Button title={t("marketplace.browse.clearFilters")} variant="secondary" onPress={() => { setCondition(""); setLocation(""); setMinPrice(""); setMaxPrice(""); }} style={{ flex: 1 }} />
+              <Button title={t("marketplace.browse.showResults")} onPress={() => setShowFilters(false)} style={{ flex: 1 }} />
+            </View>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
     </Screen>
   );

@@ -7,7 +7,6 @@ import { Text, Input, Button } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { apiErrorMessage } from "@/shared/api";
 import { payoutsApi } from "@/features/wallet/api/payouts-api";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 /**
  * Prompts for the backend TRANSACTION PIN that authorises money leaving the wallet
@@ -58,43 +57,41 @@ export function TransactionPinModal({
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onCancel}>
-      <KeyboardAware>
-        <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-          <View style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, padding: 20, paddingBottom: 30 }}>
-            <Pressable onPress={onCancel} hitSlop={8} style={{ alignSelf: "flex-end", marginBottom: 4 }}><X size={20} color={colors.muted} /></Pressable>
+      <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+        <View style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, padding: 20, paddingBottom: 30 }}>
+          <Pressable onPress={onCancel} hitSlop={8} style={{ alignSelf: "flex-end", marginBottom: 4 }}><X size={20} color={colors.muted} /></Pressable>
 
-            {status.isLoading ? (
-              <ActivityIndicator color={colors.brand.green} style={{ marginVertical: 30 }} />
-            ) : (
-              <>
-                <Text variant="heading">{hasPin ? t("pin.enterTitle", "Enter your transaction PIN") : t("pin.setTitle", "Create a transaction PIN")}</Text>
-                <Text variant="body" color="muted" style={{ marginTop: 6, marginBottom: 14 }}>
-                  {hasPin ? t("pin.enterBody", "Authorise this transfer with your PIN.") : t("pin.setBody", "You need a PIN to move money out of your wallet. Confirm with your account password to create one.")}
-                </Text>
-                {error ? <View style={{ borderRadius: 10, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", paddingHorizontal: 12, paddingVertical: 9, marginBottom: 12 }}><Text variant="caption" color="danger">{error}</Text></View> : null}
+          {status.isLoading ? (
+            <ActivityIndicator color={colors.brand.green} style={{ marginVertical: 30 }} />
+          ) : (
+            <>
+              <Text variant="heading">{hasPin ? t("pin.enterTitle", "Enter your transaction PIN") : t("pin.setTitle", "Create a transaction PIN")}</Text>
+              <Text variant="body" color="muted" style={{ marginTop: 6, marginBottom: 14 }}>
+                {hasPin ? t("pin.enterBody", "Authorise this transfer with your PIN.") : t("pin.setBody", "You need a PIN to move money out of your wallet. Confirm with your account password to create one.")}
+              </Text>
+              {error ? <View style={{ borderRadius: 10, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", paddingHorizontal: 12, paddingVertical: 9, marginBottom: 12 }}><Text variant="caption" color="danger">{error}</Text></View> : null}
 
-                {!hasPin ? (
-                  <Input label={t("pin.passwordLabel", "Account password")} value={password} onChangeText={setPassword} secureTextEntry placeholder="••••••••" autoCapitalize="none" />
-                ) : null}
+              {!hasPin ? (
+                <Input label={t("pin.passwordLabel", "Account password")} value={password} onChangeText={setPassword} secureTextEntry placeholder="••••••••" autoCapitalize="none" />
+              ) : null}
 
-                <Input label={hasPin ? t("pin.pinLabel", "Transaction PIN") : t("pin.newPinLabel", "New PIN (4–6 digits)")}
-                       value={pin} onChangeText={(v) => setPin(onlyDigits(v))} secureTextEntry keyboardType="number-pad" placeholder="••••" />
+              <Input label={hasPin ? t("pin.pinLabel", "Transaction PIN") : t("pin.newPinLabel", "New PIN (4–6 digits)")}
+                     value={pin} onChangeText={(v) => setPin(onlyDigits(v))} secureTextEntry keyboardType="number-pad" placeholder="••••" />
 
-                {!hasPin ? (
-                  <Input label={t("pin.confirmLabel", "Confirm PIN")} value={confirm} onChangeText={(v) => setConfirm(onlyDigits(v))} secureTextEntry keyboardType="number-pad" placeholder="••••" />
-                ) : null}
+              {!hasPin ? (
+                <Input label={t("pin.confirmLabel", "Confirm PIN")} value={confirm} onChangeText={(v) => setConfirm(onlyDigits(v))} secureTextEntry keyboardType="number-pad" placeholder="••••" />
+              ) : null}
 
-                <Button
-                  title={hasPin ? t("pin.confirmBtn", "Confirm") : t("pin.createBtn", "Create PIN & continue")}
-                  onPress={submit}
-                  loading={busy || createPin.isPending}
-                  style={{ marginTop: 6 }}
-                />
-              </>
-            )}
-          </View>
+              <Button
+                title={hasPin ? t("pin.confirmBtn", "Confirm") : t("pin.createBtn", "Create PIN & continue")}
+                onPress={submit}
+                loading={busy || createPin.isPending}
+                style={{ marginTop: 6 }}
+              />
+            </>
+          )}
         </View>
-      </KeyboardAware>
+      </View>
     </Modal>
   );
 }

@@ -15,7 +15,6 @@ import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
 import { useBillers, billsApi, ConfirmPurchase, PaySummary, PaystackModal, RecentBeneficiaries, TokenCard } from "@/features/bills";
 import type { BillOrder } from "@/entities/billing";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 const QUICK_AMOUNTS = [1000, 2000, 5000, 10000];
 
@@ -335,24 +334,22 @@ export default function Electricity() {
 
       {/* Disco picker */}
       <Modal visible={discoOpen} transparent animationType="slide" onRequestClose={() => setDiscoOpen(false)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setDiscoOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 28, maxHeight: "70%" }}>
-              <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>{t("electricity.chooseProvider")}</Text>
-              <ScrollView>
-                {billers.data?.map((b) => {
-                  const sel = b.code === disco;
-                  return (
-                    <Pressable key={b.id} onPress={() => { setDisco(b.code); resetCustomer(); setDiscoOpen(false); }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
-                      <Text variant="body" color={sel ? "green" : "ink"}>{b.name}</Text>
-                      {sel ? <Check size={18} strokeWidth={2.5} color={colors.brand.green} /> : null}
-                    </Pressable>
-                  );
-                })}
-              </ScrollView>
-            </Pressable>
+        <Pressable onPress={() => setDiscoOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 28, maxHeight: "70%" }}>
+            <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>{t("electricity.chooseProvider")}</Text>
+            <ScrollView>
+              {billers.data?.map((b) => {
+                const sel = b.code === disco;
+                return (
+                  <Pressable key={b.id} onPress={() => { setDisco(b.code); resetCustomer(); setDiscoOpen(false); }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                    <Text variant="body" color={sel ? "green" : "ink"}>{b.name}</Text>
+                    {sel ? <Check size={18} strokeWidth={2.5} color={colors.brand.green} /> : null}
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
 
       <PaystackModal visible={!!cardUrl} url={cardUrl ?? ""} onComplete={onCardDone} onCancel={() => setCardUrl(null)} />

@@ -14,7 +14,6 @@ import { useCurrency } from "@/features/currency";
 import { PaymentCurrencyChips } from "@/features/payments/ui/PaymentCurrencyChips";
 import * as WebBrowser from "expo-web-browser";
 import { reloadlyApi, type Operator, type AirtimeTopup } from "./api";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 const SYMBOLS: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
 
@@ -275,24 +274,22 @@ export function IntlAirtime() {
       ) : null}
 
       <Modal visible={countryOpen} transparent animationType="slide" onRequestClose={() => setCountryOpen(false)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setCountryOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "78%" }}>
-              <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>Choose a country</Text>
-              <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
-                <Search size={15} color={colors.muted} />
-                <TextInput value={countrySearch} onChangeText={setCountrySearch} autoFocus placeholder="Search countries" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
-              </View>
-              <ScrollView keyboardShouldPersistTaps="handled">
-                {filteredCountries.map((c) => (
-                  <Pressable key={c.isoName} onPress={() => { setCountry(c.isoName); setCountryName(c.name); setOperator(null); setCountryOpen(false); }} style={{ paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
-                    <Text variant="body" color="ink">{c.name}</Text>
-                  </Pressable>
-                ))}
-              </ScrollView>
-            </Pressable>
+        <Pressable onPress={() => setCountryOpen(false)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "78%" }}>
+            <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>Choose a country</Text>
+            <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
+              <Search size={15} color={colors.muted} />
+              <TextInput value={countrySearch} onChangeText={setCountrySearch} autoFocus placeholder="Search countries" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+            </View>
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {filteredCountries.map((c) => (
+                <Pressable key={c.isoName} onPress={() => { setCountry(c.isoName); setCountryName(c.name); setOperator(null); setCountryOpen(false); }} style={{ paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                  <Text variant="body" color="ink">{c.name}</Text>
+                </Pressable>
+              ))}
+            </ScrollView>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
 
     </View>

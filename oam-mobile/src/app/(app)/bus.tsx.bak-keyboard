@@ -14,7 +14,6 @@ import { useWallets, pickHeadline } from "@/features/wallet";
 import { PaystackModal } from "@/features/bills";
 import { busApi, type Trip, type BusBooking, type PassengerInput } from "@/features/bus";
 import { DateField } from "@/features/travel";
-import { KeyboardAware } from "@/shared/ui/keyboard";
 
 type Step = "search" | "results" | "seats" | "pay" | "ticket";
 
@@ -306,24 +305,22 @@ export default function BusScreen() {
 
       {/* State picker */}
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
-        <KeyboardAware>
-          <Pressable onPress={() => setPicker(null)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
-            <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "75%" }}>
-              <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>{t("bus.chooseState")}</Text>
-              <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
-                <Search size={15} color={colors.muted} />
-                <TextInput value={stateSearch} onChangeText={setStateSearch} autoFocus placeholder={t("bus.searchStates")} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
-              </View>
-              <ScrollView keyboardShouldPersistTaps="handled">
-                {filteredStates.map((st) => (
-                  <Pressable key={st} onPress={() => { if (picker === "from") setFrom(st); else setTo(st); setPicker(null); }} style={{ paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
-                    <Text variant="body" color="ink">{st}</Text>
-                  </Pressable>
-                ))}
-              </ScrollView>
-            </Pressable>
+        <Pressable onPress={() => setPicker(null)} style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.45)", justifyContent: "flex-end" }}>
+          <Pressable onPress={() => {}} style={{ backgroundColor: colors.paper, borderTopLeftRadius: 22, borderTopRightRadius: 22, paddingTop: 16, paddingBottom: 24, maxHeight: "75%" }}>
+            <Text variant="title" style={{ paddingHorizontal: 20, marginBottom: 10 }}>{t("bus.chooseState")}</Text>
+            <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
+              <Search size={15} color={colors.muted} />
+              <TextInput value={stateSearch} onChangeText={setStateSearch} autoFocus placeholder={t("bus.searchStates")} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+            </View>
+            <ScrollView keyboardShouldPersistTaps="handled">
+              {filteredStates.map((st) => (
+                <Pressable key={st} onPress={() => { if (picker === "from") setFrom(st); else setTo(st); setPicker(null); }} style={{ paddingHorizontal: 20, paddingVertical: 13, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                  <Text variant="body" color="ink">{st}</Text>
+                </Pressable>
+              ))}
+            </ScrollView>
           </Pressable>
-        </KeyboardAware>
+        </Pressable>
       </Modal>
 
       <PaystackModal visible={!!cardUrl} url={cardUrl ?? ""} onComplete={onCardReturn} onCancel={() => setCardUrl(null)} />
