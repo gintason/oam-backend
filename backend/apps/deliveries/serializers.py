@@ -158,7 +158,7 @@ class RiderDeliverySerializer(serializers.ModelSerializer):
             "dropoff_address", "dropoff_lat", "dropoff_lng", "recipient_name", "recipient_phone",
             "dropoff_note", "package_description", "package_category", "category_label",
             "weight_kg", "distance_km", "duration_min", "rider_payout", "currency",
-            "payment_method", "fee", "platform_fee",
+            "payment_method", "payment_status", "fee", "platform_fee",
             "customer_name", "customer_phone", "accepted_at", "picked_up_at", "in_transit_at",
             "delivered_at", "cancelled_at", "rating", "events", "created_at",
         ]

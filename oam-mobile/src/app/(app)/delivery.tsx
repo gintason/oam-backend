@@ -56,8 +56,8 @@ export default function DeliveryTrack() {
     <DeliveriesScreen title={headline(d)} subtitle={d.reference} tabs={false} back={back} right={<DeliveryStatusPill status={d.status} />}>
       <MapView markers={markers} height={250} fitKey={`${d.id}-${riderPos && moving ? "r" : ""}`} />
       {d.status !== "cancelled" ? <Card><StatusStepper status={d.status} /></Card> : null}
-      {d.payment_status === "unpaid" && d.status === "pending" ? <PayNow d={d} /> : null}
-      {d.status === "pending" && (d.payment_status === "paid" || d.payment_status === "cash") ? <Searching d={d} /> : null}
+      {(d.payment_status === "unpaid" && d.status === "pending") || (d.payment_status === "due" && !["delivered", "cancelled"].includes(d.status)) ? <PayNow d={d} /> : null}
+      {d.status === "pending" && ["paid", "cash", "due"].includes(d.payment_status) ? <Searching d={d} /> : null}
       {d.payment_method === "cash" && !["delivered", "cancelled"].includes(d.status) ? (
         <Card style={{ borderColor: "rgba(180,83,9,0.35)", backgroundColor: "rgba(180,83,9,0.06)" }}>
           <Text variant="body">💵 Cash on delivery — have <Text variant="body" style={{ fontFamily: fonts.bold }}>{fee(d.fee, d.currency)}</Text> ready for the rider.</Text>
@@ -177,8 +177,17 @@ function PayNow({ d }: { d: Delivery }) {
   const retry = useMutation({ mutationFn: () => deliveriesApi.retryPayment(d.id, RETURN_URL), onSuccess: (x) => setUrl(x.payment_url || null) });
   return (
     <Card style={{ gap: 10 }}>
-      <Text variant="title" style={{ fontSize: 15 }}>Payment not completed yet</Text>
-      <Text variant="caption" color="muted">We start matching a rider once the {fee(d.fee, d.currency)} payment goes through.</Text>
+      {d.payment_status === "due" ? (
+        <>
+          <Text variant="title" style={{ fontSize: 15 }}>Pay on delivery · {fee(d.fee, d.currency)}</Text>
+          <Text variant="caption" color="muted">Pay online now with Flutterwave, or when it arrives — the rider takes card, transfer or cash.</Text>
+        </>
+      ) : (
+        <>
+          <Text variant="title" style={{ fontSize: 15 }}>Payment not completed yet</Text>
+          <Text variant="caption" color="muted">We start matching a rider once the {fee(d.fee, d.currency)} payment goes through.</Text>
+        </>
+      )}
       <ErrorNote>{verify.error || retry.error ? apiErrorMessage(verify.error || retry.error) : null}</ErrorNote>
       <View style={{ flexDirection: "row", gap: 10 }}>
         <PillButton label="Pay now" tone="red" style={{ flex: 1 }} loading={retry.isPending} onPress={() => retry.mutate()} />

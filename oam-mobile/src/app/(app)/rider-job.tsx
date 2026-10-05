@@ -2,12 +2,12 @@
  * Rider job: navigate to pickup → confirm pickup → start → navigate to drop-off
  * → complete with the recipient's 4-digit code (or a handover photo).
  */
-import { useState } from "react";
-import { ActivityIndicator, Alert, Image, Platform, Pressable, TextInput, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, Image, Platform, Pressable, Share, TextInput, View } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as ImagePicker from "expo-image-picker";
-import { ArrowLeft, Camera, CheckCircle2, MessageCircle, Navigation, Package, Phone, Undo2 } from "lucide-react-native";
+import { ArrowLeft, Banknote, Camera, CheckCircle2, CreditCard, MessageCircle, Navigation, Package, Phone, Share2, Undo2 } from "lucide-react-native";
 import { Text } from "@/shared/ui";
 import { colors, fonts } from "@/shared/theme";
 import { apiErrorMessage } from "@/shared/api";
@@ -16,7 +16,7 @@ import {
   callNumber, deliveryErrorCode, fee, MapView, openDirections, riderApi, smsNumber, uploadDeliveriesFile,
   useRiderLocationReporter, type MapMarker, type RiderDelivery,
 } from "@/features/deliveries";
-import { Card, DeliveriesScreen, DeliveryStatusPill, ErrorNote, Loading, PillButton, StatusStepper } from "@/features/deliveries/ui/kit";
+import { Card, CheckoutModal, DeliveriesScreen, DeliveryStatusPill, ErrorNote, Loading, PillButton, StatusStepper } from "@/features/deliveries/ui/kit";
 
 export default function RiderJob() {
   const { id = "" } = useLocalSearchParams<{ id: string }>();
@@ -88,13 +88,15 @@ export default function RiderJob() {
 
       {d.status === "accepted" ? <PickupStep d={d} me={me} onDone={done} /> : null}
       {d.status === "picked_up" ? <StartStep d={d} me={me} onDone={done} /> : null}
-      {d.status === "in_transit" ? <DeliverStep d={d} me={me} onDone={done} /> : null}
+      {d.status === "in_transit" ? (d.payment_status === "due"
+        ? <CollectStep d={d} onDone={done} />
+        : <DeliverStep d={d} me={me} onDone={done} />) : null}
       {d.status === "delivered" ? (
         <Card style={{ alignItems: "center", gap: 8, paddingVertical: 24 }}>
           <CheckCircle2 size={40} color={colors.brand.green} />
           <Text variant="heading">Delivered!</Text>
           <Text variant="body" color="muted" style={{ textAlign: "center" }}>
-            {d.payment_method === "cash"
+            {d.payment_method === "cash" || d.payment_status === "cash"
               ? `You collected ${fee(d.fee, d.currency)} in cash. OAM's share (${fee(d.platform_fee, d.currency)}) is on your Earnings screen.`
               : `${fee(d.rider_payout, d.currency)} is on its way to your bank account.`}
           </Text>
@@ -198,6 +200,76 @@ function DeliverStep({ d, me, onDone }: StepProps) {
           </Pressable>
         </>
       )}
+    </Card>
+  );
+}
+
+/**
+ * Pay on delivery: take the payment at the door before completing.
+ * Flutterwave checkout opens on the rider's phone for the customer (card,
+ * transfer, USSD), or is shared as a link; cash is confirmed by the rider.
+ */
+function CollectStep({ d, onDone }: { d: RiderDelivery; onDone: (job: RiderDelivery) => void }) {
+  const [url, setUrl] = useState<string | null>(null);
+  const [linkUrl, setLinkUrl] = useState<string | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const link = useMutation({
+    mutationFn: () => riderApi.paymentLink(d.id),
+    onSuccess: (r) => { setLinkUrl(r.payment_url); setErr(null); },
+    onError: (e) => setErr(apiErrorMessage(e, "Couldn't create the payment link.")),
+  });
+  const check = useMutation({
+    mutationFn: () => riderApi.paymentStatus(d.id),
+    onSuccess: (job) => { if (job.payment_status !== "due") onDone(job); },
+  });
+  const cash = useMutation({
+    mutationFn: () => riderApi.collectCash(d.id),
+    onSuccess: onDone,
+    onError: (e) => setErr(apiErrorMessage(e)),
+  });
+
+  // While a link is out, keep checking whether it has been paid.
+  useEffect(() => {
+    if (!linkUrl) return;
+    const id = setInterval(() => check.mutate(), 5000);
+    return () => clearInterval(id);
+  }, [linkUrl]);  // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function getLink() {
+    if (linkUrl) return linkUrl;
+    const r = await link.mutateAsync();
+    return r.payment_url;
+  }
+  function confirmCash() {
+    const go = () => cash.mutate();
+    const msg = `Confirm you received ${fee(d.fee, d.currency)} in cash.`;
+    if (Platform.OS === "web") { if (window.confirm(msg)) go(); return; }
+    Alert.alert("Cash received?", msg, [{ text: "Not yet", style: "cancel" }, { text: "Yes, received", onPress: go }]);
+  }
+
+  return (
+    <Card style={{ gap: 12, borderColor: "rgba(180,83,9,0.35)", borderWidth: 2 }}>
+      <Text variant="caption" color="muted" style={{ fontFamily: fonts.bold }}>PAY ON DELIVERY</Text>
+      <Text variant="heading" style={{ fontSize: 26 }}>Collect {fee(d.fee, d.currency)}</Text>
+      <Text variant="caption" color="muted">Take payment before handing over the package.</Text>
+      <PillButton label="Card / transfer (Flutterwave)" icon={<CreditCard size={16} color="#FFF" />} style={{ height: 48 }}
+        loading={link.isPending} onPress={async () => { try { setUrl(await getLink()); } catch { /* shown */ } }} />
+      <PillButton label="Send payment link" tone="outline" icon={<Share2 size={15} color={colors.ink} />}
+        onPress={async () => {
+          try {
+            const u = await getLink();
+            await Share.share({ message: `Pay ${fee(d.fee, d.currency)} for your OAM delivery ${d.reference}: ${u}` });
+          } catch { /* cancelled */ }
+        }} />
+      <PillButton label="Customer paid cash" tone="outline" icon={<Banknote size={15} color={colors.ink} />} loading={cash.isPending} onPress={confirmCash} />
+      {linkUrl ? (
+        <Pressable onPress={() => check.mutate()} style={{ flexDirection: "row", gap: 8, alignItems: "center", justifyContent: "center" }}>
+          {check.isPending ? <ActivityIndicator size="small" color={colors.brand.green} /> : null}
+          <Text variant="label" color="green">Waiting for payment… tap to check now</Text>
+        </Pressable>
+      ) : null}
+      <ErrorNote>{err}</ErrorNote>
+      <CheckoutModal url={url} onComplete={() => { setUrl(null); check.mutate(); }} onCancel={() => { setUrl(null); check.mutate(); }} />
     </Card>
   );
 }

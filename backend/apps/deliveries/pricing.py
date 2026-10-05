@@ -103,7 +103,7 @@ def demand_surge(cfg: DispatchSettings) -> Decimal:
         return Decimal("1.00")
     since = timezone.now() - timedelta(minutes=30)
     pending = DeliveryRequest.objects.filter(
-        status=DeliveryStatus.PENDING, payment_status__in=("paid", "cash"),
+        status=DeliveryStatus.PENDING, payment_status__in=("paid", "cash", "due"),
         created_at__gte=since).count()
     if pending < 3:          # a quiet system never surges on noise
         return Decimal("1.00")

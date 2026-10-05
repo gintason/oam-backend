@@ -541,3 +541,63 @@ class DeliveriesTests(TransactionTestCase):
         self.assertEqual(WalletService.revenue_balance("NGN"), Decimal("500"))
         self.order(payment_method="cash")
         self.assertEqual(DispatchOffer.objects.count(), 1)
+
+    # -- pay on delivery ------------------------------------------------------ #
+
+    def accept_and_pickup(self, rider, d):
+        offer = DispatchOffer.objects.get(delivery_id=d["id"], rider=rider)
+        rider.client.post(f"/api/v1/deliveries/rider/offers/{offer.id}/accept/")
+        base = "/api/v1/deliveries/rider/deliveries/" + d["id"]
+        rider.client.post(f"{base}/pickup/")
+        return base
+
+    def test_pay_on_delivery_dispatches_without_payment(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        d = self.order(payment_method="on_delivery").json()
+        self.assertEqual((d["payment_status"], d["payment_method"]), ("due", "on_delivery"))
+        self.assertEqual(self.balance(), Decimal("50000"))            # nothing taken up front
+        self.assertEqual(DispatchOffer.objects.filter(rider=rider).count(), 1)
+
+    def test_pay_on_delivery_blocks_completion_until_paid_then_link_pays(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        self.bank(rider)
+        d = self.order(payment_method="on_delivery").json()
+        base = self.accept_and_pickup(rider, d)
+        r = rider.client.post(f"{base}/deliver/", {"code": d["delivery_code"]})
+        self.assertEqual((r.status_code, r.json()["code"]), (402, "payment_due"))
+        link = rider.client.post(f"{base}/payment-link/").json()
+        self.assertTrue(link["payment_url"].startswith("https://mock.local/pay/DLV-"))
+        st = rider.client.post(f"{base}/payment-status/").json()        # mock gateway: paid
+        self.assertEqual(st["payment_status"], "paid")
+        r = rider.client.post(f"{base}/deliver/", {"code": d["delivery_code"]})
+        self.assertEqual(r.status_code, 200, r.content)
+        fee = Decimal(d["fee"]); payout = (fee * Decimal("0.8")).quantize(Decimal("0.01"))
+        self.assertEqual(DeliveryTransaction.objects.get().payout_status, "sent")   # 80% to rider bank
+        self.assertEqual(WalletService.revenue_balance("NGN"), fee - payout)          # 20% OAM
+        self.assertEqual(self.balance(), Decimal("50000"))   # customer paid by card, wallet untouched
+
+    def test_pay_on_delivery_customer_pays_before_arrival(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        d = self.order(payment_method="on_delivery").json()
+        r = self.api.post(f"/api/v1/deliveries/requests/{d['id']}/retry-payment/")
+        self.assertEqual(r.status_code, 200, r.content)
+        r = self.api.post(f"/api/v1/deliveries/requests/{d['id']}/verify-payment/")
+        self.assertEqual(r.json()["payment_status"], "paid")
+        base = self.accept_and_pickup(rider, d)
+        self.assertEqual(rider.client.post(f"{base}/deliver/", {"code": d["delivery_code"]}).status_code, 200)
+
+    def test_pay_on_delivery_cash_at_door_and_paid_twice_goes_to_wallet(self):
+        rider = self.rider("Musa", 6.4300, 3.4230)
+        d = self.order(payment_method="on_delivery").json()
+        base = self.accept_and_pickup(rider, d)
+        rider.client.post(f"{base}/payment-link/")                       # link opened…
+        r = rider.client.post(f"{base}/collect-cash/")                   # …but they paid cash
+        self.assertEqual(r.json()["payment_status"], "cash")
+        self.assertEqual(rider.client.post(f"{base}/deliver/", {"code": d["delivery_code"]}).status_code, 200)
+        rider.refresh_from_db()
+        self.assertEqual(rider.cash_commission_due, (Decimal(d["fee"]) * Decimal("0.2")).quantize(Decimal("0.01")))
+        # The card link gets paid too: the customer must not lose that money.
+        self.api.post(f"/api/v1/deliveries/requests/{d['id']}/verify-payment/")
+        from apps.deliveries.services import PaymentService
+        PaymentService.confirm_card(DeliveryRequest.objects.get(pk=d["id"]))
+        self.assertEqual(self.balance(), Decimal("50000") + Decimal(d["fee"]))

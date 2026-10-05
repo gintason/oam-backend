@@ -10,8 +10,8 @@ import { uploadMedia, type PickedMedia } from "@/features/marketplace/api/upload
 
 
 export type DeliveryStatus = "pending" | "accepted" | "picked_up" | "in_transit" | "delivered" | "cancelled";
-export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded" | "cash";
-export type PaymentMethod = "wallet" | "card" | "cash";
+export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded" | "cash" | "due";
+export type PaymentMethod = "wallet" | "card" | "cash" | "on_delivery";
 export type PackageCategory = "documents" | "small" | "medium" | "large" | "food" | "fragile";
 export type Verification = "pending" | "approved" | "rejected" | "suspended";
 
@@ -109,7 +109,7 @@ export type RiderDelivery = {
   dropoff_lng: string; recipient_name: string; recipient_phone: string; dropoff_note: string;
   package_description: string; package_category: PackageCategory; category_label: string; weight_kg: string;
   distance_km: string; duration_min: number; rider_payout: string; currency: string;
-  payment_method: PaymentMethod; fee: string; platform_fee: string;
+  payment_method: PaymentMethod; payment_status: PaymentStatus; fee: string; platform_fee: string;
   customer_name: string; customer_phone: string; accepted_at: string | null; picked_up_at: string | null;
   in_transit_at: string | null; delivered_at: string | null; cancelled_at: string | null;
   rating: number | null; events: TimelineEvent[]; created_at: string;
@@ -181,6 +181,11 @@ export const riderApi = {
   act: async (id: string, verb: "pickup" | "start" | "deliver" | "release",
               body: Geo & { code?: string; photo_url?: string; reason?: string } = {}): Promise<RiderDelivery> =>
     (await api.post(`${B}/rider/deliveries/${id}/${verb}/`, body)).data,
+  /** Pay on delivery, at the door. */
+  paymentLink: async (id: string): Promise<{ payment_url: string; reference: string; amount: string; currency: string }> =>
+    (await api.post(`${B}/rider/deliveries/${id}/payment-link/`)).data,
+  collectCash: async (id: string): Promise<RiderDelivery> => (await api.post(`${B}/rider/deliveries/${id}/collect-cash/`)).data,
+  paymentStatus: async (id: string): Promise<RiderDelivery> => (await api.post(`${B}/rider/deliveries/${id}/payment-status/`)).data,
   earnings: async (): Promise<Earnings> => (await api.get(`${B}/rider/earnings/`)).data,
 };
 

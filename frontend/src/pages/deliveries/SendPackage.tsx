@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  ArrowRight, Banknote, Bike, Box, CreditCard, FileText, Loader2, Package, PackageOpen, ShieldAlert,
+  ArrowRight, Banknote, Bike, Box, CreditCard, HandCoins, FileText, Loader2, Package, PackageOpen, ShieldAlert,
   Utensils, Wallet as WalletIcon, Wine,
 } from "lucide-react";
 import { useAuth } from "../../auth/AuthContext";
@@ -202,9 +202,11 @@ export default function SendPackage() {
                   title="OAM wallet" sub={wallets.isLoading ? "Checking balance…" : `Balance ${money(ngn)}`} warn={short ? "Not enough balance" : undefined} />
                 <PayOption active={method === "card"} onClick={() => setMethod("card")} icon={<CreditCard size={18} />}
                   title="Card, bank or USSD" sub="Secure checkout by Flutterwave" />
+                <PayOption active={method === "on_delivery"} onClick={() => setMethod("on_delivery")} icon={<HandCoins size={18} />}
+                  title="Pay on delivery" sub="Card, transfer or cash when it arrives — or pay online anytime before" />
                 {meta.data?.cash_enabled !== false && (
                   <PayOption active={method === "cash"} onClick={() => setMethod("cash")} icon={<Banknote size={18} />}
-                    title="Cash to rider" sub="Pay the rider in cash when they pick up" />
+                    title="Cash at pickup" sub="Pay the rider in cash when they collect the package" />
                 )}
                 {short && (
                   <p className="text-[12.5px] text-muted">
@@ -223,7 +225,8 @@ export default function SendPackage() {
                   className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-brand-red text-[15px] font-semibold text-white shadow-[0_6px_18px_rgba(227,16,18,0.25)] transition hover:bg-brand-red/90 disabled:opacity-40">
                   {create.isPending ? <Loader2 size={18} className="animate-spin" /> : null}
                   {method === "card" ? `Pay ${money(quote.data.fee)} & request rider`
-                    : method === "cash" ? `Request rider · pay ${money(quote.data.fee)} cash` : `Confirm & pay ${money(quote.data.fee)}`}
+                    : method === "cash" ? `Request rider · pay ${money(quote.data.fee)} cash`
+                    : method === "on_delivery" ? `Request rider · pay ${money(quote.data.fee)} on delivery` : `Confirm & pay ${money(quote.data.fee)}`}
                 </button>
               </div>
               <p className="text-center text-[11.5px] text-muted">Cancel before pickup for a full refund to your wallet.</p>

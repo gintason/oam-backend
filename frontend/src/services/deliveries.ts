@@ -8,8 +8,8 @@ import { api } from "../lib/api";
  */
 
 export type DeliveryStatus = "pending" | "accepted" | "picked_up" | "in_transit" | "delivered" | "cancelled";
-export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded" | "cash";
-export type PaymentMethod = "wallet" | "card" | "cash";
+export type PaymentStatus = "unpaid" | "paid" | "settled" | "refunded" | "cash" | "due";
+export type PaymentMethod = "wallet" | "card" | "cash" | "on_delivery";
 export type PackageCategory = "documents" | "small" | "medium" | "large" | "food" | "fragile";
 export type Verification = "pending" | "approved" | "rejected" | "suspended";
 

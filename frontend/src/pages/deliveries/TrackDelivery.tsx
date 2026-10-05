@@ -66,8 +66,8 @@ export default function TrackDelivery() {
         </div>
 
         <div className="space-y-4">
-          {d.payment_status === "unpaid" && d.status === "pending" && <PayNow d={d} />}
-          {d.status === "pending" && (d.payment_status === "paid" || d.payment_status === "cash") && <Searching d={d} />}
+          {((d.payment_status === "unpaid" && d.status === "pending") || (d.payment_status === "due" && !["delivered", "cancelled"].includes(d.status))) && <PayNow d={d} />}
+          {d.status === "pending" && ["paid", "cash", "due"].includes(d.payment_status) && <Searching d={d} />}
           {d.payment_method === "cash" && !["delivered", "cancelled"].includes(d.status) && (
             <Card className="border-warn/30 bg-warn/5 text-[13.5px] text-ink">
               💵 Cash on delivery — have <b>{money(d.fee, d.currency)}</b> ready for the rider.
@@ -218,8 +218,17 @@ function PayNow({ d }: { d: Delivery }) {
   });
   return (
     <Card className="space-y-3">
-      <p className="text-[14px] font-semibold text-ink">Payment not completed yet</p>
-      <p className="text-[12.5px] text-muted">We'll start matching a rider as soon as the {money(d.fee, d.currency)} payment goes through.</p>
+      {d.payment_status === "due" ? (
+        <>
+          <p className="text-[14px] font-semibold text-ink">Pay on delivery · {money(d.fee, d.currency)}</p>
+          <p className="text-[12.5px] text-muted">Pay online now with Flutterwave, or when the package arrives: the rider can take card, transfer or cash.</p>
+        </>
+      ) : (
+        <>
+          <p className="text-[14px] font-semibold text-ink">Payment not completed yet</p>
+          <p className="text-[12.5px] text-muted">We'll start matching a rider as soon as the {money(d.fee, d.currency)} payment goes through.</p>
+        </>
+      )}
       {(verify.error || retry.error) && <p className="text-[12.5px] text-danger">{apiErrorMessage(verify.error || retry.error)}</p>}
       <div className="grid grid-cols-2 gap-2">
         <button onClick={() => retry.mutate()} disabled={retry.isPending} className="h-10 rounded-xl bg-brand-red text-[13.5px] font-semibold text-white disabled:opacity-50">Pay now</button>

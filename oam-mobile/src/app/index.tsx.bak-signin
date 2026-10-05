@@ -33,8 +33,6 @@ export default function Index() {
 
   if (status === "locked") return <Redirect href="/welcome-back" />;
   if (status === "authenticated") return <Redirect href="/home" />;
-  // Wait for the remembered account to load — routing earlier sent returning
-  // users to the full sign-in screen instead of Welcome back.
-  if (status === "loading" || firstRun === null) return null;                 // brief wait for the flag check
+  if (firstRun === null) return null;                 // brief wait for the flag check
   return <Redirect href={firstRun ? "/sign-up" : "/sign-in"} />;
 }

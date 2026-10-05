@@ -236,7 +236,7 @@ class DeliveryStatus(models.TextChoices):
 
 ACTIVE_STATUSES = (DeliveryStatus.ACCEPTED, DeliveryStatus.PICKED_UP, DeliveryStatus.IN_TRANSIT)
 # Payment states that let a delivery be dispatched (paid & held, or cash to the rider).
-DISPATCHABLE_PAYMENT = ("paid", "cash")
+DISPATCHABLE_PAYMENT = ("paid", "cash", "due")
 
 
 class DeliveryRequest(TimeStampedModel):
@@ -246,11 +246,13 @@ class DeliveryRequest(TimeStampedModel):
         SETTLED = "settled", _("Settled")
         REFUNDED = "refunded", _("Refunded")
         CASH = "cash", _("Cash on delivery")
+        DUE = "due", _("Pay on delivery")
 
     class PaymentMethod(models.TextChoices):
         WALLET = "wallet", _("OAM wallet")
         CARD = "card", _("Card / bank (Flutterwave)")
-        CASH = "cash", _("Cash to rider")
+        CASH = "cash", _("Cash at pickup")
+        ON_DELIVERY = "on_delivery", _("Pay on delivery (card, transfer or cash)")
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     reference = models.CharField(max_length=16, unique=True, default=_reference, editable=False)
@@ -296,7 +298,7 @@ class DeliveryRequest(TimeStampedModel):
                               default=DeliveryStatus.PENDING, db_index=True)
     payment_status = models.CharField(max_length=8, choices=PaymentStatus.choices,
                                       default=PaymentStatus.UNPAID, db_index=True)
-    payment_method = models.CharField(max_length=6, choices=PaymentMethod.choices,
+    payment_method = models.CharField(max_length=12, choices=PaymentMethod.choices,
                                       default=PaymentMethod.WALLET)
     payment_reference = models.CharField(max_length=40, blank=True, db_index=True,
                                          help_text=_("Card checkout reference (tx_ref)."))

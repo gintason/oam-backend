@@ -5,6 +5,7 @@ import MyDeliveries from "../pages/deliveries/MyDeliveries";
 import TrackDelivery from "../pages/deliveries/TrackDelivery";
 import DeliveryPaymentReturn from "../pages/deliveries/DeliveryPaymentReturn";
 import DispatchAdmin from "../pages/admin/DispatchAdmin";
+import PaymentDone from "../pages/deliveries/PaymentDone";
 
 const auth = (el: React.ReactNode) => <RequireAuth>{el}</RequireAuth>;
 
@@ -19,5 +20,7 @@ export const deliveriesRoutes = (
     <Route path="/deliveries/payment-return" element={auth(<DeliveryPaymentReturn />)} />
     <Route path="/deliveries/:id" element={auth(<TrackDelivery />)} />
     <Route path="/admin/dispatch" element={auth(<DispatchAdmin />)} />
+    {/* Public: Flutterwave returns here after a pay-on-delivery link paid at the door. */}
+    <Route path="/pay/done" element={<PaymentDone />} />
   </>
 );

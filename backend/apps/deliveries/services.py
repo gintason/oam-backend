@@ -108,6 +108,8 @@ class CustomerService:
                 PaymentService.pay_from_wallet(d)
             elif method == DeliveryRequest.PaymentMethod.CASH:
                 PaymentService.mark_cash(d)
+            elif method == DeliveryRequest.PaymentMethod.ON_DELIVERY:
+                PaymentService.mark_due(d)
         if method == DeliveryRequest.PaymentMethod.CARD:
             PaymentService.start_card_checkout(d, return_url=data.get("return_url") or "")
         else:
@@ -190,7 +192,7 @@ class PaymentService:
         DeliveryTransaction.objects.get_or_create(delivery=d, defaults={
             "gross_amount": d.fee, "rider_payout": d.rider_payout, "platform_fee": d.platform_fee,
             "currency": d.currency, "ledger_reference": d.reference})
-        timeline(d, DeliveryStatus.PENDING, note="Payment received — finding a rider.")
+        timeline(d, d.status, note="Payment received." if d.rider_id else "Payment received — finding a rider.")
 
     @staticmethod
     def mark_cash(d):
@@ -204,6 +206,28 @@ class PaymentService:
             "gross_amount": d.fee, "rider_payout": d.rider_payout, "platform_fee": d.platform_fee,
             "currency": d.currency, "ledger_reference": d.reference})
         timeline(d, DeliveryStatus.PENDING, note=f"Cash on delivery — pay the rider {money(d.fee, d.currency)}.")
+
+    @staticmethod
+    def mark_due(d):
+        """Pay on delivery: dispatch now; pay any time before or at the door
+        (Flutterwave card/transfer link, or cash to the rider)."""
+        d.payment_status = DeliveryRequest.PaymentStatus.DUE
+        d.save(update_fields=["payment_status", "updated_at"])
+        DeliveryTransaction.objects.get_or_create(delivery=d, defaults={
+            "gross_amount": d.fee, "rider_payout": d.rider_payout, "platform_fee": d.platform_fee,
+            "currency": d.currency, "ledger_reference": d.reference})
+        timeline(d, DeliveryStatus.PENDING,
+                 note=f"Pay on delivery — {money(d.fee, d.currency)} by card, transfer or cash.")
+
+    @staticmethod
+    def collect_cash(d) -> DeliveryRequest:
+        """Rider confirms the customer paid the due amount in cash at the door."""
+        if d.payment_status != DeliveryRequest.PaymentStatus.DUE:
+            raise DeliveryError("This delivery doesn't have a payment due.", code="not_due", status=409)
+        d.payment_status = DeliveryRequest.PaymentStatus.CASH
+        d.save(update_fields=["payment_status", "updated_at"])
+        timeline(d, d.status, note=f"{money(d.fee, d.currency)} collected in cash by the rider.", actor="rider")
+        return d
 
     @staticmethod
     def pay_from_wallet(d):
@@ -255,7 +279,9 @@ class PaymentService:
         from integrations.base.dto import TxnStatus
         from integrations.base.exceptions import ProviderError
         from apps.wallet.services import WalletService
-        if d.payment_status != DeliveryRequest.PaymentStatus.UNPAID or not d.payment_reference:
+        open_cash_link = d.payment_status == DeliveryRequest.PaymentStatus.CASH and bool(d.payment_url)
+        if (d.payment_status not in (DeliveryRequest.PaymentStatus.UNPAID, DeliveryRequest.PaymentStatus.DUE)
+                and not open_cash_link) or not d.payment_reference:
             return d
         gateway = PaymentService._gateway(d.payment_provider or None)
         try:
@@ -272,7 +298,20 @@ class PaymentService:
             return d
         with transaction.atomic():
             d = _locked(d.pk)
-            if d.payment_status != DeliveryRequest.PaymentStatus.UNPAID:
+            if d.payment_status == DeliveryRequest.PaymentStatus.CASH:
+                # Paid by link AND in cash: never keep both — the card money goes to their wallet.
+                wallet = PaymentService._wallet(d.customer, d.currency)
+                WalletService.credit(wallet, d.fee, source_code=f"gateway:{gateway.provider_key}",
+                                     description=f"Card payment for {d.reference} (also paid in cash)",
+                                     idempotency_key=f"dlv-card:{d.payment_reference}")
+                d.payment_url = ""          # link settled; stop re-checking it
+                d.save(update_fields=["payment_url", "updated_at"])
+                notify(d.customer, title="Payment added to your wallet",
+                       body=f"{d.reference} was also paid in cash, so the card payment of "
+                            f"{money(d.fee, d.currency)} was added to your wallet.",
+                       data={"type": "delivery.refunded", "delivery_id": str(d.id)})
+                return d
+            if d.payment_status not in (DeliveryRequest.PaymentStatus.UNPAID, DeliveryRequest.PaymentStatus.DUE):
                 return d
             if d.status == DeliveryStatus.CANCELLED:
                 # Paid after the request lapsed: money goes to the wallet, not lost.
@@ -723,6 +762,13 @@ class RiderService:
             d = RiderService._own_active(rider, delivery_id)
             if d.status not in (DeliveryStatus.PICKED_UP, DeliveryStatus.IN_TRANSIT):
                 raise DeliveryError("Confirm pickup first.", code="bad_state", status=409)
+            if d.payment_status == DeliveryRequest.PaymentStatus.DUE:
+                if d.payment_reference:
+                    PaymentService.confirm_card(d)
+                    d.refresh_from_db()
+                if d.payment_status == DeliveryRequest.PaymentStatus.DUE:
+                    raise DeliveryError(f"Collect {money(d.fee, d.currency)} first — send the payment link "
+                                        "or confirm cash.", code="payment_due", status=402)
             code = (code or "").strip()
             if code:
                 tries = cache.get(attempts_key, 0)
@@ -915,8 +961,14 @@ class MaintenanceService:
         unpaid = DeliveryRequest.objects.filter(
             status=DeliveryStatus.PENDING, payment_status=DeliveryRequest.PaymentStatus.UNPAID,
             payment_method=DeliveryRequest.PaymentMethod.CARD)
+        open_links = DeliveryRequest.objects.filter(
+            Q(payment_status__in=[DeliveryRequest.PaymentStatus.UNPAID, DeliveryRequest.PaymentStatus.DUE],
+              status__in=[DeliveryStatus.PENDING, *ACTIVE_STATUSES])
+            | Q(payment_status=DeliveryRequest.PaymentStatus.CASH,
+                payment_method=DeliveryRequest.PaymentMethod.ON_DELIVERY,
+                created_at__gte=now - timedelta(days=2)) & ~Q(payment_url=""))
         checked = 0
-        for d in unpaid.exclude(payment_reference="").filter(
+        for d in open_links.exclude(payment_reference="").filter(
                 created_at__lte=now - timedelta(minutes=2))[:20]:
             try:
                 PaymentService.confirm_card(d)

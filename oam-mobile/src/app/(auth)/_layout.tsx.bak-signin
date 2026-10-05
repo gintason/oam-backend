@@ -1,12 +1,9 @@
-import { Redirect, Stack, usePathname } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import { useAuthStore } from "@/features/auth";
 
 export default function AuthLayout() {
   const status = useAuthStore((s) => s.status);
-  const pathname = usePathname();
   // Already signed in? Don't show auth screens.
   if (status === "authenticated") return <Redirect href="/home" />;
-  // A remembered account always gets the password-only screen, never the full sign-in.
-  if (status === "locked" && pathname === "/sign-in") return <Redirect href="/welcome-back" />;
   return <Stack screenOptions={{ headerShown: false }} />;
 }

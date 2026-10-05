@@ -15,6 +15,7 @@ What it changes
   src/components/AppHeader.tsx     + "Dispatch" nav link for staff
   src/i18n/locales/en.json         + header.nav.dispatch
   src/pages/jobs/JobsPaymentReturn.tsx   DLV- card returns go to /deliveries/payment-return
+  src/sections/Services.tsx        + "Send Package" card on the home page
 No new npm packages: the map (Leaflet + OpenStreetMap) loads from a CDN on demand.
 """
 from __future__ import annotations
@@ -103,6 +104,13 @@ def main():
          '  }\n'
          '  return ref.startsWith("JOB-") ? <JobsPaymentReturn /> : <>{fallback}</>;'),
     ], optional=True)
+
+    edit("src/sections/Services.tsx", '"/deliveries/new"', [
+        (", BriefcaseBusiness } from \"lucide-react\";", ", BriefcaseBusiness, PackageCheck } from \"lucide-react\";"),
+        ('  { Icon: BriefcaseBusiness, key: "jobs", title: "Jobs", desc: "Find work or hire talent.", route: "/jobs", tint: "green" },\n',
+         '  { Icon: BriefcaseBusiness, key: "jobs", title: "Jobs", desc: "Find work or hire talent.", route: "/jobs", tint: "green" },\n'
+         '  { Icon: PackageCheck, key: "delivery", title: "Send Package", desc: "Same-day delivery across town.", route: "/deliveries/new", tint: "green" },\n'),
+    ])
 
     verb = "Would change" if CHECK else "Changed"
     print(f"{verb}: " + (", ".join(changed) or "nothing"))

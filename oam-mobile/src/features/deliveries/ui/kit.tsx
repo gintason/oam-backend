@@ -267,7 +267,7 @@ export function LocationField({
 /* Card checkout (Flutterwave) in a WebView                            */
 /* ------------------------------------------------------------------ */
 
-const RETURN_MARKERS = ["/deliveries/payment-return", "/payment/flutterwave-callback"];
+const RETURN_MARKERS = ["/deliveries/payment-return", "/payment/flutterwave-callback", "/pay/done"];
 const OPEN_IN_SAME_VIEW = `(function(){try{window.open=function(u){if(u){window.location.href=u;}return{closed:false,close:function(){},focus:function(){},blur:function(){},postMessage:function(){},location:window.location};};}catch(e){}})();true;`;
 
 export function CheckoutModal({ url, onComplete, onCancel }: { url: string | null; onComplete: (returnUrl: string) => void; onCancel: () => void }) {

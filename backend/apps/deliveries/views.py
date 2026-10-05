@@ -214,7 +214,10 @@ class DeliveryRequestViewSet(DeliveryErrorMixin, mixins.ListModelMixin, mixins.R
     @action(detail=True, methods=["post"], url_path="retry-payment")
     def retry_payment(self, request, pk=None):
         d = self.get_object()
-        if d.payment_status != DeliveryRequest.PaymentStatus.UNPAID or d.status != DeliveryStatus.PENDING:
+        payable = (d.payment_status == DeliveryRequest.PaymentStatus.UNPAID and d.status == DeliveryStatus.PENDING) or (
+            d.payment_status == DeliveryRequest.PaymentStatus.DUE
+            and d.status not in (DeliveryStatus.DELIVERED, DeliveryStatus.CANCELLED))
+        if not payable:
             raise DeliveryError("This delivery doesn't need payment.", status=409)
         PaymentService.start_card_checkout(d, return_url=request.data.get("return_url") or "")
         return Response(DeliveryDetailSerializer(self.get_queryset().get(pk=d.pk)).data)
@@ -380,12 +383,32 @@ class RiderDeliveryActionView(DeliveryErrorMixin, APIView):
         elif verb == "deliver":
             d = RiderService.deliver(rider=rider, delivery_id=delivery_id, code=v.get("code", ""),
                                      photo_url=v.get("photo_url", ""), **geo)
+        elif verb in ("payment-link", "collect-cash", "payment-status"):
+            return _rider_payment(request, rider, delivery_id, verb)
         elif verb == "release":
             d = RiderService.release(rider=rider, delivery_id=delivery_id,
                                      reason=v.get("reason", ""))
         else:
             return Response({"detail": "Not found."}, status=404)
         return Response(RiderDeliverySerializer(_detail_qs().get(pk=d.pk)).data)
+
+
+def _rider_payment(request, rider, delivery_id, verb):
+    """Pay on delivery, at the door: Flutterwave link, cash, or check the link."""
+    d = get_object_or_404(DeliveryRequest, pk=delivery_id, rider=rider)
+    if verb == "payment-link":
+        if d.payment_status != DeliveryRequest.PaymentStatus.DUE:
+            raise DeliveryError("Nothing to collect on this delivery.", code="not_due", status=409)
+        base = (getattr(settings, "FRONTEND_URL", "") or "").rstrip("/")
+        PaymentService.start_card_checkout(d, return_url=f"{base}/pay/done" if base else "")
+        d.refresh_from_db()
+        return Response({"payment_url": d.payment_url, "reference": d.payment_reference,
+                         "amount": d.fee, "currency": d.currency})
+    if verb == "collect-cash":
+        PaymentService.collect_cash(d)
+    elif verb == "payment-status":
+        PaymentService.confirm_card(d)
+    return Response(RiderDeliverySerializer(_detail_qs().get(pk=d.pk)).data)
 
 
 class RiderEarningsView(DeliveryErrorMixin, APIView):
@@ -459,7 +482,7 @@ class AdminDeliveryViewSet(DeliveryErrorMixin, mixins.ListModelMixin, mixins.Ret
             qs = qs.filter(payment_status=p["payment_status"])
         if p.get("unassigned") == "1":
             qs = qs.filter(status=DeliveryStatus.PENDING,
-                           payment_status__in=("paid", "cash"))
+                           payment_status__in=("paid", "cash", "due"))
         if p.get("q"):
             q = p["q"].strip()
             qs = qs.filter(Q(reference__icontains=q) | Q(customer__email__icontains=q)
