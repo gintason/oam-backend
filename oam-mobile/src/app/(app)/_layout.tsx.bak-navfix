@@ -44,7 +44,6 @@ export default function AppLayout() {
 
   return (
     <Tabs
-      backBehavior="history"   // Back = previous screen (default was the first tab: Notifications)
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "#FFFFFF",

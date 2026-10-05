@@ -106,14 +106,7 @@ function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon"
       >
         <Icon size={20} color={accent} strokeWidth={1.75} />
       </View>
-      <Text
-        variant="caption"
-        color="ink"
-        numberOfLines={2}
-        adjustsFontSizeToFit
-        minimumFontScale={0.8}
-        style={{ textAlign: "center", fontSize: 12.5, lineHeight: 15, minHeight: 30, paddingHorizontal: 4 }}
-      >
+      <Text variant="caption" color="ink" numberOfLines={1}>
         {label}
       </Text>
     </SpringPressable>

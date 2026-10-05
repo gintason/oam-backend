@@ -17,16 +17,6 @@ import { AppSplash } from "@/features/splash/AppSplash";
 import { markSplashDone } from "@/features/splash/splash-state";
 import { LogBox } from "react-native";
 LogBox.ignoreLogs(["Can't perform a React state update on a component that hasn't mounted yet"]);
-// Dev-only: that warning comes from expo-router's own link handling (useLinking),
-// not app code, and is harmless; keep it out of the Metro terminal too.
-if (__DEV__ && !(globalThis as { __oamFilteredConsole?: boolean }).__oamFilteredConsole) {
-  (globalThis as { __oamFilteredConsole?: boolean }).__oamFilteredConsole = true;
-  const original = console.error;
-  console.error = (...args: unknown[]) => {
-    if (typeof args[0] === "string" && args[0].includes("hasn't mounted yet")) return;
-    original(...args);
-  };
-}
 
 SplashScreen.preventAutoHideAsync();
 
