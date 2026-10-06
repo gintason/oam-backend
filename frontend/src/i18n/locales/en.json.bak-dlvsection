@@ -173,8 +173,7 @@
       "marketplace": "Marketplace",
       "findArtisans": "Find Artisans",
       "faq": "FAQ",
-      "jobs": "Jobs",
-      "delivery": "Delivery"
+      "jobs": "Jobs"
     },
     "signIn": "Sign in",
     "getStarted": "Get started",
@@ -324,34 +323,6 @@
       "postJob": "Post a job",
       "hiringTitle": "Hiring?",
       "hiringBody": "Post your first job free and manage applicants on one board."
-    },
-    "delivery": {
-      "eyebrow": "OAM Dispatch",
-      "title": "Send a package across town — today.",
-      "subtitle": "Documents, food, parcels or market goods: book a nearby rider in a minute and we'll get it there the same day, safely.",
-      "steps": {
-        "price": {
-          "title": "Instant, upfront price",
-          "desc": "Enter pickup, drop-off and package size — you see the fare before you pay."
-        },
-        "match": {
-          "title": "A verified rider accepts",
-          "desc": "The nearest approved rider on a bike, car or van is matched automatically."
-        },
-        "track": {
-          "title": "Track it to the door",
-          "desc": "Follow the rider live on the map. Hand-over is confirmed with a delivery code."
-        }
-      },
-      "payWith": "Pay with",
-      "pay": {
-        "wallet": "OAM Wallet",
-        "card": "Card",
-        "onDelivery": "Pay on delivery",
-        "cash": "Cash"
-      },
-      "send": "Send a package",
-      "track": "Track a delivery"
     }
   },
   "bills": {

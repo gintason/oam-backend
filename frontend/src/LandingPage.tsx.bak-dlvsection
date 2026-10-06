@@ -7,8 +7,7 @@ import Services from "./sections/Services";
 import Marketplace from "./sections/Marketplace";
 import Jobs from "./sections/Jobs"; // oam-jobs
 import FeaturedArtisans from "./sections/FeaturedArtisans";
-import { Footer } from "./sections/CTAFooter";
-import { DeliverySection } from "./sections/DeliverySection";
+import { CTA, Footer } from "./sections/CTAFooter";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import CurrencySwitcher from "./components/CurrencySwitcher";
 import logo from "./assets/logo.png";
@@ -18,7 +17,6 @@ const NAV_LINKS = [
   { key: "home", href: "#" },
   { key: "about", href: "https://oam-app.com/about" },
   { key: "services", href: "#services" },
-  { key: "delivery", href: "#delivery" },
   { key: "marketplace", href: "#marketplace" },
   { key: "jobs", href: "#jobs" },
   { key: "findArtisans", href: "#artisans" },
@@ -113,7 +111,7 @@ export default function LandingPage() {
         <Marketplace />
         <Jobs />
         <FeaturedArtisans />
-        <DeliverySection />
+        <CTA />
       </main>
 
       <Footer />
