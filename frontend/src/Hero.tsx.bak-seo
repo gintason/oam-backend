@@ -353,11 +353,9 @@ export default function Hero() {
           </div>
 
           {/* Rotating headline — only this cross-fades; min-height stops layout jump */}
-          {/* oam-seo: single h1 — the rotating slides below are visual only */}
-          <h1 className="sr-only">O.A.M — pay bills, buy airtime and data, hire verified artisans, shop and book travel in Nigeria</h1>
           <div className="relative min-h-[104px] sm:min-h-[150px] lg:min-h-[168px]">
             {headlines.map((h, i) => (
-              <p
+              <h1
                 key={i}
                 aria-hidden={i !== active}
                 className={`absolute inset-0 font-display text-[1.75rem] font-medium leading-[1.1] text-white transition-all duration-700 ease-out sm:text-[2.75rem] lg:text-[3.25rem] ${
@@ -367,7 +365,7 @@ export default function Hero() {
                 }`}
               >
                 {h}
-              </p>
+              </h1>
             ))}
           </div>
 

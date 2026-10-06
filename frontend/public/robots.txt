@@ -1,0 +1,37 @@
+# O.A.M — public pages are open to all search engines.
+User-agent: *
+Allow: /api/v1/public/
+Allow: /api/v1/marketplace/public/
+Allow: /api/v1/homeservices/featured/
+Allow: /api/v1/homeservices/categories/public/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard
+Disallow: /wallet
+Disallow: /orders
+Disallow: /checkout
+Disallow: /payment/
+Disallow: /profile
+Disallow: /messages
+Disallow: /earnings
+Disallow: /referral
+Disallow: /refer-
+Disallow: /receipt/
+Disallow: /deliveries
+Disallow: /rider
+Disallow: /marketplace/sell
+Disallow: /marketplace/post
+Disallow: /artisans/me
+Disallow: /artisans/verify
+Disallow: /services/callback
+Disallow: /wallet/fund/callback
+Disallow: /ecommerce
+Disallow: /jobs/employer
+Disallow: /jobs/applications
+Disallow: /jobs/saved
+Disallow: /jobs/profile
+Disallow: /jobs/messages
+Disallow: /jobs/payment-return
+Allow: /
+
+Sitemap: https://www.oam-app.com/sitemap.xml

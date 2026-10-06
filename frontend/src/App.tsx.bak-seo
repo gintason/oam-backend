@@ -59,16 +59,6 @@ import ServiceCallback from "./pages/services/ServiceCallback";
 import PaymentCallback from "./pages/services/PaymentCallback";
 import FlutterwaveCallback from "./pages/services/FlutterwaveCallback";
 import Profile from "./pages/Profile";
-// oam-seo: public pages for signed-out visitors and search engines
-import { Navigate } from "react-router-dom";
-import { RouteMeta } from "./seo/RouteMeta";
-import { PublicOrApp } from "./seo/PublicOrApp";
-import PublicMarketplace from "./pages/public/PublicMarketplace";
-import PublicListing from "./pages/public/PublicListing";
-import PublicArtisans from "./pages/public/PublicArtisans";
-import PublicArtisan from "./pages/public/PublicArtisan";
-import ServiceLanding from "./pages/public/ServiceLanding";
-import NotFound from "./pages/public/NotFound";
 
 // oam-jobs: Jobs & Recruitment
 import { jobsRoutes } from "./routes/jobsRoutes";
@@ -89,7 +79,6 @@ export default function App() {
       <CurrencyProvider>
         <AuthProvider>
           <BrowserRouter>
-            <RouteMeta />
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/receipt/:reference" element={<PublicReceipt />} />
@@ -138,23 +127,23 @@ export default function App() {
             <Route path="/refund-policy" element={<RefundPolicy />} />
               <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
-              <Route path="/marketplace" element={<PublicOrApp app={<MarketplaceHub />} pub={<PublicMarketplace />} />} />
-              <Route path="/marketplace/browse" element={<PublicOrApp app={<BrowseListings />} pub={<PublicMarketplace />} />} />
+              <Route path="/marketplace" element={<RequireAuth><MarketplaceHub /></RequireAuth>} />
+              <Route path="/marketplace/browse" element={<RequireAuth><BrowseListings /></RequireAuth>} />
               <Route path="/marketplace/sell" element={<RequireAuth><SellDashboard /></RequireAuth>} />
               <Route path="/marketplace/post" element={<RequireAuth><PostListing /></RequireAuth>} />
               <Route path="/admin/motors" element={<RequireAuth><MotorsAdmin /></RequireAuth>} />
-              <Route path="/marketplace/:id" element={<PublicOrApp app={<ListingDetail />} pub={<PublicListing />} />} />
+              <Route path="/marketplace/:id" element={<RequireAuth><ListingDetail /></RequireAuth>} />
               {/* Services — airtime is live; the rest are placeholders for now */}
-              <Route path="/services/airtime" element={<PublicOrApp app={<BuyAirtime />} pub={<ServiceLanding />} />} />
+              <Route path="/services/airtime" element={<RequireAuth><BuyAirtime /></RequireAuth>} />
               <Route path="/payment/callback" element={<RequireAuth><JobsPaymentGate fallback={<PaymentCallback />} /></RequireAuth>} />
               <Route path="/payment/flutterwave-callback" element={<RequireAuth><JobsPaymentGate fallback={<FlutterwaveCallback />} /></RequireAuth>} />
               <Route path="/services/callback" element={<RequireAuth><ServiceCallback /></RequireAuth>} />
-              <Route path="/services/data" element={<PublicOrApp app={<BuyData />} pub={<ServiceLanding />} />} />
-              <Route path="/services/electricity" element={<PublicOrApp app={<BuyElectricity />} pub={<ServiceLanding />} />} />
-              <Route path="/services/betting" element={<PublicOrApp app={<BuyBetting />} pub={<ServiceLanding />} />} />
+              <Route path="/services/data" element={<RequireAuth><BuyData /></RequireAuth>} />
+              <Route path="/services/electricity" element={<RequireAuth><BuyElectricity /></RequireAuth>} />
+              <Route path="/services/betting" element={<RequireAuth><BuyBetting /></RequireAuth>} />
               <Route path="/referral" element={<RequireAuth><Referral /></RequireAuth>} />
-              <Route path="/services/cable" element={<PublicOrApp app={<BuyCable />} pub={<ServiceLanding />} />} />
-              <Route path="/services/giftcards" element={<PublicOrApp app={<GiftCards />} pub={<ServiceLanding />} />} />
+              <Route path="/services/cable" element={<RequireAuth><BuyCable /></RequireAuth>} />
+              <Route path="/services/giftcards" element={<RequireAuth><GiftCards /></RequireAuth>} />
               <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />
               <Route path="/ecommerce/:slug" element={<RequireAuth><EcommerceCompany /></RequireAuth>} />
 
@@ -163,7 +152,7 @@ export default function App() {
               <Route path="/wallet/fund/callback" element={<RequireAuth><FundCallback /></RequireAuth>} />
               <Route path="/wallet/withdraw" element={<RequireAuth><Withdraw /></RequireAuth>} />
               <Route path="/wallet/send" element={<RequireAuth><Transfer /></RequireAuth>} />
-              <Route path="/travel/bus" element={<PublicOrApp app={<BusTickets />} pub={<ServiceLanding />} />} />
+              <Route path="/travel/bus" element={<RequireAuth><BusTickets /></RequireAuth>} />
               <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
               <Route path="/earnings" element={<RequireAuth><Earnings /></RequireAuth>} />
               <Route path="/orders" element={<RequireAuth><Orders /></RequireAuth>} />
@@ -172,18 +161,18 @@ export default function App() {
               <Route path="/wallet/transactions" element={<RequireAuth><Wallet /></RequireAuth>} />
 
               {/* Travel & more */}
-              <Route path="/travel" element={<PublicOrApp app={<Travel />} pub={<ServiceLanding />} />} />
-              <Route path="/travel/flights" element={<PublicOrApp app={<Flights />} pub={<ServiceLanding />} />} />
-              <Route path="/travel/hotels" element={<PublicOrApp app={<Hotels />} pub={<ServiceLanding />} />} />
-              <Route path="/travel/carhire" element={<PublicOrApp app={<CarHire />} pub={<ServiceLanding />} />} />
+              <Route path="/travel" element={<RequireAuth><Travel /></RequireAuth>} />
+              <Route path="/travel/flights" element={<RequireAuth><Flights /></RequireAuth>} />
+              <Route path="/travel/hotels" element={<RequireAuth><Hotels /></RequireAuth>} />
+              <Route path="/travel/carhire" element={<RequireAuth><CarHire /></RequireAuth>} />
               <Route path="/travel/pickup" element={<RequireAuth><Pickup /></RequireAuth>} />
 
               {/* Artisans */}
-              <Route path="/artisans" element={<PublicOrApp app={<ArtisansHub />} pub={<PublicArtisans />} />} />
-              <Route path="/artisans/find" element={<PublicOrApp app={<FindArtisans />} pub={<PublicArtisans />} />} />
+              <Route path="/artisans" element={<RequireAuth><ArtisansHub /></RequireAuth>} />
+              <Route path="/artisans/find" element={<RequireAuth><FindArtisans /></RequireAuth>} />
               <Route path="/artisans/me" element={<RequireAuth><ArtisanDashboard /></RequireAuth>} />
               <Route path="/artisans/verify" element={<RequireAuth><ArtisanVerify /></RequireAuth>} />
-              <Route path="/artisans/:id" element={<PublicOrApp app={<ArtisanProfile />} pub={<PublicArtisan />} />} />
+              <Route path="/artisans/:id" element={<RequireAuth><ArtisanProfile /></RequireAuth>} />
 
               {/* oam-jobs */}
               {jobsRoutes}
@@ -191,13 +180,8 @@ export default function App() {
               {/* oam-deliveries */}
               {deliveriesRoutes}
 
-              {/* oam-seo: public hubs (signed-in users go straight to the app) */}
-              <Route path="/bills" element={<PublicOrApp app={<Navigate to="/dashboard" replace />} pub={<ServiceLanding />} />} />
-              <Route path="/send-package" element={<PublicOrApp app={<Navigate to="/deliveries/new" replace />} pub={<ServiceLanding />} />} />
-
-              {/* Fallback: a real "not found" page (noindex) — serving the home page for
-                  every unknown URL creates duplicate "soft 404" pages in search results */}
-              <Route path="*" element={<NotFound />} />
+              {/* Fallback: anything unknown goes to the landing page */}
+              <Route path="*" element={<LandingPage />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>

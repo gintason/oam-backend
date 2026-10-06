@@ -157,7 +157,7 @@ function ArtisanCard({ artisan }: { artisan: FeaturedArtisan }) {
       <div className="flex items-start gap-3">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#0a0a0a] text-[15px] font-bold text-white">
           {artisan.profile_photo
-            ? <img src={artisan.profile_photo} alt={`${artisan.business_name}, ${artisan.category_name}${artisan.city ? ` in ${artisan.city}` : ""}`} loading="lazy" className="h-full w-full object-cover" />
+            ? <img src={artisan.profile_photo} alt="" className="h-full w-full object-cover" />
             : initials || <Wrench size={18} strokeWidth={1.75} />}
         </span>
         <div className="min-w-0 flex-1">

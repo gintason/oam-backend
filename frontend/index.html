@@ -2,34 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0B7327" />
-    <meta
-      name="description"
-      content="OAM — All services. One app. Endless possibilities. Pay bills, shop the marketplace, find vetted artisans, book travel, and send money from one wallet."
-    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <!-- Social share preview (Open Graph / Twitter) For Artisan: ArtisanDashboard.tsx, ArtisanProfile.tsx, Artisanhub.tsx, 
-     ArtisanVerify.tsx, FindArtisan.tsx.  For Auth: AuthLayout.tsx, fields.tsx, ForgotPassword.tsx, ResetPassword.tsx, SignIn.tsx, VerifyOtp.tsx,
-     SignUp.tsx      For Company: About.tsx, Contact.tsx, Help.tsx, Pageshell.tsx, Privacy.tsx, Terms.tsx
-     For MarketPlace: MarketPlace.tsx, BrowseListings.tsx, ListingDetail.tsx, MarketPlaceHub.tsx, PostListing.tsx, SellDashboard.tsx.  For Messages: Chat.tsx, Inbox.tsx
-     For Travel: CarHire.tsx, Flights.tsx, Hotels.tsx, Pickup.tsx, Travel.tsx. For Services: BuyAirtime.tsx, BuyCable.tsx, BuyElectricity.tsx, FundCallback.tsx
-    , FundWallet.tsx, GiftCards.tsx, PaymentCallback.tsx, ServiceCallback.tsx, Transfer.tsx, Withdraw.tsx, Dashboard.tsx, Earnings.tsx, Orders.tsx, Wallet.tsx -->
-    <meta property="og:title" content="OAM — All Services. One App." />
-    <meta
-      property="og:description"
-      content="Pay bills, shop, find artisans, book travel and send money — all from one balance."
-    />
+    <!-- Search engine verification: set VITE_GOOGLE_SITE_VERIFICATION and/or
+         VITE_BING_SITE_VERIFICATION in the hosting environment and rebuild; the
+         tags below are filled in at build time (see vite.config.ts), e.g.
+         <meta name="google-site-verification" content="..." />
+         <meta name="msvalidate.01" content="..." /> -->
+    <!-- seo:verification -->
+
+    <!-- Speed: open connections early to the hosts every page needs -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=clash-display@500,600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" />
+
+    <!-- Default tags (home page). Each page replaces these as you navigate (src/seo). -->
+    <title>O.A.M — The Everything App | Pay Bills, Hire Artisans &amp; Shop Online in Nigeria</title>
+    <meta name="description" content="Buy airtime and data, pay electricity and DStv bills, hire verified plumbers and electricians, book cheap flights and shop the local marketplace — one O.A.M wallet." />
+    <meta name="keywords" content="OAM app, pay electricity bill Nigeria, buy cheap data bundle, buy airtime online, DStv renewal online, hire electrician Lagos, hire plumber Abuja, cheap flights Nigeria, OAM marketplace, buy and sell Nigeria" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://www.oam-app.com/" />
+    <meta property="og:site_name" content="O.A.M" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/favicon.png" />
-    <meta name="twitter:card" content="summary" />
-
-    <title>OAM — All Services. One App. Endless Possibilities.</title>
+    <meta property="og:title" content="O.A.M — The Everything App | Pay Bills, Hire Artisans &amp; Shop Online in Nigeria" />
+    <meta property="og:description" content="Buy airtime and data, pay electricity and DStv bills, hire verified plumbers and electricians, book cheap flights and shop the local marketplace — one O.A.M wallet." />
+    <meta property="og:url" content="https://www.oam-app.com/" />
+    <meta property="og:image" content="https://www.oam-app.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="O.A.M — pay bills, hire artisans, shop, travel and send packages from one app" />
+    <meta property="og:locale" content="en_NG" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@oamplatform" />
+    <meta name="twitter:title" content="O.A.M — The Everything App | Pay Bills, Hire Artisans &amp; Shop Online in Nigeria" />
+    <meta name="twitter:description" content="Buy airtime and data, pay electricity and DStv bills, hire verified plumbers and electricians, book cheap flights and shop the local marketplace — one O.A.M wallet." />
+    <meta name="twitter:image" content="https://www.oam-app.com/og-image.png" />
+    <script type="application/ld+json" data-seo="jsonld">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.oam-app.com/#organization","name":"O.A.M","legalName":"O.A.M Motors Limited","url":"https://www.oam-app.com/","logo":"https://www.oam-app.com/logo-512.png","sameAs":["https://x.com/oamplatform","https://facebook.com/oamplatform","https://instagram.com/oamplatform","https://tiktok.com/@oamplatform"],"contactPoint":[{"@type":"ContactPoint","contactType":"customer support","email":"info@oam-app.com","availableLanguage":["English"]}]}</script>
+    <script type="application/ld+json" data-seo="jsonld">{"@context":"https://schema.org","@type":"WebSite","@id":"https://www.oam-app.com/#website","name":"O.A.M","url":"https://www.oam-app.com/","publisher":{"@id":"https://www.oam-app.com/#organization"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.oam-app.com/marketplace?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p><strong>O.A.M — The Everything App for Nigeria</strong></p>
+      <p>Pay bills, buy airtime and data, hire verified artisans, shop the marketplace, book travel, find jobs and send packages from one wallet. Please enable JavaScript to use O.A.M.</p>
+      <ul>
+        <li><a href="/bills">Pay bills online</a></li>
+        <li><a href="/services/airtime">Buy airtime</a></li>
+        <li><a href="/services/data">Buy data bundles</a></li>
+        <li><a href="/services/electricity">Pay electricity bill</a></li>
+        <li><a href="/services/cable">DStv, GOtv &amp; StarTimes renewal</a></li>
+        <li><a href="/marketplace">Marketplace</a></li>
+        <li><a href="/artisans">Hire artisans</a></li>
+        <li><a href="/travel/flights">Cheap flights</a></li>
+        <li><a href="/send-package">Send a package</a></li>
+        <li><a href="/jobs">Jobs</a></li>
+      </ul>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

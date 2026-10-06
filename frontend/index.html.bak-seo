@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B7327" />
+    <meta
+      name="description"
+      content="OAM — All services. One app. Endless possibilities. Pay bills, shop the marketplace, find vetted artisans, book travel, and send money from one wallet."
+    />
+
+    <!-- Social share preview (Open Graph / Twitter) For Artisan: ArtisanDashboard.tsx, ArtisanProfile.tsx, Artisanhub.tsx, 
+     ArtisanVerify.tsx, FindArtisan.tsx.  For Auth: AuthLayout.tsx, fields.tsx, ForgotPassword.tsx, ResetPassword.tsx, SignIn.tsx, VerifyOtp.tsx,
+     SignUp.tsx      For Company: About.tsx, Contact.tsx, Help.tsx, Pageshell.tsx, Privacy.tsx, Terms.tsx
+     For MarketPlace: MarketPlace.tsx, BrowseListings.tsx, ListingDetail.tsx, MarketPlaceHub.tsx, PostListing.tsx, SellDashboard.tsx.  For Messages: Chat.tsx, Inbox.tsx
+     For Travel: CarHire.tsx, Flights.tsx, Hotels.tsx, Pickup.tsx, Travel.tsx. For Services: BuyAirtime.tsx, BuyCable.tsx, BuyElectricity.tsx, FundCallback.tsx
+    , FundWallet.tsx, GiftCards.tsx, PaymentCallback.tsx, ServiceCallback.tsx, Transfer.tsx, Withdraw.tsx, Dashboard.tsx, Earnings.tsx, Orders.tsx, Wallet.tsx -->
+    <meta property="og:title" content="OAM — All Services. One App." />
+    <meta
+      property="og:description"
+      content="Pay bills, shop, find artisans, book travel and send money — all from one balance."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <title>OAM — All Services. One App. Endless Possibilities.</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

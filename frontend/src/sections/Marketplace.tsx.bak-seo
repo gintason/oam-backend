@@ -137,7 +137,7 @@ function ListingCard({ item }: { item: PublicListing }) {
         {item.primary_image ? (
           <img
             src={item.primary_image}
-            alt={`${item.title} for sale${item.location ? ` in ${item.location}` : ""}`}
+            alt=""
             loading="lazy"
             className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
           />
