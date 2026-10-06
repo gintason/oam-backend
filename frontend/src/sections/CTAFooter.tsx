@@ -131,7 +131,7 @@ type Social = { label: string; href: string; Logo: (p: IconProps) => ReactElemen
  * the real business line before launch, or the icon leads nowhere. If you'd
  * rather use a WhatsApp Channel, send me its invite link instead.
  */
-const WHATSAPP_NUMBER = "2340000000000"; // TODO: real business number
+const WHATSAPP_NUMBER = "+971553664024"; // TODO: real business number
 
 const SOCIALS: Social[] = [
   { label: "X (Twitter)", href: "https://x.com/oamplatform", Logo: XLogo },
