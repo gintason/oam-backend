@@ -40,7 +40,7 @@ class PublicListingsView(APIView):
             .filter(status="active")
             .filter(Q(expires_at__isnull=True) | Q(expires_at__gt=now))
             .select_related("category")
-            .prefetch_related("images", "videos")
+            .prefetch_related("images")
         )
 
         category = request.query_params.get("category")

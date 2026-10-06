@@ -49,7 +49,7 @@ class ListingListView(ListAPIView):
         return qs.annotate(
             likes_count_ann=Count("likes", distinct=True),
             comments_count_ann=Count("comments", distinct=True),
-        ).prefetch_related("images", "videos")
+        ).prefetch_related("images")
 
     def get_serializer_context(self):
         ctx = super().get_serializer_context()
@@ -96,7 +96,7 @@ class ListingDetailView(APIView):
 
     def get(self, request, listing_id):
         listing = (Listing.objects.select_related("category", "seller")
-                   .prefetch_related("images", "videos").filter(id=listing_id).first())
+                   .prefetch_related("images").filter(id=listing_id).first())
         if listing is None or not listing.is_live:
             # owners can still view their own non-live listing
             if listing is None or listing.seller_id != request.user.id:
@@ -195,7 +195,7 @@ class MyListingsView(ListAPIView):
 
     def get_queryset(self):
         return (Listing.objects.filter(seller=self.request.user)
-                .select_related("category").prefetch_related("images", "videos"))
+                .select_related("category").prefetch_related("images"))
 
 
 class SubscriptionView(APIView):

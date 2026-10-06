@@ -45,7 +45,6 @@ class _SocialFieldsMixin:
 class ListingListSerializer(_SocialFieldsMixin, serializers.ModelSerializer):
     category_name = serializers.CharField(source="category.name", read_only=True)
     primary_image = serializers.SerializerMethodField()
-    has_video = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
     comments_count = serializers.SerializerMethodField()
     liked = serializers.SerializerMethodField()
@@ -55,10 +54,7 @@ class ListingListSerializer(_SocialFieldsMixin, serializers.ModelSerializer):
         fields = ("id", "title", "price", "currency", "negotiable", "condition",
                   "location", "category_name", "is_featured", "is_verified",
                   "primary_image", "views_count", "likes_count", "comments_count",
-                  "liked", "created_at", "has_video")
-
-    def get_has_video(self, obj):
-        return len(obj.videos.all()) > 0
+                  "liked", "created_at")
 
     def get_primary_image(self, obj):
         img = next((i for i in obj.images.all() if i.is_primary), None) or \

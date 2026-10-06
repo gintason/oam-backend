@@ -395,8 +395,6 @@ LISTING_UPGRADE_PROVIDER = env("LISTING_UPGRADE_PROVIDER", default="flutterwave"
 # so large videos never pass through this server. The SECRET must stay
 # server-side: it's what proves an upload was authorised by us.
 CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME", default="")
-# Artisan work videos go live on upload (admins can still reject them).
-ARTISAN_VIDEOS_AUTO_APPROVE = env.bool("ARTISAN_VIDEOS_AUTO_APPROVE", default=True)
 CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY", default="")
 CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET", default="")
 

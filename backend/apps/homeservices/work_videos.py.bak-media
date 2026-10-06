@@ -84,13 +84,6 @@ class ArtisanWorkVideoSerializer(serializers.ModelSerializer):
         # Approval state is never client-settable.
         read_only_fields = ["id", "status", "review_note", "created_at"]
 
-    def validate_video_url(self, url):
-        # Other users play these, so only accept videos stored in our own Cloudinary.
-        cloud = getattr(settings, "CLOUDINARY_CLOUD_NAME", "")
-        if cloud and not url.startswith(f"https://res.cloudinary.com/{cloud}/video/"):
-            raise ValidationError("Upload the video through the app.")
-        return url
-
 
 class ArtisanWorkVideoViewSet(
     mixins.ListModelMixin,
@@ -115,16 +108,8 @@ class ArtisanWorkVideoViewSet(
         artisan = self._artisan()
         if not artisan:
             raise ValidationError("Create your artisan profile before adding videos.")
-        if artisan.work_videos.count() >= 12:
-            raise ValidationError("You can have up to 12 videos. Delete one to add another.")
-        # Live straight away by default (an admin can still Reject it to hide it).
-        # ARTISAN_VIDEOS_AUTO_APPROVE=false → admin approves first. Never client-settable.
-        live = getattr(settings, "ARTISAN_VIDEOS_AUTO_APPROVE", True)
-        serializer.save(
-            artisan=artisan,
-            status=ArtisanWorkVideo.Status.APPROVED if live else ArtisanWorkVideo.Status.PENDING,
-            reviewed_at=timezone.now() if live else None,
-        )
+        # Always saved as PENDING — the serializer can't set status.
+        serializer.save(artisan=artisan, status=ArtisanWorkVideo.Status.PENDING)
 
 
 router = DefaultRouter()
