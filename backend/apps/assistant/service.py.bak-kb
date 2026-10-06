@@ -126,7 +126,7 @@ def _ask_llm(messages: list[dict]) -> str | None:
 
 ACCOUNT_WORDS = re.compile(
     r"\b(my|mine|i)\b.*\b(balance|wallet|order|token|payment|transaction|refund|money|"
-    r"account|purchase|withdraw|delivery|package|application)\b",
+    r"account|purchase|withdraw)\b",
     re.IGNORECASE,
 )
 GREETING_WORDS = re.compile(r"^\s*(hi|hello|hey|good (morning|afternoon|evening)|howdy)\b",
