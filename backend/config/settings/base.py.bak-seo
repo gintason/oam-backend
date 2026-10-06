@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     
     "apps.jobs",  # [oam-jobs] jobs & recruitment
     "apps.deliveries",  # [oam-deliveries] delivery & dispatch
-    "apps.seo",  # [oam-seo] sitemap, robots, public pages
     # ...
 ]
 
@@ -395,10 +394,6 @@ LISTING_UPGRADE_PROVIDER = env("LISTING_UPGRADE_PROVIDER", default="flutterwave"
 # The browser uploads straight to Cloudinary using a signature generated here,
 # so large videos never pass through this server. The SECRET must stay
 # server-side: it's what proves an upload was authorised by us.
-# [oam-seo] Public web address used in canonical URLs, the sitemap and link previews.
-SEO_SITE_URL = env("SEO_SITE_URL", default="https://www.oam-app.com")
-# Where to fetch the web app's index.html for server-rendered previews (default: SEO_SITE_URL/index.html).
-SEO_SHELL_URL = env("SEO_SHELL_URL", default="")
 CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME", default="")
 # Artisan work videos go live on upload (admins can still reject them).
 ARTISAN_VIDEOS_AUTO_APPROVE = env.bool("ARTISAN_VIDEOS_AUTO_APPROVE", default=True)

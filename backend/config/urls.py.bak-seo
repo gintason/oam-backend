@@ -29,17 +29,12 @@ urlpatterns = [
     path("api/v1/notifications/", include("apps.notifications.urls")),
     path("api/v1/jobs/", include("apps.jobs.urls")),  # [oam-jobs]
     path("api/v1/deliveries/", include("apps.deliveries.urls")),  # [oam-deliveries]
-    path("api/v1/public/", include("apps.seo.api_urls")),  # [oam-seo] public pages data
     # OpenAPI schema + docs (drives the typed web/mobile clients)
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="docs"),
    
    
 ]
-
-# [oam-seo] /sitemap.xml, /robots.txt and server-rendered /marketplace/<id>, /artisans/<id>.
-# Last, so nothing above can be shadowed.
-urlpatterns += [path("", include("apps.seo.urls"))]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
