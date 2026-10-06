@@ -991,8 +991,7 @@
       "enquiryTitle": "Send an enquiry",
       "enquiryLock": "Describe the job. {{name}} will reply here, and you'll both see each other's phone number once they accept the work.",
       "enquiryPlaceholder": "e.g. Kitchen sink is leaking under the cupboard. Are you free this week?",
-      "sendEnquiry": "Send enquiry",
-      "workVideos": "Videos of previous work"
+      "sendEnquiry": "Send enquiry"
     },
     "dashboard": {
       "errSave": "Couldn't save your profile.",
@@ -1150,28 +1149,6 @@
       "makeup-artist": "Makeup Artist",
       "solar-installer": "Solar Installer",
       "plasterer": "Plasterer"
-    },
-    "videos": {
-      "title": "Videos of my work",
-      "subtitle": "Show customers what you can do. Videos appear on your public profile for everyone to watch.",
-      "hubDesc": "Upload videos customers can watch on your profile.",
-      "captionLabel": "Caption (optional)",
-      "captionPlaceholder": "e.g. Kitchen tiling in Lekki",
-      "add": "Upload a video",
-      "uploading": "Uploading… keep the app open",
-      "full": "Maximum {{n}} videos",
-      "hint": "10 seconds to 3 minutes. MP4 or MOV, up to 100 MB.",
-      "tooShort": "Please pick a video of at least 10 seconds.",
-      "viewProfile": "See my public profile",
-      "yours": "Your videos",
-      "empty": "No videos yet.",
-      "delete": "Delete video",
-      "errDelete": "Couldn't delete the video.",
-      "status": {
-        "approved": "Live on your profile",
-        "pending": "Waiting for review",
-        "rejected": "Not approved"
-      }
     }
   },
   "messages": {
@@ -1951,12 +1928,5 @@
     "shareTitle": "Join me on OAM",
     "shareText": "Sign up on OAM with my link:",
     "shareMessage": "Join me on OAM — pay bills, shop and more. Sign up with my link: {{link}}"
-  },
-  "media": {
-    "video": "Video",
-    "close": "Close",
-    "openPhoto": "Open photo",
-    "tapToZoom": "Tap to zoom",
-    "zoomHint": "Pinch or double-tap to zoom"
   }
 }

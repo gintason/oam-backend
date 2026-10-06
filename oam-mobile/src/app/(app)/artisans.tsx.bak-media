@@ -2,7 +2,7 @@ import { View, ScrollView, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, Wrench, Search, ChevronRight, BadgeCheck, ShieldCheck, Rocket, Film } from "lucide-react-native";
+import { ArrowLeft, Wrench, Search, ChevronRight, BadgeCheck, ShieldCheck, Rocket } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { homeServicesApi } from "@/features/artisans/api/homeservices-api";
@@ -59,19 +59,6 @@ export default function Artisans() {
             <View style={{ flex: 1 }}>
               <Text variant="title">{t("artisans.dashboard.getVerified")}</Text>
               <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("artisans.dashboard.getVerifiedBody")}</Text>
-            </View>
-            <ChevronRight size={20} color={colors.muted} />
-          </Pressable>
-        ) : null}
-
-        {isArtisan ? (
-          <Pressable onPress={() => router.push("/artisan-videos")} style={{ marginTop: 12, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 18, flexDirection: "row", alignItems: "center", gap: 14 }}>
-            <View style={{ height: 46, width: 46, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(227,16,18,0.10)" }}>
-              <Film size={22} strokeWidth={1.75} color={colors.brand.red} />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text variant="title">{t("artisans.videos.title", "Videos of my work")}</Text>
-              <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("artisans.videos.hubDesc", "Upload videos customers can watch on your profile.")}</Text>
             </View>
             <ChevronRight size={20} color={colors.muted} />
           </Pressable>

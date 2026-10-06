@@ -10,7 +10,6 @@ import { colors, fonts } from "@/shared/theme";
 import { homeServicesApi } from "@/features/artisans/api/homeservices-api";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { tradeLabelByName } from "@/shared/i18n/labels";
-import { VideoPlayer } from "@/features/media";
 
 export default function Artisan() {
   const router = useRouter();
@@ -82,21 +81,6 @@ export default function Artisan() {
                 </View>
               </View>
             </View>
-
-            {/* Videos of previous work */}
-            {(a.work_videos ?? []).length > 0 ? (
-              <View style={{ marginTop: 16, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>
-                <Text variant="title">{t("artisans.profile.workVideos", "Videos of previous work")} ({(a.work_videos ?? []).length})</Text>
-                <View style={{ gap: 12, marginTop: 12 }}>
-                  {(a.work_videos ?? []).map((v) => (
-                    <View key={v.id}>
-                      <VideoPlayer url={v.url} height={200} />
-                      {v.caption ? <Text variant="caption" color="muted" style={{ marginTop: 6 }}>{v.caption}</Text> : null}
-                    </View>
-                  ))}
-                </View>
-              </View>
-            ) : null}
 
             {/* Enquiry */}
             <View style={{ marginTop: 16, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>

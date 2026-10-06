@@ -9,7 +9,6 @@ export type ArtisanDetail = ArtisanListItem & {
   category: string; description: string; address: string;
   latitude: number | null; longitude: number | null;
   years_experience: number; is_available: boolean; views_count: number; created_at: string;
-  work_videos?: { id: string; url: string; caption: string }[];
 };
 
 export type ArtisanWrite = {

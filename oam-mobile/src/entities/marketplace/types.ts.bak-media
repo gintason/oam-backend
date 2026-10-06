@@ -9,7 +9,6 @@ export type ListingListItem = {
   category_name: string; is_featured: boolean;
   primary_image: string | null; created_at: string;
   views_count?: number; likes_count?: number; comments_count?: number; liked?: boolean;
-  has_video?: boolean;
 };
 
 export type ListingDetail = {

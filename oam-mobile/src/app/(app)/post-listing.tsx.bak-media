@@ -15,7 +15,6 @@ import { PickerField } from "@/features/travel";
 import { PhoneField } from "@/features/marketplace/ui/PhoneField";
 import { CONDITIONS, type ListingWrite } from "@/entities/marketplace";
 import { catLabel } from "@/shared/i18n/labels";
-import { VideoPlayer } from "@/features/media";
 
 const MAX_IMAGES = 5;
 const LISTING_CURRENCIES = [
@@ -84,7 +83,7 @@ export default function PostListing() {
     setError(null);
     const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!perm.granted) { setError(t("marketplace.post.permVideo")); return; }
-    const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ["videos"], quality: 1, videoMaxDuration: 120 });
+    const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ["videos"], quality: 1, videoMaxDuration: 60 });
     if (res.canceled || !res.assets?.[0]) return;
     const asset = res.assets[0];
     setUploadingVideo(true);
@@ -153,9 +152,7 @@ export default function PostListing() {
           {/* Video (optional) */}
           <Text variant="label" style={{ marginBottom: 8 }}>{t("marketplace.post.video")}</Text>
           {(form.videos ?? []).length > 0 ? (
-            <View style={{ marginBottom: 16 }}>
-            <VideoPlayer url={(form.videos ?? [])[0]} height={190} style={{ marginBottom: 8 }} />
-            <View style={{ borderRadius: 12, borderWidth: 1, borderColor: "rgba(11,115,39,0.3)", backgroundColor: "rgba(11,115,39,0.05)", padding: 12, flexDirection: "row", alignItems: "center", gap: 10 }}>
+            <View style={{ marginBottom: 16, borderRadius: 12, borderWidth: 1, borderColor: "rgba(11,115,39,0.3)", backgroundColor: "rgba(11,115,39,0.05)", padding: 12, flexDirection: "row", alignItems: "center", gap: 10 }}>
               <View style={{ height: 40, width: 40, borderRadius: 10, backgroundColor: "rgba(11,115,39,0.12)", alignItems: "center", justifyContent: "center" }}>
                 <Film size={18} strokeWidth={1.75} color={colors.brand.green} />
               </View>
@@ -166,7 +163,6 @@ export default function PostListing() {
               <Pressable onPress={() => set("videos", [])} hitSlop={6} style={{ height: 28, width: 28, borderRadius: 14, backgroundColor: colors.mist, alignItems: "center", justifyContent: "center" }}>
                 <X size={14} color={colors.muted} />
               </Pressable>
-            </View>
             </View>
           ) : (
             <Pressable onPress={pickVideo} disabled={uploadingVideo} style={{ marginBottom: 16, height: 56, borderRadius: 12, borderWidth: 1, borderStyle: "dashed", borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }}>

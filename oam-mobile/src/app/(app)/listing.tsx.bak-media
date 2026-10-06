@@ -3,7 +3,7 @@ import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, Dimen
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star, Heart, MessageCircle, Share2, Maximize2 } from "lucide-react-native";
+import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star, Heart, MessageCircle, Share2 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
@@ -12,7 +12,6 @@ import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { CONDITIONS } from "@/entities/marketplace";
 import { catLabel } from "@/shared/i18n/labels";
-import { ImageViewer, VideoPlayer } from "@/features/media";
 
 const W = Dimensions.get("window").width;
 
@@ -24,7 +23,6 @@ export default function Listing() {
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const [active, setActive] = useState(0);
-  const [viewer, setViewer] = useState<number | null>(null);
 
   const listing = useQuery({ queryKey: ["marketplace", "listing", id], queryFn: () => marketplaceApi.detail(id), enabled: !!id });
   const qc = useQueryClient();
@@ -72,10 +70,8 @@ export default function Listing() {
             {/* Images */}
             <View style={{ borderRadius: 16, overflow: "hidden", backgroundColor: colors.mist }}>
               <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} onMomentumScrollEnd={(e) => setActive(Math.round(e.nativeEvent.contentOffset.x / imgW))}>
-                {images.length > 0 ? images.map((img, i) => (
-                  <Pressable key={img.id} onPress={() => setViewer(i)} accessibilityLabel={t("media.openPhoto", "Open photo")}>
-                    <Image source={{ uri: img.url }} style={{ width: imgW, height: imgW * 0.75 }} resizeMode="cover" />
-                  </Pressable>
+                {images.length > 0 ? images.map((img) => (
+                  <Image key={img.id} source={{ uri: img.url }} style={{ width: imgW, height: imgW * 0.75 }} resizeMode="cover" />
                 )) : <View style={{ width: imgW, height: imgW * 0.75 }} />}
               </ScrollView>
               {l.is_featured ? (
@@ -83,29 +79,12 @@ export default function Listing() {
                   <Star size={11} color="#FFF" fill="#FFF" /><Text variant="caption" color="paper">{t("marketplace.featured")}</Text>
                 </View>
               ) : null}
-              {images.length > 0 ? (
-                <Pressable onPress={() => setViewer(active)} hitSlop={6}
-                  style={{ position: "absolute", top: 10, right: 10, flexDirection: "row", alignItems: "center", gap: 4, backgroundColor: "rgba(0,0,0,0.55)", paddingHorizontal: 8, paddingVertical: 5, borderRadius: 8 }}>
-                  <Maximize2 size={12} color="#FFF" /><Text variant="caption" color="paper" style={{ fontSize: 11 }}>{t("media.tapToZoom", "Tap to zoom")}</Text>
-                </Pressable>
-              ) : null}
               {images.length > 1 ? (
                 <View style={{ position: "absolute", bottom: 10, alignSelf: "center", flexDirection: "row", gap: 5 }}>
                   {images.map((_, i) => <View key={i} style={{ height: 6, width: 6, borderRadius: 3, backgroundColor: i === active ? "#FFF" : "rgba(255,255,255,0.5)" }} />)}
                 </View>
               ) : null}
             </View>
-
-            <ImageViewer images={images.map((img) => img.url)} index={viewer} onClose={() => setViewer(null)} />
-
-            {/* Video(s) */}
-            {(l.videos ?? []).length > 0 ? (
-              <View style={{ marginTop: 14, gap: 10 }}>
-                {(l.videos ?? []).map((v) => (
-                  <VideoPlayer key={v.id} url={v.url} poster={v.thumbnail_url} height={Math.round(imgW * 0.5625)} />
-                ))}
-              </View>
-            ) : null}
 
             {/* Info */}
             <View style={{ marginTop: 16 }}>

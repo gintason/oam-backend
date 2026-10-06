@@ -10,7 +10,6 @@ import { apiErrorMessage } from "@/shared/api";
 import { colors } from "@/shared/theme";
 import { uploadMediaDetailed } from "@/features/marketplace/api/uploads-api";
 import { verificationApi } from "@/features/artisans/api/verification-api";
-import { workVideosApi } from "@/features/artisans/api/work-videos-api";
 import type { VerificationStatus } from "@/entities/homeservices";
 
 const TONE: Record<string, "muted" | "warn" | "green" | "danger"> = {
@@ -70,10 +69,6 @@ export default function ArtisanVerify() {
     try {
       const up = await uploadMediaDetailed("artisan_work_video", { uri: asset.uri, fileName: asset.fileName, mimeType: asset.mimeType });
       await attach.mutateAsync({ purpose: "artisan_work_video", public_id: up.public_id, url: up.url });
-      // Also show it on the public profile (best effort — verification already succeeded).
-      workVideosApi.add({ video_url: up.url, public_id: up.public_id })
-        .then(() => qc.invalidateQueries({ queryKey: ["artisans", "work-videos"] }))
-        .catch(() => undefined);
     } catch (err) { setError(err instanceof Error ? err.message : t("artisans.verify.errUpload")); } finally { setBusy(null); }
   }
 
