@@ -5,7 +5,6 @@ from rest_framework.views import APIView
 
 from apps.common.permissions import IsVerified
 
-from .availability import BusTicketsLive
 from .booking import BusBookingService, fee_per_seat
 from .models import BusBooking
 from .serializers import BookSerializer, BusBookingSerializer, TripSearchSerializer
@@ -22,7 +21,7 @@ class StatesView(APIView):
 
 class TripSearchView(APIView):
     """POST /travu/trips/ {departure_state, destination_state, trip_date} -> trips."""
-    permission_classes = [IsAuthenticated, BusTicketsLive]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         s = TripSearchSerializer(data=request.data)
@@ -45,7 +44,7 @@ class TripSearchView(APIView):
 
 class BookView(APIView):
     """POST /travu/book/ — create booking + take payment (wallet or card)."""
-    permission_classes = [IsVerified, BusTicketsLive]
+    permission_classes = [IsVerified]
 
     def post(self, request):
         s = BookSerializer(data=request.data)

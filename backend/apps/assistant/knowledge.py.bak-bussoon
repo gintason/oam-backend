@@ -175,25 +175,6 @@ SUPPORT
 - Help Centre at /help, Contact at /contact
 """
 
-# Bus tickets are "coming soon" until BUS_TICKETS_LIVE is switched on.
-_BUS_LIVE_TEXT = """BUS TICKETS
-- Search and book intercity bus tickets for travel across Nigeria: choose route and
-  date, pick your seats, enter passenger details, and pay from wallet or by card
-"""
-_BUS_SOON_TEXT = """BUS TICKETS (COMING SOON)
-- Intercity bus ticket booking is coming soon and can't be used yet. If asked,
-  say it's launching soon and suggest flights or car hire in the meantime. Don't
-  promise a launch date.
-"""
-
-
-def bus_facts() -> str:
-    from django.conf import settings
-    return _BUS_LIVE_TEXT if getattr(settings, "BUS_TICKETS_LIVE", False) else _BUS_SOON_TEXT
-
-
-PLATFORM_FACTS = PLATFORM_FACTS.replace(_BUS_LIVE_TEXT, bus_facts())
-
 WHERE_TO_GO = """
 Useful pages:
 - /dashboard — balance and quick actions

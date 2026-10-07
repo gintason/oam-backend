@@ -399,8 +399,6 @@ LISTING_UPGRADE_PROVIDER = env("LISTING_UPGRADE_PROVIDER", default="flutterwave"
 SEO_SITE_URL = env("SEO_SITE_URL", default="https://www.oam-app.com")
 # Where to fetch the web app's index.html for server-rendered previews (default: SEO_SITE_URL/index.html).
 SEO_SHELL_URL = env("SEO_SHELL_URL", default="")
-# Bus tickets stay "coming soon" until the live provider keys are in: set to true to open booking.
-BUS_TICKETS_LIVE = env.bool("BUS_TICKETS_LIVE", default=False)
 CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME", default="")
 # Artisan work videos go live on upload (admins can still reject them).
 ARTISAN_VIDEOS_AUTO_APPROVE = env.bool("ARTISAN_VIDEOS_AUTO_APPROVE", default=True)

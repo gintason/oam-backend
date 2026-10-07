@@ -51,9 +51,7 @@ def _url(loc: str, lastmod=None, changefreq=None, priority=None) -> str:
 
 
 def build_sitemap() -> str:
-    # Bus tickets page joins the sitemap once booking is live.
-    hidden = set() if getattr(settings, "BUS_TICKETS_LIVE", False) else {"/travel/bus"}
-    urls = [_url(absolute(p), changefreq=cf, priority=pr) for p, cf, pr, *_ in STATIC_PAGES if p not in hidden]
+    urls = [_url(absolute(p), changefreq=cf, priority=pr) for p, cf, pr, *_ in STATIC_PAGES]
     for lid, updated in live_listings().order_by("-updated_at").values_list("id", "updated_at")[:30_000]:
         urls.append(_url(absolute(f"/marketplace/{lid}"), updated, "weekly", "0.7"))
     verified = public_artisans().filter(is_verified=True).order_by("-updated_at")
