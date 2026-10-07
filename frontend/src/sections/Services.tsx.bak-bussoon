@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { BUS_TICKETS_LIVE } from "../config/features";
 import { BedDouble, Car, Gift, Plane, Send, Smartphone, Store, Tv, Wrench, Zap, type LucideIcon, ShoppingBag, Ticket, Bus, BriefcaseBusiness, PackageCheck } from "lucide-react";
 
 /**
@@ -77,14 +76,7 @@ export default function Services() {
               <div className={`mb-4 inline-flex rounded-xl p-2.5 ${iconTile[s.tint]}`}>
                 <s.Icon size={22} strokeWidth={1.75} />
               </div>
-              <h3 className="flex flex-wrap items-center gap-2 text-[15px] font-medium text-ink">
-                {title}
-                {s.key === "bus" && !BUS_TICKETS_LIVE ? (
-                  <span className="rounded-full bg-brand-red px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
-                    {t("common.comingSoon", "Coming soon")}
-                  </span>
-                ) : null}
-              </h3>
+              <h3 className="text-[15px] font-medium text-ink">{title}</h3>
               <p className="mt-1 text-[13px] leading-snug text-muted">{desc}</p>
             </a>
           );

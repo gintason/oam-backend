@@ -4,8 +4,6 @@
  * Nigeria", "DStv renewal online" — and only states what O.A.M actually does.
  * Titles/descriptions mirror apps/seo/site.py (sitemap + previews).
  */
-import { BUS_TICKETS_LIVE } from "../../config/features";
-
 export type Landing = {
   path: string;
   /** Where "Get started" takes a signed-in user (signed-out users sign in first, then land there). */
@@ -158,9 +156,7 @@ export const LANDINGS: Landing[] = [
     steps: ["Choose flights, hotels, car hire or bus", "Compare options and prices", "Book with the travel partner or pay in the app (bus tickets)"],
     faqs: [
       { q: "Who do I book flights and hotels with?", a: "Flights, hotels and car hire are booked through trusted partner sites, so your booking contract is with the partner." },
-      { q: "Can I book bus tickets in the app?", a: BUS_TICKETS_LIVE
-          ? "Yes — search routes and dates, pick your seats, enter passenger details and pay from your wallet or by card."
-          : "Intercity bus booking is coming soon. Flights, hotels and car hire are available now." },
+      { q: "Can I book bus tickets in the app?", a: "Yes — search routes and dates, pick your seats, enter passenger details and pay from your wallet or by card." },
     ],
     related: TRAVEL_RELATED,
   },
