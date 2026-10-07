@@ -1,10 +1,12 @@
 import { useState, type KeyboardEvent } from "react";
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /** Tag-style input: type a skill, Enter or comma adds it, Backspace removes the last. */
 export default function SkillInput({
-  value, onChange, placeholder = "Add a skill and press Enter", max = 30, id,
+  value, onChange, placeholder, max = 30, id,
 }: { value: string[]; onChange: (v: string[]) => void; placeholder?: string; max?: number; id?: string }) {
+  const { t } = useTranslation();
   const [draft, setDraft] = useState("");
 
   function add(raw: string) {
@@ -40,7 +42,7 @@ export default function SkillInput({
             type="button"
             onClick={() => onChange(value.filter((v) => v !== s))}
             className="text-muted hover:text-ink"
-            aria-label={`Remove ${s}`}
+            aria-label={t("jobs.skillInput.removeS", { s })}
           >
             <X size={12} />
           </button>
@@ -52,7 +54,7 @@ export default function SkillInput({
         onChange={(e) => setDraft(e.target.value)}
         onKeyDown={onKey}
         onBlur={() => add(draft)}
-        placeholder={value.length ? "" : placeholder}
+        placeholder={value.length ? "" : (placeholder ?? t("jobs.skillInput.placeholder"))}
         className="min-w-[8rem] flex-1 bg-transparent px-1 text-[14px] outline-none placeholder:text-muted/70"
       />
     </div>

@@ -9,17 +9,19 @@ import { jobsApi, STATUS_LABEL, timeAgo, type ApplicationStatus, type CandidateA
 import { apiErrorMessage } from "../../lib/api";
 import { useJobsSocket } from "../../lib/jobsSocket";
 import { useUserScope } from "../../auth/useUserScope";
+import { useTranslation } from "react-i18next";
 
 const STEPS: ApplicationStatus[] = ["applied", "under_review", "shortlisted", "interview", "offer", "hired"];
 const FILTERS: { key: string; label: string; statuses?: string }[] = [
-  { key: "all", label: "All" },
-  { key: "active", label: "In progress", statuses: "applied,under_review,shortlisted,interview,offer" },
-  { key: "hired", label: "Hired", statuses: "hired" },
-  { key: "closed", label: "Closed", statuses: "rejected,withdrawn" },
+  { key: "all", label: "jobs.myApplications.filter.all" },
+  { key: "active", label: "jobs.myApplications.filter.inProgress", statuses: "applied,under_review,shortlisted,interview,offer" },
+  { key: "hired", label: "jobs.myApplications.filter.hired", statuses: "hired" },
+  { key: "closed", label: "jobs.myApplications.filter.closed", statuses: "rejected,withdrawn" },
 ];
 
 /** /jobs/applications — every application with a live status tracker. */
 export default function MyApplications() {
+  const { t: tr } = useTranslation();
   const scope = useUserScope();
   const qc = useQueryClient();
   const [filter, setFilter] = useState("all");
@@ -37,10 +39,10 @@ export default function MyApplications() {
 
   return (
     <JobsShell>
-      <h1 className="font-display text-[22px] font-semibold text-ink">My applications</h1>
+      <h1 className="font-display text-[22px] font-semibold text-ink">{tr("jobs.myApplications.myApplications")}</h1>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {FILTERS.map((f) => (
-          <Chip key={f.key} active={filter === f.key} onClick={() => setFilter(f.key)}>{f.label}</Chip>
+          <Chip key={f.key} active={filter === f.key} onClick={() => setFilter(f.key)}>{tr(f.label)}</Chip>
         ))}
       </div>
 
@@ -50,9 +52,9 @@ export default function MyApplications() {
         ) : (apps.data?.results.length ?? 0) === 0 ? (
           <EmptyState
             icon={<ClipboardList size={20} />}
-            title="No applications here"
-            body="When you apply for jobs, you'll follow each one from here — every status change, live."
-            action={<Button to="/jobs/search">Find jobs</Button>}
+            title={tr("jobs.myApplications.noApplicationsHere")}
+            body={tr("jobs.myApplications.whenYouApplyForJobs")}
+            action={<Button to="/jobs/search">{tr("jobs.myApplications.findJobs")}</Button>}
           />
         ) : (
           apps.data!.results.map((a) => <ApplicationRow key={a.id} app={a} />)
@@ -63,6 +65,7 @@ export default function MyApplications() {
 }
 
 function ApplicationRow({ app }: { app: CandidateApplication }) {
+  const { t: tr } = useTranslation();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string>();
   const navigate = useNavigate();
@@ -73,7 +76,7 @@ function ApplicationRow({ app }: { app: CandidateApplication }) {
   const withdraw = useMutation({
     mutationFn: () => jobsApi.withdraw(app.id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["jobs"] }),
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't withdraw.")),
+    onError: (err) => setError(apiErrorMessage(err, tr("jobs.myApplications.couldnTWithdraw"))),
   });
   const chat = useMutation({
     mutationFn: () => jobsApi.threadForApplication(app.id),
@@ -90,13 +93,13 @@ function ApplicationRow({ app }: { app: CandidateApplication }) {
               <Link to={`/jobs/${app.job.id}`} className="font-display text-[15.5px] font-semibold text-ink hover:underline">
                 {app.job.title}
               </Link>
-              <p className="text-[13px] text-muted">{app.job.employer.company_name} · applied {timeAgo(app.created_at)}</p>
+              <p className="text-[13px] text-muted">{app.job.employer.company_name}{" "}{tr("jobs.myApplications.applied")}{" "}{timeAgo(app.created_at)}</p>
             </div>
             <StatusPill status={app.status} />
           </div>
 
           {!closed && (
-            <ol className="mt-4 flex items-center" aria-label="Progress">
+            <ol className="mt-4 flex items-center" aria-label={tr("jobs.myApplications.progress")}>
               {STEPS.map((s, i) => (
                 <li key={s} className="flex flex-1 items-center last:flex-none">
                   <span
@@ -111,27 +114,27 @@ function ApplicationRow({ app }: { app: CandidateApplication }) {
           )}
           {!closed && (
             <p className="mt-1.5 text-[12px] text-muted">
-              Step {stepIndex + 1} of {STEPS.length}: <span className="font-medium text-ink">{STATUS_LABEL[app.status]}</span>
+              {tr("jobs.myApplications.stepOf", { step: stepIndex + 1, total: STEPS.length })}{" "}<span className="font-medium text-ink">{STATUS_LABEL[app.status]}</span>
             </p>
           )}
 
           {app.interview_at && app.status === "interview" && (
             <p className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-brand-green/10 px-2.5 py-1.5 text-[12.5px] font-medium text-brand-green">
-              <CalendarClock size={14} /> Interview {new Date(app.interview_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}
+              <CalendarClock size={14} />{" "}{tr("jobs.myApplications.interviewAt", { date: new Date(app.interview_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }) })}
             </p>
           )}
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <Button size="sm" variant="secondary" onClick={() => chat.mutate()} loading={chat.isPending}>
-              <MessageSquare size={14} /> {app.thread_id ? "Open chat" : "Message employer"}
+              <MessageSquare size={14} /> {app.thread_id ? tr("jobs.myApplications.openChat") : tr("jobs.myApplications.messageEmployer")}
             </Button>
             <Button size="sm" variant="ghost" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-              Timeline <ChevronDown size={14} className={open ? "rotate-180" : ""} />
+              {tr("jobs.myApplications.timeline")}{" "}<ChevronDown size={14} className={open ? "rotate-180" : ""} />
             </Button>
             {!closed && app.status !== "hired" && (
               <Button size="sm" variant="ghost" loading={withdraw.isPending}
-                      onClick={() => window.confirm("Withdraw this application?") && withdraw.mutate()}>
-                Withdraw
+                      onClick={() => window.confirm(tr("jobs.myApplications.withdrawThisApplication")) && withdraw.mutate()}>
+                {tr("jobs.myApplications.withdraw")}
               </Button>
             )}
           </div>

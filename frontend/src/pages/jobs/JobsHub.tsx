@@ -7,9 +7,11 @@ import { JobsShell, Spinner, Button } from "../../components/jobs/ui";
 import JobCard from "../../components/jobs/JobCard";
 import { jobsApi } from "../../services/jobs";
 import { useUserScope } from "../../auth/useUserScope";
+import { useTranslation } from "react-i18next";
 
 /** /jobs — entry point: search, the two paths (seek / hire), and picks for you. */
 export default function JobsHub() {
+  const { t } = useTranslation();
   const scope = useUserScope();
   const navigate = useNavigate();
   const [q, setQ] = useState("");
@@ -30,23 +32,23 @@ export default function JobsHub() {
   return (
     <JobsShell side="none">
       <DarkPanel className="p-5 sm:p-8">
-        <p className="text-[12px] font-semibold uppercase tracking-wider text-white/55">OAM Jobs</p>
+        <p className="text-[12px] font-semibold uppercase tracking-wider text-white/55">{t("jobs.jobsHub.oamJobs")}</p>
         <h1 className="mt-1 font-display text-[24px] font-semibold leading-tight sm:text-[30px]">
-          Find work you'll love. Hire people who fit.
+          {t("jobs.jobsHub.findWorkYouLlLove")}
         </h1>
         <form onSubmit={submit} className="mt-5 flex max-w-xl gap-2">
           <label className="relative flex-1">
-            <span className="sr-only">Search jobs</span>
+            <span className="sr-only">{t("jobs.jobsHub.searchJobs")}</span>
             <Search size={17} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Job title, skill or company"
+              placeholder={t("jobs.jobsHub.jobTitleSkillOrCompany")}
               className="h-11 w-full rounded-lg bg-paper pl-9 pr-3 text-[14px] text-ink outline-none"
             />
           </label>
           <button className="h-11 rounded-lg bg-brand-green px-5 text-[14px] font-semibold text-white hover:brightness-95">
-            Search
+            {t("jobs.jobsHub.search")}
           </button>
         </form>
       </DarkPanel>
@@ -55,16 +57,16 @@ export default function JobsHub() {
         <ChoiceCard
           to="/jobs/search"
           icon={<Briefcase size={20} />}
-          title="I'm looking for a job"
-          description="Search thousands of roles, apply in one tap with your OAM CV, and track every application."
-          action="Find jobs"
+          title={t("jobs.jobsHub.iMLookingForA")}
+          description={t("jobs.jobsHub.searchThousandsOfRolesApply")}
+          action={t("jobs.jobsHub.findJobs")}
         />
         <ChoiceCard
           to="/jobs/employer"
           icon={<Users size={20} />}
-          title="I'm hiring"
-          description="Post a job in minutes, manage applicants on a pipeline board, and chat with candidates."
-          action="Go to employer dashboard"
+          title={t("jobs.jobsHub.iMHiring")}
+          description={t("jobs.jobsHub.postAJobInMinutes")}
+          action={t("jobs.jobsHub.goToEmployerDashboard")}
         />
       </div>
 
@@ -73,23 +75,23 @@ export default function JobsHub() {
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green/10 text-brand-green"><FileText size={18} /></span>
             <div>
-              <p className="text-[14px] font-semibold text-ink">Your CV is {me.data!.completeness}% complete</p>
-              <p className="text-[12.5px] text-muted">Complete profiles get better matches and 1-click apply.</p>
+              <p className="text-[14px] font-semibold text-ink">{t("jobs.jobsHub.yourCvIsCompletenessComplete", { completeness: me.data!.completeness })}</p>
+              <p className="text-[12.5px] text-muted">{t("jobs.jobsHub.completeProfilesGetBetterMatches")}</p>
             </div>
           </div>
-          <Button to="/jobs/profile" variant="secondary" size="sm">Finish my CV</Button>
+          <Button to="/jobs/profile" variant="secondary" size="sm">{t("jobs.jobsHub.finishMyCv")}</Button>
         </div>
       )}
 
       <div className="mt-7">
-        <SectionTitle action={<Button to="/jobs/search" variant="ghost" size="sm">See all jobs</Button>}>
-          <span className="inline-flex items-center gap-1.5"><Sparkles size={16} className="text-brand-green" /> Recommended for you</span>
+        <SectionTitle action={<Button to="/jobs/search" variant="ghost" size="sm">{t("jobs.jobsHub.seeAllJobs")}</Button>}>
+          <span className="inline-flex items-center gap-1.5"><Sparkles size={16} className="text-brand-green" />{" "}{t("jobs.jobsHub.recommendedForYou")}</span>
         </SectionTitle>
         {recommended.isLoading ? (
           <Spinner />
         ) : (recommended.data?.results.length ?? 0) === 0 ? (
           <p className="rounded-2xl border border-hairline bg-paper p-5 text-[13.5px] text-muted">
-            Add skills to your CV and we'll recommend jobs that match.
+            {t("jobs.jobsHub.addSkillsToYourCv")}
           </p>
         ) : (
           <div className="grid gap-3 md:grid-cols-2">

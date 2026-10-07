@@ -7,9 +7,11 @@ import {
 } from "../../services/jobs";
 import { CompanyLogo, MatchBadge } from "./ui";
 import { CardEngagement } from "./Engagement";
+import { useTranslation } from "react-i18next";
 
 /** One search result. The whole card links to the job; the bookmark doesn't. */
 export default function JobCard({ job, showMatch = false }: { job: JobCardData; showMatch?: boolean }) {
+  const { t } = useTranslation();
   const qc = useQueryClient();
   const [saved, setSaved] = useState<boolean>(Boolean(job.is_saved));
   const toggle = useMutation({
@@ -30,12 +32,12 @@ export default function JobCard({ job, showMatch = false }: { job: JobCardData; 
           <div className="flex flex-wrap items-center gap-1.5">
             {job.is_promoted && (
               <span className="inline-flex items-center gap-1 rounded-full bg-brand-red/10 px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-brand-red">
-                <Sparkles size={11} /> Featured
+                <Sparkles size={11} />{" "}{t("jobs.jobCard.featured")}
               </span>
             )}
             {job.has_applied && (
               <span className="rounded-full bg-brand-green/10 px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-brand-green">
-                Applied
+                {t("jobs.jobCard.applied")}
               </span>
             )}
           </div>
@@ -47,7 +49,7 @@ export default function JobCard({ job, showMatch = false }: { job: JobCardData; 
           <p className="mt-0.5 flex items-center gap-1 text-[13px] text-muted">
             {job.employer.company_name}
             {job.employer.is_verified && (
-              <BadgeCheck size={14} className="text-brand-green" aria-label="Verified employer" />
+              <BadgeCheck size={14} className="text-brand-green" aria-label={t("jobs.jobCard.verifiedEmployer")} />
             )}
           </p>
 
@@ -77,7 +79,7 @@ export default function JobCard({ job, showMatch = false }: { job: JobCardData; 
           type="button"
           onClick={() => toggle.mutate()}
           className="absolute right-3 top-3 z-10 rounded-lg p-2 text-muted transition hover:bg-mist hover:text-ink"
-          aria-label={saved ? "Remove from saved jobs" : "Save job"}
+          aria-label={saved ? t("jobs.jobCard.removeFromSavedJobs") : t("jobs.jobCard.saveJob")}
           aria-pressed={saved}
         >
           {saved ? <BookmarkCheck size={18} className="text-brand-green" /> : <Bookmark size={18} />}

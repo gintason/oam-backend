@@ -5,6 +5,7 @@ import { CheckCircle2, Clock, Loader2, XCircle } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
 import { BackToDashboard } from "../../components/jobs/ui";
 import { jobsApi, type JobPayment } from "../../services/jobs";
+import { useTranslation } from "react-i18next";
 
 /**
  * Where Paystack/Flutterwave send the browser back after a jobs payment.
@@ -27,6 +28,7 @@ export function JobsPaymentGate({ fallback }: { fallback: ReactNode }) {
 type Phase = "working" | "success" | "pending" | "failed" | "error";
 
 export default function JobsPaymentReturn() {
+  const { t } = useTranslation();
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const qc = useQueryClient();
@@ -59,11 +61,11 @@ export default function JobsPaymentReturn() {
   }, [reference, cancelled, qc]);
 
   const what = payment?.purpose === "plan"
-    ? `Your ${payment.plan} plan is active.`
+    ? t("jobs.jobsPaymentReturn.yourPlanPlanIsActive", { plan: payment.plan })
     : payment?.purpose === "job_credit"
-    ? `${payment.quantity} job credit${payment.quantity > 1 ? "s" : ""} added — publish a job to use ${payment.quantity > 1 ? "them" : "it"}.`
+    ? t("jobs.jobsPaymentReturn.creditsAdded", { count: payment.quantity })
     : payment?.purpose === "boost"
-    ? `“${payment.job_title}” is boosted for ${payment.days} days.`
+    ? t("jobs.jobsPaymentReturn.boosted", { job: payment.job_title, days: payment.days })
     : "";
 
   return (
@@ -75,7 +77,7 @@ export default function JobsPaymentReturn() {
           {phase === "working" ? (
             <>
               <Loader2 size={44} className="mx-auto animate-spin text-brand-green" />
-              <h1 className="mt-4 font-display text-xl font-semibold text-ink">Confirming your payment…</h1>
+              <h1 className="mt-4 font-display text-xl font-semibold text-ink">{t("jobs.jobsPaymentReturn.confirmingYourPayment")}</h1>
             </>
           ) : (
             <>
@@ -83,21 +85,21 @@ export default function JobsPaymentReturn() {
                 : phase === "pending" ? <Clock size={48} strokeWidth={1.5} className="mx-auto text-warn" />
                 : <XCircle size={48} strokeWidth={1.5} className="mx-auto text-danger" />}
               <h1 className="mt-4 font-display text-xl font-semibold text-ink">
-                {phase === "success" ? "Payment successful" : phase === "pending" ? "Payment received"
-                  : phase === "failed" ? "Payment not completed" : "Couldn't confirm payment"}
+                {phase === "success" ? t("jobs.jobsPaymentReturn.paymentSuccessful") : phase === "pending" ? t("jobs.jobsPaymentReturn.paymentReceived")
+                  : phase === "failed" ? t("jobs.jobsPaymentReturn.paymentNotCompleted") : t("jobs.jobsPaymentReturn.couldnTConfirmPayment")}
               </h1>
               <p className="mt-1 text-[14px] text-muted">
                 {phase === "success" ? what
-                  : phase === "pending" ? "It's still confirming — your plan updates automatically in a few minutes."
-                  : phase === "failed" ? "You have not been charged."
-                  : "If you were charged, it will apply once the payment settles."}
+                  : phase === "pending" ? t("jobs.jobsPaymentReturn.itSStillConfirmingYour")
+                  : phase === "failed" ? t("jobs.jobsPaymentReturn.youHaveNotBeenCharged")
+                  : t("jobs.jobsPaymentReturn.ifYouWereChargedIt")}
               </p>
               <p className="mt-4 font-mono text-[11px] text-muted">{reference}</p>
             </>
           )}
           <button onClick={() => navigate("/jobs/employer")}
                   className="mt-6 h-11 w-full rounded-lg bg-brand-green text-[14px] font-medium text-white hover:brightness-95">
-            Back to hiring dashboard
+            {t("jobs.jobsPaymentReturn.backToHiringDashboard")}
           </button>
         </div>
       </main>

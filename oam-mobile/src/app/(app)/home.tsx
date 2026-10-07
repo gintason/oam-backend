@@ -1,4 +1,5 @@
 import { View, ScrollView, Pressable, ActivityIndicator, Alert, Dimensions } from "react-native";
+import { BUS_TICKETS_LIVE } from "@/shared/config/features";
 import { useRouter } from "expo-router";
 import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
@@ -23,7 +24,7 @@ function greetingKey(): string {
 }
 
 type Tint = "green" | "red";
-type Tile = { id: string; lkey: string; label: string; Icon: LucideIcon; tint: Tint };
+type Tile = { id: string; lkey: string; label: string; Icon: LucideIcon; tint: Tint; soon?: boolean };
 
 const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
   {
@@ -51,7 +52,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "hotels", lkey: "hotels", label: "Hotels", Icon: BedDouble, tint: "green" },
       { id: "carhire", lkey: "carHire", label: "Car Hire", Icon: Car, tint: "green" },
       { id: "pickup", lkey: "pickup", label: "Pick Up", Icon: MapPinned, tint: "green" },
-      { id: "bus", lkey: "bus", label: "Bus Tickets", Icon: Bus, tint: "green" },
+      { id: "bus", lkey: "bus", label: "Bus Tickets", Icon: Bus, tint: "green", soon: !BUS_TICKETS_LIVE },
     ],
   },
   {
@@ -73,7 +74,8 @@ const GAP = 10;
 const COLS = 4;
 const TILE_W = (Dimensions.get("window").width - H_PADDING * 2 - GAP * (COLS - 1)) / COLS;
 
-function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon" | "tint"> & { onPress: () => void }) {
+function ServiceTile({ label, Icon, tint, soon, onPress }: Pick<Tile, "label" | "Icon" | "tint" | "soon"> & { onPress: () => void }) {
+  const { t } = useTranslation();
   const accent = tint === "red" ? colors.brand.red : colors.brand.green;
   const bg = tint === "red" ? "rgba(227,16,18,0.10)" : "rgba(11,115,39,0.10)";
   return (
@@ -116,6 +118,13 @@ function ServiceTile({ label, Icon, tint, onPress }: Pick<Tile, "label" | "Icon"
       >
         {label}
       </Text>
+      {soon ? (
+        <View pointerEvents="none" style={{ position: "absolute", top: 5, right: 5, borderRadius: 999, backgroundColor: colors.brand.red, paddingHorizontal: 6, paddingVertical: 1 }}>
+          <Text variant="caption" color="paper" style={{ fontSize: 8.5, lineHeight: 12, textTransform: "uppercase", letterSpacing: 0.4 }}>
+            {t("common.soon", "Soon")}
+          </Text>
+        </View>
+      ) : null}
     </SpringPressable>
   );
 }
@@ -217,6 +226,7 @@ export default function Home() {
                     label={t(`dashboard.services.${item.lkey}`)}
                     Icon={item.Icon}
                     tint={item.tint}
+                    soon={item.soon}
                     onPress={() => onTile(item.id)}
                   />
                 </Reveal>

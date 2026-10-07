@@ -13,12 +13,19 @@ import { useAuthStore } from "@/features/auth";
 import { useWallets, pickHeadline } from "@/features/wallet";
 import { PaystackModal } from "@/features/bills";
 import { busApi, type Trip, type BusBooking, type PassengerInput } from "@/features/bus";
+import { BusComingSoon } from "@/features/bus/ComingSoon";
+import { BUS_TICKETS_LIVE } from "@/shared/config/features";
 import { DateField } from "@/features/travel";
 import { KeyboardAware } from "@/shared/ui/keyboard";
 
 type Step = "search" | "results" | "seats" | "pay" | "ticket";
 
+// While bus tickets are switched off (live keys pending) the screen shows "Coming soon".
 export default function BusScreen() {
+  return BUS_TICKETS_LIVE ? <BusTicketsLive /> : <BusComingSoon />;
+}
+
+function BusTicketsLive() {
   const router = useRouter();
   const { t } = useTranslation();
   const qc = useQueryClient();

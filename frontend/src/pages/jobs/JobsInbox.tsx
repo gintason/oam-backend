@@ -5,9 +5,11 @@ import { JobsShell, Spinner, EmptyState, Avatar, CompanyLogo, StatusPill } from 
 import { jobsApi, timeAgo } from "../../services/jobs";
 import { useJobsSocket } from "../../lib/jobsSocket";
 import { useUserScope } from "../../auth/useUserScope";
+import { useTranslation } from "react-i18next";
 
 /** /jobs/messages — every recruitment conversation, live. */
 export default function JobsInbox() {
+  const { t: tr } = useTranslation();
   const scope = useUserScope();
   const qc = useQueryClient();
   const threads = useQuery({ queryKey: ["jobs", scope, "threads"], queryFn: jobsApi.threads });
@@ -18,11 +20,11 @@ export default function JobsInbox() {
 
   return (
     <JobsShell>
-      <h1 className="font-display text-[22px] font-semibold text-ink">Messages</h1>
+      <h1 className="font-display text-[22px] font-semibold text-ink">{tr("jobs.jobsInbox.messages")}</h1>
       <div className="mt-4">
         {threads.isLoading ? <Spinner /> : list.length === 0 ? (
-          <EmptyState icon={<MessagesSquare size={20} />} title="No conversations yet"
-                      body="Chats with employers and candidates about applications appear here." />
+          <EmptyState icon={<MessagesSquare size={20} />} title={tr("jobs.jobsInbox.noConversationsYet")}
+                      body={tr("jobs.jobsInbox.chatsWithEmployersAndCandidates")} />
         ) : (
           <ul className="divide-y divide-hairline overflow-hidden rounded-2xl border border-hairline bg-paper">
             {list.map((t) => {
@@ -39,7 +41,7 @@ export default function JobsInbox() {
                         <p className={`truncate text-[14px] ${t.unread ? "font-bold text-ink" : "font-semibold text-ink"}`}>{name}</p>
                         <span className="shrink-0 text-[11.5px] text-muted">{timeAgo(t.last_message_at)}</span>
                       </div>
-                      <p className="truncate text-[12.5px] text-muted">{t.job ? `${t.job.title} · ` : ""}{t.last_message_preview || "No messages yet"}</p>
+                      <p className="truncate text-[12.5px] text-muted">{t.job ? `${t.job.title} · ` : ""}{t.last_message_preview || tr("jobs.jobsInbox.noMessagesYet")}</p>
                     </div>
                     <div className="flex shrink-0 flex-col items-end gap-1">
                       {t.application_status && <StatusPill status={t.application_status} />}

@@ -1,0 +1,452 @@
+"""
+What the assistant knows about OAM.
+
+This is the single source of truth for both modes — it's injected into the LLM
+prompt when an API key is configured, and searched directly when one isn't. One
+copy means the two modes can't tell people different things.
+
+Everything here is true of the platform as built. That matters more than it
+might seem: an assistant on a money app that invents a refund policy or a
+delivery time creates an expectation the product then fails, and the customer
+is rightly annoyed at you rather than at the bot.
+"""
+
+PLATFORM_FACTS = """
+OAM is a multi-service platform operated by O.A.M Motors Limited. It offers:
+
+BILLS AND UTILITIES
+- Airtime and data top-ups for all major Nigerian networks (MTN, Airtel, Glo, 9mobile)
+- International airtime: top up phones in other countries. In the airtime screen,
+  switch from "Local" to "International", pick the country and network, choose an
+  amount, and pay. The price is shown in Naira before you confirm.
+- Electricity units (prepaid tokens and postpaid) across Nigerian discos
+  (e.g. IKEDC, EKEDC, IBEDC, AEDC and others)
+- Cable TV subscriptions (DStv, GOtv, StarTimes and others)
+- The price shown is the price paid. There is NO separate fee at checkout; OAM's
+  margin is included in the price.
+
+WALLET
+- Multi-currency (NGN, USD, GBP, EUR), with NGN as the default
+- Funded by card through Paystack
+- Card payments credit the wallet first, and the wallet then pays for the
+  purchase. This is deliberate: if a delivery fails, the money is already safe
+  in the wallet as a balance the customer can spend or withdraw.
+- Transfers between OAM users are instant and free
+- Withdrawals go to a bank account in the customer's own name
+- The wallet can also be funded by bank transfer and by a dedicated virtual account,
+  in addition to card
+
+BETTING WALLET TOP-UP
+- Fund sports betting accounts instantly across top betting providers in Nigeria
+
+BUS TICKETS
+- Search and book intercity bus tickets for travel across Nigeria: choose route and
+  date, pick your seats, enter passenger details, and pay from wallet or by card
+
+E-COMMERCE
+- Shop from top international partner stores (such as Amazon, Temu and Alibaba)
+  through the OAM interface
+
+ELECTRICITY TOKENS
+- Tokens usually arrive within a minute or two, occasionally longer
+- While an order says "processing", the payment has gone through and the order
+  is with the provider. Buying again charges for the same meter twice.
+- Order history checks with the provider every few seconds and shows the token
+  as soon as it is issued
+- The token is also emailed, and stored permanently in Order history
+- Nigerian prepaid meters are 11 digits; verification only runs once all 11 are
+  entered
+
+MARKETPLACE
+- Buy and sell items. Free plan allows 3 active listings.
+- Premium is 2,500 NGN for 20 listings plus featured placement
+- Pro is 5,000 NGN for unlimited listings plus featured placement and priority
+- These are one-off payments for a period; nothing renews automatically
+- Phone numbers are NEVER published. Buyers and sellers use built-in, in-app
+  messaging to negotiate and communicate securely; contact details are exchanged
+  only when the seller accepts the enquiry.
+- Sellers can add up to 5 photos and a short video (up to 2 minutes). Buyers can
+  watch the video on the listing, and tap a photo to view it full screen and
+  pinch or double-tap to zoom.
+
+HOME SERVICES / ARTISANS
+- Find plumbers, electricians, mechanics, cleaners and other trades
+- Artisans can be verified: they submit photos of their work, a short video and
+  an identity document, which a person on the OAM team reviews before granting
+  the badge
+- Only verified artisans appear in Featured on the home page
+- Artisans can boost visibility: Premium 2,500 NGN for 30 days, Pro 5,000 NGN
+  for 90 days. One-off payments, no auto-renewal.
+- Contact details work the same as the marketplace: shared only after the
+  artisan accepts the job
+- Artisans can upload videos of previous work (10 seconds to 3 minutes each,
+  up to 12) under "Videos of my work"; customers watch them on the artisan's
+  profile. OAM can remove a video that breaks the rules.
+
+O.A.M MOTORS
+- Vehicles sold directly by O.A.M Motors, listed in the marketplace under the
+  O.A.M Motors category
+
+TRAVEL (FLIGHTS, HOTELS, CAR HIRE)
+- Flights: compare and book domestic and international flights from hundreds of airlines
+- Hotels: search and book stays in over 100 countries with instant confirmation
+- Car hire: rent cars with or without a driver at thousands of locations worldwide
+- Airport pickups are also available. Travel is booked through partner sites, so the
+  booking contract is with the partner, not with OAM.
+
+JOBS (find work / hire)
+For job seekers (free):
+- Build a profile with your CV, headline, skills and the kind of work you want
+- Search jobs by keyword and filter by remote / hybrid / on-site, employment type
+  (full-time, part-time, contract, temporary, internship, freelance), experience
+  level, category, salary and country
+- Apply in one click with your profile, or send a full application with a cover
+  letter. Some employers apply on their own website instead.
+- Track every application in My applications. Statuses: Applied, Under review,
+  Shortlisted, Interview, Offer, Hired, or Rejected. You can withdraw an
+  application at any point before you're hired.
+- Save jobs, and save searches with alerts (instantly, daily or weekly)
+- Chat privately with employers in the app; you can send files such as a CV
+- Legitimate employers never charge you to apply. Listings are screened for
+  scam signs (e.g. "registration fee", "WhatsApp only"), and suspicious ones are
+  held for review. Never pay anyone to get a job; report the listing instead.
+For employers:
+- Create a company page (it can be verified by OAM), post jobs with a step-by-
+  step form, and manage applicants on a pipeline board
+- Plans (monthly, paid by card; they do NOT renew automatically — you get a
+  reminder 3 days before the end and renew if you want to):
+  - Free: 1 active job, live for 30 days, up to 50 applications per job
+  - Premium: 15,000 NGN (or $15 / £12 / €14) a month — 10 active jobs, live 45
+    days, 2 featured jobs, search the candidate database (50 profile views a
+    month), analytics and recommended candidates
+  - Pro: 40,000 NGN (or $39 / £32 / €36) a month — unlimited jobs, live 60 days,
+    10 featured jobs, unlimited candidate views, and you can message candidates
+    who haven't applied
+- Pay per job: 5,000 NGN ($5 / £4 / €5) for one extra job listing, usable for 30 days
+- Boost a job to the top of search: 3,000 NGN for 7 days or 9,000 NGN for 30 days
+  ($3/$9, £3/£7, €3/€8)
+- Expired listings can be renewed
+
+DELIVERY & DISPATCH (Send a Package)
+For customers:
+- Send documents, parcels, food, fragile or large items across town, same day.
+  Choose pickup and drop-off on the map, add the recipient's name and phone, the
+  package type and weight.
+- You see the full price before you pay. It depends on distance, weight,
+  package type and the area, and can be higher at very busy times. If the price
+  changes before you confirm, you're shown the new price to accept first.
+- Ways to pay: OAM Wallet; card (Flutterwave checkout); Pay on delivery (the
+  rider shows a secure payment link at the door, or you pay cash then — the
+  package is handed over once paid); or Cash at pickup (pay the rider in cash
+  when they collect).
+- The nearest verified rider (bicycle, motorcycle, car or van, to suit the
+  package) is matched automatically. Track the rider live on the map with status
+  updates: Finding a rider, Accepted, Picked up, On the way, Delivered.
+- Your delivery has a 4-digit delivery code. Share it with the recipient; the
+  rider enters it at the door to confirm hand-over (or takes a photo as proof).
+- You can cancel free of charge until the rider picks the package up. Wallet and
+  card payments come back to your OAM wallet in full. If no rider accepts within
+  90 minutes, the delivery is cancelled and refunded automatically.
+- Rate your rider after delivery. Your deliveries are listed under My deliveries.
+For riders ("Ride & Earn" in the OAM mobile app):
+- Apply with your details, vehicle, documents (government ID, licence, vehicle
+  papers, a selfie with your ID) and the bank account your earnings are paid to.
+  A person on the OAM team reviews the application before you can take jobs.
+- Go online to receive delivery requests nearby, and accept the ones you want.
+- Riders earn 80% of the delivery fee; OAM keeps 20%. For wallet, card and
+  pay-on-delivery link payments, the rider's 80% is sent automatically to their
+  bank account after each completed delivery.
+- For cash deliveries the rider keeps the cash and owes OAM's 20% commission.
+  Pay it from your OAM wallet in the app, or by bank transfer to OAM's account
+  shown on the rider dashboard. Riders with too much unpaid commission don't get
+  new cash jobs until it's paid.
+- Earnings, payouts and commission owed are shown under Earnings.
+
+SECURITY
+- Card details are entered on Paystack's checkout and are never seen or stored
+  by OAM
+- Passwords are stored hashed
+- Resetting a password signs the account out on every other device
+- OAM will NEVER ask for a password, card PIN or one-time code. Anyone who does
+  is not from OAM.
+
+SUPPORT
+- info@oam-app.com
+- Help Centre at /help, Contact at /contact
+"""
+
+# Bus tickets are "coming soon" until BUS_TICKETS_LIVE is switched on.
+_BUS_LIVE_TEXT = """BUS TICKETS
+- Search and book intercity bus tickets for travel across Nigeria: choose route and
+  date, pick your seats, enter passenger details, and pay from wallet or by card
+"""
+_BUS_SOON_TEXT = """BUS TICKETS (COMING SOON)
+- Intercity bus ticket booking is coming soon and can't be used yet. If asked,
+  say it's launching soon and suggest flights or car hire in the meantime. Don't
+  promise a launch date.
+"""
+
+
+def bus_facts() -> str:
+    from django.conf import settings
+    return _BUS_LIVE_TEXT if getattr(settings, "BUS_TICKETS_LIVE", False) else _BUS_SOON_TEXT
+
+
+PLATFORM_FACTS = PLATFORM_FACTS.replace(_BUS_LIVE_TEXT, bus_facts())
+
+WHERE_TO_GO = """
+Useful pages:
+- /dashboard — balance and quick actions
+- /wallet — full balance, transactions, add money
+- /wallet/send — transfer to another OAM user
+- /wallet/withdraw — withdraw to a bank account
+- /orders — every purchase, with electricity tokens and receipts
+- /services/airtime, /services/data, /services/electricity, /services/cable
+- /marketplace — buy and sell
+- /artisans — find or offer home services
+- /messages — conversations with buyers, sellers and artisans
+- /jobs — Jobs home; /jobs/search to find jobs; /jobs/applications to track
+  applications; /jobs/saved for saved jobs and alerts; /jobs/profile for your CV
+- /jobs/employer — employer dashboard; /jobs/employer/post to post a job;
+  /jobs/employer/plans for plans, pay-per-job and boosts
+- /deliveries/new — send a package; /deliveries — my deliveries and tracking
+- Riders: "Ride & Earn" in the OAM mobile app (apply, go online, earnings)
+- /help — Help Centre
+- /contact — how to reach a person
+"""
+
+# Matched by the fallback when no LLM is configured. Keyword lists are
+# deliberately generous: someone with a missing token types "where is my token",
+# "no token", "token never came" and expects the same answer.
+FAQS = [
+    {
+        "keywords": ["token", "electricity", "units", "meter", "prepaid", "no token", "missing token"],
+        "answer": (
+            "If you've paid for electricity and the token hasn't appeared yet, please don't "
+            "buy again — the payment has gone through and the order is with your provider, "
+            "so a second purchase would charge you twice for the same meter.\n\n"
+            "Open Order history (/orders). While an order is completing you'll see "
+            "\"Token on the way\", and the page checks with your provider every few seconds. "
+            "Tokens usually arrive within a minute or two.\n\n"
+            "The token is also emailed to you, and it stays in Order history permanently, so "
+            "you can find it again any time."
+        ),
+    },
+    {
+        "keywords": ["fee", "fees", "charge", "hidden", "extra cost", "commission"],
+        "answer": (
+            "There are no hidden fees. The total shown before you pay is exactly what you "
+            "pay — the fee line reads ₦0 because there isn't one.\n\n"
+            "OAM's margin is built into the price of bills, so nothing is added at checkout."
+        ),
+    },
+    {
+        "keywords": ["wallet", "why wallet", "card payment", "balance", "funded", "top up"],
+        "answer": (
+            "Card payments credit your wallet first, and the wallet then pays for what you "
+            "bought. It looks like an extra step, and it's deliberate.\n\n"
+            "If a delivery fails, the money is already sitting safely in your wallet as a "
+            "balance you can spend or withdraw. Paying a provider directly would leave your "
+            "money stranded with no clean way back."
+        ),
+    },
+    {
+        "keywords": ["phone number", "contact", "seller number", "artisan number", "whatsapp"],
+        "answer": (
+            "Phone numbers are never published on OAM.\n\n"
+            "Send a message about the item or job, and once the seller or artisan accepts, "
+            "you'll both see each other's contact details.\n\n"
+            "It's slightly slower, and it's the most effective protection available: published "
+            "numbers get harvested and reused for impersonation scams."
+        ),
+    },
+    {
+        "keywords": ["listing", "sell", "how many", "plan", "premium", "pro", "subscription"],
+        "answer": (
+            "The Free plan allows 3 active listings, indefinitely, with no card required.\n\n"
+            "Premium (₦2,500) allows up to 20 listings plus featured placement. "
+            "Pro (₦5,000) is unlimited, with featured placement and priority in search.\n\n"
+            "Both are one-off payments for a period — nothing renews automatically."
+        ),
+    },
+    {
+        "keywords": ["verified", "verification", "badge", "artisan verify", "get verified"],
+        "answer": (
+            "Verified artisans have submitted photos of their work, a short video and an "
+            "identity document, and a person on the OAM team has reviewed all three before "
+            "granting the badge.\n\n"
+            "Only verified artisans appear in Featured on the home page. If you're an artisan, "
+            "start at /artisans/verify — your profile stays live in search while you wait."
+        ),
+    },
+    {
+        "keywords": ["withdraw", "withdrawal", "bank", "cash out", "payout"],
+        "answer": (
+            "Withdrawals go to a bank account in your own name, from /wallet/withdraw.\n\n"
+            "They usually arrive within minutes, though bank downtime can delay them. If a "
+            "withdrawal fails, the amount returns to your wallet automatically — it isn't "
+            "lost, and you can try again."
+        ),
+    },
+    {
+        "keywords": ["transfer", "send money", "another user", "p2p"],
+        "answer": (
+            "You can send money to another OAM user instantly and free from /wallet/send.\n\n"
+            "Enter their email or phone number and their name appears before you confirm. "
+            "Check that name carefully — completed transfers can't be reversed."
+        ),
+    },
+    {
+        "keywords": ["password", "reset", "forgot", "locked out", "can't sign in"],
+        "answer": (
+            "Use \"Forgot password?\" on the sign-in page. We'll send a code to the email or "
+            "phone on your account, and you can set a new password with it.\n\n"
+            "Resetting signs you out on every other device — so if someone else had access to "
+            "your account, that removes it."
+        ),
+    },
+    {
+        "keywords": ["safe", "scam", "fraud", "trust", "security", "safety"],
+        "answer": (
+            "A few things worth knowing:\n\n"
+            "• OAM will never ask for your password, card PIN or a one-time code. Anyone who "
+            "does — by call, SMS or WhatsApp — is not from OAM.\n"
+            "• Card details are entered on Paystack's own checkout and are never stored by OAM.\n"
+            "• When buying or selling, meet in a public place, inspect before paying, and never "
+            "send money in advance to someone you haven't met.\n"
+            "• Treat any request to move the conversation off OAM \"for a better price\" as a "
+            "warning sign."
+        ),
+    },
+]
+
+FAQS += [
+    {
+        "keywords": ["send package", "send a package", "delivery", "dispatch", "courier",
+                     "parcel", "send parcel", "rider fee", "delivery fee", "delivery cost"],
+        "answer": (
+            "OAM Dispatch delivers documents, parcels, food and more across town the same day.\n\n"
+            "Go to Send a Package (/deliveries/new), set pickup and drop-off on the map, add the "
+            "recipient and package details, and you'll see the full price before you pay. Pay "
+            "from your wallet, by card, on delivery, or in cash at pickup.\n\n"
+            "A nearby verified rider is matched automatically and you can follow them live on the "
+            "map. Share the 4-digit delivery code with the recipient — the rider needs it at the door."
+        ),
+    },
+    {
+        "keywords": ["track", "where is my package", "where is my delivery", "rider location",
+                     "package status", "delivery status"],
+        "answer": (
+            "Open My deliveries (/deliveries) and tap the delivery to see the rider on the map and "
+            "every status update: Finding a rider, Accepted, Picked up, On the way, Delivered.\n\n"
+            "If something looks wrong with a specific delivery, email info@oam-app.com with the "
+            "delivery reference (it starts with DLV-) and a person will look into it."
+        ),
+    },
+    {
+        "keywords": ["cancel", "cancel delivery", "cancel my delivery", "delivery refund", "cancel package",
+                     "no rider"],
+        "answer": (
+            "You can cancel a delivery free of charge until the rider picks the package up — open it "
+            "in My deliveries (/deliveries) and tap Cancel. Wallet and card payments go back to your "
+            "OAM wallet in full.\n\n"
+            "If no rider accepts within 90 minutes, the delivery is cancelled and refunded "
+            "automatically. Once the package has been picked up it can't be cancelled in the app; "
+            "email info@oam-app.com with the reference."
+        ),
+    },
+    {
+        "keywords": ["pay on delivery", "on delivery", "cash on delivery", "pay at the door", "cash at pickup",
+                     "pay rider cash"],
+        "answer": (
+            "Two ways to pay later:\n\n"
+            "• Pay on delivery — at the door the rider shows a secure payment link (card or bank), "
+            "or you can pay cash. The package is handed over once it's paid.\n"
+            "• Cash at pickup — pay the rider in cash when they collect the package.\n\n"
+            "You can also pay upfront from your wallet or by card."
+        ),
+    },
+    {
+        "keywords": ["rider", "become a rider", "ride and earn", "ride & earn", "dispatch rider",
+                     "drive for oam", "earn as rider"],
+        "answer": (
+            "Open \"Ride & Earn\" in the OAM mobile app and apply with your details, vehicle "
+            "(bicycle, motorcycle, car or van), documents — government ID, licence, vehicle papers "
+            "and a selfie with your ID — and the bank account you want to be paid into. The OAM team "
+            "reviews every application.\n\n"
+            "Once approved, go online to receive nearby requests. You earn 80% of each delivery fee, "
+            "sent automatically to your bank account after each completed delivery paid by wallet, "
+            "card or payment link."
+        ),
+    },
+    {
+        "keywords": ["commission", "rider", "my commission", "rider commission", "cash commission", "owe oam", "pay commission",
+                     "oam bank account", "rider payout", "rider earnings"],
+        "answer": (
+            "Riders earn 80% of the delivery fee and OAM keeps 20%.\n\n"
+            "For deliveries paid by wallet, card or payment link, your 80% is sent to your bank "
+            "account automatically. For cash deliveries you keep the cash and owe OAM's 20%: pay it "
+            "from your wallet in the app, or by bank transfer to the OAM account shown on your rider "
+            "dashboard. If too much commission is unpaid, new cash jobs pause until it's cleared.\n\n"
+            "Your Earnings screen shows payouts and anything owed."
+        ),
+    },
+    {
+        "keywords": ["job", "jobs", "find a job", "find work", "vacancy", "vacancies", "apply",
+                     "application", "cv", "resume", "career"],
+        "answer": (
+            "OAM Jobs is free for job seekers. Set up your profile and CV at /jobs/profile, then "
+            "search at /jobs/search — filter by remote, hybrid or on-site, job type, experience, "
+            "category, salary and country.\n\n"
+            "Apply in one click or with a full application, and follow each one in My applications "
+            "(/jobs/applications): Applied, Under review, Shortlisted, Interview, Offer, then Hired "
+            "or Rejected. Save searches to get alerts instantly, daily or weekly.\n\n"
+            "A real employer never asks you to pay to apply. If one does, don't pay — report it."
+        ),
+    },
+    {
+        "keywords": ["post a job", "hire", "hiring", "employer", "recruit", "job plan", "jobs plan",
+                     "job boost", "boost job", "candidate"],
+        "answer": (
+            "Employers start at /jobs/employer: create a company page, post jobs and manage "
+            "applicants on a pipeline board.\n\n"
+            "• Free — 1 active job (30 days), up to 50 applications\n"
+            "• Premium — ₦15,000/month: 10 jobs, 2 featured, 50 candidate profile views a month\n"
+            "• Pro — ₦40,000/month: unlimited jobs, 10 featured, unlimited candidate views and "
+            "messaging candidates who haven't applied\n\n"
+            "Or pay ₦5,000 for a single extra job, and boost a job for ₦3,000 (7 days) or ₦9,000 "
+            "(30 days). Plans don't renew automatically. Details at /jobs/employer/plans."
+        ),
+    },
+    {
+        "keywords": ["video", "upload", "a video", "upload video", "listing video", "work video", "zoom", "photo zoom"],
+        "answer": (
+            "Sellers can add a video of up to 2 minutes to a listing, alongside up to 5 photos. "
+            "Buyers watch it on the listing, and can tap any photo to open it full screen and "
+            "pinch or double-tap to zoom.\n\n"
+            "Artisans can add videos of previous work (10 seconds to 3 minutes) under \"Videos of my "
+            "work\" in the Artisans section; they appear on their public profile."
+        ),
+    },
+]
+
+GREETING = (
+    "Hi, I'm O.A.M Assistant. I can help with anything about OAM — airtime and data, "
+    "bills and electricity tokens, your wallet and transfers, the marketplace, finding "
+    "an artisan, jobs, sending a package, travel, bus tickets and more. What would you like to know?"
+)
+
+CANT_SEE_ACCOUNT = (
+    "I can't see your account details, balance or individual transactions — I only know how "
+    "OAM works in general.\n\n"
+    "For anything specific to your account, Order history (/orders) shows every purchase with "
+    "its status and token, and Wallet (/wallet) shows your balance and transactions. If "
+    "something looks wrong, email info@oam-app.com with the order reference and a person will "
+    "look it up."
+)
+
+NO_MATCH = (
+    "I'm not certain about that one, and I'd rather not guess.\n\n"
+    "For anything I can't cover — or anything specific to your account — please send an email "
+    "with the details to info@oam-app.com and a human support representative will assist you."
+)

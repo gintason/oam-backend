@@ -5,6 +5,7 @@ import AppHeader from "../AppHeader";
 import {
   STATUS_LABEL, JOB_STATUS_LABEL, type ApplicationStatus, type JobStatus,
 } from "../../services/jobs";
+import { useTranslation } from "react-i18next";
 
 /* ------------------------------------------------------------------ */
 /* Page shell + section tabs                                           */
@@ -13,19 +14,19 @@ import {
 type Tab = { to: string; label: string; end?: boolean };
 
 const SEEKER_TABS: Tab[] = [
-  { to: "/jobs/search", label: "Find jobs" },
-  { to: "/jobs/applications", label: "Applications" },
-  { to: "/jobs/saved", label: "Saved & alerts" },
-  { to: "/jobs/messages", label: "Messages" },
-  { to: "/jobs/profile", label: "My CV" },
+  { to: "/jobs/search", label: "jobs.nav.findJobs" },
+  { to: "/jobs/applications", label: "jobs.nav.applications" },
+  { to: "/jobs/saved", label: "jobs.nav.savedAlerts" },
+  { to: "/jobs/messages", label: "jobs.nav.messages" },
+  { to: "/jobs/profile", label: "jobs.nav.myCv" },
 ];
 
 const EMPLOYER_TABS: Tab[] = [
-  { to: "/jobs/employer", label: "Hiring overview", end: true },
-  { to: "/jobs/employer/post", label: "Post a job" },
-  { to: "/jobs/employer/candidates", label: "Candidates" },
-  { to: "/jobs/messages", label: "Messages" },
-  { to: "/jobs/employer/plans", label: "Plans" },
+  { to: "/jobs/employer", label: "jobs.nav.hiringOverview", end: true },
+  { to: "/jobs/employer/post", label: "jobs.nav.postJob" },
+  { to: "/jobs/employer/candidates", label: "jobs.nav.candidates" },
+  { to: "/jobs/messages", label: "jobs.nav.messages" },
+  { to: "/jobs/employer/plans", label: "jobs.nav.plans" },
 ];
 
 export function JobsShell({
@@ -37,6 +38,7 @@ export function JobsShell({
   side?: "seeker" | "employer" | "none";
   wide?: boolean;
 }) {
+  const { t: tr } = useTranslation();
   const tabs = side === "employer" ? EMPLOYER_TABS : side === "seeker" ? SEEKER_TABS : [];
   return (
     <div className="min-h-screen bg-mist pb-24 md:pb-10">
@@ -44,7 +46,7 @@ export function JobsShell({
       <div className="sticky top-[65px] z-30 border-b border-hairline bg-paper/95 backdrop-blur">
         <nav
           className={`mx-auto flex items-center gap-1 overflow-x-auto px-3 sm:px-5 ${wide ? "max-w-7xl" : "max-w-5xl"}`}
-          aria-label="Jobs"
+          aria-label={tr("jobs.ui.jobs")}
         >
           <BackToDashboard className={tabs.length ? "mr-2 border-r border-hairline pr-4" : ""} />
           {tabs.map((t) => (
@@ -60,7 +62,7 @@ export function JobsShell({
                   }`
                 }
               >
-                {t.label}
+                {tr(t.label)}
               </NavLink>
             ))}
         </nav>
@@ -74,12 +76,13 @@ export function JobsShell({
 
 /** The way out of the jobs section, on every jobs page. */
 export function BackToDashboard({ className = "" }: { className?: string }) {
+  const { t: tr } = useTranslation();
   return (
     <Link
       to="/dashboard"
       className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap py-3 text-[13px] font-semibold text-brand-green transition hover:text-ink ${className}`}
     >
-      <ArrowLeft size={15} strokeWidth={2} /> Back to Dashboard
+      <ArrowLeft size={15} strokeWidth={2} />{" "}{tr("jobs.ui.backToDashboard")}
     </Link>
   );
 }
@@ -320,12 +323,13 @@ export function Toggle({
 
 /** Small match badge: score + label, colour only as reinforcement. */
 export function MatchBadge({ score, compact = false }: { score: number; compact?: boolean }) {
-  const label = score >= 80 ? "Great match" : score >= 60 ? "Good match" : score >= 40 ? "Fair match" : "Low match";
+  const { t: tr } = useTranslation();
+  const label = score >= 80 ? tr("jobs.ui.greatMatch") : score >= 60 ? tr("jobs.ui.goodMatch") : score >= 40 ? tr("jobs.ui.fairMatch") : tr("jobs.ui.lowMatch");
   const tone = score >= 60 ? "text-brand-green bg-brand-green/10" : "text-muted bg-mist";
   return (
     <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-[11.5px] font-semibold ${tone}`}
           title={compact ? label : undefined}>
-      <span className="tabular">{score}%</span>{compact ? " match" : ` · ${label}`}
+      <span className="tabular">{score}%</span>{compact ? tr("jobs.ui.match") : ` · ${label}`}
     </span>
   );
 }

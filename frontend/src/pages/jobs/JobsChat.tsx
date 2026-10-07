@@ -10,6 +10,7 @@ import { sendJobsEvent, useJobsSocket } from "../../lib/jobsSocket";
 import { useAuth } from "../../auth/AuthContext";
 import { useUserScope } from "../../auth/useUserScope";
 import { friendlyTime } from "../../lib/format";
+import { useTranslation } from "react-i18next";
 
 function uid() {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
@@ -24,6 +25,7 @@ function uid() {
  * way the confirmation arrives, and a retry never double-sends.
  */
 export default function JobsChat() {
+  const { t: tr } = useTranslation();
   const { id = "" } = useParams();
   const scope = useUserScope();
   const { user } = useAuth();
@@ -50,9 +52,9 @@ export default function JobsChat() {
       if (!active) return;
       setMsgs(r.results);
       setHasMore(r.has_more);
-    }).catch((e) => setError(apiErrorMessage(e, "Couldn't load messages.")));
+    }).catch((e) => setError(apiErrorMessage(e, tr("jobs.jobsChat.couldnTLoadMessages"))));
     return () => { active = false; };
-  }, [id]);
+  }, [id, tr]);
 
   const otherReadAt = readAt ?? (t ? (t.my_side === "employer" ? t.candidate_last_read_at : t.employer_last_read_at) : null);
 
@@ -89,7 +91,7 @@ export default function JobsChat() {
       setOtherReadAt(d.at as string);
     } else if (e.type === "error" && d.client_id) {
       setMsgs((cur) => cur.map((x) => (x.client_id === d.client_id && x.pending ? { ...x, pending: false, failed: true } : x)));
-      setError(String(d.detail ?? "Message not sent."));
+      setError(String(d.detail ?? tr("jobs.chat.messageNotSent")));
     }
   });
 
@@ -104,14 +106,14 @@ export default function JobsChat() {
       merge(await jobsApi.sendMessage(id, { body: m.body, attachment, client_id: m.client_id }));
     } catch (err) {
       setMsgs((cur) => cur.map((x) => (x.client_id === m.client_id ? { ...x, pending: false, failed: true } : x)));
-      setError(apiErrorMessage(err, "Message not sent."));
+      setError(apiErrorMessage(err, tr("jobs.jobsChat.messageNotSent")));
     }
   }
 
   function queue(body: string, att?: Attachment) {
     setError(undefined);
     const m: JobChatMessage = {
-      id: `local-${uid()}`, thread_id: id, sender_id: String(user?.id ?? ""), sender_name: "You",
+      id: `local-${uid()}`, thread_id: id, sender_id: String(user?.id ?? ""), sender_name: tr("jobs.jobsChat.you"),
       kind: att ? "attachment" : "text", body, attachment_url: att?.url ?? "", attachment_name: att?.name ?? "",
       attachment_type: att?.type ?? "", attachment_size: att?.size ?? null, client_id: uid(),
       created_at: new Date().toISOString(), pending: true,
@@ -139,7 +141,7 @@ export default function JobsChat() {
 
   async function onFile(file: File | undefined) {
     if (!file) return;
-    if (file.size > 15 * 1024 * 1024) { setError("Files can be up to 15MB."); return; }
+    if (file.size > 15 * 1024 * 1024) { setError(tr("jobs.jobsChat.filesCanBeUpTo")); return; }
     try {
       setUpload(0);
       const r = await uploadJobsFile(file, "job_chat_attachment", setUpload);
@@ -169,30 +171,30 @@ export default function JobsChat() {
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col overflow-hidden px-0 sm:px-5 sm:pb-4">
         <div className="px-4 sm:px-0"><BackToDashboard /></div>
         <header className="flex items-center gap-3 border-b border-hairline bg-paper px-4 py-3 sm:rounded-t-2xl sm:border">
-          <button onClick={() => navigate("/jobs/messages")} className="rounded-lg p-1 text-muted hover:bg-mist" aria-label="Back"><ArrowLeft size={18} /></button>
+          <button onClick={() => navigate("/jobs/messages")} className="rounded-lg p-1 text-muted hover:bg-mist" aria-label={tr("jobs.jobsChat.back")}><ArrowLeft size={18} /></button>
           {t && (t.my_side === "employer"
             ? <Avatar name={other} url={t.candidate.photo_url} size={38} />
             : <CompanyLogo url={t.employer.logo_url} name={other} size={38} />)}
           <div className="min-w-0 flex-1">
             <p className="truncate text-[14.5px] font-semibold text-ink">{other}</p>
             <p className="truncate text-[12px] text-muted">
-              {typing ? <span className="text-brand-green">typing…</span> : t?.job ? t.job.title : ""}
+              {typing ? <span className="text-brand-green">{tr("jobs.jobsChat.typing")}</span> : t?.job ? t.job.title : ""}
             </p>
           </div>
           {t?.application_status && <StatusPill status={t.application_status} />}
           {t?.my_side === "employer" && t.job && (
-            <Link to={`/jobs/employer/jobs/${t.job.id}`} className="hidden text-[12.5px] font-medium text-brand-green hover:underline sm:inline">Pipeline</Link>
+            <Link to={`/jobs/employer/jobs/${t.job.id}`} className="hidden text-[12.5px] font-medium text-brand-green hover:underline sm:inline">{tr("jobs.jobsChat.pipeline")}</Link>
           )}
         </header>
 
         {socketState !== "open" && (
-          <p className="flex items-center gap-1.5 bg-warn/10 px-4 py-1.5 text-[12px] text-warn"><WifiOff size={13} /> Reconnecting — messages will still send.</p>
+          <p className="flex items-center gap-1.5 bg-warn/10 px-4 py-1.5 text-[12px] text-warn"><WifiOff size={13} />{" "}{tr("jobs.jobsChat.reconnectingMessagesWillStillSend")}</p>
         )}
 
         <div className="flex-1 overflow-y-auto border-hairline bg-paper px-3 py-4 sm:border-x" aria-live="polite">
           {hasMore && (
             <div className="mb-3 text-center">
-              <button onClick={loadOlder} className="text-[12.5px] font-medium text-muted hover:text-ink">Load earlier messages</button>
+              <button onClick={loadOlder} className="text-[12.5px] font-medium text-muted hover:text-ink">{tr("jobs.jobsChat.loadEarlierMessages")}</button>
             </div>
           )}
           <ul className="space-y-2">
@@ -213,7 +215,7 @@ export default function JobsChat() {
                     {m.failed && (
                       <button onClick={() => { setMsgs((c) => c.map((x) => x.client_id === m.client_id ? { ...x, failed: false, pending: true } : x)); deliver(m); }}
                               className="mt-1 inline-flex items-center gap-1 text-[11.5px] font-semibold text-white underline">
-                        <AlertCircle size={12} /> Not sent — retry <RotateCw size={11} />
+                        <AlertCircle size={12} />{" "}{tr("jobs.jobsChat.notSentRetry")}{" "}<RotateCw size={11} />
                       </button>
                     )}
                   </div>
@@ -221,14 +223,14 @@ export default function JobsChat() {
               );
             })}
           </ul>
-          {seen && <p className="mt-1 text-right text-[11px] text-muted">Seen</p>}
+          {seen && <p className="mt-1 text-right text-[11px] text-muted">{tr("jobs.jobsChat.seen")}</p>}
           <div ref={endRef} />
         </div>
 
         <form onSubmit={submit} className="flex items-end gap-2 border-t border-hairline bg-paper p-3 sm:rounded-b-2xl sm:border"
               style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
           <label className={`flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-lg text-muted hover:bg-mist hover:text-ink ${upload != null ? "pointer-events-none" : ""}`}
-                 aria-label="Attach a file">
+                 aria-label={tr("jobs.jobsChat.attachAFile")}>
             {upload != null ? <span className="text-[11px] font-semibold tabular">{upload}%</span> : <Paperclip size={18} />}
             <input type="file" className="sr-only" accept=".pdf,.doc,.docx,.txt,image/*" onChange={(e) => { onFile(e.target.files?.[0]); e.target.value = ""; }} />
           </label>
@@ -237,12 +239,12 @@ export default function JobsChat() {
             onChange={(e) => onType(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit(e); } }}
             rows={1}
-            placeholder={t?.is_closed ? "This conversation is closed" : "Write a message"}
+            placeholder={t?.is_closed ? tr("jobs.jobsChat.thisConversationIsClosed") : tr("jobs.jobsChat.writeAMessage")}
             disabled={t?.is_closed}
             className="max-h-32 min-h-10 flex-1 resize-none rounded-lg border border-hairline bg-mist px-3 py-2 text-[14px] outline-none focus:border-brand-green"
-            aria-label="Message"
+            aria-label={tr("jobs.jobsChat.message")}
           />
-          <button type="submit" disabled={!draft.trim()} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-green text-white disabled:opacity-50" aria-label="Send">
+          <button type="submit" disabled={!draft.trim()} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-green text-white disabled:opacity-50" aria-label={tr("jobs.jobsChat.send")}>
             <Send size={17} />
           </button>
         </form>
@@ -253,6 +255,7 @@ export default function JobsChat() {
 }
 
 function AttachmentView({ m, mine }: { m: JobChatMessage; mine: boolean }) {
+  const { t: tr } = useTranslation();
   if (m.attachment_type.startsWith("image/")) {
     return (
       <a href={m.attachment_url} target="_blank" rel="noreferrer" className="mb-1 block">
@@ -264,8 +267,8 @@ function AttachmentView({ m, mine }: { m: JobChatMessage; mine: boolean }) {
     <a href={m.attachment_url} target="_blank" rel="noreferrer"
        className={`mb-1 flex items-center gap-2 rounded-lg px-2.5 py-2 text-[13px] font-medium ${mine ? "bg-white/15" : "bg-paper"}`}>
       <FileText size={16} className="shrink-0" />
-      <span className="truncate">{m.attachment_name || "Attachment"}</span>
-      {m.attachment_size ? <span className="shrink-0 text-[11px] opacity-70">{Math.max(1, Math.round(m.attachment_size / 1024))}KB</span> : null}
+      <span className="truncate">{m.attachment_name || tr("jobs.jobsChat.attachment")}</span>
+      {m.attachment_size ? <span className="shrink-0 text-[11px] opacity-70">{Math.max(1, Math.round(m.attachment_size / 1024))}{tr("jobs.jobsChat.kb")}</span> : null}
     </a>
   );
 }

@@ -11,6 +11,7 @@ import { Eye, Heart, MessageCircle, Send, Share2, BadgeCheck, Loader2 } from "lu
 import { jobsApi, timeAgo, type JobCardData, type JobComment } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
 import { useUserScope } from "../../auth/useUserScope";
+import { useTranslation } from "react-i18next";
 
 type Engageable = Pick<JobCardData, "id" | "title" | "views_count" | "likes_count" | "comments_count" | "liked">
   & { employer?: { company_name?: string } };
@@ -44,22 +45,23 @@ function useLike(job: Engageable) {
 }
 
 export function CardEngagement({ job }: { job: Engageable }) {
+  const { t } = useTranslation();
   const like = useLike(job);
   const [copied, setCopied] = useState(false);
   const stop = (e: MouseEvent) => { e.preventDefault(); e.stopPropagation(); };
   return (
     <div className="pointer-events-none relative z-10 mt-3 flex items-center gap-4 border-t border-hairline pt-2.5 text-[12px] text-muted">
-      <span className="inline-flex items-center gap-1" title="Views"><Eye size={13} strokeWidth={1.75} /> {job.views_count ?? 0}</span>
-      <button type="button" disabled={!like.canLike || like.busy} aria-pressed={like.liked} aria-label={like.liked ? "Unlike" : "Like"}
+      <span className="inline-flex items-center gap-1" title={t("jobs.engagement.views")}><Eye size={13} strokeWidth={1.75} /> {job.views_count ?? 0}</span>
+      <button type="button" disabled={!like.canLike || like.busy} aria-pressed={like.liked} aria-label={like.liked ? t("jobs.engagement.unlike") : t("jobs.engagement.like")}
         onClick={(e) => { stop(e); like.toggle(); }}
         className={`pointer-events-auto inline-flex items-center gap-1 transition hover:text-brand-red disabled:cursor-default ${like.liked ? "text-brand-red" : ""}`}>
         <Heart size={13} strokeWidth={1.75} fill={like.liked ? "currentColor" : "none"} /> {like.count}
       </button>
-      <span className="inline-flex items-center gap-1" title="Comments"><MessageCircle size={13} strokeWidth={1.75} /> {job.comments_count ?? 0}</span>
-      <button type="button" aria-label="Share"
+      <span className="inline-flex items-center gap-1" title={t("jobs.engagement.comments")}><MessageCircle size={13} strokeWidth={1.75} /> {job.comments_count ?? 0}</span>
+      <button type="button" aria-label={t("jobs.engagement.share")}
         onClick={async (e) => { stop(e); if ((await shareJob(job)) === "copied") { setCopied(true); setTimeout(() => setCopied(false), 1500); } }}
         className="pointer-events-auto ml-auto inline-flex items-center gap-1 transition hover:text-brand-green">
-        <Share2 size={13} strokeWidth={1.75} /> {copied ? "Link copied" : ""}
+        <Share2 size={13} strokeWidth={1.75} /> {copied ? t("jobs.engagement.linkCopied") : ""}
       </button>
     </div>
   );
@@ -67,13 +69,14 @@ export function CardEngagement({ job }: { job: Engageable }) {
 
 /** `showShare={false}` where the page already has its own Share button. */
 export function EngagementBar({ job, onComments, showShare = true }: { job: Engageable; onComments: () => void; showShare?: boolean }) {
+  const { t } = useTranslation();
   const like = useLike(job);
   const [copied, setCopied] = useState(false);
   const pill = "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[13px] font-medium transition";
   return (
     <div className="mt-4 flex flex-wrap items-center gap-2">
       <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1.5 text-[12.5px] text-muted">
-        <Eye size={14} /> {job.views_count ?? 0} view{(job.views_count ?? 0) === 1 ? "" : "s"}
+        <Eye size={14} />{" "}{t("jobs.engagement.viewCount", { count: job.views_count ?? 0 })}
       </span>
       <button type="button" onClick={like.toggle} disabled={!like.canLike || like.busy} aria-pressed={like.liked}
         className={`${pill} ${like.liked ? "border-brand-red/40 bg-brand-red/5 text-brand-red" : "border-hairline text-ink hover:bg-mist"}`}>
@@ -85,7 +88,7 @@ export function EngagementBar({ job, onComments, showShare = true }: { job: Enga
       {showShare && (
         <button type="button" className={`${pill} border-hairline text-ink hover:bg-mist`}
           onClick={async () => { if ((await shareJob(job)) === "copied") { setCopied(true); setTimeout(() => setCopied(false), 1500); } }}>
-          <Share2 size={15} /> {copied ? "Link copied" : "Share"}
+          <Share2 size={15} /> {copied ? t("jobs.engagement.linkCopied") : t("jobs.engagement.share")}
         </button>
       )}
     </div>
@@ -93,6 +96,7 @@ export function EngagementBar({ job, onComments, showShare = true }: { job: Enga
 }
 
 export function JobComments({ jobId, anchorRef }: { jobId: string; anchorRef?: React.Ref<HTMLElement> }) {
+  const { t } = useTranslation();
   const scope = useUserScope();
   const qc = useQueryClient();
   const key = ["jobs", scope, "comments", jobId];
@@ -107,23 +111,23 @@ export function JobComments({ jobId, anchorRef }: { jobId: string; anchorRef?: R
       qc.setQueryData<JobComment[]>(key, (old) => [c, ...(old ?? [])]);
       qc.invalidateQueries({ queryKey: ["jobs", scope, "job", jobId] });   // refresh the count
     },
-    onError: (e) => setError(apiErrorMessage(e, "Couldn't post your comment.")),
+    onError: (e) => setError(apiErrorMessage(e, t("jobs.engagement.couldnTPostYourComment"))),
   });
   const submit = () => { const b = draft.trim(); if (b && !add.isPending) add.mutate(b); };
   const rows = q.data ?? [];
 
   return (
     <section ref={anchorRef} id="comments" className="scroll-mt-32 rounded-2xl border border-hairline bg-paper p-5">
-      <h2 className="font-display text-[16px] font-semibold text-ink">Comments ({rows.length})</h2>
+      <h2 className="font-display text-[16px] font-semibold text-ink">{t("jobs.engagement.commentsLength", { length: rows.length })}</h2>
       <div className="mt-3 flex gap-2">
         <input ref={inputRef} value={draft} maxLength={1000}
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") submit(); }}
-          placeholder="Write a comment…"
+          placeholder={t("jobs.engagement.writeAComment")}
           className="h-10 min-w-0 flex-1 rounded-xl border border-hairline bg-mist px-3 text-[14px] outline-none focus:border-brand-green" />
-        <button type="button" onClick={submit} disabled={add.isPending || !draft.trim()} aria-label="Post comment"
+        <button type="button" onClick={submit} disabled={add.isPending || !draft.trim()} aria-label={t("jobs.engagement.postComment")}
           className="inline-flex h-10 items-center gap-1.5 rounded-xl bg-brand-green px-3.5 text-[13px] font-semibold text-white transition hover:opacity-90 disabled:opacity-50">
-          {add.isPending ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />} Post
+          {add.isPending ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}{" "}{t("jobs.engagement.post")}
         </button>
       </div>
       {error && <p className="mt-2 text-[12.5px] text-danger">{error}</p>}
@@ -135,7 +139,7 @@ export function JobComments({ jobId, anchorRef }: { jobId: string; anchorRef?: R
               {c.user_name}
               {c.is_employer && (
                 <span className="inline-flex items-center gap-0.5 rounded-full bg-brand-green/10 px-1.5 py-0.5 text-[10.5px] font-semibold text-brand-green">
-                  <BadgeCheck size={11} /> Employer
+                  <BadgeCheck size={11} />{" "}{t("jobs.engagement.employer")}
                 </span>
               )}
               <span className="font-normal text-muted">· {timeAgo(c.created_at)}</span>
@@ -144,7 +148,7 @@ export function JobComments({ jobId, anchorRef }: { jobId: string; anchorRef?: R
           </li>
         ))}
         {q.isSuccess && rows.length === 0 && (
-          <li className="text-[13px] text-muted">No comments yet. Be the first to ask the employer something.</li>
+          <li className="text-[13px] text-muted">{t("jobs.engagement.noCommentsYetBeThe")}</li>
         )}
       </ul>
     </section>

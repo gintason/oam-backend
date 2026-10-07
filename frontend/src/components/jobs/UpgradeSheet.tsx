@@ -5,6 +5,8 @@ import { jobsApi, type PlanKey } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
 import { useCurrency } from "../../currency/CurrencyContext";
 import { Button, ErrorNote } from "./ui";
+import { useTranslation } from "react-i18next";
+import { planLabel } from "../../services/jobsI18n";
 
 const SYMBOL: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
 
@@ -23,6 +25,7 @@ const REASON: Record<string, string> = {
 export default function UpgradeSheet({
   open, reason, onClose,
 }: { open: boolean; reason?: string; onClose: () => void }) {
+  const { t } = useTranslation();
   const pricing = useQuery({ queryKey: ["jobs-pricing"], queryFn: jobsApi.plans, enabled: open });
   const { currency } = useCurrency();
   const supported = pricing.data?.supported_currencies ?? ["NGN"];
@@ -41,7 +44,7 @@ export default function UpgradeSheet({
   const checkout = useMutation({
     mutationFn: (body: Parameters<typeof jobsApi.checkout>[0]) => jobsApi.checkout({ ...body, currency: ccy }),
     onSuccess: (p) => { window.location.href = p.authorization_url; },
-    onError: (err) => setError(apiErrorMessage(err, "Couldn't start the payment.")),
+    onError: (err) => setError(apiErrorMessage(err, t("jobs.upgradeSheet.couldnTStartThePayment"))),
   });
 
   if (!open) return null;
@@ -59,16 +62,16 @@ export default function UpgradeSheet({
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h2 id="upgrade-title" className="font-display text-[19px] font-semibold text-ink">Upgrade to keep hiring</h2>
-            <p className="mt-1 text-[13.5px] text-muted">{REASON[reason ?? ""] ?? "Choose a plan that fits your hiring."}</p>
+            <h2 id="upgrade-title" className="font-display text-[19px] font-semibold text-ink">{t("jobs.upgradeSheet.upgradeToKeepHiring")}</h2>
+            <p className="mt-1 text-[13.5px] text-muted">{reason && REASON[reason] ? t(`jobs.upgradeSheet.reason.${reason}`, { defaultValue: REASON[reason] }) : t("jobs.upgradeSheet.chooseAPlanThatFits")}</p>
           </div>
-          <button onClick={onClose} className="rounded-lg p-1.5 text-muted hover:bg-mist hover:text-ink" aria-label="Close">
+          <button onClick={onClose} className="rounded-lg p-1.5 text-muted hover:bg-mist hover:text-ink" aria-label={t("jobs.upgradeSheet.close")}>
             <X size={18} />
           </button>
         </div>
 
         {supported.length > 1 && (
-          <div className="mt-4 flex gap-1.5" role="radiogroup" aria-label="Currency">
+          <div className="mt-4 flex gap-1.5" role="radiogroup" aria-label={t("jobs.upgradeSheet.currency")}>
             {supported.map((c) => (
               <button
                 key={c}
@@ -86,21 +89,21 @@ export default function UpgradeSheet({
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {paid.map((p) => (
             <div key={p.key} className={`flex flex-col rounded-xl border p-4 ${p.key === "pro" ? "border-brand-green/40 bg-brand-green/[0.03]" : "border-hairline"}`}>
-              <p className="font-display text-[16px] font-semibold text-ink">{p.label}</p>
+              <p className="font-display text-[16px] font-semibold text-ink">{planLabel(p.key, p.label)}</p>
               <p className="mt-1 text-[22px] font-bold text-ink tabular">
                 {sym}{Number(p.prices[ccy] ?? 0).toLocaleString()}
-                <span className="text-[13px] font-medium text-muted"> / {pricing.data?.period_days ?? 30} days</span>
+                <span className="text-[13px] font-medium text-muted">{" "}{t("jobs.upgradeSheet.perDays", { days: pricing.data?.period_days ?? 30 })}</span>
               </p>
               <ul className="mt-3 flex-1 space-y-1.5 text-[13px] text-ink">
-                <Perk>{p.active_job_limit == null ? "Unlimited active jobs" : `${p.active_job_limit} active jobs`}</Perk>
-                <Perk>{p.featured_slots} featured listing{p.featured_slots === 1 ? "" : "s"}</Perk>
+                <Perk>{p.active_job_limit == null ? t("jobs.upgradeSheet.unlimitedActiveJobs") : t("jobs.upgradeSheet.activeJobs", { count: p.active_job_limit })}</Perk>
+                <Perk>{t("jobs.upgradeSheet.featuredListings", { count: p.featured_slots })}</Perk>
                 <Perk>
                   {p.candidate_views_per_month == null
-                    ? "Unlimited candidate search"
-                    : `Candidate search · ${p.candidate_views_per_month} profiles/mo`}
+                    ? t("jobs.upgradeSheet.unlimitedCandidateSearch")
+                    : t("jobs.upgradeSheet.candidateSearchCandidateViewsPer", { candidate_views_per_month: p.candidate_views_per_month })}
                 </Perk>
-                {p.candidate_direct_message && <Perk>Message any candidate</Perk>}
-                <Perk>Analytics & smart matching</Perk>
+                {p.candidate_direct_message && <Perk>{t("jobs.upgradeSheet.messageAnyCandidate")}</Perk>}
+                <Perk>{t("jobs.upgradeSheet.analyticsSmartMatching")}</Perk>
               </ul>
               <Button
                 className="mt-4 w-full"
@@ -108,7 +111,7 @@ export default function UpgradeSheet({
                 loading={checkout.isPending && checkout.variables?.plan === p.key}
                 onClick={() => checkout.mutate({ purpose: "plan", plan: p.key as PlanKey })}
               >
-                Choose {p.label}
+                {t("jobs.upgradeSheet.chooseLabel", { label: planLabel(p.key, p.label) })}
               </Button>
             </div>
           ))}
@@ -117,9 +120,9 @@ export default function UpgradeSheet({
         {(reason === "job_limit_reached" || !reason) && pricing.data && (
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-hairline bg-mist p-4">
             <div>
-              <p className="flex items-center gap-1.5 text-[14px] font-semibold text-ink"><Zap size={15} /> Just one more job?</p>
+              <p className="flex items-center gap-1.5 text-[14px] font-semibold text-ink"><Zap size={15} />{" "}{t("jobs.upgradeSheet.justOneMoreJob")}</p>
               <p className="text-[12.5px] text-muted">
-                A single job post: {sym}{Number(pricing.data.job_credit.prices[ccy] ?? 0).toLocaleString()} · live for {pricing.data.job_credit.days} days
+                {t("jobs.upgradeSheet.singleJobPost", { sym, amount: Number(pricing.data.job_credit.prices[ccy] ?? 0).toLocaleString(), days: pricing.data.job_credit.days })}
               </p>
             </div>
             <Button
@@ -127,12 +130,12 @@ export default function UpgradeSheet({
               loading={checkout.isPending && checkout.variables?.purpose === "job_credit"}
               onClick={() => checkout.mutate({ purpose: "job_credit", quantity: 1 })}
             >
-              Buy 1 job post
+              {t("jobs.upgradeSheet.buy1JobPost")}
             </Button>
           </div>
         )}
 
-        <p className="mt-3 flex items-center justify-center gap-1.5 text-[12px] text-muted"><Lock size={12} /> Secure payment by Flutterwave · card, bank transfer or USSD</p>
+        <p className="mt-3 flex items-center justify-center gap-1.5 text-[12px] text-muted"><Lock size={12} />{" "}{t("jobs.upgradeSheet.securePaymentByFlutterwaveCard")}</p>
         <div className="mt-3"><ErrorNote>{error}</ErrorNote></div>
       </div>
     </div>

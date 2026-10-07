@@ -13,6 +13,8 @@ import {
 } from "../../services/jobs";
 import { apiErrorMessage } from "../../lib/api";
 import { useUserScope } from "../../auth/useUserScope";
+import { useTranslation } from "react-i18next";
+import { useJobsMeta } from "../../services/jobsI18n";
 
 const STEPS = ["Basics", "Description", "Location & pay", "Applications", "Review"] as const;
 
@@ -34,6 +36,7 @@ const BLANK: JobDraft = {
 
 /** /jobs/employer/post  and  /jobs/employer/jobs/:id/edit */
 export default function PostJobWizard() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const scope = useUserScope();
   const qc = useQueryClient();
@@ -45,7 +48,7 @@ export default function PostJobWizard() {
   const [error, setError] = useState<string>();
   const [upgrade, setUpgrade] = useState<string | null>(null);
 
-  const meta = useQuery({ queryKey: ["jobs-meta"], queryFn: jobsApi.meta, staleTime: 3600_000 });
+  const meta = useJobsMeta();
   const existing = useQuery({ queryKey: ["jobs", scope, "owned", id], queryFn: () => jobsApi.ownedJob(id!), enabled: Boolean(id) });
   const status = existing.data?.status;
 
@@ -68,7 +71,7 @@ export default function PostJobWizard() {
     setErrors(fe);
     const first = Object.keys(fe).map((k) => FIELD_STEP[k]).filter((n) => n != null).sort()[0];
     if (first != null) setStep(first);
-    setError(apiErrorMessage(err, "Please check the highlighted fields."));
+    setError(apiErrorMessage(err, t("jobs.postJobWizard.pleaseCheckTheHighlightedFields")));
   }
 
   async function persist() {
@@ -101,11 +104,11 @@ export default function PostJobWizard() {
   function next() {
     setError(undefined);
     const e: Record<string, string> = {};
-    if (step === 0 && (draft.title ?? "").trim().length < 4) e.title = "Add a job title.";
-    if (step === 1 && (draft.description ?? "").trim().length < 50) e.description = "Describe the role in at least 50 characters.";
-    if (step === 2 && draft.location_type !== "remote" && !draft.location && !draft.country) e.location = "Where is the job?";
-    if (step === 2 && draft.salary_min && draft.salary_max && Number(draft.salary_min) > Number(draft.salary_max)) e.salary_max = "Must be at least the minimum.";
-    if (step === 3 && draft.apply_method === "external" && !draft.external_apply_url) e.external_apply_url = "Add the application link.";
+    if (step === 0 && (draft.title ?? "").trim().length < 4) e.title = t("jobs.postJobWizard.addAJobTitle");
+    if (step === 1 && (draft.description ?? "").trim().length < 50) e.description = t("jobs.postJobWizard.describeTheRoleInAt");
+    if (step === 2 && draft.location_type !== "remote" && !draft.location && !draft.country) e.location = t("jobs.postJobWizard.whereIsTheJob");
+    if (step === 2 && draft.salary_min && draft.salary_max && Number(draft.salary_min) > Number(draft.salary_max)) e.salary_max = t("jobs.postJobWizard.mustBeAtLeastThe");
+    if (step === 3 && draft.apply_method === "external" && !draft.external_apply_url) e.external_apply_url = t("jobs.postJobWizard.addTheApplicationLink");
     setErrors(e);
     if (!Object.keys(e).length) setStep((s) => Math.min(s + 1, STEPS.length - 1));
   }
@@ -116,10 +119,10 @@ export default function PostJobWizard() {
 
   return (
     <JobsShell side="employer">
-      <h1 className="font-display text-[22px] font-semibold text-ink">{id ? "Edit job" : "Post a job"}</h1>
+      <h1 className="font-display text-[22px] font-semibold text-ink">{id ? t("jobs.postJobWizard.editJob") : t("jobs.postJobWizard.postAJob")}</h1>
 
       {/* stepper */}
-      <ol className="mt-4 flex gap-1.5 overflow-x-auto" aria-label="Steps">
+      <ol className="mt-4 flex gap-1.5 overflow-x-auto" aria-label={t("jobs.postJobWizard.steps")}>
         {STEPS.map((s, i) => (
           <li key={s} className="flex-1">
             <button type="button" onClick={() => i < step && setStep(i)} disabled={i > step}
@@ -138,20 +141,20 @@ export default function PostJobWizard() {
         {step === 0 && (
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <Field label="Job title *" htmlFor="title" error={errors.title} hint="Be specific: “Senior Accountant”, not “Accountant needed urgently”.">
+              <Field label={t("jobs.postJobWizard.jobTitle")} htmlFor="title" error={errors.title} hint={t("jobs.postJobWizard.beSpecificSeniorAccountantNot")}>
                 <TextInput id="title" autoFocus value={draft.title} onChange={(e) => set("title", e.target.value)} maxLength={160} />
               </Field>
             </div>
-            <Field label="Category" htmlFor="cat">
+            <Field label={t("jobs.postJobWizard.category")} htmlFor="cat">
               <Select id="cat" value={draft.category} onChange={(e) => set("category", e.target.value)}>
                 {(c?.categories ?? []).map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
               </Select>
             </Field>
-            <Field label="Openings" htmlFor="openings">
+            <Field label={t("jobs.postJobWizard.openings")} htmlFor="openings">
               <TextInput id="openings" inputMode="numeric" value={String(draft.openings ?? 1)} onChange={(e) => set("openings", Math.max(1, Number(e.target.value.replace(/\D/g, "")) || 1))} />
             </Field>
             <div className="sm:col-span-2">
-              <p className="mb-2 text-[12.5px] font-semibold text-ink">Job type</p>
+              <p className="mb-2 text-[12.5px] font-semibold text-ink">{t("jobs.postJobWizard.jobType")}</p>
               <div className="flex flex-wrap gap-1.5">
                 {(c?.employment_types ?? []).map((o) => (
                   <Chip key={o.value} active={draft.employment_type === o.value} onClick={() => set("employment_type", o.value as JobDraft["employment_type"])}>{o.label}</Chip>
@@ -159,7 +162,7 @@ export default function PostJobWizard() {
               </div>
             </div>
             <div className="sm:col-span-2">
-              <p className="mb-2 text-[12.5px] font-semibold text-ink">Experience level</p>
+              <p className="mb-2 text-[12.5px] font-semibold text-ink">{t("jobs.postJobWizard.experienceLevel")}</p>
               <div className="flex flex-wrap gap-1.5">
                 {(c?.experience_levels ?? []).map((o) => (
                   <Chip key={o.value} active={draft.experience_level === o.value} onClick={() => set("experience_level", o.value as JobDraft["experience_level"])}>{o.label}</Chip>
@@ -171,20 +174,20 @@ export default function PostJobWizard() {
 
         {step === 1 && (
           <div className="space-y-4">
-            <Field label="About the role *" htmlFor="desc" error={errors.description}
-                   hint={`${(draft.description ?? "").trim().length}/50 characters minimum`}>
+            <Field label={t("jobs.postJobWizard.aboutTheRole")} htmlFor="desc" error={errors.description}
+                   hint={t("jobs.postJobWizard.charsMinimum", { n: (draft.description ?? "").trim().length })}>
               <TextArea id="desc" rows={7} value={draft.description} onChange={(e) => set("description", e.target.value)} />
             </Field>
-            <Field label="Responsibilities" htmlFor="resp" hint="One per line works well.">
+            <Field label={t("jobs.postJobWizard.responsibilities")} htmlFor="resp" hint={t("jobs.postJobWizard.onePerLineWorksWell")}>
               <TextArea id="resp" rows={4} value={draft.responsibilities} onChange={(e) => set("responsibilities", e.target.value)} />
             </Field>
-            <Field label="Requirements" htmlFor="req">
+            <Field label={t("jobs.postJobWizard.requirements")} htmlFor="req">
               <TextArea id="req" rows={4} value={draft.requirements} onChange={(e) => set("requirements", e.target.value)} />
             </Field>
-            <Field label="Benefits" htmlFor="ben">
+            <Field label={t("jobs.postJobWizard.benefits")} htmlFor="ben">
               <TextArea id="ben" rows={3} value={draft.benefits} onChange={(e) => set("benefits", e.target.value)} />
             </Field>
-            <Field label="Skills" htmlFor="skills" hint="Used to match candidates — add the 3–8 that matter most." error={errors.skills}>
+            <Field label={t("jobs.postJobWizard.skills")} htmlFor="skills" hint={t("jobs.postJobWizard.usedToMatchCandidatesAdd")} error={errors.skills}>
               <SkillInput id="skills" value={draft.skills ?? []} onChange={(v) => set("skills", v)} />
             </Field>
           </div>
@@ -193,41 +196,41 @@ export default function PostJobWizard() {
         {step === 2 && (
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <p className="mb-2 text-[12.5px] font-semibold text-ink">Work setting</p>
+              <p className="mb-2 text-[12.5px] font-semibold text-ink">{t("jobs.postJobWizard.workSetting")}</p>
               <div className="flex flex-wrap gap-1.5">
                 {(c?.location_types ?? []).map((o) => (
                   <Chip key={o.value} active={draft.location_type === o.value} onClick={() => set("location_type", o.value as JobDraft["location_type"])}>{o.label}</Chip>
                 ))}
               </div>
             </div>
-            <Field label={draft.location_type === "remote" ? "City (optional)" : "City *"} htmlFor="loc" error={errors.location}>
-              <TextInput id="loc" value={draft.location} onChange={(e) => set("location", e.target.value)} placeholder="e.g. Lagos" />
+            <Field label={draft.location_type === "remote" ? t("jobs.postJobWizard.cityOptional") : t("jobs.postJobWizard.city")} htmlFor="loc" error={errors.location}>
+              <TextInput id="loc" value={draft.location} onChange={(e) => set("location", e.target.value)} placeholder={t("jobs.postJobWizard.eGLagos")} />
             </Field>
-            <Field label="Country code" htmlFor="country" hint="e.g. NG">
+            <Field label={t("jobs.postJobWizard.countryCode")} htmlFor="country" hint={t("jobs.postJobWizard.eGNg")}>
               <TextInput id="country" maxLength={2} value={draft.country} onChange={(e) => set("country", e.target.value.toUpperCase())} />
             </Field>
-            <Field label="Minimum years of experience" htmlFor="yrs">
+            <Field label={t("jobs.postJobWizard.minimumYearsOfExperience")} htmlFor="yrs">
               <TextInput id="yrs" inputMode="numeric" value={String(draft.min_years_experience ?? 0)} onChange={(e) => set("min_years_experience", Number(e.target.value.replace(/\D/g, "")) || 0)} />
             </Field>
             <div />
-            <Field label="Salary from" htmlFor="smin" error={errors.salary_min}>
+            <Field label={t("jobs.postJobWizard.salaryFrom")} htmlFor="smin" error={errors.salary_min}>
               <TextInput id="smin" inputMode="numeric" value={draft.salary_min ?? ""} onChange={(e) => set("salary_min", e.target.value.replace(/[^\d.]/g, "") || null)} />
             </Field>
-            <Field label="Salary to" htmlFor="smax" error={errors.salary_max}>
+            <Field label={t("jobs.postJobWizard.salaryTo")} htmlFor="smax" error={errors.salary_max}>
               <TextInput id="smax" inputMode="numeric" value={draft.salary_max ?? ""} onChange={(e) => set("salary_max", e.target.value.replace(/[^\d.]/g, "") || null)} />
             </Field>
-            <Field label="Currency" htmlFor="sccy">
+            <Field label={t("jobs.postJobWizard.currency")} htmlFor="sccy">
               <Select id="sccy" value={draft.salary_currency} onChange={(e) => set("salary_currency", e.target.value)}>
                 {["NGN", "USD", "GBP", "EUR"].map((x) => <option key={x}>{x}</option>)}
               </Select>
             </Field>
-            <Field label="Per" htmlFor="sper">
+            <Field label={t("jobs.postJobWizard.per")} htmlFor="sper">
               <Select id="sper" value={draft.salary_period} onChange={(e) => set("salary_period", e.target.value as JobDraft["salary_period"])}>
                 {(c?.salary_periods ?? []).map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
               </Select>
             </Field>
             <div className="sm:col-span-2">
-              <Toggle checked={Boolean(draft.salary_visible)} onChange={(v) => set("salary_visible", v)} label="Show salary on the listing (listings with pay get more applicants)" />
+              <Toggle checked={Boolean(draft.salary_visible)} onChange={(v) => set("salary_visible", v)} label={t("jobs.postJobWizard.showSalaryOnTheListing")} />
             </div>
           </div>
         )}
@@ -235,44 +238,44 @@ export default function PostJobWizard() {
         {step === 3 && (
           <div className="space-y-5">
             <div>
-              <p className="mb-2 text-[12.5px] font-semibold text-ink">How should people apply?</p>
+              <p className="mb-2 text-[12.5px] font-semibold text-ink">{t("jobs.postJobWizard.howShouldPeopleApply")}</p>
               <div className="flex flex-wrap gap-1.5">
-                <Chip active={draft.apply_method === "in_app"} onClick={() => set("apply_method", "in_app")}>On OAM (recommended)</Chip>
-                <Chip active={draft.apply_method === "external"} onClick={() => set("apply_method", "external")}>On my website</Chip>
+                <Chip active={draft.apply_method === "in_app"} onClick={() => set("apply_method", "in_app")}>{t("jobs.postJobWizard.onOamRecommended")}</Chip>
+                <Chip active={draft.apply_method === "external"} onClick={() => set("apply_method", "external")}>{t("jobs.postJobWizard.onMyWebsite")}</Chip>
               </div>
               <p className="mt-2 text-[12.5px] text-muted">
                 {draft.apply_method === "in_app"
-                  ? "Candidates apply in one tap with their OAM CV; you manage them on your pipeline board."
-                  : "Candidates are sent to your link. You won't get the pipeline, matching or chat."}
+                  ? t("jobs.postJobWizard.candidatesApplyInOneTap")
+                  : t("jobs.postJobWizard.candidatesAreSentToYour")}
               </p>
             </div>
             {draft.apply_method === "external" && (
-              <Field label="Application link *" htmlFor="ext" error={errors.external_apply_url}>
+              <Field label={t("jobs.postJobWizard.applicationLink")} htmlFor="ext" error={errors.external_apply_url}>
                 <TextInput id="ext" type="url" placeholder="https://" value={draft.external_apply_url} onChange={(e) => set("external_apply_url", e.target.value)} />
               </Field>
             )}
             {draft.apply_method === "in_app" && (
               <div>
                 <div className="mb-2 flex items-center justify-between">
-                  <p className="text-[12.5px] font-semibold text-ink">Screening questions (optional, up to 10)</p>
+                  <p className="text-[12.5px] font-semibold text-ink">{t("jobs.postJobWizard.screeningQuestionsOptionalUpTo")}</p>
                   <Button size="sm" variant="ghost" disabled={questions.length >= 10}
                           onClick={() => set("screening_questions", [...questions, { id: String(Date.now()), question: "", required: false }])}>
-                    <Plus size={14} /> Add question
+                    <Plus size={14} />{" "}{t("jobs.postJobWizard.addQuestion")}
                   </Button>
                 </div>
                 <div className="space-y-2">
                   {questions.map((q, i) => (
                     <div key={q.id} className="flex flex-wrap items-center gap-2 rounded-xl border border-hairline p-2.5">
-                      <TextInput className="min-w-[12rem] flex-1" placeholder="e.g. Do you have a valid driver's licence?"
-                                 value={q.question} aria-label={`Question ${i + 1}`}
+                      <TextInput className="min-w-[12rem] flex-1" placeholder={t("jobs.postJobWizard.eGDoYouHave")}
+                                 value={q.question} aria-label={t("jobs.postJobWizard.questionN", { n: i + 1 })}
                                  onChange={(e) => set("screening_questions", questions.map((x, j) => j === i ? { ...x, question: e.target.value } : x))} />
                       <label className="flex items-center gap-1.5 text-[12.5px] text-ink">
                         <input type="checkbox" checked={q.required}
                                onChange={(e) => set("screening_questions", questions.map((x, j) => j === i ? { ...x, required: e.target.checked } : x))} />
-                        Required
+                        {t("jobs.postJobWizard.required")}
                       </label>
                       <button type="button" onClick={() => set("screening_questions", questions.filter((_, j) => j !== i) as ScreeningQuestion[])}
-                              className="rounded-lg p-1.5 text-muted hover:bg-mist hover:text-danger" aria-label="Remove question">
+                              className="rounded-lg p-1.5 text-muted hover:bg-mist hover:text-danger" aria-label={t("jobs.postJobWizard.removeQuestion")}>
                         <Trash2 size={15} />
                       </button>
                     </div>
@@ -285,8 +288,8 @@ export default function PostJobWizard() {
 
         {step === 4 && (
           <div>
-            <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">Preview</p>
-            <h2 className="mt-1 font-display text-[20px] font-semibold text-ink">{draft.title || "Untitled job"}</h2>
+            <p className="text-[12px] font-semibold uppercase tracking-wide text-muted">{t("jobs.postJobWizard.preview")}</p>
+            <h2 className="mt-1 font-display text-[20px] font-semibold text-ink">{draft.title || t("jobs.postJobWizard.untitledJob")}</h2>
             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-muted">
               <span className="inline-flex items-center gap-1"><MapPin size={14} /> {LOCATION_LABEL[draft.location_type ?? "on_site"]}{draft.location ? ` · ${draft.location}` : ""}</span>
               <span className="inline-flex items-center gap-1"><Briefcase size={14} /> {EMPLOYMENT_LABEL[draft.employment_type ?? "full_time"]}</span>
@@ -301,7 +304,7 @@ export default function PostJobWizard() {
               <div className="mt-3 flex flex-wrap gap-1.5">{draft.skills!.map((s) => <span key={s} className="rounded-md bg-mist px-2 py-1 text-[12px] text-ink">{s}</span>)}</div>
             )}
             <p className="mt-5 rounded-xl bg-mist p-3 text-[12.5px] text-muted">
-              Listings are screened automatically. Anything asking candidates for money is removed — never charge applicants.
+              {t("jobs.postJobWizard.listingsAreScreenedAutomaticallyAnything")}
             </p>
           </div>
         )}
@@ -311,17 +314,17 @@ export default function PostJobWizard() {
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
         <Button variant="ghost" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0}>
-          <ChevronLeft size={15} /> Back
+          <ChevronLeft size={15} />{" "}{t("jobs.postJobWizard.back")}
         </Button>
         <div className="flex gap-2">
           {!isLive && (
-            <Button variant="secondary" onClick={() => saveDraft.mutate()} loading={saveDraft.isPending}>Save draft</Button>
+            <Button variant="secondary" onClick={() => saveDraft.mutate()} loading={saveDraft.isPending}>{t("jobs.postJobWizard.saveDraft")}</Button>
           )}
           {step < STEPS.length - 1 ? (
-            <Button onClick={next}>Next <ChevronRight size={15} /></Button>
+            <Button onClick={next}>{t("jobs.postJobWizard.next")}{" "}<ChevronRight size={15} /></Button>
           ) : (
             <Button onClick={() => publish.mutate()} loading={publish.isPending}>
-              {isLive ? "Save changes" : "Publish job"}
+              {isLive ? t("jobs.postJobWizard.saveChanges") : t("jobs.postJobWizard.publishJob")}
             </Button>
           )}
         </div>

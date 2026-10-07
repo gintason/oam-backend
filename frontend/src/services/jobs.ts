@@ -1,5 +1,6 @@
 import type { AxiosError } from "axios";
 import { api } from "../lib/api";
+import i18n from "i18next";
 import { uploadsApi, uploadToCloudinary, type UploadPurpose, type UploadResult } from "./uploads";
 
 /**
@@ -698,7 +699,16 @@ export const jobsApi = {
 
 // ------------------------------------------------------------- display ---
 
-export const STATUS_LABEL: Record<ApplicationStatus, string> = {
+/** Label table read in the current language at each access (keys under `prefix`). */
+function localized<K extends string>(prefix: string, en: Record<K, string>): Record<K, string> {
+  const out = {} as Record<K, string>;
+  for (const k of Object.keys(en) as K[]) {
+    Object.defineProperty(out, k, { enumerable: true, get: () => i18n.t(`${prefix}.${k}`, { defaultValue: en[k] }) });
+  }
+  return out;
+}
+
+export const STATUS_LABEL: Record<ApplicationStatus, string> = localized("jobs.appStatus", {
   applied: "Applied",
   under_review: "Under review",
   shortlisted: "Shortlisted",
@@ -707,9 +717,9 @@ export const STATUS_LABEL: Record<ApplicationStatus, string> = {
   hired: "Hired",
   rejected: "Not selected",
   withdrawn: "Withdrawn",
-};
+});
 
-export const JOB_STATUS_LABEL: Record<JobStatus, string> = {
+export const JOB_STATUS_LABEL: Record<JobStatus, string> = localized("jobs.jobStatus", {
   draft: "Draft",
   pending_review: "In review",
   active: "Live",
@@ -717,23 +727,23 @@ export const JOB_STATUS_LABEL: Record<JobStatus, string> = {
   closed: "Closed",
   expired: "Expired",
   rejected: "Rejected",
-};
+});
 
-export const LOCATION_LABEL: Record<LocationType, string> = {
+export const LOCATION_LABEL: Record<LocationType, string> = localized("jobs.location", {
   remote: "Remote", hybrid: "Hybrid", on_site: "On-site",
-};
+});
 
-export const EMPLOYMENT_LABEL: Record<EmploymentType, string> = {
+export const EMPLOYMENT_LABEL: Record<EmploymentType, string> = localized("jobs.employment", {
   full_time: "Full-time", part_time: "Part-time", contract: "Contract",
   temporary: "Temporary", internship: "Internship", freelance: "Freelance",
-};
+});
 
-export const LEVEL_LABEL: Record<ExperienceLevel, string> = {
+export const LEVEL_LABEL: Record<ExperienceLevel, string> = localized("jobs.level", {
   entry: "Entry level", mid: "Mid level", senior: "Senior", lead: "Lead / Manager",
   executive: "Executive",
-};
+});
 
-const PERIOD_SHORT: Record<SalaryPeriod, string> = { hour: "/hr", day: "/day", month: "/mo", year: "/yr" };
+const PERIOD_SHORT: Record<SalaryPeriod, string> = localized("jobs.periodShort", { hour: "/hr", day: "/day", month: "/mo", year: "/yr" });
 const SYMBOL: Record<string, string> = { NGN: "₦", USD: "$", GBP: "£", EUR: "€" };
 
 function compact(n: number): string {
@@ -756,9 +766,9 @@ export function formatSalary(s: Salary): string | null {
 export function timeAgo(iso: string | null): string {
   if (!iso) return "";
   const s = (Date.now() - new Date(iso).getTime()) / 1000;
-  if (s < 60) return "just now";
-  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
-  if (s < 86400) return `${Math.floor(s / 3600)}h ago`;
-  if (s < 86400 * 30) return `${Math.floor(s / 86400)}d ago`;
-  return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  if (s < 60) return i18n.t("jobs.time.justNow", { defaultValue: "just now" });
+  if (s < 3600) return i18n.t("jobs.time.minutesAgo", { n: Math.floor(s / 60), defaultValue: "{{n}}m ago" });
+  if (s < 86400) return i18n.t("jobs.time.hoursAgo", { n: Math.floor(s / 3600), defaultValue: "{{n}}h ago" });
+  if (s < 86400 * 30) return i18n.t("jobs.time.daysAgo", { n: Math.floor(s / 86400), defaultValue: "{{n}}d ago" });
+  return new Date(iso).toLocaleDateString(i18n.language || undefined, { day: "numeric", month: "short" });
 }

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Table2, LineChart } from "lucide-react";
 import { STATUS_LABEL, type ApplicationStatus } from "../../services/jobs";
+import { useTranslation } from "react-i18next";
 
 /**
  * Recruitment charts, hand-rolled in SVG (no chart library in this app).
@@ -35,14 +36,15 @@ function niceMax(v: number): number {
 }
 
 function ViewToggle({ table, onChange }: { table: boolean; onChange: (t: boolean) => void }) {
+  const { t: tr } = useTranslation();
   return (
     <button
       type="button"
       onClick={() => onChange(!table)}
       className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[12px] font-medium text-muted hover:bg-mist hover:text-ink"
-      aria-label={table ? "Show chart" : "Show table"}
+      aria-label={table ? tr("jobs.charts.showChart") : tr("jobs.charts.showTable")}
     >
-      {table ? <LineChart size={13} /> : <Table2 size={13} />} {table ? "Chart" : "Table"}
+      {table ? <LineChart size={13} /> : <Table2 size={13} />} {table ? tr("jobs.charts.chart") : tr("jobs.charts.table")}
     </button>
   );
 }
@@ -69,6 +71,7 @@ export function ChartCard({
 /* ------------------------------------------------------------------ */
 
 export function ApplicationsChart({ series }: { series: { date: string; applications: number }[] }) {
+  const { t: tr } = useTranslation();
   const [ref, width] = useWidth<HTMLDivElement>();
   const [hover, setHover] = useState<number | null>(null);
   const [table, setTable] = useState(false);
@@ -99,12 +102,12 @@ export function ApplicationsChart({ series }: { series: { date: string; applicat
   }
 
   return (
-    <ChartCard title="Applications" subtitle={`${total.toLocaleString()} in the last ${series.length - 1} days`}
+    <ChartCard title={tr("jobs.charts.applications")} subtitle={tr("jobs.charts.totalInLastDays", { total: total.toLocaleString(), days: series.length - 1 })}
                table={table} onToggle={setTable}>
       {table ? (
         <div className="max-h-[220px] overflow-y-auto">
           <table className="w-full text-[13px]">
-            <thead><tr className="text-left text-muted"><th className="py-1 font-medium">Date</th><th className="py-1 text-right font-medium">Applications</th></tr></thead>
+            <thead><tr className="text-left text-muted"><th className="py-1 font-medium">{tr("jobs.charts.date")}</th><th className="py-1 text-right font-medium">{tr("jobs.charts.applications")}</th></tr></thead>
             <tbody>
               {[...series].reverse().map((s) => (
                 <tr key={s.date} className="border-t border-hairline">
@@ -117,7 +120,7 @@ export function ApplicationsChart({ series }: { series: { date: string; applicat
         </div>
       ) : (
         <div ref={ref} className="relative w-full min-w-0">
-          <svg width={width} height={height} className="block" role="img" aria-label={`Applications per day, ${total} total`}>
+          <svg width={width} height={height} className="block" role="img" aria-label={tr("jobs.charts.applicationsPerDayTotalTotal", { total })}>
             {ticks.map((t) => (
               <g key={t}>
                 <line x1={pad.l} x2={width - pad.r} y1={y(t)} y2={y(t)} stroke={GRID} strokeWidth={1} />
@@ -153,7 +156,7 @@ export function ApplicationsChart({ series }: { series: { date: string; applicat
               style={{ left: Math.min(Math.max(pts[hover][0], 60), width - 60), top: 0 }}
             >
               <p className="text-muted">{fmtDay(series[hover].date)}</p>
-              <p className="font-semibold text-ink tabular">{series[hover].applications} applications</p>
+              <p className="font-semibold text-ink tabular">{tr("jobs.charts.applicationsCount", { count: series[hover].applications })}</p>
             </div>
           )}
         </div>
@@ -167,16 +170,17 @@ export function ApplicationsChart({ series }: { series: { date: string; applicat
 /* ------------------------------------------------------------------ */
 
 export function FunnelChart({ funnel }: { funnel: { status: ApplicationStatus; count: number }[] }) {
+  const { t: tr } = useTranslation();
   const [table, setTable] = useState(false);
   const [hover, setHover] = useState<number | null>(null);
   const max = Math.max(1, ...funnel.map((f) => f.count));
   const top = funnel[0]?.count || 0;
 
   return (
-    <ChartCard title="Hiring funnel" subtitle="Applications that reached each stage" table={table} onToggle={setTable}>
+    <ChartCard title={tr("jobs.charts.hiringFunnel")} subtitle={tr("jobs.charts.applicationsThatReachedEachStage")} table={table} onToggle={setTable}>
       {table ? (
         <table className="w-full text-[13px]">
-          <thead><tr className="text-left text-muted"><th className="py-1 font-medium">Stage</th><th className="py-1 text-right font-medium">Reached</th><th className="py-1 text-right font-medium">Of applied</th></tr></thead>
+          <thead><tr className="text-left text-muted"><th className="py-1 font-medium">{tr("jobs.charts.stage")}</th><th className="py-1 text-right font-medium">{tr("jobs.charts.reached")}</th><th className="py-1 text-right font-medium">{tr("jobs.charts.ofApplied")}</th></tr></thead>
           <tbody>
             {funnel.map((f) => (
               <tr key={f.status} className="border-t border-hairline">
@@ -212,7 +216,7 @@ export function FunnelChart({ funnel }: { funnel: { status: ApplicationStatus; c
                 </div>
                 {hover === i && prev != null && (
                   <span className="pointer-events-none absolute -top-7 left-[100px] z-10 rounded-md border border-hairline bg-paper px-2 py-1 text-[11.5px] text-ink shadow">
-                    {prev ? Math.round((100 * f.count) / prev) : 0}% moved on from {STATUS_LABEL[funnel[i - 1].status]}
+                    {tr("jobs.charts.movedOnFrom", { pct: prev ? Math.round((100 * f.count) / prev) : 0, stage: STATUS_LABEL[funnel[i - 1].status] })}
                   </span>
                 )}
               </li>
