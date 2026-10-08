@@ -44,7 +44,7 @@ export default function PostListing() {
 
   const catOptions = (categories.data ?? [])
     .filter((c) => !c.is_admin_only)
-    .map((c) => ({ value: c.slug, label: catLabel(t, c.slug, c.name) }));
+    .map((c) => ({ value: c.id, label: catLabel(t, c.slug, c.name) }));  // the API expects the category id
 
   const create = useMutation({
     mutationFn: () => marketplaceApi.create({ ...form, category: form.category }),
