@@ -100,7 +100,31 @@ class ListingDetailSerializer(_SocialFieldsMixin, serializers.ModelSerializer):
         return getattr(seller, "identifier", None) or str(obj.seller_id)
 
 
+class CategoryRefField(serializers.PrimaryKeyRelatedField):
+    """A category by id, or by slug ("phones") — older mobile builds send the slug."""
+
+    def to_internal_value(self, data):
+        if isinstance(data, str) and data and not _looks_like_uuid(data):
+            category = self.get_queryset().filter(slug=data).first()
+            if category is None:
+                self.fail("does_not_exist", pk_value=data)
+            return category
+        return super().to_internal_value(data)
+
+
+def _looks_like_uuid(value: str) -> bool:
+    import uuid
+    try:
+        uuid.UUID(value)
+        return True
+    except ValueError:
+        return False
+
+
 class ListingWriteSerializer(serializers.ModelSerializer):
+    category = CategoryRefField(
+        queryset=Category.objects.all(),
+        error_messages={"does_not_exist": "That category isn't available — pick one from the list."})
     images = serializers.ListField(
         child=serializers.URLField(), required=False, allow_empty=True, write_only=True)
     videos = serializers.ListField(
