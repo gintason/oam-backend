@@ -20,7 +20,7 @@ class PostListingCategoryTests(TestCase):
             "category": category, "title": "iPhone 18", "description": "Beautiful sleek phone in good condition",
             "price": "950000", "currency": "NGN", "condition": "used", "location": "Lagos",
             "contact_phone": "08030000000", "images": [], "videos": [],
-        }, format="json")
+        }, format="json", secure=True)
 
     def test_slug_is_accepted(self):
         r = self.post("phones")
