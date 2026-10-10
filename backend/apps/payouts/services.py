@@ -10,6 +10,7 @@ Same safety pattern as bills:
 """
 from __future__ import annotations
 
+import logging
 import uuid
 from decimal import Decimal
 
@@ -22,6 +23,25 @@ from apps.wallet.services import WalletService
 from .models import BankAccount, WithdrawalOrder
 
 PAYOUT_ACCOUNT = "payout:bank"     # counterpart the captured funds settle to
+
+logger = logging.getLogger("payouts")
+
+# Provider messages that mean the problem is on OAM's side of the gateway
+# (empty transfer balance, transfers not enabled, account restrictions) — not
+# anything the customer did. They see a calm message; the real reason is logged
+# and kept on the order for staff.
+_OPERATOR_SIDE = ("balance is not enough", "insufficient balance", "insufficient fund",
+                  "not enough", "third party payout", "starter business", "transfers are not",
+                  "transfer is not", "not enabled", "disabled", "otp")
+OPERATOR_SIDE_MESSAGE = ("Bank transfers are temporarily unavailable. Your money is safe in your "
+                         "OAM wallet — please try again later.")
+
+
+def _customer_reason(raw_reason: str) -> str:
+    low = raw_reason.lower()
+    if any(k in low for k in _OPERATOR_SIDE):
+        return OPERATOR_SIDE_MESSAGE
+    return f"Transfer failed: {raw_reason}" if raw_reason else "Transfer failed."
 
 # transfer status -> our terminal mapping
 _SUCCESS = {"success"}
@@ -154,8 +174,10 @@ class WithdrawalService:
                     WithdrawalService._release(o)
                     o.status = WithdrawalOrder.Status.FAILED
                     _raw = result.get("raw", {}) or {}
-                    _reason = str(_raw.get("error") or _raw.get("message") or "").strip()
-                    o.failure_reason = (f"Transfer failed: {_reason}" if _reason else "Transfer failed.")[:200]
+                    _reason = str(_raw.get("message") or _raw.get("error") or "").strip()
+                    o.failure_reason = _customer_reason(_reason)[:200]
+                    logger.error("withdrawal %s failed at %s: %s", o.reference, o.provider,
+                                 _raw.get("error") or _reason or "no reason given")
                 else:                                       # pending/otp/queued
                     o.status = WithdrawalOrder.Status.PROCESSING
             o.save(update_fields=["status", "provider", "provider_reference",

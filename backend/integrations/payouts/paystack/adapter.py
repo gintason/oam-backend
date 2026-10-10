@@ -78,8 +78,13 @@ class PaystackPayouts(BaseProviderClient):
                 "reference": reference, "reason": reason or "Withdrawal",
             })
         except ProviderValidationError as exc:
-            # business failure (e.g. insufficient Paystack balance) -> mark failed, not crash
-            return {"status": "failed", "provider_reference": "", "raw": {"error": str(exc)}}
+            # business failure (e.g. insufficient Paystack balance) -> mark failed, not crash.
+            # Keep Paystack's own explanation — "rejected (400)" alone can't be acted on.
+            detail = exc.raw if isinstance(exc.raw, dict) else {}
+            message = str(detail.get("message") or "").strip()
+            return {"status": "failed", "provider_reference": "",
+                    "raw": {"error": f"{exc}: {message}" if message else str(exc),
+                            "message": message, "code": detail.get("code", ""), "paystack": detail}}
         if not body.get("status"):
             return {"status": "failed", "provider_reference": "", "raw": body}
         d = body.get("data", {}) or {}
