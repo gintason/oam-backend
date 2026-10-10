@@ -384,6 +384,12 @@ EMAIL_BACKEND = env(
 
 PAYSTACK_CALLBACK_URL = env("PAYSTACK_CALLBACK_URL", default="")
 PAYSTACK_DEPOSIT_SUBACCOUNT_CODE = env("PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", default="")
+# Customer deposits always stay in the MAIN Paystack balance — withdrawals are paid
+# from it. Only payments that are purely OAM income (seller/artisan upgrades, job
+# plans) settle to this subaccount. Falls back to the old deposit subaccount code,
+# so existing Render settings keep working.
+PAYSTACK_REVENUE_SUBACCOUNT_CODE = env("PAYSTACK_REVENUE_SUBACCOUNT_CODE",
+                                       default=PAYSTACK_DEPOSIT_SUBACCOUNT_CODE)
 FLUTTERWAVE_REDIRECT_URL = env("FLUTTERWAVE_REDIRECT_URL", default=PAYSTACK_CALLBACK_URL)
 
 # Gateway used ONLY for Marketplace/Artisan listing-upgrade payments (Pro/

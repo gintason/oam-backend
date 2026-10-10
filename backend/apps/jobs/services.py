@@ -51,6 +51,12 @@ from .realtime.events import broadcast
 logger = logging.getLogger(__name__)
 
 
+def _revenue_split(gateway):
+    """Pure-OAM-income payments settle to the Paystack revenue subaccount."""
+    from apps.payments.services import revenue_split
+    return revenue_split(gateway)
+
+
 class JobsError(Exception):
     """A user-facing rule violation. `code` lets clients react (e.g. show upgrade)."""
 
@@ -862,7 +868,7 @@ class PaymentService:
                 metadata={"purpose": f"jobs_{purpose}", "plan": plan, "user": str(user.id),
                           "employer": str(employer.id),
                           "name": _display_name(user), "phone": getattr(user, "phone", "") or ""},
-                **extra,
+                **extra, **_revenue_split(gateway),
             )
         except ProviderError as exc:
             raise JobsError(f"Could not start payment: {exc}", status=502)

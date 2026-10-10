@@ -56,6 +56,19 @@ def paystack_gross_up(net: Decimal) -> Decimal:
     return gross.quantize(Decimal("0.01"), rounding=ROUND_CEILING)
 
 
+def revenue_split(gateway) -> dict:
+    """
+    Extra charge arguments for a payment that is purely OAM income (seller and
+    artisan upgrades, job plans): on Paystack it settles in full to the revenue
+    subaccount, which also bears the Paystack fee. Empty for any other gateway,
+    or when no revenue subaccount is configured.
+    """
+    code = getattr(settings, "PAYSTACK_REVENUE_SUBACCOUNT_CODE", "") or ""
+    if not code or getattr(gateway, "provider_key", "") != "paystack":
+        return {}
+    return {"subaccount": code, "transaction_charge": 0, "bearer": "subaccount"}
+
+
 class FundingService:
     @staticmethod
     @transaction.atomic
@@ -100,17 +113,11 @@ class FundingService:
         )
 
         # The customer pays EXACTLY the amount they entered — no Paystack-fee gross-up.
-        # The deposit still settles to the reserve subaccount, but OAM's main account
-        # bears the Paystack fee (bearer defaults to "account"), so nothing extra is
-        # added to what the customer is charged.
+        # Deposits are customer money: they stay in OAM's MAIN Paystack balance, which
+        # is what withdrawals and bank transfers are paid from. (They used to be routed
+        # to a subaccount that settled straight to a bank account, leaving nothing in
+        # Paystack to pay withdrawals with.)
         charge_amount = amount
-        if charge_ccy == "NGN" and gateway.provider_key == "paystack":
-            if subaccount is None:
-                dep = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "") or ""
-                if dep:
-                    subaccount = dep
-                    if transaction_charge is None:
-                        transaction_charge = 0
 
         init = gateway.initialize_charge(
             amount=charge_amount, currency=charge_ccy,

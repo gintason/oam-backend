@@ -25,6 +25,12 @@ from .models import (
 )
 
 
+def _revenue_split(gateway):
+    """Pure-OAM-income payments settle to the Paystack revenue subaccount."""
+    from apps.payments.services import revenue_split
+    return revenue_split(gateway)
+
+
 class MarketplaceError(Exception):
     """User-facing marketplace problem."""
 
@@ -101,6 +107,7 @@ class MarketplaceService:
                           "user": str(user.id),
                           "name": (f"{getattr(user, 'first_name', '')} {getattr(user, 'last_name', '')}".strip() or getattr(user, "email", "") or "OAM Customer"),
                           "phone": getattr(user, "phone", "") or ""},
+                **_revenue_split(gateway),
             )
         except ProviderError as exc:
             raise MarketplaceError(f"Could not start payment: {exc}")

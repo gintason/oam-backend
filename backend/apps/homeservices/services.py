@@ -26,6 +26,12 @@ from .models import (
 EARTH_KM = 6371.0
 
 
+def _revenue_split(gateway):
+    """Pure-OAM-income payments settle to the Paystack revenue subaccount."""
+    from apps.payments.services import revenue_split
+    return revenue_split(gateway)
+
+
 def haversine_km(lat1, lng1, lat2, lng2) -> float:
     r1, r2 = math.radians(lat1), math.radians(lat2)
     dlat = math.radians(lat2 - lat1)
@@ -94,6 +100,7 @@ class HomeServiceService:
                 metadata={"purpose": "artisan_boost", "days": days, "user": str(user.id),
                           "name": (f"{getattr(user, 'first_name', '')} {getattr(user, 'last_name', '')}".strip() or getattr(user, "email", "") or "OAM Customer"),
                           "phone": getattr(user, "phone", "") or ""},
+                **_revenue_split(gateway),
             )
         except ProviderError as exc:
             raise HomeServiceError(f"Could not start payment: {exc}")

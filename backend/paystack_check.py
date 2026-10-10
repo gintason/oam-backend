@@ -1,8 +1,9 @@
 """
 Read-only Paystack check. Run in the Render shell:
     python manage.py shell < paystack_check.py
-Shows the Paystack balance that bank transfers are paid from, and how the
-deposit subaccount is set up. Changes nothing; prints no keys.
+Shows the Paystack balance that bank transfers are paid from, whether it covers
+what customers hold in their wallets, and where OAM income settles.
+Changes nothing; prints no keys.
 """
 import requests
 from django.conf import settings
@@ -20,17 +21,32 @@ def get(path):
 
 r = get("/balance")
 print("\nPaystack balance (bank transfers/withdrawals are paid from this):")
+ngn = None
 for b in (r.get("data") or []):
-    print(f"   {b.get('currency')}: {int(b.get('balance', 0)) / 100:,.2f}")
+    amount = int(b.get("balance", 0)) / 100
+    if b.get("currency") == "NGN":
+        ngn = amount
+    print(f"   {b.get('currency')}: {amount:,.2f}")
 if not r.get("status"):
     print("   could not read balance:", r.get("message"))
 
-code = getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "")
-print("\nPAYSTACK_DEPOSIT_SUBACCOUNT_CODE:", code or "(not set — deposits stay in the main balance)")
+from django.db.models import Sum
+from apps.wallet.models import Wallet
+owed = float(Wallet.objects.filter(currency="NGN").aggregate(t=Sum("cached_balance"))["t"] or 0)
+print(f"\nCustomers hold in their NGN wallets: {owed:,.2f}")
+if ngn is not None:
+    if ngn >= owed:
+        print("   OK — the Paystack balance covers every customer withdrawal.")
+    else:
+        print(f"   SHORT by {owed - ngn:,.2f} — top up the Paystack balance by at least this much.")
+
+code = getattr(settings, "PAYSTACK_REVENUE_SUBACCOUNT_CODE", "") or getattr(settings, "PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", "")
+print("\nCustomer deposits: stay in the main Paystack balance (above).")
+print("OAM income subaccount:", code or "(not set — OAM income also stays in the main balance)")
 if code:
     s = get(f"/subaccount/{code}").get("data") or {}
     acct = str(s.get("account_number") or "")
     print("   business:", s.get("business_name"), "| bank:", s.get("settlement_bank"),
           "| account: ****" + acct[-4:])
     print("   settles:", s.get("settlement_schedule"), "| active:", s.get("active"))
-    print("   -> every NGN card deposit is routed here in full, so it never reaches the balance above.")
+    print("   -> seller/artisan upgrades and job plans paid through Paystack settle here.")
