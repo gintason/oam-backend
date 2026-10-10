@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { View, ScrollView, Pressable, ActivityIndicator, Modal, TextInput } from "react-native";
 import { useRouter } from "expo-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { TransactionPinModal } from "@/features/wallet/ui/TransactionPinModal";
 import { ArrowLeft, Send, Building2, BadgeCheck, CheckCircle2, Plus, X, Search } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
@@ -24,6 +25,7 @@ export default function Transfer() {
   const isVerified = user?.is_verified ?? false;
 
   const [mode, setMode] = useState<"choose" | "bank">("choose");
+  const [pinOpen, setPinOpen] = useState(false);
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +41,7 @@ export default function Transfer() {
   const accounts = accountsQuery.data ?? [];
 
   const withdraw = useMutation({
-    mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount) }),
+    mutationFn: (pin: string) => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
     onSuccess: (w) => {
       qc.invalidateQueries({ queryKey: ["wallets"] });
       qc.invalidateQueries({ queryKey: ["transactions"] });
@@ -78,7 +80,7 @@ export default function Transfer() {
     if (!accountId) return setError(t("withdraw.errChooseAccount"));
     if (!amount || Number(amount) < 100) return setError(t("xferbank.errMin", "Minimum transfer is ₦100."));
     if (total > balance) return setError(t("withdraw.errExceeds"));
-    withdraw.mutate();
+    setPinOpen(true);
   }
 
   if (!isVerified) {
@@ -222,6 +224,12 @@ export default function Transfer() {
           ) : null}
         </View>
       </ScrollView>
+      <TransactionPinModal
+        visible={pinOpen}
+        onCancel={() => setPinOpen(false)}
+        onConfirm={(pin) => { setPinOpen(false); withdraw.mutate(pin); }}
+        busy={withdraw.isPending}
+      />
     </Screen>
   );
 }
