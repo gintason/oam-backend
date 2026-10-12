@@ -2509,5 +2509,18 @@
     "chat": {
       "messageNotSent": "Message not sent."
     }
+  },
+  "appPromo": {
+    "title": "Get the O.A.M app",
+    "subtitle": "Everything OAM, faster — right on your phone.",
+    "f1": "Instant alerts for payments and orders",
+    "f2": "Faster checkout and transfers",
+    "f3": "Secure sign-in on your device",
+    "free": "Free on iPhone and Android",
+    "later": "Continue on the web",
+    "close": "Close",
+    "getItOn": "GET IT ON",
+    "downloadOn": "Download on the",
+    "comingSoon": "Coming soon"
   }
 }

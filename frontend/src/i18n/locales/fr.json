@@ -2363,5 +2363,18 @@
     "chat": {
       "messageNotSent": "Message non envoyé."
     }
+  },
+  "appPromo": {
+    "title": "Téléchargez l'app O.A.M",
+    "subtitle": "Tout OAM, en plus rapide — directement sur votre téléphone.",
+    "f1": "Alertes instantanées pour vos paiements et commandes",
+    "f2": "Paiements et virements plus rapides",
+    "f3": "Connexion sécurisée sur votre appareil",
+    "free": "Gratuite sur iPhone et Android",
+    "later": "Continuer sur le web",
+    "close": "Fermer",
+    "getItOn": "DISPONIBLE SUR",
+    "downloadOn": "Télécharger dans l'",
+    "comingSoon": "Bientôt disponible"
   }
 }

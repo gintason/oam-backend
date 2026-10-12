@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { CurrencyProvider } from "./currency/CurrencyContext";
 import { AuthProvider } from "./auth/AuthContext";
 import { RequireAuth, RedirectIfAuthed } from "./routes/guards";
+import AppDownloadPrompt from "./components/AppDownloadPrompt";
 
 import LandingPage from "./LandingPage";
 import SignIn from "./pages/auth/SignIn";
@@ -92,6 +93,7 @@ export default function App() {
         <AuthProvider>
           <BrowserRouter>
             <RouteMeta />
+            <AppDownloadPrompt />
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/receipt/:reference" element={<PublicReceipt />} />

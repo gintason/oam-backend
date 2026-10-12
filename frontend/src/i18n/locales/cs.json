@@ -2379,5 +2379,18 @@
     "chat": {
       "messageNotSent": "Zpráva nebyla odeslána."
     }
+  },
+  "appPromo": {
+    "title": "Stáhněte si aplikaci O.A.M",
+    "subtitle": "Celé OAM, rychleji — přímo v telefonu.",
+    "f1": "Okamžitá upozornění na platby a objednávky",
+    "f2": "Rychlejší placení a převody",
+    "f3": "Bezpečné přihlášení ve vašem zařízení",
+    "free": "Zdarma pro iPhone a Android",
+    "later": "Pokračovat na webu",
+    "close": "Zavřít",
+    "getItOn": "NYNÍ NA",
+    "downloadOn": "Stáhněte v",
+    "comingSoon": "Již brzy"
   }
 }

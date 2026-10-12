@@ -2390,5 +2390,18 @@
     "chat": {
       "messageNotSent": "A kò fi ìránṣẹ́ ránṣẹ́."
     }
+  },
+  "appPromo": {
+    "title": "Gba áàpù O.A.M",
+    "subtitle": "Gbogbo OAM, ní kíákíá — lórí fóònù rẹ.",
+    "f1": "Ìkìlọ̀ lẹ́sẹ̀kẹsẹ̀ fún ìsanwó àti àṣẹ",
+    "f2": "Ìsanwó àti gbígbé owó ní kíákíá",
+    "f3": "Wíwọlé aláàbò lórí ẹ̀rọ rẹ",
+    "free": "Ọ̀fẹ́ lórí iPhone àti Android",
+    "later": "Tẹ̀síwájú lórí wẹ́ẹ̀bù",
+    "close": "Pa á dé",
+    "getItOn": "GBÀ Á LÓRÍ",
+    "downloadOn": "Gbà á lórí",
+    "comingSoon": "Láìpẹ́"
   }
 }

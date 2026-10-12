@@ -2390,5 +2390,18 @@
     "chat": {
       "messageNotSent": "Ezipụghị ozi."
     }
+  },
+  "appPromo": {
+    "title": "Budata ngwa O.A.M",
+    "subtitle": "OAM niile, ngwa ngwa — na ekwentị gị.",
+    "f1": "Ọkwa ozugbo maka ịkwụ ụgwọ na ịtụ ihe",
+    "f2": "Ịkwụ ụgwọ na izipu ego ngwa ngwa",
+    "f3": "Ịbanye n'enweghị nsogbu na ngwaọrụ gị",
+    "free": "N'efu na iPhone na Android",
+    "later": "Gaa n'ihu na weebụ",
+    "close": "Mechie",
+    "getItOn": "NWETA YA NA",
+    "downloadOn": "Budata ya na",
+    "comingSoon": "N'oge na-adịghị anya"
   }
 }

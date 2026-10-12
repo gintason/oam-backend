@@ -2331,5 +2331,18 @@
     "chat": {
       "messageNotSent": "消息未发送。"
     }
+  },
+  "appPromo": {
+    "title": "下载 O.A.M 应用",
+    "subtitle": "OAM 的全部功能，更快捷 — 尽在手机上。",
+    "f1": "付款和订单即时提醒",
+    "f2": "更快的付款和转账",
+    "f3": "在您的设备上安全登录",
+    "free": "iPhone 和 Android 免费下载",
+    "later": "继续使用网页版",
+    "close": "关闭",
+    "getItOn": "下载应用，请到",
+    "downloadOn": "下载于",
+    "comingSoon": "即将推出"
   }
 }

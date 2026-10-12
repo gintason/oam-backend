@@ -2347,5 +2347,18 @@
     "chat": {
       "messageNotSent": "Nachricht nicht gesendet."
     }
+  },
+  "appPromo": {
+    "title": "Hol dir die O.A.M-App",
+    "subtitle": "Alles von OAM, schneller — direkt auf deinem Handy.",
+    "f1": "Sofortige Benachrichtigungen zu Zahlungen und Bestellungen",
+    "f2": "Schnelleres Bezahlen und Überweisen",
+    "f3": "Sichere Anmeldung auf deinem Gerät",
+    "free": "Kostenlos für iPhone und Android",
+    "later": "Im Web fortfahren",
+    "close": "Schließen",
+    "getItOn": "JETZT BEI",
+    "downloadOn": "Laden im",
+    "comingSoon": "Demnächst"
   }
 }

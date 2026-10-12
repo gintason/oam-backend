@@ -2406,5 +2406,18 @@
     "chat": {
       "messageNotSent": "Ba a aika saƙo ba."
     }
+  },
+  "appPromo": {
+    "title": "Sauke manhajar O.A.M",
+    "subtitle": "Duk OAM, cikin sauri — a wayarka kai tsaye.",
+    "f1": "Sanarwa nan take kan biyan kuɗi da oda",
+    "f2": "Biyan kuɗi da tura kuɗi cikin sauri",
+    "f3": "Shiga cikin aminci a na'urarka",
+    "free": "Kyauta a iPhone da Android",
+    "later": "Ci gaba a yanar gizo",
+    "close": "Rufe",
+    "getItOn": "SAMU A",
+    "downloadOn": "Sauke a",
+    "comingSoon": "Nan ba da jimawa ba"
   }
 }

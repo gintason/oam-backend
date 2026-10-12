@@ -2347,5 +2347,18 @@
     "chat": {
       "messageNotSent": "Mesaj gönderilmedi."
     }
+  },
+  "appPromo": {
+    "title": "O.A.M uygulamasını indirin",
+    "subtitle": "OAM'ın tamamı, daha hızlı — telefonunuzda.",
+    "f1": "Ödemeler ve siparişler için anında bildirimler",
+    "f2": "Daha hızlı ödeme ve transfer",
+    "f3": "Cihazınızda güvenli giriş",
+    "free": "iPhone ve Android'de ücretsiz",
+    "later": "Web'de devam et",
+    "close": "Kapat",
+    "getItOn": "HEMEN İNDİRİN",
+    "downloadOn": "İndirin:",
+    "comingSoon": "Çok yakında"
   }
 }

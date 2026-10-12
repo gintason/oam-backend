@@ -5,6 +5,7 @@ import {
   ArrowUpRight, BedDouble, Bell, Car, CreditCard, Eye, Gift, History, House, MapPinned, Menu, MessageCircle,
   Plane, Plus, ReceiptText, Send, Smartphone, Store, Tv, User, Wallet, Wifi, Wrench, Zap, type LucideIcon,
 } from "lucide-react";
+import { ANDROID_APP_URL, IOS_APP_URL } from "./lib/appStores";
 
 /**
  * Landing hero.
@@ -202,9 +203,12 @@ const AppleGlyph = () => (
   </svg>
 );
 
+const storeLink = (url: string) =>
+  url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : { href: "#" };
+
 function StoreBadge({ glyph, small, big }: { glyph: React.ReactNode; small: string; big: string }) {
   return (
-    <a href="#" className="inline-flex items-center gap-2 rounded-[10px] bg-ink px-3.5 py-2 text-white transition hover:brightness-125">
+    <a {...storeLink(big === "App Store" ? IOS_APP_URL : ANDROID_APP_URL)} className="inline-flex items-center gap-2 rounded-[10px] bg-ink px-3.5 py-2 text-white transition hover:brightness-125">
       {glyph}
       <span className="text-left leading-none">
         <span className="block text-[8px] text-white/70">{small}</span>
