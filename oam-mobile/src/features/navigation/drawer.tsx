@@ -134,7 +134,7 @@ function DrawerPanel({ onClose }: { onClose: () => void }) {
     { key: "betting", label: t("drawer.betting", "Fund Betting Wallet"), Icon: Ticket, onPress: () => go("/betting") },
     { key: "artisans", label: t("drawer.artisans", "Find An Artisan"), Icon: Wrench, onPress: () => go("/artisans-find") },
     { key: "referral", label: t("drawer.referral", "Get Referral Link"), Icon: Gift, onPress: () => go("/referral") },
-    { key: "ecommerce", label: t("drawer.ecommerce", "E-commerce"), Icon: ShoppingBag, onPress: () => go("/ecommerce") },
+    { key: "ecommerce", label: t("drawer.ecommerce", "Shopping"), Icon: ShoppingBag, onPress: () => go("/ecommerce") },
   ];
 
   return (
