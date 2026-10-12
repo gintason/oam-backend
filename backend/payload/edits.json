@@ -1,0 +1,30 @@
+{
+ "apps/accounts/views.py": [
+  [
+   "             \"user\": UserSerializer(user).data, \"tokens\": tokens_for(user)},\n            status=status.HTTP_200_OK,\n        )\n",
+   "             \"user\": UserSerializer(user).data, \"tokens\": tokens_for(user)},\n            status=status.HTTP_200_OK,\n        )\n\n\n# ----------------------- Account deletion -----------------------\nclass DeleteAccountView(APIView):\n    \"\"\"\n    GET  /auth/delete-account/  -> what's needed to delete (and anything blocking it)\n    POST /auth/delete-account/  {\"password\": \"...\"}  or, for Google/Apple-only\n         accounts, {\"confirm\": \"DELETE\"}  -> deletes the account\n    \"\"\"\n    permission_classes = [IsAuthenticated]\n\n    def get(self, request):\n        from .deletion import deletion_blockers\n        user = request.user\n        return Response({\"requires_password\": user.has_usable_password(),\n                         \"blockers\": deletion_blockers(user)})\n\n    def post(self, request):\n        from .deletion import delete_account, deletion_blockers\n        user = request.user\n        if user.has_usable_password():\n            if not user.check_password(str(request.data.get(\"password\") or \"\")):\n                return Response({\"detail\": \"That password isn't right.\", \"reason\": \"invalid_password\"},\n                                status=status.HTTP_400_BAD_REQUEST)\n        elif str(request.data.get(\"confirm\") or \"\").strip().upper() != \"DELETE\":\n            return Response({\"detail\": \"Type DELETE to confirm.\", \"reason\": \"confirm_required\"},\n                            status=status.HTTP_400_BAD_REQUEST)\n        blockers = deletion_blockers(user)\n        if blockers:\n            return Response({\"detail\": blockers[0], \"reasons\": blockers, \"reason\": \"blocked\"},\n                            status=status.HTTP_409_CONFLICT)\n        delete_account(user)\n        return Response({\"detail\": \"Your account has been deleted.\"}, status=status.HTTP_200_OK)\n\n"
+  ]
+ ],
+ "apps/accounts/urls.py": [
+  [
+   "from rest_framework_simplejwt.views import TokenRefreshView\n\nfrom .views import (\n    LoginView,\n    LogoutView,\n    MeView,\n",
+   "from rest_framework_simplejwt.views import TokenRefreshView\n\nfrom .views import (\n    DeleteAccountView,\n    LoginView,\n    LogoutView,\n    MeView,\n"
+  ],
+  [
+   "    path(\"logout/\", LogoutView.as_view(), name=\"logout\"),\n    path(\"token/refresh/\", TokenRefreshView.as_view(), name=\"token-refresh\"),\n    path(\"me/\", MeView.as_view(), name=\"me\"),\n    path(\"social/<str:provider>/\", SocialAuthView.as_view(), name=\"social-auth\"),\n    path(\"password-reset/request/\", PasswordResetRequestView.as_view(), name=\"password-reset-request\"),\n    path(\"password-reset/confirm/\", PasswordResetConfirmView.as_view(), name=\"password-reset-confirm\"),\n",
+   "    path(\"logout/\", LogoutView.as_view(), name=\"logout\"),\n    path(\"token/refresh/\", TokenRefreshView.as_view(), name=\"token-refresh\"),\n    path(\"me/\", MeView.as_view(), name=\"me\"),\n    path(\"delete-account/\", DeleteAccountView.as_view(), name=\"delete-account\"),\n    path(\"social/<str:provider>/\", SocialAuthView.as_view(), name=\"social-auth\"),\n    path(\"password-reset/request/\", PasswordResetRequestView.as_view(), name=\"password-reset-request\"),\n    path(\"password-reset/confirm/\", PasswordResetConfirmView.as_view(), name=\"password-reset-confirm\"),\n"
+  ]
+ ],
+ "config/settings/base.py": [
+  [
+   "    \"google\":   {\"client_ids\": env.list(\"GOOGLE_CLIENT_IDS\", default=[])},\n    \"facebook\": {\"app_id\": env(\"FACEBOOK_APP_ID\", default=\"\"),\n                 \"app_secret\": env(\"FACEBOOK_APP_SECRET\", default=\"\")},\n    \"apple\":    {\"client_ids\": env.list(\"APPLE_CLIENT_IDS\", default=[])},\n}\n# DEV ONLY: lets you test the link-or-create flow with token \"MOCK\".\n# Must stay False in production (it is overridden there anyway).\n",
+   "    \"google\":   {\"client_ids\": env.list(\"GOOGLE_CLIENT_IDS\", default=[])},\n    \"facebook\": {\"app_id\": env(\"FACEBOOK_APP_ID\", default=\"\"),\n                 \"app_secret\": env(\"FACEBOOK_APP_SECRET\", default=\"\")},\n    # Sign in with Apple from the iOS app: the identity token's audience is the\n    # app's bundle ID. Add a Services ID here too if Apple sign-in comes to the web.\n    # An empty APPLE_CLIENT_IDS still falls back to the bundle ID.\n    \"apple\":    {\"client_ids\": [c for c in env.list(\"APPLE_CLIENT_IDS\", default=[]) if c.strip()]\n                               or [\"com.oam.mobile\"]},\n}\n# DEV ONLY: lets you test the link-or-create flow with token \"MOCK\".\n# Must stay False in production (it is overridden there anyway).\n"
+  ]
+ ],
+ "requirements.txt": [
+  [
+   "# --- Auth ---\ndjangorestframework-simplejwt==5.3.1\nPyJWT==2.8.0\n\n# --- Internationalisation (dynamic, per-field model translation) ---\ndjango-modeltranslation==0.18.11\n",
+   "# --- Auth ---\ndjangorestframework-simplejwt==5.3.1\nPyJWT==2.8.0\ncryptography==43.0.3  # RS256 \u2014 needed to verify Sign in with Apple tokens\n\n# --- Internationalisation (dynamic, per-field model translation) ---\ndjango-modeltranslation==0.18.11\n"
+  ]
+ ]
+}

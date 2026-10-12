@@ -7,6 +7,7 @@ psycopg[binary]>=3.2.10
 # --- Auth ---
 djangorestframework-simplejwt==5.3.1
 PyJWT==2.8.0
+cryptography==43.0.3  # RS256 — needed to verify Sign in with Apple tokens
 
 # --- Internationalisation (dynamic, per-field model translation) ---
 django-modeltranslation==0.18.11

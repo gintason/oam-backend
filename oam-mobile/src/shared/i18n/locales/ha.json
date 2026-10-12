@@ -952,6 +952,9 @@
       "google": "Ci gaba da Google",
       "notYou": "Ba kai ne {{name}} ba?",
       "switch": "Canza asusu"
+    },
+    "social": {
+      "appleFailed": "Shiga da Apple ya gaza. Da fatan za a sake gwadawa."
     }
   },
   "artisans": {
@@ -1731,7 +1734,8 @@
     "save": "Ajiye canje-canje",
     "saved": "An ajiye!",
     "errSave": "An kasa ajiye canje-canjen ka. Sake gwadawa.",
-    "verified": "An tabbatar"
+    "verified": "An tabbatar",
+    "deleteAccount": "Share asusu"
   },
   "giftcards": {
     "back": "Koma baya",
@@ -2516,5 +2520,25 @@
       "hoursAgo": "awa {{n}} da suka wuce",
       "daysAgo": "kwana {{n}} da suka wuce"
     }
+  },
+  "deleteAccount": {
+    "back": "Koma bayanan ka",
+    "title": "Share asusun ka",
+    "subtitle": "Wannan zai share asusun ka na OAM har abada. Ga abin da zai faru:",
+    "p1": "Za a fitar da kai a ko'ina kuma ba za ka iya sake shiga ba.",
+    "p2": "Za a goge sunan ka, imel, waya da na'urorin da aka ajiye.",
+    "p3": "Za a cire tallace-tallacen ka, bayanan sana'ar ka, CV da ayyukan da ka wallafa.",
+    "p4": "Ana ajiye bayanan biyan kuɗi na baya ba tare da suna ba, kamar yadda doka ta tanada.",
+    "blockedTitle": "Kafin ka iya share asusun ka:",
+    "passwordLabel": "Shigar da kalmar sirrin ka don tabbatarwa",
+    "typeDelete": "Rubuta DELETE don tabbatarwa",
+    "cta": "Share asusu na har abada",
+    "deleting": "Ana sharewa…",
+    "confirmTitle": "Share asusun ka?",
+    "confirmBody": "Ba za a iya mayar da wannan ba.",
+    "confirmCta": "Share",
+    "doneTitle": "An share asusu",
+    "doneBody": "An share asusun ka na OAM. Muna baƙin cikin ganin ka tafi.",
+    "errFailed": "An kasa share asusun ka. Da fatan za a sake gwadawa."
   }
 }

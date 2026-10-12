@@ -952,6 +952,9 @@
       "google": "Google ile devam et",
       "notYou": "{{name}} değil misiniz?",
       "switch": "Hesap değiştir"
+    },
+    "social": {
+      "appleFailed": "Apple ile giriş başarısız oldu. Lütfen tekrar deneyin."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Değişiklikleri kaydet",
     "saved": "Kaydedildi!",
     "errSave": "Değişiklikler kaydedilemedi. Tekrar deneyin.",
-    "verified": "Doğrulandı"
+    "verified": "Doğrulandı",
+    "deleteAccount": "Hesabı sil"
   },
   "giftcards": {
     "back": "Geri",
@@ -2456,5 +2460,25 @@
       "hoursAgo": "{{n}} sa önce",
       "daysAgo": "{{n}} g önce"
     }
+  },
+  "deleteAccount": {
+    "back": "Profile dön",
+    "title": "Hesabını sil",
+    "subtitle": "Bu işlem OAM hesabını kalıcı olarak siler. Olacaklar:",
+    "p1": "Her yerde oturumun kapanır ve bir daha giriş yapamazsın.",
+    "p2": "Adın, e-postan, telefonun ve kayıtlı cihazların silinir.",
+    "p3": "İlanların, usta profilin, özgeçmişin ve iş ilanların kaldırılır.",
+    "p4": "Geçmiş ödeme kayıtları, yasaların gerektirdiği şekilde anonim olarak saklanır.",
+    "blockedTitle": "Hesabını silebilmen için önce:",
+    "passwordLabel": "Onaylamak için şifreni gir",
+    "typeDelete": "Onaylamak için DELETE yaz",
+    "cta": "Hesabımı kalıcı olarak sil",
+    "deleting": "Siliniyor…",
+    "confirmTitle": "Hesabın silinsin mi?",
+    "confirmBody": "Bu işlem geri alınamaz.",
+    "confirmCta": "Sil",
+    "doneTitle": "Hesap silindi",
+    "doneBody": "OAM hesabın silindi. Gitmene üzüldük.",
+    "errFailed": "Hesabın silinemedi. Lütfen tekrar dene."
   }
 }

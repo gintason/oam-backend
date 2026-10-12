@@ -957,6 +957,9 @@
       "google": "Continue with Google",
       "notYou": "Not {{name}}?",
       "switch": "Switch account"
+    },
+    "social": {
+      "appleFailed": "Apple sign-in failed. Please try again."
     }
   },
   "artisans": {
@@ -1847,7 +1850,8 @@
     "save": "Save changes",
     "saved": "Saved!",
     "errSave": "Couldn't save your changes. Try again.",
-    "verified": "Verified"
+    "verified": "Verified",
+    "deleteAccount": "Delete account"
   },
   "giftcards": {
     "back": "Back",
@@ -2642,5 +2646,25 @@
       "hoursAgo": "{{n}}h ago",
       "daysAgo": "{{n}}d ago"
     }
+  },
+  "deleteAccount": {
+    "back": "Back to profile",
+    "title": "Delete your account",
+    "subtitle": "This permanently deletes your OAM account. Here's what happens:",
+    "p1": "You'll be signed out everywhere and won't be able to sign in again.",
+    "p2": "Your name, email, phone and saved devices are erased.",
+    "p3": "Your listings, artisan profile, CV and open jobs are taken down.",
+    "p4": "Records of past payments are kept, anonymised, as the law requires.",
+    "blockedTitle": "Before you can delete your account:",
+    "passwordLabel": "Enter your password to confirm",
+    "typeDelete": "Type DELETE to confirm",
+    "cta": "Delete my account permanently",
+    "deleting": "Deleting…",
+    "confirmTitle": "Delete your account?",
+    "confirmBody": "This can't be undone.",
+    "confirmCta": "Delete",
+    "doneTitle": "Account deleted",
+    "doneBody": "Your OAM account has been deleted. We're sorry to see you go.",
+    "errFailed": "Couldn't delete your account. Please try again."
   }
 }

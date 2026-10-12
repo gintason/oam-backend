@@ -952,6 +952,9 @@
       "google": "Weiter mit Google",
       "notYou": "Nicht {{name}}?",
       "switch": "Konto wechseln"
+    },
+    "social": {
+      "appleFailed": "Anmeldung mit Apple fehlgeschlagen. Bitte versuche es erneut."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Änderungen speichern",
     "saved": "Gespeichert!",
     "errSave": "Änderungen konnten nicht gespeichert werden. Erneut versuchen.",
-    "verified": "Verifiziert"
+    "verified": "Verifiziert",
+    "deleteAccount": "Konto löschen"
   },
   "giftcards": {
     "back": "Zurück",
@@ -2456,5 +2460,25 @@
       "hoursAgo": "vor {{n}} Std.",
       "daysAgo": "vor {{n}} T."
     }
+  },
+  "deleteAccount": {
+    "back": "Zurück zum Profil",
+    "title": "Konto löschen",
+    "subtitle": "Damit wird dein OAM-Konto dauerhaft gelöscht. Das passiert:",
+    "p1": "Du wirst überall abgemeldet und kannst dich nicht mehr anmelden.",
+    "p2": "Name, E-Mail, Telefonnummer und gespeicherte Geräte werden gelöscht.",
+    "p3": "Deine Anzeigen, dein Handwerkerprofil, dein Lebenslauf und offene Stellen werden entfernt.",
+    "p4": "Aufzeichnungen früherer Zahlungen bleiben anonymisiert erhalten, wie gesetzlich vorgeschrieben.",
+    "blockedTitle": "Bevor du dein Konto löschen kannst:",
+    "passwordLabel": "Gib zur Bestätigung dein Passwort ein",
+    "typeDelete": "Gib DELETE zur Bestätigung ein",
+    "cta": "Mein Konto dauerhaft löschen",
+    "deleting": "Wird gelöscht…",
+    "confirmTitle": "Konto löschen?",
+    "confirmBody": "Das kann nicht rückgängig gemacht werden.",
+    "confirmCta": "Löschen",
+    "doneTitle": "Konto gelöscht",
+    "doneBody": "Dein OAM-Konto wurde gelöscht. Schade, dass du gehst.",
+    "errFailed": "Konto konnte nicht gelöscht werden. Bitte versuche es erneut."
   }
 }

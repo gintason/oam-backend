@@ -2392,5 +2392,20 @@
     "getItOn": "NYNÍ NA",
     "downloadOn": "Stáhněte v",
     "comingSoon": "Již brzy"
+  },
+  "deletePage": {
+    "title": "Smazání účtu OAM",
+    "intro": "Svůj účet OAM můžete kdykoli smazat — v aplikaci nebo e-mailem.",
+    "inAppTitle": "V aplikaci OAM",
+    "inApp1": "Otevřete aplikaci OAM a přihlaste se.",
+    "inApp2": "Přejděte do Profilu a klepněte na „Smazat účet“.",
+    "inApp3": "Potvrďte heslem (nebo napište DELETE, pokud se přihlašujete přes Google nebo Apple).",
+    "emailTitle": "E-mailem",
+    "emailBody": "Pokud aplikaci nemůžete použít, napište na <1>info@oam-app.com</1> z e-mailu vašeho účtu s předmětem „Smazat můj účet OAM“. Ověříme, že jste to vy, a účet smažeme.",
+    "deletedTitle": "Co mažeme",
+    "deletedBody": "Vaše jméno, e-mailovou adresu, telefonní číslo, PIN pro transakce, uložená zařízení a propojené přihlášení přes Google nebo Apple. Vaše inzeráty, profil řemeslníka, životopis a nabídky práce budou staženy a už se nepřihlásíte.",
+    "keptTitle": "Co uchováváme a proč",
+    "keptBody": "Záznamy o platbách, transakcích peněženky, výběrech a doručeních uchováváme anonymně, protože to vyžadují finanční předpisy a prevence podvodů.",
+    "before": "Před smazáním vyberte zbývající peníze z peněženky a dokončete probíhající doručení — aplikace vás upozorní, pokud něco ještě čeká."
   }
 }

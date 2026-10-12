@@ -2392,5 +2392,20 @@
     "getItOn": "POBIERZ Z",
     "downloadOn": "Pobierz z",
     "comingSoon": "Wkrótce"
+  },
+  "deletePage": {
+    "title": "Usuń konto OAM",
+    "intro": "Możesz usunąć konto OAM w dowolnym momencie — w aplikacji lub e-mailem.",
+    "inAppTitle": "W aplikacji OAM",
+    "inApp1": "Otwórz aplikację OAM i zaloguj się.",
+    "inApp2": "Przejdź do Profilu i stuknij „Usuń konto”.",
+    "inApp3": "Potwierdź hasłem (lub wpisz DELETE, jeśli logujesz się przez Google lub Apple).",
+    "emailTitle": "E-mailem",
+    "emailBody": "Jeśli nie możesz użyć aplikacji, napisz na <1>info@oam-app.com</1> z adresu e-mail swojego konta z tematem „Usuń moje konto OAM”. Potwierdzimy, że to Ty, i usuniemy konto.",
+    "deletedTitle": "Co usuwamy",
+    "deletedBody": "Twoje imię, adres e-mail, numer telefonu, PIN transakcji, zapisane urządzenia i powiązane logowanie Google lub Apple. Twoje ogłoszenia, profil fachowca, CV i oferty pracy zostają zdjęte, a zalogowanie nie będzie już możliwe.",
+    "keptTitle": "Co zachowujemy i dlaczego",
+    "keptBody": "Zapisy płatności, transakcji portfela, wypłat i dostaw przechowujemy anonimowo, ponieważ wymagają tego przepisy finansowe i zapobieganie oszustwom.",
+    "before": "Przed usunięciem wypłać pieniądze z portfela i zakończ trwające dostawy — aplikacja przypomni, jeśli coś jest jeszcze w toku."
   }
 }

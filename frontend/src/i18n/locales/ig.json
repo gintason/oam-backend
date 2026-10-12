@@ -2403,5 +2403,20 @@
     "getItOn": "NWETA YA NA",
     "downloadOn": "Budata ya na",
     "comingSoon": "N'oge na-adịghị anya"
+  },
+  "deletePage": {
+    "title": "Hichapụ akaụntụ OAM gị",
+    "intro": "Ị nwere ike ihichapụ akaụntụ OAM gị oge ọ bụla, site na ngwa ma ọ bụ email.",
+    "inAppTitle": "Na ngwa OAM",
+    "inApp1": "Mepee ngwa OAM ma banye.",
+    "inApp2": "Gaa na Profaịlụ ma pịa “Hichapụ akaụntụ”.",
+    "inApp3": "Jiri okwuntughe gị kwado (ma ọ bụ dee DELETE ma ọ bụrụ na ị na-eji Google ma ọ bụ Apple abanye).",
+    "emailTitle": "Site na email",
+    "emailBody": "Ọ bụrụ na ịnweghị ike iji ngwa ahụ, zitere <1>info@oam-app.com</1> email site na adreesị email dị n'akaụntụ gị nwere isiokwu “Hichapụ akaụntụ OAM m”. Anyị ga-akwado na ọ bụ gị, wee hichapụ akaụntụ ahụ.",
+    "deletedTitle": "Ihe anyị na-ehichapụ",
+    "deletedBody": "Aha gị, adreesị email, nọmba ekwentị, PIN azụmahịa, ngwaọrụ echekwara na ịbanye Google ma ọ bụ Apple ejikọtara. A na-ewepụ mgbasa gị, profaịlụ ọrụ aka, CV na mgbasa ọrụ, ị gaghịkwa enwe ike ịbanye ọzọ.",
+    "keptTitle": "Ihe anyị na-edobe, na ihe kpatara ya",
+    "keptBody": "A na-edobe ndekọ ịkwụ ụgwọ, azụmahịa obere akpa ego, iwepụ ego na nnyefe n'enweghị aha, n'ihi na iwu ego na mgbochi aghụghọ chọrọ ya.",
+    "before": "Tupu ihichapụ, wepụ ego fọdụrụ n'obere akpa ego gị ma mezue nnyefe ọ bụla na-aga n'ihu — ngwa ahụ ga-echetara gị ma ọ bụrụ na ihe ka na-echere."
   }
 }

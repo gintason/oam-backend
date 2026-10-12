@@ -9,6 +9,8 @@
 // "OAM iOS Client" in the OAM Platform project (74521252008).
 const DEFAULT_IOS_CLIENT_ID = "74521252008-5m06gkr34p4tcoimfrqjp62hq69d37v7.apps.googleusercontent.com";
 const GOOGLE_PLUGIN = "@react-native-google-signin/google-signin";
+const fs = require("fs");
+const path = require("path");
 
 function reversedClientId(clientId) {
   const id = (clientId || "").trim();
@@ -25,5 +27,12 @@ module.exports = ({ config }) => {
     if (name !== GOOGLE_PLUGIN) plugins.push(p);
     else if (scheme) plugins.push([GOOGLE_PLUGIN, { ...(Array.isArray(p) && p[1] ? p[1] : {}), iosUrlScheme: scheme }]);
   }
-  return { ...config, plugins };
+  // Android push needs Firebase: drop google-services.json (Firebase console →
+  // Project settings → Android app com.oam.mobile) next to app.json and it's used
+  // automatically. Without it the app still builds; Android push stays off.
+  const android = { ...config.android };
+  if (!android.googleServicesFile && fs.existsSync(path.join(__dirname, "google-services.json"))) {
+    android.googleServicesFile = "./google-services.json";
+  }
+  return { ...config, android, plugins };
 };

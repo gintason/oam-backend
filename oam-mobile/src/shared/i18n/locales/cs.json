@@ -952,6 +952,9 @@
       "google": "Pokračovat přes Google",
       "notYou": "Nejste {{name}}?",
       "switch": "Přepnout účet"
+    },
+    "social": {
+      "appleFailed": "Přihlášení přes Apple se nezdařilo. Zkuste to znovu."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Uložit změny",
     "saved": "Uloženo!",
     "errSave": "Změny se nepodařilo uložit. Zkuste to znovu.",
-    "verified": "Ověřeno"
+    "verified": "Ověřeno",
+    "deleteAccount": "Smazat účet"
   },
   "giftcards": {
     "back": "Zpět",
@@ -2496,5 +2500,25 @@
       "hoursAgo": "před {{n}} h",
       "daysAgo": "před {{n}} d"
     }
+  },
+  "deleteAccount": {
+    "back": "Zpět na profil",
+    "title": "Smazat účet",
+    "subtitle": "Tím trvale smažete svůj účet OAM. Co se stane:",
+    "p1": "Budete všude odhlášeni a už se nepřihlásíte.",
+    "p2": "Vaše jméno, e-mail, telefon a uložená zařízení budou vymazány.",
+    "p3": "Vaše inzeráty, profil řemeslníka, životopis a nabídky práce budou staženy.",
+    "p4": "Záznamy o minulých platbách zůstanou anonymně uloženy, jak vyžaduje zákon.",
+    "blockedTitle": "Než budete moci účet smazat:",
+    "passwordLabel": "Pro potvrzení zadejte heslo",
+    "typeDelete": "Pro potvrzení napište DELETE",
+    "cta": "Trvale smazat můj účet",
+    "deleting": "Mazání…",
+    "confirmTitle": "Smazat účet?",
+    "confirmBody": "Tuto akci nelze vrátit.",
+    "confirmCta": "Smazat",
+    "doneTitle": "Účet smazán",
+    "doneBody": "Váš účet OAM byl smazán. Mrzí nás, že odcházíte.",
+    "errFailed": "Účet se nepodařilo smazat. Zkuste to znovu."
   }
 }

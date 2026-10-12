@@ -952,6 +952,9 @@
       "google": "使用 Google 继续",
       "notYou": "不是 {{name}}？",
       "switch": "切换账号"
+    },
+    "social": {
+      "appleFailed": "Apple 登录失败，请重试。"
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "保存更改",
     "saved": "已保存！",
     "errSave": "无法保存更改，请重试。",
-    "verified": "已验证"
+    "verified": "已验证",
+    "deleteAccount": "删除账号"
   },
   "giftcards": {
     "back": "返回",
@@ -2436,5 +2440,25 @@
       "hoursAgo": "{{n}} 小时前",
       "daysAgo": "{{n}} 天前"
     }
+  },
+  "deleteAccount": {
+    "back": "返回个人资料",
+    "title": "删除您的账号",
+    "subtitle": "此操作将永久删除您的 OAM 账号。将会发生：",
+    "p1": "您将在所有设备上退出登录，且无法再次登录。",
+    "p2": "您的姓名、邮箱、电话和已保存的设备将被清除。",
+    "p3": "您的商品、工匠资料、简历和招聘职位将被下架。",
+    "p4": "按照法律要求，过往付款记录将以匿名方式保留。",
+    "blockedTitle": "删除账号之前：",
+    "passwordLabel": "输入密码以确认",
+    "typeDelete": "输入 DELETE 以确认",
+    "cta": "永久删除我的账号",
+    "deleting": "正在删除…",
+    "confirmTitle": "删除您的账号？",
+    "confirmBody": "此操作无法撤销。",
+    "confirmCta": "删除",
+    "doneTitle": "账号已删除",
+    "doneBody": "您的 OAM 账号已删除。很遗憾看到您离开。",
+    "errFailed": "无法删除您的账号，请重试。"
   }
 }

@@ -952,6 +952,9 @@
       "google": "Continua con Google",
       "notYou": "Non sei {{name}}?",
       "switch": "Cambia account"
+    },
+    "social": {
+      "appleFailed": "Accesso con Apple non riuscito. Riprova."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Salva modifiche",
     "saved": "Salvato!",
     "errSave": "Impossibile salvare le modifiche. Riprova.",
-    "verified": "Verificato"
+    "verified": "Verificato",
+    "deleteAccount": "Elimina account"
   },
   "giftcards": {
     "back": "Indietro",
@@ -2476,5 +2480,25 @@
       "hoursAgo": "{{n}} h fa",
       "daysAgo": "{{n}} g fa"
     }
+  },
+  "deleteAccount": {
+    "back": "Torna al profilo",
+    "title": "Elimina il tuo account",
+    "subtitle": "Questo elimina definitivamente il tuo account OAM. Ecco cosa succede:",
+    "p1": "Verrai disconnesso ovunque e non potrai più accedere.",
+    "p2": "Nome, e-mail, telefono e dispositivi salvati vengono cancellati.",
+    "p3": "I tuoi annunci, il profilo da artigiano, il CV e le offerte di lavoro vengono rimossi.",
+    "p4": "I registri dei pagamenti passati vengono conservati in forma anonima, come richiesto dalla legge.",
+    "blockedTitle": "Prima di poter eliminare l'account:",
+    "passwordLabel": "Inserisci la password per confermare",
+    "typeDelete": "Scrivi DELETE per confermare",
+    "cta": "Elimina definitivamente il mio account",
+    "deleting": "Eliminazione…",
+    "confirmTitle": "Eliminare l'account?",
+    "confirmBody": "L'operazione non si può annullare.",
+    "confirmCta": "Elimina",
+    "doneTitle": "Account eliminato",
+    "doneBody": "Il tuo account OAM è stato eliminato. Ci dispiace vederti andare.",
+    "errFailed": "Impossibile eliminare l'account. Riprova."
   }
 }

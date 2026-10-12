@@ -31,8 +31,15 @@ export const authApi = {
   login: (identifier: string, password: string) =>
     api.post<AuthResult>("/auth/login/", { identifier, password }).then((r) => r.data),
 
-  social: (provider: "google" | "facebook", token: string) =>
-    api.post<AuthResult & { created?: boolean }>(`/auth/social/${provider}/`, { token }).then((r) => r.data),
+  /** What account deletion needs, and anything blocking it (money still in the wallet…). */
+  deletionStatus: () =>
+    api.get<{ requires_password: boolean; blockers: string[] }>("/auth/delete-account/").then((r) => r.data),
+  /** Permanently deletes the account: `password`, or `confirm: "DELETE"` for Google/Apple-only accounts. */
+  deleteAccount: (body: { password?: string; confirm?: string }) =>
+    api.post<{ detail: string }>("/auth/delete-account/", body).then((r) => r.data),
+  social: (provider: "google" | "facebook" | "apple", token: string,
+           extra?: { first_name?: string; last_name?: string }) =>
+    api.post<AuthResult & { created?: boolean }>(`/auth/social/${provider}/`, { token, ...extra }).then((r) => r.data),
 
   logout: (refresh: string) =>
     api.post<{ detail?: string }>("/auth/logout/", { refresh }).then((r) => r.data),

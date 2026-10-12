@@ -258,3 +258,37 @@ class PasswordResetConfirmView(APIView):
              "user": UserSerializer(user).data, "tokens": tokens_for(user)},
             status=status.HTTP_200_OK,
         )
+
+
+# ----------------------- Account deletion -----------------------
+class DeleteAccountView(APIView):
+    """
+    GET  /auth/delete-account/  -> what's needed to delete (and anything blocking it)
+    POST /auth/delete-account/  {"password": "..."}  or, for Google/Apple-only
+         accounts, {"confirm": "DELETE"}  -> deletes the account
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        from .deletion import deletion_blockers
+        user = request.user
+        return Response({"requires_password": user.has_usable_password(),
+                         "blockers": deletion_blockers(user)})
+
+    def post(self, request):
+        from .deletion import delete_account, deletion_blockers
+        user = request.user
+        if user.has_usable_password():
+            if not user.check_password(str(request.data.get("password") or "")):
+                return Response({"detail": "That password isn't right.", "reason": "invalid_password"},
+                                status=status.HTTP_400_BAD_REQUEST)
+        elif str(request.data.get("confirm") or "").strip().upper() != "DELETE":
+            return Response({"detail": "Type DELETE to confirm.", "reason": "confirm_required"},
+                            status=status.HTTP_400_BAD_REQUEST)
+        blockers = deletion_blockers(user)
+        if blockers:
+            return Response({"detail": blockers[0], "reasons": blockers, "reason": "blocked"},
+                            status=status.HTTP_409_CONFLICT)
+        delete_account(user)
+        return Response({"detail": "Your account has been deleted."}, status=status.HTTP_200_OK)
+

@@ -71,6 +71,7 @@ export default function AppLayout() {
       {/* Service screens — navigable, hidden from the tab bar, tab bar hidden while open. */}
       <Tabs.Screen name="marketplace" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="assistant" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="delete-account" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="bus" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="boost" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="upgrade" options={{ href: null, tabBarStyle: { display: "none" } }} />

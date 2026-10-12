@@ -2522,5 +2522,20 @@
     "getItOn": "GET IT ON",
     "downloadOn": "Download on the",
     "comingSoon": "Coming soon"
+  },
+  "deletePage": {
+    "title": "Delete your OAM account",
+    "intro": "You can delete your OAM account at any time, from the app or by email.",
+    "inAppTitle": "In the OAM app",
+    "inApp1": "Open the OAM app and sign in.",
+    "inApp2": "Go to Profile and tap “Delete account”.",
+    "inApp3": "Confirm with your password (or type DELETE if you sign in with Google or Apple).",
+    "emailTitle": "By email",
+    "emailBody": "If you can't use the app, email <1>info@oam-app.com</1> from the email address on your account with the subject “Delete my OAM account”. We'll confirm it's you, then delete the account.",
+    "deletedTitle": "What we delete",
+    "deletedBody": "Your name, email address, phone number, transaction PIN, saved devices and linked Google or Apple sign-in. Your marketplace listings, artisan profile, CV and job posts are taken down, and you can no longer sign in.",
+    "keptTitle": "What we keep, and why",
+    "keptBody": "Records of payments, wallet transactions, withdrawals and deliveries are kept in anonymised form, because financial regulations and fraud prevention require us to retain them.",
+    "before": "Before deleting, withdraw any money left in your wallet and finish any delivery in progress — the app will remind you if anything is still pending."
   }
 }

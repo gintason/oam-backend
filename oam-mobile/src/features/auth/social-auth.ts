@@ -16,6 +16,7 @@
  * and iOS OAuth clients must live in the same Google Cloud project as that
  * web client, or Google refuses the sign-in (DEVELOPER_ERROR).
  */
+import { Platform } from "react-native";
 import Constants from "expo-constants";
 
 // OAM's one Google Cloud project: "OAM Platform" (74521252008). Web, backend
@@ -113,6 +114,55 @@ export async function signInWithGoogle(): Promise<string> {
     if (String(e?.code) === "10" || /DEVELOPER_ERROR/i.test(String(e?.message))) {
       throw new Error("Google sign-in isn't set up for this build yet. Please use email for now.");
     }
+    throw e;
+  }
+}
+
+
+/* ------------------------------------------------------------------ *
+ * Sign in with Apple (iOS only)
+ *
+ * Apple requires it on iOS whenever another social sign-in (Google) is
+ * offered (App Review guideline 4.8). The backend verifies the identity
+ * token against Apple's keys; its audience is the bundle ID (com.oam.mobile).
+ * Apple shares the user's name only on the FIRST authorization, so we pass it
+ * along for the new account.
+ * ------------------------------------------------------------------ */
+let appleCached: any | null | undefined;
+/** The expo-apple-authentication module on iOS; null elsewhere. */
+export function appleModule(): any | null {
+  if (Platform.OS !== "ios") return null;
+  if (appleCached !== undefined) return appleCached;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    appleCached = require("expo-apple-authentication");
+  } catch {
+    appleCached = null;
+  }
+  return appleCached;
+}
+
+export async function isAppleAvailable(): Promise<boolean> {
+  const A = appleModule();
+  if (!A) return false;
+  try { return await A.isAvailableAsync(); } catch { return false; }
+}
+
+export async function signInWithApple(): Promise<{ idToken: string; firstName: string; lastName: string }> {
+  const A = appleModule();
+  if (!A) throw new SocialUnavailable();
+  try {
+    const cred = await A.signInAsync({
+      requestedScopes: [A.AppleAuthenticationScope.FULL_NAME, A.AppleAuthenticationScope.EMAIL],
+    });
+    if (!cred?.identityToken) throw new Error("Apple did not return an identity token.");
+    return {
+      idToken: cred.identityToken,
+      firstName: cred.fullName?.givenName ?? "",
+      lastName: cred.fullName?.familyName ?? "",
+    };
+  } catch (e: any) {
+    if (e?.code === "ERR_REQUEST_CANCELED" || e?.code === "ERR_CANCELED") throw new SocialCancelled();
     throw e;
   }
 }

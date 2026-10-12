@@ -2376,5 +2376,20 @@
     "getItOn": "DISPONIBLE SUR",
     "downloadOn": "Télécharger dans l'",
     "comingSoon": "Bientôt disponible"
+  },
+  "deletePage": {
+    "title": "Supprimer votre compte OAM",
+    "intro": "Vous pouvez supprimer votre compte OAM à tout moment, depuis l'app ou par e-mail.",
+    "inAppTitle": "Dans l'app OAM",
+    "inApp1": "Ouvrez l'app OAM et connectez-vous.",
+    "inApp2": "Allez dans Profil et touchez « Supprimer le compte ».",
+    "inApp3": "Confirmez avec votre mot de passe (ou tapez DELETE si vous vous connectez avec Google ou Apple).",
+    "emailTitle": "Par e-mail",
+    "emailBody": "Si vous ne pouvez pas utiliser l'app, écrivez à <1>info@oam-app.com</1> depuis l'adresse e-mail de votre compte, avec l'objet « Supprimer mon compte OAM ». Nous vérifierons qu'il s'agit bien de vous, puis supprimerons le compte.",
+    "deletedTitle": "Ce que nous supprimons",
+    "deletedBody": "Vos nom, adresse e-mail, numéro de téléphone, code de transaction, appareils enregistrés et connexion Google ou Apple liée. Vos annonces, votre profil d'artisan, votre CV et vos offres d'emploi sont retirés, et vous ne pouvez plus vous connecter.",
+    "keptTitle": "Ce que nous conservons, et pourquoi",
+    "keptBody": "Les traces des paiements, transactions du portefeuille, retraits et livraisons sont conservées sous forme anonymisée, car la réglementation financière et la prévention de la fraude l'exigent.",
+    "before": "Avant la suppression, retirez l'argent restant dans votre portefeuille et terminez toute livraison en cours — l'app vous le rappellera si quelque chose est encore en attente."
   }
 }

@@ -2403,5 +2403,20 @@
     "getItOn": "GBÀ Á LÓRÍ",
     "downloadOn": "Gbà á lórí",
     "comingSoon": "Láìpẹ́"
+  },
+  "deletePage": {
+    "title": "Pa àkàntì OAM rẹ rẹ́",
+    "intro": "O lè pa àkàntì OAM rẹ rẹ́ nígbàkigbà, láti inú áàpù tàbí nípasẹ̀ ímeèlì.",
+    "inAppTitle": "Nínú áàpù OAM",
+    "inApp1": "Ṣí áàpù OAM kí o sì wọlé.",
+    "inApp2": "Lọ sí Profáìlì kí o sì tẹ “Pa àkàntì rẹ́”.",
+    "inApp3": "Jẹ́rìí pẹ̀lú ọ̀rọ̀ ìpamọ́ rẹ (tàbí tẹ DELETE tí o bá ń wọlé pẹ̀lú Google tàbí Apple).",
+    "emailTitle": "Nípasẹ̀ ímeèlì",
+    "emailBody": "Tí o kò bá lè lo áàpù náà, fi ímeèlì ránṣẹ́ sí <1>info@oam-app.com</1> láti àdírẹ́sì ímeèlì àkàntì rẹ pẹ̀lú àkọlé “Pa àkàntì OAM mi rẹ́”. A ó jẹ́rìí pé ìwọ ni, lẹ́yìn náà a ó pa àkàntì náà rẹ́.",
+    "deletedTitle": "Ohun tí a ń pa rẹ́",
+    "deletedBody": "Orúkọ rẹ, àdírẹ́sì ímeèlì, nọ́ńbà fóònù, PIN ìdúnàádúrà, àwọn ẹ̀rọ tí a fi pamọ́ àti wíwọlé Google tàbí Apple tí a so mọ́. A ó yọ àwọn ìkéde rẹ, profáìlì oníṣẹ́-ọnà, CV àti àwọn ìkéde iṣẹ́ kúrò, o kò sì ní lè wọlé mọ́.",
+    "keptTitle": "Ohun tí a ń tọ́jú, àti ìdí rẹ̀",
+    "keptBody": "A ń tọ́jú àkọsílẹ̀ àwọn ìsanwó, ìdúnàádúrà àpò owó, gbígbà owó jáde àti ìfijíṣẹ́ láìsí orúkọ, nítorí àwọn òfin ìnáwó àti ìdènà jìbìtì béèrè fún un.",
+    "before": "Kí o tó pa á rẹ́, gba owó tó kù nínú àpò owó rẹ jáde kí o sì parí ìfijíṣẹ́ èyíkéyìí tó ń lọ lọ́wọ́ — áàpù náà yóò rán ọ létí tí nǹkan kan bá ṣì wà ní ìdúró."
   }
 }

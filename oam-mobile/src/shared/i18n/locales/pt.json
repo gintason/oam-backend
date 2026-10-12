@@ -952,6 +952,9 @@
       "google": "Continuar com o Google",
       "notYou": "Não é {{name}}?",
       "switch": "Trocar de conta"
+    },
+    "social": {
+      "appleFailed": "Falha no login com a Apple. Tente novamente."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Guardar alterações",
     "saved": "Guardado!",
     "errSave": "Não foi possível guardar as alterações. Tente novamente.",
-    "verified": "Verificado"
+    "verified": "Verificado",
+    "deleteAccount": "Excluir conta"
   },
   "giftcards": {
     "back": "Voltar",
@@ -2476,5 +2480,25 @@
       "hoursAgo": "há {{n}} h",
       "daysAgo": "há {{n}} d"
     }
+  },
+  "deleteAccount": {
+    "back": "Voltar ao perfil",
+    "title": "Excluir sua conta",
+    "subtitle": "Isso exclui sua conta OAM permanentemente. Veja o que acontece:",
+    "p1": "Você sairá de todos os aparelhos e não poderá entrar de novo.",
+    "p2": "Seu nome, e-mail, telefone e aparelhos salvos são apagados.",
+    "p3": "Seus anúncios, perfil de profissional, currículo e vagas são removidos.",
+    "p4": "Os registros de pagamentos anteriores são mantidos, anonimizados, como exige a lei.",
+    "blockedTitle": "Antes de excluir sua conta:",
+    "passwordLabel": "Digite sua senha para confirmar",
+    "typeDelete": "Digite DELETE para confirmar",
+    "cta": "Excluir minha conta permanentemente",
+    "deleting": "Excluindo…",
+    "confirmTitle": "Excluir sua conta?",
+    "confirmBody": "Não é possível desfazer.",
+    "confirmCta": "Excluir",
+    "doneTitle": "Conta excluída",
+    "doneBody": "Sua conta OAM foi excluída. Sentimos muito por sua saída.",
+    "errFailed": "Não foi possível excluir sua conta. Tente novamente."
   }
 }

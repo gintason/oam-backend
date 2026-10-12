@@ -2376,5 +2376,20 @@
     "getItOn": "DISPONIBILE SU",
     "downloadOn": "Scarica su",
     "comingSoon": "Prossimamente"
+  },
+  "deletePage": {
+    "title": "Elimina il tuo account OAM",
+    "intro": "Puoi eliminare il tuo account OAM in qualsiasi momento, dall'app o via e-mail.",
+    "inAppTitle": "Nell'app OAM",
+    "inApp1": "Apri l'app OAM e accedi.",
+    "inApp2": "Vai su Profilo e tocca «Elimina account».",
+    "inApp3": "Conferma con la password (o scrivi DELETE se accedi con Google o Apple).",
+    "emailTitle": "Via e-mail",
+    "emailBody": "Se non puoi usare l'app, scrivi a <1>info@oam-app.com</1> dall'indirizzo e-mail del tuo account con oggetto «Elimina il mio account OAM». Verificheremo che sei tu e poi elimineremo l'account.",
+    "deletedTitle": "Cosa eliminiamo",
+    "deletedBody": "Nome, indirizzo e-mail, numero di telefono, PIN delle transazioni, dispositivi salvati e accesso collegato con Google o Apple. I tuoi annunci, il profilo da artigiano, il CV e le offerte di lavoro vengono rimossi e non potrai più accedere.",
+    "keptTitle": "Cosa conserviamo e perché",
+    "keptBody": "I registri di pagamenti, movimenti del portafoglio, prelievi e consegne vengono conservati in forma anonima, perché la normativa finanziaria e la prevenzione delle frodi lo richiedono.",
+    "before": "Prima di eliminare l'account, preleva il denaro rimasto nel portafoglio e completa le consegne in corso: l'app ti avviserà se c'è ancora qualcosa in sospeso."
   }
 }

@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { View, Pressable, Text as RNText, ActivityIndicator, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import Svg, { Path } from "react-native-svg";
@@ -6,7 +6,40 @@ import { Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
 import { apiErrorMessage } from "@/shared/api";
 import { authApi, useAuthStore } from "@/features/auth";
-import { signInWithGoogle, SocialCancelled, SocialUnavailable, isGoogleAvailable } from "@/features/auth/social-auth";
+import { useTranslation } from "react-i18next";
+import {
+  signInWithGoogle, SocialCancelled, SocialUnavailable, isGoogleAvailable,
+  appleModule, isAppleAvailable, signInWithApple,
+} from "@/features/auth/social-auth";
+
+/** True on iOS devices that support Sign in with Apple. */
+export function useAppleAvailable(): boolean {
+  const [ok, setOk] = useState(false);
+  useEffect(() => {
+    let live = true;
+    isAppleAvailable().then((v) => { if (live) setOk(v); });
+    return () => { live = false; };
+  }, []);
+  return ok;
+}
+
+/** Apple's own native button (required look under Apple's guidelines; iOS localizes its label). */
+export function AppleButton({ onPress, disabled }: { onPress: () => void; disabled?: boolean }) {
+  const A = appleModule();
+  if (!A?.AppleAuthenticationButton) return null;
+  const Btn = A.AppleAuthenticationButton;
+  return (
+    <View style={{ width: "100%", opacity: disabled ? 0.6 : 1 }} pointerEvents={disabled ? "none" : "auto"}>
+      <Btn
+        buttonType={A.AppleAuthenticationButtonType.CONTINUE}
+        buttonStyle={A.AppleAuthenticationButtonStyle.BLACK}
+        cornerRadius={4}
+        style={{ width: "100%", height: 44 }}
+        onPress={onPress}
+      />
+    </View>
+  );
+}
 
 /** "Continue with Google" for the auth screens. Uses the native Google module
  *  (present in real builds; hidden in Expo Go). Styled like the website's
@@ -14,8 +47,10 @@ import { signInWithGoogle, SocialCancelled, SocialUnavailable, isGoogleAvailable
 export function SocialAuthButtons({ onError }: { onError?: (msg: string) => void }) {
   const router = useRouter();
   const setSession = useAuthStore((s) => s.setSession);
-  const [busy, setBusy] = useState<null | "google">(null);
+  const { t } = useTranslation();
+  const [busy, setBusy] = useState<null | "google" | "apple">(null);
   const googleReady = isGoogleAvailable();
+  const appleReady = useAppleAvailable();
 
   const finish = useCallback(() => router.replace("/home"), [router]);
 
@@ -33,15 +68,29 @@ export function SocialAuthButtons({ onError }: { onError?: (msg: string) => void
     } finally { setBusy(null); }
   }
 
-  if (!googleReady) return null;
+  async function onApple() {
+    onError?.("");
+    setBusy("apple");
+    try {
+      const { idToken, firstName, lastName } = await signInWithApple();
+      const { user, tokens } = await authApi.social("apple", idToken, { first_name: firstName, last_name: lastName });
+      await setSession(user, tokens);
+      await finish();
+    } catch (e) {
+      if (!(e instanceof SocialCancelled)) onError?.(apiErrorMessage(e, t("auth.social.appleFailed", "Apple sign-in failed. Please try again.")));
+    } finally { setBusy(null); }
+  }
+
+  if (!googleReady && !appleReady) return null;
 
   return (
-    <View style={{ marginBottom: 8 }}>
-      <GoogleButton onPress={onGoogle} busy={busy === "google"} disabled={busy !== null} />
+    <View style={{ marginBottom: 8, gap: 10 }}>
+      {appleReady ? <AppleButton onPress={onApple} disabled={busy !== null} /> : null}
+      {googleReady ? <GoogleButton onPress={onGoogle} busy={busy === "google"} disabled={busy !== null} /> : null}
 
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 18, marginBottom: 6 }}>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 8, marginBottom: 6 }}>
         <View style={{ flex: 1, height: 1, backgroundColor: colors.hairline }} />
-        <Text variant="caption" color="muted">OR CONTINUE WITH EMAIL</Text>
+        <Text variant="caption" color="muted">{t("auth.fields.orEmail", "or continue with email").toUpperCase()}</Text>
         <View style={{ flex: 1, height: 1, backgroundColor: colors.hairline }} />
       </View>
     </View>

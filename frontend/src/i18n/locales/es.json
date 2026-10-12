@@ -2376,5 +2376,20 @@
     "getItOn": "DISPONIBLE EN",
     "downloadOn": "Descárgala en",
     "comingSoon": "Próximamente"
+  },
+  "deletePage": {
+    "title": "Eliminar tu cuenta de OAM",
+    "intro": "Puedes eliminar tu cuenta de OAM cuando quieras, desde la app o por correo.",
+    "inAppTitle": "En la app de OAM",
+    "inApp1": "Abre la app de OAM e inicia sesión.",
+    "inApp2": "Ve a Perfil y toca «Eliminar cuenta».",
+    "inApp3": "Confirma con tu contraseña (o escribe DELETE si inicias sesión con Google o Apple).",
+    "emailTitle": "Por correo",
+    "emailBody": "Si no puedes usar la app, escribe a <1>info@oam-app.com</1> desde el correo de tu cuenta con el asunto «Eliminar mi cuenta de OAM». Comprobaremos que eres tú y eliminaremos la cuenta.",
+    "deletedTitle": "Qué eliminamos",
+    "deletedBody": "Tu nombre, correo, teléfono, PIN de transacciones, dispositivos guardados y el inicio de sesión vinculado con Google o Apple. Se retiran tus anuncios, perfil de profesional, CV y ofertas de empleo, y ya no podrás iniciar sesión.",
+    "keptTitle": "Qué conservamos y por qué",
+    "keptBody": "Los registros de pagos, movimientos del monedero, retiros y entregas se conservan anonimizados, porque la normativa financiera y la prevención del fraude lo exigen.",
+    "before": "Antes de eliminarla, retira el dinero que quede en tu monedero y termina cualquier entrega en curso; la app te avisará si queda algo pendiente."
   }
 }

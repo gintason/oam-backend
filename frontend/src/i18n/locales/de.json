@@ -2360,5 +2360,20 @@
     "getItOn": "JETZT BEI",
     "downloadOn": "Laden im",
     "comingSoon": "Demnächst"
+  },
+  "deletePage": {
+    "title": "Dein OAM-Konto löschen",
+    "intro": "Du kannst dein OAM-Konto jederzeit löschen – in der App oder per E-Mail.",
+    "inAppTitle": "In der OAM-App",
+    "inApp1": "Öffne die OAM-App und melde dich an.",
+    "inApp2": "Gehe zu Profil und tippe auf „Konto löschen“.",
+    "inApp3": "Bestätige mit deinem Passwort (oder gib DELETE ein, wenn du dich mit Google oder Apple anmeldest).",
+    "emailTitle": "Per E-Mail",
+    "emailBody": "Wenn du die App nicht nutzen kannst, schreib von der E-Mail-Adresse deines Kontos an <1>info@oam-app.com</1> mit dem Betreff „Mein OAM-Konto löschen“. Wir prüfen, dass du es bist, und löschen dann das Konto.",
+    "deletedTitle": "Was wir löschen",
+    "deletedBody": "Deinen Namen, deine E-Mail-Adresse, Telefonnummer, Transaktions-PIN, gespeicherte Geräte und verknüpfte Google- oder Apple-Anmeldung. Deine Anzeigen, dein Handwerkerprofil, dein Lebenslauf und Stellenanzeigen werden entfernt, und du kannst dich nicht mehr anmelden.",
+    "keptTitle": "Was wir behalten – und warum",
+    "keptBody": "Aufzeichnungen zu Zahlungen, Wallet-Buchungen, Auszahlungen und Lieferungen bleiben anonymisiert erhalten, weil Finanzvorschriften und Betrugsprävention das verlangen.",
+    "before": "Zahle vor dem Löschen dein restliches Wallet-Guthaben aus und schließe laufende Lieferungen ab – die App erinnert dich, wenn noch etwas offen ist."
   }
 }

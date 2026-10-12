@@ -952,6 +952,9 @@
       "google": "Tẹ̀síwájú pẹ̀lú Google",
       "notYou": "Ìwọ kọ́ ni {{name}}?",
       "switch": "Yí àkàntì padà"
+    },
+    "social": {
+      "appleFailed": "Wíwọlé pẹ̀lú Apple kùnà. Jọ̀wọ́ tún gbìyànjú."
     }
   },
   "artisans": {
@@ -1731,7 +1734,8 @@
     "save": "Fi àwọn àyípadà pamọ́",
     "saved": "A ti fipamọ́!",
     "errSave": "A kò lè fi àwọn àyípadà rẹ pamọ́. Tún gbìyànjú.",
-    "verified": "Fọwọ́ sí"
+    "verified": "Fọwọ́ sí",
+    "deleteAccount": "Pa àkàntì rẹ́"
   },
   "giftcards": {
     "back": "Padà sẹ́yìn",
@@ -2496,5 +2500,25 @@
       "hoursAgo": "wákàtí {{n}} sẹ́yìn",
       "daysAgo": "ọjọ́ {{n}} sẹ́yìn"
     }
+  },
+  "deleteAccount": {
+    "back": "Padà sí profáìlì",
+    "title": "Pa àkàntì rẹ rẹ́",
+    "subtitle": "Èyí yóò pa àkàntì OAM rẹ rẹ́ títí láé. Ohun tí yóò ṣẹlẹ̀ nìyí:",
+    "p1": "A ó jáde rẹ ní gbogbo ibi, o kò sì ní lè wọlé mọ́.",
+    "p2": "A ó pa orúkọ rẹ, ímeèlì, fóònù àti àwọn ẹ̀rọ tí a fi pamọ́ rẹ́.",
+    "p3": "A ó yọ àwọn ìkéde rẹ, profáìlì oníṣẹ́-ọnà, CV àti àwọn iṣẹ́ tí o kéde kúrò.",
+    "p4": "A ń tọ́jú àkọsílẹ̀ àwọn ìsanwó àtẹ̀yìnwá láìsí orúkọ, gẹ́gẹ́ bí òfin ṣe là á sílẹ̀.",
+    "blockedTitle": "Kí o tó lè pa àkàntì rẹ rẹ́:",
+    "passwordLabel": "Tẹ ọ̀rọ̀ ìpamọ́ rẹ láti jẹ́rìí",
+    "typeDelete": "Tẹ DELETE láti jẹ́rìí",
+    "cta": "Pa àkàntì mi rẹ́ títí láé",
+    "deleting": "À ń pa á rẹ́…",
+    "confirmTitle": "Ṣé kí a pa àkàntì rẹ rẹ́?",
+    "confirmBody": "A kò lè yí èyí padà.",
+    "confirmCta": "Pa á rẹ́",
+    "doneTitle": "A ti pa àkàntì rẹ́",
+    "doneBody": "A ti pa àkàntì OAM rẹ rẹ́. Ó dùn wá pé o ń lọ.",
+    "errFailed": "A kò lè pa àkàntì rẹ rẹ́. Jọ̀wọ́ tún gbìyànjú."
   }
 }

@@ -16,8 +16,8 @@ import { apiErrorMessage } from "@/shared/api";
 import { LanguagePicker } from "@/shared/i18n/LanguagePicker";
 import { maskIdentifier } from "@/shared/auth/account-store";
 import { authApi, useAuthStore } from "@/features/auth";
-import { signInWithGoogle, isGoogleAvailable, SocialCancelled, SocialUnavailable } from "@/features/auth/social-auth";
-import { GoogleButton } from "@/features/auth/ui/SocialAuthButtons";
+import { signInWithGoogle, isGoogleAvailable, signInWithApple, SocialCancelled, SocialUnavailable } from "@/features/auth/social-auth";
+import { GoogleButton, AppleButton, useAppleAvailable } from "@/features/auth/ui/SocialAuthButtons";
 import { WelcomeArt } from "@/features/auth/ui/WelcomeArt";
 
 const logo = require("../../../assets/images/logo.png");
@@ -34,7 +34,7 @@ export default function WelcomeBack() {
   const [password, setPassword] = useState("");
   const [hidden, setHidden] = useState(true);
   const [focused, setFocused] = useState(false);
-  const [busy, setBusy] = useState<null | "password" | "google">(null);
+  const [busy, setBusy] = useState<null | "password" | "google" | "apple">(null);
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<TextInput>(null);
 
@@ -42,6 +42,7 @@ export default function WelcomeBack() {
 
   const name = account.name;
   const googleReady = isGoogleAvailable();
+  const appleReady = useAppleAvailable();
   const usesGoogle = account.provider === "google";
 
   async function onLogin() {
@@ -69,6 +70,22 @@ export default function WelcomeBack() {
       setError(wrong
         ? t("auth.welcomeBack.errWrong", "That password isn't right. Try again, or reset it below.")
         : apiErrorMessage(err, t("auth.welcomeBack.errFailed", "Couldn't log you in. Please try again.")));
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function onApple() {
+    if (busy) return;
+    setError(null);
+    setBusy("apple");
+    try {
+      const { idToken, firstName, lastName } = await signInWithApple();
+      const { user, tokens } = await authApi.social("apple", idToken, { first_name: firstName, last_name: lastName });
+      await setSession(user, tokens);
+      router.replace("/home");
+    } catch (e) {
+      if (!(e instanceof SocialCancelled)) setError(apiErrorMessage(e, t("auth.social.appleFailed", "Apple sign-in failed. Please try again.")));
     } finally {
       setBusy(null);
     }
@@ -176,16 +193,23 @@ export default function WelcomeBack() {
             {t("auth.welcomeBack.forgot", "Forgot password?")}
           </Text>
 
-          <Button title={t("auth.welcomeBack.submit", "Log in")} onPress={onLogin} loading={busy === "password"} disabled={busy === "google"} />
+          <Button title={t("auth.welcomeBack.submit", "Log in")} onPress={onLogin} loading={busy === "password"} disabled={busy === "google" || busy === "apple"} />
 
-          {googleReady ? (
+          {googleReady || appleReady ? (
             <>
               <View style={{ flexDirection: "row", alignItems: "center", marginVertical: 18 }}>
                 <View style={{ flex: 1, height: 1, backgroundColor: colors.hairline }} />
                 <Text variant="caption" color="muted" style={{ marginHorizontal: 12 }}>{t("auth.welcomeBack.or", "or")}</Text>
                 <View style={{ flex: 1, height: 1, backgroundColor: colors.hairline }} />
               </View>
-              <GoogleButton onPress={onGoogle} busy={busy === "google"} disabled={busy !== null} label={t("auth.welcomeBack.google", "Continue with Google")} />
+              {appleReady ? (
+                <View style={{ marginBottom: googleReady ? 10 : 0 }}>
+                  <AppleButton onPress={onApple} disabled={busy !== null} />
+                </View>
+              ) : null}
+              {googleReady ? (
+                <GoogleButton onPress={onGoogle} busy={busy === "google"} disabled={busy !== null} label={t("auth.welcomeBack.google", "Continue with Google")} />
+              ) : null}
             </>
           ) : null}
 

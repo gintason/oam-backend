@@ -952,6 +952,9 @@
       "google": "Kontynuuj z Google",
       "notYou": "To nie Ty, {{name}}?",
       "switch": "Przełącz konto"
+    },
+    "social": {
+      "appleFailed": "Logowanie przez Apple nie powiodło się. Spróbuj ponownie."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Zapisz zmiany",
     "saved": "Zapisano!",
     "errSave": "Nie udało się zapisać zmian. Spróbuj ponownie.",
-    "verified": "Zweryfikowano"
+    "verified": "Zweryfikowano",
+    "deleteAccount": "Usuń konto"
   },
   "giftcards": {
     "back": "Wstecz",
@@ -2496,5 +2500,25 @@
       "hoursAgo": "{{n}} godz. temu",
       "daysAgo": "{{n}} d temu"
     }
+  },
+  "deleteAccount": {
+    "back": "Powrót do profilu",
+    "title": "Usuń konto",
+    "subtitle": "To trwale usunie Twoje konto OAM. Co się stanie:",
+    "p1": "Zostaniesz wylogowany wszędzie i nie zalogujesz się ponownie.",
+    "p2": "Twoje imię, e-mail, telefon i zapisane urządzenia zostaną usunięte.",
+    "p3": "Twoje ogłoszenia, profil fachowca, CV i oferty pracy zostaną zdjęte.",
+    "p4": "Zapisy wcześniejszych płatności są przechowywane anonimowo, zgodnie z prawem.",
+    "blockedTitle": "Zanim usuniesz konto:",
+    "passwordLabel": "Wpisz hasło, aby potwierdzić",
+    "typeDelete": "Wpisz DELETE, aby potwierdzić",
+    "cta": "Usuń moje konto na zawsze",
+    "deleting": "Usuwanie…",
+    "confirmTitle": "Usunąć konto?",
+    "confirmBody": "Tej operacji nie można cofnąć.",
+    "confirmCta": "Usuń",
+    "doneTitle": "Konto usunięte",
+    "doneBody": "Twoje konto OAM zostało usunięte. Przykro nam, że odchodzisz.",
+    "errFailed": "Nie udało się usunąć konta. Spróbuj ponownie."
   }
 }

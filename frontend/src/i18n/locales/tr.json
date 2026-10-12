@@ -2360,5 +2360,20 @@
     "getItOn": "HEMEN İNDİRİN",
     "downloadOn": "İndirin:",
     "comingSoon": "Çok yakında"
+  },
+  "deletePage": {
+    "title": "OAM hesabını sil",
+    "intro": "OAM hesabını istediğin zaman uygulamadan ya da e-postayla silebilirsin.",
+    "inAppTitle": "OAM uygulamasında",
+    "inApp1": "OAM uygulamasını aç ve giriş yap.",
+    "inApp2": "Profil'e git ve “Hesabı sil”e dokun.",
+    "inApp3": "Şifrenle onayla (Google veya Apple ile giriş yapıyorsan DELETE yaz).",
+    "emailTitle": "E-postayla",
+    "emailBody": "Uygulamayı kullanamıyorsan, hesabındaki e-posta adresinden “OAM hesabımı sil” konusuyla <1>info@oam-app.com</1> adresine yaz. Senin olduğunu doğrulayıp hesabı sileceğiz.",
+    "deletedTitle": "Neleri siliyoruz",
+    "deletedBody": "Adın, e-posta adresin, telefon numaran, işlem PIN'in, kayıtlı cihazların ve bağlı Google ya da Apple girişin. İlanların, usta profilin, özgeçmişin ve iş ilanların kaldırılır; bir daha giriş yapamazsın.",
+    "keptTitle": "Neleri saklıyoruz ve neden",
+    "keptBody": "Ödeme, cüzdan hareketi, para çekme ve teslimat kayıtları anonim olarak saklanır; çünkü finansal düzenlemeler ve dolandırıcılığı önleme bunu gerektirir.",
+    "before": "Silmeden önce cüzdanında kalan parayı çek ve süren teslimatları tamamla — bekleyen bir şey varsa uygulama sana hatırlatır."
   }
 }

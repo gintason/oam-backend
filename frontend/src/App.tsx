@@ -37,6 +37,7 @@ import Contact from "./pages/company/Contact";
 import Help from "./pages/company/Help";
 import Terms from "./pages/company/Terms";
 import RefundPolicy from "./pages/company/RefundPolicy";
+import DeleteAccountInfo from "./pages/company/DeleteAccount";
 import Privacy from "./pages/company/Privacy";
 import Travel from "./pages/travel/Travel";
 import Flights from "./pages/travel/Flights";
@@ -140,6 +141,7 @@ export default function App() {
 
               <Route path="/privacy" element={<Privacy />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/delete-account" element={<DeleteAccountInfo />} />
               <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
 
               <Route path="/marketplace" element={<PublicOrApp app={<MarketplaceHub />} pub={<PublicMarketplace />} />} />

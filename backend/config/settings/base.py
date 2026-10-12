@@ -350,7 +350,11 @@ SOCIAL_AUTH = {
     "google":   {"client_ids": env.list("GOOGLE_CLIENT_IDS", default=[])},
     "facebook": {"app_id": env("FACEBOOK_APP_ID", default=""),
                  "app_secret": env("FACEBOOK_APP_SECRET", default="")},
-    "apple":    {"client_ids": env.list("APPLE_CLIENT_IDS", default=[])},
+    # Sign in with Apple from the iOS app: the identity token's audience is the
+    # app's bundle ID. Add a Services ID here too if Apple sign-in comes to the web.
+    # An empty APPLE_CLIENT_IDS still falls back to the bundle ID.
+    "apple":    {"client_ids": [c for c in env.list("APPLE_CLIENT_IDS", default=[]) if c.strip()]
+                               or ["com.oam.mobile"]},
 }
 # DEV ONLY: lets you test the link-or-create flow with token "MOCK".
 # Must stay False in production (it is overridden there anyway).

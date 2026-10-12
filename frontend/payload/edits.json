@@ -1,0 +1,12 @@
+{
+ "src/App.tsx": [
+  [
+   "import Help from \"./pages/company/Help\";\nimport Terms from \"./pages/company/Terms\";\nimport RefundPolicy from \"./pages/company/RefundPolicy\";\nimport Privacy from \"./pages/company/Privacy\";\nimport Travel from \"./pages/travel/Travel\";\nimport Flights from \"./pages/travel/Flights\";\n",
+   "import Help from \"./pages/company/Help\";\nimport Terms from \"./pages/company/Terms\";\nimport RefundPolicy from \"./pages/company/RefundPolicy\";\nimport DeleteAccountInfo from \"./pages/company/DeleteAccount\";\nimport Privacy from \"./pages/company/Privacy\";\nimport Travel from \"./pages/travel/Travel\";\nimport Flights from \"./pages/travel/Flights\";\n"
+  ],
+  [
+   "\n              <Route path=\"/privacy\" element={<Privacy />} />\n            <Route path=\"/refund-policy\" element={<RefundPolicy />} />\n              <Route path=\"/profile\" element={<RequireAuth><Profile /></RequireAuth>} />\n\n              <Route path=\"/marketplace\" element={<PublicOrApp app={<MarketplaceHub />} pub={<PublicMarketplace />} />} />\n",
+   "\n              <Route path=\"/privacy\" element={<Privacy />} />\n            <Route path=\"/refund-policy\" element={<RefundPolicy />} />\n            <Route path=\"/delete-account\" element={<DeleteAccountInfo />} />\n              <Route path=\"/profile\" element={<RequireAuth><Profile /></RequireAuth>} />\n\n              <Route path=\"/marketplace\" element={<PublicOrApp app={<MarketplaceHub />} pub={<PublicMarketplace />} />} />\n"
+  ]
+ ]
+}

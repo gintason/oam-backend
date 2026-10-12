@@ -952,6 +952,9 @@
       "google": "Continuar con Google",
       "notYou": "¿No eres {{name}}?",
       "switch": "Cambiar de cuenta"
+    },
+    "social": {
+      "appleFailed": "No se pudo iniciar sesión con Apple. Inténtalo de nuevo."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Guardar cambios",
     "saved": "¡Guardado!",
     "errSave": "No se pudieron guardar los cambios. Inténtalo de nuevo.",
-    "verified": "Verificado"
+    "verified": "Verificado",
+    "deleteAccount": "Eliminar cuenta"
   },
   "giftcards": {
     "back": "Atrás",
@@ -2476,5 +2480,25 @@
       "hoursAgo": "hace {{n}} h",
       "daysAgo": "hace {{n}} d"
     }
+  },
+  "deleteAccount": {
+    "back": "Volver al perfil",
+    "title": "Eliminar tu cuenta",
+    "subtitle": "Esto elimina tu cuenta de OAM para siempre. Esto es lo que pasa:",
+    "p1": "Se cerrará tu sesión en todas partes y no podrás volver a entrar.",
+    "p2": "Se borran tu nombre, correo, teléfono y dispositivos guardados.",
+    "p3": "Se retiran tus anuncios, perfil de profesional, CV y ofertas de empleo.",
+    "p4": "Los registros de pagos anteriores se conservan, anonimizados, como exige la ley.",
+    "blockedTitle": "Antes de poder eliminar tu cuenta:",
+    "passwordLabel": "Introduce tu contraseña para confirmar",
+    "typeDelete": "Escribe DELETE para confirmar",
+    "cta": "Eliminar mi cuenta para siempre",
+    "deleting": "Eliminando…",
+    "confirmTitle": "¿Eliminar tu cuenta?",
+    "confirmBody": "No se puede deshacer.",
+    "confirmCta": "Eliminar",
+    "doneTitle": "Cuenta eliminada",
+    "doneBody": "Tu cuenta de OAM se ha eliminado. Sentimos que te vayas.",
+    "errFailed": "No se pudo eliminar tu cuenta. Inténtalo de nuevo."
   }
 }

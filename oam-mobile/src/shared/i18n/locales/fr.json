@@ -952,6 +952,9 @@
       "google": "Continuer avec Google",
       "notYou": "Vous n'êtes pas {{name}} ?",
       "switch": "Changer de compte"
+    },
+    "social": {
+      "appleFailed": "La connexion avec Apple a échoué. Réessayez."
     }
   },
   "artisans": {
@@ -1730,7 +1733,8 @@
     "save": "Enregistrer",
     "saved": "Enregistré !",
     "errSave": "Impossible d'enregistrer les modifications. Réessayez.",
-    "verified": "Vérifié"
+    "verified": "Vérifié",
+    "deleteAccount": "Supprimer le compte"
   },
   "giftcards": {
     "back": "Retour",
@@ -2476,5 +2480,25 @@
       "hoursAgo": "il y a {{n}} h",
       "daysAgo": "il y a {{n}} j"
     }
+  },
+  "deleteAccount": {
+    "back": "Retour au profil",
+    "title": "Supprimer votre compte",
+    "subtitle": "Cette action supprime définitivement votre compte OAM. Voici ce qui se passe :",
+    "p1": "Vous serez déconnecté partout et ne pourrez plus vous reconnecter.",
+    "p2": "Vos nom, e-mail, téléphone et appareils enregistrés sont effacés.",
+    "p3": "Vos annonces, votre profil d'artisan, votre CV et vos offres d'emploi sont retirés.",
+    "p4": "Les traces de vos paiements passés sont conservées, anonymisées, comme l'exige la loi.",
+    "blockedTitle": "Avant de pouvoir supprimer votre compte :",
+    "passwordLabel": "Saisissez votre mot de passe pour confirmer",
+    "typeDelete": "Tapez DELETE pour confirmer",
+    "cta": "Supprimer définitivement mon compte",
+    "deleting": "Suppression…",
+    "confirmTitle": "Supprimer votre compte ?",
+    "confirmBody": "Cette action est irréversible.",
+    "confirmCta": "Supprimer",
+    "doneTitle": "Compte supprimé",
+    "doneBody": "Votre compte OAM a été supprimé. Nous sommes désolés de vous voir partir.",
+    "errFailed": "Impossible de supprimer votre compte. Réessayez."
   }
 }

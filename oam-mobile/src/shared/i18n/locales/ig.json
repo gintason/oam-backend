@@ -952,6 +952,9 @@
       "google": "Jiri Google gaa n'ihu",
       "notYou": "Ọ bụghị {{name}}?",
       "switch": "Gbanwee akaụntụ"
+    },
+    "social": {
+      "appleFailed": "Ịbanye na Apple dara. Biko nwaa ọzọ."
     }
   },
   "artisans": {
@@ -1731,7 +1734,8 @@
     "save": "Chekwaa mgbanwe",
     "saved": "Echekwala!",
     "errSave": "Enweghị ike ịchekwa mgbanwe gị. Nwaa ọzọ.",
-    "verified": "Enyochara"
+    "verified": "Enyochara",
+    "deleteAccount": "Hichapụ akaụntụ"
   },
   "giftcards": {
     "back": "Laghachi azụ",
@@ -2496,5 +2500,25 @@
       "hoursAgo": "awa {{n}} gara aga",
       "daysAgo": "ụbọchị {{n}} gara aga"
     }
+  },
+  "deleteAccount": {
+    "back": "Laghachi na profaịlụ",
+    "title": "Hichapụ akaụntụ gị",
+    "subtitle": "Nke a ga-ehichapụ akaụntụ OAM gị ruo mgbe ebighị ebi. Ihe ga-eme:",
+    "p1": "A ga-ewepụ gị ebe niile, ị gaghịkwa enwe ike ịbanye ọzọ.",
+    "p2": "A ga-ehichapụ aha gị, email, ekwentị na ngwaọrụ echekwara.",
+    "p3": "A ga-ewepụ mgbasa gị, profaịlụ ọrụ aka, CV na ọrụ ndị i bipụtara.",
+    "p4": "A na-edobe ndekọ ịkwụ ụgwọ gara aga n'enweghị aha, dịka iwu chọrọ.",
+    "blockedTitle": "Tupu ị nwee ike ihichapụ akaụntụ gị:",
+    "passwordLabel": "Tinye okwuntughe gị iji kwado",
+    "typeDelete": "Dee DELETE iji kwado",
+    "cta": "Hichapụ akaụntụ m ruo mgbe ebighị ebi",
+    "deleting": "Na-ehichapụ…",
+    "confirmTitle": "Hichapụ akaụntụ gị?",
+    "confirmBody": "Enweghị ike ịtụgharị nke a.",
+    "confirmCta": "Hichapụ",
+    "doneTitle": "E hichapụla akaụntụ",
+    "doneBody": "E hichapụla akaụntụ OAM gị. Ọ dị anyị nwute na ị na-apụ.",
+    "errFailed": "Enweghị ike ihichapụ akaụntụ gị. Biko nwaa ọzọ."
   }
 }

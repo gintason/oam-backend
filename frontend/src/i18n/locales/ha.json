@@ -2419,5 +2419,20 @@
     "getItOn": "SAMU A",
     "downloadOn": "Sauke a",
     "comingSoon": "Nan ba da jimawa ba"
+  },
+  "deletePage": {
+    "title": "Share asusun ka na OAM",
+    "intro": "Za ka iya share asusun ka na OAM a kowane lokaci, ta manhaja ko ta imel.",
+    "inAppTitle": "A manhajar OAM",
+    "inApp1": "Buɗe manhajar OAM ka shiga.",
+    "inApp2": "Je Bayanai ka taɓa “Share asusu”.",
+    "inApp3": "Tabbatar da kalmar sirrin ka (ko ka rubuta DELETE idan kana shiga da Google ko Apple).",
+    "emailTitle": "Ta imel",
+    "emailBody": "Idan ba za ka iya amfani da manhaja ba, aika imel zuwa <1>info@oam-app.com</1> daga adireshin imel na asusun ka da taken “Share asusu na OAM”. Za mu tabbatar kai ne, sannan mu share asusun.",
+    "deletedTitle": "Abin da muke sharewa",
+    "deletedBody": "Sunan ka, adireshin imel, lambar waya, PIN na mu'amala, na'urorin da aka ajiye da shigar Google ko Apple da aka haɗa. Za a cire tallace-tallacen ka, bayanan sana'ar ka, CV da ayyukan da ka wallafa, kuma ba za ka iya sake shiga ba.",
+    "keptTitle": "Abin da muke ajiyewa, da dalili",
+    "keptBody": "Ana ajiye bayanan biyan kuɗi, mu'amalar walat, cire kuɗi da isar da kaya ba tare da suna ba, saboda dokokin kuɗi da hana zamba sun bukaci haka.",
+    "before": "Kafin sharewa, cire duk kuɗin da ya rage a walat ɗinka ka kammala duk isar da kaya da ke gudana — manhajar za ta tunatar da kai idan akwai abin da ke jiran aiki."
   }
 }

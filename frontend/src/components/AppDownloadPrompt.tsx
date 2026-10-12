@@ -115,7 +115,7 @@ export default function AppDownloadPrompt() {
         type="button"
         onClick={dismiss}
         aria-label={t("appPromo.close", "Close")}
-        className="absolute right-3.5 top-3.5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        className="absolute right-3.5 top-3.5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/80 transition hover:bg-white/20 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
       >
         <X size={18} strokeWidth={2} />
       </button>

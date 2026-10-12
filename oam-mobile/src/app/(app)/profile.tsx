@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Pressable } from "react-native";
+import { useRouter } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
 import { BadgeCheck } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
@@ -14,6 +15,7 @@ export default function Profile() {
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
   const switchAccount = useAuthStore((s) => s.switchAccount);
+  const router = useRouter();
 
   const [firstName, setFirstName] = useState(user?.first_name ?? "");
   const [lastName, setLastName] = useState(user?.last_name ?? "");
@@ -106,6 +108,10 @@ export default function Profile() {
         <Text variant="caption" color="muted" style={{ textAlign: "center", marginTop: 10 }}>
           {t("profile.signOutHint", "Sign out keeps your account on this device — come back with just your password. Switch account removes it (asks for email & password).")}
         </Text>
+
+        <Pressable onPress={() => router.push("/delete-account")} hitSlop={8} style={{ marginTop: 28, alignItems: "center", paddingVertical: 8 }}>
+          <Text variant="label" color="danger">{t("profile.deleteAccount", "Delete account")}</Text>
+        </Pressable>
       </ScrollView>
     </Screen>
   );
