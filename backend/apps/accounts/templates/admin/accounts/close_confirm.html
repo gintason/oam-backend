@@ -1,0 +1,39 @@
+{% extends "admin/base_site.html" %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+  <a href="{% url 'admin:accounts_user_changelist' %}">Users</a> &rsaquo; Close &amp; anonymise
+</div>
+{% endblock %}
+{% block content %}
+<p>Closing an account works like the app's own <strong>Delete account</strong>:</p>
+<ul>
+  <li>the person can never sign in again (all sessions are signed out);</li>
+  <li>their name, email, phone, PIN and devices are erased;</li>
+  <li>their listings, artisan profile, CV, jobs and rider status are taken down;</li>
+  <li>wallet, payment and delivery records are <strong>kept, anonymised</strong>, so your books still balance.</li>
+</ul>
+<p><strong>This can't be undone.</strong></p>
+
+<table>
+  <thead><tr><th>Account</th><th>Result</th></tr></thead>
+  <tbody>
+  {% for user, reason in rows %}
+    <tr>
+      <td>{{ user.identifier }}</td>
+      <td>{% if reason %}<span style="color:#b45309">Will be skipped: {{ reason }}</span>{% else %}<span style="color:#0b7327">Will be closed</span>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<form method="post" style="margin-top:20px">{% csrf_token %}
+  {% for user, reason in rows %}<input type="hidden" name="{{ action_checkbox_name }}" value="{{ user.pk }}">{% endfor %}
+  <input type="hidden" name="action" value="close_and_anonymise">
+  <input type="hidden" name="confirm" value="yes">
+  {% if closable %}
+    <input type="submit" class="default" style="background:#ba2121" value="Yes, close {{ closable|length }} account{{ closable|length|pluralize }}">
+  {% endif %}
+  <a href="{% url 'admin:accounts_user_changelist' %}" class="button cancel-link">Go back</a>
+</form>
+{% endblock %}

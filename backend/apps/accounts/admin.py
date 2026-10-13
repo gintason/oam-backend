@@ -38,3 +38,7 @@ class OTPCodeAdmin(admin.ModelAdmin):
     list_display = ("purpose", "channel", "destination", "is_used", "attempts", "created_at")
     list_filter = ("purpose", "channel", "is_used")
     search_fields = ("destination",)
+
+
+# "Close & anonymise" action (financial records are kept; see admin_close.py).
+from . import admin_close  # noqa: E402,F401

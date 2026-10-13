@@ -109,7 +109,7 @@ def delete_account(user) -> None:
         from apps.deliveries.models import RiderProfile
         RiderProfile.objects.filter(user=user).update(
             availability=RiderProfile.Availability.OFFLINE,
-            verification=RiderProfile.Verification.SUSPENDED)
+            verification_status=RiderProfile.Verification.SUSPENDED)
 
     for name, fn in [("sessions", revoke_sessions), ("identities", unlink_identities),
                      ("devices", forget_devices), ("bank accounts", bank_accounts),
