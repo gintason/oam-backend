@@ -38,11 +38,14 @@ export default function WelcomeBack() {
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<TextInput>(null);
 
+  // Hooks must run before the early return below: "Switch account" clears the
+  // account while this screen is mounted, and a hook after the return crashes it.
+  const appleReady = useAppleAvailable();
+
   if (!account) return <Redirect href="/sign-in" />;
 
   const name = account.name;
   const googleReady = isGoogleAvailable();
-  const appleReady = useAppleAvailable();
   const usesGoogle = account.provider === "google";
 
   async function onLogin() {
