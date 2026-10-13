@@ -376,13 +376,21 @@ DEFAULT_FROM_EMAIL = env(
     "DEFAULT_FROM_EMAIL",
     default=f"{APP_DISPLAY_NAME} <{EMAIL_HOST_USER or 'no-reply@oam-app.com'}>",
 )
-EMAIL_TIMEOUT = 60
+# Seconds to wait for the mail server. Short, so a mail outage can't make
+# sign-up hang (the user can always tap "Resend code").
+EMAIL_TIMEOUT = env.int("EMAIL_TIMEOUT", default=15)
 
-# Fall back to the console backend when no credentials are set, so local dev
-# never breaks — the email just prints to the terminal instead.
+# HTTPS email API (Resend or Brevo). Render's free plan blocks SMTP ports, so
+# set these there instead of the SMTP settings. See apps/common/email_backends.py.
+EMAIL_API_PROVIDER = env("EMAIL_API_PROVIDER", default="")
+EMAIL_API_KEY = env("EMAIL_API_KEY", default="")
+
+# Order: explicit EMAIL_BACKEND > email API > SMTP > console (local dev: the
+# email just prints to the terminal instead).
 EMAIL_BACKEND = env(
     "EMAIL_BACKEND",
-    default=("django.core.mail.backends.smtp.EmailBackend" if EMAIL_HOST_PASSWORD
+    default=("apps.common.email_backends.ApiEmailBackend" if (EMAIL_API_PROVIDER and EMAIL_API_KEY)
+             else "django.core.mail.backends.smtp.EmailBackend" if EMAIL_HOST_PASSWORD
              else "django.core.mail.backends.console.EmailBackend"),
 )
 
