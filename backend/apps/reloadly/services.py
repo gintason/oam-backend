@@ -35,6 +35,19 @@ class ReloadlyError(Exception):
     """Any Reloadly failure (auth, network, non-2xx, non-JSON)."""
 
 
+# OAuth tokens are shared by every client in the process (keyed by credentials +
+# environment). Reloadly tokens last hours/days; asking for a new one on every
+# request is slow and gets throttled.
+_TOKENS: dict = {}
+
+
+def _snippet(resp) -> str:
+    try:
+        return (resp.text or "")[:300].replace("\n", " ")
+    except Exception:  # pragma: no cover
+        return ""
+
+
 def _cfg(name: str, default: str = "") -> str:
     val = getattr(settings, name, None) if settings is not None else None
     return val or os.environ.get(name, default)
@@ -74,6 +87,14 @@ class ReloadlyClient:
         # cached until ~60s before expiry
         if self._token and time.time() < self._token_exp - 60:
             return self._token
+        key = (self.client_id, self.base_url)
+        cached = _TOKENS.get(key)
+        if cached and time.time() < cached[1] - 60:
+            self._token, self._token_exp = cached
+            return self._token
+        if not self.client_id or not self.client_secret:
+            logger.error("Reloadly: RELOADLY_CLIENT_ID / RELOADLY_CLIENT_SECRET are not set")
+            raise ReloadlyError("International airtime isn't configured yet.")
         payload = {
             "client_id": self.client_id,
             "client_secret": self.client_secret,
@@ -83,14 +104,23 @@ class ReloadlyClient:
         try:
             resp = requests.post(AUTH_URL, json=payload, timeout=self.timeout,
                                  headers={"Content-Type": "application/json"})
-            data = resp.json()
-        except (requests.RequestException, ValueError) as exc:
+        except requests.RequestException as exc:
+            logger.error("Reloadly auth: network error (mode=%s): %s", _mode(), exc)
             raise ReloadlyError("Could not authenticate with the airtime service.") from exc
-        token = data.get("access_token")
+        try:
+            data = resp.json()
+        except ValueError as exc:
+            logger.error("Reloadly auth: HTTP %s, non-JSON body (mode=%s): %s", resp.status_code, _mode(), _snippet(resp))
+            raise ReloadlyError("Could not authenticate with the airtime service.") from exc
+        token = data.get("access_token") if isinstance(data, dict) else None
         if not token:
-            raise ReloadlyError(s(data.get("error_description")) or "Airtime authentication failed.")
+            logger.error("Reloadly auth refused: HTTP %s (mode=%s, audience=%s): %s",
+                         resp.status_code, _mode(), self.base_url, _snippet(resp))
+            raise ReloadlyError(s(data.get("error_description") if isinstance(data, dict) else "")
+                                or "Airtime authentication failed.")
         self._token = token
         self._token_exp = time.time() + f(data.get("expires_in") or 3600)
+        _TOKENS[key] = (self._token, self._token_exp)
         return token
 
     def _headers(self) -> dict:
@@ -108,13 +138,19 @@ class ReloadlyClient:
         except requests.RequestException as exc:
             logger.warning("Reloadly network error on %s %s: %s", method, path, exc)
             raise ReloadlyError("Could not reach the airtime service. Please try again.") from exc
+        if resp.status_code == 401:
+            # Token revoked/expired early: forget it so the next call logs in again.
+            _TOKENS.pop((self.client_id, self.base_url), None)
+            self._token = None
         try:
             data = resp.json()
         except ValueError:
             if resp.ok:
                 return {}
+            logger.error("Reloadly %s %s: HTTP %s, non-JSON body: %s", method, path, resp.status_code, _snippet(resp))
             raise ReloadlyError(f"Airtime service error (HTTP {resp.status_code}).")
         if not resp.ok:
+            logger.error("Reloadly %s %s: HTTP %s (mode=%s): %s", method, path, resp.status_code, _mode(), _snippet(resp))
             msg = "Airtime request failed."
             if isinstance(data, dict):
                 msg = s(data.get("message")) or s(data.get("errorCode")) or msg
@@ -154,6 +190,9 @@ class ReloadlyClient:
         if custom_identifier:
             body["customIdentifier"] = s(custom_identifier)
         return self._request("POST", "/topups", json=body) or {}
+
+    def balance(self) -> dict:
+        return self._request("GET", "/accounts/balance") or {}
 
     def topup_status(self, transaction_id) -> dict:
         return self._request("GET", f"/topups/{s(transaction_id)}/status") or {}

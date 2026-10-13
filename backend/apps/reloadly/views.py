@@ -12,14 +12,32 @@ from .services import ReloadlyClient, ReloadlyError
 from .topup import AirtimeTopupService
 
 
+COUNTRIES_TTL = 12 * 60 * 60
+
+
 class CountriesView(APIView):
+    """The country list rarely changes: cache it, and keep serving the last good
+    copy if Reloadly is briefly unreachable."""
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        from django.core.cache import cache
+        from .services import _mode
+        fresh_key, stale_key = f"reloadly:countries:{_mode()}", f"reloadly:countries:{_mode()}:last"
+        countries = cache.get(fresh_key)
+        if countries:
+            return Response({"countries": countries})
         try:
-            return Response({"countries": ReloadlyClient().countries()})
+            countries = ReloadlyClient().countries()
         except ReloadlyError as exc:
+            countries = cache.get(stale_key)
+            if countries:
+                return Response({"countries": countries})
             return Response({"detail": str(exc)}, status=502)
+        if countries:
+            cache.set(fresh_key, countries, COUNTRIES_TTL)
+            cache.set(stale_key, countries, None)
+        return Response({"countries": countries})
 
 
 class OperatorsView(APIView):
