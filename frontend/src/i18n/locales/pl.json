@@ -160,7 +160,8 @@
       "errFailed": "Doładowanie nieudane. Spróbuj ponownie.",
       "errConfirm": "Nie udało się potwierdzić doładowania.",
       "verifyTitle": "Zweryfikuj konto",
-      "verifyBody": "Do zakupu doładowań potrzebne jest zweryfikowane konto."
+      "verifyBody": "Do zakupu doładowań potrzebne jest zweryfikowane konto.",
+      "unavailable": "Doładowanie międzynarodowe jest chwilowo niedostępne. Spróbuj ponownie później."
     },
     "local": "Lokalne",
     "international": "Międzynarodowe"

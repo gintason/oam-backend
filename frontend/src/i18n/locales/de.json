@@ -160,7 +160,8 @@
       "errFailed": "Aufladung fehlgeschlagen. Erneut versuchen.",
       "errConfirm": "Aufladung konnte nicht bestätigt werden.",
       "verifyTitle": "Konto verifizieren",
-      "verifyBody": "Für den Kauf von Guthaben ist ein verifiziertes Konto nötig."
+      "verifyBody": "Für den Kauf von Guthaben ist ein verifiziertes Konto nötig.",
+      "unavailable": "Internationale Aufladung ist vorübergehend nicht verfügbar. Bitte versuche es später erneut."
     },
     "local": "Lokal",
     "international": "International"

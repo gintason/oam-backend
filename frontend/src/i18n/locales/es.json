@@ -160,7 +160,8 @@
       "errFailed": "Recarga fallida. Inténtalo de nuevo.",
       "errConfirm": "No se pudo confirmar la recarga.",
       "verifyTitle": "Verifica tu cuenta",
-      "verifyBody": "Necesitas una cuenta verificada para comprar recargas."
+      "verifyBody": "Necesitas una cuenta verificada para comprar recargas.",
+      "unavailable": "La recarga internacional no está disponible temporalmente. Inténtalo de nuevo más tarde."
     },
     "local": "Local",
     "international": "Internacional"

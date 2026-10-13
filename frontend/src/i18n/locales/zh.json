@@ -160,7 +160,8 @@
       "errFailed": "充值失败，请重试。",
       "errConfirm": "无法确认充值。",
       "verifyTitle": "验证您的账户",
-      "verifyBody": "购买话费需要已验证的账户。"
+      "verifyBody": "购买话费需要已验证的账户。",
+      "unavailable": "国际充值暂时不可用，请稍后再试。"
     },
     "local": "本地",
     "international": "国际"

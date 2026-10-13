@@ -160,7 +160,8 @@
       "errFailed": "Recharge échouée. Réessayez.",
       "errConfirm": "Impossible de confirmer la recharge.",
       "verifyTitle": "Vérifiez votre compte",
-      "verifyBody": "Un compte vérifié est requis pour acheter du crédit."
+      "verifyBody": "Un compte vérifié est requis pour acheter du crédit.",
+      "unavailable": "La recharge internationale est temporairement indisponible. Veuillez réessayer plus tard."
     },
     "local": "Local",
     "international": "International"

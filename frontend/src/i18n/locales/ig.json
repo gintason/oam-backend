@@ -160,7 +160,8 @@
       "errFailed": "Ntinye ego dara. Nwaa ọzọ.",
       "errConfirm": "Enweghị ike ikwenye ntinye ego.",
       "verifyTitle": "Kwado akaụntụ gị",
-      "verifyBody": "Ị chọrọ akaụntụ enyochara iji zụta airtime."
+      "verifyBody": "Ị chọrọ akaụntụ enyochara iji zụta airtime.",
+      "unavailable": "Ntinye kredit mba ofesi adịghị ugbu a. Biko nwaa ọzọ ma emechaa."
     },
     "local": "Nke obodo",
     "international": "Nke mba ọzọ"

@@ -160,7 +160,8 @@
       "errFailed": "Àfikún kùnà. Tún gbìyànjú.",
       "errConfirm": "A kò lè jẹ́rìí àfikún náà.",
       "verifyTitle": "Fọwọ́ sí àkàǹtì rẹ",
-      "verifyBody": "O nílò àkàǹtì tí a ti fọwọ́ sí láti ra airtime."
+      "verifyBody": "O nílò àkàǹtì tí a ti fọwọ́ sí láti ra airtime.",
+      "unavailable": "Gbigba kaadi ipe ilẹ̀ òkèèrè kò sí fún ìgbà díẹ̀. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i nígbà míì."
     },
     "local": "Àdúgbò",
     "international": "Ilẹ̀ òkèèrè"

@@ -160,7 +160,8 @@
       "errFailed": "Dopuna nije uspela. Pokušajte ponovo.",
       "errConfirm": "Nije moguće potvrditi dopunu.",
       "verifyTitle": "Verifikujte nalog",
-      "verifyBody": "Potreban je verifikovan nalog za kupovinu dopune."
+      "verifyBody": "Potreban je verifikovan nalog za kupovinu dopune.",
+      "unavailable": "Међународна допуна тренутно није доступна. Покушајте поново касније."
     },
     "local": "Lokalno",
     "international": "Međunarodno"

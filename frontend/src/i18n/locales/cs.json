@@ -160,7 +160,8 @@
       "errFailed": "Dobití selhalo. Zkuste to znovu.",
       "errConfirm": "Dobití se nepodařilo potvrdit.",
       "verifyTitle": "Ověřte svůj účet",
-      "verifyBody": "K nákupu kreditu je potřeba ověřený účet."
+      "verifyBody": "K nákupu kreditu je potřeba ověřený účet.",
+      "unavailable": "Mezinárodní dobíjení je dočasně nedostupné. Zkuste to prosím později."
     },
     "local": "Místní",
     "international": "Mezinárodní"

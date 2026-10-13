@@ -161,7 +161,8 @@
       "errFailed": "Top-up failed. Try again.",
       "errConfirm": "Couldn't confirm the top-up.",
       "verifyTitle": "Verify your account",
-      "verifyBody": "You need a verified account to buy airtime."
+      "verifyBody": "You need a verified account to buy airtime.",
+      "unavailable": "International top-up is temporarily unavailable. Please try again later."
     },
     "local": "Local",
     "international": "International"

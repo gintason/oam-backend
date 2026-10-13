@@ -126,6 +126,7 @@ export default function InternationalAirtime() {
   return (
     <div className="rounded-2xl border border-hairline bg-paper p-5">
       {error && <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">{error}</div>}
+      {countries.isError && !error && <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 px-3.5 py-2.5 text-[13px] text-danger">{t("airtime.intl.unavailable")}</div>}
 
       <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">Recipient's country</label>
       <select value={country} onChange={(e) => { setCountry(e.target.value); setOperator(null); }} className={`${inputCls} mb-4`}>

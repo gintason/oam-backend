@@ -160,7 +160,8 @@
       "errFailed": "Cajin bai yi nasara ba. Sake gwadawa.",
       "errConfirm": "An kasa tabbatar da cajin.",
       "verifyTitle": "Tabbatar da asusun ka",
-      "verifyBody": "Kana buƙatar asusun da aka tabbatar don sayen katin waya."
+      "verifyBody": "Kana buƙatar asusun da aka tabbatar don sayen katin waya.",
+      "unavailable": "Cajin waya na ƙasashen waje ba ya samuwa a yanzu. Da fatan za a sake gwadawa daga baya."
     },
     "local": "Cikin gida",
     "international": "Na ƙasashen waje"

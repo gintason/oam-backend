@@ -160,7 +160,8 @@
       "errFailed": "Yükleme başarısız. Tekrar deneyin.",
       "errConfirm": "Yükleme onaylanamadı.",
       "verifyTitle": "Hesabınızı doğrulayın",
-      "verifyBody": "Kontör almak için doğrulanmış hesap gerekir."
+      "verifyBody": "Kontör almak için doğrulanmış hesap gerekir.",
+      "unavailable": "Uluslararası yükleme geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin."
     },
     "local": "Yerel",
     "international": "Uluslararası"

@@ -160,7 +160,8 @@
       "errFailed": "Ricarica non riuscita. Riprova.",
       "errConfirm": "Impossibile confermare la ricarica.",
       "verifyTitle": "Verifica il tuo account",
-      "verifyBody": "Serve un account verificato per comprare ricariche."
+      "verifyBody": "Serve un account verificato per comprare ricariche.",
+      "unavailable": "La ricarica internazionale non è temporaneamente disponibile. Riprova più tardi."
     },
     "local": "Locale",
     "international": "Internazionale"
