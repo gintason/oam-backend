@@ -53,8 +53,13 @@ def _cfg(name: str, default: str = "") -> str:
     return val or os.environ.get(name, default)
 
 
+_LIVE_WORDS = {"live", "production", "prod"}
+
+
 def _mode() -> str:
-    return (_cfg("RELOADLY_MODE", "sandbox") or "sandbox").lower()
+    """'live' or 'sandbox'. RELOADLY_MODE=production/prod also mean live."""
+    raw = (_cfg("RELOADLY_MODE", "sandbox") or "sandbox").strip().lower()
+    return "live" if raw in _LIVE_WORDS else "sandbox"
 
 
 def _base_url() -> str:

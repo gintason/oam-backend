@@ -126,3 +126,16 @@ class CheckCommandTests(TestCase):
             call_command("reloadly_check", stdout=out)
         self.assertIn("Login:         FAILED - Access Denied", out.getvalue())
         self.assertIn("RELOADLY_MODE=live", out.getvalue())
+
+
+class ModeTests(TestCase):
+    def test_production_words_mean_live(self):
+        for word in ("live", "production", "PROD", " Production "):
+            with override_settings(RELOADLY_MODE=word):
+                self.assertEqual(services._mode(), "live", word)
+                self.assertEqual(ReloadlyClient().base_url, services.LIVE_BASE)
+
+    def test_anything_else_is_sandbox(self):
+        for word in ("sandbox", "test", ""):
+            with override_settings(RELOADLY_MODE=word):
+                self.assertEqual(ReloadlyClient().base_url, services.SANDBOX_BASE)
