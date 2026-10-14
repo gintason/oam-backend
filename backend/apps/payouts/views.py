@@ -107,6 +107,43 @@ class WithdrawView(APIView):
         return Response(WithdrawalOrderSerializer(order).data, status=code)
 
 
+class CancelWithdrawalView(APIView):
+    """POST /withdrawals/<id>/cancel/ — cancel your own queued withdrawal (refund)."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def post(self, request, withdrawal_id):
+        order = WithdrawalOrder.objects.filter(id=withdrawal_id, user=request.user).first()
+        if order is None:
+            return Response({"detail": "Withdrawal not found."}, status=status.HTTP_404_NOT_FOUND)
+        try:
+            order = WithdrawalService.cancel(order)
+        except WithdrawalError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(WithdrawalOrderSerializer(order).data)
+
+
+class ProcessQueueView(APIView):
+    """POST /queue/run/  (header X-Queue-Key: <WITHDRAWAL_QUEUE_KEY>)
+
+    Lets a free external scheduler (e.g. cron-job.org) retry queued withdrawals
+    when Render Cron isn't available. Disabled unless WITHDRAWAL_QUEUE_KEY is set.
+    """
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        import hmac
+        from django.conf import settings
+        key = getattr(settings, "WITHDRAWAL_QUEUE_KEY", "") or ""
+        given = request.headers.get("X-Queue-Key") or request.query_params.get("key") or ""
+        if not key or not hmac.compare_digest(str(given), str(key)):
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        stats = WithdrawalService.process_queue()
+        return Response({"status": "ok", **stats})
+
+    get = post   # simple pingers often only do GET
+
+
 class WithdrawalListView(ListAPIView):
     permission_classes = [IsAuthenticated, IsVerified]
     serializer_class = WithdrawalOrderSerializer

@@ -36,5 +36,18 @@ class MockPayouts(BaseProviderClient):
         return {"status": status, "provider_reference": f"TRF_mock_{uuid.uuid4().hex[:12]}",
                 "raw": {"mock": True, "status": status}}
 
+    def get_balance(self, currency="NGN"):
+        # Dev only: MOCK_PAYOUT_BALANCE=160 pretends the transfer balance is ₦160,
+        # so the withdrawal queue can be tried without real money. Unset -> unknown.
+        import os
+        from decimal import Decimal, InvalidOperation
+        raw = os.environ.get("MOCK_PAYOUT_BALANCE", "").strip()
+        if not raw:
+            return None
+        try:
+            return Decimal(raw)
+        except InvalidOperation:
+            return None
+
     def verify_webhook(self, payload, headers):
         return True     # dev only

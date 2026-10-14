@@ -1,5 +1,5 @@
-"""A transfer Paystack rejects must fail cleanly: wallet restored, a calm message
-for the customer, and Paystack's real reason kept for staff."""
+"""A transfer Paystack rejects: customer-side problems fail cleanly (wallet
+restored, reason shown); OAM-side problems (empty balance) are queued."""
 from decimal import Decimal
 from unittest import mock
 
@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from apps.payouts.models import BankAccount, WithdrawalOrder
-from apps.payouts.services import OPERATOR_SIDE_MESSAGE, WithdrawalService
+from apps.payouts.services import WithdrawalService
 from apps.wallet.models import Wallet
 from apps.wallet.services import WalletService
 from integrations.base.exceptions import ProviderValidationError
@@ -38,11 +38,12 @@ class PaystackRejectionTests(TestCase):
     def balance(self):
         return Wallet.objects.get(pk=self.wallet.pk).cached_balance
 
-    def test_empty_paystack_balance(self):
+    def test_empty_paystack_balance_queues_instead_of_failing(self):
+        # OAM's side of the gateway: keep the money reserved and retry after a top-up.
         order = self._withdraw("Your balance is not enough to fulfil this request")
-        self.assertEqual(order.status, WithdrawalOrder.Status.FAILED)
-        self.assertEqual(self.balance(), Decimal("47664.38"))          # hold released in full
-        self.assertEqual(order.failure_reason, OPERATOR_SIDE_MESSAGE)  # calm message for the user
+        self.assertEqual(order.status, WithdrawalOrder.Status.QUEUED)
+        self.assertEqual(self.balance(), Decimal("47664.38") - Decimal("1025"))   # still held (amount + fee)
+        self.assertEqual(order.failure_reason, "")
         self.assertIn("balance is not enough", str(order.response_payload))  # real reason for staff
 
     def test_other_rejections_keep_their_reason(self):

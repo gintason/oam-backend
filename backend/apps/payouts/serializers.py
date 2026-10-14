@@ -38,10 +38,24 @@ class WithdrawSerializer(serializers.Serializer):
 class WithdrawalOrderSerializer(serializers.ModelSerializer):
     account_name = serializers.CharField(source="bank_account.account_name", read_only=True)
     account_number = serializers.CharField(source="bank_account.account_number", read_only=True)
+    # Plain-language status for the apps ("queued" = waiting for a top-up on OAM's side).
+    status_message = serializers.SerializerMethodField()
+    can_cancel = serializers.SerializerMethodField()
 
     class Meta:
         model = WithdrawalOrder
-        fields = ("id", "amount", "currency", "status", "reference", "provider",
-                  "provider_reference", "account_name", "account_number",
-                  "failure_reason", "created_at", "updated_at")
+        fields = ("id", "amount", "currency", "status", "status_message", "can_cancel", "reference",
+                  "provider", "provider_reference", "account_name", "account_number",
+                  "failure_reason", "queued_at", "created_at", "updated_at")
         read_only_fields = fields
+
+    def get_status_message(self, obj):
+        from .services import QUEUED_MESSAGE
+        if obj.status == WithdrawalOrder.Status.QUEUED:
+            return QUEUED_MESSAGE
+        if obj.status == WithdrawalOrder.Status.CANCELLED:
+            return obj.failure_reason or "Cancelled — the money is back in your OAM wallet."
+        return obj.failure_reason or ""
+
+    def get_can_cancel(self, obj):
+        return obj.status == WithdrawalOrder.Status.QUEUED

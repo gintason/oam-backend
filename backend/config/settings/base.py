@@ -394,6 +394,14 @@ EMAIL_BACKEND = env(
              else "django.core.mail.backends.console.EmailBackend"),
 )
 
+# Withdrawal queue (apps/payouts): queued payouts are refunded after this many
+# hours (0 = never); WITHDRAWAL_QUEUE_KEY enables POST /payouts/queue/run/ for an
+# external scheduler; OPS_ALERT_EMAILS get "top up Paystack" alerts (default:
+# superusers' emails).
+WITHDRAWAL_QUEUE_MAX_HOURS = env.int("WITHDRAWAL_QUEUE_MAX_HOURS", default=72)
+WITHDRAWAL_QUEUE_KEY = env("WITHDRAWAL_QUEUE_KEY", default="")
+OPS_ALERT_EMAILS = [e for e in env.list("OPS_ALERT_EMAILS", default=[]) if e.strip()]
+
 PAYSTACK_CALLBACK_URL = env("PAYSTACK_CALLBACK_URL", default="")
 PAYSTACK_DEPOSIT_SUBACCOUNT_CODE = env("PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", default="")
 # Customer deposits always stay in the MAIN Paystack balance — withdrawals are paid

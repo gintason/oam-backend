@@ -45,6 +45,10 @@ class WithdrawalOrder(TimeStampedModel):
         SUCCESS = "success", _("Success")
         FAILED = "failed", _("Failed")
         REVERSED = "reversed", _("Reversed")
+        # Waiting for OAM's transfer balance to be topped up; funds stay held.
+        QUEUED = "queued", _("Queued")
+        # Customer (or staff) cancelled a queued withdrawal; funds returned.
+        CANCELLED = "cancelled", _("Cancelled")
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
@@ -61,6 +65,14 @@ class WithdrawalOrder(TimeStampedModel):
     provider_reference = models.CharField(max_length=160, null=True, blank=True, db_index=True)
     status = models.CharField(max_length=12, choices=Status.choices, default=Status.PENDING)
     failure_reason = models.CharField(max_length=200, blank=True)
+
+    # Withdrawal queue: when the provider balance can't cover a payout it waits
+    # here (funds held) and is retried automatically after a top-up.
+    queued_at = models.DateTimeField(null=True, blank=True, db_index=True)
+    attempts = models.PositiveIntegerField(default=0)
+    # Reference sent to the provider. Starts equal to `reference`; a retry after
+    # a provider rejection gets a fresh one so it is never a duplicate.
+    transfer_reference = models.CharField(max_length=100, blank=True, db_index=True)
 
     request_payload = models.JSONField(default=dict, blank=True)
     response_payload = models.JSONField(default=dict, blank=True)

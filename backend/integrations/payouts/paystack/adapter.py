@@ -92,6 +92,17 @@ class PaystackPayouts(BaseProviderClient):
                 "provider_reference": d.get("transfer_code", "") or d.get("reference", ""),
                 "raw": body}
 
+    def get_balance(self, currency="NGN"):
+        """Available transfer balance in major units, or None if Paystack won't say."""
+        try:
+            body = self.get("/balance")
+        except ProviderError:
+            return None
+        for row in (body.get("data") or []):
+            if str(row.get("currency", "")).upper() == currency.upper():
+                return (Decimal(str(row.get("balance") or 0)) / 100).quantize(Decimal("0.01"))
+        return None
+
     def verify_webhook(self, payload: bytes, headers: dict) -> bool:
         secret = self.config.get("secret_key", "").encode()
         body = payload if isinstance(payload, bytes) else str(payload).encode()

@@ -438,7 +438,8 @@ class PayoutService:
             order = WithdrawalService.withdraw(user=rider.user, bank_account=acct, amount=t.rider_payout,
                                                currency=t.currency, fee=Decimal("0"))
             status = {"success": DeliveryTransaction.Payout.SENT, "failed": DeliveryTransaction.Payout.FAILED,
-                      "reversed": DeliveryTransaction.Payout.FAILED}.get(order.status, DeliveryTransaction.Payout.PROCESSING)
+                      "reversed": DeliveryTransaction.Payout.FAILED, "cancelled": DeliveryTransaction.Payout.FAILED,
+                      }.get(order.status, DeliveryTransaction.Payout.PROCESSING)
             ref = order.reference
         except Exception:
             logger.exception("delivery payout %s failed to start", t.ledger_reference)
@@ -466,7 +467,8 @@ class PayoutService:
             if not o:
                 continue
             new = {"success": DeliveryTransaction.Payout.SENT, "failed": DeliveryTransaction.Payout.FAILED,
-                   "reversed": DeliveryTransaction.Payout.FAILED}.get(o.status)
+                   "reversed": DeliveryTransaction.Payout.FAILED, "cancelled": DeliveryTransaction.Payout.FAILED,
+                   }.get(o.status)
             if new:
                 DeliveryTransaction.objects.filter(pk=t.pk).update(payout_status=new)
                 n += 1
