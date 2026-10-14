@@ -1089,7 +1089,11 @@
       "vBusiness": "Añade el nombre de tu negocio.",
       "vTrade": "Elige tu oficio.",
       "vPhone": "Añade un número de teléfono.",
-      "vCity": "Elige tu ciudad."
+      "vCity": "Elige tu ciudad.",
+      "deleteProfile": "Eliminar mi perfil de profesional",
+      "deleteConfirmTitle": "¿Eliminar tu perfil de profesional?",
+      "deleteConfirmBody": "Los clientes ya no te encontrarán. Se eliminan tu perfil, tu verificación y las fotos y vídeos de tu trabajo, y termina cualquier promoción activa. Puedes volver a registrarte más adelante.",
+      "errDelete": "No se pudo eliminar tu perfil."
     },
     "verify": {
       "status": {

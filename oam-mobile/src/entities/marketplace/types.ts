@@ -17,6 +17,7 @@ export type ListingDetail = {
   negotiable: boolean; condition: string; location: string;
   category: string; category_name: string; status: string;
   is_featured: boolean; views_count: number; likes_count?: number; comments_count?: number; liked?: boolean; seller_name: string;
+  is_owner?: boolean; is_verified?: boolean;
   images: { id: string; url: string; is_primary: boolean }[];
   videos?: { id: string; url: string; thumbnail_url?: string }[];
   expires_at: string | null; created_at: string; updated_at: string;

@@ -1089,7 +1089,11 @@
       "vBusiness": "Podaj nazwę swojej firmy.",
       "vTrade": "Wybierz swój fach.",
       "vPhone": "Podaj numer telefonu.",
-      "vCity": "Wybierz swoje miasto."
+      "vCity": "Wybierz swoje miasto.",
+      "deleteProfile": "Usuń mój profil fachowca",
+      "deleteConfirmTitle": "Usunąć Twój profil fachowca?",
+      "deleteConfirmBody": "Klienci przestaną Cię znajdować. Twój profil, weryfikacja oraz zdjęcia i filmy z pracy zostaną usunięte, a aktywne wyróżnienie się zakończy. Możesz zarejestrować się ponownie później.",
+      "errDelete": "Nie udało się usunąć profilu."
     },
     "verify": {
       "status": {

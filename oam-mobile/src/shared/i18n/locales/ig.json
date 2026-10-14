@@ -1089,7 +1089,11 @@
       "vBusiness": "Tinye aha azụmaahịa gị.",
       "vTrade": "Họrọ ọrụ aka gị.",
       "vPhone": "Tinye nọmba ekwentị.",
-      "vCity": "Họrọ obodo gị."
+      "vCity": "Họrọ obodo gị.",
+      "deleteProfile": "Hichapụ profaịlụ ọrụ aka m",
+      "deleteConfirmTitle": "Ị chọrọ ihichapụ profaịlụ ọrụ aka gị?",
+      "deleteConfirmBody": "Ndị ahịa agaghị ahụ gị ọzọ. A ga-ewepụ profaịlụ gị, nkwenye, foto na vidiyo ọrụ gị, ma nkwalite ọ bụla na-arụ ọrụ ga-akwụsị. Ị nwere ike idebanye aha ọzọ ma emechaa.",
+      "errDelete": "Enweghị ike ihichapụ profaịlụ gị."
     },
     "verify": {
       "status": {

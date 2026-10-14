@@ -94,6 +94,7 @@ export default function AppLayout() {
       <Tabs.Screen name="market-browse" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="listing" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="post-listing" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="my-listings" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="thread" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="artisans" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="artisans-find" options={{ href: null, tabBarStyle: { display: "none" } }} />

@@ -1095,7 +1095,11 @@
       "vBusiness": "Add your business name.",
       "vTrade": "Choose your trade.",
       "vPhone": "Add a phone number.",
-      "vCity": "Enter your city."
+      "vCity": "Enter your city.",
+      "deleteProfile": "Delete my artisan profile",
+      "deleteConfirmTitle": "Delete your artisan profile?",
+      "deleteConfirmBody": "Customers won't find you any more. Your profile, verification, work photos and videos are removed, and any active boost ends. You can list again later.",
+      "errDelete": "Couldn't delete your profile."
     },
     "verify": {
       "status": {

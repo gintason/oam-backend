@@ -16,6 +16,13 @@ export const homeServicesApi = {
 
   register: (input: ArtisanWrite) => api.post<ArtisanDetail>("/homeservices/artisans/register/", input).then((r) => r.data),
 
+  /** Update your own artisan profile. */
+  update: (input: Partial<ArtisanWrite>) =>
+    api.patch<ArtisanDetail>("/homeservices/artisans/me/", input).then((r) => r.data),
+
+  /** Remove your artisan profile (you can list again later). */
+  remove: () => api.delete("/homeservices/artisans/me/").then(() => undefined),
+
   /** Start a profile boost — returns the Flutterwave checkout link + our reference. */
   startBoost: (days: number, currency = "NGN") =>
     api.post<{ authorization_url: string; reference: string }>("/homeservices/artisans/boost/", { days, currency })

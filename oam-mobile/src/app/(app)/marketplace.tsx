@@ -2,7 +2,7 @@ import { View, ScrollView, Pressable, ActivityIndicator, Image, Share } from "re
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown, Eye, Heart, Share2 } from "lucide-react-native";
+import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown, Eye, Heart, Share2, ListChecks } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { VideoBadge } from "@/features/media";
 import { colors } from "@/shared/theme";
@@ -54,6 +54,18 @@ export default function Marketplace() {
             <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("marketplace.home.sellDesc")}</Text>
           </Pressable>
         </View>
+
+        {/* My listings — edit, renew or delete what you've posted */}
+        <Pressable onPress={() => router.push("/my-listings")} style={{ marginTop: 12, borderRadius: 16, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16, flexDirection: "row", alignItems: "center", gap: 14 }}>
+          <View style={{ height: 42, width: 42, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(11,115,39,0.10)" }}>
+            <ListChecks size={20} strokeWidth={1.75} color={colors.brand.green} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text variant="label" color="ink">{t("marketplace.sell.myListings")}</Text>
+            <Text variant="caption" color="muted" style={{ marginTop: 2 }}>{t("marketplace.sell.subtitle")}</Text>
+          </View>
+          <ChevronRight size={18} color={colors.muted} />
+        </Pressable>
 
         {/* Seller plans — bold call-to-action so it reads as a tappable button */}
         <Pressable onPress={() => router.push("/upgrade")} style={{ marginTop: 12, borderRadius: 16, backgroundColor: colors.brand.green, padding: 16, flexDirection: "row", alignItems: "center", gap: 14 }}>

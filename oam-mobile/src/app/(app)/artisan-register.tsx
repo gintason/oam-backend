@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import * as ImagePicker from "expo-image-picker";
-import { ArrowLeft, Camera, CheckCircle2 } from "lucide-react-native";
+import { ArrowLeft, Camera, CheckCircle2, Trash2 } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
@@ -15,6 +15,7 @@ import { uploadMedia } from "@/features/marketplace/api/uploads-api";
 import { homeServicesApi } from "@/features/artisans/api/homeservices-api";
 import { CITIES, type ArtisanWrite } from "@/entities/homeservices";
 import { tradeLabel } from "@/shared/i18n/labels";
+import { confirmDestructive } from "@/shared/lib/confirm";
 
 const EMPTY: ArtisanWrite = {
   category: "", profile_photo: "", business_name: "", description: "", phone: "", whatsapp: "",
@@ -50,7 +51,8 @@ export default function ArtisanRegister() {
     }
   }, [mine.data]);
 
-  const catOptions = (categories.data ?? []).map((c) => ({ value: c.slug, label: tradeLabel(t, c.slug, c.name) }));
+  // The API stores the trade by id (and returns it that way when editing).
+  const catOptions = (categories.data ?? []).map((c) => ({ value: c.id, label: tradeLabel(t, c.slug, c.name) }));
 
   function pickCity(pick: CityPick) {
     // Any city worldwide; coordinates/state come along when the place is known.
@@ -77,8 +79,11 @@ export default function ArtisanRegister() {
     } finally { setUploading(false); }
   }
 
+  const editing = !!mine.data?.id;
+
   const save = useMutation({
-    mutationFn: () => homeServicesApi.register(form),
+    // Existing profile → update it; otherwise create one.
+    mutationFn: () => (editing ? homeServicesApi.update(form) : homeServicesApi.register(form)),
     onSuccess: (a) => {
       qc.invalidateQueries({ queryKey: ["artisans"] });
       router.replace({ pathname: "/artisan", params: { id: a.id } });
@@ -95,7 +100,25 @@ export default function ArtisanRegister() {
     save.mutate();
   }
 
-  const editing = !!mine.data?.id;
+  const remove = useMutation({
+    mutationFn: () => homeServicesApi.remove(),
+    onSuccess: () => {
+      qc.removeQueries({ queryKey: ["artisans", "me"] });
+      qc.invalidateQueries({ queryKey: ["artisans"] });
+      router.replace("/artisans");
+    },
+    onError: (err) => setError(apiErrorMessage(err, t("artisans.dashboard.errDelete"))),
+  });
+
+  function onDelete() {
+    confirmDestructive({
+      title: t("artisans.dashboard.deleteConfirmTitle"),
+      message: t("artisans.dashboard.deleteConfirmBody"),
+      confirmText: t("marketplace.detail.delete"),
+      cancelText: t("common.cancel"),
+      onConfirm: () => remove.mutate(),
+    });
+  }
 
   return (
     <Screen edges={["top"]}>
@@ -148,6 +171,11 @@ export default function ArtisanRegister() {
           <View style={{ marginTop: 8 }}>
             <Button title={editing ? t("artisans.dashboard.saveChanges") : t("artisans.dashboard.createProfile")} onPress={submit} loading={save.isPending} />
           </View>
+          {editing ? (
+            <Pressable onPress={onDelete} disabled={remove.isPending} style={{ marginTop: 12, height: 46, borderRadius: 12, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }}>
+              {remove.isPending ? <ActivityIndicator color={colors.danger} /> : <><Trash2 size={16} color={colors.danger} /><Text variant="label" color="danger">{t("artisans.dashboard.deleteProfile")}</Text></>}
+            </Pressable>
+          ) : null}
           {!editing ? (
             <View style={{ marginTop: 12, borderRadius: 10, backgroundColor: colors.mist, padding: 12, flexDirection: "row", gap: 8 }}>
               <CheckCircle2 size={15} color={colors.brand.green} style={{ marginTop: 1 }} />

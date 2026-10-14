@@ -32,6 +32,13 @@ export const marketplaceApi = {
   create: (input: ListingWrite) =>
     api.post<ListingDetail>("/marketplace/listings/create/", { currency: "NGN", ...input }).then((r) => r.data),
 
+  /** Edit your own listing. Omitted fields stay as they are. */
+  update: (id: string, input: Partial<ListingWrite>) =>
+    api.patch<ListingDetail>(`/marketplace/listings/${id}/`, input).then((r) => r.data),
+
+  /** Delete your own listing for good. */
+  remove: (id: string) => api.delete(`/marketplace/listings/${id}/`).then(() => undefined),
+
   renew: (id: string) => api.post<ListingDetail>(`/marketplace/listings/${id}/renew/`, {}).then((r) => r.data),
 
   mine: () =>

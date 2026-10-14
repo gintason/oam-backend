@@ -1089,7 +1089,11 @@
       "vBusiness": "Zadejte název své firmy.",
       "vTrade": "Vyberte svou profesi.",
       "vPhone": "Zadejte telefonní číslo.",
-      "vCity": "Vyberte své město."
+      "vCity": "Vyberte své město.",
+      "deleteProfile": "Smazat můj profil řemeslníka",
+      "deleteConfirmTitle": "Smazat váš profil řemeslníka?",
+      "deleteConfirmBody": "Zákazníci vás už nenajdou. Váš profil, ověření, fotky a videa vaší práce budou odstraněny a aktivní zvýraznění skončí. Později se můžete zaregistrovat znovu.",
+      "errDelete": "Profil se nepodařilo smazat."
     },
     "verify": {
       "status": {

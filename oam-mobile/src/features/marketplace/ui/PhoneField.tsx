@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { View, Pressable, Modal, ScrollView, TextInput } from "react-native";
 import { ChevronDown, Search, Check } from "lucide-react-native";
 import { Text } from "@/shared/ui";
@@ -41,9 +41,22 @@ export function PhoneField({
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
 
+  // Follow the saved number when it arrives after mount (edit screens load
+  // the profile asynchronously), but never fight what the user is typing.
+  const lastValue = useRef(initial ?? "");
+  useEffect(() => {
+    const next = initial ?? "";
+    if (next === lastValue.current) return;
+    lastValue.current = next;
+    setDial(start.dial);
+    setLocal(start.local);
+  }, [initial, start]);
+
   function emit(nextDial: string, nextLocal: string) {
     const digits = nextLocal.replace(/\D/g, "").replace(/^0+/, "");
-    onChange(digits ? `${nextDial}${digits}` : "");
+    const full = digits ? `${nextDial}${digits}` : "";
+    lastValue.current = full;
+    onChange(full);
   }
 
   const filtered = useMemo(() => {

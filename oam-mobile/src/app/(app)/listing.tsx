@@ -3,11 +3,12 @@ import { View, ScrollView, Pressable, ActivityIndicator, Image, TextInput, Dimen
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star, Heart, MessageCircle, Share2, Maximize2 } from "lucide-react-native";
+import { ArrowLeft, Tag, MapPin, Eye, Lock, Send, CheckCircle2, Star, Heart, MessageCircle, Share2, Maximize2, Pencil, Trash2 } from "lucide-react-native";
 import { Screen, Text } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
 import { naira, shortDate, money } from "@/shared/lib/format";
+import { confirmDestructive } from "@/shared/lib/confirm";
 import { marketplaceApi } from "@/features/marketplace/api/marketplace-api";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { CONDITIONS } from "@/entities/marketplace";
@@ -47,6 +48,26 @@ export default function Listing() {
     onSuccess: (convo) => { setMessage(""); setError(null); router.push({ pathname: "/thread", params: { id: convo.id } }); },
     onError: (err) => setError(apiErrorMessage(err, t("marketplace.detail.errMessage"))),
   });
+
+  // The seller's own listing: edit or delete it from here.
+  const removeMut = useMutation({
+    mutationFn: () => marketplaceApi.remove(id),
+    onSuccess: () => {
+      qc.removeQueries({ queryKey: ["marketplace", "listing", id] });   // it's gone; don't refetch it
+      qc.invalidateQueries({ queryKey: ["marketplace"] });
+      router.replace("/my-listings");
+    },
+    onError: (err) => setError(apiErrorMessage(err, t("marketplace.sell.errDelete"))),
+  });
+  function onDelete(title: string) {
+    confirmDestructive({
+      title: t("marketplace.sell.deleteTitle"),
+      message: `${title}\n\n${t("marketplace.sell.deleteConfirm")}`,
+      confirmText: t("marketplace.detail.delete"),
+      cancelText: t("common.cancel"),
+      onConfirm: () => removeMut.mutate(),
+    });
+  }
 
   const l = listing.data;
   const images = l?.images ?? [];
@@ -144,6 +165,18 @@ export default function Listing() {
                 {t("marketplace.detail.listedBy")} <Text variant="caption" color="ink">{l.seller_name}</Text> · {shortDate(l.created_at)}
               </Text>
 
+              {l.is_owner ? (
+                <View style={{ flexDirection: "row", gap: 10, marginTop: 14 }}>
+                  <Pressable onPress={() => router.push({ pathname: "/post-listing", params: { id } })} style={{ flex: 1, height: 44, borderRadius: 12, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 6 }}>
+                    <Pencil size={15} color={colors.ink} /><Text variant="label" color="ink">{t("marketplace.detail.edit")}</Text>
+                  </Pressable>
+                  <Pressable onPress={() => onDelete(l.title)} disabled={removeMut.isPending} style={{ flex: 1, height: 44, borderRadius: 12, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 6 }}>
+                    {removeMut.isPending ? <ActivityIndicator color={colors.danger} /> : <><Trash2 size={15} color={colors.danger} /><Text variant="label" color="danger">{t("marketplace.detail.delete")}</Text></>}
+                  </Pressable>
+                </View>
+              ) : null}
+              {l.is_owner && error ? <Text variant="caption" color="danger" style={{ marginTop: 8 }}>{error}</Text> : null}
+
               <View style={{ marginTop: 18, borderTopWidth: 1, borderTopColor: colors.hairline, paddingTop: 16 }}>
                 <Text variant="title">{t("marketplace.detail.comments", "Comments")} ({l.comments_count ?? 0})</Text>
                 <View style={{ flexDirection: "row", gap: 8, marginTop: 12 }}>
@@ -176,7 +209,8 @@ export default function Listing() {
               </View>
             </View>
 
-            {/* Message the seller */}
+            {/* Message the seller (not on your own listing) */}
+            {!l.is_owner ? (
             <View style={{ marginTop: 18, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>
               {sent ? (
                 <View style={{ alignItems: "center", paddingVertical: 8, gap: 8 }}>
@@ -219,6 +253,7 @@ export default function Listing() {
                 </>
               )}
             </View>
+            ) : null}
           </>
         )}
       </ScrollView>

@@ -1089,7 +1089,11 @@
       "vBusiness": "Fi orúkọ iṣẹ́ rẹ kún.",
       "vTrade": "Yan iṣẹ́ ọwọ́ rẹ.",
       "vPhone": "Fi nọ́mbà fóònù kún.",
-      "vCity": "Yan ìlú rẹ."
+      "vCity": "Yan ìlú rẹ.",
+      "deleteProfile": "Pa profaili oníṣẹ́ ọwọ́ mi rẹ́",
+      "deleteConfirmTitle": "Ṣé o fẹ́ pa profaili oníṣẹ́ ọwọ́ rẹ rẹ́?",
+      "deleteConfirmBody": "Àwọn oníbàárà kò ní rí ọ mọ́. A ó yọ profaili rẹ, ìjẹ́rìísí, àwọn fọ́tò àti fídíò iṣẹ́ rẹ kúrò, ìgbéga èyíkéyìí tó ń ṣiṣẹ́ yóò sì dópin. O lè forúkọ sílẹ̀ lẹ́ẹ̀kan sí i lẹ́yìn náà.",
+      "errDelete": "A kò lè pa profaili rẹ rẹ́."
     },
     "verify": {
       "status": {

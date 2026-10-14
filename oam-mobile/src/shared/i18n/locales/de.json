@@ -1089,7 +1089,11 @@
       "vBusiness": "Gib deinen Firmennamen an.",
       "vTrade": "Wähle dein Gewerk.",
       "vPhone": "Gib eine Telefonnummer an.",
-      "vCity": "Wähle deine Stadt."
+      "vCity": "Wähle deine Stadt.",
+      "deleteProfile": "Mein Handwerkerprofil löschen",
+      "deleteConfirmTitle": "Handwerkerprofil löschen?",
+      "deleteConfirmBody": "Kunden finden dich dann nicht mehr. Dein Profil, deine Verifizierung sowie Arbeitsfotos und -videos werden entfernt, und ein aktiver Boost endet. Du kannst dich später wieder eintragen.",
+      "errDelete": "Dein Profil konnte nicht gelöscht werden."
     },
     "verify": {
       "status": {

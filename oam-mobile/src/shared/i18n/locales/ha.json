@@ -1089,7 +1089,11 @@
       "vBusiness": "Ƙara sunan kasuwancinka.",
       "vTrade": "Zaɓi sana'arka.",
       "vPhone": "Ƙara lambar waya.",
-      "vCity": "Zaɓi birninka."
+      "vCity": "Zaɓi birninka.",
+      "deleteProfile": "Goge bayanan sana'ata",
+      "deleteConfirmTitle": "A goge bayanan sana'arka?",
+      "deleteConfirmBody": "Abokan ciniki ba za su sake samun ka ba. Za a cire bayananka, tantancewa, hotuna da bidiyon aikinka, kuma duk wani tallatawa da ke aiki zai ƙare. Za ka iya sake yin rajista daga baya.",
+      "errDelete": "Ba a iya goge bayanan ka ba."
     },
     "verify": {
       "status": {

@@ -1089,7 +1089,11 @@
       "vBusiness": "Ajoutez le nom de votre entreprise.",
       "vTrade": "Choisissez votre métier.",
       "vPhone": "Ajoutez un numéro de téléphone.",
-      "vCity": "Choisissez votre ville."
+      "vCity": "Choisissez votre ville.",
+      "deleteProfile": "Supprimer mon profil d'artisan",
+      "deleteConfirmTitle": "Supprimer votre profil d'artisan ?",
+      "deleteConfirmBody": "Les clients ne vous trouveront plus. Votre profil, votre vérification, ainsi que les photos et vidéos de vos travaux sont supprimés, et toute mise en avant active prend fin. Vous pourrez vous réinscrire plus tard.",
+      "errDelete": "Impossible de supprimer votre profil."
     },
     "verify": {
       "status": {

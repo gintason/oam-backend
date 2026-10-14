@@ -1089,7 +1089,11 @@
       "vBusiness": "填写你的商家名称。",
       "vTrade": "选择你的工种。",
       "vPhone": "填写电话号码。",
-      "vCity": "选择你的城市。"
+      "vCity": "选择你的城市。",
+      "deleteProfile": "删除我的师傅资料",
+      "deleteConfirmTitle": "删除你的师傅资料？",
+      "deleteConfirmBody": "客户将无法再找到你。你的资料、认证、作品照片和视频都会被删除，正在进行的推广也会结束。你以后可以重新登记。",
+      "errDelete": "无法删除你的资料。"
     },
     "verify": {
       "status": {

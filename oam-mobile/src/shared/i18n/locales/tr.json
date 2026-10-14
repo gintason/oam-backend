@@ -1089,7 +1089,11 @@
       "vBusiness": "İşletme adını ekle.",
       "vTrade": "Mesleğini seç.",
       "vPhone": "Bir telefon numarası ekle.",
-      "vCity": "Şehrini seç."
+      "vCity": "Şehrini seç.",
+      "deleteProfile": "Usta profilimi sil",
+      "deleteConfirmTitle": "Usta profiliniz silinsin mi?",
+      "deleteConfirmBody": "Müşteriler artık sizi bulamayacak. Profiliniz, doğrulamanız ve iş fotoğraflarınız ile videolarınız kaldırılır; etkin öne çıkarma sona erer. Daha sonra yeniden kaydolabilirsiniz.",
+      "errDelete": "Profiliniz silinemedi."
     },
     "verify": {
       "status": {

@@ -1089,7 +1089,11 @@
       "vBusiness": "Aggiungi il nome della tua attività.",
       "vTrade": "Scegli il tuo mestiere.",
       "vPhone": "Aggiungi un numero di telefono.",
-      "vCity": "Scegli la tua città."
+      "vCity": "Scegli la tua città.",
+      "deleteProfile": "Elimina il mio profilo di artigiano",
+      "deleteConfirmTitle": "Eliminare il tuo profilo di artigiano?",
+      "deleteConfirmBody": "I clienti non ti troveranno più. Il tuo profilo, la verifica e le foto e i video dei tuoi lavori vengono rimossi, e qualsiasi promozione attiva termina. Potrai registrarti di nuovo in seguito.",
+      "errDelete": "Impossibile eliminare il tuo profilo."
     },
     "verify": {
       "status": {

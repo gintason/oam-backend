@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { View, ScrollView, Pressable, Image, ActivityIndicator, TextInput } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import * as ImagePicker from "expo-image-picker";
@@ -32,6 +32,9 @@ export default function PostListing() {
   const { t } = useTranslation();
   const qc = useQueryClient();
   const user = useAuthStore((s) => s.user);
+  // /post-listing?id=… edits an existing listing; without an id it posts a new one.
+  const { id } = useLocalSearchParams<{ id?: string }>();
+  const isEdit = Boolean(id);
   const [form, setForm] = useState<ListingWrite>({ ...EMPTY, contact_phone: user?.phone ?? "" });
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -41,18 +44,43 @@ export default function PostListing() {
 
   const categories = useQuery({ queryKey: ["marketplace", "categories"], queryFn: marketplaceApi.categories });
   const sub = useQuery({ queryKey: ["marketplace", "subscription"], queryFn: marketplaceApi.subscription });
+  const existing = useQuery({ queryKey: ["marketplace", "detail", id], queryFn: () => marketplaceApi.detail(id!), enabled: isEdit });
+
+  // Fill the form once with the listing being edited. Contact numbers aren't
+  // sent back by the API, so they start blank and blank means "keep current".
+  const prefilled = useRef(false);
+  useEffect(() => {
+    const l = existing.data;
+    if (!isEdit || !l || prefilled.current) return;
+    prefilled.current = true;
+    setForm({
+      category: l.category, title: l.title, description: l.description ?? "",
+      price: String(Math.round(Number(l.price) || 0)), currency: l.currency || "NGN",
+      negotiable: !!l.negotiable, condition: l.condition || "used", location: l.location ?? "",
+      contact_phone: "", contact_whatsapp: "",
+      images: (l.images ?? []).slice().sort((a, b) => Number(b.is_primary) - Number(a.is_primary)).map((i) => i.url),
+      videos: (l.videos ?? []).map((v) => v.url),
+    });
+  }, [existing.data, isEdit]);
 
   const catOptions = (categories.data ?? [])
     .filter((c) => !c.is_admin_only)
     .map((c) => ({ value: c.id, label: catLabel(t, c.slug, c.name) }));  // the API expects the category id
 
   const create = useMutation({
-    mutationFn: () => marketplaceApi.create({ ...form, category: form.category }),
+    mutationFn: () => {
+      if (!isEdit) return marketplaceApi.create({ ...form, category: form.category });
+      const payload: Partial<ListingWrite> = { ...form };
+      if (!payload.contact_phone) delete payload.contact_phone;        // blank = keep current
+      if (!payload.contact_whatsapp) delete payload.contact_whatsapp;
+      if (!payload.description?.trim()) delete payload.description;   // older listings may have none
+      return marketplaceApi.update(id!, payload);
+    },
     onSuccess: (listing) => {
       qc.invalidateQueries({ queryKey: ["marketplace"] });
       router.replace({ pathname: "/listing", params: { id: listing.id } });
     },
-    onError: (err) => setError(apiErrorMessage(err, t("marketplace.post.errPost"))),
+    onError: (err) => setError(apiErrorMessage(err, isEdit ? t("marketplace.post.errSave") : t("marketplace.post.errPost"))),
   });
 
   async function pickImage() {
@@ -104,12 +132,12 @@ export default function PostListing() {
     if (!form.title.trim()) return setError(t("marketplace.post.vTitle"));
     if (!form.price || Number(form.price) <= 0) return setError(t("marketplace.post.vPrice"));
     if (!form.location.trim()) return setError(t("marketplace.post.vLocation"));
-    if (!form.contact_phone.trim()) return setError(t("marketplace.post.vPhone"));
+    if (!isEdit && !form.contact_phone.trim()) return setError(t("marketplace.post.vPhone"));
     create.mutate();
   }
 
   const limit = sub.data?.listing_limit;
-  const atLimit = limit != null && (sub.data?.active_listings ?? 0) >= limit;
+  const atLimit = !isEdit && limit != null && (sub.data?.active_listings ?? 0) >= limit;
 
   return (
     <Screen edges={["top"]}>
@@ -118,8 +146,10 @@ export default function PostListing() {
           <ArrowLeft size={16} color={colors.muted} /><Text variant="label" color="muted">{t("common.back")}</Text>
         </Pressable>
 
-        <Text variant="heading">{t("marketplace.home.sellTitle")}</Text>
-        <Text variant="caption" color="muted" style={{ marginTop: 2, marginBottom: 20 }}>{t("marketplace.post.subtitleNew")}</Text>
+        <Text variant="heading">{isEdit ? t("marketplace.post.headingEdit") : t("marketplace.home.sellTitle")}</Text>
+        <Text variant="caption" color="muted" style={{ marginTop: 2, marginBottom: 20 }}>{isEdit ? t("marketplace.post.editNote") : t("marketplace.post.subtitleNew")}</Text>
+
+        {isEdit && existing.isLoading ? <ActivityIndicator color={colors.brand.green} style={{ marginBottom: 16 }} /> : null}
 
         <View style={{ borderRadius: 20, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>
           {error ? <View style={{ marginBottom: 14, borderRadius: 12, borderWidth: 1, borderColor: "rgba(159,18,57,0.3)", backgroundColor: "rgba(159,18,57,0.05)", paddingHorizontal: 12, paddingVertical: 10 }}><Text variant="caption" color="danger">{error}</Text></View> : null}
@@ -230,6 +260,7 @@ export default function PostListing() {
 
           <View style={{ paddingTop: 4, borderTopWidth: 1, borderTopColor: colors.hairline }}>
             <Text variant="label" style={{ marginTop: 14, marginBottom: 2 }}>{t("marketplace.post.contactHeading")}</Text>
+            {isEdit ? <Text variant="caption" color="muted">{t("marketplace.post.phoneHintEdit")}</Text> : null}
             <View style={{ marginTop: 8 }}>
               <PhoneField label={t("marketplace.post.phone")} initial={form.contact_phone} onChange={(full) => set("contact_phone", full)} placeholder={t("marketplace.post.phonePlaceholder")} />
             </View>
@@ -237,7 +268,7 @@ export default function PostListing() {
           </View>
 
           <View style={{ marginTop: 6 }}>
-            <Button title={t("marketplace.post.submitPost")} onPress={submit} loading={create.isPending} disabled={atLimit} />
+            <Button title={isEdit ? t("marketplace.post.submitSave") : t("marketplace.post.submitPost")} onPress={submit} loading={create.isPending} disabled={atLimit || (isEdit && !existing.data)} />
           </View>
         </View>
       </ScrollView>
