@@ -28,6 +28,8 @@ class FakePaystack:
 
     def initiate_transfer(self, *, amount, recipient_code, reference, currency="NGN", reason=""):
         self.calls.append(reference)
+        if getattr(self, "refuse", ""):
+            return {"status": "failed", "provider_reference": "", "raw": {"message": self.refuse}}
         if self.balance is not None and Decimal(str(amount)) > self.balance:
             return {"status": "failed", "provider_reference": "",
                     "raw": {"message": "Your balance is not enough to fulfil this request"}}
@@ -164,6 +166,27 @@ class WithdrawalQueueTests(TestCase):
         self.assertEqual(len(self.ops_mail()), 0)
         self.assertTrue(alert_ops_if_needed("NGN"))                  # recipients now set -> sent at once
         self.assertEqual(len(self.ops_mail()), 1)
+
+    def test_paystack_refusal_alert_says_contact_paystack_not_top_up(self):
+        self.ps.refuse = "You cannot initiate third party payouts at this time"
+        self.ps.balance = Decimal("50000")
+        a = self.withdraw(0, "300")
+        self.withdraw(1, "400")
+        a.refresh_from_db()
+        self.assertEqual(a.status, WithdrawalOrder.Status.QUEUED)       # money stays held
+        mails = self.ops_mail()
+        self.assertTrue(mails)
+        self.assertIn("refusing transfers", mails[-1].subject)
+        self.assertIn("topping up will NOT help", mails[-1].body)
+        self.assertIn("third party payouts", mails[-1].body)
+        self.assertNotIn("Top up your Paystack balance", mails[-1].body)
+        n = len(self.ps.calls)
+        st = WithdrawalService.process_queue(currency="NGN")
+        self.assertEqual(st["still_queued"], 2)
+        self.assertEqual(len(self.ps.calls), n + 1)                     # stops after the first refusal
+        self.ps.refuse = ""                                             # Paystack re-enables payouts
+        st = WithdrawalService.process_queue(currency="NGN")
+        self.assertEqual((st["sent"], st["still_queued"]), (2, 0))
 
     def test_webhook_resolves_retry_reference(self):
         self.ps.get_balance = lambda currency="NGN": None

@@ -56,6 +56,23 @@ def _operator_side(raw_reason: str) -> bool:
     return any(k in low for k in _OPERATOR_SIDE)
 
 
+# Of those, the ones a top-up fixes. Anything else operator-side (third-party
+# payouts not allowed, transfers disabled, OTP on) needs Paystack, not money.
+_BALANCE_SIDE = ("balance is not enough", "insufficient balance", "insufficient fund", "not enough")
+
+
+def _blocked_not_balance(raw_reason: str) -> bool:
+    low = (raw_reason or "").lower()
+    return _operator_side(low) and not any(k in low for k in _BALANCE_SIDE)
+
+
+def _last_error(order) -> str:
+    raw = (order.response_payload or {}).get("last_error") or {}
+    if isinstance(raw, dict):
+        return str(raw.get("message") or raw.get("error") or "").strip()
+    return str(raw).strip()
+
+
 # What the customer sees while their withdrawal waits in the queue.
 QUEUED_MESSAGE = ("Your transfer is being processed. Most transfers arrive within minutes; "
                   "some can take up to 24 hours. Your money is reserved and safe.")
@@ -319,6 +336,10 @@ class WithdrawalService:
             result = WithdrawalService.execute(o)
             if result.status == WithdrawalOrder.Status.QUEUED:
                 stats["still_queued"] += 1
+                if _blocked_not_balance(_last_error(result)):
+                    # Paystack is refusing transfers outright; the rest would fail the same way.
+                    stats["still_queued"] += qs.filter(id__in=ids).exclude(pk=result.pk).count()
+                    break
             elif result.status in (WithdrawalOrder.Status.FAILED, WithdrawalOrder.Status.REVERSED):
                 stats["failed"] += 1
             else:
@@ -442,10 +463,17 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
     summary = WithdrawalService.queue_summary(cur)
     if not summary["count"]:
         return False
+    latest = (WithdrawalOrder.objects.filter(status=WithdrawalOrder.Status.QUEUED, currency=cur)
+              .order_by("-updated_at").first())
+    reason = _last_error(latest) if latest else ""
+    blocked = _blocked_not_balance(reason)
+    kind = "blocked" if blocked else "balance"
+
     key = f"payouts:queue-alert:{cur}"
     last = cache.get(key) or {}
     grew = Decimal(str(summary["total"])) > Decimal(str(last.get("total", "0")))
-    if not force and last and not grew:
+    changed = last.get("kind", "balance") != kind
+    if not force and last and not grew and not changed:
         return False
 
     oldest = summary["oldest"]
@@ -454,10 +482,17 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
         hours = (timezone.now() - oldest).total_seconds() / 3600
         waited = f"Oldest has waited {hours:.1f} hours." + ("  ⚠ OVER 24 HOURS." if hours >= 24 else "")
     bal = "unknown" if summary["balance"] is None else f"{cur} {summary['balance']:,.2f}"
-    need = (f"Top up your Paystack balance by at least {cur} {summary['shortfall']:,.2f}."
-            if summary["shortfall"] else "Your balance may now cover them — they'll be retried automatically.")
+    if blocked:
+        need = ("Paystack is refusing the transfers — topping up will NOT help.\n"
+                "Contact Paystack support (support@paystack.com) with the reason below and ask them "
+                "to enable transfers / third-party payouts on your live account.")
+    elif summary["shortfall"]:
+        need = f"Top up your Paystack balance by at least {cur} {summary['shortfall']:,.2f}."
+    else:
+        need = "Your balance may now cover them — they'll be retried automatically."
+    said = f"Paystack's reason: \"{reason}\"\n" if reason else ""
     body = (f"{summary['count']} withdrawal(s) are waiting, {cur} {summary['total']:,.2f} in total.\n"
-            f"Paystack balance: {bal}.\n{need}\n{waited}\n\n"
+            f"Paystack balance: {bal}.\n{said}{need}\n{waited}\n\n"
             "Customers' money is reserved in their wallets. Queued withdrawals are sent automatically, "
             "oldest first, as soon as the balance allows (or use Admin > Withdrawal orders > Retry now).")
     recipients = _ops_recipients()
@@ -465,11 +500,14 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
         logger.error("withdrawal queue alert: no OPS_ALERT_EMAILS / superuser emails set. %s", body)
         return False
     try:
-        send_mail(f"[OAM] {summary['count']} withdrawal(s) waiting — {cur} {summary['total']:,.2f}",
+        subject = (f"[OAM] Paystack is refusing transfers — {summary['count']} withdrawal(s) waiting"
+                   if blocked else
+                   f"[OAM] {summary['count']} withdrawal(s) waiting — {cur} {summary['total']:,.2f}")
+        send_mail(subject,
                   body, None, recipients, fail_silently=False)
     except Exception:
         logger.exception("withdrawal queue alert email failed")
         return False
     # Only start the 30-minute quiet period once staff have actually been told.
-    cache.set(key, {"total": str(summary["total"])}, 30 * 60)
+    cache.set(key, {"total": str(summary["total"]), "kind": kind}, 30 * 60)
     return True
