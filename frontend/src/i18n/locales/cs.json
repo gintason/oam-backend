@@ -1571,7 +1571,25 @@
     "pinsNoMatch": "PINy se neshodují.",
     "errPinMatch": "Zadejte shodný 4–6místný PIN a své heslo.",
     "settingUp": "Nastavování…",
-    "createPin": "Vytvořit PIN"
+    "createPin": "Vytvořit PIN",
+    "queue": {
+      "title": "Převod se zpracovává",
+      "body": "Váš převod se zpracovává. Většina převodů dorazí během několika minut, některé mohou trvat až 24 hodin. Vaše peníze jsou rezervované a v bezpečí.",
+      "to": "Na {{to}}",
+      "done": "Hotovo",
+      "cancel": "Zrušit převod",
+      "cancelShort": "Zrušit",
+      "keepWaiting": "Počkat",
+      "cancelConfirmTitle": "Zrušit tento převod?",
+      "cancelConfirmBody": "{{amount}} se ihned vrátí do vaší peněženky OAM.",
+      "cancelledTitle": "Převod zrušen",
+      "cancelledBody": "Peníze jsou zpět ve vaší peněžence OAM.",
+      "errCancel": "Převod se nepodařilo zrušit. Zkuste to znovu.",
+      "pendingTitle_one": "Zpracovává se {{count}} převod",
+      "pendingTitle_few": "Zpracovávají se {{count}} převody",
+      "pendingTitle_many": "Zpracovává se {{count}} převodu",
+      "pendingTitle_other": "Zpracovává se {{count}} převodů"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Nedávná čísla",

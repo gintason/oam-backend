@@ -29,6 +29,10 @@ export type Withdrawal = {
   reference?: string;
   bank_account?: string;
   account_name?: string;
+  account_number?: string;
+  /** "queued" = waiting for OAM's transfer balance; money stays reserved. */
+  status_message?: string;
+  can_cancel?: boolean;
   created_at: string;
   [k: string]: unknown;
 };
@@ -93,6 +97,12 @@ export const payoutsApi = {
       currency: "NGN",
       ...input,
     });
+    return data;
+  },
+
+  /** Cancel a queued withdrawal — the money goes back to the wallet. */
+  async cancel(id: string): Promise<Withdrawal> {
+    const { data } = await api.post<Withdrawal>(`/payouts/withdrawals/${id}/cancel/`, {});
     return data;
   },
 

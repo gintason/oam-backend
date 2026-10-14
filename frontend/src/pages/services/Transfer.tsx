@@ -8,7 +8,8 @@ import { useAuth } from "../../auth/AuthContext";
 import ReceiptSuccess from "../../components/ReceiptSuccess";
 import { formatReceiptDate } from "../../components/formatReceiptDate";
 import type { ReceiptData } from "../../components/Receipt";
-import { payoutsApi, type BankAccount } from "../../services/payouts";
+import { payoutsApi, type BankAccount, type Withdrawal } from "../../services/payouts";
+import { QueuedTransfer } from "../../components/QueuedTransfer";
 import { walletApi, transferApi, formatBalance } from "../../services/wallet";
 import { apiErrorMessage } from "../../lib/api";
 import { VerifyGate } from "./BuyData";
@@ -27,6 +28,7 @@ export default function Transfer() {
   const [identifier, setIdentifier] = useState("");
   const [note, setNote] = useState("");
   const [receipt, setReceipt] = useState<ReceiptData | null>(null);
+  const [queued, setQueued] = useState<Withdrawal | null>(null);   // waiting in OAM's transfer queue
   const [accountId, setAccountId] = useState("");
   const [amount, setAmount] = useState("");
   const [pin, setPin] = useState("");
@@ -108,6 +110,7 @@ export default function Transfer() {
       setError(undefined);
       setAmount("");
       setPin("");
+      if (w.status === "queued") { setQueued(w); return; }   // waiting for OAM's balance
       const pending = w.status === "pending" || w.status === "processing";
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
@@ -142,6 +145,17 @@ export default function Transfer() {
   const total = amt > 0 ? amt + fee : 0;
 
   // ---- Success: show the shareable receipt ----
+  if (queued) {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <main className="mx-auto max-w-md px-5 py-10">
+          <QueuedTransfer withdrawal={queued} onDone={() => navigate("/dashboard")} />
+        </main>
+      </div>
+    );
+  }
+
   if (receipt) {
     return (
       <div className="min-h-screen bg-mist">

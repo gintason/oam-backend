@@ -1662,7 +1662,23 @@
     "pinsNoMatch": "PINs don't match.",
     "errPinMatch": "Enter a matching 4–6 digit PIN and your password.",
     "settingUp": "Setting up…",
-    "createPin": "Create PIN"
+    "createPin": "Create PIN",
+    "queue": {
+      "title": "Transfer processing",
+      "body": "Your transfer is being processed. Most transfers arrive within minutes; some can take up to 24 hours. Your money is reserved and safe.",
+      "to": "To {{to}}",
+      "done": "Done",
+      "cancel": "Cancel transfer",
+      "cancelShort": "Cancel",
+      "keepWaiting": "Keep waiting",
+      "cancelConfirmTitle": "Cancel this transfer?",
+      "cancelConfirmBody": "{{amount}} will go back to your OAM wallet straight away.",
+      "cancelledTitle": "Transfer cancelled",
+      "cancelledBody": "The money is back in your OAM wallet.",
+      "errCancel": "Couldn't cancel the transfer. Please try again.",
+      "pendingTitle_one": "{{count}} transfer processing",
+      "pendingTitle_other": "{{count}} transfers processing"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Recent numbers",

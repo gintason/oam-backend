@@ -1571,7 +1571,24 @@
     "pinsNoMatch": "PIN-ови се не подударају.",
     "errPinMatch": "Унесите подударајући 4–6-цифарски PIN и своју лозинку.",
     "settingUp": "Подешавање…",
-    "createPin": "Креирај PIN"
+    "createPin": "Креирај PIN",
+    "queue": {
+      "title": "Пренос се обрађује",
+      "body": "Ваш пренос се обрађује. Већина преноса стиже за неколико минута; неки могу трајати до 24 сата. Ваш новац је резервисан и безбедан.",
+      "to": "За {{to}}",
+      "done": "Готово",
+      "cancel": "Откажи пренос",
+      "cancelShort": "Откажи",
+      "keepWaiting": "Наставите да чекате",
+      "cancelConfirmTitle": "Отказати овај пренос?",
+      "cancelConfirmBody": "{{amount}} ће се одмах вратити у ваш OAM новчаник.",
+      "cancelledTitle": "Пренос је отказан",
+      "cancelledBody": "Новац је враћен у ваш OAM новчаник.",
+      "errCancel": "Пренос није могао да се откаже. Покушајте поново.",
+      "pendingTitle_one": "{{count}} пренос се обрађује",
+      "pendingTitle_few": "{{count}} преноса се обрађују",
+      "pendingTitle_other": "{{count}} преноса се обрађује"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Недавни бројеви",

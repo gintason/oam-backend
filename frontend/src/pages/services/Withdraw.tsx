@@ -8,7 +8,8 @@ import { useAuth } from "../../auth/AuthContext";
 import ReceiptSuccess from "../../components/ReceiptSuccess";
 import { formatReceiptDate } from "../../components/formatReceiptDate";
 import type { ReceiptData } from "../../components/Receipt";
-import { payoutsApi, type BankAccount } from "../../services/payouts";
+import { payoutsApi, type BankAccount, type Withdrawal } from "../../services/payouts";
+import { QueuedTransfer } from "../../components/QueuedTransfer";
 import { walletApi, formatBalance } from "../../services/wallet";
 import { apiErrorMessage } from "../../lib/api";
 import { VerifyGate } from "./BuyData";
@@ -29,6 +30,7 @@ export default function Withdraw() {
   const [error, setError] = useState<string>();
   const [done, setDone] = useState<string>();
   const [receipt, setReceipt] = useState<ReceiptData | null>(null);
+  const [queued, setQueued] = useState<Withdrawal | null>(null);   // waiting in OAM's transfer queue
   const [adding, setAdding] = useState(false);
 
   const walletsQuery = useQuery({
@@ -73,6 +75,7 @@ export default function Withdraw() {
       setError(undefined);
       setAmount("");
       setPin("");
+      if (w.status === "queued") { setQueued(w); return; }   // waiting for OAM's balance
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
         date: new Date().toISOString(),
@@ -104,6 +107,17 @@ export default function Withdraw() {
   const amt = Number(amount) || 0;
   const fee = amt >= 500 ? 25 : 10;
   const total = amt > 0 ? amt + fee : 0;
+
+  if (queued) {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <main className="mx-auto max-w-md px-5 py-10">
+          <QueuedTransfer withdrawal={queued} onDone={() => navigate("/dashboard")} />
+        </main>
+      </div>
+    );
+  }
 
   if (receipt) {
     return (

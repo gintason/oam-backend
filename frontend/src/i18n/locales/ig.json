@@ -1572,7 +1572,23 @@
     "pinsNoMatch": "PIN abụọ adabaghị.",
     "errPinMatch": "Tinye PIN nke ọnụọgụ 4–6 dabara na paswọọdụ gị.",
     "settingUp": "Na-esetịpụ…",
-    "createPin": "Mepụta PIN"
+    "createPin": "Mepụta PIN",
+    "queue": {
+      "title": "A na-edozi mbufe",
+      "body": "A na-edozi mbufe gị. Ọtụtụ mbufe na-abata n'ime nkeji ole na ole; ụfọdụ nwere ike were ruo awa 24. E chekwara ego gị nke ọma.",
+      "to": "Gaa {{to}}",
+      "done": "Emechaala",
+      "cancel": "Kagbuo mbufe",
+      "cancelShort": "Kagbuo",
+      "keepWaiting": "Gaa n'ihu na-eche",
+      "cancelConfirmTitle": "Ị chọrọ ịkagbu mbufe a?",
+      "cancelConfirmBody": "{{amount}} ga-alaghachi n'obere akpa OAM gị ozugbo.",
+      "cancelledTitle": "A kagbuola mbufe",
+      "cancelledBody": "Ego ahụ alaghachila n'obere akpa OAM gị.",
+      "errCancel": "Enweghị ike ịkagbu mbufe ahụ. Biko nwaa ọzọ.",
+      "pendingTitle_one": "A na-edozi mbufe {{count}}",
+      "pendingTitle_other": "A na-edozi mbufe {{count}}"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Nọmba na-adịbeghị anya",

@@ -1571,7 +1571,24 @@
     "pinsNoMatch": "I PIN non corrispondono.",
     "errPinMatch": "Inserisci un PIN di 4–6 cifre corrispondente e la tua password.",
     "settingUp": "Configurazione…",
-    "createPin": "Crea PIN"
+    "createPin": "Crea PIN",
+    "queue": {
+      "title": "Bonifico in elaborazione",
+      "body": "Il tuo bonifico è in elaborazione. La maggior parte arriva in pochi minuti; alcuni possono richiedere fino a 24 ore. Il tuo denaro è riservato e al sicuro.",
+      "to": "A {{to}}",
+      "done": "Fatto",
+      "cancel": "Annulla bonifico",
+      "cancelShort": "Annulla",
+      "keepWaiting": "Continua ad attendere",
+      "cancelConfirmTitle": "Annullare questo bonifico?",
+      "cancelConfirmBody": "{{amount}} torneranno subito nel tuo portafoglio OAM.",
+      "cancelledTitle": "Bonifico annullato",
+      "cancelledBody": "Il denaro è di nuovo nel tuo portafoglio OAM.",
+      "errCancel": "Impossibile annullare il bonifico. Riprova.",
+      "pendingTitle_one": "{{count}} bonifico in elaborazione",
+      "pendingTitle_many": "{{count}} bonifici in elaborazione",
+      "pendingTitle_other": "{{count}} bonifici in elaborazione"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Numeri recenti",

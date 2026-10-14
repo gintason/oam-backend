@@ -1571,7 +1571,23 @@
     "pinsNoMatch": "PIN'ler eşleşmiyor.",
     "errPinMatch": "Eşleşen 4–6 haneli bir PIN ve parolanızı girin.",
     "settingUp": "Kuruluyor…",
-    "createPin": "PIN oluştur"
+    "createPin": "PIN oluştur",
+    "queue": {
+      "title": "Transfer işleniyor",
+      "body": "Transferiniz işleniyor. Çoğu transfer dakikalar içinde ulaşır; bazıları 24 saate kadar sürebilir. Paranız ayrıldı ve güvende.",
+      "to": "Alıcı: {{to}}",
+      "done": "Tamam",
+      "cancel": "Transferi iptal et",
+      "cancelShort": "İptal",
+      "keepWaiting": "Beklemeye devam et",
+      "cancelConfirmTitle": "Bu transfer iptal edilsin mi?",
+      "cancelConfirmBody": "{{amount}} hemen OAM cüzdanınıza geri dönecek.",
+      "cancelledTitle": "Transfer iptal edildi",
+      "cancelledBody": "Para OAM cüzdanınıza geri döndü.",
+      "errCancel": "Transfer iptal edilemedi. Lütfen tekrar deneyin.",
+      "pendingTitle_one": "{{count}} transfer işleniyor",
+      "pendingTitle_other": "{{count}} transfer işleniyor"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Son numaralar",

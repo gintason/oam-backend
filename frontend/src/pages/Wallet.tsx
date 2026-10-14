@@ -8,6 +8,7 @@ import { useAuth } from "../auth/AuthContext";
 import { walletApi, formatBalance, type Transaction } from "../services/wallet";
 import { describeTransaction, friendlyTime, type TxnKind } from "../lib/format";
 import { useTranslation } from "react-i18next";
+import { PendingTransfers } from "../components/QueuedTransfer";
 
 /**
  * Full wallet page: real balance per currency, currency switching, and the
@@ -89,6 +90,7 @@ export default function Wallet() {
     <div className="min-h-screen bg-mist">
       <AppHeader />
       <main className="mx-auto max-w-4xl px-5 py-8 sm:px-6 sm:py-10">
+        <PendingTransfers />
         <div className="mb-5 flex items-center justify-between">
           <h1 className="font-display text-2xl font-semibold text-ink sm:text-3xl">{t("wallet.title")}</h1>
           <button
