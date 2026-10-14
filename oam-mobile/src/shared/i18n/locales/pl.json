@@ -1659,7 +1659,25 @@
     "settingUp": "Konfigurowanie…",
     "createPin": "Utwórz PIN",
     "verifyBody": "Aby wypłacić środki, potrzebujesz zweryfikowanego konta.",
-    "chooseBank": "Wybierz bank"
+    "chooseBank": "Wybierz bank",
+    "queue": {
+      "title": "Przelew w realizacji",
+      "body": "Twój przelew jest realizowany. Większość przelewów dociera w kilka minut; niektóre mogą potrwać do 24 godzin. Twoje pieniądze są zarezerwowane i bezpieczne.",
+      "to": "Do {{to}}",
+      "done": "Gotowe",
+      "cancel": "Anuluj przelew",
+      "cancelShort": "Anuluj",
+      "keepWaiting": "Czekaj dalej",
+      "cancelConfirmTitle": "Anulować ten przelew?",
+      "cancelConfirmBody": "{{amount}} od razu wróci do Twojego portfela OAM.",
+      "cancelledTitle": "Przelew anulowany",
+      "cancelledBody": "Pieniądze wróciły do Twojego portfela OAM.",
+      "errCancel": "Nie udało się anulować przelewu. Spróbuj ponownie.",
+      "pendingTitle_one": "{{count}} przelew w realizacji",
+      "pendingTitle_few": "{{count}} przelewy w realizacji",
+      "pendingTitle_many": "{{count}} przelewów w realizacji",
+      "pendingTitle_other": "{{count}} przelewu w realizacji"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Ostatnie numery",

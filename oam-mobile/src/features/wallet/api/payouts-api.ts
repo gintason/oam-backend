@@ -7,7 +7,9 @@ export type BankAccount = {
 };
 export type Withdrawal = {
   id: string; amount: string; currency: string; status: string;
-  reference?: string; account_name?: string; failure_reason?: string; created_at: string;
+  reference?: string; account_name?: string; account_number?: string; failure_reason?: string; created_at: string;
+  /** "queued" = waiting for OAM's transfer balance; money stays reserved. */
+  status_message?: string; can_cancel?: boolean;
   [k: string]: unknown;
 };
 
@@ -49,6 +51,14 @@ export const payoutsApi = {
 
   withdraw: (input: { bank_account_id: string; amount: number | string; currency?: string; pin: string }) =>
     api.post<Withdrawal>("/payouts/withdrawals/", { currency: "NGN", ...input }).then((r) => r.data),
+  /** Your withdrawals, newest first. */
+  history: () =>
+    api.get<Withdrawal[] | { results: Withdrawal[] }>("/payouts/withdrawals/history/")
+      .then((r) => (Array.isArray(r.data) ? r.data : r.data.results ?? [])),
+
+  /** Cancel a queued withdrawal — the money goes back to the wallet. */
+  cancel: (id: string) => api.post<Withdrawal>(`/payouts/withdrawals/${id}/cancel/`, {}).then((r) => r.data),
+
   getPinStatus: () => api.get<{ has_pin: boolean }>("/wallet/pin/").then((r) => r.data),
   setPin: (input: { pin: string; password?: string; current_pin?: string }) =>
     api.post<{ has_pin: boolean }>("/wallet/pin/", input).then((r) => r.data),

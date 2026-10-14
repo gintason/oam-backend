@@ -1659,7 +1659,24 @@
     "settingUp": "Configuration…",
     "createPin": "Créer le PIN",
     "verifyBody": "Vous avez besoin d'un compte vérifié pour effectuer un retrait.",
-    "chooseBank": "Choisir une banque"
+    "chooseBank": "Choisir une banque",
+    "queue": {
+      "title": "Virement en cours",
+      "body": "Votre virement est en cours de traitement. La plupart arrivent en quelques minutes ; certains peuvent prendre jusqu'à 24 heures. Votre argent est réservé et en sécurité.",
+      "to": "Vers {{to}}",
+      "done": "Terminé",
+      "cancel": "Annuler le virement",
+      "cancelShort": "Annuler",
+      "keepWaiting": "Continuer d'attendre",
+      "cancelConfirmTitle": "Annuler ce virement ?",
+      "cancelConfirmBody": "{{amount}} retourneront immédiatement dans votre portefeuille OAM.",
+      "cancelledTitle": "Virement annulé",
+      "cancelledBody": "L'argent est de retour dans votre portefeuille OAM.",
+      "errCancel": "Impossible d'annuler le virement. Veuillez réessayer.",
+      "pendingTitle_one": "{{count}} virement en cours",
+      "pendingTitle_many": "{{count}} virements en cours",
+      "pendingTitle_other": "{{count}} virements en cours"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Numéros récents",

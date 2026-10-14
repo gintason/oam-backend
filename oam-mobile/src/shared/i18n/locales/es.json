@@ -1659,7 +1659,24 @@
     "settingUp": "Configurando…",
     "createPin": "Crear PIN",
     "verifyBody": "Necesitas una cuenta verificada para retirar.",
-    "chooseBank": "Elegir banco"
+    "chooseBank": "Elegir banco",
+    "queue": {
+      "title": "Transferencia en proceso",
+      "body": "Tu transferencia se está procesando. La mayoría llega en minutos; algunas pueden tardar hasta 24 horas. Tu dinero está reservado y seguro.",
+      "to": "A {{to}}",
+      "done": "Listo",
+      "cancel": "Cancelar transferencia",
+      "cancelShort": "Cancelar",
+      "keepWaiting": "Seguir esperando",
+      "cancelConfirmTitle": "¿Cancelar esta transferencia?",
+      "cancelConfirmBody": "{{amount}} volverán a tu billetera OAM de inmediato.",
+      "cancelledTitle": "Transferencia cancelada",
+      "cancelledBody": "El dinero está de vuelta en tu billetera OAM.",
+      "errCancel": "No se pudo cancelar la transferencia. Inténtalo de nuevo.",
+      "pendingTitle_one": "{{count}} transferencia en proceso",
+      "pendingTitle_many": "{{count}} transferencias en proceso",
+      "pendingTitle_other": "{{count}} transferencias en proceso"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Números recientes",

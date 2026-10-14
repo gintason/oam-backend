@@ -1660,7 +1660,22 @@
     "settingUp": "Ń ṣètò…",
     "createPin": "Ṣẹ̀dá PIN",
     "verifyBody": "O nílò àkàǹtì tí a ti fọwọ́sí láti yọ owó.",
-    "chooseBank": "Yan báǹkì"
+    "chooseBank": "Yan báǹkì",
+    "queue": {
+      "title": "À ń ṣiṣẹ́ lórí gbígbé owó",
+      "body": "À ń ṣiṣẹ́ lórí gbígbé owó rẹ. Ọ̀pọ̀lọpọ̀ gbígbé owó máa ń dé láàrin ìṣẹ́jú díẹ̀; àwọn kan lè gba tó wákàtí 24. A ti fi owó rẹ pamọ́ láìléwu.",
+      "to": "Sí {{to}}",
+      "done": "Ó parí",
+      "cancel": "Fagilé gbígbé owó",
+      "cancelShort": "Fagilé",
+      "keepWaiting": "Máa dúró",
+      "cancelConfirmTitle": "Ṣé o fẹ́ fagilé gbígbé owó yìí?",
+      "cancelConfirmBody": "{{amount}} yóò padà sí àpò owó OAM rẹ lẹ́sẹ̀kẹsẹ̀.",
+      "cancelledTitle": "A ti fagilé gbígbé owó",
+      "cancelledBody": "Owó náà ti padà sí àpò owó OAM rẹ.",
+      "errCancel": "A kò lè fagilé gbígbé owó náà. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i.",
+      "pendingTitle_other": "Gbígbé owó {{count}} ń lọ lọ́wọ́"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Àwọn nọ́mbà àìpẹ́",

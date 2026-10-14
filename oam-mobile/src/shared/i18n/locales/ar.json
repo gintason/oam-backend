@@ -1659,7 +1659,27 @@
     "settingUp": "جارٍ الإعداد…",
     "createPin": "إنشاء الرمز",
     "verifyBody": "تحتاج إلى حساب موثّق لسحب الأموال.",
-    "chooseBank": "اختر البنك"
+    "chooseBank": "اختر البنك",
+    "queue": {
+      "title": "جارٍ تنفيذ التحويل",
+      "body": "جارٍ معالجة تحويلك. تصل معظم التحويلات خلال دقائق، وقد يستغرق بعضها حتى 24 ساعة. أموالك محجوزة وآمنة.",
+      "to": "إلى {{to}}",
+      "done": "تم",
+      "cancel": "إلغاء التحويل",
+      "cancelShort": "إلغاء",
+      "keepWaiting": "متابعة الانتظار",
+      "cancelConfirmTitle": "هل تريد إلغاء هذا التحويل؟",
+      "cancelConfirmBody": "سيعود مبلغ {{amount}} إلى محفظة OAM فورًا.",
+      "cancelledTitle": "تم إلغاء التحويل",
+      "cancelledBody": "عادت الأموال إلى محفظة OAM.",
+      "errCancel": "تعذّر إلغاء التحويل. يُرجى المحاولة مرة أخرى.",
+      "pendingTitle_zero": "{{count}} تحويلات قيد التنفيذ",
+      "pendingTitle_one": "تحويل واحد قيد التنفيذ",
+      "pendingTitle_two": "تحويلان قيد التنفيذ",
+      "pendingTitle_few": "{{count}} تحويلات قيد التنفيذ",
+      "pendingTitle_many": "{{count}} تحويلًا قيد التنفيذ",
+      "pendingTitle_other": "{{count}} تحويل قيد التنفيذ"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "أرقام حديثة",

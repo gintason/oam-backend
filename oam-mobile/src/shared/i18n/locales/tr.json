@@ -1659,7 +1659,23 @@
     "settingUp": "Kuruluyor…",
     "createPin": "PIN oluştur",
     "verifyBody": "Para çekmek için doğrulanmış bir hesaba ihtiyacınız var.",
-    "chooseBank": "Banka seç"
+    "chooseBank": "Banka seç",
+    "queue": {
+      "title": "Transfer işleniyor",
+      "body": "Transferiniz işleniyor. Çoğu transfer dakikalar içinde ulaşır; bazıları 24 saate kadar sürebilir. Paranız ayrıldı ve güvende.",
+      "to": "Alıcı: {{to}}",
+      "done": "Tamam",
+      "cancel": "Transferi iptal et",
+      "cancelShort": "İptal",
+      "keepWaiting": "Beklemeye devam et",
+      "cancelConfirmTitle": "Bu transfer iptal edilsin mi?",
+      "cancelConfirmBody": "{{amount}} hemen OAM cüzdanınıza geri dönecek.",
+      "cancelledTitle": "Transfer iptal edildi",
+      "cancelledBody": "Para OAM cüzdanınıza geri döndü.",
+      "errCancel": "Transfer iptal edilemedi. Lütfen tekrar deneyin.",
+      "pendingTitle_one": "{{count}} transfer işleniyor",
+      "pendingTitle_other": "{{count}} transfer işleniyor"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Son numaralar",

@@ -1,7 +1,7 @@
 import { View, ScrollView, ActivityIndicator } from "react-native";
 import { Screen, Text } from "@/shared/ui";
 import { colors } from "@/shared/theme";
-import { useWallets, useTransactions, pickHeadline, BalanceCard, TransactionRow } from "@/features/wallet";
+import { useWallets, useTransactions, pickHeadline, BalanceCard, TransactionRow, PendingTransfers } from "@/features/wallet";
 
 export default function WalletScreen() {
   const wallets = useWallets();
@@ -16,6 +16,7 @@ export default function WalletScreen() {
         </Text>
 
         <BalanceCard balance={headline?.balance} currency={headline?.currency} loading={wallets.isLoading} />
+        <PendingTransfers />
 
         <Text variant="title" style={{ marginTop: 26, marginBottom: 4 }}>
           Transactions

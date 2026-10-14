@@ -1659,7 +1659,23 @@
     "settingUp": "Einrichtung…",
     "createPin": "PIN erstellen",
     "verifyBody": "Du benötigst ein verifiziertes Konto, um Geld abzuheben.",
-    "chooseBank": "Bank wählen"
+    "chooseBank": "Bank wählen",
+    "queue": {
+      "title": "Überweisung in Bearbeitung",
+      "body": "Deine Überweisung wird bearbeitet. Die meisten Überweisungen kommen innerhalb von Minuten an, manche können bis zu 24 Stunden dauern. Dein Geld ist reserviert und sicher.",
+      "to": "An {{to}}",
+      "done": "Fertig",
+      "cancel": "Überweisung stornieren",
+      "cancelShort": "Stornieren",
+      "keepWaiting": "Weiter warten",
+      "cancelConfirmTitle": "Diese Überweisung stornieren?",
+      "cancelConfirmBody": "{{amount}} gehen sofort zurück in dein OAM-Wallet.",
+      "cancelledTitle": "Überweisung storniert",
+      "cancelledBody": "Das Geld ist wieder in deinem OAM-Wallet.",
+      "errCancel": "Die Überweisung konnte nicht storniert werden. Bitte versuche es erneut.",
+      "pendingTitle_one": "{{count}} Überweisung in Bearbeitung",
+      "pendingTitle_other": "{{count}} Überweisungen in Bearbeitung"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Letzte Nummern",

@@ -1660,7 +1660,23 @@
     "settingUp": "Ana saitawa…",
     "createPin": "Ƙirƙiri PIN",
     "verifyBody": "Kana buƙatar asusun da aka tabbatar don cire kuɗi.",
-    "chooseBank": "Zaɓi banki"
+    "chooseBank": "Zaɓi banki",
+    "queue": {
+      "title": "Ana sarrafa turawa",
+      "body": "Ana sarrafa turawar ka. Yawancin turawa suna isa cikin mintuna; wasu na iya ɗaukar har awa 24. An ajiye kuɗin ka lafiya.",
+      "to": "Zuwa {{to}}",
+      "done": "An gama",
+      "cancel": "Soke turawa",
+      "cancelShort": "Soke",
+      "keepWaiting": "Ci gaba da jira",
+      "cancelConfirmTitle": "A soke wannan turawar?",
+      "cancelConfirmBody": "{{amount}} za su koma walat ɗin ka na OAM nan take.",
+      "cancelledTitle": "An soke turawa",
+      "cancelledBody": "Kuɗin sun koma walat ɗin ka na OAM.",
+      "errCancel": "Ba a iya soke turawar ba. Da fatan za a sake gwadawa.",
+      "pendingTitle_one": "Ana sarrafa turawa {{count}}",
+      "pendingTitle_other": "Ana sarrafa turawa {{count}}"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "Lambobin baya-bayan nan",

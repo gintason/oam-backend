@@ -10,8 +10,8 @@ import { colors, fonts } from "@/shared/theme";
 import { naira, money } from "@/shared/lib/format";
 import { useDebounced } from "@/shared/hooks/use-debounced";
 import { useAuthStore } from "@/features/auth";
-import { useWallets, pickHeadline } from "@/features/wallet";
-import { payoutsApi, type BankAccount } from "@/features/wallet/api/payouts-api";
+import { useWallets, pickHeadline, QueuedTransfer } from "@/features/wallet";
+import { payoutsApi, type BankAccount, type Withdrawal } from "@/features/wallet/api/payouts-api";
 import { useTranslation } from "react-i18next";
 import { ReceiptScreen, type MobileReceipt } from "@/features/receipts/ReceiptScreen";
 import { formatReceiptDate } from "@/features/receipts/format-receipt-date";
@@ -31,6 +31,7 @@ export default function Transfer() {
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
   const [receipt, setReceipt] = useState<MobileReceipt | null>(null);
+  const [queued, setQueued] = useState<Withdrawal | null>(null);   // waiting in OAM's transfer queue
   const [adding, setAdding] = useState(false);
 
   const wallets = useWallets();
@@ -52,6 +53,7 @@ export default function Transfer() {
         return;
       }
       setError(null);
+      if (w.status === "queued") { setQueued(w); setAmount(""); return; }   // waiting for OAM's balance
       const pending = w.status === "pending" || w.status === "processing";
       if (w.reference) {
         setReceipt({
@@ -99,6 +101,16 @@ export default function Transfer() {
   const fee = amt >= 500 ? 25 : 10;
   const total = amt > 0 ? amt + fee : 0;
   const overBalance = Boolean(amount) && total > balance;
+
+  if (queued) {
+    return (
+      <Screen edges={["top"]}>
+        <ScrollView contentContainerStyle={{ padding: 20, paddingTop: 40 }}>
+          <QueuedTransfer withdrawal={queued} onDone={() => router.navigate("/home")} />
+        </ScrollView>
+      </Screen>
+    );
+  }
 
   if (receipt) {
     return <ReceiptScreen data={receipt} onBack={() => router.navigate("/home")} />;

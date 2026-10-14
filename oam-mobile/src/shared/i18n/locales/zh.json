@@ -1659,7 +1659,22 @@
     "settingUp": "正在设置…",
     "createPin": "创建 PIN",
     "verifyBody": "您需要一个已验证的账户才能提现。",
-    "chooseBank": "选择银行"
+    "chooseBank": "选择银行",
+    "queue": {
+      "title": "转账处理中",
+      "body": "你的转账正在处理中。大多数转账几分钟内到账，部分可能需要最多 24 小时。你的资金已预留，安全无虞。",
+      "to": "收款方：{{to}}",
+      "done": "完成",
+      "cancel": "取消转账",
+      "cancelShort": "取消",
+      "keepWaiting": "继续等待",
+      "cancelConfirmTitle": "取消这笔转账？",
+      "cancelConfirmBody": "{{amount}} 将立即退回你的 OAM 钱包。",
+      "cancelledTitle": "转账已取消",
+      "cancelledBody": "资金已退回你的 OAM 钱包。",
+      "errCancel": "无法取消转账，请重试。",
+      "pendingTitle_other": "{{count}} 笔转账处理中"
+    }
   },
   "beneficiaries": {
     "recentNumbers": "最近号码",
