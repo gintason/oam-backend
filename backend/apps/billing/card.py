@@ -148,7 +148,7 @@ class CardCheckoutService:
                     "This betting account was not verified before payment, so "
                     "delivery cannot be completed. Your money is in your wallet."
                 )
-            credit = Decimal(str(c.amount)) - Decimal("50")
+            credit = Decimal(str(c.amount)) - BETTING_CARD_FEE
             return BillingService.purchase_betting(
                 user=c.user, code=c.code, customer_id=c.recipient,
                 amount=credit, verification_id=c.verification_id, currency=c.currency,
@@ -226,8 +226,11 @@ def _deliver_after_payment(sender, instance: ServiceTransaction, **kwargs):
 # --------------------------------------------------------------------------- #
 # API
 # --------------------------------------------------------------------------- #
+BETTING_CARD_FEE = Decimal("50")   # matches the flat fee deducted in _purchase_for
+
+
 class CardCheckoutStartSerializer(serializers.Serializer):
-    category = serializers.ChoiceField(choices=["airtime", "data", "electricity", "cable"])
+    category = serializers.ChoiceField(choices=["airtime", "data", "electricity", "cable", "betting"])
     code = serializers.CharField(max_length=40)
     recipient = serializers.CharField(max_length=64)
     amount = serializers.DecimalField(max_digits=20, decimal_places=2, min_value=Decimal("1"))
@@ -237,6 +240,13 @@ class CardCheckoutStartSerializer(serializers.Serializer):
     meter_type = serializers.CharField(max_length=16, required=False, allow_blank=True)
     verification_id = serializers.CharField(max_length=64, required=False, allow_blank=True)
     callback_url = serializers.CharField(max_length=300, required=False, allow_blank=True)
+
+    def validate(self, data):
+        # Betting card charges are "credit + ₦50 fee"; the credit must be positive.
+        if data.get("category") == "betting" and data["amount"] <= BETTING_CARD_FEE:
+            raise serializers.ValidationError(
+                {"amount": f"Enter more than ₦{BETTING_CARD_FEE:.0f} (the amount plus the ₦{BETTING_CARD_FEE:.0f} service fee)."})
+        return data
 
 
 class CardCheckoutSerializer(serializers.ModelSerializer):
