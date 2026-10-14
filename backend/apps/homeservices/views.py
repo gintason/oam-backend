@@ -43,7 +43,7 @@ class ArtisanRegisterView(APIView):
 
 
 class MyArtisanView(APIView):
-    """GET/PATCH /artisans/me/ — view or update your own profile (incl. location)."""
+    """GET/PATCH/DELETE /artisans/me/ — view, update or remove your own profile."""
     permission_classes = [IsAuthenticated, IsVerified]
 
     def get(self, request):
@@ -62,6 +62,18 @@ class MyArtisanView(APIView):
         s.is_valid(raise_exception=True)
         s.save()
         return Response(ArtisanOwnerSerializer(profile).data)
+
+    def delete(self, request):
+        """Remove the profile: it disappears from search, along with its
+        verification, work photos and videos. Boost payments stay on the
+        user's account (they're payment records), and the person can list
+        again later."""
+        profile = getattr(request.user, "artisan_profile", None)
+        if profile is None:
+            return Response({"detail": "No artisan profile yet."},
+                            status=status.HTTP_404_NOT_FOUND)
+        profile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class ArtisanSearchView(APIView):
