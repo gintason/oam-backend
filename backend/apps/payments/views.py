@@ -54,6 +54,18 @@ class PaystackWebhookView(APIView):
     def post(self, request):
         headers = {k.lower(): v for k, v in request.headers.items()}
         event, should_process = WebhookService.ingest("paystack", request.body, headers)
+        # Paystack sends every event to this one URL, including transfer.* for
+        # withdrawals and rider payouts. Hand those to the payouts app.
+        if event.signature_valid and str(event.event_type or "").startswith("transfer."):
+            try:
+                from apps.payouts.services import WithdrawalService
+                tdata = event.raw_payload.get("data", {}) or {}
+                if tdata.get("reference"):
+                    WithdrawalService.apply_transfer_status(
+                        tdata["reference"], event.event_type.split(".", 1)[1], raw=event.raw_payload)
+            except Exception:
+                import logging
+                logging.getLogger(__name__).exception("transfer webhook handling failed")
         if should_process:
             data = event.raw_payload.get("data", {}) or {}
             st = data.get("status")

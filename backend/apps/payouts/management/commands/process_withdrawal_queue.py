@@ -20,6 +20,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **opts):
         cur = opts["currency"].upper()
+        if not opts["status"]:
+            sy = WithdrawalService.sync_processing()
+            if any(sy.values()):
+                self.stdout.write(f"Checked with Paystack: completed {sy['completed']} · refunded "
+                                  f"{sy['refunded']} · waiting for OTP {sy['awaiting_otp']}")
         s = WithdrawalService.queue_summary(cur)
         bal = "unknown" if s["balance"] is None else f"{s['balance']:,.2f}"
         self.stdout.write(f"Queued: {s['count']} · total {cur} {s['total']:,.2f} · balance {bal}"

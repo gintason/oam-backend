@@ -36,6 +36,9 @@ class MockPayouts(BaseProviderClient):
         return {"status": status, "provider_reference": f"TRF_mock_{uuid.uuid4().hex[:12]}",
                 "raw": {"mock": True, "status": status}}
 
+    def fetch_transfer_status(self, transfer_code):
+        return None     # mock transfers resolve instantly
+
     def get_balance(self, currency="NGN"):
         # Dev only: MOCK_PAYOUT_BALANCE=160 pretends the transfer balance is ₦160,
         # so the withdrawal queue can be tried without real money. Unset -> unknown.

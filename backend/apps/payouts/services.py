@@ -394,6 +394,7 @@ class WithdrawalService:
             if o.status in (WithdrawalOrder.Status.SUCCESS, WithdrawalOrder.Status.FAILED,
                             WithdrawalOrder.Status.REVERSED, WithdrawalOrder.Status.CANCELLED):
                 return o
+            refunded = False
             if status in _SUCCESS:
                 WithdrawalService._capture(o)
                 o.status = WithdrawalOrder.Status.SUCCESS
@@ -402,12 +403,58 @@ class WithdrawalService:
                 o.status = (WithdrawalOrder.Status.REVERSED if status == "reversed"
                             else WithdrawalOrder.Status.FAILED)
                 o.failure_reason = f"Transfer {status}."
+                refunded = True
             else:
                 o.status = WithdrawalOrder.Status.PROCESSING
             if raw:
                 o.response_payload = {**(o.response_payload or {}), "webhook": raw}
             o.save(update_fields=["status", "response_payload", "failure_reason", "updated_at"])
+        if refunded:
+            _notify_user(o, "Transfer didn't go through",
+                         f"Your transfer of {o.currency} {o.amount:,.2f} couldn't be completed, so the money "
+                         "is back in your OAM wallet. Please try again.")
         return o
+
+    @staticmethod
+    def sync_processing(*, limit=100, min_age_minutes=2) -> dict:
+        """Ask the provider about transfers still marked "processing" and finalise them.
+
+        A safety net for missed webhooks: success captures the hold, failed /
+        reversed / abandoned refunds the wallet. Transfers stuck waiting for an
+        OTP are reported to staff (OTP has to be entered, or switched off, in
+        the Paystack dashboard).
+        """
+        stats = {"completed": 0, "refunded": 0, "awaiting_otp": 0}
+        cutoff = timezone.now() - timedelta(minutes=min_age_minutes)
+        qs = (WithdrawalOrder.objects.filter(status=WithdrawalOrder.Status.PROCESSING, updated_at__lte=cutoff)
+              .exclude(provider_reference="").order_by("updated_at")[:limit])
+        orders = list(qs)
+        if not orders:
+            return stats
+        provider = ProviderFactory.get("payouts")
+        fetch = getattr(provider, "fetch_transfer_status", None)
+        if not fetch:
+            return stats
+        otp_waiting = []
+        for o in orders:
+            try:
+                st = fetch(o.provider_reference)
+            except Exception:
+                logger.warning("could not fetch transfer status for %s", o.reference)
+                continue
+            if st in _SUCCESS or st in _FAILED:
+                r = WithdrawalService.apply_transfer_status(o.transfer_reference or o.reference, st,
+                                                            raw={"synced_status": st})
+                if r and r.status == WithdrawalOrder.Status.SUCCESS:
+                    stats["completed"] += 1
+                elif r and r.status in (WithdrawalOrder.Status.FAILED, WithdrawalOrder.Status.REVERSED):
+                    stats["refunded"] += 1
+            elif st == "otp":
+                otp_waiting.append(o)
+        stats["awaiting_otp"] = len(otp_waiting)
+        if otp_waiting:
+            alert_ops_otp(otp_waiting)
+        return stats
 
     # ---------------- ledger helpers ----------------
     @staticmethod
@@ -510,4 +557,34 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
         return False
     # Only start the 30-minute quiet period once staff have actually been told.
     cache.set(key, {"total": str(summary["total"]), "kind": kind}, 30 * 60)
+    return True
+
+
+def alert_ops_otp(orders) -> bool:
+    """Tell staff that transfers are waiting for a Paystack OTP (at most hourly)."""
+    from django.core.cache import cache
+    from django.core.mail import send_mail
+
+    key = "payouts:otp-alert"
+    if cache.get(key):
+        return False
+    recipients = _ops_recipients()
+    total = sum((o.amount for o in orders), Decimal("0"))
+    lines = "\n".join(f"- {o.currency} {o.amount:,.2f}  ({o.reference}, transfer {o.provider_reference})"
+                      for o in orders[:20])
+    body = (f"{len(orders)} withdrawal(s), {total:,.2f} in total, are waiting for an OTP in Paystack:\n{lines}\n\n"
+            "They won't be sent until the OTP is entered. Open Paystack > Transfers, filter by status "
+            "\"OTP\", and enter the code — or switch off Settings > Preferences > \"Confirm transfers "
+            "before sending\" so withdrawals go out automatically.\n"
+            "Customers' money stays reserved in their wallets meanwhile.")
+    if not recipients:
+        logger.error("withdrawal OTP alert: no OPS_ALERT_EMAILS / superuser emails set. %s", body)
+        return False
+    try:
+        send_mail(f"[OAM] {len(orders)} withdrawal(s) waiting for a Paystack OTP", body, None,
+                  recipients, fail_silently=False)
+    except Exception:
+        logger.exception("withdrawal OTP alert email failed")
+        return False
+    cache.set(key, 1, 60 * 60)
     return True

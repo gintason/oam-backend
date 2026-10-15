@@ -138,8 +138,9 @@ class ProcessQueueView(APIView):
         given = request.headers.get("X-Queue-Key") or request.query_params.get("key") or ""
         if not key or not hmac.compare_digest(str(given), str(key)):
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        synced = WithdrawalService.sync_processing()
         stats = WithdrawalService.process_queue()
-        return Response({"status": "ok", **stats})
+        return Response({"status": "ok", **stats, "synced": synced})
 
     get = post   # simple pingers often only do GET
 

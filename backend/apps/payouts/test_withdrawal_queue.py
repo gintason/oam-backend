@@ -9,6 +9,7 @@ from django.test import TestCase, override_settings
 from django.utils import timezone
 from rest_framework.test import APIClient
 
+from apps.notifications.models import Notification
 from apps.payouts.models import BankAccount, WithdrawalOrder
 from apps.payouts.services import WithdrawalService, alert_ops_if_needed
 from apps.wallet.models import Wallet
@@ -26,6 +27,9 @@ class FakePaystack:
     def get_balance(self, currency="NGN"):
         return self.balance
 
+    def fetch_transfer_status(self, transfer_code):
+        return getattr(self, "remote", {}).get(transfer_code)
+
     def initiate_transfer(self, *, amount, recipient_code, reference, currency="NGN", reason=""):
         self.calls.append(reference)
         if getattr(self, "refuse", ""):
@@ -35,6 +39,8 @@ class FakePaystack:
                     "raw": {"message": "Your balance is not enough to fulfil this request"}}
         if self.balance is not None:
             self.balance -= Decimal(str(amount))
+        if getattr(self, "pending", False):
+            return {"status": "pending", "provider_reference": f"TRF_{reference}", "raw": {"status": True}}
         return {"status": "success", "provider_reference": f"TRF_{reference}", "raw": {"status": True}}
 
 
@@ -187,6 +193,60 @@ class WithdrawalQueueTests(TestCase):
         self.ps.refuse = ""                                             # Paystack re-enables payouts
         st = WithdrawalService.process_queue(currency="NGN")
         self.assertEqual((st["sent"], st["still_queued"]), (2, 0))
+
+    def _processing(self, i, amount, code):
+        self.ps.balance = Decimal("50000")
+        self.ps.pending = True
+        o = self.withdraw(i, amount)
+        self.assertEqual(o.status, WithdrawalOrder.Status.PROCESSING)
+        WithdrawalOrder.objects.filter(pk=o.pk).update(
+            status=WithdrawalOrder.Status.PROCESSING, provider_reference=code,
+            updated_at=timezone.now() - timedelta(minutes=10))
+        return o
+
+    def test_sync_finalises_missed_webhooks(self):
+        ok = self._processing(0, "1000", "TRF_ok")
+        gone = self._processing(1, "300", "TRF_gone")
+        wait = self._processing(2, "500", "TRF_wait")
+        self.ps.remote = {"TRF_ok": "success", "TRF_gone": "abandoned", "TRF_wait": "pending"}
+        before_gone = self.wallet(1)
+        st = WithdrawalService.sync_processing()
+        self.assertEqual((st["completed"], st["refunded"], st["awaiting_otp"]), (1, 1, 0))
+        for o in (ok, gone, wait):
+            o.refresh_from_db()
+        self.assertEqual(ok.status, WithdrawalOrder.Status.SUCCESS)
+        self.assertEqual(gone.status, WithdrawalOrder.Status.FAILED)
+        self.assertEqual(wait.status, WithdrawalOrder.Status.PROCESSING)
+        self.assertEqual(self.wallet(1), before_gone + Decimal("300") + Decimal(str(gone.request_payload.get("fee", "0"))))
+        self.assertTrue(Notification.objects.filter(user=self.users[1], title__icontains="didn't go through").exists())
+        self.assertEqual(WithdrawalService.sync_processing()["completed"], 0)     # idempotent
+
+    def test_sync_alerts_staff_about_otp_once(self):
+        self._processing(0, "1000", "TRF_otp")
+        self.ps.remote = {"TRF_otp": "otp"}
+        self.assertEqual(WithdrawalService.sync_processing()["awaiting_otp"], 1)
+        WithdrawalService.sync_processing()
+        otp = [m for m in self.ops_mail() if "OTP" in m.subject]
+        self.assertEqual(len(otp), 1)                                   # throttled
+        self.assertIn("Confirm transfers before sending", otp[0].body)
+
+    def test_payments_webhook_forwards_transfer_events(self):
+        o = self._processing(0, "1000", "TRF_hook")
+        gw = mock.Mock(); gw.verify_webhook.return_value = True
+        body = {"event": "transfer.success", "data": {"reference": o.reference, "status": "success"}}
+        with mock.patch("apps.payments.services.ProviderFactory.get", return_value=gw):
+            r = APIClient().post("/api/v1/payments/webhook/paystack/", body, format="json")
+        self.assertEqual(r.status_code, 200)
+        o.refresh_from_db()
+        self.assertEqual(o.status, WithdrawalOrder.Status.SUCCESS)
+
+    def test_queue_run_endpoint_also_syncs(self):
+        o = self._processing(0, "1000", "TRF_ep")
+        self.ps.remote = {"TRF_ep": "success"}
+        r = APIClient().get("/api/v1/payouts/queue/run/?key=sekret")
+        self.assertEqual(r.json()["synced"]["completed"], 1)
+        o.refresh_from_db()
+        self.assertEqual(o.status, WithdrawalOrder.Status.SUCCESS)
 
     def test_webhook_resolves_retry_reference(self):
         self.ps.get_balance = lambda currency="NGN": None

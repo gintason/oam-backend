@@ -92,6 +92,14 @@ class PaystackPayouts(BaseProviderClient):
                 "provider_reference": d.get("transfer_code", "") or d.get("reference", ""),
                 "raw": body}
 
+    def fetch_transfer_status(self, transfer_code):
+        """Paystack's current status for a transfer (success/failed/otp/...), or None."""
+        try:
+            body = self.get(f"/transfer/{transfer_code}")
+        except ProviderError:
+            return None
+        return str((body.get("data") or {}).get("status") or "").lower() or None
+
     def get_balance(self, currency="NGN"):
         """Available transfer balance in major units, or None if Paystack won't say."""
         try:
