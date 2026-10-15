@@ -85,8 +85,8 @@ export default function PublicMarketplace() {
             {rows.map((l) => (
               <li key={l.id}>
                 <Link to={`/marketplace/${l.id}`} className="group block overflow-hidden rounded-2xl border border-hairline bg-paper hover:border-brand-green/40">
-                  <div className="relative aspect-[4/3] bg-mist">
-                    {l.primary_image ? <img src={l.primary_image} alt={`${l.title} for sale${l.location ? ` in ${l.location}` : ""}`} loading="lazy" width={400} height={300} className="h-full w-full object-cover" /> : null}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
+                    {l.primary_image ? <img src={l.primary_image} alt={`${l.title} for sale${l.location ? ` in ${l.location}` : ""}`} loading="lazy" width={400} height={300} className="absolute inset-0 h-full w-full object-cover" /> : null}
                     {l.is_featured ? <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-md bg-brand-red/90 px-2 py-0.5 text-[11px] text-white"><Star size={10} fill="#fff" /> Featured</span> : null}
                   </div>
                   <div className="p-3">

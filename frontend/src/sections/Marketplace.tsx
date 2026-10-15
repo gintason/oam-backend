@@ -133,16 +133,16 @@ function ListingCard({ item }: { item: PublicListing }) {
       to={`/marketplace/${item.id}`}
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-paper shadow-[0_1px_2px_rgba(10,10,10,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-brand-green/40 hover:shadow-[0_8px_24px_rgba(10,10,10,0.08)]"
     >
-      <div className="relative aspect-[4/3] bg-mist">
+      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-mist">
         {item.primary_image ? (
           <img
             src={item.primary_image}
             alt={`${item.title} for sale${item.location ? ` in ${item.location}` : ""}`}
             loading="lazy"
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="flex h-full items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center">
             <ImageOff size={26} strokeWidth={1.25} className="text-muted" />
           </div>
         )}

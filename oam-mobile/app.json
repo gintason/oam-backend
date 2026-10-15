@@ -43,15 +43,13 @@
         "foregroundImage": "./assets/images/icon.png"
       },
       "permissions": [
-        "CAMERA",
-        "READ_MEDIA_IMAGES",
-        "READ_MEDIA_VIDEO",
-        "ACCESS_COARSE_LOCATION",
-        "ACCESS_FINE_LOCATION",
-        "RECORD_AUDIO",
-        "VIBRATE",
-        "INTERNET"
-      ]
+      "CAMERA",
+      "RECORD_AUDIO",
+      "ACCESS_COARSE_LOCATION",
+      "ACCESS_FINE_LOCATION",
+      "VIBRATE",
+      "INTERNET"
+    ]
     },
     "web": {
       "bundler": "metro",

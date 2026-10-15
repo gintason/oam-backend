@@ -270,12 +270,12 @@ function Card({ listing }: { listing: ListingListItem }) {
         to={`/marketplace/${listing.id}`}
         className="group block h-full overflow-hidden rounded-2xl border border-hairline bg-paper shadow-[0_1px_2px_rgba(10,10,10,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-brand-green/40 hover:shadow-[0_8px_24px_rgba(10,10,10,0.08)]"
       >
-        <div className="relative aspect-[4/3] bg-mist">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
           {listing.primary_image ? (
             <img src={listing.primary_image} alt={`${listing.title} for sale`} loading="lazy"
-                 className="h-full w-full object-cover transition group-hover:scale-[1.02]" />
+                 className="absolute inset-0 h-full w-full object-cover transition group-hover:scale-[1.02]" />
           ) : (
-            <div className="flex h-full items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center">
               <Package size={30} strokeWidth={1.25} className="text-muted" />
             </div>
           )}
