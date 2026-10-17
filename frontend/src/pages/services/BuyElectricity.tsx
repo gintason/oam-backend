@@ -97,6 +97,8 @@ export default function BuyElectricity() {
     enabled: isVerified,
   });
   const ngnBalance = walletsQuery.data?.wallets.find((w) => w.currency === "NGN")?.balance;
+  // Flat OAM service fee on electricity (set on the server; ₦50 by default).
+  const fee = Number(billersQuery.data?.find((b) => b.code === disco)?.service_fee ?? billersQuery.data?.[0]?.service_fee ?? 50);
 
   const purchase = useMutation({
     mutationFn: () =>
@@ -334,6 +336,7 @@ export default function BuyElectricity() {
             payWith={payWith}
             balance={payWith === "wallet" ? ngnBalance : undefined}
             label="Electricity"
+            fee={fee}
           />
 
           <button
@@ -344,11 +347,11 @@ export default function BuyElectricity() {
             {purchase.isPending || cardPay.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
-              amount ? `Pay ₦${Number(amount).toLocaleString()}` : "Buy units"
+              amount ? `Pay ₦${(Number(amount) + fee).toLocaleString()}` : "Buy units"
             )}
           </button>
           <p className="mt-3 text-center text-[12px] text-muted">
-            {payWith === "card" ? "You'll pay securely on Paystack. Units are delivered right after." : "Paid instantly from your OAM wallet."}
+            {payWith === "card" ? `You'll pay securely on Paystack. Includes a ₦${fee} service fee; units are delivered right after.` : `Paid instantly from your OAM wallet. Includes a ₦${fee} service fee.`}
           </p>
         </form>
       </main>

@@ -85,6 +85,8 @@ export default function BuyCable() {
     enabled: isVerified,
   });
   const ngnBalance = walletsQuery.data?.wallets.find((w) => w.currency === "NGN")?.balance;
+  // Flat OAM service fee on cable TV (set on the server; ₦50 by default).
+  const fee = Number(billersQuery.data?.find((b) => b.code === provider)?.service_fee ?? billersQuery.data?.[0]?.service_fee ?? 50);
 
   const purchase = useMutation({
     mutationFn: () =>
@@ -266,6 +268,7 @@ export default function BuyCable() {
           <PayWith value={payWith} onChange={setPayWith} />
 
           <PaySummary
+            fee={fee}
             amount={Number(plan?.price) || 0}
             payWith={payWith}
             balance={payWith === "wallet" ? ngnBalance : undefined}
@@ -280,7 +283,7 @@ export default function BuyCable() {
             {purchase.isPending || cardPay.isPending ? (
               <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             ) : (
-              plan ? `Pay ₦${Number(plan.price).toLocaleString()}` : "Subscribe"
+              plan ? `Pay ₦${(Number(plan.price) + fee).toLocaleString()}` : "Subscribe"
             )}
           </button>
           <PayNote payWith={payWith} noun="Your subscription" />

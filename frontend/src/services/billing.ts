@@ -14,6 +14,7 @@ export type Biller = {
   category: BillCategory;
   code: string;      // provider code used as `code` in a purchase
   name: string;      // e.g. "MTN", "Ikeja Electric", "DSTV"
+  service_fee?: string;  // flat OAM fee added on top (cable TV, electricity)
 };
 
 export type PurchaseInput = {
