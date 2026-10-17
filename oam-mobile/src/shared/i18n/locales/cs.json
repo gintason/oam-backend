@@ -368,7 +368,9 @@
     "phone": "Telefon",
     "amount": "Částka",
     "plan": "Tarif",
-    "goBack": "Zpět"
+    "goBack": "Zpět",
+    "serviceFee": "Servisní poplatek",
+    "feeNote": "Zahrnuje servisní poplatek ₦{{fee}}."
   },
   "data": {
     "title": "Koupit data",

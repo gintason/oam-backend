@@ -368,7 +368,9 @@
     "phone": "Waya",
     "amount": "Adadin",
     "plan": "Shiri",
-    "goBack": "Koma baya"
+    "goBack": "Koma baya",
+    "serviceFee": "Kuɗin sabis",
+    "feeNote": "Ya haɗa da kuɗin sabis na ₦{{fee}}."
   },
   "data": {
     "title": "Sayi data",

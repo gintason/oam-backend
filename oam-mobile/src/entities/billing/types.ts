@@ -1,5 +1,5 @@
 export type BillCategory = "airtime" | "data" | "electricity" | "cable";
-export type Biller = { id: string; country: string; category: string; code: string; name: string };
+export type Biller = { id: string; country: string; category: string; code: string; name: string; service_fee?: string };
 export type Plan = { variation_id: string; name: string; price: string; validity?: string };
 export type BillStatus = "success" | "pending" | "failed" | string;
 

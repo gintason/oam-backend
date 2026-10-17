@@ -42,6 +42,8 @@ export default function Cable() {
   const wallets = useWallets();
   const ngnBalance = pickHeadline(wallets.data?.wallets)?.balance;
   const selectedProvider = billers.data?.find((b) => b.code === provider);
+  // Flat OAM service fee (set on the server; ₦50 by default).
+  const fee = Number(selectedProvider?.service_fee ?? billers.data?.[0]?.service_fee ?? 50);
 
   function resetCustomer() {
     setCustomerName(undefined);
@@ -302,13 +304,13 @@ export default function Cable() {
             })}
           </View>
 
-          <PaySummary amount={Number(plan?.price) || 0} payWith={payWith} balance={payWith === "wallet" ? ngnBalance : undefined} label={t("cable.package")} />
+          <PaySummary amount={Number(plan?.price) || 0} fee={fee} payWith={payWith} balance={payWith === "wallet" ? ngnBalance : undefined} label={t("cable.package")} />
 
           <View style={{ marginTop: 18 }}>
-            <Button title={plan ? t("cable.payAmount", { amount: Number(plan.price).toLocaleString() }) : t("cable.subscribe")} onPress={submit} loading={pending} />
+            <Button title={plan ? t("cable.payAmount", { amount: (Number(plan.price) + fee).toLocaleString() }) : t("cable.subscribe")} onPress={submit} loading={pending} />
           </View>
           <Text variant="caption" color="muted" style={{ textAlign: "center", marginTop: 10 }}>
-            {payWith === "card" ? t("bills.payNoteCardShort") : t("bills.payNoteWallet")}
+            {payWith === "card" ? t("bills.payNoteCardShort") : t("bills.payNoteWallet")} {t("bills.feeNote", { fee, defaultValue: "Includes a ₦{{fee}} service fee." })}
           </Text>
         </View>
       </ScrollView>
@@ -324,9 +326,10 @@ export default function Cable() {
           { label: t("cable.smartcard"), value: smartcard.trim() },
           { label: t("bills.result.customer"), value: customerName ?? "—" },
           { label: t("bills.amount"), value: naira(Number(plan?.price) || 0) },
+          { label: t("bills.serviceFee", "Service fee"), value: naira(fee) },
           { label: t("bills.payWith"), value: payWith === "card" ? t("bills.card") : t("bills.wallet") },
         ]}
-        confirmLabel={t("cable.payAmount", { amount: (Number(plan?.price) || 0).toLocaleString() })}
+        confirmLabel={t("cable.payAmount", { amount: ((Number(plan?.price) || 0) + fee).toLocaleString() })}
         pending={pending}
         onConfirm={runPurchase}
         onCancel={() => setConfirming(false)}

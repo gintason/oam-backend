@@ -369,7 +369,9 @@
     "phone": "Phone",
     "amount": "Amount",
     "plan": "Plan",
-    "goBack": "Go back"
+    "goBack": "Go back",
+    "serviceFee": "Service fee",
+    "feeNote": "Includes a ₦{{fee}} service fee."
   },
   "data": {
     "title": "Buy Data",

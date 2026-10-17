@@ -368,7 +368,9 @@
     "phone": "Telefon",
     "amount": "Tutar",
     "plan": "Paket",
-    "goBack": "Geri"
+    "goBack": "Geri",
+    "serviceFee": "Hizmet bedeli",
+    "feeNote": "₦{{fee}} hizmet bedeli dahildir."
   },
   "data": {
     "title": "İnternet al",

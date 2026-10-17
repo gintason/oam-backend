@@ -368,7 +368,9 @@
     "phone": "Ekwentị",
     "amount": "Ọnụ ego",
     "plan": "Atụmatụ",
-    "goBack": "Laghachi azụ"
+    "goBack": "Laghachi azụ",
+    "serviceFee": "Ego ọrụ",
+    "feeNote": "Gụnyere ego ọrụ ₦{{fee}}."
   },
   "data": {
     "title": "Zụta data",

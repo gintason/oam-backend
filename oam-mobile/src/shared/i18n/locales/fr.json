@@ -368,7 +368,9 @@
     "phone": "Téléphone",
     "amount": "Montant",
     "plan": "Forfait",
-    "goBack": "Retour"
+    "goBack": "Retour",
+    "serviceFee": "Frais de service",
+    "feeNote": "Comprend des frais de service de ₦{{fee}}."
   },
   "data": {
     "title": "Acheter des données",

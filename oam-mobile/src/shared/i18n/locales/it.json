@@ -368,7 +368,9 @@
     "phone": "Telefono",
     "amount": "Importo",
     "plan": "Piano",
-    "goBack": "Indietro"
+    "goBack": "Indietro",
+    "serviceFee": "Commissione di servizio",
+    "feeNote": "Include una commissione di servizio di ₦{{fee}}."
   },
   "data": {
     "title": "Acquista dati",

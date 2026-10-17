@@ -18,15 +18,17 @@ function Row({ label, value, valueColor = "ink", bold }: { label: string; value:
   );
 }
 
-/** Amount / Fee / Total, plus wallet balance when paying from wallet. OAM adds no fee. */
+/** Amount / Fee / Total, plus wallet balance when paying from wallet. Cable TV and electricity add a flat service fee. */
 export function PaySummary({
   amount,
   payWith,
   balance,
   currency = "NGN",
   label,
+  fee = 0,
 }: {
   amount: number;
+  fee?: number;
   payWith: "wallet" | "card";
   balance?: string | number;
   currency?: string;
@@ -34,14 +36,17 @@ export function PaySummary({
 }) {
   const { t } = useTranslation();
   if (!amount || amount <= 0) return null;
-  const insufficient = payWith === "wallet" && balance !== undefined && Number(balance) < amount;
+  const total = amount + (fee > 0 ? fee : 0);
+  const insufficient = payWith === "wallet" && balance !== undefined && Number(balance) < total;
 
   return (
     <View style={{ marginTop: 20, borderRadius: 14, borderWidth: 1, borderColor: colors.hairline, backgroundColor: "rgba(248,250,252,0.7)", padding: 14, gap: 6 }}>
       <Row label={label ?? t("bills.amount", "Amount")} value={naira(amount)} />
-      <Row label={t("bills.fee")} value={naira(0)} valueColor="green" />
+      {fee > 0
+        ? <Row label={t("bills.serviceFee", "Service fee")} value={naira(fee)} />
+        : <Row label={t("bills.fee")} value={naira(0)} valueColor="green" />}
       <View style={{ borderTopWidth: 1, borderTopColor: colors.hairline, paddingTop: 6 }}>
-        <Row label={t("bills.total")} value={naira(amount)} bold />
+        <Row label={t("bills.total")} value={naira(total)} bold />
       </View>
 
       {payWith === "wallet" && balance !== undefined ? (

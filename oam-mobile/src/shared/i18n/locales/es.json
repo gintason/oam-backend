@@ -368,7 +368,9 @@
     "phone": "Teléfono",
     "amount": "Importe",
     "plan": "Plan",
-    "goBack": "Volver"
+    "goBack": "Volver",
+    "serviceFee": "Tarifa de servicio",
+    "feeNote": "Incluye una tarifa de servicio de ₦{{fee}}."
   },
   "data": {
     "title": "Comprar datos",

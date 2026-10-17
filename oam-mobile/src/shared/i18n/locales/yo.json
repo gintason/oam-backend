@@ -368,7 +368,9 @@
     "phone": "Fóònù",
     "amount": "Iye owó",
     "plan": "Ètò",
-    "goBack": "Padà sẹ́yìn"
+    "goBack": "Padà sẹ́yìn",
+    "serviceFee": "Owó iṣẹ́",
+    "feeNote": "Ó ní owó iṣẹ́ ₦{{fee}} nínú."
   },
   "data": {
     "title": "Ra dátà",

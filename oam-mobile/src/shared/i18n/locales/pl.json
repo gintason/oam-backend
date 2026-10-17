@@ -368,7 +368,9 @@
     "phone": "Telefon",
     "amount": "Kwota",
     "plan": "Pakiet",
-    "goBack": "Wstecz"
+    "goBack": "Wstecz",
+    "serviceFee": "Opłata serwisowa",
+    "feeNote": "Zawiera opłatę serwisową ₦{{fee}}."
   },
   "data": {
     "title": "Kup internet",

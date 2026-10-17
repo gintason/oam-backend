@@ -368,7 +368,9 @@
     "phone": "电话",
     "amount": "金额",
     "plan": "套餐",
-    "goBack": "返回"
+    "goBack": "返回",
+    "serviceFee": "服务费",
+    "feeNote": "含 ₦{{fee}} 服务费。"
   },
   "data": {
     "title": "购买流量",
