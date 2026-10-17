@@ -58,7 +58,7 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
   {
     title: "Shop & services", gkey: "shop",
     items: [
-      { id: "marketplace", lkey: "marketplace", label: "Marketplace", Icon: Store, tint: "green" },
+      { id: "marketplace", lkey: "marketplace", label: "Market Place", Icon: Store, tint: "green" },
       { id: "jobs", lkey: "jobs", label: "Jobs", Icon: BriefcaseBusiness, tint: "green" },
       { id: "delivery", lkey: "delivery", label: "Send Package", Icon: PackageCheck, tint: "green" },
       { id: "artisans", lkey: "artisans", label: "Artisans", Icon: Wrench, tint: "green" },
