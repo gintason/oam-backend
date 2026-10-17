@@ -39,7 +39,7 @@ from apps.payments.models import ServiceTransaction
 from apps.payments.services import FundingService
 
 from .models import BillOrder
-from .services import BillingError, BillingService
+from .services import BillingError, BillingService, service_fee
 
 
 class CardCheckout(TimeStampedModel):
@@ -94,6 +94,9 @@ class CardCheckoutService:
         """Validate the biller, then open a Paystack charge for the exact amount."""
         # Fail fast on a bad biller BEFORE taking any money.
         BillingService._resolve_biller(country, category, code)
+        # Cable/electricity: the client sends the bill amount; the card is
+        # charged that plus OAM's flat service fee (taken back out at delivery).
+        amount = Decimal(str(amount)) + service_fee(category)
 
         txn, init = FundingService.initialize(user, amount, currency, callback_url=callback_url or None)
 
@@ -126,7 +129,8 @@ class CardCheckoutService:
             return BillingService.purchase_electricity(
                 user=c.user, country=c.country, code=c.code,
                 customer_id=c.recipient, meter_type=c.meter_type,
-                amount=c.amount, verification_id=c.verification_id,
+                amount=Decimal(str(c.amount)) - service_fee("electricity"),
+                verification_id=c.verification_id,
                 currency=c.currency,
             )
 

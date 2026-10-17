@@ -543,3 +543,9 @@ if not DEBUG:
 DELIVERIES_PAYMENT_GATEWAY = env("DELIVERIES_PAYMENT_GATEWAY", default="flutterwave")
 # Secret for POST /api/v1/deliveries/internal/tick/ (falls back to JOBS_CRON_SECRET).
 DELIVERIES_CRON_SECRET = env("DELIVERIES_CRON_SECRET", default="")
+
+# Flat OAM service fee added on top of these bills (NGN). Airtime/data have none.
+BILL_SERVICE_FEES = {
+    "cable": env.int("CABLE_SERVICE_FEE", default=50),
+    "electricity": env.int("ELECTRICITY_SERVICE_FEE", default=50),
+}

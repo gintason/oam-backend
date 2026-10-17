@@ -4,9 +4,15 @@ from .models import Biller, BillOrder
 
 
 class BillerSerializer(serializers.ModelSerializer):
+    service_fee = serializers.SerializerMethodField()
+
     class Meta:
         model = Biller
-        fields = ("id", "country", "category", "code", "name")
+        fields = ("id", "country", "category", "code", "name", "service_fee")
+
+    def get_service_fee(self, obj):
+        from .services import service_fee
+        return str(service_fee(obj.category))
 
 
 class PurchaseSerializer(serializers.Serializer):

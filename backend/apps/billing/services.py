@@ -17,6 +17,7 @@ from __future__ import annotations
 import uuid
 from decimal import Decimal
 
+from django.conf import settings
 from django.db import transaction
 
 from integrations.base import ProviderFactory
@@ -25,6 +26,15 @@ from integrations.base.exceptions import ProviderError
 from apps.wallet.services import WalletService
 
 from .models import Biller, BillOrder, CustomerVerification
+
+
+def service_fee(category) -> Decimal:
+    """Flat OAM fee the customer pays on top of a bill (cable TV, electricity)."""
+    fees = getattr(settings, "BILL_SERVICE_FEES", {}) or {}
+    try:
+        return Decimal(str(fees.get(category, 0) or 0))
+    except Exception:
+        return Decimal("0")
 
 
 def _bill_ref() -> str:
@@ -82,9 +92,8 @@ class BillingService:
         provider = ProviderFactory.get("vtu")
         result, error = None, None
         try:
-            provider_amount = order.amount
-            if order.category == "betting":
-                provider_amount = Decimal(str((order.metadata or {}).get("betting_amount") or order.amount))
+            md = order.metadata or {}
+            provider_amount = Decimal(str(md.get("provider_amount") or md.get("betting_amount") or order.amount))
             result = provider.purchase(VTURequest(
                 service=order.category, operator=order.biller.code,
                 recipient=order.recipient, amount=provider_amount,
@@ -258,13 +267,15 @@ class BillingService:
                     expected_cost = rc
             except Exception:
                 expected_cost = None
+        fee = service_fee("cable")
         order = BillingService.create_and_hold(
             user=user, country=country, category="cable", code=code,
-            recipient=str(customer_id), amount=amount, currency=currency,
-            plan_code=str(variation_id), expected_cost=expected_cost,
+            recipient=str(customer_id), amount=amount + fee, currency=currency,
+            plan_code=str(variation_id), expected_cost=expected_cost or amount,
         )
         order.customer_name = cv.customer_name
-        order.save(update_fields=["customer_name", "updated_at"])
+        order.metadata = {**(order.metadata or {}), "provider_amount": str(amount), "fee": str(fee)}
+        order.save(update_fields=["customer_name", "metadata", "updated_at"])
         return BillingService.execute(order)
 
     # ---------------- electricity ----------------
@@ -287,14 +298,17 @@ class BillingService:
             raise BillingError(f"Minimum purchase for this meter is {mn}.")
         if mx and amount > Decimal(str(mx)):
             raise BillingError(f"Maximum purchase for this meter is {mx}.")
+        fee = service_fee("electricity")
         order = BillingService.create_and_hold(
             user=user, country=country, category="electricity", code=code,
-            recipient=str(customer_id), amount=amount, currency=currency,
+            recipient=str(customer_id), amount=amount + fee, currency=currency,
             plan_code=str(meter_type),   # prepaid / postpaid -> VTU variation_id
+            expected_cost=amount,
         )
         order.meter_type = str(meter_type)
         order.customer_name = cv.customer_name
-        order.save(update_fields=["meter_type", "customer_name", "updated_at"])
+        order.metadata = {**(order.metadata or {}), "provider_amount": str(amount), "fee": str(fee)}
+        order.save(update_fields=["meter_type", "customer_name", "metadata", "updated_at"])
         return BillingService.execute(order)
 
     @staticmethod
