@@ -8,6 +8,7 @@ import fr from "./locales/fr.json";
 import ha from "./locales/ha.json";
 import ig from "./locales/ig.json";
 import yo from "./locales/yo.json";
+import pcm from "./locales/pcm.json";
 import es from "./locales/es.json";
 import de from "./locales/de.json";
 import ru from "./locales/ru.json";
@@ -25,7 +26,7 @@ import bg from "./locales/bg.json";
 import sr from "./locales/sr.json";
 
 /**
- * Mobile i18n — mirrors the web's 20-language setup.
+ * Mobile i18n — mirrors the web's 21-language setup.
  *
  * English is the source of truth; any missing key falls back to English
  * (fallbackLng). The chosen language is remembered in AsyncStorage
@@ -38,6 +39,7 @@ export const LANGUAGES = [
   { code: "ha", label: "Hausa", native: "Hausa" },
   { code: "ig", label: "Igbo", native: "Igbo" },
   { code: "yo", label: "Yoruba", native: "Yorùbá" },
+  { code: "pcm", label: "Nigerian Pidgin", native: "Naijá" },
   { code: "es", label: "Spanish", native: "Español" },
   { code: "de", label: "German", native: "Deutsch" },
   { code: "ru", label: "Russian", native: "Русский" },
@@ -63,6 +65,7 @@ const resources = {
   it: { translation: it }, pt: { translation: pt }, cs: { translation: cs }, pl: { translation: pl },
   tr: { translation: tr }, el: { translation: el }, hi: { translation: hi }, ar: { translation: ar },
   zh: { translation: zh }, th: { translation: th }, bg: { translation: bg }, sr: { translation: sr },
+  pcm: { translation: pcm },
 };
 
 function deviceLanguage(): string {
