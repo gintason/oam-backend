@@ -59,7 +59,6 @@ export default function AppHeader() {
     : NAV;
 
   // Bottom-bar destinations are dropped from the mobile menu.
-  const mobileNavItems = navItems.filter((n) => !n.inTabs);
 
   async function onLogout() {
     await logout();
@@ -74,19 +73,19 @@ export default function AppHeader() {
   return (
     <>
     <header className="sticky top-0 z-40 border-b border-hairline bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
-        <div className="flex items-center gap-8">
-          <Link to="/dashboard" className="inline-flex">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5 sm:px-6">
+        <div className="flex min-w-0 items-center gap-5 lg:gap-8">
+          <Link to="/dashboard" className="inline-flex shrink-0">
             <img src={logo} alt="OAM" className="h-8 w-auto" />
           </Link>
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 xl:flex">
             {navItems.map((n) => {
               const active = location.pathname === n.to;
               return (
                 <Link
                   key={n.to}
                   to={n.to}
-                  className={`relative rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  className={`relative whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium transition lg:px-3 ${
                     active ? "bg-brand-green/10 text-brand-green" : "text-ink hover:bg-mist"
                   }`}
                 >
@@ -102,14 +101,14 @@ export default function AppHeader() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 lg:gap-3">
           <NotificationBell />
           <LanguageSwitcher className="hidden sm:block" />
           <Link to="/profile" title={t("header.nav.profile")} className="hidden items-center gap-2.5 rounded-lg px-1.5 py-1 transition hover:bg-mist sm:flex">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green/10 text-[13px] font-semibold text-brand-green">
               {initial}
             </span>
-            <span className="max-w-[120px] truncate text-sm font-medium text-ink">
+            <span className="hidden max-w-[120px] truncate text-sm font-medium text-ink xl:inline">
               {user?.first_name || user?.email}
             </span>
           </Link>
@@ -117,7 +116,7 @@ export default function AppHeader() {
               solid red button shouting at everyone who wasn't leaving. */}
           <button
             onClick={onLogout}
-            className="hidden h-9 items-center gap-1.5 rounded-lg border border-brand-red/25 bg-[linear-gradient(150deg,rgba(11,115,39,0.13),rgba(227,16,18,0.07))] px-3 text-sm font-medium text-brand-red transition duration-200 hover:border-brand-red/40 hover:bg-[linear-gradient(150deg,rgba(11,115,39,0.18),rgba(227,16,18,0.13))] hover:shadow-[0_4px_12px_rgba(227,16,18,0.14)] md:inline-flex"
+            className="hidden h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-brand-red/25 bg-[linear-gradient(150deg,rgba(11,115,39,0.13),rgba(227,16,18,0.07))] px-3 text-sm font-medium text-brand-red transition duration-200 hover:border-brand-red/40 hover:bg-[linear-gradient(150deg,rgba(11,115,39,0.18),rgba(227,16,18,0.13))] hover:shadow-[0_4px_12px_rgba(227,16,18,0.14)] xl:inline-flex"
           >
             <LogOut size={15} strokeWidth={1.75} />
             {t("header.signOut")}
@@ -125,7 +124,7 @@ export default function AppHeader() {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label={t("header.menu")}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-hairline text-ink md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-hairline text-ink xl:hidden"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -134,16 +133,18 @@ export default function AppHeader() {
 
       {/* mobile menu */}
       {open && (
-        <div className="border-t border-hairline bg-paper px-5 py-3 md:hidden">
+        <div className="border-t border-hairline bg-paper px-5 py-3 xl:hidden">
           <nav className="flex flex-col gap-1">
-            {mobileNavItems.map((n) => {
+            {/* Phones get Dashboard/Wallet/Orders from the bottom tabs; tablets and
+                small laptops (no bottom tabs, no top nav) need them here. */}
+            {navItems.map((n) => {
               const active = location.pathname === n.to;
               return (
                 <Link
                   key={n.to}
                   to={n.to}
                   onClick={() => setOpen(false)}
-                  className={`flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                  className={`${n.inTabs ? "hidden md:flex" : "flex"} items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition ${
                     active ? "bg-brand-green/10 text-brand-green" : "text-ink hover:bg-mist"
                   }`}
                 >
@@ -161,6 +162,13 @@ export default function AppHeader() {
             <div className="mt-2 border-t border-hairline pt-3">
               <LanguageSwitcher className="w-full" />
             </div>
+            <button
+              onClick={() => { setOpen(false); onLogout(); }}
+              className="mt-2 flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-medium text-brand-red transition hover:bg-brand-red/5"
+            >
+              <LogOut size={15} strokeWidth={1.75} />
+              {t("header.signOut")}
+            </button>
           </nav>
         </div>
       )}

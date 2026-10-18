@@ -7,6 +7,7 @@ import fr from "./locales/fr.json";
 import ha from "./locales/ha.json";
 import ig from "./locales/ig.json";
 import yo from "./locales/yo.json";
+import pcm from "./locales/pcm.json";
 import es from "./locales/es.json";
 import de from "./locales/de.json";
 import ru from "./locales/ru.json";
@@ -24,7 +25,7 @@ import bg from "./locales/bg.json";
 import sr from "./locales/sr.json";
 
 /**
- * i18n setup for OAM — 20 languages.
+ * i18n setup for OAM — 21 languages.
  *
  * PROGRESSIVE FILL: English is the complete source of truth. Any key missing
  * from a language falls back to English (fallbackLng), so a not-yet-translated
@@ -35,7 +36,7 @@ import sr from "./locales/sr.json";
  *
  * `flag` is an ISO 3166-1 alpha-2 country code, rendered as SVG via flag-icons.
  * Flags represent countries, not languages, so some are approximations
- * (Hausa/Igbo/Yoruba -> ng; Arabic -> sa; English -> gb).
+ * (Hausa/Igbo/Yoruba/Pidgin -> ng; Arabic -> sa; English -> gb).
  */
 export const LANGUAGES = [
   { code: "en", label: "English",            native: "English",   flag: "gb" },
@@ -43,6 +44,7 @@ export const LANGUAGES = [
   { code: "ha", label: "Hausa",              native: "Hausa",     flag: "ng" },
   { code: "ig", label: "Igbo",               native: "Igbo",      flag: "ng" },
   { code: "yo", label: "Yoruba",             native: "Yorùbá",    flag: "ng" },
+  { code: "pcm", label: "Nigerian Pidgin",   native: "Naijá",     flag: "ng" },
   { code: "es", label: "Spanish",            native: "Español",   flag: "es" },
   { code: "de", label: "German",             native: "Deutsch",   flag: "de" },
   { code: "ru", label: "Russian",            native: "Русский",   flag: "ru" },
@@ -71,7 +73,7 @@ i18n
       pt: { translation: pt }, cs: { translation: cs }, pl: { translation: pl },
       tr: { translation: tr }, el: { translation: el }, hi: { translation: hi }, ar: { translation: ar },
       zh: { translation: zh }, th: { translation: th }, bg: { translation: bg },
-      sr: { translation: sr },
+      sr: { translation: sr }, pcm: { translation: pcm },
     },
     fallbackLng: "en",
     supportedLngs: LANGUAGES.map((l) => l.code),
