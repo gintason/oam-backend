@@ -17,7 +17,6 @@ import type { BillOrder } from "@/entities/billing";
 import { KeyboardAware } from "@/shared/ui/keyboard";
 
 const QUICK_AMOUNTS = [500, 1000, 2000, 5000];
-const SERVICE_FEE = 50;
 
 export default function Betting() {
   const router = useRouter();
@@ -76,8 +75,10 @@ export default function Betting() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provider, debouncedAccount]);
 
+  // Betting service fee comes from the server (₦0 unless switched on there).
+  const fee = Number(billers.data?.find((b) => b.code === provider)?.service_fee ?? billers.data?.[0]?.service_fee ?? 0);
   const amt = Number(amount) || 0;
-  const total = amt > 0 ? amt + SERVICE_FEE : 0;
+  const total = amt > 0 ? amt + fee : 0;
 
   const fund = useMutation({
     mutationFn: () => billsApi.fundBetting({ code: provider, customer_id: account.trim(), amount: amt, verification_id: verificationId }),
@@ -90,7 +91,7 @@ export default function Betting() {
   });
 
   const cardPay = useMutation({
-    mutationFn: () => billsApi.cardStart({ category: "betting", code: provider, recipient: account.trim(), amount: total, verification_id: verificationId, callback_url: `${env.apiUrl}/billing/purchase/card/return/` }),
+    mutationFn: () => billsApi.cardStart({ category: "betting", code: provider, recipient: account.trim(), amount: amt, verification_id: verificationId, callback_url: `${env.apiUrl}/billing/purchase/card/return/` }),
     onSuccess: (data) => { setConfirming(false); setCardRef(data.reference); setCardUrl(data.authorization_url); },
     onError: (err) => setError(apiErrorMessage(err, t("betting.errCard", "Couldn't start card payment."))),
   });
@@ -279,9 +280,11 @@ export default function Betting() {
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text variant="caption" color="muted">{t("betting.credit", "Betting credit")}</Text><Text variant="caption" color="ink">{naira(amt)}</Text>
             </View>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 6 }}>
-              <Text variant="caption" color="muted">{t("betting.serviceFee", "Service fee")}</Text><Text variant="caption" color="ink">{naira(SERVICE_FEE)}</Text>
-            </View>
+            {fee > 0 ? (
+              <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 6 }}>
+                <Text variant="caption" color="muted">{t("bills.serviceFee", "Service fee")}</Text><Text variant="caption" color="ink">{naira(fee)}</Text>
+              </View>
+            ) : null}
             <View style={{ height: 1, backgroundColor: colors.hairline, marginVertical: 8 }} />
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text variant="label" color="ink">{t("betting.youPay", "You pay")}</Text><Text variant="label" color="ink">{naira(total)}</Text>
@@ -295,7 +298,8 @@ export default function Betting() {
             <Button title={total ? t("betting.payAmount", "Pay {{amount}}", { amount: naira(total) }) : t("betting.fundWallet", "Fund wallet")} onPress={submit} loading={pending} />
           </View>
           <Text variant="caption" color="muted" style={{ textAlign: "center", marginTop: 10 }}>
-            {payWith === "card" ? t("betting.payNoteCard", "You'll pay securely on Paystack. Includes a ₦50 service fee.") : t("betting.payNote", "Paid instantly from your OAM wallet. Includes a ₦50 service fee.")}
+            {payWith === "card" ? t("bills.payNoteCardShort") : t("bills.payNoteWallet")}
+            {fee > 0 ? ` ${t("bills.feeNote", { fee, defaultValue: "Includes a ₦{{fee}} service fee." })}` : ""}
           </Text>
         </View>
       </ScrollView>
@@ -332,7 +336,7 @@ export default function Betting() {
           { label: t("betting.accountId", "Betting account ID"), value: account.trim() },
           { label: t("bills.result.customer", "Customer"), value: customerName ?? "—" },
           { label: t("betting.credit", "Betting credit"), value: naira(amt) },
-          { label: t("betting.serviceFee", "Service fee"), value: naira(SERVICE_FEE) },
+          ...(fee > 0 ? [{ label: t("bills.serviceFee", "Service fee"), value: naira(fee) }] : []),
           { label: t("betting.youPay", "You pay"), value: naira(total) },
           { label: t("bills.payWith", "Pay with"), value: payWith === "card" ? t("bills.card", "Card") : t("bills.wallet", "Wallet") },
         ]}
