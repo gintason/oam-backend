@@ -12,7 +12,7 @@ from .currency import resolve_currency
 from .exceptions import UnsupportedCurrency
 from .models import LedgerPosting, Wallet
 from .serializers import OpenWalletSerializer, TransactionSerializer, WalletSerializer
-from .services import WalletService
+from .services import WalletService, wallet_owner
 
 
 class WalletListView(APIView):
@@ -24,7 +24,7 @@ class WalletListView(APIView):
         currency, source = resolve_currency(request.user, request)
         # Ensure the user always has at least their default wallet.
         WalletService.get_or_create_wallet(request.user, currency)
-        wallets = Wallet.objects.filter(user=request.user).order_by("currency")
+        wallets = Wallet.objects.filter(user=wallet_owner(request.user)).order_by("currency")
         return Response({
             "default_currency": currency,
             "default_currency_source": source,
@@ -53,7 +53,7 @@ class WalletTransactionsView(ListAPIView):
     def get_queryset(self):
         currency = self.kwargs["currency"].upper()
         wallet = (Wallet.objects.select_related("account")
-                  .filter(user=self.request.user, currency=currency).first())
+                  .filter(user=wallet_owner(self.request.user), currency=currency).first())
         if wallet is None:
             return LedgerPosting.objects.none()
         return (LedgerPosting.objects

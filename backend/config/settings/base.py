@@ -549,3 +549,9 @@ BILL_SERVICE_FEES = {
     "cable": env.int("CABLE_SERVICE_FEE", default=50),
     "electricity": env.int("ELECTRICITY_SERVICE_FEE", default=50),
 }
+
+# O.A.M admin accounts that share ONE company wallet (owned by COMPANY_WALLET_OWNER):
+# all of them see and spend the same balance. Leave COMPANY_WALLET_OWNER empty to disable.
+COMPANY_WALLET_OWNER = env("COMPANY_WALLET_OWNER", default="oammotors@gmail.com")
+COMPANY_WALLET_SHARED_WITH = env.list("COMPANY_WALLET_SHARED_WITH",
+                                      default=["oammotors@gmail.com", "gintason@gmail.com"])

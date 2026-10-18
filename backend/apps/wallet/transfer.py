@@ -118,6 +118,8 @@ class TransferService:
 
         sender_wallet = WalletService.get_or_create_wallet(sender, currency)
         recipient_wallet = WalletService.get_or_create_wallet(recipient, currency)
+        if sender_wallet.pk == recipient_wallet.pk:      # e.g. two admins on the company wallet
+            raise TransferError("That account uses the same wallet as yours.")
 
         # Lock both rows in a stable order to avoid deadlocks.
         ids = sorted([str(sender_wallet.pk), str(recipient_wallet.pk)])

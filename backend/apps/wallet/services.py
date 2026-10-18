@@ -50,11 +50,30 @@ def _check_currency(currency: str) -> str:
     return currency
 
 
+def wallet_owner(user):
+    """Whose wallet this user uses.
+
+    The O.A.M admin accounts listed in COMPANY_WALLET_SHARED_WITH share ONE
+    company wallet, owned by COMPANY_WALLET_OWNER, so every admin sees and
+    spends the same balance (earnings sweeps, withdrawals, purchases).
+    Everyone else uses their own wallet.
+    """
+    email = str(getattr(user, "email", "") or "").strip().lower()
+    owner_email = str(getattr(settings, "COMPANY_WALLET_OWNER", "") or "").strip().lower()
+    shared = {str(e).strip().lower() for e in (getattr(settings, "COMPANY_WALLET_SHARED_WITH", None) or []) if e}
+    if not email or not owner_email or email == owner_email or email not in shared:
+        return user
+    from django.contrib.auth import get_user_model
+    owner = get_user_model().objects.filter(email__iexact=owner_email, is_active=True).first()
+    return owner or user
+
+
 class WalletService:
     # -------------------- accounts & wallets --------------------
     @staticmethod
     def get_or_create_wallet(user, currency: str) -> Wallet:
         currency = _check_currency(currency)
+        user = wallet_owner(user)
         wallet = (Wallet.objects.select_related("account")
                   .filter(user=user, currency=currency).first())
         if wallet:
