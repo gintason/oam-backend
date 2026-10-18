@@ -34,13 +34,13 @@ class BettingCardCheckoutTests(TestCase):
         self.assertEqual(r.json()["authorization_url"], "https://checkout.example/pay")
         c = CardCheckout.objects.get()
         self.assertEqual((c.category, c.amount, c.verification_id), ("betting", Decimal("250"), "v-1"))
-        self.assertEqual(init.call_args[0][1], Decimal("250"))   # card charged credit + ₦50 fee
+        self.assertEqual(init.call_args[0][1], Decimal("250"))   # no betting fee: card charged the credit
 
     @mock.patch("apps.billing.card.FundingService.initialize", side_effect=_fake_init)
-    def test_betting_card_must_exceed_fee(self, init):
+    def test_betting_card_minimum_is_100(self, init):
         r = self.api.post(URL, {"category": "betting", "code": "bet9ja", "recipient": "5648715", "amount": "50"}, format="json")
         self.assertEqual(r.status_code, 400)
-        self.assertIn("service fee", str(r.json()["amount"]))
+        self.assertIn("100", str(r.json()["amount"]))
         init.assert_not_called()
 
     @mock.patch("apps.billing.card.FundingService.initialize", side_effect=_fake_init)
@@ -54,4 +54,4 @@ class BettingCardCheckoutTests(TestCase):
                          recipient="5648715", amount=Decimal("250"), verification_id="v-1", currency="NGN")
         with mock.patch("apps.billing.card.BillingService.purchase_betting") as pb:
             CardCheckoutService._purchase_for(c)
-        self.assertEqual(pb.call_args.kwargs["amount"], Decimal("200"))
+        self.assertEqual(pb.call_args.kwargs["amount"], Decimal("250"))     # full amount, no fee

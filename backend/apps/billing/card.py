@@ -152,7 +152,7 @@ class CardCheckoutService:
                     "This betting account was not verified before payment, so "
                     "delivery cannot be completed. Your money is in your wallet."
                 )
-            credit = Decimal(str(c.amount)) - BETTING_CARD_FEE
+            credit = Decimal(str(c.amount)) - service_fee("betting")
             return BillingService.purchase_betting(
                 user=c.user, code=c.code, customer_id=c.recipient,
                 amount=credit, verification_id=c.verification_id, currency=c.currency,
@@ -230,7 +230,6 @@ def _deliver_after_payment(sender, instance: ServiceTransaction, **kwargs):
 # --------------------------------------------------------------------------- #
 # API
 # --------------------------------------------------------------------------- #
-BETTING_CARD_FEE = Decimal("50")   # matches the flat fee deducted in _purchase_for
 
 
 class CardCheckoutStartSerializer(serializers.Serializer):
@@ -246,10 +245,10 @@ class CardCheckoutStartSerializer(serializers.Serializer):
     callback_url = serializers.CharField(max_length=300, required=False, allow_blank=True)
 
     def validate(self, data):
-        # Betting card charges are "credit + ₦50 fee"; the credit must be positive.
-        if data.get("category") == "betting" and data["amount"] <= BETTING_CARD_FEE:
-            raise serializers.ValidationError(
-                {"amount": f"Enter more than ₦{BETTING_CARD_FEE:.0f} (the amount plus the ₦{BETTING_CARD_FEE:.0f} service fee)."})
+        # Catch a too-small betting top-up before the card is charged
+        # (the service fee, if any, is added on top by CardCheckoutService.start).
+        if data.get("category") == "betting" and data["amount"] < Decimal("100"):
+            raise serializers.ValidationError({"amount": "Minimum funding is ₦100."})
         return data
 
 

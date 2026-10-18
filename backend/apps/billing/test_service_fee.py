@@ -38,7 +38,7 @@ def _fake_init(user, amount, currency, callback_url=None, **kw):
 @override_settings(SECURE_SSL_REDIRECT=False, BILL_SERVICE_FEES={"cable": 50, "electricity": 50})
 class ServiceFeeTests(TestCase):
     def setUp(self):
-        for cat, code in (("electricity", "ikeja-electric"), ("cable", "dstv"), ("airtime", "mtn")):
+        for cat, code in (("electricity", "ikeja-electric"), ("cable", "dstv"), ("airtime", "mtn"), ("betting", "bet9ja")):
             Biller.objects.create(country="NG", category=cat, code=code, name=code)
         self.user = get_user_model().objects.create_user(email="f@oam.test", password="x-Pass-12345", is_verified=True)
         self.wallet = WalletService.get_or_create_wallet(self.user, "NGN")
@@ -78,6 +78,14 @@ class ServiceFeeTests(TestCase):
     def test_airtime_has_no_fee(self):
         o = BillingService.purchase(user=self.user, country="NG", category="airtime", code="mtn",
                                     recipient="08031234567", amount=Decimal("500"))
+        self.assertEqual(o.amount, Decimal("500"))
+        self.assertEqual(self.vtu.requests[0].amount, Decimal("500"))
+        self.assertEqual(self.balance(), Decimal("49500"))
+
+    def test_betting_has_no_fee(self):
+        cv = self.verify("bet9ja", "5648715")
+        o = BillingService.purchase_betting(user=self.user, code="bet9ja", customer_id="5648715",
+                                            amount="500", verification_id=str(cv.id))
         self.assertEqual(o.amount, Decimal("500"))
         self.assertEqual(self.vtu.requests[0].amount, Decimal("500"))
         self.assertEqual(self.balance(), Decimal("49500"))

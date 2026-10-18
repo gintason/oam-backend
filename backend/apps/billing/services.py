@@ -314,8 +314,8 @@ class BillingService:
     @staticmethod
     def purchase_betting(*, user, code, customer_id, amount, verification_id,
                          currency="NGN") -> BillOrder:
-        """Fund a betting account. The user pays amount + a flat ₦50 OAM service
-        fee; the betting account is credited with `amount`."""
+        """Fund a betting account. The user pays amount + the betting service fee
+        (BILL_SERVICE_FEES["betting"], ₦0 by default); the account gets `amount`."""
         biller = BillingService._resolve_biller("NG", "betting", code)
         cv = BillingService._require_verification(user, biller.code, customer_id, verification_id)
         try:
@@ -326,7 +326,7 @@ class BillingService:
             raise BillingError("Minimum funding is ₦100.")
         if amount > Decimal("100000"):
             raise BillingError("Maximum funding is ₦100,000.")
-        fee = Decimal("50")
+        fee = service_fee("betting")
         total = amount + fee
         order = BillingService.create_and_hold(
             user=user, country="NG", category="betting", code=code,
