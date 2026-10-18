@@ -13,7 +13,6 @@ import { naira } from "../../lib/format";
 import { useDebounced } from "../../hooks/useDebounced";
 
 const QUICK_AMOUNTS = [500, 1000, 2000, 5000];
-const SERVICE_FEE = 50;
 
 /**
  * Fund Betting Wallet. Pick a provider (Bet9ja, SportyBet, …), enter the betting
@@ -99,15 +98,17 @@ export default function BuyBetting() {
         category: "betting",
         code: provider,
         recipient: account.trim(),
-        amount: (Number(amount) || 0) + SERVICE_FEE, // card is charged amount + fee
+        amount: Number(amount) || 0,   // the server adds any service fee
         verification_id: verificationId,
       }),
     onSuccess: (data) => { window.location.href = data.authorization_url; },
     onError: (err) => setError(apiErrorMessage(err, "Couldn't start card payment.")),
   });
 
+  // Betting service fee comes from the server (₦0 unless switched on there).
+  const fee = Number(billersQuery.data?.find((b) => b.code === provider)?.service_fee ?? billersQuery.data?.[0]?.service_fee ?? 0);
   const amt = Number(amount) || 0;
-  const total = amt > 0 ? amt + SERVICE_FEE : 0;
+  const total = amt > 0 ? amt + fee : 0;
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -262,9 +263,11 @@ export default function BuyBetting() {
             <div className="flex justify-between text-muted">
               <span>Betting credit</span><span className="text-ink">{naira(amt)}</span>
             </div>
-            <div className="mt-1.5 flex justify-between text-muted">
-              <span>Service fee</span><span className="text-ink">{naira(SERVICE_FEE)}</span>
-            </div>
+            {fee > 0 && (
+              <div className="mt-1.5 flex justify-between text-muted">
+                <span>Service fee</span><span className="text-ink">{naira(fee)}</span>
+              </div>
+            )}
             <div className="mt-2 flex justify-between border-t border-hairline pt-2 font-semibold">
               <span className="text-ink">You pay</span><span className="text-ink">{naira(total)}</span>
             </div>
@@ -284,7 +287,7 @@ export default function BuyBetting() {
               total ? `Pay ${naira(total)}` : "Fund wallet"
             )}
           </button>
-          <p className="mt-3 text-center text-[12px] text-muted">{payWith === "card" ? "You\u2019ll pay securely on Paystack. Includes a \u20a650 service fee." : "Paid instantly from your OAM wallet. Includes a \u20a650 service fee."}</p>
+          <p className="mt-3 text-center text-[12px] text-muted">{payWith === "card" ? "You\u2019ll pay securely on Paystack." : "Paid instantly from your OAM wallet."}{fee > 0 ? ` Includes a ${naira(fee)} service fee.` : ""}</p>
         </form>
       </main>
     </div>
