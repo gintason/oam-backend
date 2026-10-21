@@ -104,6 +104,19 @@ class FlutterwaveWebhookView(APIView):
     def post(self, request):
         headers = {k.lower(): v for k, v in request.headers.items()}
         event, should_process = WebhookService.ingest("flutterwave", request.body, headers)
+        # transfer.completed = a withdrawal paid from the Flutterwave balance
+        # finished (SUCCESSFUL or FAILED). Hand it to the payouts app.
+        if event.signature_valid and str(event.event_type or "").startswith("transfer."):
+            try:
+                from apps.payouts.services import WithdrawalService
+                tdata = event.raw_payload.get("data", {}) or {}
+                tst = str(tdata.get("status") or "").lower()
+                tst = {"successful": "success", "failed": "failed"}.get(tst, "pending")
+                if tdata.get("reference"):
+                    WithdrawalService.apply_transfer_status(tdata["reference"], tst, raw=event.raw_payload)
+            except Exception:
+                import logging
+                logging.getLogger(__name__).exception("flutterwave transfer webhook handling failed")
         if should_process:
             data = event.raw_payload.get("data", {}) or {}
             st = str(data.get("status", "")).lower()

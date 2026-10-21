@@ -39,7 +39,10 @@ logger = logging.getLogger("payouts")
 # and kept on the order for staff.
 _OPERATOR_SIDE = ("balance is not enough", "insufficient balance", "insufficient fund",
                   "not enough", "third party payout", "starter business", "transfers are not",
-                  "transfer is not", "not enabled", "disabled", "otp")
+                  "transfer is not", "not enabled", "disabled", "otp",
+                  # Flutterwave: server IP not whitelisted / bad key
+                  "whitelist", "ip address", "auth rejected", "unauthorized", "invalid authorization",
+                  "re-linking")
 OPERATOR_SIDE_MESSAGE = ("Bank transfers are temporarily unavailable. Your money is safe in your "
                          "OAM wallet — please try again later.")
 
@@ -194,6 +197,8 @@ class WithdrawalService:
     def execute(order: WithdrawalOrder) -> WithdrawalOrder:
         provider = ProviderFactory.get("payouts")
         order.provider = provider.provider_key
+        # Record it now: a queued order keeps it, and staff alerts name the right gateway.
+        WithdrawalOrder.objects.filter(pk=order.pk).update(provider=provider.provider_key)
 
         # Not enough in the transfer balance? Queue it instead of a doomed attempt.
         available = _provider_balance(provider, order.currency)
@@ -203,8 +208,13 @@ class WithdrawalService:
 
         result, error = None, None
         try:
+            # Flutterwave has no recipient objects; it builds one from the saved account
+            # (including accounts first linked under Paystack).
+            to_recipient = getattr(provider, "recipient_from_account", None)
+            recipient = (to_recipient(order.bank_account) if to_recipient
+                         else order.bank_account.recipient_code)
             result = provider.initiate_transfer(
-                amount=order.amount, recipient_code=order.bank_account.recipient_code,
+                amount=order.amount, recipient_code=recipient,
                 reference=order.transfer_reference or order.reference, currency=order.currency,
                 reason=f"OAM withdrawal {order.reference}",
             )
@@ -431,12 +441,17 @@ class WithdrawalService:
         orders = list(qs)
         if not orders:
             return stats
-        provider = ProviderFactory.get("payouts")
-        fetch = getattr(provider, "fetch_transfer_status", None)
-        if not fetch:
-            return stats
         otp_waiting = []
         for o in orders:
+            # Ask the provider that sent it — orders sent before a provider switch
+            # still belong to the old one.
+            try:
+                provider = ProviderFactory.get("payouts", o.provider or None)
+            except ProviderError:
+                continue
+            fetch = getattr(provider, "fetch_transfer_status", None)
+            if not fetch:
+                continue
             try:
                 st = fetch(o.provider_reference)
             except Exception:
@@ -498,6 +513,11 @@ def _ops_recipients() -> list[str]:
     return emails
 
 
+def _gateway_name(key: str = "") -> str:
+    key = str(key or getattr(settings, "DEFAULT_PROVIDERS", {}).get("payouts", "") or "")
+    return {"paystack": "Paystack", "flutterwave": "Flutterwave"}.get(key, key.title() or "The payout provider")
+
+
 def alert_ops_if_needed(currency=None, *, force=False) -> bool:
     """Email staff what's waiting and how much to top up.
 
@@ -529,17 +549,23 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
         hours = (timezone.now() - oldest).total_seconds() / 3600
         waited = f"Oldest has waited {hours:.1f} hours." + ("  ⚠ OVER 24 HOURS." if hours >= 24 else "")
     bal = "unknown" if summary["balance"] is None else f"{cur} {summary['balance']:,.2f}"
-    if blocked:
+    gw = _gateway_name(getattr(latest, "provider", ""))
+    if blocked and gw == "Flutterwave":
+        need = ("Flutterwave is refusing the transfers — topping up will NOT help.\n"
+                "Check in the Flutterwave dashboard: Settings > Whitelisted IP addresses lists your "
+                "server's outbound IPs (Render > service > Connect > Outbound), the live API keys on "
+                "Render are correct, and transfers are enabled on the account (\"Enable full access\").")
+    elif blocked:
         need = ("Paystack is refusing the transfers — topping up will NOT help.\n"
                 "Contact Paystack support (support@paystack.com) with the reason below and ask them "
                 "to enable transfers / third-party payouts on your live account.")
     elif summary["shortfall"]:
-        need = f"Top up your Paystack balance by at least {cur} {summary['shortfall']:,.2f}."
+        need = f"Top up your {gw} balance by at least {cur} {summary['shortfall']:,.2f}."
     else:
         need = "Your balance may now cover them — they'll be retried automatically."
-    said = f"Paystack's reason: \"{reason}\"\n" if reason else ""
+    said = f"{gw}'s reason: \"{reason}\"\n" if reason else ""
     body = (f"{summary['count']} withdrawal(s) are waiting, {cur} {summary['total']:,.2f} in total.\n"
-            f"Paystack balance: {bal}.\n{said}{need}\n{waited}\n\n"
+            f"{gw} balance: {bal}.\n{said}{need}\n{waited}\n\n"
             "Customers' money is reserved in their wallets. Queued withdrawals are sent automatically, "
             "oldest first, as soon as the balance allows (or use Admin > Withdrawal orders > Retry now).")
     recipients = _ops_recipients()
@@ -547,7 +573,7 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
         logger.error("withdrawal queue alert: no OPS_ALERT_EMAILS / superuser emails set. %s", body)
         return False
     try:
-        subject = (f"[OAM] Paystack is refusing transfers — {summary['count']} withdrawal(s) waiting"
+        subject = (f"[OAM] {gw} is refusing transfers — {summary['count']} withdrawal(s) waiting"
                    if blocked else
                    f"[OAM] {summary['count']} withdrawal(s) waiting — {cur} {summary['total']:,.2f}")
         send_mail(subject,

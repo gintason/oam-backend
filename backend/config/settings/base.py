@@ -327,6 +327,9 @@ PROVIDER_CONFIG = {
 
     "payouts": {
         "paystack": {"secret_key": env("PAYSTACK_SECRET_KEY", default="")},
+        # Pays withdrawals from the Flutterwave balance. DEFAULT_PROVIDER_PAYOUTS=flutterwave
+        "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default=""),
+                        "secret_hash": env("FLUTTERWAVE_SECRET_HASH", default="")},
         "mock": {},
     },
 
@@ -411,6 +414,9 @@ PAYSTACK_DEPOSIT_SUBACCOUNT_CODE = env("PAYSTACK_DEPOSIT_SUBACCOUNT_CODE", defau
 PAYSTACK_REVENUE_SUBACCOUNT_CODE = env("PAYSTACK_REVENUE_SUBACCOUNT_CODE",
                                        default=PAYSTACK_DEPOSIT_SUBACCOUNT_CODE)
 FLUTTERWAVE_REDIRECT_URL = env("FLUTTERWAVE_REDIRECT_URL", default=PAYSTACK_CALLBACK_URL)
+# How customers may pay when funding a naira wallet through Flutterwave checkout.
+FLUTTERWAVE_WALLET_PAYMENT_OPTIONS = env("FLUTTERWAVE_WALLET_PAYMENT_OPTIONS",
+                                         default="card,banktransfer,ussd")
 
 # Gateway used ONLY for Marketplace/Artisan listing-upgrade payments (Pro/
 # Premium seller tiers and artisan boosts). Everything else uses

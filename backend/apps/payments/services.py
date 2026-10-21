@@ -119,6 +119,11 @@ class FundingService:
         # Paystack to pay withdrawals with.)
         charge_amount = amount
 
+        # Naira wallet funding on Flutterwave: offer bank transfer and USSD as well as card.
+        if gateway.provider_key == "flutterwave" and charge_ccy == "NGN":
+            from django.conf import settings as dj_settings
+            meta = {**meta, "payment_options": getattr(dj_settings, "FLUTTERWAVE_WALLET_PAYMENT_OPTIONS", "card")}
+
         init = gateway.initialize_charge(
             amount=charge_amount, currency=charge_ccy,
             email=user.email or f"{user.id}@no-email.oam",

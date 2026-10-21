@@ -19,6 +19,7 @@ PROVIDER_MODULES = [
     "integrations.payments.mock",
     "integrations.payouts.mock",
     "integrations.payouts.paystack.adapter",
+    "integrations.payouts.flutterwave.adapter",
     "integrations.giftcards.g2a.adapter",
     "integrations.hotels.klook.adapter",
 ]

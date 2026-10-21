@@ -63,6 +63,7 @@ class FlutterwaveGateway(PaymentGateway):
         # concepts; they are accepted here so FundingService.initialize can
         # call every gateway uniformly, and intentionally ignored.
         meta = dict(metadata or {})
+        payment_options = str(meta.pop("payment_options", "") or "").strip() or "card"
         cust_name = str(meta.pop("name", "") or "").strip()
         cust_phone = str(meta.pop("phone", "") or "").strip()
         if not cust_name:
@@ -76,7 +77,7 @@ class FlutterwaveGateway(PaymentGateway):
             "tx_ref": reference,
             "amount": str(amount),
             "currency": (currency or "NGN").upper(),
-            "payment_options": "card",
+            "payment_options": payment_options,
             "customer": customer,
             "customizations": {
                 "title": "OAM",
