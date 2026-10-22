@@ -11,7 +11,7 @@ import { homeServicesApi } from "../../services/homeservices";
  * artisan profile boosts. Flutterwave sends every payment back to ONE redirect
  * URL (FLUTTERWAVE_REDIRECT_URL) with ?status=&tx_ref=&transaction_id=, so this
  * page reads tx_ref, works out which flow it was from the reference prefix
- * (SUB- vs BOOST-), verifies with the backend — which re-checks with Flutterwave
+ * (SUB- vs BOOST-; wallet funding FUND- is handed to /wallet/fund/callback), verifies with the backend — which re-checks with Flutterwave
  * by that reference and activates the tier/boost — and reports the outcome.
  * The verify endpoints are idempotent, so a refresh here is harmless.
  */
@@ -45,6 +45,12 @@ export default function FlutterwaveCallback() {
     async function run() {
       if (!reference) {
         setPhase("error");
+        return;
+      }
+      // Wallet funding (FUND-...) now also runs on Flutterwave and returns here;
+      // the wallet's own return page verifies it and credits the wallet.
+      if (reference.startsWith("FUND-")) {
+        navigate(`/wallet/fund/callback?reference=${encodeURIComponent(reference)}`, { replace: true });
         return;
       }
       // The customer cancelled on Flutterwave's page — nothing was charged.
