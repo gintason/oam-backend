@@ -329,7 +329,12 @@ PROVIDER_CONFIG = {
         "paystack": {"secret_key": env("PAYSTACK_SECRET_KEY", default="")},
         # Pays withdrawals from the Flutterwave balance. DEFAULT_PROVIDER_PAYOUTS=flutterwave
         "flutterwave": {"secret_key": env("FLUTTERWAVE_SECRET_KEY", default=""),
-                        "secret_hash": env("FLUTTERWAVE_SECRET_HASH", default="")},
+                        "secret_hash": env("FLUTTERWAVE_SECRET_HASH", default=""),
+                        # Fixed-IP proxy for transfer calls (Flutterwave whitelists single IPs;
+                        # Render's outbound IPs change). e.g. the URL QuotaGuard Static / Fixie gives you.
+                        "proxy_url": (env("FLUTTERWAVE_PROXY_URL", default="")
+                                      or env("QUOTAGUARDSTATIC_URL", default="")
+                                      or env("FIXIE_URL", default=""))},
         "mock": {},
     },
 

@@ -38,6 +38,7 @@ class WithdrawSerializer(serializers.Serializer):
 class WithdrawalOrderSerializer(serializers.ModelSerializer):
     account_name = serializers.CharField(source="bank_account.account_name", read_only=True)
     account_number = serializers.CharField(source="bank_account.account_number", read_only=True)
+    bank_name = serializers.CharField(source="bank_account.bank_name", read_only=True)
     # Plain-language status for the apps ("queued" = waiting for a top-up on OAM's side).
     status_message = serializers.SerializerMethodField()
     can_cancel = serializers.SerializerMethodField()
@@ -45,7 +46,7 @@ class WithdrawalOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = WithdrawalOrder
         fields = ("id", "amount", "currency", "status", "status_message", "can_cancel", "reference",
-                  "provider", "provider_reference", "account_name", "account_number",
+                  "provider", "provider_reference", "account_name", "account_number", "bank_name",
                   "failure_reason", "queued_at", "created_at", "updated_at")
         read_only_fields = fields
 

@@ -89,6 +89,20 @@ class AdapterTests(TestCase):
                 "currency": "NGN", "available_balance": 2371, "ledger_balance": 2371}}):
             self.assertEqual(a.get_balance("NGN"), Decimal("2371.00"))
 
+    def test_only_transfer_calls_use_the_fixed_ip_proxy(self):
+        a = FlutterwavePayouts({"secret_key": "k", "proxy_url": "http://user:pw@proxy.example:9293"})
+        resp = mock.Mock(status_code=200)
+        resp.json.return_value = {"status": "success", "data": {"id": 1, "status": "NEW"}}
+        with mock.patch.object(a.session, "request", return_value=resp) as req:
+            a.initiate_transfer(amount=100, recipient_code="FLW:070:1", reference="WD-P")
+            self.assertEqual(req.call_args.kwargs["proxies"]["https"], "http://user:pw@proxy.example:9293")
+            a.get_balance("NGN")
+            self.assertNotIn("proxies", req.call_args.kwargs)
+        b = flw()
+        with mock.patch.object(b.session, "request", return_value=resp) as req:
+            b.initiate_transfer(amount=100, recipient_code="FLW:070:1", reference="WD-Q")
+            self.assertNotIn("proxies", req.call_args.kwargs)
+
     def test_webhook_signature(self):
         a = flw()
         self.assertTrue(a.verify_webhook(b"{}", {"verif-hash": "hash123"}))
@@ -179,11 +193,30 @@ class WithdrawalOnFlutterwaveTests(TestCase):
         self.assertIn("Flutterwave is refusing", ops[-1].subject)
         self.assertIn("Whitelisted IP addresses", ops[-1].body)
 
+    def test_account_administrator_refusal_queues(self):
+        o = self.run_with(FakeFlutterwave(balance=Decimal("10000"),
+                                          refuse="This request cannot be processed. Please contact your account administrator"))
+        self.assertEqual(o.status, WithdrawalOrder.Status.QUEUED)       # money stays reserved
+        ops = [m for m in mail.outbox if "ops@oam.test" in m.to]
+        self.assertIn("api.ipify.org", ops[-1].body)
+
     def test_low_flutterwave_balance_queues(self):
         o = self.run_with(FakeFlutterwave(balance=Decimal("200")))
         self.assertEqual(o.status, WithdrawalOrder.Status.QUEUED)
         ops = [m for m in mail.outbox if "ops@oam.test" in m.to]
         self.assertIn("Top up your Flutterwave balance", ops[-1].body)
+
+    def test_receipt_polling_flips_to_success(self):
+        o = self.run_with(FakeFlutterwave(balance=Decimal("10000")))
+        self.assertEqual(o.status, WithdrawalOrder.Status.PROCESSING)
+        c = APIClient(); c.force_authenticate(self.user)
+        with mock.patch("apps.payouts.services.ProviderFactory.get", return_value=FakeFlutterwave()):
+            r = c.get(f"/api/v1/payouts/withdrawals/{o.id}/")
+        self.assertEqual((r.status_code, r.data["status"], r.data["bank_name"]), (200, "success", "Fidelity Bank"))
+        self.assertEqual(self.balance(), Decimal("5000") - Decimal("1025"))     # captured once
+        other = get_user_model().objects.create_user(email="x@oam.test", password="x-Pass-12345", is_verified=True)
+        c.force_authenticate(other)
+        self.assertEqual(c.get(f"/api/v1/payouts/withdrawals/{o.id}/").status_code, 404)
 
     def test_sync_asks_the_provider_that_sent_it(self):
         o = self.run_with(FakeFlutterwave(balance=Decimal("10000")))

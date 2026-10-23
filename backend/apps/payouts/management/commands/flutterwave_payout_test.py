@@ -21,6 +21,15 @@ from integrations.base.exceptions import ProviderError
 MAX_TEST = Decimal("1000")
 
 
+def _ip(proxy=None):
+    import requests
+    try:
+        kw = {"proxies": {"http": proxy, "https": proxy}} if proxy else {}
+        return requests.get("https://api.ipify.org", timeout=15, **kw).text.strip()
+    except Exception as exc:
+        return f"unknown ({type(exc).__name__})"
+
+
 class Command(BaseCommand):
     help = "Check Flutterwave transfers (balance, banks, account lookup) and optionally send one test transfer."
 
@@ -29,11 +38,21 @@ class Command(BaseCommand):
         parser.add_argument("--account", help="10-digit account number")
         parser.add_argument("--send", metavar="AMOUNT", help=f"send this many naira (max {MAX_TEST})")
 
+    def _show_ips(self, proxy):
+        self.stdout.write(f"This server's own IP: {_ip()}")
+        if proxy:
+            self.stdout.write(f"Transfers go out through the fixed-IP proxy, currently from: {_ip(proxy)}  "
+                              "<- whitelist the proxy's IPs in Flutterwave")
+        else:
+            self.stdout.write("No FLUTTERWAVE_PROXY_URL set: transfers go out from this server's IP, "
+                              "which can change on every deploy.")
+
     def handle(self, *args, **opts):
         flw = ProviderFactory.get("payouts", "flutterwave")
         if not flw.config.get("secret_key"):
             raise CommandError("FLUTTERWAVE_SECRET_KEY is not set on this server.")
         self.stdout.write("Flutterwave key: set")
+        self._show_ips(flw.config.get("proxy_url"))
 
         balance = flw.get_balance("NGN")
         self.stdout.write(f"NGN available balance: {'unknown (Flutterwave did not say)' if balance is None else f'₦{balance:,.2f}'}")

@@ -42,7 +42,9 @@ _OPERATOR_SIDE = ("balance is not enough", "insufficient balance", "insufficient
                   "transfer is not", "not enabled", "disabled", "otp",
                   # Flutterwave: server IP not whitelisted / bad key
                   "whitelist", "ip address", "auth rejected", "unauthorized", "invalid authorization",
-                  "re-linking")
+                  "re-linking", "merchant is not enabled",
+                  # Flutterwave's reply when the server's IP isn't on the whitelist
+                  "contact your account administrator")
 OPERATOR_SIDE_MESSAGE = ("Bank transfers are temporarily unavailable. Your money is safe in your "
                          "OAM wallet — please try again later.")
 
@@ -426,6 +428,23 @@ class WithdrawalService:
         return o
 
     @staticmethod
+    def refresh(order: WithdrawalOrder) -> WithdrawalOrder:
+        """Ask the provider about one processing withdrawal right now (receipt polling)."""
+        if order.status != WithdrawalOrder.Status.PROCESSING or not order.provider_reference:
+            return order
+        try:
+            provider = ProviderFactory.get("payouts", order.provider or None)
+            fetch = getattr(provider, "fetch_transfer_status", None)
+            st = fetch(order.provider_reference) if fetch else None
+        except Exception:
+            logger.warning("could not refresh withdrawal %s", order.reference)
+            return order
+        if st in _SUCCESS or st in _FAILED:
+            return WithdrawalService.apply_transfer_status(
+                order.transfer_reference or order.reference, st, raw={"synced_status": st}) or order
+        return order
+
+    @staticmethod
     def sync_processing(*, limit=100, min_age_minutes=2) -> dict:
         """Ask the provider about transfers still marked "processing" and finalise them.
 
@@ -552,8 +571,9 @@ def alert_ops_if_needed(currency=None, *, force=False) -> bool:
     gw = _gateway_name(getattr(latest, "provider", ""))
     if blocked and gw == "Flutterwave":
         need = ("Flutterwave is refusing the transfers — topping up will NOT help.\n"
-                "Check in the Flutterwave dashboard: Settings > Whitelisted IP addresses lists your "
-                "server's outbound IPs (Render > service > Connect > Outbound), the live API keys on "
+                "Most likely the server is calling from a new IP address (Render can change it on "
+                "every deploy). In the Render Shell run: curl -s https://api.ipify.org  and add that "
+                "address in Flutterwave > Settings > Whitelisted IP addresses. Also check the live API keys on "
                 "Render are correct, and transfers are enabled on the account (\"Enable full access\").")
     elif blocked:
         need = ("Paystack is refusing the transfers — topping up will NOT help.\n"

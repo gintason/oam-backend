@@ -16,6 +16,10 @@ mapped onto Flutterwave's bank list by code, then by bank name.
 Flutterwave only accepts transfer requests from whitelisted server IPs
 (Settings > Whitelisted IP addresses); a refusal for that reason is reported
 to staff and the withdrawal waits in the queue — the customer is not refunded.
+Render's outbound IPs change between deploys and Flutterwave takes single IPs
+only, so set FLUTTERWAVE_PROXY_URL (a fixed-IP proxy such as QuotaGuard Static
+or Fixie) and whitelist the proxy's IPs: transfer calls then go through it.
+Other calls (banks, account lookup, balance) don't need the whitelist and go direct.
 """
 from __future__ import annotations
 
@@ -51,6 +55,12 @@ class FlutterwavePayouts(BaseProviderClient):
     def _headers(self):
         return {"Accept": "application/json", "Content-Type": "application/json",
                 "Authorization": f"Bearer {self.config.get('secret_key', '')}"}
+
+    def _request(self, method, path, **kwargs):
+        proxy = str(self.config.get("proxy_url") or "").strip()
+        if proxy and path.startswith("/transfers"):
+            kwargs.setdefault("proxies", {"http": proxy, "https": proxy})
+        return super()._request(method, path, **kwargs)
 
     # ---------------- banks & accounts ----------------
     def list_banks(self, currency="NGN"):

@@ -107,6 +107,20 @@ class WithdrawView(APIView):
         return Response(WithdrawalOrderSerializer(order).data, status=code)
 
 
+class WithdrawalDetailView(APIView):
+    """GET /withdrawals/<id>/ — one of your withdrawals, re-checked with the bank
+    provider if it's still processing, so a receipt can flip to "successful"."""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, withdrawal_id):
+        order = WithdrawalOrder.objects.select_related("bank_account").filter(
+            id=withdrawal_id, user=request.user).first()
+        if order is None:
+            return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        order = WithdrawalService.refresh(order)
+        return Response(WithdrawalOrderSerializer(order).data)
+
+
 class CancelWithdrawalView(APIView):
     """POST /withdrawals/<id>/cancel/ — cancel your own queued withdrawal (refund)."""
     permission_classes = [IsAuthenticated, IsVerified]
