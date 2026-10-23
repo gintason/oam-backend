@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { ReceiptScreen, type MobileReceipt } from "@/features/receipts/ReceiptScreen";
 import { formatReceiptDate } from "@/features/receipts/format-receipt-date";
 import { KeyboardAware } from "@/shared/ui/keyboard";
+import { useWithdrawalPoll } from "@/features/wallet/model/use-withdrawal-poll";
 
 export default function Withdraw() {
   const router = useRouter();
@@ -40,6 +41,21 @@ export default function Withdraw() {
   const accountsQuery = useQuery({ queryKey: ["payouts", "accounts"], queryFn: payoutsApi.getBankAccounts, enabled: isVerified });
   const accounts = accountsQuery.data ?? [];
 
+  // While the bank confirms, keep checking and update the receipt when it settles.
+  const [pollId, setPollId] = useState<string | null>(null);
+  useWithdrawalPoll(pollId, (w) => {
+    setPollId(null);
+    qc.invalidateQueries({ queryKey: ["wallets"] });
+    qc.invalidateQueries({ queryKey: ["transactions"] });
+    if (w.status === "success") {
+      setReceipt((r) => (r ? { ...r, status: "Successful Transaction" } : r));
+    } else {
+      setReceipt(null);
+      const reason = (w.failure_reason as string) || "";
+      setError(reason ? t("withdraw.errFailedReason", { reason }) : t("withdraw.errFailed"));
+    }
+  });
+
   const withdraw = useMutation({
     mutationFn: (pin: string) => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
     onSuccess: (w) => {
@@ -54,6 +70,7 @@ export default function Withdraw() {
       setError(null);
       if (w.status === "queued") { setQueued(w); setAmount(""); return; }   // waiting for OAM's balance
       const pending = w.status === "pending" || w.status === "processing";
+      if (pending) setPollId(String(w.id));
       if (w.reference) {
         setReceipt({
           amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),

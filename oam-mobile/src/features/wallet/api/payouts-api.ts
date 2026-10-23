@@ -56,6 +56,9 @@ export const payoutsApi = {
     api.get<Withdrawal[] | { results: Withdrawal[] }>("/payouts/withdrawals/history/")
       .then((r) => (Array.isArray(r.data) ? r.data : r.data.results ?? [])),
 
+  /** One withdrawal, re-checked with the bank provider while it's processing. */
+  get: (id: string) => api.get<Withdrawal>(`/payouts/withdrawals/${id}/`).then((r) => r.data),
+
   /** Cancel a queued withdrawal — the money goes back to the wallet. */
   cancel: (id: string) => api.post<Withdrawal>(`/payouts/withdrawals/${id}/cancel/`, {}).then((r) => r.data),
 
