@@ -1587,6 +1587,12 @@
       "cancelledBody": "Owó náà ti padà sí àpò owó OAM rẹ.",
       "errCancel": "A kò lè fagilé gbígbé owó náà. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i.",
       "pendingTitle_other": "Gbígbé owó {{count}} ń lọ lọ́wọ́"
+    },
+    "confirm": {
+      "title": "À ń jẹ́rìí sí ìfiránṣẹ́ owó yín…",
+      "body": "À ń dúró kí báńkì jẹ́rìí sí i. Ó sábà máa ń gba ìṣẹ́jú-àáyá díẹ̀.",
+      "slowTitle": "Owó yín wà lójú ọ̀nà",
+      "slowBody": "Báńkì kò tíì jẹ́rìí sí i. Ọ̀pọ̀ ìfiránṣẹ́ máa ń dé láàrin ìṣẹ́jú díẹ̀ — ẹ lè tẹ̀lé e nínú ìtàn àpamọ́wọ́ yín. Bí ó bá kùnà, owó náà yóò padà sí àpamọ́wọ́ yín fúnra rẹ̀."
     }
   },
   "beneficiaries": {

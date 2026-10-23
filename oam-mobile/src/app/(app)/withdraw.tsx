@@ -42,9 +42,13 @@ export default function Withdraw() {
   const accounts = accountsQuery.data ?? [];
 
   // While the bank confirms, keep checking and update the receipt when it settles.
+  // The receipt is only shown once the bank confirms; until then a "confirming" view.
   const [pollId, setPollId] = useState<string | null>(null);
+  const [confirming, setConfirming] = useState(false);
+  const [slow, setSlow] = useState(false);
   useWithdrawalPoll(pollId, (w) => {
     setPollId(null);
+    setConfirming(false);
     qc.invalidateQueries({ queryKey: ["wallets"] });
     qc.invalidateQueries({ queryKey: ["transactions"] });
     if (w.status === "success") {
@@ -54,7 +58,7 @@ export default function Withdraw() {
       const reason = (w.failure_reason as string) || "";
       setError(reason ? t("withdraw.errFailedReason", { reason }) : t("withdraw.errFailed"));
     }
-  });
+  }, () => setSlow(true));
 
   const withdraw = useMutation({
     mutationFn: (pin: string) => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
@@ -70,12 +74,12 @@ export default function Withdraw() {
       setError(null);
       if (w.status === "queued") { setQueued(w); setAmount(""); return; }   // waiting for OAM's balance
       const pending = w.status === "pending" || w.status === "processing";
-      if (pending) setPollId(String(w.id));
+      if (pending) { setPollId(String(w.id)); setConfirming(true); setSlow(false); }
       if (w.reference) {
         setReceipt({
           amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
           date: formatReceiptDate(new Date()),
-          status: pending ? "Processing" : "Successful Transaction",
+          status: "Successful Transaction",
           recipientName: w.account_name || t("withdraw.yourBank"),
           recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
           senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
@@ -124,6 +128,27 @@ export default function Withdraw() {
         <ScrollView contentContainerStyle={{ padding: 20, paddingTop: 40 }}>
           <QueuedTransfer withdrawal={queued} onDone={() => router.navigate("/home")} />
         </ScrollView>
+      </Screen>
+    );
+  }
+
+  if (receipt && confirming) {
+    return (
+      <Screen edges={["top"]}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 28, gap: 10 }}>
+          {slow ? <ArrowUpRight size={34} color={colors.muted} /> : <ActivityIndicator size="large" color={colors.brand.green} />}
+          <Text variant="heading" style={{ textAlign: "center" }}>
+            {slow ? t("withdraw.confirm.slowTitle", "Your transfer is on its way") : t("withdraw.confirm.title", "Confirming your transfer…")}
+          </Text>
+          <Text variant="title" style={{ textAlign: "center" }}>₦{receipt.amount}</Text>
+          <Text variant="caption" color="muted" style={{ textAlign: "center" }}>{receipt.recipientName} · {receipt.recipientSub}</Text>
+          <Text variant="body" color="muted" style={{ textAlign: "center", marginTop: 6 }}>
+            {slow
+              ? t("withdraw.confirm.slowBody", "The bank hasn't confirmed it yet. Most transfers arrive within minutes — you can follow it in your wallet history. If it fails, the money comes back to your wallet automatically.")
+              : t("withdraw.confirm.body", "Waiting for the bank to confirm. This usually takes a few seconds.")}
+          </Text>
+          {slow ? <Button title={t("withdraw.queue.done")} onPress={() => router.navigate("/home")} style={{ marginTop: 14, alignSelf: "stretch" }} /> : null}
+        </View>
       </Screen>
     );
   }

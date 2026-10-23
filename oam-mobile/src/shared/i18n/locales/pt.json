@@ -1678,6 +1678,12 @@
       "pendingTitle_one": "{{count}} transferência em processamento",
       "pendingTitle_many": "{{count}} transferências em processamento",
       "pendingTitle_other": "{{count}} transferências em processamento"
+    },
+    "confirm": {
+      "title": "A confirmar a sua transferência…",
+      "body": "À espera da confirmação do banco. Normalmente demora alguns segundos.",
+      "slowTitle": "A sua transferência está a caminho",
+      "slowBody": "O banco ainda não a confirmou. A maioria das transferências chega em minutos — pode acompanhá-la no histórico da carteira. Se falhar, o dinheiro volta automaticamente para a sua carteira."
     }
   },
   "beneficiaries": {

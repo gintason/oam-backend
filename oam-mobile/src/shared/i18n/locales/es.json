@@ -1678,6 +1678,12 @@
       "pendingTitle_one": "{{count}} transferencia en proceso",
       "pendingTitle_many": "{{count}} transferencias en proceso",
       "pendingTitle_other": "{{count}} transferencias en proceso"
+    },
+    "confirm": {
+      "title": "Confirmando tu transferencia…",
+      "body": "Esperando la confirmación del banco. Suele tardar unos segundos.",
+      "slowTitle": "Tu transferencia está en camino",
+      "slowBody": "El banco aún no la ha confirmado. La mayoría de las transferencias llegan en minutos; puedes seguirla en el historial de tu billetera. Si falla, el dinero vuelve automáticamente a tu billetera."
     }
   },
   "beneficiaries": {

@@ -1586,6 +1586,12 @@
       "cancelledBody": "资金已退回你的 OAM 钱包。",
       "errCancel": "无法取消转账，请重试。",
       "pendingTitle_other": "{{count}} 笔转账处理中"
+    },
+    "confirm": {
+      "title": "正在确认您的转账…",
+      "body": "正在等待银行确认，通常只需几秒钟。",
+      "slowTitle": "您的转账正在途中",
+      "slowBody": "银行尚未确认。大多数转账会在几分钟内到账——您可以在钱包记录中查看进度。如果转账失败，资金会自动退回您的钱包。"
     }
   },
   "beneficiaries": {

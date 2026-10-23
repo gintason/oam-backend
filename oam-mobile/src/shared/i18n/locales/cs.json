@@ -1679,6 +1679,12 @@
       "pendingTitle_few": "Zpracovávají se {{count}} převody",
       "pendingTitle_many": "Zpracovává se {{count}} převodu",
       "pendingTitle_other": "Zpracovává se {{count}} převodů"
+    },
+    "confirm": {
+      "title": "Potvrzujeme váš převod…",
+      "body": "Čekáme na potvrzení banky. Obvykle to trvá jen pár sekund.",
+      "slowTitle": "Váš převod je na cestě",
+      "slowBody": "Banka ho zatím nepotvrdila. Většina převodů dorazí během několika minut — můžete ho sledovat v historii peněženky. Pokud selže, peníze se automaticky vrátí do peněženky."
     }
   },
   "beneficiaries": {

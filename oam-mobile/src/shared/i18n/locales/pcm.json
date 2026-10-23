@@ -1794,6 +1794,12 @@
       "errCancel": "We no fit cancel the transfer. Abeg try again.",
       "pendingTitle_one": "{{count}} transfer dey process",
       "pendingTitle_other": "{{count}} transfers dey process"
+    },
+    "confirm": {
+      "title": "We dey confirm your transfer…",
+      "body": "We dey wait make bank confirm am. E dey usually take few seconds.",
+      "slowTitle": "Your transfer dey road",
+      "slowBody": "Bank never confirm am yet. Most transfers dey land within minutes — you fit follow am for your wallet history. If e fail, the money go come back to your wallet by itself."
     }
   },
   "beneficiaries": {

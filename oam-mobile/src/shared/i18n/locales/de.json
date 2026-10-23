@@ -1677,6 +1677,12 @@
       "errCancel": "Die Überweisung konnte nicht storniert werden. Bitte versuche es erneut.",
       "pendingTitle_one": "{{count}} Überweisung in Bearbeitung",
       "pendingTitle_other": "{{count}} Überweisungen in Bearbeitung"
+    },
+    "confirm": {
+      "title": "Deine Überweisung wird bestätigt…",
+      "body": "Wir warten auf die Bestätigung der Bank. Das dauert meist nur wenige Sekunden.",
+      "slowTitle": "Deine Überweisung ist unterwegs",
+      "slowBody": "Die Bank hat sie noch nicht bestätigt. Die meisten Überweisungen kommen innerhalb von Minuten an – du kannst sie im Wallet-Verlauf verfolgen. Schlägt sie fehl, kommt das Geld automatisch in dein Wallet zurück."
     }
   },
   "beneficiaries": {

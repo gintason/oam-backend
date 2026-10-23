@@ -1678,6 +1678,12 @@
       "errCancel": "Enweghị ike ịkagbu mbufe ahụ. Biko nwaa ọzọ.",
       "pendingTitle_one": "A na-edozi mbufe {{count}}",
       "pendingTitle_other": "A na-edozi mbufe {{count}}"
+    },
+    "confirm": {
+      "title": "A na-akwado mbufe gị…",
+      "body": "A na-eche ka ụlọ akụ kwado ya. Ọ na-ewekarị sekọnd ole na ole.",
+      "slowTitle": "Mbufe gị nọ n'ụzọ",
+      "slowBody": "Ụlọ akụ akwadobeghị ya. Ọtụtụ mbufe na-erute n'ime nkeji ole na ole — ị nwere ike ịgbaso ya n'akụkọ obere akpa gị. Ọ bụrụ na ọ dara, ego ahụ ga-alaghachi n'obere akpa gị n'onwe ya."
     }
   },
   "beneficiaries": {

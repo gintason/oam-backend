@@ -1588,6 +1588,12 @@
       "pendingTitle_one": "{{count}} bonifico in elaborazione",
       "pendingTitle_many": "{{count}} bonifici in elaborazione",
       "pendingTitle_other": "{{count}} bonifici in elaborazione"
+    },
+    "confirm": {
+      "title": "Conferma del bonifico in corso…",
+      "body": "In attesa della conferma della banca. Di solito bastano pochi secondi.",
+      "slowTitle": "Il tuo bonifico è in viaggio",
+      "slowBody": "La banca non l'ha ancora confermato. La maggior parte dei bonifici arriva in pochi minuti: puoi seguirlo nella cronologia del portafoglio. Se non va a buon fine, il denaro torna automaticamente nel portafoglio."
     }
   },
   "beneficiaries": {

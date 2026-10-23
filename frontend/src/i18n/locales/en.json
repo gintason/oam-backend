@@ -1678,6 +1678,12 @@
       "errCancel": "Couldn't cancel the transfer. Please try again.",
       "pendingTitle_one": "{{count}} transfer processing",
       "pendingTitle_other": "{{count}} transfers processing"
+    },
+    "confirm": {
+      "title": "Confirming your transfer…",
+      "body": "Waiting for the bank to confirm. This usually takes a few seconds.",
+      "slowTitle": "Your transfer is on its way",
+      "slowBody": "The bank hasn't confirmed it yet. Most transfers arrive within minutes — you can follow it in your wallet history. If it fails, the money comes back to your wallet automatically."
     }
   },
   "beneficiaries": {

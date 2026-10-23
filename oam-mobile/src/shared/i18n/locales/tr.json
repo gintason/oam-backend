@@ -1677,6 +1677,12 @@
       "errCancel": "Transfer iptal edilemedi. Lütfen tekrar deneyin.",
       "pendingTitle_one": "{{count}} transfer işleniyor",
       "pendingTitle_other": "{{count}} transfer işleniyor"
+    },
+    "confirm": {
+      "title": "Transferiniz onaylanıyor…",
+      "body": "Bankanın onayı bekleniyor. Bu genellikle birkaç saniye sürer.",
+      "slowTitle": "Transferiniz yolda",
+      "slowBody": "Banka henüz onaylamadı. Çoğu transfer birkaç dakika içinde ulaşır — cüzdan geçmişinizden takip edebilirsiniz. Başarısız olursa para otomatik olarak cüzdanınıza geri döner."
     }
   },
   "beneficiaries": {

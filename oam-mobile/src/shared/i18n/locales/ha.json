@@ -1678,6 +1678,12 @@
       "errCancel": "Ba a iya soke turawar ba. Da fatan za a sake gwadawa.",
       "pendingTitle_one": "Ana sarrafa turawa {{count}}",
       "pendingTitle_other": "Ana sarrafa turawa {{count}}"
+    },
+    "confirm": {
+      "title": "Ana tabbatar da canjin kuɗinka…",
+      "body": "Ana jiran banki ya tabbatar. Yawanci yana ɗaukar ƴan daƙiƙoƙi.",
+      "slowTitle": "Canjin kuɗinka yana kan hanya",
+      "slowBody": "Banki bai tabbatar ba tukuna. Yawancin canje-canje suna isa cikin mintuna — za ka iya bibiyarsa a tarihin walat ɗinka. Idan ya gaza, kuɗin za su dawo walat ɗinka kai tsaye."
     }
   },
   "beneficiaries": {

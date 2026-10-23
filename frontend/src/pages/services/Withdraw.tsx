@@ -15,6 +15,7 @@ import { apiErrorMessage } from "../../lib/api";
 import { VerifyGate } from "./BuyData";
 import { useDebounced } from "../../hooks/useDebounced";
 import { useWithdrawalPoll } from "../../hooks/useWithdrawalPoll";
+import { TransferConfirming } from "../../components/TransferConfirming";
 import { useTranslation } from "react-i18next";
 
 /** Withdraw wallet funds to a Nigerian bank account. */
@@ -55,9 +56,13 @@ export default function Withdraw() {
   const hasPin = pinStatus.data?.has_pin;
 
   // While the bank confirms, keep checking and update the receipt when it settles.
+  // The receipt is only shown once the bank confirms; until then a "confirming" card.
   const [pollId, setPollId] = useState<string | null>(null);
+  const [confirming, setConfirming] = useState(false);
+  const [slow, setSlow] = useState(false);
   useWithdrawalPoll(pollId, (w) => {
     setPollId(null);
+    setConfirming(false);
     queryClient.invalidateQueries({ queryKey: ["wallet"] });
     queryClient.invalidateQueries({ queryKey: ["payouts"] });
     if (w.status === "success") {
@@ -69,7 +74,7 @@ export default function Withdraw() {
       const reason = (w.failure_reason as string) || "";
       setError(reason ? t("withdraw.errFailedReason", { reason }) : t("withdraw.errFailed"));
     }
-  });
+  }, () => setSlow(true));
 
   const withdraw = useMutation({
     mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
@@ -95,11 +100,11 @@ export default function Withdraw() {
       setPin("");
       if (w.status === "queued") { setQueued(w); return; }   // waiting for OAM's balance
       const pending = w.status === "pending" || w.status === "processing";
-      if (pending) setPollId(String(w.id));
+      if (pending) { setPollId(String(w.id)); setConfirming(true); setSlow(false); }
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
         date: new Date().toISOString(),
-        statusLabel: pending ? "Transfer Processing" : "Successful Transaction",
+        statusLabel: "Successful Transaction",
         recipientName: w.account_name || t("withdraw.yourBank"),
         recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
         senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
@@ -134,6 +139,18 @@ export default function Withdraw() {
         <AppHeader />
         <main className="mx-auto max-w-md px-5 py-10">
           <QueuedTransfer withdrawal={queued} onDone={() => navigate("/dashboard")} />
+        </main>
+      </div>
+    );
+  }
+
+  if (receipt && confirming) {
+    return (
+      <div className="min-h-screen bg-mist">
+        <AppHeader />
+        <main className="mx-auto max-w-md px-5 py-10">
+          <TransferConfirming amount={receipt.amount} to={`${receipt.recipientName} · ${receipt.recipientSub}`}
+            slow={slow} onDone={() => navigate("/dashboard")} />
         </main>
       </div>
     );

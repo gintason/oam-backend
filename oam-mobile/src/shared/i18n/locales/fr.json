@@ -1678,6 +1678,12 @@
       "pendingTitle_one": "{{count}} virement en cours",
       "pendingTitle_many": "{{count}} virements en cours",
       "pendingTitle_other": "{{count}} virements en cours"
+    },
+    "confirm": {
+      "title": "Confirmation de votre virement…",
+      "body": "En attente de la confirmation de la banque. Cela prend généralement quelques secondes.",
+      "slowTitle": "Votre virement est en route",
+      "slowBody": "La banque ne l'a pas encore confirmé. La plupart des virements arrivent en quelques minutes — suivez-le dans l'historique de votre portefeuille. En cas d'échec, l'argent revient automatiquement dans votre portefeuille."
     }
   },
   "beneficiaries": {
