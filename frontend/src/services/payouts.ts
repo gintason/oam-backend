@@ -100,6 +100,12 @@ export const payoutsApi = {
     return data;
   },
 
+  /** One withdrawal, re-checked with the bank provider while it's processing. */
+  async get(id: string): Promise<Withdrawal> {
+    const { data } = await api.get<Withdrawal>(`/payouts/withdrawals/${id}/`);
+    return data;
+  },
+
   /** Cancel a queued withdrawal — the money goes back to the wallet. */
   async cancel(id: string): Promise<Withdrawal> {
     const { data } = await api.post<Withdrawal>(`/payouts/withdrawals/${id}/cancel/`, {});

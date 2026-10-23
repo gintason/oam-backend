@@ -14,6 +14,7 @@ import { walletApi, formatBalance } from "../../services/wallet";
 import { apiErrorMessage } from "../../lib/api";
 import { VerifyGate } from "./BuyData";
 import { useDebounced } from "../../hooks/useDebounced";
+import { useWithdrawalPoll } from "../../hooks/useWithdrawalPoll";
 import { useTranslation } from "react-i18next";
 
 /** Withdraw wallet funds to a Nigerian bank account. */
@@ -53,6 +54,23 @@ export default function Withdraw() {
   });
   const hasPin = pinStatus.data?.has_pin;
 
+  // While the bank confirms, keep checking and update the receipt when it settles.
+  const [pollId, setPollId] = useState<string | null>(null);
+  useWithdrawalPoll(pollId, (w) => {
+    setPollId(null);
+    queryClient.invalidateQueries({ queryKey: ["wallet"] });
+    queryClient.invalidateQueries({ queryKey: ["payouts"] });
+    if (w.status === "success") {
+      setReceipt((r) => (r ? { ...r, statusLabel: "Successful Transaction" } : r));
+      setDone(t("xferbank.completed", "₦{{amount}} sent successfully.", { amount: Number(w.amount).toLocaleString() }));
+    } else {
+      setReceipt(null);
+      setDone(undefined);
+      const reason = (w.failure_reason as string) || "";
+      setError(reason ? t("withdraw.errFailedReason", { reason }) : t("withdraw.errFailed"));
+    }
+  });
+
   const withdraw = useMutation({
     mutationFn: () => payoutsApi.withdraw({ bank_account_id: accountId, amount: Number(amount), pin }),
     onSuccess: (w) => {
@@ -76,9 +94,12 @@ export default function Withdraw() {
       setAmount("");
       setPin("");
       if (w.status === "queued") { setQueued(w); return; }   // waiting for OAM's balance
+      const pending = w.status === "pending" || w.status === "processing";
+      if (pending) setPollId(String(w.id));
       setReceipt({
         amount: Number(amount).toLocaleString(undefined, { minimumFractionDigits: 2 }),
         date: new Date().toISOString(),
+        statusLabel: pending ? "Transfer Processing" : "Successful Transaction",
         recipientName: w.account_name || t("withdraw.yourBank"),
         recipientSub: `${w.bank_name ?? "Bank"} · ${w.account_number ?? ""}`,
         senderName: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`.trim() || "You",
@@ -86,7 +107,6 @@ export default function Withdraw() {
         type: "Withdrawal",
         reference: w.reference ?? "",
       });
-      const pending = w.status === "pending" || w.status === "processing";
       setDone(
         pending
           ? t("withdraw.onWay", { amount: Number(amount).toLocaleString(), name: w.account_name || t("withdraw.yourBank") })
