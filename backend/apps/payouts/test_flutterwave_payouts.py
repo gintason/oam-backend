@@ -163,6 +163,16 @@ class WithdrawalOnFlutterwaveTests(TestCase):
         o.refresh_from_db()
         self.assertEqual(o.status, WithdrawalOrder.Status.SUCCESS)
         self.assertEqual(self.balance(), Decimal("5000") - Decimal("1025"))
+        from apps.notifications.models import Notification
+        titles = list(Notification.objects.filter(user=self.user).order_by("created_at").values_list("title", flat=True))
+        self.assertEqual(titles[-1], "Withdrawal successful")
+        self.assertIn("Fidelity Bank (4011564651) was successful",
+                      Notification.objects.filter(user=self.user, title="Withdrawal successful").first().body)
+        # a repeated webhook doesn't notify twice
+        with override_settings(PROVIDER_CONFIG={"payments": {"flutterwave": {"secret_hash": "hash123"}}}):
+            APIClient().post("/api/v1/payments/webhook/flutterwave/", data=json.dumps(payload),
+                             content_type="application/json", HTTP_VERIF_HASH="hash123")
+        self.assertEqual(Notification.objects.filter(user=self.user, title="Withdrawal successful").count(), 1)
 
     def test_failed_webhook_refunds(self):
         o = self.run_with(FakeFlutterwave(balance=Decimal("10000")))

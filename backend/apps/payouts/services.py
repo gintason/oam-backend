@@ -240,6 +240,7 @@ class WithdrawalService:
                 if status in _SUCCESS:
                     WithdrawalService._capture(o)
                     o.status = WithdrawalOrder.Status.SUCCESS
+                    transaction.on_commit(lambda o=o: _notify_success(o))
                 elif status in _FAILED:
                     _raw = result.get("raw", {}) or {}
                     _reason = str(_raw.get("message") or _raw.get("error") or "").strip()
@@ -356,7 +357,8 @@ class WithdrawalService:
                 stats["failed"] += 1
             else:
                 stats["sent"] += 1
-                if result.status == WithdrawalOrder.Status.SUCCESS or result.provider_reference:
+                # (an instant success already got "Withdrawal successful" from execute)
+                if result.status != WithdrawalOrder.Status.SUCCESS and result.provider_reference:
                     _notify_user(result, "Transfer sent",
                                  f"Your transfer of {result.currency} {result.amount:,.2f} has been sent to your bank.")
         if stats["still_queued"]:
@@ -407,9 +409,11 @@ class WithdrawalService:
                             WithdrawalOrder.Status.REVERSED, WithdrawalOrder.Status.CANCELLED):
                 return o
             refunded = False
+            succeeded = False
             if status in _SUCCESS:
                 WithdrawalService._capture(o)
                 o.status = WithdrawalOrder.Status.SUCCESS
+                succeeded = True
             elif status in _FAILED:
                 WithdrawalService._release(o)
                 o.status = (WithdrawalOrder.Status.REVERSED if status == "reversed"
@@ -421,6 +425,8 @@ class WithdrawalService:
             if raw:
                 o.response_payload = {**(o.response_payload or {}), "webhook": raw}
             o.save(update_fields=["status", "response_payload", "failure_reason", "updated_at"])
+        if succeeded:
+            _notify_success(o)
         if refunded:
             _notify_user(o, "Transfer didn't go through",
                          f"Your transfer of {o.currency} {o.amount:,.2f} couldn't be completed, so the money "
@@ -512,6 +518,16 @@ class WithdrawalService:
 # --------------------------------------------------------------------------- #
 # Notifications
 # --------------------------------------------------------------------------- #
+def _notify_success(order):
+    """Tell the customer the money has reached their bank."""
+    acct = getattr(order, "bank_account", None)
+    bank = (getattr(acct, "bank_name", "") or "your bank") if acct else "your bank"
+    num = getattr(acct, "account_number", "") if acct else ""
+    to = f"{bank} ({num})" if num else bank
+    _notify_user(order, "Withdrawal successful",
+                 f"Your withdrawal of {order.currency} {order.amount:,.2f} to {to} was successful.")
+
+
 def _notify_user(order, title, body, *, email=True):
     try:
         from apps.notifications.services import notify
