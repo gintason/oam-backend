@@ -1342,7 +1342,13 @@
       "errChooseDepart": "Zaɓi ranar tashi.",
       "selectReturn": "Zaɓi ranar dawowa",
       "search": "Nemi jirage",
-      "partnerNote": "Yana buɗe sakamako da Aviasales, abokin haɗin gwiwar jiragenmu."
+      "partnerNote": "Yana buɗe sakamako da Aviasales, abokin haɗin gwiwar jiragenmu.",
+      "searchAirport": "Birni, filin jirgi ko lamba (misali Owerri, QOW)",
+      "useCode": "Yi amfani da lambar filin jirgi {{code}}",
+      "noAirport": "Babu filin jirgi da ya dace. Gwada sunan birni, ko rubuta lambar filin jirgi mai haruffa 3.",
+      "domestic": "Najeriya (cikin gida)",
+      "searchHint": "Ba ka ga filin jirginka ba? Rubuta birni, filin jirgi ko ƙasa — an haɗa filayen jirgin cikin gida na kowace ƙasa.",
+      "keepTyping": "Ana nuna sakamako {{count}} na farko — ci gaba da rubutawa don takaitawa."
     },
     "hotels": {
       "back": "Tafiya",

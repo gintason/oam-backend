@@ -8,14 +8,30 @@ import { ArrowLeft, Plane, ArrowRightLeft, Clock, Minus, Plus, ExternalLink } fr
 import { Screen, Text, Button } from "@/shared/ui";
 import { apiErrorMessage } from "@/shared/api";
 import { colors } from "@/shared/theme";
-import { affiliatesApi, AIRPORTS, ROUTE_INFO, POPULAR_ROUTES, airportName, airportLabel, DateField, PickerField, today, type PickerOption } from "@/features/travel";
+import { affiliatesApi, AIRPORTS, ALL_AIRPORTS, searchAirports, ROUTE_INFO, POPULAR_ROUTES, airportName, airportLabel, DateField, PickerField, today, type PickerOption } from "@/features/travel";
 
-const AIRPORT_OPTIONS: PickerOption[] = AIRPORTS.map((a) => ({ value: a.code, label: `${airportName(a.code, a.city)} (${a.code})`, sub: a.country }));
+// Every airport with scheduled flights worldwide, so local flights in any country can be booked.
+// Before typing, the curated list shows (Nigerian domestic airports first).
+const toOption = (a: (typeof ALL_AIRPORTS)[number]): PickerOption => ({
+  value: a.code, label: `${airportName(a.code, a.city)} (${a.code})`,
+  sub: a.region === "Nigeria" ? `${a.city}, Nigeria · domestic` : `${a.city}, ${a.country}`,
+});
+const AIRPORT_OPTIONS = ALL_AIRPORTS.map(toOption);
+const BROWSE_OPTIONS = AIRPORTS.map(toOption);
+const SEARCH_LIMIT = 120;
+const searchOptions = (q: string) => searchAirports(q, SEARCH_LIMIT).map(toOption);
 
 export default function Flights() {
   const router = useRouter();
   const { t } = useTranslation();
   const [origin, setOrigin] = useState("LOS");
+  // Any 3-letter airport code works with our flights partner, even if it isn't listed.
+  const codeOption = (q: string) => (/^[a-z]{3}$/i.test(q.trim())
+    ? { value: q.trim().toUpperCase(), label: t("travel.flights.useCode", "Use airport code {{code}}", { code: q.trim().toUpperCase() }) }
+    : null);
+  const airportHint = (q: string, n: number) => (!q
+    ? t("travel.flights.searchHint", "Can't see your airport? Type a city, airport or country — local airports in every country are included.")
+    : n >= SEARCH_LIMIT ? t("travel.flights.keepTyping", "Showing the top {{count}} matches — keep typing to narrow down.", { count: SEARCH_LIMIT }) : null);
   const [destination, setDestination] = useState("LHR");
   const [depart, setDepart] = useState(today());
   const [ret, setRet] = useState("");
@@ -71,13 +87,13 @@ export default function Flights() {
           </View>
 
           {/* From / swap / To */}
-          <PickerField label={t("travel.flights.from")} value={origin} options={AIRPORT_OPTIONS} onSelect={setOrigin} title={t("travel.flights.from")} />
+          <PickerField label={t("travel.flights.from")} value={origin} options={AIRPORT_OPTIONS} onSelect={setOrigin} title={t("travel.flights.from")} searchPlaceholder={t("travel.flights.searchAirport", "City, airport or code (e.g. Owerri, QOW)")} customOption={codeOption} browse={BROWSE_OPTIONS} search={searchOptions} hint={airportHint} />
           <View style={{ alignItems: "center", marginVertical: 8 }}>
             <Pressable onPress={swap} hitSlop={8} style={{ height: 36, width: 36, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, alignItems: "center", justifyContent: "center" }}>
               <ArrowRightLeft size={16} color={colors.brand.green} />
             </Pressable>
           </View>
-          <PickerField label={t("travel.flights.to")} value={destination} options={AIRPORT_OPTIONS} onSelect={setDestination} title={t("travel.flights.to")} />
+          <PickerField label={t("travel.flights.to")} value={destination} options={AIRPORT_OPTIONS} onSelect={setDestination} title={t("travel.flights.to")} searchPlaceholder={t("travel.flights.searchAirport", "City, airport or code (e.g. Owerri, QOW)")} customOption={codeOption} browse={BROWSE_OPTIONS} search={searchOptions} hint={airportHint} />
 
           {/* Dates */}
           <View style={{ marginTop: 14 }}>

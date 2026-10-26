@@ -9,18 +9,31 @@ export type PickerOption = { value: string; label: string; sub?: string };
 
 export function PickerField({
   label, value, options, onSelect, placeholder = "Select", searchable = true, title = "Choose",
+  searchPlaceholder = "Search", customOption, browse, search, hint,
 }: {
   label?: string; value: string; options: PickerOption[]; onSelect: (value: string) => void;
-  placeholder?: string; searchable?: boolean; title?: string;
+  placeholder?: string; searchable?: boolean; title?: string; searchPlaceholder?: string;
+  /** Offer what the user typed as a choice when nothing in the list fits (e.g. any airport code). */
+  customOption?: (query: string) => PickerOption | null;
+  /** Shown before anything is typed (defaults to all options). */
+  browse?: PickerOption[];
+  /** Custom search over a large list, best matches first. */
+  search?: (query: string) => PickerOption[];
+  /** Small note under the results, e.g. how to find more. */
+  hint?: (query: string, results: number) => string | null;
 }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
 
-  const selected = options.find((o) => o.value === value);
+  const selected = options.find((o) => o.value === value) ?? (value ? { value, label: value } : undefined);
+  const custom = customOption ? customOption(q) : null;
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
-    return s ? options.filter((o) => o.label.toLowerCase().includes(s) || o.value.toLowerCase().includes(s) || (o.sub ?? "").toLowerCase().includes(s)) : options;
-  }, [q, options]);
+    if (!s) return browse ?? options;
+    if (search) return search(s);
+    return options.filter((o) => o.label.toLowerCase().includes(s) || o.value.toLowerCase().includes(s) || (o.sub ?? "").toLowerCase().includes(s));
+  }, [q, options, browse, search]);
+  const note = hint ? hint(q.trim(), filtered.length) : null;
 
   return (
     <View>
@@ -38,11 +51,16 @@ export function PickerField({
               {searchable ? (
                 <View style={{ marginHorizontal: 20, marginBottom: 8, height: 44, borderRadius: 10, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.mist, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12 }}>
                   <Search size={15} color={colors.muted} />
-                  <TextInput value={q} onChangeText={setQ} autoFocus placeholder="Search" placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
+                  <TextInput value={q} onChangeText={setQ} autoFocus placeholder={searchPlaceholder} placeholderTextColor={colors.muted} style={{ flex: 1, height: 44, fontFamily: fonts.regular, fontSize: 15, color: colors.ink }} />
                 </View>
               ) : null}
               <ScrollView keyboardShouldPersistTaps="handled">
-                {filtered.map((o) => {
+                {custom && !options.some((o) => o.value === custom.value) ? (
+                <Pressable onPress={() => { onSelect(custom.value); setOpen(false); }} style={{ paddingHorizontal: 20, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
+                  <Text variant="label" color="green">{custom.label}</Text>
+                </Pressable>
+              ) : null}
+              {filtered.map((o) => {
                   const sel = o.value === value;
                   return (
                     <Pressable key={o.value} onPress={() => { onSelect(o.value); setOpen(false); }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: colors.hairline }}>
@@ -54,6 +72,7 @@ export function PickerField({
                     </Pressable>
                   );
                 })}
+                {note ? <Text variant="caption" color="muted" style={{ paddingHorizontal: 20, paddingVertical: 12 }}>{note}</Text> : null}
               </ScrollView>
             </Pressable>
           </Pressable>

@@ -1342,7 +1342,13 @@
       "errChooseDepart": "Wählen Sie ein Abflugdatum.",
       "selectReturn": "Rückflugdatum wählen",
       "search": "Flüge suchen",
-      "partnerNote": "Öffnet die Ergebnisse mit Aviasales, unserem Flugpartner."
+      "partnerNote": "Öffnet die Ergebnisse mit Aviasales, unserem Flugpartner.",
+      "searchAirport": "Stadt, Flughafen oder Code (z. B. Owerri, QOW)",
+      "useCode": "Flughafencode {{code}} verwenden",
+      "noAirport": "Kein Flughafen gefunden. Versuche einen Stadtnamen oder gib den 3-Buchstaben-Code ein.",
+      "domestic": "Nigeria (Inland)",
+      "searchHint": "Flughafen nicht dabei? Stadt, Flughafen oder Land eingeben – Inlandsflughäfen aller Länder sind enthalten.",
+      "keepTyping": "Die besten {{count}} Treffer – weiter tippen, um einzugrenzen."
     },
     "hotels": {
       "back": "Reisen",

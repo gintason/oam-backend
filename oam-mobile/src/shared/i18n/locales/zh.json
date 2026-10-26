@@ -1342,7 +1342,13 @@
       "errChooseDepart": "请选择出发日期。",
       "selectReturn": "选择返程日期",
       "search": "搜索航班",
-      "partnerNote": "通过我们的航班合作伙伴 Aviasales 打开结果。"
+      "partnerNote": "通过我们的航班合作伙伴 Aviasales 打开结果。",
+      "searchAirport": "城市、机场或代码（如 Owerri、QOW）",
+      "useCode": "使用机场代码 {{code}}",
+      "noAirport": "没有匹配的机场。试试城市名，或输入三字母机场代码。",
+      "domestic": "尼日利亚（国内）",
+      "searchHint": "找不到您的机场？输入城市、机场或国家——已包含所有国家的国内机场。",
+      "keepTyping": "显示前 {{count}} 个结果——继续输入以缩小范围。"
     },
     "hotels": {
       "back": "旅行",

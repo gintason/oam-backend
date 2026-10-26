@@ -1370,7 +1370,13 @@
       "errChooseDepart": "Pick the day wey you go travel.",
       "selectReturn": "Pick the day wey you go come back",
       "search": "Search flights",
-      "partnerNote": "E go open results with Aviasales, our flights partner."
+      "partnerNote": "E go open results with Aviasales, our flights partner.",
+      "searchAirport": "City, airport or code (e.g. Owerri, QOW)",
+      "useCode": "Use airport code {{code}}",
+      "noAirport": "No airport match am. Try city name, or type the 3-letter airport code.",
+      "domestic": "Naija (local flights)",
+      "searchHint": "You no see your airport? Type city, airport or country — local airports for every country dey inside.",
+      "keepTyping": "Na the top {{count}} matches be dis — continue to type make e short."
     },
     "hotels": {
       "back": "Travel",

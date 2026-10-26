@@ -1342,7 +1342,13 @@
       "errChooseDepart": "Vyberte datum odletu.",
       "selectReturn": "Vybrat datum návratu",
       "search": "Hledat lety",
-      "partnerNote": "Otevře výsledky u Aviasales, našeho partnera pro lety."
+      "partnerNote": "Otevře výsledky u Aviasales, našeho partnera pro lety.",
+      "searchAirport": "Město, letiště nebo kód (např. Owerri, QOW)",
+      "useCode": "Použít kód letiště {{code}}",
+      "noAirport": "Žádné letiště neodpovídá. Zkuste název města nebo zadejte třípísmenný kód.",
+      "domestic": "Nigérie (vnitrostátní)",
+      "searchHint": "Nevidíte své letiště? Zadejte město, letiště nebo zemi — vnitrostátní letiště všech zemí jsou zahrnuta.",
+      "keepTyping": "Zobrazeno {{count}} nejlepších výsledků — pište dál pro zúžení."
     },
     "hotels": {
       "back": "Cestování",

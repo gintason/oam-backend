@@ -1342,7 +1342,13 @@
       "errChooseDepart": "Yan ọjọ́ ìlọ.",
       "selectReturn": "Yan ọjọ́ ìpadà",
       "search": "Wa awọn ọkọ ofurufu",
-      "partnerNote": "Ó ń ṣí àwọn àbájáde pẹ̀lú Aviasales, alábàáṣiṣẹ́pọ̀ ọkọ̀ òfuurufú wa."
+      "partnerNote": "Ó ń ṣí àwọn àbájáde pẹ̀lú Aviasales, alábàáṣiṣẹ́pọ̀ ọkọ̀ òfuurufú wa.",
+      "searchAirport": "Ìlú, pápákọ̀ òfurufú tàbí kóòdù (bí Owerri, QOW)",
+      "useCode": "Lo kóòdù pápákọ̀ òfurufú {{code}}",
+      "noAirport": "Kò sí pápákọ̀ òfurufú tó bá a mu. Gbìyànjú orúkọ ìlú, tàbí tẹ kóòdù lẹ́tà mẹ́ta.",
+      "domestic": "Nàìjíríà (inú ilé)",
+      "searchHint": "Ẹ ò rí pápákọ̀ òfurufú yín? Tẹ ìlú, pápákọ̀ òfurufú tàbí orílẹ̀-èdè — àwọn pápákọ̀ abẹ́lé ti gbogbo orílẹ̀-èdè wà nínú rẹ̀.",
+      "keepTyping": "À ń fi àwọn èsì {{count}} àkọ́kọ́ hàn — ẹ máa tẹ̀ síwájú láti dín in kù."
     },
     "hotels": {
       "back": "Ìrìnàjò",
