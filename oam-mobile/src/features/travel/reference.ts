@@ -280,7 +280,13 @@ export const HOTEL_DESTINATIONS: Record<string, { city: string; country: string;
   ],
 };
 
-export const KLOOK_LINK = "https://klook.tpk.ro/5WurYtDG";
+import { env } from "@/shared/config/env";
+
+// Hotels go through our backend (/affiliates/go/klook/), like the website: it
+// records the click and sends the visitor to a clean Klook link that works in
+// every country. The old klook.tpk.ro short link is blocked or ends on
+// "null is unreachable" outside Nigeria.
+export const KLOOK_LINK = `${env.apiUrl.replace(/\/$/, "")}/affiliates/go/klook/`;
 
 export function today() {
   return new Date().toISOString().slice(0, 10);
