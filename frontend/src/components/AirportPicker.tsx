@@ -56,7 +56,7 @@ export default function AirportPicker({ value, onChange, label }: {
   );
 
   return (
-    <div ref={box} className="relative">
+    <div ref={box} className="relative w-full min-w-0">
       <button
         type="button"
         aria-label={label}
@@ -65,7 +65,7 @@ export default function AirportPicker({ value, onChange, label }: {
         onClick={() => setOpen((v) => !v)}
         className="flex h-11 w-full items-center justify-between gap-2 rounded-[10px] border border-hairline bg-paper px-3 text-left text-[14px] text-ink outline-none focus:border-brand-green"
       >
-        <span className="truncate">{display}</span>
+        <span className="min-w-0 flex-1 truncate">{display}</span>
         <ChevronDown size={16} className="shrink-0 text-muted" />
       </button>
 

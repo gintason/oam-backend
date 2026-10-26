@@ -95,8 +95,8 @@ export default function Flights() {
             </button>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
-            <div>
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:items-end">
+            <div className="min-w-0">
               <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.from")}</label>
               <AirportPicker value={origin} onChange={setOrigin} label={t("travel.flights.from")} />
             </div>
@@ -107,7 +107,7 @@ export default function Flights() {
             >
               <ArrowRightLeft size={16} strokeWidth={1.75} />
             </button>
-            <div>
+            <div className="min-w-0">
               <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.to")}</label>
               <AirportPicker value={destination} onChange={setDestination} label={t("travel.flights.to")} />
             </div>
