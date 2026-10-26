@@ -11,6 +11,8 @@ Config (settings.PROVIDER_CONFIG["hotels"]["klook"]):
 """
 from __future__ import annotations
 
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
+
 from integrations.base import register, AffiliateProvider
 from integrations.base.dto import AffiliateLink
 from integrations.base.affiliate_links import sanitize_affiliate_url
@@ -22,6 +24,29 @@ FALLBACK_URL = "https://klook.tpk.ro/5WurYtDG"
 
 # deep-link params Klook can receive as query (advisory pass-through)
 ACCEPTED_PARAMS = ["destination", "check_in", "check_out", "guests", "query"]
+
+DEFAULT_LANDING = "https://www.klook.com/en-US/hotels/"
+
+
+def with_landing(url: str, landing: str) -> str:
+    """Make sure a Klook/Travelpayouts redirect link names where it should land.
+
+    Klook's redirect page (affiliate.klook.com/redirect) and Travelpayouts'
+    click link (tp.media/r) send the visitor to the URL in `k_site` / `u`.
+    When that is missing or "null", Klook picks a page by the visitor's country
+    and, for many countries, ends on "null is unreachable". Setting it
+    explicitly makes the link open the same page everywhere.
+    """
+    parsed = urlparse(url)
+    host = parsed.netloc.lower()
+    key = ("k_site" if host.endswith("affiliate.klook.com")
+           else "u" if host.endswith("tp.media") or host.endswith("travelpayouts.com") else "")
+    if not key:
+        return url
+    query = dict(parse_qsl(parsed.query, keep_blank_values=True))
+    if str(query.get(key, "")).strip().lower() in ("", "null", "undefined", "none"):
+        query[key] = landing
+    return urlunparse(parsed._replace(query=urlencode(query)))
 
 
 @register("hotels", "klook")
@@ -40,6 +65,7 @@ class KlookHotels(AffiliateProvider):
                              if k in ACCEPTED_PARAMS and v not in (None, "")})
         # Never expose a blocked tpk.ro host to the browser.
         url = sanitize_affiliate_url(url, self.category)
+        url = with_landing(url, self.config.get("landing_url") or DEFAULT_LANDING)
         final_url = self._append_query(url, tracking)
         return AffiliateLink(
             program="klook:hotels",

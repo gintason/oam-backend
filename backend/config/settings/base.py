@@ -289,7 +289,10 @@ PROVIDER_CONFIG = {
 
     "hotels": {
         
-        "klook": {"url": env("KLOOK_URL", default="")},
+        "klook": {"url": env("KLOOK_URL", default=""),
+                   # Where the Klook link should land (hotels, in English). Always set
+                   # explicitly so Klook's redirect never ends at "null" abroad.
+                   "landing_url": env("KLOOK_LANDING_URL", default="https://www.klook.com/en-US/hotels/")},
 
         "hotelbeds": {"api_key": env("HOTELBEDS_API_KEY", default=""),
                       "secret": env("HOTELBEDS_SECRET", default=""),
