@@ -1254,7 +1254,13 @@
       "tip4Label": "Les départs en milieu de semaine sont généralement moins chers",
       "tip4Body": "que le vendredi et le dimanche, et les prix ont tendance à grimper à l'approche du départ.",
       "tip5Label": "Confirmez la franchise bagages",
-      "tip5Body": "avant de payer — le tarif le moins cher exclut souvent les bagages en soute."
+      "tip5Body": "avant de payer — le tarif le moins cher exclut souvent les bagages en soute.",
+      "searchAirport": "Ville, aéroport ou code (ex. Owerri, QOW)",
+      "useCode": "Utiliser le code d'aéroport {{code}}",
+      "noAirport": "Aucun aéroport ne correspond. Essayez un nom de ville ou tapez le code à 3 lettres.",
+      "domestic": "Nigeria (vols intérieurs)",
+      "searchHint": "Votre aéroport n'apparaît pas ? Tapez une ville, un aéroport ou un pays — les aéroports locaux de tous les pays sont inclus.",
+      "keepTyping": "Affichage des {{count}} meilleurs résultats — continuez à taper pour affiner."
     },
     "hotels": {
       "back": "Voyage",

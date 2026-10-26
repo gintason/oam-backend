@@ -6,6 +6,7 @@
  * the customer completes the booking there and OAM earns commission.
  */
 import { api } from "../lib/api";
+import { WORLD_AIRPORTS } from "./worldAirports";
 
 export type TravelProgram = {
   slug: string;
@@ -54,6 +55,26 @@ export type Airport = { code: string; city: string; country: string; region: str
 
 /** Full airport names, shown in the pickers so a traveller picks the right terminal. */
 export const AIRPORT_NAMES: Record<string, string> = {
+  // Nigeria (domestic) — the five big ones are listed further down
+  QOW: "Sam Mbakwe International",
+  BNI: "Benin Airport",
+  CBQ: "Margaret Ekpo International",
+  QUO: "Victor Attah International",
+  ABB: "Asaba International",
+  QRW: "Warri Airport (Osubi)",
+  KAD: "Kaduna International",
+  JOS: "Yakubu Gowon Airport",
+  YOL: "Yola Airport",
+  MIU: "Maiduguri International",
+  SKO: "Sadiq Abubakar III International",
+  ILR: "Ilorin International",
+  IBA: "Ibadan Airport",
+  AKR: "Akure Airport",
+  BCU: "Sir Abubakar Tafawa Balewa International",
+  GMO: "Gombe Lawanti International",
+  DKA: "Umaru Musa Yar'Adua Airport",
+  MXJ: "Minna Airport",
+  MDI: "Makurdi Airport",
   LOS: "Murtala Muhammed International", ABV: "Nnamdi Azikiwe International",
   PHC: "Port Harcourt International", KAN: "Mallam Aminu Kano International",
   ENU: "Akanu Ibiam International", ACC: "Kotoka International",
@@ -92,17 +113,42 @@ export const AIRPORT_NAMES: Record<string, string> = {
 
 /** Full name if we have one, otherwise the city. */
 export function airportName(code: string, city: string) {
-  return AIRPORT_NAMES[code] ?? city;
+  return AIRPORT_NAMES[code] ?? BY_CODE.get(code)?.name ?? city;
+}
+
+/** Any airport we know, curated or worldwide. */
+export function airportByCode(code: string) {
+  return BY_CODE.get(code);
 }
 
 /** A working set of major airports across every region. */
 export const AIRPORTS: Airport[] = [
+  // Nigeria — every airport with scheduled domestic flights
+  { code: "LOS", city: "Lagos", country: "Nigeria", region: "Nigeria" },
+  { code: "ABV", city: "Abuja", country: "Nigeria", region: "Nigeria" },
+  { code: "PHC", city: "Port Harcourt", country: "Nigeria", region: "Nigeria" },
+  { code: "KAN", city: "Kano", country: "Nigeria", region: "Nigeria" },
+  { code: "ENU", city: "Enugu", country: "Nigeria", region: "Nigeria" },
+  { code: "QOW", city: "Owerri", country: "Nigeria", region: "Nigeria" },
+  { code: "BNI", city: "Benin City", country: "Nigeria", region: "Nigeria" },
+  { code: "CBQ", city: "Calabar", country: "Nigeria", region: "Nigeria" },
+  { code: "QUO", city: "Uyo", country: "Nigeria", region: "Nigeria" },
+  { code: "ABB", city: "Asaba", country: "Nigeria", region: "Nigeria" },
+  { code: "QRW", city: "Warri", country: "Nigeria", region: "Nigeria" },
+  { code: "KAD", city: "Kaduna", country: "Nigeria", region: "Nigeria" },
+  { code: "JOS", city: "Jos", country: "Nigeria", region: "Nigeria" },
+  { code: "YOL", city: "Yola", country: "Nigeria", region: "Nigeria" },
+  { code: "MIU", city: "Maiduguri", country: "Nigeria", region: "Nigeria" },
+  { code: "SKO", city: "Sokoto", country: "Nigeria", region: "Nigeria" },
+  { code: "ILR", city: "Ilorin", country: "Nigeria", region: "Nigeria" },
+  { code: "IBA", city: "Ibadan", country: "Nigeria", region: "Nigeria" },
+  { code: "AKR", city: "Akure", country: "Nigeria", region: "Nigeria" },
+  { code: "BCU", city: "Bauchi", country: "Nigeria", region: "Nigeria" },
+  { code: "GMO", city: "Gombe", country: "Nigeria", region: "Nigeria" },
+  { code: "DKA", city: "Katsina", country: "Nigeria", region: "Nigeria" },
+  { code: "MXJ", city: "Minna", country: "Nigeria", region: "Nigeria" },
+  { code: "MDI", city: "Makurdi", country: "Nigeria", region: "Nigeria" },
   // Africa
-  { code: "LOS", city: "Lagos", country: "Nigeria", region: "Africa" },
-  { code: "ABV", city: "Abuja", country: "Nigeria", region: "Africa" },
-  { code: "PHC", city: "Port Harcourt", country: "Nigeria", region: "Africa" },
-  { code: "KAN", city: "Kano", country: "Nigeria", region: "Africa" },
-  { code: "ENU", city: "Enugu", country: "Nigeria", region: "Africa" },
   { code: "ACC", city: "Accra", country: "Ghana", region: "Africa" },
   { code: "NBO", city: "Nairobi", country: "Kenya", region: "Africa" },
   { code: "JNB", city: "Johannesburg", country: "South Africa", region: "Africa" },
@@ -181,8 +227,45 @@ export const AIRPORTS: Airport[] = [
 ];
 
 export const REGIONS = [
-  "Africa", "Europe", "Middle East", "North America", "Asia", "Oceania", "South America",
+  "Nigeria", "Africa", "Europe", "Middle East", "North America", "Asia", "Oceania", "South America",
 ] as const;
+
+/** Every airport with scheduled flights: our curated list first, then the rest of the world. */
+export const ALL_AIRPORTS: Airport[] = [
+  ...AIRPORTS,
+  ...WORLD_AIRPORTS.filter((w) => !AIRPORTS.some((a) => a.code === w.code)),
+];
+const BY_CODE = new Map(ALL_AIRPORTS.map((a) => [a.code, a]));
+
+const fold = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+/** Other names people type for a country. */
+const COUNTRY_ALIASES: Record<string, string[]> = {
+  USA: ["united states", "america", "us"], UAE: ["united arab emirates", "emirates"], "Türkiye": ["turkey"],
+  "United Kingdom": ["uk", "britain", "great britain", "england", "scotland", "wales", "northern ireland"],
+  "Democratic Republic of the Congo": ["drc", "congo"], "Republic of the Congo": ["congo"],
+  "Côte d'Ivoire": ["ivory coast"], "Czech Republic": ["czechia"], "South Korea": ["korea"],
+  Netherlands: ["holland"], Eswatini: ["swaziland"], "Cape Verde": ["cabo verde"], Myanmar: ["burma"],
+};
+const SEARCH_INDEX = ALL_AIRPORTS.map((a) => ({
+  a, code: a.code.toLowerCase(), city: fold(a.city), name: fold(airportName(a.code, a.city)),
+  countries: [a.country, ...(COUNTRY_ALIASES[a.country] ?? [])].map(fold),
+}));
+
+/** Best matches first: exact code, then city, airport name and country. Accents don't matter. */
+export function searchAirports(query: string, limit = 120): Airport[] {
+  const q = fold(query.trim());
+  if (!q) return [];
+  const buckets: Airport[][] = [[], [], [], [], [], []];
+  for (const r of SEARCH_INDEX) {
+    if (r.code === q) buckets[0].push(r.a);
+    else if (r.city === q || r.countries.includes(q)) buckets[1].push(r.a);
+    else if (r.city.startsWith(q)) buckets[2].push(r.a);
+    else if (r.name.startsWith(q) || r.countries.some((c) => c.startsWith(q))) buckets[3].push(r.a);
+    else if (r.city.includes(q) || r.name.includes(q)) buckets[4].push(r.a);
+    else if (r.countries.some((c) => c.includes(q))) buckets[5].push(r.a);
+  }
+  return buckets.flat().slice(0, limit);
+}
 
 /** Kept for older imports. */
 export const NG_AIRPORTS = AIRPORTS.filter((a) => a.country === "Nigeria");
@@ -197,6 +280,18 @@ export const ROUTE_INFO: Record<string, { hours: string; note: string }> = {
   "LOS-JNB": { hours: "~6h", note: "South African Airways and Air Peace" },
   "LOS-CDG": { hours: "~6h 30m", note: "Air France non-stop" },
   "LOS-ABV": { hours: "~1h 10m", note: "Busiest domestic route in Nigeria" },
+  "LOS-PHC": { hours: "~1h 10m", note: "Several daily domestic flights" },
+  "LOS-ENU": { hours: "~1h", note: "Several daily domestic flights" },
+  "LOS-QOW": { hours: "~1h", note: "Several daily domestic flights" },
+  "LOS-KAN": { hours: "~1h 30m", note: "Several daily domestic flights" },
+  "LOS-CBQ": { hours: "~1h 15m", note: "Daily domestic flights" },
+  "LOS-QUO": { hours: "~1h 10m", note: "Daily domestic flights" },
+  "LOS-BNI": { hours: "~45m", note: "Daily domestic flights" },
+  "LOS-ABB": { hours: "~55m", note: "Daily domestic flights" },
+  "ABV-LOS": { hours: "~1h 10m", note: "Busiest domestic route in Nigeria" },
+  "ABV-PHC": { hours: "~1h 10m", note: "Several daily domestic flights" },
+  "ABV-KAN": { hours: "~55m", note: "Daily domestic flights" },
+  "ABV-ENU": { hours: "~55m", note: "Daily domestic flights" },
   "LHR-JFK": { hours: "~8h", note: "One of the busiest long-haul routes in the world" },
   "LHR-DXB": { hours: "~7h", note: "Emirates and British Airways, multiple daily" },
   "DXB-SIN": { hours: "~7h 30m", note: "Emirates and Singapore Airlines" },
@@ -211,6 +306,10 @@ export const ROUTE_INFO: Record<string, { hours: string; note: string }> = {
 
 /** Popular origin-destination pairs, shown as one-tap route shortcuts. */
 export const POPULAR_ROUTES: { from: string; to: string; label: string }[] = [
+  { from: "LOS", to: "ABV", label: "Lagos → Abuja" },
+  { from: "LOS", to: "PHC", label: "Lagos → Port Harcourt" },
+  { from: "ABV", to: "LOS", label: "Abuja → Lagos" },
+  { from: "LOS", to: "QOW", label: "Lagos → Owerri" },
   { from: "LOS", to: "LHR", label: "Lagos → London" },
   { from: "ABV", to: "DXB", label: "Abuja → Dubai" },
   { from: "LOS", to: "JFK", label: "Lagos → New York" },
@@ -223,6 +322,7 @@ export const POPULAR_ROUTES: { from: string; to: string; label: string }[] = [
 
 /** Popular destination sets by region, for the inspiration grid. */
 export const POPULAR_BY_REGION: Record<string, string[]> = {
+  Nigeria: ["ABV", "PHC", "KAN", "ENU", "QOW", "CBQ"],
   Africa: ["ACC", "NBO", "JNB", "CPT", "CAI", "KGL"],
   Europe: ["LHR", "CDG", "AMS", "FCO", "BCN", "IST"],
   "Middle East": ["DXB", "DOH", "AUH", "JED", "RUH", "TLV"],

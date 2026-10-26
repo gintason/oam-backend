@@ -1254,7 +1254,13 @@
       "tip4Label": "Hafta ortası kalkışlar genellikle daha ucuzdur",
       "tip4Body": "cumaya ve pazara göre, ve fiyatlar kalkışa yaklaştıkça yükselme eğilimindedir.",
       "tip5Label": "Bagaj hakkını onaylayın",
-      "tip5Body": "ödemeden önce — en ucuz ücret genellikle kayıtlı bagajı içermez."
+      "tip5Body": "ödemeden önce — en ucuz ücret genellikle kayıtlı bagajı içermez.",
+      "searchAirport": "Şehir, havalimanı veya kod (ör. Owerri, QOW)",
+      "useCode": "{{code}} havalimanı kodunu kullan",
+      "noAirport": "Eşleşen havalimanı yok. Bir şehir adı deneyin veya 3 harfli kodu yazın.",
+      "domestic": "Nijerya (iç hatlar)",
+      "searchHint": "Havalimanınızı göremiyor musunuz? Şehir, havalimanı veya ülke yazın — tüm ülkelerin iç hat havalimanları dahildir.",
+      "keepTyping": "En iyi {{count}} sonuç gösteriliyor — daraltmak için yazmaya devam edin."
     },
     "hotels": {
       "back": "Seyahat",

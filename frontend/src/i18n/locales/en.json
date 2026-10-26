@@ -1256,7 +1256,13 @@
       "tip4Label": "Mid-week departures are usually cheaper",
       "tip4Body": "than Friday and Sunday, and prices tend to climb closer to departure.",
       "tip5Label": "Confirm baggage allowance",
-      "tip5Body": "before paying — the cheapest fare often excludes checked bags."
+      "tip5Body": "before paying — the cheapest fare often excludes checked bags.",
+      "searchAirport": "City, airport or code (e.g. Owerri, QOW)",
+      "useCode": "Use airport code {{code}}",
+      "noAirport": "No airport matches. Try a city name, or type the 3-letter airport code.",
+      "domestic": "Nigeria (domestic)",
+      "searchHint": "Can't see your airport? Type a city, airport or country — local airports in every country are included.",
+      "keepTyping": "Showing the top {{count}} matches — keep typing to narrow down."
     },
     "hotels": {
       "back": "Travel",

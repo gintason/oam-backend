@@ -1254,7 +1254,13 @@
       "tip4Label": "Tashin tsakiyar mako yawanci ya fi arha",
       "tip4Body": "fiye da Jumma'a da Lahadi, kuma farashi na ƙara hawa yayin da ranar tashi ke gabatowa.",
       "tip5Label": "Tabbatar da adadin kaya",
-      "tip5Body": "kafin biya — farashin da ya fi arha sau da yawa ba ya haɗa da kayan da aka ajiye."
+      "tip5Body": "kafin biya — farashin da ya fi arha sau da yawa ba ya haɗa da kayan da aka ajiye.",
+      "searchAirport": "Birni, filin jirgi ko lamba (misali Owerri, QOW)",
+      "useCode": "Yi amfani da lambar filin jirgi {{code}}",
+      "noAirport": "Babu filin jirgi da ya dace. Gwada sunan birni, ko rubuta lambar filin jirgi mai haruffa 3.",
+      "domestic": "Najeriya (cikin gida)",
+      "searchHint": "Ba ka ga filin jirginka ba? Rubuta birni, filin jirgi ko ƙasa — an haɗa filayen jirgin cikin gida na kowace ƙasa.",
+      "keepTyping": "Ana nuna sakamako {{count}} na farko — ci gaba da rubutawa don takaitawa."
     },
     "hotels": {
       "back": "Tafiya",

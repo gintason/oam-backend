@@ -1254,7 +1254,13 @@
       "tip4Label": "Abflüge unter der Woche sind meist günstiger",
       "tip4Body": "als freitags und sonntags, und die Preise steigen tendenziell näher am Abflug.",
       "tip5Label": "Bestätigen Sie die Gepäckmenge",
-      "tip5Body": "vor der Zahlung — der günstigste Tarif schließt oft aufgegebenes Gepäck aus."
+      "tip5Body": "vor der Zahlung — der günstigste Tarif schließt oft aufgegebenes Gepäck aus.",
+      "searchAirport": "Stadt, Flughafen oder Code (z. B. Owerri, QOW)",
+      "useCode": "Flughafencode {{code}} verwenden",
+      "noAirport": "Kein Flughafen gefunden. Versuche einen Stadtnamen oder gib den 3-Buchstaben-Code ein.",
+      "domestic": "Nigeria (Inland)",
+      "searchHint": "Flughafen nicht dabei? Stadt, Flughafen oder Land eingeben – Inlandsflughäfen aller Länder sind enthalten.",
+      "keepTyping": "Die besten {{count}} Treffer – weiter tippen, um einzugrenzen."
     },
     "hotels": {
       "back": "Reisen",

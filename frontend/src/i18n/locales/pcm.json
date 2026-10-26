@@ -1256,7 +1256,13 @@
       "tip4Label": "Flight for middle of the week dey usually cheap",
       "tip4Body": "pass Friday and Sunday, and price dey usually go up as the day dey near.",
       "tip5Label": "Confirm how much load dem go allow",
-      "tip5Body": "before you pay — the cheapest price no dey always include checked bags."
+      "tip5Body": "before you pay — the cheapest price no dey always include checked bags.",
+      "searchAirport": "City, airport or code (e.g. Owerri, QOW)",
+      "useCode": "Use airport code {{code}}",
+      "noAirport": "No airport match am. Try city name, or type the 3-letter airport code.",
+      "domestic": "Naija (local flights)",
+      "searchHint": "You no see your airport? Type city, airport or country — local airports for every country dey inside.",
+      "keepTyping": "Na the top {{count}} matches be dis — continue to type make e short."
     },
     "hotels": {
       "back": "Travel",

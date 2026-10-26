@@ -1254,7 +1254,13 @@
       "tip4Label": "Wyloty w środku tygodnia są zwykle tańsze",
       "tip4Body": "niż w piątki i niedziele, a ceny zwykle rosną bliżej wylotu.",
       "tip5Label": "Potwierdź limit bagażu",
-      "tip5Body": "przed zapłatą — najtańsza taryfa często nie obejmuje bagażu rejestrowanego."
+      "tip5Body": "przed zapłatą — najtańsza taryfa często nie obejmuje bagażu rejestrowanego.",
+      "searchAirport": "Miasto, lotnisko lub kod (np. Owerri, QOW)",
+      "useCode": "Użyj kodu lotniska {{code}}",
+      "noAirport": "Brak pasującego lotniska. Wpisz nazwę miasta lub trzyliterowy kod.",
+      "domestic": "Nigeria (krajowe)",
+      "searchHint": "Nie widzisz swojego lotniska? Wpisz miasto, lotnisko lub kraj — uwzględniono lotniska krajowe we wszystkich państwach.",
+      "keepTyping": "Pokazano {{count}} najlepszych wyników — pisz dalej, aby zawęzić."
     },
     "hotels": {
       "back": "Podróże",

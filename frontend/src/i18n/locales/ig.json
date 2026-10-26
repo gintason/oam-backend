@@ -1254,7 +1254,13 @@
       "tip4Label": "Mpụ n'etiti izu na-adịkarị ọnụ ala",
       "tip4Body": "karịa Fraịde na Sọnde, ọnụ ahịa na-arịgo ka ụbọchị mpụ na-eru nso.",
       "tip5Label": "Kwenye ọtụtụ ibu ị ga-ebu",
-      "tip5Body": "tupu ịkwụ ụgwọ — ọnụ ahịa kacha ọnụ ala anaghị agụnye ibu e debere."
+      "tip5Body": "tupu ịkwụ ụgwọ — ọnụ ahịa kacha ọnụ ala anaghị agụnye ibu e debere.",
+      "searchAirport": "Obodo, ọdụ ụgbọ elu ma ọ bụ koodu (dịka Owerri, QOW)",
+      "useCode": "Jiri koodu ọdụ ụgbọ elu {{code}}",
+      "noAirport": "Enweghị ọdụ ụgbọ elu dabara. Nwaa aha obodo, ma ọ bụ dee koodu mkpụrụedemede 3.",
+      "domestic": "Naịjirịa (n'ime obodo)",
+      "searchHint": "Ịhụghị ọdụ ụgbọelu gị? Pịnye obodo, ọdụ ụgbọelu ma ọ bụ mba — ọdụ ụgbọelu ime obodo nke mba ọ bụla dị n'ime ya.",
+      "keepTyping": "Na-egosi nsonaazụ {{count}} kacha mma — gaa n'ihu na-ede iji wedata ya."
     },
     "hotels": {
       "back": "Njem",

@@ -1254,7 +1254,13 @@
       "tip4Label": "Odlety uprostřed týdne bývají levnější",
       "tip4Body": "než v pátek a v neděli a ceny obvykle stoupají blíže k odletu.",
       "tip5Label": "Potvrďte váhový limit zavazadel",
-      "tip5Body": "před zaplacením — nejlevnější tarif často nezahrnuje odbavená zavazadla."
+      "tip5Body": "před zaplacením — nejlevnější tarif často nezahrnuje odbavená zavazadla.",
+      "searchAirport": "Město, letiště nebo kód (např. Owerri, QOW)",
+      "useCode": "Použít kód letiště {{code}}",
+      "noAirport": "Žádné letiště neodpovídá. Zkuste název města nebo zadejte třípísmenný kód.",
+      "domestic": "Nigérie (vnitrostátní)",
+      "searchHint": "Nevidíte své letiště? Zadejte město, letiště nebo zemi — vnitrostátní letiště všech zemí jsou zahrnuta.",
+      "keepTyping": "Zobrazeno {{count}} nejlepších výsledků — pište dál pro zúžení."
     },
     "hotels": {
       "back": "Cestování",

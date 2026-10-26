@@ -1254,7 +1254,13 @@
       "tip4Label": "Le partenze infrasettimanali sono di solito più economiche",
       "tip4Body": "rispetto al venerdì e alla domenica, e i prezzi tendono a salire avvicinandosi alla partenza.",
       "tip5Label": "Conferma la franchigia bagagli",
-      "tip5Body": "prima di pagare — la tariffa più economica spesso esclude i bagagli in stiva."
+      "tip5Body": "prima di pagare — la tariffa più economica spesso esclude i bagagli in stiva.",
+      "searchAirport": "Città, aeroporto o codice (es. Owerri, QOW)",
+      "useCode": "Usa il codice aeroporto {{code}}",
+      "noAirport": "Nessun aeroporto trovato. Prova con il nome di una città o digita il codice di 3 lettere.",
+      "domestic": "Nigeria (voli nazionali)",
+      "searchHint": "Non vedi il tuo aeroporto? Scrivi una città, un aeroporto o un paese: sono inclusi gli aeroporti nazionali di ogni paese.",
+      "keepTyping": "Mostrati i primi {{count}} risultati: continua a scrivere per restringere."
     },
     "hotels": {
       "back": "Viaggi",

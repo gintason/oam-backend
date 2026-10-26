@@ -3,8 +3,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRightLeft, Clock, ExternalLink, Info, Loader2, Lock, Plane } from "lucide-react";
 import AppHeader from "../../components/AppHeader";
+import AirportPicker from "../../components/AirportPicker";
 import {
-  affiliatesApi, AIRPORTS, REGIONS, ROUTE_INFO, POPULAR_BY_REGION, POPULAR_ROUTES, airportName,
+  affiliatesApi, AIRPORTS, REGIONS, ROUTE_INFO, POPULAR_BY_REGION, POPULAR_ROUTES,
 } from "../../services/affiliates";
 import { apiErrorMessage } from "../../lib/api";
 import { useTranslation } from "react-i18next";
@@ -97,7 +98,7 @@ export default function Flights() {
           <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
             <div>
               <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.from")}</label>
-              <AirportSelect value={origin} onChange={setOrigin} />
+              <AirportPicker value={origin} onChange={setOrigin} label={t("travel.flights.from")} />
             </div>
             <button
               onClick={swap}
@@ -108,7 +109,7 @@ export default function Flights() {
             </button>
             <div>
               <label className="mb-1.5 block text-[12.5px] font-semibold text-ink">{t("travel.flights.to")}</label>
-              <AirportSelect value={destination} onChange={setDestination} />
+              <AirportPicker value={destination} onChange={setDestination} label={t("travel.flights.to")} />
             </div>
           </div>
 
@@ -260,22 +261,3 @@ export default function Flights() {
   );
 }
 
-function AirportSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="h-11 w-full rounded-[10px] border border-hairline bg-paper px-3 text-[14px] text-ink outline-none focus:border-brand-green"
-    >
-      {REGIONS.map((r) => (
-        <optgroup key={r} label={r}>
-          {AIRPORTS.filter((a) => a.region === r).map((a) => (
-            <option key={a.code} value={a.code}>
-              {airportName(a.code, a.city)} ({a.code}) — {a.country}
-            </option>
-          ))}
-        </optgroup>
-      ))}
-    </select>
-  );
-}

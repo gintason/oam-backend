@@ -1254,7 +1254,13 @@
       "tip4Label": "Las salidas entre semana suelen ser más baratas",
       "tip4Body": "que el viernes y el domingo, y los precios tienden a subir cerca de la salida.",
       "tip5Label": "Confirma la franquicia de equipaje",
-      "tip5Body": "antes de pagar — la tarifa más barata suele excluir el equipaje facturado."
+      "tip5Body": "antes de pagar — la tarifa más barata suele excluir el equipaje facturado.",
+      "searchAirport": "Ciudad, aeropuerto o código (p. ej. Owerri, QOW)",
+      "useCode": "Usar el código de aeropuerto {{code}}",
+      "noAirport": "Ningún aeropuerto coincide. Prueba con una ciudad o escribe el código de 3 letras.",
+      "domestic": "Nigeria (vuelos nacionales)",
+      "searchHint": "¿No ves tu aeropuerto? Escribe una ciudad, aeropuerto o país: se incluyen los aeropuertos nacionales de todos los países.",
+      "keepTyping": "Mostrando los {{count}} mejores resultados: sigue escribiendo para afinar."
     },
     "hotels": {
       "back": "Viajes",

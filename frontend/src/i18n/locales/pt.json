@@ -1254,7 +1254,13 @@
       "tip4Label": "As partidas a meio da semana costumam ser mais baratas",
       "tip4Body": "do que à sexta e ao domingo, e os preços tendem a subir perto da partida.",
       "tip5Label": "Confirme a franquia de bagagem",
-      "tip5Body": "antes de pagar — a tarifa mais barata muitas vezes exclui bagagem de porão."
+      "tip5Body": "antes de pagar — a tarifa mais barata muitas vezes exclui bagagem de porão.",
+      "searchAirport": "Cidade, aeroporto ou código (ex. Owerri, QOW)",
+      "useCode": "Usar o código do aeroporto {{code}}",
+      "noAirport": "Nenhum aeroporto encontrado. Tente o nome de uma cidade ou digite o código de 3 letras.",
+      "domestic": "Nigéria (voos domésticos)",
+      "searchHint": "Não encontra o seu aeroporto? Escreva uma cidade, aeroporto ou país — os aeroportos domésticos de todos os países estão incluídos.",
+      "keepTyping": "A mostrar os {{count}} melhores resultados — continue a escrever para refinar."
     },
     "hotels": {
       "back": "Viagens",

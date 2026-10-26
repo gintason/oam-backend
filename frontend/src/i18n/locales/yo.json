@@ -1254,7 +1254,13 @@
       "tip4Label": "Ìlọ àárín ọ̀sẹ̀ máa ń din owó jù",
       "tip4Body": "ju ọjọ́ Ẹtì àti Àìkú lọ, owó sì máa ń gòkè bí ọjọ́ ìlọ ṣe ń súnmọ́.",
       "tip5Label": "Ìdánilójú iye ẹrù tí a gbà",
-      "tip5Body": "kí o tó san owó — owó tí ó din jù sábà kì í ní ẹrù tí a fi sínú ọkọ̀."
+      "tip5Body": "kí o tó san owó — owó tí ó din jù sábà kì í ní ẹrù tí a fi sínú ọkọ̀.",
+      "searchAirport": "Ìlú, pápákọ̀ òfurufú tàbí kóòdù (bí Owerri, QOW)",
+      "useCode": "Lo kóòdù pápákọ̀ òfurufú {{code}}",
+      "noAirport": "Kò sí pápákọ̀ òfurufú tó bá a mu. Gbìyànjú orúkọ ìlú, tàbí tẹ kóòdù lẹ́tà mẹ́ta.",
+      "domestic": "Nàìjíríà (inú ilé)",
+      "searchHint": "Ẹ ò rí pápákọ̀ òfurufú yín? Tẹ ìlú, pápákọ̀ òfurufú tàbí orílẹ̀-èdè — àwọn pápákọ̀ abẹ́lé ti gbogbo orílẹ̀-èdè wà nínú rẹ̀.",
+      "keepTyping": "À ń fi àwọn èsì {{count}} àkọ́kọ́ hàn — ẹ máa tẹ̀ síwájú láti dín in kù."
     },
     "hotels": {
       "back": "Ìrìnàjò",
