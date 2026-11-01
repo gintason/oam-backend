@@ -11,6 +11,7 @@ import { jobsApi, uploadJobsFile, sendJobsEvent, useJobsSocket, type Attachment,
 import { pickImage, pickDocument } from "@/features/jobs/pickers";
 import { Avatar, CompanyLogo, StatusPill, BackToDashboard } from "@/features/jobs/ui/kit";
 import { useTranslation } from "react-i18next";
+import { ReportBlockButton } from "@/features/moderation/ReportBlock";
 
 const uid = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 const time = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -155,6 +156,8 @@ export default function JobsChat() {
             <Text variant="caption" color={typing ? "green" : "muted"} numberOfLines={1}>{typing ? tr("jobs.chat.typing") : t?.job?.title ?? ""}</Text>
           </View>
           {t?.application_status ? <StatusPill status={t.application_status} /> : null}
+          <ReportBlockButton target="jobchat" id={id} look="icon"
+                             onBlocked={() => (router.canGoBack() ? router.back() : router.replace("/jobs-messages" as never))} />
         </View>
       </View>
       {socket !== "open" ? (

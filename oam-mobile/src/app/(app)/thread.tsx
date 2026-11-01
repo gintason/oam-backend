@@ -9,6 +9,7 @@ import { apiErrorMessage } from "@/shared/api";
 import { colors, fonts } from "@/shared/theme";
 import { naira, shortDate } from "@/shared/lib/format";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
+import { ReportBlockButton } from "@/features/moderation/ReportBlock";
 
 export default function Thread() {
   const router = useRouter();
@@ -57,6 +58,7 @@ export default function Thread() {
             <Text variant="caption" color="muted">
               {t("messages.chat.with", { name: convo.other_party_name })}{convo.subject.price ? ` · ${naira(convo.subject.price)}` : ""}
             </Text>
+            <ReportBlockButton target="conversation" id={id} onBlocked={() => router.back()} />
           </>
         ) : null}
       </View>

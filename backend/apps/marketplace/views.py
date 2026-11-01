@@ -46,6 +46,10 @@ class ListingListView(ListAPIView):
             min_price=p.get("min_price"), max_price=p.get("max_price"),
             location=p.get("location"), condition=p.get("condition"),
         )
+        from apps.moderation.services import hidden_user_ids
+        hidden = hidden_user_ids(self.request.user)
+        if hidden:
+            qs = qs.exclude(seller_id__in=hidden)
         return qs.annotate(
             likes_count_ann=Count("likes", distinct=True),
             comments_count_ann=Count("comments", distinct=True),
@@ -306,8 +310,10 @@ class ListingCommentsView(APIView):
         listing = Listing.objects.filter(id=listing_id).first()
         if listing is None:
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
-        comments = listing.comments.select_related("user").all()[:100]
-        return Response(ListingCommentSerializer(comments, many=True).data)
+        from apps.moderation.services import hidden_user_ids
+        comments = listing.comments.select_related("user").exclude(
+            user_id__in=hidden_user_ids(request.user))[:100]
+        return Response(ListingCommentSerializer(comments, many=True, context={"user": request.user}).data)
 
     def post(self, request, listing_id):
         listing = Listing.objects.filter(id=listing_id).first()
@@ -326,4 +332,4 @@ class ListingCommentsView(APIView):
                        data={"listing_id": str(listing.id)})
         except Exception:
             pass
-        return Response(ListingCommentSerializer(c).data, status=status.HTTP_201_CREATED)
+        return Response(ListingCommentSerializer(c, context={"user": request.user}).data, status=status.HTTP_201_CREATED)

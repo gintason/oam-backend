@@ -162,11 +162,16 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
 class ListingCommentSerializer(serializers.ModelSerializer):
     user_name = serializers.SerializerMethodField()
+    is_mine = serializers.SerializerMethodField()
 
     class Meta:
         model = ListingComment
-        fields = ("id", "body", "user_name", "created_at")
-        read_only_fields = ("id", "user_name", "created_at")
+        fields = ("id", "body", "user_name", "is_mine", "created_at")
+        read_only_fields = ("id", "user_name", "is_mine", "created_at")
+
+    def get_is_mine(self, obj):
+        user = self.context.get("user")
+        return bool(user and obj.user_id == user.id)
 
     def get_user_name(self, obj):
         u = obj.user
