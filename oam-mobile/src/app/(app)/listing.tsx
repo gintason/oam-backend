@@ -14,6 +14,7 @@ import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { CONDITIONS } from "@/entities/marketplace";
 import { catLabel } from "@/shared/i18n/labels";
 import { ImageViewer, VideoPlayer } from "@/features/media";
+import { ReportBlockButton } from "@/features/moderation/ReportBlock";
 
 const W = Dimensions.get("window").width;
 
@@ -164,6 +165,7 @@ export default function Listing() {
               <Text variant="caption" color="muted" style={{ marginTop: 16 }}>
                 {t("marketplace.detail.listedBy")} <Text variant="caption" color="ink">{l.seller_name}</Text> · {shortDate(l.created_at)}
               </Text>
+              {!l.is_owner ? <ReportBlockButton target="listing" id={l.id} onBlocked={() => router.back()} /> : null}
 
               {l.is_owner ? (
                 <View style={{ flexDirection: "row", gap: 10, marginTop: 14 }}>
@@ -200,6 +202,7 @@ export default function Listing() {
                         <Text variant="caption" color="muted">{shortDate(c.created_at)}</Text>
                       </View>
                       <Text variant="body" color="ink" style={{ marginTop: 4 }}>{c.body}</Text>
+                      {!c.is_mine ? <ReportBlockButton target="comment" id={c.id} onBlocked={() => commentsQ.refetch()} /> : null}
                     </View>
                   ))}
                   {commentsQ.data && commentsQ.data.length === 0 ? (

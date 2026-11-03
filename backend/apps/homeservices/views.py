@@ -94,6 +94,10 @@ class ArtisanSearchView(APIView):
         except (ValueError, TypeError):
             return Response({"detail": "lat, lng and radius_km must be numbers."},
                             status=status.HTTP_400_BAD_REQUEST)
+        from apps.moderation.services import hidden_user_ids
+        hidden = hidden_user_ids(request.user)
+        if hidden:
+            results = [a for a in results if a.user_id not in hidden]
         return Response({"count": len(results),
                          "results": ArtisanListSerializer(results, many=True).data})
 

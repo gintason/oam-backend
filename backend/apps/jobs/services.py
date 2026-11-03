@@ -636,6 +636,9 @@ class ChatService:
             raise JobsError("Not your conversation.", status=403)
         if thread.is_closed:
             raise JobsError("This conversation is closed.")
+        from apps.moderation.services import is_blocked_between
+        if is_blocked_between(thread.employer.owner_id, thread.candidate.user_id):
+            raise JobsError("You can't message this user.", status=403)
         body = (body or "").strip()[:4000]
         attachment = attachment or {}
         url = (attachment.get("url") or "").strip()
@@ -708,9 +711,14 @@ class ChatService:
 
     @staticmethod
     def threads_for(user):
-        return ChatThread.objects.filter(
+        from apps.moderation.services import hidden_user_ids
+        qs = ChatThread.objects.filter(
             Q(employer__owner=user) | Q(candidate__user=user)
         ).select_related("employer", "candidate__user", "job", "application")
+        hidden = hidden_user_ids(user)
+        if hidden:  # blocked chats disappear for both sides
+            qs = qs.exclude(employer__owner_id__in=hidden).exclude(candidate__user_id__in=hidden)
+        return qs
 
 
 # --------------------------------------------------------------------------- #

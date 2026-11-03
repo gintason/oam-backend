@@ -109,6 +109,9 @@ export default function Profile() {
           {t("profile.signOutHint", "Sign out keeps your account on this device — come back with just your password. Switch account removes it (asks for email & password).")}
         </Text>
 
+        <Pressable onPress={() => router.push("/blocked-users" as never)} hitSlop={8} style={{ marginTop: 28, alignItems: "center", paddingVertical: 8 }}>
+          <Text variant="label" color="ink">{t("moderation.blockedUsers", "Blocked users")}</Text>
+        </Pressable>
         <Pressable onPress={() => router.push("/delete-account")} hitSlop={8} style={{ marginTop: 28, alignItems: "center", paddingVertical: 8 }}>
           <Text variant="label" color="danger">{t("profile.deleteAccount", "Delete account")}</Text>
         </Pressable>

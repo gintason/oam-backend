@@ -56,5 +56,6 @@ export type ListingComment = {
   id: string;
   body: string;
   user_name: string;
+  is_mine?: boolean;
   created_at: string;
 };

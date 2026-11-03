@@ -33,6 +33,10 @@ class ConversationListView(APIView):
         elif role == "provider":
             qs = qs.filter(provider=request.user)
 
+        from apps.moderation.services import hidden_user_ids
+        hidden = hidden_user_ids(request.user)
+        if hidden:
+            qs = qs.exclude(customer_id__in=hidden).exclude(provider_id__in=hidden)
         data = ConversationSerializer(qs, many=True, context={"user": request.user}).data
         unread = sum(c["unread"] for c in data)
         return Response({"count": len(data), "unread": unread, "results": data})
@@ -77,6 +81,10 @@ class ConversationListView(APIView):
         if provider == request.user:
             return Response({"detail": "This is your own listing."},
                             status=http.HTTP_400_BAD_REQUEST)
+        from apps.moderation.services import is_blocked_between
+        if is_blocked_between(request.user, provider):
+            return Response({"detail": "You can't message this user."},
+                            status=http.HTTP_403_FORBIDDEN)
 
         convo, _created = Conversation.objects.get_or_create(
             **lookup,
@@ -126,6 +134,11 @@ class MessageCreateView(APIView):
         if convo.status == Conversation.Status.CLOSED:
             return Response({"detail": "This conversation is closed."},
                             status=http.HTTP_400_BAD_REQUEST)
+
+        from apps.moderation.services import is_blocked_between
+        if is_blocked_between(convo.customer, convo.provider):
+            return Response({"detail": "You can't message this user."},
+                            status=http.HTTP_403_FORBIDDEN)
 
         body = (request.data.get("body") or "").strip()
         if not body:
@@ -180,7 +193,9 @@ class UnreadCountView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        from apps.moderation.services import hidden_user_ids
         count = Message.objects.filter(
             conversation__in=_mine(request.user), read_at__isnull=True,
-        ).exclude(sender=request.user).count()
+        ).exclude(sender=request.user).exclude(
+            sender_id__in=hidden_user_ids(request.user)).count()
         return Response({"unread": count})

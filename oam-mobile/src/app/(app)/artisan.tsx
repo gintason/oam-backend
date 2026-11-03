@@ -11,6 +11,7 @@ import { homeServicesApi } from "@/features/artisans/api/homeservices-api";
 import { messagingApi } from "@/features/messaging/api/messaging-api";
 import { tradeLabelByName } from "@/shared/i18n/labels";
 import { VideoPlayer } from "@/features/media";
+import { ReportBlockButton } from "@/features/moderation/ReportBlock";
 
 export default function Artisan() {
   const router = useRouter();
@@ -97,6 +98,10 @@ export default function Artisan() {
                 </View>
               </View>
             ) : null}
+
+            <View style={{ marginTop: 10 }}>
+              <ReportBlockButton target="artisan" id={a.id} onBlocked={() => router.back()} />
+            </View>
 
             {/* Enquiry */}
             <View style={{ marginTop: 16, borderRadius: 18, borderWidth: 1, borderColor: colors.hairline, backgroundColor: colors.paper, padding: 16 }}>

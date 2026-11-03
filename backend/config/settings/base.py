@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "apps.jobs",  # [oam-jobs] jobs & recruitment
     "apps.deliveries",  # [oam-deliveries] delivery & dispatch
     "apps.seo",  # [oam-seo] sitemap, robots, public pages
+    "apps.moderation",  # reports & blocks (App Store 1.2)
     # ...
 ]
 
