@@ -2,13 +2,13 @@
  * Where to download the OAM mobile apps.
  *
  * Set VITE_ANDROID_APP_URL / VITE_IOS_APP_URL on Render to override. Android
- * defaults to the Play Store page for the app's package (com.oam.mobile); iOS has
+ * defaults to the Play Store page for the app's package (com.oam.app); iOS has
  * no default because App Store links contain a numeric app id — until it's set,
  * the App Store badge shows "Coming soon" and iPhone visitors aren't prompted.
  */
 export const ANDROID_APP_URL =
   (import.meta.env.VITE_ANDROID_APP_URL as string | undefined) ||
-  "https://play.google.com/store/apps/details?id=com.oam.mobile";
+  "https://play.google.com/store/apps/details?id=com.oam.app";
 
 export const IOS_APP_URL = (import.meta.env.VITE_IOS_APP_URL as string | undefined) || "";
 
