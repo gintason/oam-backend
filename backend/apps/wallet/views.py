@@ -22,6 +22,9 @@ class WalletListView(APIView):
 
     def get(self, request):
         currency, source = resolve_currency(request.user, request)
+        # Credit any top-up that was paid but not confirmed when they left the checkout.
+        from apps.payments.services import reconcile_user_funding
+        reconcile_user_funding(request.user)
         # Ensure the user always has at least their default wallet.
         WalletService.get_or_create_wallet(request.user, currency)
         wallets = Wallet.objects.filter(user=wallet_owner(request.user)).order_by("currency")

@@ -237,6 +237,44 @@ class FundingService:
         return txn
 
 
+def reconcile_user_funding(user, *, max_age_hours=72, min_age_seconds=20, limit=3, every_seconds=60) -> int:
+    """
+    Re-check this user's unconfirmed wallet top-ups with the gateway and credit
+    any that were paid. Called when the user opens their wallet, so a payment
+    that was still "pending" when they came back from the checkout (bank
+    transfer / USSD) — or whose webhook never arrived — is credited the next
+    time they look. settle() is idempotent: a wallet can't be credited twice.
+    Throttled per user; never raises. Returns how many were credited.
+    """
+    from datetime import timedelta
+    from django.core.cache import cache
+    from django.utils import timezone
+
+    if not getattr(user, "is_authenticated", False):
+        return 0
+    key = f"fund-reconcile:{user.pk}"
+    if not cache.add(key, 1, every_seconds):        # checked very recently
+        return 0
+    now = timezone.now()
+    S = ServiceTransaction.Status
+    refs = list(ServiceTransaction.objects.filter(
+        user=user, service_type=ServiceTransaction.Service.WALLET_FUND,
+        status__in=[S.PENDING, S.PROCESSING],
+        created_at__gte=now - timedelta(hours=max_age_hours),
+        created_at__lte=now - timedelta(seconds=min_age_seconds),
+    ).order_by("-created_at").values_list("internal_reference", flat=True)[:limit])
+    credited = 0
+    for ref in refs:
+        try:
+            txn = FundingService.settle(ref)
+            if txn is not None and txn.status == S.SUCCESS:
+                credited += 1
+                logger.info("reconcile: credited late wallet funding %s", ref)
+        except Exception:                            # never break the wallet screen
+            logger.warning("reconcile: could not verify %s", ref, exc_info=True)
+    return credited
+
+
 def _to_decimal(v):
     try:
         return Decimal(str(v)) if v not in (None, "") else None
