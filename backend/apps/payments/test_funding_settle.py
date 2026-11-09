@@ -63,3 +63,46 @@ class FundingSettleAmountTests(TestCase):
         raw = {"data": {"status": "success", "amount": 50000, "currency": "USD"}}
         t = FundingService.settle("FUND-e", verified_status=TxnStatus.SUCCESS, raw=raw)
         self.assertEqual(t.status, ServiceTransaction.Status.PROCESSING)
+
+
+class LateFundingReconcileTests(TestCase):
+    """A top-up still 'pending' when the user returned is credited when they next open the wallet."""
+
+    def setUp(self):
+        from django.core.cache import cache
+        from django.utils import timezone
+        from datetime import timedelta
+        cache.clear()
+        self.user = get_user_model().objects.create_user(email="late@test.test", password="x", is_verified=True)
+        self.t = ServiceTransaction.objects.create(
+            user=self.user, service_type=ServiceTransaction.Service.WALLET_FUND, provider="mock",
+            status=ServiceTransaction.Status.PROCESSING, amount=Decimal("500"), currency="NGN",
+            internal_reference="FUND-late")
+        ServiceTransaction.objects.filter(pk=self.t.pk).update(created_at=timezone.now() - timedelta(minutes=5))
+
+    def balance(self):
+        w = WalletService.get_or_create_wallet(self.user, "NGN")
+        w.refresh_from_db()
+        return w.cached_balance
+
+    def test_wallet_list_credits_late_payment_once(self):
+        from rest_framework.test import APIClient
+        from django.core.cache import cache
+        api = APIClient(); api.force_authenticate(self.user)
+        r = api.get("/api/v1/wallet/", HTTP_X_FORWARDED_PROTO="https", secure=True)
+        self.assertIn(r.status_code, (200, 301, 302), r.content)
+        self.t.refresh_from_db()
+        self.assertEqual(self.t.status, ServiceTransaction.Status.SUCCESS)
+        self.assertEqual(self.balance(), Decimal("500"))
+        cache.clear()
+        from apps.payments.services import reconcile_user_funding
+        self.assertEqual(reconcile_user_funding(self.user), 0)      # nothing left; no double credit
+        self.assertEqual(self.balance(), Decimal("500"))
+
+    def test_throttled(self):
+        from apps.payments.services import reconcile_user_funding
+        from django.core.cache import cache
+        cache.add(f"fund-reconcile:{self.user.pk}", 1, 60)
+        self.assertEqual(reconcile_user_funding(self.user), 0)
+        self.t.refresh_from_db()
+        self.assertEqual(self.t.status, ServiceTransaction.Status.PROCESSING)

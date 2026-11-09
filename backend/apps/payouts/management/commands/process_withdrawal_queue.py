@@ -18,6 +18,19 @@ class Command(BaseCommand):
         parser.add_argument("--status", action="store_true", help="Only print the queue summary.")
         parser.add_argument("--currency", default="NGN")
 
+    def _show_reasons(self, cur):
+        """Why the waiting withdrawals are held — Flutterwave's own words."""
+        from apps.payouts.models import WithdrawalOrder
+        from apps.payouts.services import _last_error
+        rows = (WithdrawalOrder.objects.filter(status=WithdrawalOrder.Status.QUEUED, currency=cur)
+                .order_by("queued_at", "created_at")[:10])
+        self.stdout.write("Oldest waiting withdrawals and why they are held:")
+        for o in rows:
+            reason = _last_error(o) or (o.response_payload or {}).get("queue_reason") or "-"
+            when = o.queued_at.strftime("%d %b %H:%M") if o.queued_at else "?"
+            self.stdout.write(f"  {when}  {cur} {o.amount:,.2f}  via {o.provider or '?'}  "
+                              f"tries {o.attempts}  reason: {str(reason)[:160]}")
+
     def handle(self, *args, **opts):
         cur = opts["currency"].upper()
         if not opts["status"]:
@@ -29,6 +42,8 @@ class Command(BaseCommand):
         bal = "unknown" if s["balance"] is None else f"{s['balance']:,.2f}"
         self.stdout.write(f"Queued: {s['count']} · total {cur} {s['total']:,.2f} · balance {bal}"
                           + (f" · shortfall {s['shortfall']:,.2f}" if s["shortfall"] else ""))
+        if s["count"]:
+            self._show_reasons(cur)
         if opts["status"] or not s["count"]:
             return
         st = WithdrawalService.process_queue(currency=cur)
