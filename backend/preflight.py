@@ -135,7 +135,7 @@ def env_check(label, *names, severity="warn", detail=""):
 
 env_check("Paystack keys", "PAYSTACK_SECRET_KEY", "PAYSTACK_SECRET",
           detail="Payments and withdrawals need these. Use LIVE keys in production.")
-env_check("VTU provider credentials", "VTU_USERNAME", "VTUNG_USERNAME", "VTU_NG_USERNAME",
+env_check("VTU provider credentials", "VTU_NG_SECRET_KEY", "VTU_USERNAME", "VTUNG_USERNAME", "VTU_NG_USERNAME",
           detail="Bill purchases fail without these.")
 env_check("Cloudinary", "CLOUDINARY_CLOUD_NAME",
           detail="Photo and document uploads fail without these.")

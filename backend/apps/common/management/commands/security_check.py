@@ -93,8 +93,8 @@ class Command(BaseCommand):
 
         vtu = pc.get("vtu", {}).get("vtung", {})
         check("VTU credentials set",
-              PASS if (vtu.get("username") and vtu.get("password")) else WARN,
-              "" if vtu.get("password") else "VTU_NG_* missing.")
+              PASS if (vtu.get("secret_key") or (vtu.get("username") and vtu.get("password"))) else WARN,
+              "" if (vtu.get("secret_key") or vtu.get("password")) else "VTU_NG_SECRET_KEY missing.")
 
         # --- 8. Active providers (no mocks in prod) ---
         providers = getattr(settings, "DEFAULT_PROVIDERS", {})

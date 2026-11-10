@@ -41,7 +41,17 @@ TIMEOUT = (5, 60)
 
 @register("vtu", "vtung")
 class VtuNgAdapter(VTUProvider):
+    """Uses the new Partner API (v1) when VTU_NG_SECRET_KEY is set, else the legacy API."""
     base_url = BASE
+
+    @property
+    def v1(self):
+        if not str(self.config.get("secret_key") or "").strip():
+            return None
+        if getattr(self, "_v1", None) is None:
+            from .v1 import VtuNgV1
+            self._v1 = VtuNgV1(self.config)
+        return self._v1
 
     # ---------------- auth ----------------
     def _get_token(self, force=False) -> str:
@@ -102,6 +112,8 @@ class VtuNgAdapter(VTUProvider):
 
     # ---------------- purchase ----------------
     def purchase(self, req) -> VTUResult:
+        if self.v1:
+            return self.v1.purchase(req)
         request_id = (getattr(req, "request_id", "") or "")[:50]
         if req.service == "airtime":
             payload = {"request_id": request_id, "phone": req.recipient,
@@ -135,12 +147,15 @@ class VtuNgAdapter(VTUProvider):
     def get_status(self, provider_reference) -> StatusResult:
             """
             provider_reference here is OUR request_id (BillOrder.reference).
+            (v1: looked up via the Idempotency-Key we sent, see v1.py.)
 
             VTU's requery returns TWO layers: `data` (the order as first recorded,
             which may still say processing with token=null) and `resolve.data` (the
             RESOLVED outcome plus meta_data.electricity_token). The resolved layer,
             when present, is the truth.
             """
+            if self.v1:
+                return self.v1.get_status(provider_reference)
             resp = self._post("/api/v2/requery", {"request_id": provider_reference})
             try:
                 data = resp.json()
@@ -159,6 +174,8 @@ class VtuNgAdapter(VTUProvider):
     # ---------------- catalog (data bundles) ----------------
     def list_variations(self, category, operator):
         """Live catalog for data bundles or cable packages."""
+        if self.v1:
+            return self.v1.list_variations(category, operator)
         if category == "data":
             path = "/api/v2/variations/data"
         elif category == "cable":
@@ -190,6 +207,8 @@ class VtuNgAdapter(VTUProvider):
     # ---------------- customer verification ----------------
     def verify_customer(self, service_id, customer_id, variation=None):
         """Validate a meter/smartcard/account and return the customer's details."""
+        if self.v1:
+            return self.v1.verify_customer(service_id, customer_id, variation)
         payload = {"customer_id": customer_id, "service_id": service_id}
         if variation:
             payload["variation_id"] = variation
@@ -204,11 +223,35 @@ class VtuNgAdapter(VTUProvider):
 
     # ---------------- webhook ----------------
     def verify_webhook(self, payload: bytes, headers: dict) -> bool:
+        if self.v1:
+            return self._verify_v1_webhook(payload, headers)
         pin = self.config.get("user_pin", "").encode()
         body = payload if isinstance(payload, bytes) else str(payload).encode()
         sig = (headers or {}).get("x-signature", "")
         computed = hmac.new(pin, body, hashlib.sha256).hexdigest()
         return bool(sig) and hmac.compare_digest(computed, sig)
+
+    def _verify_v1_webhook(self, payload, headers) -> bool:
+        """
+        X-VTU-Signature-256 with the dashboard's signing secret. VTU.ng hasn't
+        published the exact scheme, so accept HMAC-SHA256 of the raw body in
+        hex or base64, with or without a "sha256=" prefix. The webhook view
+        never trusts the payload anyway: it only triggers a requery.
+        """
+        import base64
+        secret = str(self.config.get("webhook_secret") or "").encode()
+        sig = str((headers or {}).get("x-vtu-signature-256", "")).strip()
+        if not secret or not sig:
+            return False
+        if sig.lower().startswith("sha256="):
+            sig = sig[7:]
+        body = payload if isinstance(payload, bytes) else str(payload).encode()
+        mac = hmac.new(secret, body, hashlib.sha256)
+        return (hmac.compare_digest(mac.hexdigest(), sig.lower())
+                or hmac.compare_digest(base64.b64encode(mac.digest()).decode(), sig))
+
+    def get_balance(self, currency="NGN"):
+        return self.v1.get_balance(currency) if self.v1 else None
 
     # ---------------- helpers ----------------
     def _parse(self, resp, request_id) -> VTUResult:

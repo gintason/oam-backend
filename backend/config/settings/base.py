@@ -285,7 +285,11 @@ PROVIDER_CONFIG = {
                     "secret": env("VTU_SECRET", default="")},
         "vtung": {"username": env("VTU_NG_USERNAME", default=""),
                   "password": env("VTU_NG_PASSWORD", default=""),
-                  "user_pin": env("VTU_NG_USER_PIN", default="")},
+                  "user_pin": env("VTU_NG_USER_PIN", default=""),
+                  # New Partner API (v1): when set, used instead of username/password.
+                  "secret_key": env("VTU_NG_SECRET_KEY", default=""),
+                  "webhook_secret": env("VTU_NG_WEBHOOK_SECRET", default=""),
+                  "base_url": env("VTU_NG_BASE_URL", default="https://api.vtu.ng/v1")},
     },
 
     "hotels": {

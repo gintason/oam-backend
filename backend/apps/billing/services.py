@@ -364,7 +364,7 @@ class BillingService:
         order = BillOrder.objects.filter(reference=request_id).first()
         if order is None:
             return None
-        mapped = (TxnStatus.SUCCESS if provider_status == "completed-api"
+        mapped = (TxnStatus.SUCCESS if provider_status in ("completed-api", "completed")
                   else TxnStatus.FAILED if provider_status in ("refunded", "failed", "cancelled")
                   else TxnStatus.PENDING)
         return BillingService._apply(order, mapped, raw or {})
