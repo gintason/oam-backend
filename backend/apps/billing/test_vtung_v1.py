@@ -183,3 +183,34 @@ class BaseUrlGuardTests(TestCase):
                          "https://api.vtu.ng/v1")
         self.assertEqual(VtuNgV1({"secret_key": "k", "base_url": "https://sandbox.vtu.ng/v1"}).base,
                          "https://sandbox.vtu.ng/v1")
+
+
+@override_settings(SECURE_SSL_REDIRECT=False, BILL_CONFIRM_WAIT_SECONDS=8)
+class QuickConfirmTests(TestCase):
+    """VTU v1 says 'processing' first; the purchase reply should already say success."""
+
+    def setUp(self):
+        Biller.objects.create(country="NG", category="airtime", code="MTN", name="MTN")
+        self.user = get_user_model().objects.create_user(email="qc@oam.test", password="x-Pass-12345", is_verified=True)
+        WalletService.credit(WalletService.get_or_create_wallet(self.user, "NGN"), Decimal("5000"), description="fund")
+        adapter = VtuNgAdapter(CFG)
+        p = mock.patch("apps.billing.services.ProviderFactory.get", return_value=adapter); p.start(); self.addCleanup(p.stop)
+        p = mock.patch("integrations.vtu.vtung.v1.requests.request"); self.req = p.start(); self.addCleanup(p.stop)
+        p = mock.patch("time.sleep"); self.sleep = p.start(); self.addCleanup(p.stop)
+
+    def test_processing_then_completed_within_wait(self):
+        self.req.side_effect = [resp(201, txn("processing", ref="BQ1")),
+                                resp(200, {"data": txn("processing", ref="BQ1")["transaction"]}),
+                                resp(200, {"data": txn("completed", ref="BQ1")["transaction"]})]
+        o = BillingService.purchase(user=self.user, country="NG", category="airtime", code="MTN",
+                                    recipient="0803", amount="200")
+        self.assertEqual(o.status, BillOrder.Status.SUCCESS)
+        self.assertEqual(self.sleep.call_count, 2)
+
+    def test_gives_up_after_budget(self):
+        self.req.side_effect = [resp(201, txn("processing", ref="BQ2"))] + \
+            [resp(200, {"data": txn("processing", ref="BQ2")["transaction"]})] * 20
+        o = BillingService.purchase(user=self.user, country="NG", category="airtime", code="MTN",
+                                    recipient="0803", amount="200")
+        self.assertEqual(o.status, BillOrder.Status.PROCESSING)
+        self.assertLessEqual(self.sleep.call_count, 6)

@@ -4,3 +4,5 @@ from .base import *  # noqa: F401,F403
 DEBUG = False
 CELERY_TASK_ALWAYS_EAGER = True            # tasks run inline during tests
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]  # faster tests
+
+BILL_CONFIRM_WAIT_SECONDS = 0            # no quick-confirm sleeps in tests
