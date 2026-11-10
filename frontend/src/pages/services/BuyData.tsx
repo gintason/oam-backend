@@ -334,7 +334,7 @@ export function Result({ ok, title, message, order, onAgain, onDone }: {
           if (alive) setLive(fallback);
         } catch { /* keep trying */ }
       }
-    }, 8000);
+    }, 2500);
     return () => { alive = false; clearInterval(t); };
   }, [pending, awaitingToken, live.reference]);
 

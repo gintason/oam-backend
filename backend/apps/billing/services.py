@@ -105,7 +105,7 @@ class BillingService:
         """
         import time
         from django.conf import settings as dj_settings
-        budget = float(getattr(dj_settings, "BILL_CONFIRM_WAIT_SECONDS", 8) or 0)
+        budget = float(getattr(dj_settings, "BILL_CONFIRM_WAIT_SECONDS", 3) or 0)
         if budget <= 0 or not o.provider_reference:
             return o
         waited, step = 0.0, 1.5

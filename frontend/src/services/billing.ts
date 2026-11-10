@@ -85,6 +85,32 @@ export type Plan = {
   validity?: string;
 };
 
+/** No reply at all (dropped connection) — the server may still have done the purchase. */
+function isNetworkError(err: unknown) {
+  const e = err as { response?: unknown; request?: unknown; message?: string };
+  return !e?.response && (Boolean(e?.request) || /network/i.test(String(e?.message ?? "")));
+}
+
+/**
+ * The purchase reply got lost. Before showing an error — which invites a second,
+ * duplicate purchase — look for the order the server made.
+ */
+async function recoverOrder(category: string, recipient: string, err: unknown): Promise<BillOrder> {
+  if (!isNetworkError(err)) throw err;
+  const since = Date.now() - 3 * 60 * 1000;
+  for (let i = 0; i < 3; i++) {
+    await new Promise((r) => setTimeout(r, 2000));
+    try {
+      const { data } = await api.get<{ results: BillOrder[] }>("/billing/orders/");
+      const hit = (data.results ?? []).find((o) =>
+        o.category === category && String(o.recipient) === String(recipient).trim() &&
+        new Date(o.created_at).getTime() >= since);
+      if (hit) return hit;
+    } catch { /* still offline: try again */ }
+  }
+  throw err;
+}
+
 export const billingApi = {
   async getBillers(category: BillCategory, country = "NG"): Promise<Biller[]> {
     const { data } = await api.get<Paginated<Biller> | Biller[]>("/billing/billers/", {
@@ -94,12 +120,16 @@ export const billingApi = {
   },
 
   async purchase(input: PurchaseInput): Promise<BillOrder> {
-    const { data } = await api.post<BillOrder>("/billing/purchase/", {
-      currency: "NGN",
-      country: "NG",
-      ...input,
-    });
-    return data;
+    try {
+      const { data } = await api.post<BillOrder>("/billing/purchase/", {
+        currency: "NGN",
+        country: "NG",
+        ...input,
+      });
+      return data;
+    } catch (err) {
+      return recoverOrder(input.category, input.recipient, err);
+    }
   },
 
   /**
@@ -112,12 +142,16 @@ export const billingApi = {
     amount: number | string;
     verification_id: string;
   }): Promise<BillOrder> {
-    const { data } = await api.post<BillOrder>("/billing/betting/fund/", {
-      country: "NG",
-      currency: "NGN",
-      ...input,
-    });
-    return data;
+    try {
+      const { data } = await api.post<BillOrder>("/billing/betting/fund/", {
+        country: "NG",
+        currency: "NGN",
+        ...input,
+      });
+      return data;
+    } catch (err) {
+      return recoverOrder("betting", input.customer_id, err);
+    }
   },
 
   /** Live data bundles for a network (GET /billing/data-plans/?code=MTN). */

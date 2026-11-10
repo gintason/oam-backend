@@ -40,6 +40,25 @@ export default function BuyAirtime() {
   const [confirming, setConfirming] = useState(false);
   const [touchedNetwork, setTouchedNetwork] = useState(false);
 
+  // VTU.ng confirms a few seconds after accepting: keep checking a "processing"
+  // order so the screen ends on Successful/Failed instead of "in progress".
+  const orderRef = order?.reference;
+  const orderWaiting = Boolean(order && ["pending", "processing"].includes(String(order.status).toLowerCase()));
+  useEffect(() => {
+    if (!orderRef || !orderWaiting) return;
+    let alive = true;
+    let n = 0;
+    const t = setInterval(async () => {
+      n += 1;
+      try {
+        const fresh = await billingApi.refreshOrder(orderRef);
+        if (alive) setOrder(fresh);
+      } catch { /* keep trying */ }
+      if (n >= 30) clearInterval(t);
+    }, 2500);
+    return () => { alive = false; clearInterval(t); };
+  }, [orderRef, orderWaiting]);
+
   const billersQuery = useQuery({
     queryKey: ["billers", "airtime"],
     queryFn: () => billingApi.getBillers("airtime"),

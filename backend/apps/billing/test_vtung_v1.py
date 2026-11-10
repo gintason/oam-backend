@@ -185,7 +185,7 @@ class BaseUrlGuardTests(TestCase):
                          "https://sandbox.vtu.ng/v1")
 
 
-@override_settings(SECURE_SSL_REDIRECT=False, BILL_CONFIRM_WAIT_SECONDS=8)
+@override_settings(SECURE_SSL_REDIRECT=False, BILL_CONFIRM_WAIT_SECONDS=3)
 class QuickConfirmTests(TestCase):
     """VTU v1 says 'processing' first; the purchase reply should already say success."""
 
