@@ -174,3 +174,12 @@ class BillingFlowV1Tests(TestCase):
                              {"event": "transaction.completed", "data": {"reference": "NOPE"}}, format="json")
         self.assertEqual(r.status_code, 200)
         self.assertEqual(self.req.call_count, 0)
+
+
+class BaseUrlGuardTests(TestCase):
+    def test_legacy_wp_json_base_is_ignored(self):
+        from integrations.vtu.vtung.v1 import VtuNgV1
+        self.assertEqual(VtuNgV1({"secret_key": "k", "base_url": "https://vtu.ng/wp-json"}).base,
+                         "https://api.vtu.ng/v1")
+        self.assertEqual(VtuNgV1({"secret_key": "k", "base_url": "https://sandbox.vtu.ng/v1"}).base,
+                         "https://sandbox.vtu.ng/v1")

@@ -114,7 +114,9 @@ def _legacy_raw(body: dict) -> dict:
 class VtuNgV1:
     def __init__(self, config: dict):
         self.secret_key = str(config.get("secret_key") or "").strip()
-        self.base = str(config.get("base_url") or LIVE_BASE).rstrip("/")
+        base = str(config.get("base_url") or LIVE_BASE).rstrip("/")
+        # Guard against the legacy address (https://vtu.ng/wp-json) leaking in.
+        self.base = base if base.endswith("/v1") else LIVE_BASE
 
     # ---------------- http ----------------
     def _headers(self, idempotency_key: str | None = None) -> dict:
