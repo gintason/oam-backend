@@ -74,7 +74,13 @@ class VtuNgWebhookView(APIView):
         headers = {k.lower(): v for k, v in request.headers.items()}
 
         verify = getattr(provider, "verify_webhook", None)
-        if verify and not verify(request.body, headers):
+        signed_ok = bool(verify and verify(request.body, headers))
+        # v1 webhooks only trigger a requery (nothing is read from them), so an
+        # unconfirmed signature scheme can't be abused; legacy ones still must verify.
+        if getattr(provider, "v1", None):
+            if not signed_ok:
+                logger.info("vtung webhook: v1 signature not verified; requery only")
+        elif verify and not signed_ok:
             logger.warning("vtung webhook: bad signature from %s",
                            request.META.get("REMOTE_ADDR"))
             return Response({"detail": "Invalid signature."}, status=http.HTTP_403_FORBIDDEN)
@@ -88,6 +94,23 @@ class VtuNgWebhookView(APIView):
         # Log everything the first few times — this is how we learn the real
         # payload shape rather than inferring it from the requery response.
         logger.info("vtung webhook payload: %s", json.dumps(payload, default=str)[:2000])
+
+        # Partner API v1: {"event": "transaction.completed", "data": {"reference": "BILL...", ...}}
+        # The reference is VTU's own, which we stored as provider_reference. We never
+        # trust a v1 payload: it only tells us WHICH order to re-check with VTU.ng.
+        if getattr(provider, "v1", None) and payload.get("event"):
+            d = payload.get("data") or {}
+            vtu_ref = str(d.get("reference") or d.get("transaction_reference") or "")
+            order = (BillOrder.objects.filter(provider_reference=vtu_ref).first() if vtu_ref else None)
+            if order is None:
+                logger.warning("vtung webhook: unknown v1 reference %s (%s)", vtu_ref, payload.get("event"))
+                return Response({"status": "ignored"}, status=http.HTTP_200_OK)
+            try:
+                from .refresh import refresh_order
+                refresh_order(order)
+            except Exception:                                # noqa: BLE001
+                logger.exception("vtung webhook: refresh failed for %s", order.reference)
+            return Response({"status": "ok"}, status=http.HTTP_200_OK)
 
         reference = _dig(payload, "request_id", "reference", "requestId")
         raw_status = _dig(payload, "status").lower()

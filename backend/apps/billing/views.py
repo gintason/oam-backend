@@ -220,6 +220,10 @@ class VtuNgWebhookView(APIView):
 
     def post(self, request):
         provider = ProviderFactory.get("vtu")
+        if getattr(provider, "v1", None):
+            # New Partner API: handled by the requery-only webhook (never trusts the body).
+            from .webhook_vtung import VtuNgWebhookView as V1Webhook
+            return V1Webhook().post(request)
         headers = {k.lower(): v for k, v in request.headers.items()}
         verify = getattr(provider, "verify_webhook", None)
         if verify and not verify(request.body, headers):
