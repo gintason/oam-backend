@@ -29,6 +29,7 @@ from integrations.base.dto import StatusResult, TxnStatus, VTUResult
 from integrations.base.exceptions import (
     ProviderAuthError,
     ProviderError,
+    ProviderNotFound,
     ProviderTimeout,
     ProviderUnavailable,
     ProviderValidationError,
@@ -199,7 +200,7 @@ class VtuNgV1:
                                 params={"type": "bill_payment"})
         if code == 404:
             # Not (yet) on VTU's side. Don't settle anything: poll() leaves it as-is.
-            raise ProviderError("vtung", "transaction not found", raw=body)
+            raise ProviderNotFound("vtung", "transaction not found", raw=body)
         if code >= 400:
             raise ProviderError("vtung", _error_message(body) or f"requery failed ({code})", raw=body)
         txn = _txn_from(body)

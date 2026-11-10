@@ -18,6 +18,10 @@ class ProviderAuthError(ProviderError):
     """Credentials rejected / expired. Not retryable without re-auth."""
 
 
+class ProviderNotFound(ProviderError):
+    """The provider has no record of this transaction (it never reached them)."""
+
+
 class ProviderValidationError(ProviderError):
     """The provider rejected the request payload (4xx). Not retryable as-is."""
 

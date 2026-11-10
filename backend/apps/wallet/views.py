@@ -25,6 +25,14 @@ class WalletListView(APIView):
         # Credit any top-up that was paid but not confirmed when they left the checkout.
         from apps.payments.services import reconcile_user_funding
         reconcile_user_funding(request.user)
+        # Refund this user's bill orders that never reached VTU.ng (30+ min old).
+        try:
+            from django.core.cache import cache
+            if cache.add(f"bill-unreached:{request.user.pk}", 1, 120):
+                from apps.billing.services import BillingService
+                BillingService.sweep_unreached(user=request.user, limit=5)
+        except Exception:                                   # noqa: BLE001 — never break the wallet screen
+            pass
         # Ensure the user always has at least their default wallet.
         WalletService.get_or_create_wallet(request.user, currency)
         wallets = Wallet.objects.filter(user=wallet_owner(request.user)).order_by("currency")

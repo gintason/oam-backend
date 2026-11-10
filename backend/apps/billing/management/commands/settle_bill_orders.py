@@ -97,6 +97,13 @@ class Command(BaseCommand):
                 msg += f" | token {o.token}"
             self.stdout.write(self.style.SUCCESS(msg) if o.status == BillOrder.Status.SUCCESS else msg)
 
+        # ---- 1b. refund orders that never reached VTU.ng (30+ min, no record) - #
+        if apply_changes:
+            st = BillingService.sweep_unreached()
+            if st["checked"]:
+                self.stdout.write(f"  never-reached check: checked {st['checked']} · "
+                                  f"refunded {st['refunded']} · settled {st['settled']}")
+
         # ---- 2. recover tokens for already-successful orders -------------- #
         for o in tokenless:
             if not apply_changes:

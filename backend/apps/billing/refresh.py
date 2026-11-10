@@ -45,6 +45,8 @@ def refresh_order(order: BillOrder) -> BillOrder:
     if state in ("pending", "processing"):
         try:
             order = BillingService.poll(order)
+            if str(order.status).lower() in ("pending", "processing"):
+                order = BillingService.refund_if_unreached(order)
         except Exception:                                  # noqa: BLE001
             return order
         state = str(order.status).lower()
