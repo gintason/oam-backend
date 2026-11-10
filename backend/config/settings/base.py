@@ -289,7 +289,8 @@ PROVIDER_CONFIG = {
                   # New Partner API (v1): when set, used instead of username/password.
                   "secret_key": env("VTU_NG_SECRET_KEY", default=""),
                   "webhook_secret": env("VTU_NG_WEBHOOK_SECRET", default=""),
-                  "base_url": env("VTU_NG_BASE_URL", default="https://api.vtu.ng/v1")},
+                  # NOT VTU_NG_BASE_URL: that older setting holds the legacy wp-json address.
+                  "base_url": env("VTU_NG_V1_BASE_URL", default="https://api.vtu.ng/v1")},
     },
 
     "hotels": {
