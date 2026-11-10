@@ -45,6 +45,9 @@ class BillingError(Exception):
     """User-facing billing problem (bad biller, etc.)."""
 
 
+import logging
+logger = logging.getLogger("billing")
+
 class BillingService:
     # ---------------- catalog ----------------
     @staticmethod
@@ -89,6 +92,40 @@ class BillingService:
 
     @staticmethod
     def execute(order: BillOrder) -> BillOrder:
+        o = BillingService._execute_once(order)
+        return BillingService._confirm_briefly(o)
+
+    @staticmethod
+    def _confirm_briefly(o: BillOrder) -> BillOrder:
+        """
+        VTU.ng's Partner API answers every purchase with "processing" and settles
+        a few seconds later. Re-check for a short while so the app can show
+        "successful" (and the electricity token) straight away. Anything still
+        unsettled afterwards is picked up by the refresh button / sweeper.
+        """
+        import time
+        from django.conf import settings as dj_settings
+        budget = float(getattr(dj_settings, "BILL_CONFIRM_WAIT_SECONDS", 8) or 0)
+        if budget <= 0 or not o.provider_reference:
+            return o
+        waited, step = 0.0, 1.5
+        while waited < budget:
+            needs_token = (o.status == BillOrder.Status.SUCCESS and o.category == "electricity"
+                           and (o.meter_type or "").lower() != "postpaid" and not o.token)
+            if o.status != BillOrder.Status.PROCESSING and not needs_token:
+                break
+            time.sleep(step)
+            waited += step
+            try:
+                from .refresh import refresh_order
+                o = refresh_order(o)
+            except Exception:                       # noqa: BLE001 — never break the purchase reply
+                logger.warning("bill %s: quick confirm failed", o.reference, exc_info=True)
+                break
+        return o
+
+    @staticmethod
+    def _execute_once(order: BillOrder) -> BillOrder:
         provider = ProviderFactory.get("vtu")
         result, error = None, None
         try:
