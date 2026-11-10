@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { View, ScrollView, Pressable, ActivityIndicator, Modal } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
+import { useOrderPoll } from "@/features/bills/model/use-order-poll";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, BadgeCheck, CheckCircle2, Loader2, XCircle, Zap, Wallet, CreditCard, ChevronDown, Check } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
@@ -37,6 +38,7 @@ export default function Electricity() {
   const [error, setError] = useState<string | null>(null);
   const [lowFunds, setLowFunds] = useState(false);
   const [order, setOrder] = useState<BillOrder | null>(null);
+  useOrderPoll(order, setOrder);   // keep checking until the provider confirms
   const [confirming, setConfirming] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [cardUrl, setCardUrl] = useState<string | null>(null);

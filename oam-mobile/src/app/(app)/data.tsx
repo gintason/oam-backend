@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, ScrollView, Pressable, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
+import { useOrderPoll } from "@/features/bills/model/use-order-poll";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Check, CheckCircle2, Loader2, XCircle, Wifi, Wallet, CreditCard } from "lucide-react-native";
 import { Screen, Text, Input, Button } from "@/shared/ui";
@@ -29,6 +30,7 @@ export default function Data() {
   const [error, setError] = useState<string | null>(null);
   const [lowFunds, setLowFunds] = useState(false);
   const [order, setOrder] = useState<BillOrder | null>(null);
+  useOrderPoll(order, setOrder);   // keep checking until the provider confirms
   const [confirming, setConfirming] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [cardUrl, setCardUrl] = useState<string | null>(null);

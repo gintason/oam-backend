@@ -3,6 +3,7 @@ export type { PurchaseInput, VerifyInput } from "./api/bills-api";
 export { useBillers } from "./model/use-billers";
 export { useDataPlans } from "./model/use-data-plans";
 export { useTvPlans } from "./model/use-tv-plans";
+export { useOrderPoll } from "./model/use-order-poll";
 export { ConfirmPurchase } from "./ui/ConfirmPurchase";
 export { PaySummary } from "./ui/PaySummary";
 export { PaystackModal } from "./ui/PaystackModal";
