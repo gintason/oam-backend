@@ -48,6 +48,17 @@ class BillingError(Exception):
 import logging
 logger = logging.getLogger("billing")
 
+
+def _notify_refund(order) -> None:
+    """Tell the customer their money is back. Never raises."""
+    try:
+        from apps.notifications.services import notify
+        notify(order.user, kind="general", title="Purchase refunded",
+               body=(f"Your {order.category} purchase of NGN {order.amount:,.0f} for {order.recipient} "
+                     "could not be completed, so the money is back in your O.A.M wallet. Please try again."))
+    except Exception:                                       # noqa: BLE001
+        logger.warning("refund notification failed for %s", order.reference, exc_info=True)
+
 class BillingService:
     # ---------------- catalog ----------------
     @staticmethod
@@ -123,6 +134,74 @@ class BillingService:
                 logger.warning("bill %s: quick confirm failed", o.reference, exc_info=True)
                 break
         return o
+
+    # ---------------- auto-refund orders that never reached VTU.ng ----------------
+    UNREACHED_AFTER_MINUTES = 30
+
+    @staticmethod
+    def refund_if_unreached(order: BillOrder) -> BillOrder:
+        """
+        A bill order still "processing" 30+ minutes after purchase: ask VTU.ng.
+          * VTU.ng settled it        -> apply that (success / refunded)
+          * VTU.ng has NO record     -> it never reached them: refund the wallet
+          * VTU.ng unreachable/other -> leave it; try again later
+        Only for orders VTU.ng's Partner API can see: empty provider reference
+        or a v1 reference (BILL2026...). Orders from the old VTU.ng system are
+        never touched (the new API can't see them, so "not found" means nothing).
+        """
+        import re
+        from datetime import timedelta
+        from django.utils import timezone
+        from integrations.base.exceptions import ProviderNotFound
+
+        if order.status not in (BillOrder.Status.PENDING, BillOrder.Status.PROCESSING):
+            return order
+        if order.created_at > timezone.now() - timedelta(minutes=BillingService.UNREACHED_AFTER_MINUTES):
+            return order
+        ref = (order.provider_reference or "").strip()
+        if ref and not re.match(r"^BILL\d", ref):
+            return order                                    # old-system order
+        provider = ProviderFactory.get("vtu")
+        if not getattr(provider, "v1", None):
+            return order                                    # only the v1 API can say "not found"
+        try:
+            result = provider.get_status(order.reference)
+        except ProviderNotFound:
+            o = BillingService._apply(order, TxnStatus.FAILED,
+                                      {"note": "auto-refund: VTU.ng has no record of this order"})
+            if o.status == BillOrder.Status.FAILED:
+                logger.warning("bill %s auto-refunded (never reached VTU.ng)", o.reference)
+                _notify_refund(o)
+            return o
+        except ProviderError:
+            return order                                    # VTU.ng down: retry later
+        return BillingService._apply(order, result.status, result.raw,
+                                     provider_reference=result.provider_reference or None)
+
+    @staticmethod
+    def sweep_unreached(*, user=None, limit=50) -> dict:
+        """Run refund_if_unreached over old processing orders (optionally one user's)."""
+        from datetime import timedelta
+        from django.utils import timezone
+        cutoff = timezone.now() - timedelta(minutes=BillingService.UNREACHED_AFTER_MINUTES)
+        qs = BillOrder.objects.filter(status__in=[BillOrder.Status.PENDING, BillOrder.Status.PROCESSING],
+                                      created_at__lte=cutoff,
+                                      created_at__gte=timezone.now() - timedelta(days=30))
+        if user is not None:
+            qs = qs.filter(user=user)
+        stats = {"checked": 0, "refunded": 0, "settled": 0}
+        for o in qs.order_by("created_at")[:limit]:
+            stats["checked"] += 1
+            try:
+                after = BillingService.refund_if_unreached(o)
+            except Exception:                               # noqa: BLE001 — one bad order can't stop the rest
+                logger.warning("bill %s: unreached sweep failed", o.reference, exc_info=True)
+                continue
+            if after.status == BillOrder.Status.FAILED and "auto-refund" in str((after.response_payload or {}).get("resolve", "")):
+                stats["refunded"] += 1
+            elif after.status not in (BillOrder.Status.PENDING, BillOrder.Status.PROCESSING):
+                stats["settled"] += 1
+        return stats
 
     @staticmethod
     def _execute_once(order: BillOrder) -> BillOrder:

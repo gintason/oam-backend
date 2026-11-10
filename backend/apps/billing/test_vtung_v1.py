@@ -214,3 +214,73 @@ class QuickConfirmTests(TestCase):
                                     recipient="0803", amount="200")
         self.assertEqual(o.status, BillOrder.Status.PROCESSING)
         self.assertLessEqual(self.sleep.call_count, 6)
+
+
+@override_settings(SECURE_SSL_REDIRECT=False)
+class AutoRefundUnreachedTests(TestCase):
+    """Orders still processing 30+ min that VTU.ng has never heard of are refunded."""
+
+    def setUp(self):
+        from datetime import timedelta
+        from django.utils import timezone
+        Biller.objects.create(country="NG", category="airtime", code="MTN", name="MTN")
+        self.user = get_user_model().objects.create_user(email="ar@oam.test", password="x-Pass-12345", is_verified=True)
+        self.wallet = WalletService.get_or_create_wallet(self.user, "NGN")
+        WalletService.credit(self.wallet, Decimal("1000"), description="fund")
+        self.adapter = VtuNgAdapter(CFG)
+        p = mock.patch("apps.billing.services.ProviderFactory.get", return_value=self.adapter); p.start(); self.addCleanup(p.stop)
+        p = mock.patch("integrations.vtu.vtung.v1.requests.request"); self.req = p.start(); self.addCleanup(p.stop)
+        self.old = timezone.now() - timedelta(minutes=45)
+
+    def make(self, provider_reference="", age_old=True):
+        o = BillingService.create_and_hold(user=self.user, country="NG", category="airtime", code="MTN",
+                                           recipient="0803", amount="200")
+        BillOrder.objects.filter(pk=o.pk).update(provider_reference=provider_reference,
+                                                 **({"created_at": self.old} if age_old else {}))
+        return BillOrder.objects.get(pk=o.pk)
+
+    def balance(self):
+        return Wallet.objects.get(pk=self.wallet.pk).cached_balance
+
+    def test_not_found_is_refunded_and_notified(self):
+        o = self.make()
+        self.assertEqual(self.balance(), Decimal("800"))
+        self.req.return_value = resp(404, {"error": {"code": "not_found"}})
+        with mock.patch("apps.notifications.services.notify") as n:
+            o = BillingService.refund_if_unreached(o)
+        self.assertEqual(o.status, BillOrder.Status.FAILED)
+        self.assertEqual(self.balance(), Decimal("1000"))
+        self.assertTrue(n.called)
+
+    def test_found_completed_is_success_not_refunded(self):
+        o = self.make(provider_reference="BILL202611100001")
+        self.req.return_value = resp(200, {"data": txn("completed")["transaction"]})
+        o = BillingService.refund_if_unreached(o)
+        self.assertEqual(o.status, BillOrder.Status.SUCCESS)
+        self.assertEqual(self.balance(), Decimal("800"))
+
+    def test_vtu_down_leaves_it(self):
+        o = self.make()
+        self.req.return_value = resp(503, {"error": {"code": "api_disabled"}})
+        o = BillingService.refund_if_unreached(o)
+        self.assertEqual(o.status, BillOrder.Status.PROCESSING)
+        self.assertEqual(self.balance(), Decimal("800"))
+
+    def test_too_young_and_old_system_orders_untouched(self):
+        young = self.make(age_old=False)
+        legacy = self.make(provider_reference="6170805")
+        legacy2 = self.make(provider_reference=legacy.reference)          # old system echoed our ref
+        self.req.return_value = resp(404, {"error": {"code": "not_found"}})
+        for o in (young, legacy, legacy2):
+            self.assertEqual(BillingService.refund_if_unreached(o).status, BillOrder.Status.PROCESSING)
+        self.assertEqual(self.req.call_count, 0)
+
+    def test_sweep_and_wallet_screen(self):
+        self.make()
+        self.req.return_value = resp(404, {"error": {"code": "not_found"}})
+        api = APIClient(); api.force_authenticate(self.user)
+        with mock.patch("apps.notifications.services.notify"):
+            r = api.get("/api/v1/wallet/")
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertEqual(self.balance(), Decimal("1000"))
+        self.assertEqual(BillOrder.objects.get().status, BillOrder.Status.FAILED)
