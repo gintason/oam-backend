@@ -80,7 +80,10 @@ export function ReportBlockSheet({ visible, onClose, target, id, canBlock = true
   const close = () => {
     const wasBlocked = blocked;
     reset(); setBlocked(false); onClose();
-    if (wasBlocked) onBlocked?.();
+    // iPhone: leaving the screen while this sheet is still sliding away can leave an
+    // invisible layer over the app (nothing responds, not even Back). Wait for the
+    // sheet to finish closing before navigating.
+    if (wasBlocked) setTimeout(() => onBlocked?.(), Platform.OS === "ios" ? 500 : 0);
   };
   const refreshFeeds = () => {
     // Hide the blocked person everywhere straight away.
