@@ -104,6 +104,16 @@ class Command(BaseCommand):
                 self.stdout.write(f"  never-reached check: checked {st['checked']} · "
                                   f"refunded {st['refunded']} · settled {st['settled']}")
 
+        # ---- 1c. gift card / RMB trades waiting on VTU.ng -------------------- #
+        if apply_changes:
+            try:
+                from apps.vtutrade.services import TradeService
+                n = TradeService.sweep()
+                if n:
+                    self.stdout.write(f"  trades settled: {n}")
+            except Exception as exc:                          # noqa: BLE001
+                self.stdout.write(self.style.ERROR(f"  trade sweep failed — {exc}"))
+
         # ---- 2. recover tokens for already-successful orders -------------- #
         for o in tokenless:
             if not apply_changes:

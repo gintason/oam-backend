@@ -31,6 +31,8 @@ class WalletListView(APIView):
             if cache.add(f"bill-unreached:{request.user.pk}", 1, 120):
                 from apps.billing.services import BillingService
                 BillingService.sweep_unreached(user=request.user, limit=5)
+                from apps.vtutrade.services import TradeService
+                TradeService.sweep(user=request.user, limit=5)
         except Exception:                                   # noqa: BLE001 — never break the wallet screen
             pass
         # Ensure the user always has at least their default wallet.

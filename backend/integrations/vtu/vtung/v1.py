@@ -310,6 +310,76 @@ class VtuNgV1:
             raise ProviderValidationError("vtung", _error_message(body) or "Verification failed")
         return {k: val for k, val in details.items() if val is not None}
 
+    # ---------------- gift cards & RMB (need KYB + scopes on the VTU.ng key) ----------------
+    def _multipart(self, path, *, data, files, idem):
+        """POST multipart/form-data (images / QR codes)."""
+        headers = self._headers(idem)
+        headers.pop("Content-Type", None)          # requests sets the multipart boundary
+        try:
+            resp = requests.post(f"{self.base}{path}", data=data, files=files,
+                                 headers=headers, timeout=TIMEOUT)
+        except requests.Timeout as exc:
+            raise ProviderTimeout("vtung", f"{path} timeout") from exc
+        except requests.RequestException as exc:
+            raise ProviderUnavailable("vtung", str(exc)) from exc
+        try:
+            body = resp.json() if resp.content else {}
+        except ValueError:
+            body = {"_raw": resp.text[:500]}
+        return resp.status_code, body
+
+    def _get_ok(self, path, params=None):
+        code, body = self._call("GET", path, params=params)
+        if code >= 400:
+            raise ProviderError("vtung", _error_message(body) or f"{path} failed ({code})", raw=body)
+        return body
+
+    def gc_buy_countries(self):
+        return self._get_ok("/gift-cards/buy/countries").get("data") or []
+
+    def gc_buy_products(self, country_code):
+        return self._get_ok("/gift-cards/buy/products", {"country_code": country_code}).get("data") or []
+
+    def gc_buy_calculate(self, product_id, amount, quantity):
+        code, body = self._call("POST", "/gift-cards/buy/calculate",
+                                json={"product_id": int(product_id), "amount": amount, "quantity": int(quantity)})
+        if code >= 400:
+            raise ProviderValidationError("vtung", _error_message(body) or "Could not price this card.", raw=body)
+        return body.get("data") or {}
+
+    def gc_buy(self, ref, product_id, amount, quantity, expected_amount_ngn):
+        return self._call("POST", "/gift-cards/buy", idem=ref,
+                          json={"product_id": int(product_id), "amount": amount, "quantity": int(quantity),
+                                "expected_amount_ngn": expected_amount_ngn})
+
+    def gc_sell_catalog(self):
+        return self._get_ok("/gift-cards/sell/catalog").get("data") or []
+
+    def gc_sell_rates(self, slug=None):
+        return self._get_ok("/gift-cards/sell/rates", {"slug": slug} if slug else None).get("data") or []
+
+    def gc_sell(self, ref, fields: dict, images=None):
+        files = [("images[]", (name, content, ctype)) for name, content, ctype in (images or [])]
+        if files:
+            return self._multipart("/gift-cards/sell", data=fields, files=files, idem=ref)
+        return self._call("POST", "/gift-cards/sell", json=fields, idem=ref)
+
+    def rmb_rates(self):
+        return self._get_ok("/rmb/buy/rates").get("data") or {}
+
+    def rmb_buy(self, ref, fields: dict, qr=None):
+        files = [("qr_code", qr)] if qr else []
+        return self._multipart("/rmb/buy", data=fields, files=files or None, idem=ref)
+
+    def get_transaction(self, ref, txn_type):
+        """Look a trade up by OUR reference (the Idempotency-Key we sent)."""
+        code, body = self._call("GET", f"/transactions/{ref}", params={"type": txn_type})
+        if code == 404:
+            raise ProviderNotFound("vtung", "transaction not found", raw=body)
+        if code >= 400:
+            raise ProviderError("vtung", _error_message(body) or f"lookup failed ({code})", raw=body)
+        return _txn_from(body)
+
     # ---------------- ePIN ----------------
     def epin_stock(self) -> dict:
         """{"stock": {"MTN": {"100": 45, ...}}, "pack_size": 10, "max_packs_per_transaction": 5}"""

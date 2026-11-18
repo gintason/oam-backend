@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     "apps.deliveries",  # [oam-deliveries] delivery & dispatch
     "apps.seo",  # [oam-seo] sitemap, robots, public pages
     "apps.moderation",  # reports & blocks (App Store 1.2)
+    "apps.vtutrade",  # gift cards & RMB via VTU.ng (off until KYB)
     # ...
 ]
 
@@ -578,3 +579,15 @@ BILL_SERVICE_FEES = {
 COMPANY_WALLET_OWNER = env("COMPANY_WALLET_OWNER", default="oammotors@gmail.com")
 COMPANY_WALLET_SHARED_WITH = env.list("COMPANY_WALLET_SHARED_WITH",
                                       default=["oammotors@gmail.com", "gintason@gmail.com"])
+
+
+# --- Gift cards & RMB via VTU.ng (apps.vtutrade) -----------------------------
+# Off until VTU.ng approves O.A.M's KYB and the API key has the gift_cards / rmb scopes.
+VTU_GIFTCARDS_ENABLED = env.bool("VTU_GIFTCARDS_ENABLED", default=False)
+VTU_RMB_ENABLED = env.bool("VTU_RMB_ENABLED", default=False)
+# Keep these off the iPhone app even when switched on (App Store: financial services).
+VTU_TRADE_SHOW_ON_IOS = env.bool("VTU_TRADE_SHOW_ON_IOS", default=False)
+# O.A.M's cut, in percent: added to gift card / RMB prices, taken from gift card sale payouts.
+GIFTCARD_BUY_MARKUP_PCT = env.float("GIFTCARD_BUY_MARKUP_PCT", default=0)
+GIFTCARD_SELL_MARGIN_PCT = env.float("GIFTCARD_SELL_MARGIN_PCT", default=0)
+RMB_MARKUP_PCT = env.float("RMB_MARKUP_PCT", default=0)
