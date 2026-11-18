@@ -52,6 +52,8 @@ import BuyElectricity from "./pages/services/BuyElectricity";
 import BuyBetting from "./pages/services/BuyBetting";
 import BuyData from "./pages/services/BuyData";
 import BuyCable from "./pages/services/BuyCable"
+import BuyEducation from "./pages/services/BuyEducation";
+import BuyEpin from "./pages/services/BuyEpin";
 import FundWallet from "./pages/services/FundWallet";
 import Withdraw from "./pages/services/Withdraw";
 import Transfer from "./pages/services/Transfer";
@@ -161,6 +163,8 @@ export default function App() {
               <Route path="/services/betting" element={<PublicOrApp app={<BuyBetting />} pub={<ServiceLanding />} />} />
               <Route path="/referral" element={<RequireAuth><Referral /></RequireAuth>} />
               <Route path="/services/cable" element={<PublicOrApp app={<BuyCable />} pub={<ServiceLanding />} />} />
+              <Route path="/services/education" element={<PublicOrApp app={<BuyEducation />} pub={<ServiceLanding />} />} />
+              <Route path="/services/epin" element={<PublicOrApp app={<BuyEpin />} pub={<ServiceLanding />} />} />
               <Route path="/services/giftcards" element={<PublicOrApp app={<GiftCards />} pub={<ServiceLanding />} />} />
               <Route path="/ecommerce" element={<RequireAuth><Ecommerce /></RequireAuth>} />
               <Route path="/ecommerce/:slug" element={<RequireAuth><EcommerceCompany /></RequireAuth>} />

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BUS_TICKETS_LIVE } from "../config/features";
-import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus, BriefcaseBusiness, PackageCheck } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus, BriefcaseBusiness, PackageCheck, GraduationCap } from "lucide-react";
 import { useState } from "react";
 import AppHeader from "../components/AppHeader";
 import { useUserScope } from "../auth/useUserScope";
@@ -142,6 +142,8 @@ export default function Dashboard() {
                   { to: "/services/data", icon: <Wifi size={20} strokeWidth={1.75} />, label: t("dashboard.services.data"), tint: "green" },
                   { to: "/services/electricity", icon: <Zap size={20} strokeWidth={1.75} />, label: t("dashboard.services.electricity"), tint: "green" },
                   { to: "/services/cable", icon: <Tv size={20} strokeWidth={1.75} />, label: t("dashboard.services.cable"), tint: "green" },
+                  { to: "/services/education", icon: <GraduationCap size={20} strokeWidth={1.75} />, label: t("dashboard.services.education", "Education"), tint: "green" },
+                  { to: "/services/epin", icon: <CreditCard size={20} strokeWidth={1.75} />, label: t("dashboard.services.epin", "Recharge Cards"), tint: "green" },
                 ]}
               />
               <ServiceGroup

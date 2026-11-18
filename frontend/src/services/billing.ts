@@ -6,7 +6,7 @@
 import { api } from "../lib/api";
 import type { Paginated } from "./types";
 
-export type BillCategory = "airtime" | "data" | "electricity" | "cable" | "betting";
+export type BillCategory = "airtime" | "data" | "electricity" | "cable" | "betting" | "education" | "epin";
 
 export type Biller = {
   id: string;
@@ -30,7 +30,12 @@ export type PurchaseInput = {
   verification_id?: string;
   /** Cable package id (backend also accepts plan_code). */
   variation_id?: string;
+  /** Education cards / ePIN packs (1-5). */
+  quantity?: number;
 };
+
+export type EpinCard = { id: string; network: string; denomination: number; pieces_count: number; image_url?: string };
+export type EpinStock = { stock: Record<string, Record<string, number>>; pack_size: number; max_packs: number; denominations: number[] };
 
 export type BillOrder = {
   id: string;
@@ -50,6 +55,10 @@ export type BillOrder = {
   meter_type?: string;          // prepaid | postpaid
   token?: string;               // ELECTRICITY: the recharge token
   units?: string;               // ELECTRICITY: units purchased
+  pins?: { serial: string; pin: string }[];   // EDUCATION: exam card PINs
+  epin_cards?: EpinCard[];      // ePIN: packs of 10 printable recharge cards
+  quantity?: number;
+  plan_name?: string;
   created_at: string;
   updated_at: string;
 };
@@ -163,6 +172,18 @@ export const billingApi = {
   },
 
   /** Live cable packages (GET /billing/tv-plans/?code=dstv). */
+  /** Live exam card prices (code: waec | waec-registration | jamb). */
+  async getEducationPlans(code: string, country = "NG"): Promise<Plan[]> {
+    const { data } = await api.get<{ plans: Plan[] }>("/billing/education-plans/", { params: { code, country } });
+    return data.plans ?? [];
+  },
+
+  /** Recharge card (ePIN) stock per network and value. */
+  async getEpinStock(): Promise<EpinStock> {
+    const { data } = await api.get<EpinStock>("/billing/epin-stock/");
+    return data;
+  },
+
   async getTvPlans(code: string, country = "NG"): Promise<Plan[]> {
     const { data } = await api.get<{ plans: Plan[] }>("/billing/tv-plans/", {
       params: { code, country },
@@ -172,7 +193,7 @@ export const billingApi = {
 
   /** Confirm a meter/smartcard belongs to a real customer before paying. */
   async verifyCustomer(input: {
-    category: "electricity" | "cable" | "betting";
+    category: "electricity" | "cable" | "betting" | "education";
     code: string;
     customer_id: string;
     meter_type?: string;
