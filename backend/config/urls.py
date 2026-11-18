@@ -30,6 +30,7 @@ urlpatterns = [
     path("api/v1/jobs/", include("apps.jobs.urls")),  # [oam-jobs]
     path("api/v1/deliveries/", include("apps.deliveries.urls")),  # [oam-deliveries]
     path("api/v1/moderation/", include("apps.moderation.urls")),  # reports & blocks
+    path("api/v1/trade/", include("apps.vtutrade.urls")),  # gift cards & RMB (VTU.ng)
     path("api/v1/public/", include("apps.seo.api_urls")),  # [oam-seo] public pages data
     # OpenAPI schema + docs (drives the typed web/mobile clients)
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

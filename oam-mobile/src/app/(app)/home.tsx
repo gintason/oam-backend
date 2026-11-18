@@ -5,10 +5,11 @@ import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Menu, Bus, History, Ticket, type LucideIcon, BriefcaseBusiness, PackageCheck, GraduationCap, CreditCard
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Menu, Bus, History, Ticket, type LucideIcon, BriefcaseBusiness, PackageCheck, GraduationCap, CreditCard, JapaneseYen
 }
 from "lucide-react-native";
 import { NotificationBell } from "@/features/notifications/NotificationBell";
+import { useTradeAvailability } from "@/features/trade/api";
 import { Screen, Text } from "@/shared/ui";
 import { Reveal, SpringPressable } from "@/shared/ui/motion";
 import { colors } from "@/shared/theme";
@@ -137,7 +138,17 @@ const SECTION_START = 300;   // ms — first service section
 const SECTION_STEP = 110;    // ms between sections
 const TILE_STEP = 45;        // ms between tiles in a section
 
+/** Gift card trading / RMB tiles, only when switched on (after VTU.ng KYB). */
+function withTrade(groups: typeof GROUPS, trade: { giftcards: boolean; rmb: boolean }) {
+  if (!trade.giftcards && !trade.rmb) return groups;
+  const extra: Tile[] = [];
+  if (trade.giftcards) extra.push({ id: "giftcard-trade", lkey: "giftcardTrade", label: "Buy & Sell Gift Cards", Icon: Gift, tint: "green" });
+  if (trade.rmb) extra.push({ id: "rmb", lkey: "rmb", label: "Pay in China", Icon: JapaneseYen, tint: "green" });
+  return groups.map((g) => (g.gkey === "money" ? { ...g, items: [...g.items, ...extra] } : g));
+}
+
 export default function Home() {
+  const trade = useTradeAvailability();
   const router = useRouter();
   const { open } = useDrawer();
   const { t } = useTranslation();
@@ -153,6 +164,8 @@ export default function Home() {
     if (id === "cable") return router.push("/cable");
     if (id === "education") return router.push("/education" as never);
     if (id === "epin") return router.push("/epin" as never);
+    if (id === "giftcard-trade") return router.push("/giftcard-trade" as never);
+    if (id === "rmb") return router.push("/rmb" as never);
     if (id === "fund") return router.push("/fund");
     if (id === "transfer") return router.push("/transfer");
     if (id === "withdraw") return router.push("/withdraw");
@@ -216,7 +229,7 @@ export default function Home() {
           <BalanceCard balance={headline?.balance} currency={headline?.currency} loading={wallets.isLoading} />
         </Reveal>
 
-        {GROUPS.map((group, gi) => (
+        {withTrade(GROUPS, trade).map((group, gi) => (
           <View key={group.gkey} style={{ marginTop: 22 }}>
             <Reveal delay={SECTION_START + gi * SECTION_STEP} from="left" distance={16}>
               <Text variant="title" style={{ marginBottom: 12 }}>

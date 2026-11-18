@@ -84,6 +84,8 @@ export default function AppLayout() {
       <Tabs.Screen name="cable" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="education" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="epin" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="giftcard-trade" options={{ href: null, tabBarStyle: { display: "none" } }} />
+      <Tabs.Screen name="rmb" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="fund" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="transfer" options={{ href: null, tabBarStyle: { display: "none" } }} />
       <Tabs.Screen name="transfer-wallet" options={{ href: null, tabBarStyle: { display: "none" } }} />

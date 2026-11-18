@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import { tradeApi } from "../services/trade";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BUS_TICKETS_LIVE } from "../config/features";
-import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus, BriefcaseBusiness, PackageCheck, GraduationCap } from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, BedDouble, Building2, Car, CreditCard, Eye, EyeOff, Gift, MapPinned, Plane, Plus, Receipt, Send, ShieldAlert, Smartphone, Store, Tv, Wifi, Wrench, Zap, ShoppingBag, Ticket, Bus, BriefcaseBusiness, PackageCheck, GraduationCap, JapaneseYen } from "lucide-react";
 import { useState } from "react";
 import AppHeader from "../components/AppHeader";
 import { useUserScope } from "../auth/useUserScope";
@@ -37,6 +38,8 @@ export default function Dashboard() {
   const defaultWallet =
     wallets.find((w) => w.currency === defaultCurrency) ?? wallets[0];
 
+  // Gift card trading / RMB tiles appear only once switched on (after VTU.ng KYB).
+  const tradeStatus = useQuery({ queryKey: ["trade-status"], queryFn: tradeApi.status, enabled: isVerified, staleTime: 300_000 });
   const txnsQuery = useQuery({
     queryKey: ["wallet", scope, "transactions", defaultCurrency],
     queryFn: () => walletApi.getTransactions(defaultCurrency),
@@ -153,6 +156,8 @@ export default function Dashboard() {
                   { to: "/wallet/withdraw", icon: <ArrowUpRight size={20} strokeWidth={1.75} />, label: t("dashboard.services.withdraw"), tint: "green" },
                   { to: "/wallet/send", icon: <Send size={20} strokeWidth={1.75} />, label: t("dashboard.services.transfer"), tint: "green" },
                   { to: "/services/giftcards", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftCards"), tint: "green" },
+                  ...(tradeStatus.data?.giftcards ? [{ to: "/services/giftcard-trade", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftcardTrade", "Buy & Sell Gift Cards"), tint: "green" as const }] : []),
+                  ...(tradeStatus.data?.rmb ? [{ to: "/services/rmb", icon: <JapaneseYen size={20} strokeWidth={1.75} />, label: t("dashboard.services.rmb", "Pay in China (RMB)"), tint: "green" as const }] : []),
                 ]}
               />
               <ServiceGroup

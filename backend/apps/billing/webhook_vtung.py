@@ -102,6 +102,16 @@ class VtuNgWebhookView(APIView):
             d = payload.get("data") or {}
             vtu_ref = str(d.get("reference") or d.get("transaction_reference") or "")
             order = (BillOrder.objects.filter(provider_reference=vtu_ref).first() if vtu_ref else None)
+            if order is None and vtu_ref:
+                from apps.vtutrade.models import TradeOrder
+                trade = TradeOrder.objects.filter(provider_reference=vtu_ref).first()
+                if trade is not None:
+                    try:
+                        from apps.vtutrade.services import TradeService
+                        TradeService.refresh(trade)
+                    except Exception:                        # noqa: BLE001
+                        logger.exception("vtung webhook: trade refresh failed for %s", trade.reference)
+                    return Response({"status": "ok"}, status=http.HTTP_200_OK)
             if order is None:
                 logger.warning("vtung webhook: unknown v1 reference %s (%s)", vtu_ref, payload.get("event"))
                 return Response({"status": "ignored"}, status=http.HTTP_200_OK)
