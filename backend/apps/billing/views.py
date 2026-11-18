@@ -166,7 +166,7 @@ class VerifyCustomerView(APIView):
         category = d.get("category")
         code = d.get("code")
         customer_id = d.get("customer_id") or d.get("recipient")
-        variation = d.get("variation") or d.get("meter_type") or None
+        variation = d.get("variation") or d.get("variation_id") or d.get("meter_type") or None
         if category not in ("cable", "electricity", "betting", "education") or not code or not customer_id:
             return Response({"detail": "category (cable/electricity/betting/education), code and customer_id are required."},
                             status=status.HTTP_400_BAD_REQUEST)

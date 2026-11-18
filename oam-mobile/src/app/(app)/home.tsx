@@ -5,7 +5,7 @@ import { useDrawer } from "@/features/navigation";
 import { useTranslation } from "react-i18next";
 import {
   Smartphone, Wifi, Zap, Tv, Plus, ArrowUpRight, Send, Gift,
-  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Menu, Bus, History, Ticket, type LucideIcon, BriefcaseBusiness, PackageCheck
+  Plane, BedDouble, Car, MapPinned, Store, Wrench, ShoppingBag, Menu, Bus, History, Ticket, type LucideIcon, BriefcaseBusiness, PackageCheck, GraduationCap, CreditCard
 }
 from "lucide-react-native";
 import { NotificationBell } from "@/features/notifications/NotificationBell";
@@ -34,6 +34,8 @@ const GROUPS: { title: string; gkey: string; items: Tile[] }[] = [
       { id: "data", lkey: "data", label: "Data", Icon: Wifi, tint: "green" },
       { id: "electricity", lkey: "electricity", label: "Electricity", Icon: Zap, tint: "green" },
       { id: "cable", lkey: "cable", label: "Cable TV", Icon: Tv, tint: "green" },
+      { id: "education", lkey: "education", label: "Education", Icon: GraduationCap, tint: "green" },
+      { id: "epin", lkey: "epin", label: "Recharge Cards", Icon: CreditCard, tint: "green" },
     ],
   },
   {
@@ -149,6 +151,8 @@ export default function Home() {
     if (id === "data") return router.push("/data");
     if (id === "electricity") return router.push("/electricity");
     if (id === "cable") return router.push("/cable");
+    if (id === "education") return router.push("/education" as never);
+    if (id === "epin") return router.push("/epin" as never);
     if (id === "fund") return router.push("/fund");
     if (id === "transfer") return router.push("/transfer");
     if (id === "withdraw") return router.push("/withdraw");
