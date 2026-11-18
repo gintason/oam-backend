@@ -71,7 +71,9 @@
       "jobs": "Jobs",
       "delivery": "Send Package",
       "education": "Education",
-      "epin": "Recharge Cards"
+      "epin": "Recharge Cards",
+      "giftcardTrade": "Buy & Sell Gift Cards",
+      "rmb": "Pay in China"
     },
     "verifyBanner": {
       "title": "Verify your account",
