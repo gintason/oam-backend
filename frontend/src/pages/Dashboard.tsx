@@ -147,6 +147,8 @@ export default function Dashboard() {
                   { to: "/services/cable", icon: <Tv size={20} strokeWidth={1.75} />, label: t("dashboard.services.cable"), tint: "green" },
                   { to: "/services/education", icon: <GraduationCap size={20} strokeWidth={1.75} />, label: t("dashboard.services.education", "Education"), tint: "green" },
                   { to: "/services/epin", icon: <CreditCard size={20} strokeWidth={1.75} />, label: t("dashboard.services.epin", "Recharge Cards"), tint: "green" },
+                  ...(tradeStatus.data?.giftcards ? [{ to: "/services/giftcard-trade", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftcardTrade", "Buy & Sell Gift Cards"), tint: "green" as const }] : []),
+                  ...(tradeStatus.data?.rmb ? [{ to: "/services/rmb", icon: <JapaneseYen size={20} strokeWidth={1.75} />, label: t("dashboard.services.rmb", "Pay in China (RMB)"), tint: "green" as const }] : []),
                 ]}
               />
               <ServiceGroup
@@ -156,8 +158,6 @@ export default function Dashboard() {
                   { to: "/wallet/withdraw", icon: <ArrowUpRight size={20} strokeWidth={1.75} />, label: t("dashboard.services.withdraw"), tint: "green" },
                   { to: "/wallet/send", icon: <Send size={20} strokeWidth={1.75} />, label: t("dashboard.services.transfer"), tint: "green" },
                   { to: "/services/giftcards", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftCards"), tint: "green" },
-                  ...(tradeStatus.data?.giftcards ? [{ to: "/services/giftcard-trade", icon: <Gift size={20} strokeWidth={1.75} />, label: t("dashboard.services.giftcardTrade", "Buy & Sell Gift Cards"), tint: "green" as const }] : []),
-                  ...(tradeStatus.data?.rmb ? [{ to: "/services/rmb", icon: <JapaneseYen size={20} strokeWidth={1.75} />, label: t("dashboard.services.rmb", "Pay in China (RMB)"), tint: "green" as const }] : []),
                 ]}
               />
               <ServiceGroup
