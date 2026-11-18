@@ -144,7 +144,7 @@ function withTrade(groups: typeof GROUPS, trade: { giftcards: boolean; rmb: bool
   const extra: Tile[] = [];
   if (trade.giftcards) extra.push({ id: "giftcard-trade", lkey: "giftcardTrade", label: "Buy & Sell Gift Cards", Icon: Gift, tint: "green" });
   if (trade.rmb) extra.push({ id: "rmb", lkey: "rmb", label: "Pay in China", Icon: JapaneseYen, tint: "green" });
-  return groups.map((g) => (g.gkey === "money" ? { ...g, items: [...g.items, ...extra] } : g));
+  return groups.map((g) => (g.gkey === "bills" ? { ...g, items: [...g.items, ...extra] } : g));
 }
 
 export default function Home() {
