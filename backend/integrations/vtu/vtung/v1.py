@@ -50,6 +50,10 @@ DISCOS = {
 }
 DISCO_SLUGS = set(DISCOS.values())
 CABLE = {"dstv", "gotv", "startimes"}
+# Our education biller codes -> (provider, service_type)
+EDUCATION = {"waec": ("waec", "result_checker"), "waec-registration": ("waec", "registration"),
+             "jamb": ("jamb", "jamb")}
+EPIN_DENOMINATIONS = {100, 200, 500, 1000}
 
 _SUCCESS = {"completed"}
 _FAILED = {"failed", "refunded", "cancelled"}
@@ -93,6 +97,22 @@ def _status_value(txn: dict) -> str:
     return str(st or "")
 
 
+def _as_pins(value) -> list:
+    """education_exam_pins can be a list or an object; return [{"serial","pin"}]."""
+    if not value:
+        return []
+    if isinstance(value, dict):
+        value = value.get("pins") or value.get("cards") or [value]
+    out = []
+    for v in value if isinstance(value, list) else []:
+        if isinstance(v, dict):
+            out.append({"serial": str(v.get("serial") or v.get("serial_number") or ""),
+                        "pin": str(v.get("pin") or v.get("token") or "")})
+        elif v:
+            out.append({"serial": "", "pin": str(v)})
+    return out
+
+
 def _legacy_raw(body: dict) -> dict:
     """Present a v1 body in the shape billing code already reads."""
     txn = _txn_from(body)
@@ -106,6 +126,9 @@ def _legacy_raw(body: dict) -> dict:
         "token": meta.get("electricity_token") or meta.get("token") or "",
         "units": meta.get("electricity_units") or meta.get("units") or "",
         "failure_reason": txn.get("failure_reason") or "",
+        # Education: [{"serial", "pin"}]; ePIN: [{"id","network","denomination","pieces_count","image_url",...}]
+        "pins": _as_pins(txn.get("education_exam_pins")),
+        "epin_cards": txn.get("epin_cards") or [],
     }
     return {"data": {k: v for k, v in data.items() if v not in (None, "")},
             "message": body.get("message", "") if isinstance(body, dict) else "",
@@ -168,6 +191,20 @@ class VtuNgV1:
             path, payload = "/bills/electricity", {
                 "disco_slug": disco_slug(req.operator), "meter_number": req.recipient,
                 "meter_type": (req.plan_code or "prepaid").lower(), "amount": int(req.amount)}
+        elif svc == "education":
+            prov = EDUCATION.get(str(req.operator).lower())
+            if not prov:
+                return VTUResult(status=TxnStatus.FAILED, provider_reference="",
+                                 raw={"data": {"status": "failed"}, "message": "Unknown exam."})
+            payload = {"provider": prov[0], "service_type": prov[1],
+                       "variation_code": req.plan_code, "quantity": int(req.quantity or 1)}
+            if prov[0] == "jamb":
+                payload["profile_id"] = req.profile_id or req.recipient
+            path = "/bills/education"
+        elif svc == "epin":
+            path, payload = "/bills/epin", {
+                "network": network_slug(req.operator), "denomination": int(req.plan_code),
+                "quantity": int(req.quantity or 1)}
         elif svc == "betting":
             path, payload = "/bills/bet-funding", {
                 "provider": betting_slug(req.operator), "account_id": req.recipient,
@@ -218,6 +255,12 @@ class VtuNgV1:
             if prov not in CABLE:
                 return []
             code, body = self._call("GET", "/bills/cable-packages", params={"provider": prov})
+        elif category == "education":
+            prov = EDUCATION.get(str(operator).lower())
+            if not prov:
+                return []
+            code, body = self._call("GET", "/bills/education-plans",
+                                    params={"provider": prov[0], "service_type": prov[1]})
         else:
             return []
         if code >= 400:
@@ -240,7 +283,12 @@ class VtuNgV1:
     def verify_customer(self, service_id, customer_id, variation=None):
         sid = str(service_id or "").strip()
         low = sid.lower()
-        if low in CABLE:
+        if low == "jamb":
+            code, body = self._call("POST", "/bills/education/verify-jamb",
+                                    json={"profile_id": str(customer_id), "variation_code": str(variation or "")})
+            v = (body.get("verification") if isinstance(body, dict) else None) or {}
+            details = {**v, "customer_name": v.get("customer_name")}
+        elif low in CABLE:
             code, body = self._call("POST", "/bills/cable-tv/verify-smartcard",
                                     json={"provider": low, "smartcard_number": str(customer_id)})
             v = (body.get("verification") if isinstance(body, dict) else None) or {}
@@ -261,6 +309,12 @@ class VtuNgV1:
         if code >= 400 or not details.get("customer_name"):
             raise ProviderValidationError("vtung", _error_message(body) or "Verification failed")
         return {k: val for k, val in details.items() if val is not None}
+
+    # ---------------- ePIN ----------------
+    def epin_stock(self) -> dict:
+        """{"stock": {"MTN": {"100": 45, ...}}, "pack_size": 10, "max_packs_per_transaction": 5}"""
+        code, body = self._call("GET", "/bills/epin-stock")
+        return body if code < 400 and isinstance(body, dict) else {}
 
     # ---------------- balance ----------------
     def get_balance(self, currency="NGN"):

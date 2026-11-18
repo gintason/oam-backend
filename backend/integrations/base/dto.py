@@ -88,6 +88,8 @@ class VTURequest:
     amount: Decimal
     plan_code: str = ""
     request_id: str = ""      # ← add this line
+    quantity: int = 1         # education cards / ePIN packs
+    profile_id: str = ""      # JAMB profile id
 
 
 @dataclass(slots=True)

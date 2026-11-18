@@ -23,6 +23,8 @@ class Biller(TimeStampedModel):
         DATA = "data", _("Data")
         ELECTRICITY = "electricity", _("Electricity")
         CABLE = "cable", _("Cable TV")
+        EDUCATION = "education", _("Education")
+        EPIN = "epin", _("ePIN (recharge cards)")
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     country = models.CharField(max_length=2, default="NG")     # ISO-2; NG for now
