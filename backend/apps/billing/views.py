@@ -12,7 +12,7 @@ from apps.wallet.exceptions import InsufficientFunds
 from integrations.base import ProviderFactory
 
 from .models import BillOrder
-from .serializers import BillerSerializer, BillOrderSerializer, PurchaseSerializer
+from .serializers import BillerSerializer, BillOrderListSerializer, BillOrderSerializer, PurchaseSerializer
 from .services import BillingError, BillingService
 
 
@@ -55,6 +55,25 @@ class PurchaseView(APIView):
                     user=request.user, country=data["country"], code=data["code"],
                     customer_id=data["recipient"], variation_id=variation_id,
                     verification_id=verification_id, currency=data["currency"],
+                )
+            elif data["category"] == "education":
+                variation_id = data.get("variation_id") or data.get("plan_code")
+                if not variation_id:
+                    return Response({"detail": "Choose an exam type."}, status=status.HTTP_400_BAD_REQUEST)
+                order = BillingService.purchase_education(
+                    user=request.user, country=data["country"], code=data["code"],
+                    variation_id=variation_id, quantity=data.get("quantity") or 1,
+                    recipient=data["recipient"], verification_id=data.get("verification_id"),
+                    currency=data["currency"],
+                )
+            elif data["category"] == "epin":
+                denomination = data.get("plan_code") or data.get("variation_id") or data.get("amount")
+                if not denomination:
+                    return Response({"detail": "Choose a card value."}, status=status.HTTP_400_BAD_REQUEST)
+                order = BillingService.purchase_epin(
+                    user=request.user, country=data["country"], code=data["code"],
+                    denomination=denomination, quantity=data.get("quantity") or 1,
+                    currency=data["currency"],
                 )
             elif data["category"] == "electricity":
                 meter_type = data.get("meter_type") or data.get("variation_id")
@@ -147,9 +166,9 @@ class VerifyCustomerView(APIView):
         category = d.get("category")
         code = d.get("code")
         customer_id = d.get("customer_id") or d.get("recipient")
-        variation = d.get("variation") or d.get("meter_type") or None
-        if category not in ("cable", "electricity", "betting") or not code or not customer_id:
-            return Response({"detail": "category (cable/electricity/betting), code and customer_id are required."},
+        variation = d.get("variation") or d.get("variation_id") or d.get("meter_type") or None
+        if category not in ("cable", "electricity", "betting", "education") or not code or not customer_id:
+            return Response({"detail": "category (cable/electricity/betting/education), code and customer_id are required."},
                             status=status.HTTP_400_BAD_REQUEST)
         if category == "electricity" and not variation:
             return Response({"detail": "meter_type (prepaid/postpaid) is required for electricity."},
@@ -183,9 +202,44 @@ class TvPlansView(APIView):
         return Response({"country": country.upper(), "code": code, "plans": public})
 
 
+class EducationPlansView(APIView):
+    """GET /education-plans/?code=waec|waec-registration|jamb — live exam card prices."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        country = request.query_params.get("country", "NG")
+        code = request.query_params.get("code")
+        if not code:
+            return Response({"detail": "code is required."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            plans = BillingService.education_plans(country, code)
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        public = [{"variation_id": p_.get("variation_id"), "name": p_.get("name"),
+                   "price": p_.get("price")} for p_ in plans]
+        return Response({"country": country.upper(), "code": code, "plans": public})
+
+
+class EpinStockView(APIView):
+    """GET /epin-stock/ — which recharge-card values are in stock, per network."""
+    permission_classes = [IsAuthenticated, IsVerified]
+
+    def get(self, request):
+        try:
+            data = BillingService.epin_stock() or {}
+        except BillingError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        stock = data.get("stock") or {}
+        # our network codes: VTU calls 9mobile "T2MOBILE"
+        stock = {("9MOBILE" if k.upper() == "T2MOBILE" else k.upper()): v for k, v in stock.items()}
+        return Response({"stock": stock, "pack_size": data.get("pack_size", 10),
+                         "max_packs": data.get("max_packs_per_transaction", 5),
+                         "denominations": list(BillingService.EPIN_DENOMINATIONS)})
+
+
 class OrderListView(ListAPIView):
     permission_classes = [IsAuthenticated, IsVerified]
-    serializer_class = BillOrderSerializer
+    serializer_class = BillOrderListSerializer
 
     def get_queryset(self):
         return BillOrder.objects.filter(user=self.request.user)

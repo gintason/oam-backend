@@ -1,10 +1,10 @@
 import { api } from "@/shared/api";
-import type { Biller, BillOrder, CardCheckout, Plan, VerifyResponse } from "@/entities/billing";
+import type { Biller, BillOrder, CardCheckout, EpinStock, Plan, VerifyResponse } from "@/entities/billing";
 
 export type PurchaseInput = {
   category: string; code: string; recipient: string;
   amount?: number | string; plan_code?: string; variation_id?: string;
-  verification_id?: string; meter_type?: string;
+  verification_id?: string; meter_type?: string; quantity?: number;
   currency?: string; country?: string; callback_url?: string;
 };
 
@@ -52,6 +52,11 @@ export const billsApi = {
 
   getDataPlans: (code: string, country = "NG") =>
     api.get<{ plans: Plan[] }>("/billing/data-plans/", { params: { code, country } }).then((r) => r.data.plans ?? []),
+
+  getEducationPlans: (code: string, country = "NG") =>
+    api.get<{ plans: Plan[] }>("/billing/education-plans/", { params: { code, country } }).then((r) => r.data.plans ?? []),
+
+  getEpinStock: () => api.get<EpinStock>("/billing/epin-stock/").then((r) => r.data),
 
   getTvPlans: (code: string, country = "NG") =>
     api.get<{ plans: Plan[] }>("/billing/tv-plans/", { params: { code, country } }).then((r) => r.data.plans ?? []),

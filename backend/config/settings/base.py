@@ -569,6 +569,8 @@ BILL_SERVICE_FEES = {
     "cable": env.int("CABLE_SERVICE_FEE", default=50),
     "electricity": env.int("ELECTRICITY_SERVICE_FEE", default=50),
     "betting": env.int("BETTING_SERVICE_FEE", default=0),
+    "education": env.int("EDUCATION_SERVICE_FEE", default=0),
+    "epin": env.int("EPIN_SERVICE_FEE", default=0),
 }
 
 # O.A.M admin accounts that share ONE company wallet (owned by COMPANY_WALLET_OWNER):

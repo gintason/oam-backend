@@ -214,6 +214,7 @@ class BillingService:
                 service=order.category, operator=order.biller.code,
                 recipient=order.recipient, amount=provider_amount,
                 plan_code=order.plan_code, request_id=order.reference,
+                quantity=int(md.get("quantity") or 1), profile_id=str(md.get("profile_id") or ""),
             ))
         except ProviderError as exc:
             error = str(exc)      # transport/unknown -> treat as PENDING (keep hold)
@@ -456,6 +457,93 @@ class BillingService:
         order.metadata = md
         order.save(update_fields=["cost_amount", "revenue_amount", "customer_name",
                                   "metadata", "updated_at"])
+        return BillingService.execute(order)
+
+    # ---------------- education (WAEC / JAMB) ----------------
+    @staticmethod
+    def _v1_provider():
+        provider = ProviderFactory.get("vtu")
+        if not getattr(provider, "v1", None):
+            raise BillingError("This service is not available right now.")
+        return provider
+
+    @staticmethod
+    def education_plans(country, code):
+        BillingService._resolve_biller(country, "education", code)
+        return BillingService._v1_provider().list_variations("education", code)
+
+    @staticmethod
+    def purchase_education(*, user, country, code, variation_id, quantity=1, recipient="",
+                           verification_id=None, currency="NGN") -> BillOrder:
+        """WAEC result checker / registration or JAMB. Price comes from the live catalog."""
+        biller = BillingService._resolve_biller(country, "education", code)
+        quantity = int(quantity or 1)
+        if not 1 <= quantity <= 5:
+            raise BillingError("You can buy 1 to 5 at a time.")
+        plans = BillingService.education_plans(country, code)
+        match = next((p for p in plans if str(p.get("variation_id")) == str(variation_id)), None)
+        if match is None:
+            raise BillingError("Unknown or unavailable exam type.")
+        try:
+            unit = Decimal(str(match["price"]).replace(",", ""))
+        except Exception:
+            raise BillingError("Could not determine the price.")
+        if unit <= 0:
+            raise BillingError("Invalid price.")
+        profile_id, customer_name = "", ""
+        if biller.code.lower() == "jamb":
+            if not recipient:
+                raise BillingError("Enter the JAMB profile ID.")
+            cv = BillingService._require_verification(user, biller.code, recipient, verification_id)
+            profile_id, customer_name = str(recipient), cv.customer_name
+        provider_amount = unit * quantity
+        fee = service_fee("education")
+        order = BillingService.create_and_hold(
+            user=user, country=country, category="education", code=code,
+            recipient=str(recipient or match.get("name") or code)[:64], amount=provider_amount + fee,
+            currency=currency, plan_code=str(variation_id), expected_cost=provider_amount,
+        )
+        order.customer_name = customer_name
+        order.metadata = {**(order.metadata or {}), "provider_amount": str(provider_amount), "fee": str(fee),
+                          "quantity": quantity, "profile_id": profile_id, "plan_name": match.get("name", "")}
+        order.save(update_fields=["customer_name", "metadata", "updated_at"])
+        return BillingService.execute(order)
+
+    # ---------------- ePIN (recharge card packs) ----------------
+    EPIN_DENOMINATIONS = (100, 200, 500, 1000)
+
+    @staticmethod
+    def epin_stock():
+        return BillingService._v1_provider().v1.epin_stock()
+
+    @staticmethod
+    def purchase_epin(*, user, country, code, denomination, quantity=1, currency="NGN") -> BillOrder:
+        """Packs of 10 printable recharge cards. Charged at face value (10 x denomination x packs)."""
+        BillingService._resolve_biller(country, "epin", code)
+        try:
+            denomination = int(Decimal(str(denomination)))
+        except Exception:
+            raise BillingError("Choose a card value.")
+        if denomination not in BillingService.EPIN_DENOMINATIONS:
+            raise BillingError("Card value must be 100, 200, 500 or 1000.")
+        quantity = int(quantity or 1)
+        if not 1 <= quantity <= 5:
+            raise BillingError("You can buy 1 to 5 packs at a time.")
+        stock = (BillingService.epin_stock() or {}).get("stock") or {}
+        net = {"9MOBILE": "T2MOBILE"}.get(code.upper(), code.upper())
+        avail = (stock.get(net) or {}).get(str(denomination))
+        if avail is not None and int(avail) < quantity:
+            raise BillingError("Not enough cards of that value in stock right now. Try another value.")
+        amount = Decimal(denomination * 10 * quantity)
+        fee = service_fee("epin")
+        order = BillingService.create_and_hold(
+            user=user, country=country, category="epin", code=code,
+            recipient=f"{quantity} pack(s) of 10", amount=amount + fee, currency=currency,
+            plan_code=str(denomination), expected_cost=amount,
+        )
+        order.metadata = {**(order.metadata or {}), "provider_amount": str(amount), "fee": str(fee),
+                          "quantity": quantity}
+        order.save(update_fields=["metadata", "updated_at"])
         return BillingService.execute(order)
 
     @staticmethod

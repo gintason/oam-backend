@@ -284,3 +284,82 @@ class AutoRefundUnreachedTests(TestCase):
         self.assertEqual(r.status_code, 200, r.content)
         self.assertEqual(self.balance(), Decimal("1000"))
         self.assertEqual(BillOrder.objects.get().status, BillOrder.Status.FAILED)
+
+
+@override_settings(SECURE_SSL_REDIRECT=False)
+class EducationEpinTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(email="ed@oam.test", password="x-Pass-12345", is_verified=True)
+        self.wallet = WalletService.get_or_create_wallet(self.user, "NGN")
+        WalletService.credit(self.wallet, Decimal("20000"), description="fund")
+        self.api = APIClient(); self.api.force_authenticate(self.user)
+        adapter = VtuNgAdapter(CFG)
+        p = mock.patch("apps.billing.services.ProviderFactory.get", return_value=adapter); p.start(); self.addCleanup(p.stop)
+        p = mock.patch("integrations.vtu.vtung.v1.requests.request"); self.req = p.start(); self.addCleanup(p.stop)
+
+    def balance(self):
+        return Wallet.objects.get(pk=self.wallet.pk).cached_balance
+
+    def test_billers_seeded(self):
+        self.assertTrue(Biller.objects.filter(category="education", code="jamb").exists())
+        self.assertEqual(Biller.objects.filter(category="epin").count(), 4)
+
+    def test_waec_result_checker_returns_pins(self):
+        plans = resp(200, {"data": [{"variation_code": "waecdirect", "name": "WAEC Result Checker", "amount": 3500, "fixed_price": True}]})
+        done = {"message": "ok", "transaction": {"reference": "BILLE1", "status": {"value": "completed"},
+                "metadata": {}, "education_exam_pins": [{"serial": "SN1", "pin": "PIN1"}, {"serial": "SN2", "pin": "PIN2"}]}}
+        self.req.side_effect = [plans, resp(201, done)]
+        r = self.api.post("/api/v1/billing/purchase/", {"category": "education", "code": "waec", "recipient": "me",
+                                                        "variation_id": "waecdirect", "quantity": 2}, format="json")
+        self.assertEqual(r.status_code, 201, r.content)
+        body = r.json()
+        self.assertEqual(body["status"], "success")
+        self.assertEqual(body["pins"], [{"serial": "SN1", "pin": "PIN1"}, {"serial": "SN2", "pin": "PIN2"}])
+        self.assertEqual(Decimal(body["amount"]), Decimal("7000"))
+        sent = self.req.call_args_list[1][1]["json"]
+        self.assertEqual(sent, {"provider": "waec", "service_type": "result_checker", "variation_code": "waecdirect", "quantity": 2})
+        self.assertEqual(self.balance(), Decimal("13000"))
+
+    def test_jamb_requires_verification(self):
+        self.req.return_value = resp(200, {"data": [{"variation_code": "utme", "name": "UTME", "amount": 7700}]})
+        r = self.api.post("/api/v1/billing/purchase/", {"category": "education", "code": "jamb", "recipient": "12345678901",
+                                                        "variation_id": "utme"}, format="json")
+        self.assertEqual(r.status_code, 400)
+        self.req.return_value = resp(200, {"verification": {"customer_name": "ADA OBI", "profile_id": "12345678901"}})
+        r = self.api.post("/api/v1/billing/verify-customer/", {"category": "education", "code": "jamb",
+                                                               "customer_id": "12345678901", "variation": "utme"}, format="json")
+        self.assertEqual(r.status_code, 200, r.content)
+        self.assertEqual(r.json()["customer_name"], "ADA OBI")
+        self.assertEqual(self.req.call_args[1]["json"], {"profile_id": "12345678901", "variation_code": "utme"})
+
+    def test_epin_pack_priced_server_side_with_cards(self):
+        stock = resp(200, {"stock": {"MTN": {"500": 10}}, "pack_size": 10, "max_packs_per_transaction": 5})
+        done = {"message": "ok", "transaction": {"reference": "BILLP1", "status": {"value": "completed"}, "metadata": {},
+                "epin_cards": [{"id": "c1", "network": "MTN", "denomination": 500, "pieces_count": 10,
+                                "image_url": "data:image/webp;base64,AAAA"}]}}
+        self.req.side_effect = [stock, resp(201, done)]
+        r = self.api.post("/api/v1/billing/purchase/", {"category": "epin", "code": "MTN", "recipient": "x",
+                                                        "plan_code": "500", "quantity": 1, "amount": "1"}, format="json")
+        self.assertEqual(r.status_code, 201, r.content)
+        b = r.json()
+        self.assertEqual(Decimal(b["amount"]), Decimal("5000"))                     # 10 x 500, not the "1" sent
+        self.assertEqual(b["epin_cards"][0]["image_url"], "data:image/webp;base64,AAAA")
+        self.assertEqual(self.req.call_args_list[1][1]["json"], {"network": "mtn", "denomination": 500, "quantity": 1})
+        lst = self.api.get("/api/v1/billing/orders/").json()
+        rows = lst["results"] if isinstance(lst, dict) else lst
+        self.assertNotIn("image_url", rows[0]["epin_cards"][0])                      # list stays light
+
+    def test_epin_out_of_stock_and_bad_value(self):
+        self.req.return_value = resp(200, {"stock": {"GLO": {"1000": 0}}})
+        r = self.api.post("/api/v1/billing/purchase/", {"category": "epin", "code": "GLO", "recipient": "x",
+                                                        "plan_code": "1000"}, format="json")
+        self.assertEqual(r.status_code, 400)
+        r = self.api.post("/api/v1/billing/purchase/", {"category": "epin", "code": "GLO", "recipient": "x",
+                                                        "plan_code": "300"}, format="json")
+        self.assertEqual(r.status_code, 400)
+        self.assertEqual(self.balance(), Decimal("20000"))
+
+    def test_epin_stock_endpoint_maps_9mobile(self):
+        self.req.return_value = resp(200, {"stock": {"T2MOBILE": {"100": 3}}, "pack_size": 10, "max_packs_per_transaction": 5})
+        r = self.api.get("/api/v1/billing/epin-stock/")
+        self.assertEqual(r.json()["stock"], {"9MOBILE": {"100": 3}})

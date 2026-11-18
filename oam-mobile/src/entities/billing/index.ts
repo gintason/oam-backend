@@ -1,1 +1,1 @@
-export type { BillCategory, Biller, Plan, BillStatus, BillOrder, CardCheckout, VerifyResponse } from "./types";
+export type { BillCategory, Biller, Plan, BillStatus, BillOrder, CardCheckout, VerifyResponse, EpinCard, EpinStock } from "./types";

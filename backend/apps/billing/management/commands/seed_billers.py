@@ -15,6 +15,10 @@ DISCOS = [
 ]
 
 
+EDUCATION = [("waec", "WAEC Result Checker"), ("waec-registration", "WAEC Registration"),
+             ("jamb", "JAMB (UTME / DE)")]
+
+
 class Command(BaseCommand):
     help = "Seed Nigerian billers (airtime, data, cable, electricity)."
 
@@ -36,6 +40,10 @@ class Command(BaseCommand):
             add("cable", code, name)
         for code, name in DISCOS:
             add("electricity", code, name)
+        for code, name in EDUCATION:
+            add("education", code, name)
+        for code, name in NETWORKS:
+            add("epin", code, name)
 
         self.stdout.write(self.style.SUCCESS(
             f"Seeded billers. {created} new, {Biller.objects.count()} total."

@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import { GeistMono_400Regular } from "@expo-google-fonts/geist-mono";
 import * as SplashScreen from "expo-splash-screen";
 import { AppProviders } from "./providers";
+import "@/shared/navigation/ios-back"; // iPhone: Back goes Home when there is no previous screen
 import { useAuthStore } from "@/features/auth";
 import * as Linking from "expo-linking";
 import { referralStore, extractReferralToken } from "@/features/referrals";

@@ -8,7 +8,13 @@ export type BillOrder = {
   currency: string; pay_with: string; status: BillStatus; reference: string;
   provider: string | null; customer_name: string | null; meter_type: string | null;
   token: string | null; units: string | null; created_at: string; updated_at: string;
+  pins?: { serial: string; pin: string }[];          // education exam PINs
+  epin_cards?: EpinCard[];                            // ePIN packs of 10 printable cards
+  quantity?: number; plan_name?: string;
 };
+
+export type EpinCard = { id: string; network: string; denomination: number; pieces_count: number; image_url?: string };
+export type EpinStock = { stock: Record<string, Record<string, number>>; pack_size: number; max_packs: number; denominations: number[] };
 
 export type CardCheckout = {
   id: string; category: string; code: string; recipient: string; amount: string; currency: string;

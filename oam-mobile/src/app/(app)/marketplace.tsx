@@ -1,5 +1,7 @@
 import { View, ScrollView, Pressable, ActivityIndicator, Image, Share } from "react-native";
 import { useRouter } from "expo-router";
+import { Platform } from "react-native";
+import { ArrowLeft } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Store, Search, Plus, Tag, ChevronRight, ShieldCheck, MessageCircle, Crown, Eye, Heart, Share2, ListChecks } from "lucide-react-native";
@@ -27,6 +29,13 @@ export default function Marketplace() {
   return (
     <Screen edges={["top"]}>
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+        {/* iPhone has no system Back button, and this screen hides the tab bar */}
+        {Platform.OS === "ios" ? (
+          <Pressable onPress={() => router.back()} hitSlop={10} accessibilityRole="button"
+                     style={{ flexDirection: "row", alignItems: "center", gap: 6, alignSelf: "flex-start", marginBottom: 14 }}>
+            <ArrowLeft size={16} color={colors.muted} /><Text variant="label" color="muted">{t("common.back", "Back")}</Text>
+          </Pressable>
+        ) : null}
         <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginBottom: 18 }}>
           <View style={{ height: 44, width: 44, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(11,115,39,0.10)" }}>
             <Store size={22} strokeWidth={1.75} color={colors.brand.green} />
